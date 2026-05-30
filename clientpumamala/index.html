@@ -1,1 +1,519 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puma Mala — A New Model for Living Well</title>
+<meta name="description" content="A wellness-integrated residential development in Ojochal, Costa Rica — bringing functional medicine, a membership spa, and private residences together under one roof." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
+
+  :root{
+    --sage:#7c8a6f;
+    --sage-deep:#5a6b50;
+    --clay:#c08a64;
+    --clay-soft:#d6a982;
+    --sand:#f3ede3;
+    --sand-deep:#e8ddcb;
+    --ink:#3a3f37;
+    --ink-soft:#5d6356;
+    --cream:#fbf8f2;
+    --line:#ddd2bf;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--ink);
+    background:var(--sand);
+    line-height:1.7;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .page{
+    max-width:920px;
+    margin:0 auto;
+    background:var(--cream);
+    box-shadow:0 0 60px rgba(58,63,55,0.08);
+  }
+
+  img{display:block;max-width:100%;height:auto;}
+
+  /* ---- HERO VIDEO ---- */
+  .hero-video{
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#1a1d18;
+    position:relative;
+  }
+  .hero-video video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  /* Subtle top gradient for wordmark legibility */
+  .hero-video::after{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:160px;
+    background:linear-gradient(180deg,rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%);
+    pointer-events:none;
+    z-index:2;
+  }
+  .video-mark{
+    position:absolute;
+    top:32px;left:40px;
+    z-index:3;
+    color:var(--cream);
+  }
+  .video-mark .mark-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:500;
+    letter-spacing:0.4px;
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .video-mark .mark-loc{
+    font-size:10.5px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:0.88;
+    font-weight:400;
+  }
+
+  /* ---- INTRO SECTION ---- */
+  .intro{
+    padding:64px 64px 12px;
+  }
+  .intro h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:64px;
+    font-weight:500;
+    line-height:0.98;
+    letter-spacing:0.5px;
+    margin-bottom:22px;
+    color:var(--ink);
+  }
+  .intro .sub{
+    font-size:19px;
+    font-weight:300;
+    max-width:620px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+  .intro .loc{
+    margin-top:28px;
+    font-size:11.5px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:500;
+  }
+
+  /* ---- BODY ---- */
+  .body{padding:48px 64px 32px;}
+
+  .lead{
+    font-family:'Cormorant Garamond',serif;
+    font-size:27px;
+    line-height:1.4;
+    color:var(--sage-deep);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .lead-support{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:680px;
+    margin-bottom:32px;
+  }
+
+  .section-label{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:500;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:38px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:14px;
+    letter-spacing:0.3px;
+    line-height:1.1;
+  }
+
+  .block{margin-bottom:48px;}
+
+  /* ---- PILLARS with thumbnails ---- */
+  .pillars{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    margin-top:12px;
+  }
+  .pillar{
+    background:var(--cream);
+    display:flex;
+    flex-direction:column;
+  }
+  .pillar:nth-child(2){
+    background:var(--sand);
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+  .pillar-thumb{
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:var(--sand-deep);
+  }
+  .pillar-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.6s ease;
+  }
+  .pillar:hover .pillar-thumb img{transform:scale(1.03);}
+  .pillar-content{
+    padding:24px 24px 28px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .pillar .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    color:var(--clay);
+    margin-bottom:10px;
+  }
+  .pillar h3{
+    font-family:'Jost',sans-serif;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--sage-deep);
+    margin-bottom:14px;
+  }
+  .pillar p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- WIDE IMAGE BLOCKS ---- */
+  .img-wide{
+    width:calc(100% + 128px);
+    margin-left:-64px;
+    margin-right:-64px;
+    margin-top:8px;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:var(--sand);
+  }
+  .img-wide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  /* ---- MODEL CARDS ---- */
+  .model-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:12px;
+  }
+  .model-card{
+    background:var(--sand);
+    border-radius:12px;
+    padding:24px 26px;
+    border:1px solid var(--line);
+  }
+  .model-card .k{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .model-card h4{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .model-card p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* ---- FLAGSHIP RESIDENCE ---- */
+  .flagship-intro{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:680px;
+    margin-bottom:18px;
+  }
+
+  /* ---- NOT LIST ---- */
+  .notlist{margin-top:12px;}
+  .notitem{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    align-items:flex-start;
+  }
+  .notitem:last-child{border-bottom:none;}
+  .notitem .mark{
+    color:var(--clay);
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    line-height:1;
+    flex-shrink:0;
+    padding-top:2px;
+  }
+  .notitem span:last-child{
+    font-size:15px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- STRIP ---- */
+  .strip p{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:720px;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer{
+    background:var(--sage-deep);
+    color:var(--cream);
+    padding:42px 64px 36px;
+  }
+  .footer .mark{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .footer p{font-size:13.5px;opacity:0.88;max-width:620px;line-height:1.65;}
+  .footer .note{
+    margin-top:18px;
+    font-size:11px;
+    letter-spacing:1.5px;
+    opacity:0.6;
+    text-transform:uppercase;
+  }
+
+  /* ---- MOBILE ---- */
+  @media (max-width:720px){
+    body{background:var(--cream);}
+    .page{box-shadow:none;}
+    .video-mark{top:20px;left:24px;}
+    .video-mark .mark-name{font-size:22px;}
+    .video-mark .mark-loc{font-size:9.5px;letter-spacing:2.5px;}
+    .intro{padding:42px 28px 4px;}
+    .intro h1{font-size:42px;}
+    .intro .sub{font-size:17px;}
+    .body{padding:38px 28px 24px;}
+    h2{font-size:30px;}
+    .lead{font-size:23px;}
+    .pillars{grid-template-columns:1fr;}
+    .pillar:nth-child(2){border-left:none;border-right:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .pillar-thumb{aspect-ratio:16/9;}
+    .model-grid{grid-template-columns:1fr;}
+    .img-wide{
+      width:calc(100% + 56px);
+      margin-left:-28px;
+      margin-right:-28px;
+    }
+    .footer{padding:32px 28px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO VIDEO (top of page, with Puma Mala wordmark) -->
+  <div class="hero-video">
+    <video src="/pumamala-reel.mp4?v=2" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png"></video>
+    <div class="video-mark">
+      <div class="mark-name">Puma Mala</div>
+      <div class="mark-loc">Ojochal, Costa Rica</div>
+    </div>
+  </div>
+
+  <!-- INTRO (headline + subtitle + location pills) -->
+  <div class="intro">
+    <h1>A new model<br>for living well.</h1>
+    <div class="sub">A wellness-integrated residential development that brings functional medicine, a membership spa, and private residences together under one roof — and one vision.</div>
+    <div class="loc">Functional Medicine &nbsp;·&nbsp; Wellness Spa &nbsp;·&nbsp; Private Residences</div>
+  </div>
+
+  <div class="body">
+
+    <!-- LEAD -->
+    <div class="block">
+      <p class="lead">Puma Mala is where your home, your wellness practice, and your doctors share an address — a development in Ojochal designed for a way of living that doesn't yet exist here.</p>
+      <p class="lead-support">A single development that combines three things the region has never had in one place: a building of rentable medical offices, a membership-based wellness spa, and a collection of private residences whose owners live steps from both. The residences finance the vision. The wellness experience is what makes them unlike anything else on the market.</p>
+    </div>
+
+    <!-- THREE PILLARS WITH THUMBNAILS -->
+    <div class="block">
+      <div class="section-label">The three parts, one place</div>
+      <h2>What lives inside Puma Mala</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-thumb">
+            <img src="/pumamala/images/puma_mala_dental_studio.png" alt="Functional medicine practice — clinical studio" />
+          </div>
+          <div class="pillar-content">
+            <div class="num">01</div>
+            <h3>Functional Medicine</h3>
+            <p>An upstairs floor of independent practitioners — general practice, dentistry, dermatology, nutrition, women's health, aesthetics — flowing from lighter cosmetic care at the front to clinical practice at the back, sharing reception, nursing, and scheduling.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-thumb">
+            <img src="/pumamala/images/puma_mala_spa.png" alt="Wellness spa — cold plunge and sauna ritual space" />
+          </div>
+          <div class="pillar-content">
+            <div class="num">02</div>
+            <h3>The Wellness Spa</h3>
+            <p>The ground-floor heart: café and hair studio at the entrance, gym and physical therapy beyond, sauna and cold plunge below. A membership sanctuary — evidence-based, therapeutic, built for everyday ritual.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-thumb">
+            <img src="/pumamala/images/puma_mala_condo_2.png" alt="Private residence — flagship unit with double-height living" />
+          </div>
+          <div class="pillar-content">
+            <div class="num">03</div>
+            <h3>The Residences</h3>
+            <p>Luxury studios (from $229K) and one-bedrooms ($299–329K) with quartz kitchens, hardwood floors, and stone baths — the wellness center as a built-in amenity, plus the rare ability to rent on-site recovery suites with on-call nursing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE PARADIGM SHIFT -->
+    <div class="block">
+      <div class="strip">
+        <div class="section-label">Why this is different</div>
+        <h2>The paradigm shift</h2>
+        <p>Developers build condos and hope a gym fills the brochure. Puma Mala inverts it: the wellness center and functional-medicine practice come first, and the residences are designed around them. An owner doesn't just buy a home — they buy proximity to care, a daily wellness practice, and a recovery-suite income stream that exists nowhere else in the region.</p>
+        <p style="margin-top:16px;">Comparable residences sell at similar prices with none of this integration, and local practitioners have already expressed interest in space. Nothing like it exists in the South Pacific zone — the model is proven nearby, but no one has brought it together with intention.</p>
+      </div>
+    </div>
+
+    <!-- BUILDING ELEVATION -->
+    <div class="img-wide">
+      <img src="/pumamala/images/puma_mala_condo.png" alt="Puma Mala — building elevation with cascading balconies and tropical planting" />
+    </div>
+
+    <div style="height:48px;"></div>
+
+    <!-- THE MODEL -->
+    <div class="block">
+      <div class="section-label">How it works</div>
+      <h2>A deliberately simple model</h2>
+      <div class="model-grid">
+        <div class="model-card">
+          <div class="k">Medical offices</div>
+          <h4>Rented, not operated</h4>
+          <p>Practitioners simply rent their space and share the nursing, reception, and scheduling infrastructure. No equipment to source, no networks to manage — clean, proven, and easy to say yes to.</p>
+        </div>
+        <div class="model-card">
+          <div class="k">The spa</div>
+          <h4>Membership-based</h4>
+          <p>A recurring-membership wellness club downstairs — predictable revenue, a real community, and a standard of practice the building can uphold.</p>
+        </div>
+        <div class="model-card">
+          <div class="k">The residences</div>
+          <h4>Pre-sold to finance the build</h4>
+          <p>A $500 reservation, then 25% at construction start, shell, utilities, and move-in — with financing options. The condos fund the vision that makes them valuable.</p>
+        </div>
+        <div class="model-card">
+          <div class="k">Recovery suites</div>
+          <h4>A use, not an identity</h4>
+          <p>Select ground-floor, accessibility-ready residences can be offered for short therapeutic-recovery stays with on-call nursing — surgery recovery, treatment travel, or rest. An optional income stream the region lacks — without the building ever becoming a care facility.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAGSHIP RESIDENCE -->
+    <div class="block">
+      <div class="section-label">The flagship unit</div>
+      <h2>Inside the residences</h2>
+      <p class="flagship-intro">Double-height living rooms, sculptural staircases, and stone-and-hardwood interiors — designed to feel like the wellness sanctuary downstairs continues into your home.</p>
+      <div class="img-wide" style="margin-top:18px;">
+        <img src="/pumamala/images/puma_mala_condo_2.png" alt="Puma Mala flagship residence — double-height living with sculptural staircase" />
+      </div>
+    </div>
+
+    <!-- WHAT IT IS NOT -->
+    <div class="block">
+      <div class="section-label">Clarity of focus</div>
+      <h2>What Puma Mala is not</h2>
+      <div class="notlist">
+        <div class="notitem"><span class="mark">—</span><span>Not an assisted-living or retirement home. Recovery stays are one optional use of a few units, not the purpose.</span></div>
+        <div class="notitem"><span class="mark">—</span><span>Not a doctor-subscription network or equipment-sourcing business — those are deferred as too complex to launch.</span></div>
+        <div class="notitem"><span class="mark">—</span><span>Not "holistic" in the non-scientific sense. It is science-forward, evidence-based, and therapeutic.</span></div>
+        <div class="notitem"><span class="mark">—</span><span>Not an insurance alternative or membership health-finance scheme.</span></div>
+        <div class="notitem"><span class="mark">—</span><span>Not a sprawling multi-service clinic that staffs roles before the right people are found.</span></div>
+        <div class="notitem"><span class="mark">—</span><span>Not a software platform — that vision exists, but later, and on its own track.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="mark">Puma Mala</div>
+    <p>A wellness-integrated development bringing functional medicine, a membership spa, and private residences together in Ojochal, Costa Rica — financed by the residences, defined by the experience, and built for a way of living that doesn't yet exist here.</p>
+    <div class="note">Concept overview · For discussion · 2026</div>
+  </div>
+
+</div>
+
+<script>
+  // Force-play hero video (handles autoplay restrictions in Chrome/mobile)
+  document.addEventListener('DOMContentLoaded', function() {
+    var v = document.querySelector('.hero-video video');
+    if (!v) return;
+    var tryPlay = function(){ v.play().catch(function(){}); };
+    v.addEventListener('canplay', tryPlay);
+    v.addEventListener('loadedmetadata', tryPlay);
+    setTimeout(tryPlay, 500);
+    setTimeout(tryPlay, 1500);
+  });
+</script>
+
+</body>
+</html>
