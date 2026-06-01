@@ -1,0 +1,2408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Do or Don't — Seth Quest</title>
+<meta name="description" content="Do or Don't — a map of what builds you and what doesn't. A daily habit and life tracker designed and built by Seth Quest.">
+<style>
+  html,body{margin:0;padding:0;background:#0A0A09;}
+  #root{width:100%;min-height:100vh;}
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+const _React = React,
+  useState = _React.useState,
+  useMemo = _React.useMemo,
+  useEffect = _React.useEffect,
+  useRef = _React.useRef;
+
+// ============================================================================
+// DO OR DON'T — V1
+// What you do that builds you. What you don't do that would corrode you.
+// A map of your life. Simple. No bullshit.
+// ============================================================================
+
+const T = {
+  bg: '#0A0A09',
+  text: '#F2EFE8',
+  textMuted: 'rgba(242,239,232,0.6)',
+  textSubtle: 'rgba(242,239,232,0.38)',
+  textFaint: 'rgba(242,239,232,0.22)',
+  border: 'rgba(242,239,232,0.09)',
+  borderMid: 'rgba(242,239,232,0.16)',
+  gray: 'rgba(242,239,232,0.32)',
+  fontDisplay: "'DM Serif Display', Georgia, serif",
+  fontMono: "'DM Mono', monospace"
+};
+
+// ---------------------------------------------------------------------------
+// DO — 12 facets
+// ---------------------------------------------------------------------------
+const DO_FACETS = [{
+  id: 'purpose',
+  label: 'Purpose',
+  color: '#8B7ED8'
+}, {
+  id: 'creative',
+  label: 'Creative',
+  color: '#6B9FE4'
+}, {
+  id: 'business',
+  label: 'Business',
+  color: '#4A9EC4'
+}, {
+  id: 'financial',
+  label: 'Financial',
+  color: '#2E8B6E'
+}, {
+  id: 'mindset',
+  label: 'Mindset',
+  color: '#52B88A'
+}, {
+  id: 'feeling',
+  label: 'Feeling',
+  color: '#C8603A'
+}, {
+  id: 'contribution',
+  label: 'Contribution',
+  color: '#5ECAA5'
+}, {
+  id: 'relationships',
+  label: 'Relationships',
+  color: '#D4855A'
+}, {
+  id: 'spiritual',
+  label: 'Spiritual',
+  color: '#9B80CC'
+}, {
+  id: 'meditation',
+  label: 'Meditation',
+  color: '#6BA8A3'
+}, {
+  id: 'sleep',
+  label: 'Sleep',
+  color: '#5285B8'
+}, {
+  id: 'fitness',
+  label: 'Fitness',
+  color: '#3DAF6F'
+}];
+
+// ---------------------------------------------------------------------------
+// DON'T — 13 facets, orange top half → red bottom half
+// ---------------------------------------------------------------------------
+const DONT_FACETS = [{
+  id: 'sugar',
+  label: 'Sugar',
+  color: '#E89548'
+}, {
+  id: 'fast_food',
+  label: 'Fast food',
+  color: '#E48040'
+}, {
+  id: 'complaining',
+  label: 'Complaining',
+  color: '#DE7238'
+}, {
+  id: 'phone',
+  label: 'Phone',
+  color: '#D86432'
+}, {
+  id: 'shopping',
+  label: 'Shopping',
+  color: '#D1572C'
+}, {
+  id: 'tv',
+  label: 'TV',
+  color: '#C94A27'
+}, {
+  id: 'alcohol',
+  label: 'Alcohol',
+  color: '#C03020'
+}, {
+  id: 'doomscroll',
+  label: 'Doomscrolling',
+  color: '#AD2418'
+}, {
+  id: 'caffeine',
+  label: 'Caffeine',
+  color: '#9A1812'
+}, {
+  id: 'social_media',
+  label: 'Social media',
+  color: '#870C0C'
+}, {
+  id: 'cigarettes',
+  label: 'Cigarettes',
+  color: '#740808'
+}, {
+  id: 'pornography',
+  label: 'Pornography',
+  color: '#620404'
+}, {
+  id: 'drugs',
+  label: 'Drugs',
+  color: '#500000'
+}];
+
+// ---------------------------------------------------------------------------
+// SUGGESTIONS — per facet, per tier
+// ---------------------------------------------------------------------------
+const DO_SUGGESTIONS = {
+  purpose: {
+    easy: ['Sit for 5 min and ask what truly matters', 'Write one sentence about why you are here', 'Read something that reconnects you with your why'],
+    medium: ['Take one action toward your real calling today', 'Identify where your time misaligns with your values', 'Tell someone what you are actually building'],
+    hard: ['Decline something that does not align with your purpose', 'Spend a full day only on your true calling', 'Restructure your week around what matters most'],
+    milestone: ['Made a major decision aligned with your purpose', 'Publicly committed to your mission', 'Completed a project that embodies what you are here to do']
+  },
+  creative: {
+    easy: ['Sketch or doodle for 10 minutes', 'Open the project and just look at it', 'Capture one idea before it disappears'],
+    medium: ['One hour of creative work, no distractions', 'Share a work-in-progress with someone you trust', 'Try a new technique or medium today'],
+    hard: ['Finish and ship something, however imperfect', 'Show your work publicly even though it scares you', 'A full uninterrupted day of creative work'],
+    milestone: ['Released a creative work into the world', 'Sold or got paid for something you made', 'Completed a long-form project you have been carrying']
+  },
+  business: {
+    easy: ['Follow up with one existing contact', 'Update your pipeline', 'Write one short post about what you are building'],
+    medium: ['Send three outreach messages today', 'Ship one feature, page, or deliverable', 'Have one meaningful strategic conversation'],
+    hard: ['Make 10 cold calls today', 'Pitch a high-value client or opportunity', 'Launch a new offer or service'],
+    milestone: ['Signed a new client or closed a deal', 'Launched a product publicly', 'Hit a revenue milestone you have been working toward']
+  },
+  financial: {
+    easy: ['Check your accounts without avoidance', 'Log today\'s expenses honestly', 'Cancel one subscription you no longer use'],
+    medium: ['Build or update your budget for the month', 'Pause a discretionary purchase for 24 hours', 'Have a real honest conversation about money'],
+    hard: ['Pay down debt or move money to savings', 'Negotiate a rate or invoice you have been avoiding', 'Face your full financial picture without numbing'],
+    milestone: ['Built a real emergency fund', 'Paid off a debt completely', 'Reached a financial threshold that changes your options']
+  },
+  mindset: {
+    easy: ['Notice one limiting belief running today', 'Reframe one negative thought', 'Read something that challenges how you see yourself'],
+    medium: ['Journal about a belief you want to change', 'Act as the person you want to become, just for today', 'Have a conversation that challenges your assumptions'],
+    hard: ['Confront a long-held belief that has held you back', 'Act against a fear-based pattern', 'Sit with discomfort without trying to fix or flee'],
+    milestone: ['Released a limiting belief you carried for years', 'An action that proves a new identity is real', 'Felt a lasting shift in how you see yourself']
+  },
+  feeling: {
+    easy: ['Name how you feel right now in one honest word', 'Watch something genuinely funny', 'Move your body for 5 min to shift your state'],
+    medium: ['Sit with an uncomfortable emotion without escaping', 'Have a real conversation about how you are actually doing', 'Do something playful or silly on purpose'],
+    hard: ['Cry, rage, or grieve fully without judgment', 'Reach out for support when you would normally isolate', 'Express a feeling you have been suppressing'],
+    milestone: ['Felt a long-held emotion fully and let it move through', 'New capacity for joy, grief, or presence', 'Broke a pattern of emotional numbing']
+  },
+  contribution: {
+    easy: ['One small act of service today', 'Send a thank-you to someone who helped you', 'Help a friend with something, no strings attached'],
+    medium: ['Spend an hour in service this week', 'Mentor someone earlier on the path', 'Give meaningfully to a cause you care about'],
+    hard: ['Commit to a recurring weekly service habit', 'Give something significant away, no strings attached', 'Speak up for someone who cannot speak for themselves'],
+    milestone: ['Started or led a real project of service', 'Made a lasting contribution to someone\'s life', 'Built a consistent giving practice into your routine']
+  },
+  relationships: {
+    easy: ['Text someone you love just to say you are thinking of them', 'Call a family member, even for 5 minutes', 'Send genuine appreciation to someone in your life'],
+    medium: ['Have a real one-on-one conversation, no agenda', 'Listen to someone fully without trying to fix anything', 'Repair a small rupture with someone you care about'],
+    hard: ['Have the difficult conversation you have been avoiding', 'Set a healthy boundary even though it disappoints someone', 'Be genuinely vulnerable with someone you trust'],
+    milestone: ['Repaired a major rupture with someone important', 'Deepened a relationship that means a great deal', 'Ended a relationship that was costing too much']
+  },
+  spiritual: {
+    easy: ['Pray, meditate, or sit in silence for 5 min', '10 min in nature with no phone', 'Write three things you are grateful for'],
+    medium: ['Attend a service, ceremony, or gathering', 'Read something wisdom-based for 30 min', 'Have a real conversation about meaning or values'],
+    hard: ['Commit to a daily spiritual practice for a full week', 'Surrender control in an area you have been gripping', 'Sit with a deep question, no rushing to an answer'],
+    milestone: ['Felt a profound spiritual experience or shift', 'Built a sustainable daily spiritual practice', 'Returned to a practice that genuinely grounds you']
+  },
+  meditation: {
+    easy: ['5 minutes of breath focus', '3 conscious breaths between tasks today', 'One body scan before bed tonight'],
+    medium: ['10 minutes of silent sitting', 'A guided meditation from start to finish', 'Walking meditation, slow and fully present'],
+    hard: ['30 minutes of unbroken meditation', 'Sit through strong restlessness without moving', 'A silent half-day or structured retreat'],
+    milestone: ['Completed a meditation retreat or intensive', 'Daily practice maintained for a full month', 'Experienced a genuine state of stillness or insight']
+  },
+  sleep: {
+    easy: ['In bed before midnight tonight', 'Phone out of the bedroom', 'No screens for one hour before bed'],
+    medium: ['Consistent bedtime for the full week', 'Cut all caffeine after 2pm', 'Build a real 30-minute wind-down ritual'],
+    hard: ['8 hours every night for a full week', 'Reset a chronic sleep pattern', 'One full week without sleep aids or substances'],
+    milestone: ['Established a sleep rhythm you actually love', 'Resolved a long-standing sleep issue', 'Felt genuinely rested for weeks in a row']
+  },
+  fitness: {
+    easy: ['Walked for 15 minutes today', 'Stretched for 10 minutes', '5 minutes of mobility work'],
+    medium: ['Completed one full workout', 'Hit your step goal today', 'Tried a new movement practice or class'],
+    hard: ['Trained hard 5 days this week', 'Completed a long run or heavy training session', 'Pushed through a plateau you have been stuck at'],
+    milestone: ['Ran your first 5K', 'Gained 5 pounds of muscle', 'Completed 20 workouts in a month']
+  }
+};
+const DONT_SUGGESTIONS = {
+  sugar: {
+    easy: ['Skipped dessert today', 'Said no to a sweet treat', 'Drank water instead of juice'],
+    medium: ['Full day without added sugar', 'Cooked at home instead of a sweet option', 'Read labels and avoided hidden sugar'],
+    hard: ['Three days in a row, no added sugar', 'Made it through a social event without sugar', 'Replaced your sugar ritual with something nourishing'],
+    milestone: ['One full week with no added sugar', 'Broke a long-standing sugar habit', 'Sugar no longer controls your choices']
+  },
+  fast_food: {
+    easy: ['Cooked at home instead of takeout', 'Packed a meal for the day', 'Said no to a drive-thru impulse'],
+    medium: ['Full week without fast food', 'Meal-prepped for the work week', 'Chose a real restaurant over fast food'],
+    hard: ['Two weeks without fast food', 'Resisted fast food during travel or stress', 'Replaced a fast-food ritual with something nourishing'],
+    milestone: ['One full month without fast food', 'Fast food no longer feels like comfort', 'Cooking at home is your default now']
+  },
+  complaining: {
+    easy: ['Noticed yourself complaining and stopped mid-sentence', 'Reframed a complaint into a request', 'Held back from venting and let it pass'],
+    medium: ['Asked a friend to point out when you are complaining', 'Whole day without complaining out loud', 'Caught a chronic complaint and replaced it with action'],
+    hard: ['Told a close friend you want to stop the complaining cycle', 'Three days without complaining out loud', 'Found the deeper need underneath a repeat complaint'],
+    milestone: ['One full week without complaining', 'A relationship transformed because you stopped complaining', 'Action is now your default, not commentary']
+  },
+  phone: {
+    easy: ['Phone out of bedroom tonight', 'Greyscale or focus mode for an hour', 'Left phone in another room during a meal'],
+    medium: ['Phone-free morning routine', 'Whole evening with phone face-down', 'No phone for the first hour after waking'],
+    hard: ['One day with phone in a drawer', 'Weekend without social apps', 'No phone for an entire workday'],
+    milestone: ['One full week of phone-free mornings and evenings', 'Cut screen time in half', 'Phone is a tool again, not a master']
+  },
+  shopping: {
+    easy: ['Skipped an impulse purchase today', 'Unsubscribed from a shopping email list', 'Closed the app before adding to cart'],
+    medium: ['Full week without buying anything non-essential', 'Returned an impulse item you bought', '24-hour wait on every purchase this week'],
+    hard: ['One month buying only groceries', 'Faced the urge to shop when stressed without buying', 'Sold or donated things instead of accumulating more'],
+    milestone: ['Broke the shopping-as-comfort pattern', 'No longer use shopping to regulate emotions', 'Saved meaningful money by not buying']
+  },
+  tv: {
+    easy: ['No TV tonight', 'Read instead of watching', 'Limited streaming to one episode, no auto-play'],
+    medium: ['Full week without TV', 'Cancelled a streaming subscription', 'Replaced evening TV with a real ritual'],
+    hard: ['Two weeks with no TV', 'Faced an evening of restlessness without numbing', 'Used the time saved for something meaningful'],
+    milestone: ['One full month without TV', 'Changed your relationship with passive watching permanently', 'You do not miss it anymore']
+  },
+  alcohol: {
+    easy: ['No alcohol tonight', 'Said no to a drink that was offered', 'Drank water at a social event'],
+    medium: ['Full week without alcohol', 'Skipped a social event where you would normally drink', 'Was the sober one at a gathering'],
+    hard: ['One month without alcohol', 'Faced a hard emotion without drinking', 'Stayed sober at the kind of event that always involved alcohol'],
+    milestone: ['Three months sober', 'Six months sober', 'One year of sobriety']
+  },
+  doomscroll: {
+    easy: ['Caught yourself doomscrolling and closed the app', 'Set a screen-time limit on news apps', 'Read a book instead of scrolling tonight'],
+    medium: ['Whole evening without doomscrolling', 'Deleted a news app for the day', 'Replaced morning scroll with something grounding'],
+    hard: ['Full week without doomscrolling', 'Deleted news apps from your phone', 'No phone in bed for a week'],
+    milestone: ['Broke the daily doomscroll habit', 'Mornings and evenings are reclaimed', 'You feel genuinely calmer without constant news']
+  },
+  caffeine: {
+    easy: ['No caffeine after 2pm today', 'One cup instead of three', 'Switched to herbal tea this afternoon'],
+    medium: ['Full day caffeine-free', 'Cut down to one cup in the morning', 'Whole week with caffeine cutoff by noon'],
+    hard: ['Three days caffeine-free', 'Got through the withdrawal without giving in', 'Resisted caffeine during a stressful week'],
+    milestone: ['One full week caffeine-free', 'Two weeks clean and feeling better', 'Caffeine no longer runs your energy']
+  },
+  social_media: {
+    easy: ['Did not open social apps today', 'Logged out of one platform', 'Deleted one app from your phone'],
+    medium: ['Full week off all social media', 'Deactivated your most addictive account', 'Replaced social time with reading or movement'],
+    hard: ['Two weeks off social media', 'Quietly stopped posting for a month', 'Faced the discomfort of not knowing what others are doing'],
+    milestone: ['One full month off social media', 'Permanently deleted accounts that were draining you', 'Reclaimed hours per day of real attention']
+  },
+  cigarettes: {
+    easy: ['Smoked one less than usual today', 'Skipped the morning cigarette', 'Walked instead of a smoke break'],
+    medium: ['Full day without smoking', 'Three days in a row, no cigarettes', 'Got through a craving without lighting up'],
+    hard: ['One full week without smoking', 'Threw out the pack and did not buy more', 'Made it through a high-stress event without smoking'],
+    milestone: ['One full month without a cigarette', 'You no longer identify as a smoker', 'Quit for good']
+  },
+  pornography: {
+    easy: ['Closed the browser before going further', 'Used a content blocker today', 'Reached out to someone instead of isolating'],
+    medium: ['Full week clear', 'Identified the trigger and chose differently', 'Replaced the pattern with something nourishing'],
+    hard: ['Two weeks clear', 'Got through a strong craving without acting on it', 'Spoke honestly to someone about the pattern'],
+    milestone: ['One month clear', 'Three months clear and feeling different', 'No longer ruled by this']
+  },
+  drugs: {
+    easy: ['Said no today', 'Avoided a situation where you would have used', 'Reached out for support instead of using'],
+    medium: ['Full week clean', 'Made it through a craving without acting on it', 'Cut off contact with a source'],
+    hard: ['One month clean', 'Did the hard work of recovery', 'Faced the underlying cause without numbing'],
+    milestone: ['Three months clean', 'Six months clean', 'One year clean']
+  }
+};
+
+// ---------------------------------------------------------------------------
+// TIERS — sizes start at 4px minimum
+// ---------------------------------------------------------------------------
+const TIERS = {
+  easy: {
+    id: 'easy',
+    label: 'Easy',
+    desc: 'Something that is easy for me to do.',
+    r: 4,
+    opacity: 0.7
+  },
+  medium: {
+    id: 'medium',
+    label: 'Medium',
+    desc: 'Something I know I can do but find challenging or procrastinate on.',
+    r: 6,
+    opacity: 0.85
+  },
+  hard: {
+    id: 'hard',
+    label: 'Hard',
+    desc: 'This is genuinely hard for me. Takes building up to it.',
+    r: 8,
+    opacity: 1
+  },
+  milestone: {
+    id: 'milestone',
+    label: 'Milestone',
+    desc: 'If others were observing me, they could see or feel a positive shift.',
+    r: 10,
+    opacity: 1,
+    ring: true
+  }
+};
+const TIER_ORDER = ['easy', 'medium', 'hard', 'milestone'];
+
+// Radial bands: 0=center, 1=outer edge. Returns [min,max] as fraction of MAX_R.
+const TIER_BANDS = {
+  easy: [0.80, 0.97],
+  medium: [0.60, 0.79],
+  hard: [0.40, 0.59],
+  milestone: [0.20, 0.39]
+};
+const QUOTES = [{
+  text: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+  author: "Aristotle"
+}, {
+  text: "You don't have to be great to start, but you have to start to be great.",
+  author: "Zig Ziglar"
+}, {
+  text: "The secret of getting ahead is getting started.",
+  author: "Mark Twain"
+}, {
+  text: "Small daily improvements over time lead to stunning results.",
+  author: "Robin Sharma"
+}, {
+  text: "The man who moves a mountain begins by carrying away small stones.",
+  author: "Confucius"
+}, {
+  text: "Your future is created by what you do today, not tomorrow.",
+  author: "Robert Kiyosaki"
+}, {
+  text: "Start where you are. Use what you have. Do what you can.",
+  author: "Arthur Ashe"
+}, {
+  text: "One day or day one. You decide.",
+  author: "Anonymous"
+}, {
+  text: "Progress, not perfection.",
+  author: "Anonymous"
+}, {
+  text: "What you do every day matters more than what you do once in a while.",
+  author: "Gretchen Rubin"
+}, {
+  text: "Don't count the days. Make the days count.",
+  author: "Muhammad Ali"
+}, {
+  text: "Showing up is the whole game.",
+  author: "Anonymous"
+}, {
+  text: "You don't find willpower. You build it.",
+  author: "Anonymous"
+}, {
+  text: "The comeback is always stronger than the setback.",
+  author: "Anonymous"
+}, {
+  text: "Do or do not. There is no try.",
+  author: "Yoda"
+}, {
+  text: "It always seems impossible until it is done.",
+  author: "Nelson Mandela"
+}, {
+  text: "Life shrinks or expands in proportion to one's courage.",
+  author: "Anaïs Nin"
+}, {
+  text: "Every expert was once a beginner.",
+  author: "Helen Hayes"
+}, {
+  text: "In the middle of every difficulty lies opportunity.",
+  author: "Albert Einstein"
+}, {
+  text: "The only way to do great work is to love what you do.",
+  author: "Steve Jobs"
+}];
+const getTodayQuote = () => {
+  const d = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  return QUOTES[d % QUOTES.length];
+};
+
+// ---------------------------------------------------------------------------
+// VIEWS
+// ---------------------------------------------------------------------------
+const startOfWeek = d => {
+  const r = new Date(d);
+  r.setHours(0, 0, 0, 0);
+  r.setDate(r.getDate() - r.getDay());
+  return r;
+};
+const startOfMonth = d => new Date(d.getFullYear(), d.getMonth(), 1);
+const startOfYear = d => new Date(d.getFullYear(), 0, 1);
+const endOfWeek = d => {
+  const r = startOfWeek(d);
+  r.setDate(r.getDate() + 7);
+  return r;
+};
+const endOfMonth = d => new Date(d.getFullYear(), d.getMonth() + 1, 1);
+const endOfYear = d => new Date(d.getFullYear() + 1, 0, 1);
+const VIEWS = {
+  week: {
+    label: 'Week',
+    start: startOfWeek,
+    end: endOfWeek,
+    step: (d, dir) => {
+      const r = new Date(d);
+      r.setDate(r.getDate() + dir * 7);
+      return r;
+    }
+  },
+  month: {
+    label: 'Month',
+    start: startOfMonth,
+    end: endOfMonth,
+    step: (d, dir) => {
+      const r = new Date(d);
+      r.setMonth(r.getMonth() + dir);
+      return r;
+    }
+  },
+  year: {
+    label: 'Year',
+    start: startOfYear,
+    end: endOfYear,
+    step: (d, dir) => {
+      const r = new Date(d);
+      r.setFullYear(r.getFullYear() + dir);
+      return r;
+    }
+  }
+};
+const fmtShort = d => d.toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric'
+});
+const fmtTime = d => d.toLocaleTimeString('en-US', {
+  hour: 'numeric',
+  minute: '2-digit'
+});
+const fmtRange = (view, anchor) => {
+  const s = VIEWS[view].start(anchor),
+    e = new Date(VIEWS[view].end(anchor).getTime() - 1);
+  if (view === 'year') return s.getFullYear().toString();
+  if (view === 'month') return s.toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric'
+  });
+  return "".concat(s.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  }), " \u2013 ").concat(e.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  }));
+};
+
+// Stable per-dot random — same dot always lands in same spot
+const seededRand = (seed, salt) => {
+  const x = Math.sin((seed.charCodeAt(0) || 0) + (seed.charCodeAt(seed.length - 1) || 0) + salt * 9999) * 10000;
+  return x - Math.floor(x);
+};
+
+// ---------------------------------------------------------------------------
+// MAIN
+// ---------------------------------------------------------------------------
+function DoOrDont() {
+  const _useState = useState('do'),
+    _useState2 = _slicedToArray(_useState, 2),
+    side = _useState2[0],
+    setSide = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    flipping = _useState4[0],
+    setFlipping = _useState4[1];
+  const _useState5 = useState(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    flashLabels = _useState6[0],
+    setFlashLabels = _useState6[1]; // flash on first load too
+  const _useState7 = useState(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    activeFacetId = _useState8[0],
+    setActiveFacetId = _useState8[1];
+  const _useState9 = useState('week'),
+    _useState0 = _slicedToArray(_useState9, 2),
+    view = _useState0[0],
+    setView = _useState0[1];
+  const _useState1 = useState(new Date()),
+    _useState10 = _slicedToArray(_useState1, 2),
+    anchor = _useState10[0],
+    setAnchor = _useState10[1];
+  const _useState11 = useState(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    drawerDot = _useState12[0],
+    setDrawerDot = _useState12[1];
+  const _useState13 = useState(true),
+    _useState14 = _slicedToArray(_useState13, 2),
+    showIntro = _useState14[0],
+    setShowIntro = _useState14[1];
+  const _useState15 = useState(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    showBirthYear = _useState16[0],
+    setShowBirthYear = _useState16[1];
+  const _useState17 = useState(() => {
+      try {
+        var _window$localStorage;
+        return ((_window$localStorage = window.localStorage) === null || _window$localStorage === void 0 ? void 0 : _window$localStorage.getItem('dod-birthyear')) || '';
+      } catch (e) {
+        return '';
+      }
+    }),
+    _useState18 = _slicedToArray(_useState17, 2),
+    birthYear = _useState18[0],
+    setBirthYear = _useState18[1];
+  const _useState19 = useState(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    coherenceMode = _useState20[0],
+    setCoherenceMode = _useState20[1];
+  const _useState21 = useState(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    editMode = _useState22[0],
+    setEditMode = _useState22[1];
+
+  // All logged items: { id, facetId, side, tier, note, status:'committed'|'completed', timestamp, commitTime }
+  const _useState23 = useState([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    items = _useState24[0],
+    setItems = _useState24[1];
+  const _useState25 = useState(() => {
+      var _window$localStorage2;
+      const s = (_window$localStorage2 = window.localStorage) === null || _window$localStorage2 === void 0 ? void 0 : _window$localStorage2.getItem('dod-created');
+      if (s) return parseInt(s, 10);
+      const n = Date.now();
+      try {
+        var _window$localStorage3;
+        (_window$localStorage3 = window.localStorage) === null || _window$localStorage3 === void 0 || _window$localStorage3.setItem('dod-created', n);
+      } catch (e) {}
+      return n;
+    }),
+    _useState26 = _slicedToArray(_useState25, 1),
+    createdAt = _useState26[0];
+
+  // Persist
+  useEffect(() => {
+    try {
+      var _window$localStorage4;
+      const d = (_window$localStorage4 = window.localStorage) === null || _window$localStorage4 === void 0 ? void 0 : _window$localStorage4.getItem('dod-items-v1');
+      if (d) setItems(JSON.parse(d));
+    } catch (e) {}
+    // Flash labels on first load, then fade
+    const t = setTimeout(() => setFlashLabels(false), 3000);
+    return () => clearTimeout(t);
+  }, []);
+  useEffect(() => {
+    try {
+      var _window$localStorage5;
+      (_window$localStorage5 = window.localStorage) === null || _window$localStorage5 === void 0 || _window$localStorage5.setItem('dod-items-v1', JSON.stringify(items));
+    } catch (e) {}
+  }, [items]);
+  const facetList = side === 'do' ? DO_FACETS : DONT_FACETS;
+  // Always sort by source array position to prevent reordering
+  const visibleFacets = [...facetList];
+  const visibleItems = useMemo(() => {
+    const start = VIEWS[view].start(anchor).getTime(),
+      end = VIEWS[view].end(anchor).getTime();
+    return items.filter(it => it.timestamp >= start && it.timestamp < end && it.side === side);
+  }, [items, view, anchor, side]);
+  const itemsByFacet = useMemo(() => {
+    const map = {};
+    visibleFacets.forEach(f => {
+      map[f.id] = [];
+    });
+    visibleItems.forEach(it => {
+      if (map[it.facetId]) map[it.facetId].push(it);
+    });
+    return map;
+  }, [visibleItems, visibleFacets]);
+  const dayCount = Math.max(1, Math.ceil((Date.now() - createdAt) / (1000 * 60 * 60 * 24)));
+  const todayQuote = useMemo(() => getTodayQuote(), []);
+  const commitAction = (facetId, tier, note) => {
+    const it = {
+      id: "".concat(Date.now(), "-").concat(Math.random().toString(36).slice(2, 7)),
+      facetId,
+      side,
+      tier,
+      note: note || '',
+      status: 'committed',
+      timestamp: Date.now(),
+      commitTime: Date.now()
+    };
+    setItems(prev => [...prev, it]);
+  };
+  const completeAction = id => {
+    setItems(prev => prev.map(it => it.id === id ? _objectSpread(_objectSpread({}, it), {}, {
+      status: 'completed'
+    }) : it));
+  };
+  const deleteItem = id => {
+    setItems(prev => prev.filter(it => it.id !== id));
+  };
+  const handleFlip = () => {
+    if (flipping) return;
+    setActiveFacetId(null);
+    setDrawerDot(null);
+    setCoherenceMode(false);
+    setFlipping(true);
+    setTimeout(() => {
+      setSide(s => s === 'do' ? 'dont' : 'do');
+      setFlashLabels(true);
+    }, 300);
+    setTimeout(() => setFlipping(false), 600);
+    setTimeout(() => setFlashLabels(false), 3300); // 1s hold + 2s fade = 3s total after flip
+  };
+  const openFacet = id => {
+    setActiveFacetId(id);
+    setDrawerDot(null);
+    setCoherenceMode(false);
+    setEditMode(false);
+  };
+  const openDot = it => {
+    setDrawerDot(it);
+    setCoherenceMode(false);
+    setEditMode(false);
+  };
+  const closeDrawer = () => {
+    setActiveFacetId(null);
+    setDrawerDot(null);
+    setCoherenceMode(false);
+    setEditMode(false);
+  };
+  const drawerOpen = !!(activeFacetId || drawerDot || coherenceMode || editMode);
+  const activeFacet = activeFacetId ? facetList.find(f => f.id === activeFacetId) : null;
+
+  // Facet cycling via arrows
+  const cycleFacet = dir => {
+    const idx = facetList.findIndex(f => f.id === activeFacetId);
+    if (idx === -1) return;
+    const next = facetList[(idx + dir + facetList.length) % facetList.length];
+    setActiveFacetId(next.id);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.root
+  }, /*#__PURE__*/React.createElement(FontImport, null), showIntro && /*#__PURE__*/React.createElement(IntroScreen, {
+    onEnter: () => {
+      setShowIntro(false);
+      if (!birthYear) setShowBirthYear(true);
+    }
+  }), showBirthYear && /*#__PURE__*/React.createElement(BirthYearScreen, {
+    onDone: yr => {
+      setBirthYear(yr);
+      try {
+        var _window$localStorage6;
+        (_window$localStorage6 = window.localStorage) === null || _window$localStorage6 === void 0 || _window$localStorage6.setItem('dod-birthyear', yr);
+      } catch (e) {}
+      setShowBirthYear(false);
+    }
+  }), /*#__PURE__*/React.createElement("header", {
+    style: S.header
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: S.wordmark
+  }, "Do or Don't"), /*#__PURE__*/React.createElement("div", {
+    style: S.tagline
+  }, "a map of what builds you and what doesn't")), /*#__PURE__*/React.createElement("div", {
+    style: S.headerRight
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setCoherenceMode(v => !v);
+      setActiveFacetId(null);
+      setDrawerDot(null);
+      setEditMode(false);
+    },
+    style: S.dayBtn
+  }, /*#__PURE__*/React.createElement("span", {
+    style: S.dayLabel
+  }, "day"), /*#__PURE__*/React.createElement("span", {
+    style: S.dayNum
+  }, dayCount)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setEditMode(v => !v);
+      setActiveFacetId(null);
+      setDrawerDot(null);
+      setCoherenceMode(false);
+    },
+    style: _objectSpread(_objectSpread({}, S.iconBtn), editMode ? {
+      borderColor: T.borderMid,
+      color: T.text
+    } : null)
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "14",
+    height: "14",
+    viewBox: "0 0 14 14",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "7",
+    cy: "7",
+    r: "1.5",
+    stroke: "currentColor",
+    strokeWidth: "0.8"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M7 1v2M7 11v2M1 7h2M11 7h2M2.5 2.5l1.5 1.5M10 10l1.5 1.5M2.5 11.5L4 10M10 4l1.5-1.5",
+    stroke: "currentColor",
+    strokeWidth: "0.8",
+    strokeLinecap: "round"
+  }))))), /*#__PURE__*/React.createElement("div", {
+    style: S.canvas,
+    onClick: e => {
+      if (e.target === e.currentTarget) closeDrawer();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.sideToggleWrap
+  }, /*#__PURE__*/React.createElement(SideToggle, {
+    side: side,
+    onFlip: handleFlip
+  })), /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.wheelWrap), {}, {
+      transform: flipping ? 'rotateY(90deg)' : 'rotateY(0deg)',
+      transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)'
+    }),
+    onClick: e => {
+      if (e.target.tagName === 'svg' || e.currentTarget === e.target) closeDrawer();
+    }
+  }, /*#__PURE__*/React.createElement(Wheel, {
+    key: side,
+    facets: visibleFacets,
+    itemsByFacet: itemsByFacet,
+    activeFacetId: activeFacetId,
+    onSelectFacet: openFacet,
+    onSelectItem: openDot,
+    onCanvasClick: closeDrawer,
+    coherenceMode: coherenceMode,
+    side: side,
+    flashLabels: flashLabels
+  })), /*#__PURE__*/React.createElement("div", {
+    style: S.viewWrap
+  }, /*#__PURE__*/React.createElement(ViewSelector, {
+    view: view,
+    setView: setView,
+    anchor: anchor,
+    setAnchor: setAnchor,
+    dayCount: dayCount
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.drawer), {}, {
+      transform: drawerOpen ? 'translateX(0)' : 'translateX(100%)'
+    })
+  }, editMode && /*#__PURE__*/React.createElement(EditPanel, {
+    side: side,
+    list: facetList,
+    onDone: () => setEditMode(false)
+  }), coherenceMode && !editMode && /*#__PURE__*/React.createElement(BriefingPanel, {
+    items: items,
+    visibleItems: visibleItems,
+    itemsByFacet: itemsByFacet,
+    visibleFacets: visibleFacets,
+    dayCount: dayCount,
+    view: view,
+    range: fmtRange(view, anchor),
+    side: side,
+    onClose: closeDrawer
+  }), drawerDot && !editMode && !coherenceMode && /*#__PURE__*/React.createElement(DotPanel, {
+    item: drawerDot,
+    facet: facetList.find(f => f.id === drawerDot.facetId),
+    onClose: closeDrawer,
+    onDelete: () => {
+      deleteItem(drawerDot.id);
+      closeDrawer();
+    },
+    onComplete: () => completeAction(drawerDot.id)
+  }), activeFacet && !editMode && !coherenceMode && !drawerDot && /*#__PURE__*/React.createElement(FacetPanel, {
+    facet: activeFacet,
+    facetIndex: facetList.findIndex(f => f.id === activeFacetId),
+    facetList: facetList,
+    items: itemsByFacet[activeFacetId] || [],
+    suggestions: side === 'do' ? DO_SUGGESTIONS[activeFacetId] : DONT_SUGGESTIONS[activeFacetId],
+    onCommit: (tier, note) => commitAction(activeFacetId, tier, note),
+    onComplete: completeAction,
+    onDelete: deleteItem,
+    onSelectItem: openDot,
+    onCycle: cycleFacet,
+    onClose: closeDrawer,
+    side: side
+  })));
+}
+
+// ---------------------------------------------------------------------------
+// INTRO SCREEN — animated cycling DO / or / DON'T with paired lists
+// ---------------------------------------------------------------------------
+const DO_WORDS = ['cook a healthy meal', 'apply for the job', 'hit the gym', 'laugh with your friends', 'do what you love', 'make art', 'ask her out', 'go outside', 'tell the truth', 'volunteer somewhere', 'forgive your friend', 'go for a bike ride', 'open a savings account', 'play padel', 'call your mom'];
+const DONT_WORDS = ['ghost on dating apps', 'eat fast food', 'procrastinate all morning', 'doomscroll in bed', 'drink soda', 'impulse shop on Amazon', 'complain', 'compare yourself to influencers', 'text your ex at 2am', 'give up', 'watch porn'];
+function IntroScreen(_ref) {
+  let onEnter = _ref.onEnter;
+  const _useState27 = useState(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    vis = _useState28[0],
+    setVis = _useState28[1];
+  const _useState29 = useState(0),
+    _useState30 = _slicedToArray(_useState29, 2),
+    doIdx = _useState30[0],
+    setDoIdx = _useState30[1];
+  const _useState31 = useState(0),
+    _useState32 = _slicedToArray(_useState31, 2),
+    dontIdx = _useState32[0],
+    setDontIdx = _useState32[1];
+  const _useState33 = useState(true),
+    _useState34 = _slicedToArray(_useState33, 2),
+    doFade = _useState34[0],
+    setDoFade = _useState34[1];
+  const _useState35 = useState(true),
+    _useState36 = _slicedToArray(_useState35, 2),
+    dontFade = _useState36[0],
+    setDontFade = _useState36[1];
+  useEffect(() => {
+    const t = setTimeout(() => setVis(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Cycle DO words every 1.2s with fade
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDoFade(false);
+      setTimeout(() => {
+        setDoIdx(i => (i + 1) % DO_WORDS.length);
+        setDoFade(true);
+      }, 250);
+    }, 1200);
+    return () => clearInterval(t);
+  }, []);
+
+  // Cycle DON'T words every 1s with fade, offset start
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDontFade(false);
+      setTimeout(() => {
+        setDontIdx(i => (i + 1) % DONT_WORDS.length);
+        setDontFade(true);
+      }, 250);
+    }, 1000);
+    return () => clearInterval(t);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.intro), {}, {
+      opacity: vis ? 1 : 0,
+      transition: 'opacity 0.6s ease',
+      cursor: 'pointer'
+    }),
+    onClick: onEnter
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.introBlock
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.introVerb
+  }, "Do"), /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.introCycleWord), {}, {
+      opacity: doFade ? 1 : 0,
+      transition: 'opacity 0.25s ease'
+    })
+  }, DO_WORDS[doIdx])), /*#__PURE__*/React.createElement("div", {
+    style: S.introOr
+  }, "or"), /*#__PURE__*/React.createElement("div", {
+    style: S.introBlock
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.introVerb
+  }, "Don't"), /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.introCycleWord), {}, {
+      opacity: dontFade ? 1 : 0,
+      transition: 'opacity 0.25s ease'
+    })
+  }, DONT_WORDS[dontIdx])));
+}
+
+// ---------------------------------------------------------------------------
+// BIRTH YEAR SCREEN — one question, zero friction
+// ---------------------------------------------------------------------------
+function BirthYearScreen(_ref2) {
+  let onDone = _ref2.onDone;
+  const _useState37 = useState(''),
+    _useState38 = _slicedToArray(_useState37, 2),
+    year = _useState38[0],
+    setYear = _useState38[1];
+  const _useState39 = useState(false),
+    _useState40 = _slicedToArray(_useState39, 2),
+    vis = _useState40[0],
+    setVis = _useState40[1];
+  useEffect(() => {
+    const t = setTimeout(() => setVis(true), 60);
+    return () => clearTimeout(t);
+  }, []);
+  const handleSubmit = () => {
+    const y = parseInt(year, 10);
+    if (y >= 1920 && y <= new Date().getFullYear()) onDone(year);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.intro), {}, {
+      opacity: vis ? 1 : 0,
+      transition: 'opacity 0.5s ease',
+      gap: '1rem'
+    })
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontStyle: 'italic',
+      fontSize: 'clamp(16px,2vw,22px)',
+      color: T.textMuted,
+      letterSpacing: '.02em',
+      marginBottom: '0.5rem'
+    }
+  }, "One quick question."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontStyle: 'italic',
+      fontSize: 'clamp(28px,4vw,48px)',
+      color: T.text,
+      lineHeight: 1.2,
+      textAlign: 'center'
+    }
+  }, "What year were you born?"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12,
+      marginTop: '1.5rem'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    value: year,
+    onChange: e => setYear(e.target.value),
+    onKeyDown: e => {
+      if (e.key === 'Enter') handleSubmit();
+    },
+    placeholder: "1990",
+    min: "1920",
+    max: new Date().getFullYear(),
+    style: {
+      background: 'transparent',
+      border: 'none',
+      borderBottom: "1px solid ".concat(T.borderMid),
+      color: T.text,
+      fontSize: 'clamp(28px,4vw,48px)',
+      fontFamily: T.fontDisplay,
+      fontStyle: 'italic',
+      width: 160,
+      textAlign: 'center',
+      outline: 'none',
+      padding: '4px 0'
+    },
+    autoFocus: true
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: handleSubmit,
+    style: {
+      background: 'transparent',
+      border: "0.5px solid ".concat(T.border),
+      color: year.length === 4 ? T.text : T.textSubtle,
+      fontSize: 20,
+      cursor: year.length === 4 ? 'pointer' : 'default',
+      padding: '8px 16px',
+      borderRadius: 2,
+      fontFamily: T.fontMono,
+      transition: 'color .2s, border-color .2s',
+      borderColor: year.length === 4 ? T.borderMid : T.border
+    },
+    "aria-label": "Continue"
+  }, "\u2192")));
+}
+// ---------------------------------------------------------------------------
+// SIDE TOGGLE
+// ---------------------------------------------------------------------------
+function SideToggle(_ref3) {
+  let side = _ref3.side,
+    onFlip = _ref3.onFlip;
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.sideToggle
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => side !== 'do' && onFlip(),
+    style: _objectSpread(_objectSpread({}, S.sideTab), side === 'do' ? S.sideTabActive : null)
+  }, "Do"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => side !== 'dont' && onFlip(),
+    style: _objectSpread(_objectSpread({}, S.sideTab), side === 'dont' ? S.sideTabActive : null)
+  }, "Don't"));
+}
+
+// ---------------------------------------------------------------------------
+// VIEW SELECTOR — progressive: week always, month after 30 days, year after 365
+// ---------------------------------------------------------------------------
+function ViewSelector(_ref4) {
+  let view = _ref4.view,
+    setView = _ref4.setView,
+    anchor = _ref4.anchor,
+    setAnchor = _ref4.setAnchor,
+    dayCount = _ref4.dayCount;
+  const availableViews = Object.keys(VIEWS).filter(v => {
+    if (v === 'week') return true;
+    if (v === 'month') return dayCount >= 30;
+    if (v === 'year') return dayCount >= 365;
+    return false;
+  });
+
+  // If current view becomes unavailable, reset to week
+  useEffect(() => {
+    if (!availableViews.includes(view)) setView('week');
+  }, [view, availableViews]);
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.viewSelector
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setAnchor(VIEWS[view].step(anchor, -1)),
+    style: S.navArrow
+  }, "\u2039"), availableViews.map(v => /*#__PURE__*/React.createElement("button", {
+    key: v,
+    onClick: () => setView(v),
+    style: _objectSpread(_objectSpread({}, S.viewTab), v === view ? S.viewTabActive : null)
+  }, VIEWS[v].label)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setAnchor(VIEWS[view].step(anchor, 1)),
+    style: S.navArrow
+  }, "\u203A"), /*#__PURE__*/React.createElement("span", {
+    style: S.rangeLabel
+  }, fmtRange(view, anchor)));
+}
+
+// ---------------------------------------------------------------------------
+// WHEEL
+// ---------------------------------------------------------------------------
+function Wheel(_ref5) {
+  var _facets$find;
+  let facets = _ref5.facets,
+    itemsByFacet = _ref5.itemsByFacet,
+    activeFacetId = _ref5.activeFacetId,
+    onSelectFacet = _ref5.onSelectFacet,
+    onSelectItem = _ref5.onSelectItem,
+    onCanvasClick = _ref5.onCanvasClick,
+    coherenceMode = _ref5.coherenceMode,
+    side = _ref5.side,
+    flashLabels = _ref5.flashLabels;
+  const SIZE = 500;
+  const CX = SIZE / 2;
+  const MAX_R = 190;
+  const MIN_R = 48; // center word space
+
+  const N = Math.max(facets.length, 1);
+  const half = Math.PI / N;
+  const _useState41 = useState(null),
+    _useState42 = _slicedToArray(_useState41, 2),
+    hoverFacet = _useState42[0],
+    setHoverFacet = _useState42[1];
+  const _useState43 = useState(null),
+    _useState44 = _slicedToArray(_useState43, 2),
+    hoverItem = _useState44[0],
+    setHoverItem = _useState44[1];
+  const angle = i => i / N * 2 * Math.PI - Math.PI / 2;
+
+  // Band-based dot placement: tier determines radial band, organic scatter within wedge angle
+  const placeDot = (item, facetIdx) => {
+    const a = angle(facetIdx);
+    const band = TIER_BANDS[item.tier] || TIER_BANDS.easy;
+    const bandMin = band[0] * MAX_R,
+      bandMax = band[1] * MAX_R;
+    const radial = bandMin + seededRand(item.id, 2) * (bandMax - bandMin);
+    // Scatter within wedge, stay away from spoke edges
+    const angleJitter = (seededRand(item.id, 1) - 0.5) * (half * 1.6);
+    return [CX + Math.cos(a + angleJitter) * radial, CX + Math.sin(a + angleJitter) * radial];
+  };
+  const wedgePath = i => {
+    const a = angle(i),
+      a1 = a - half,
+      a2 = a + half;
+    return "M".concat(CX, ",").concat(CX, " L").concat((CX + Math.cos(a1) * MAX_R).toFixed(1), ",").concat((CX + Math.sin(a1) * MAX_R).toFixed(1), " A").concat(MAX_R, ",").concat(MAX_R, " 0 0 1 ").concat((CX + Math.cos(a2) * MAX_R).toFixed(1), ",").concat((CX + Math.sin(a2) * MAX_R).toFixed(1), " Z");
+  };
+  const hoverItemFacet = hoverItem ? (_facets$find = facets.find(f => (itemsByFacet[f.id] || []).some(it => it.id === hoverItem))) === null || _facets$find === void 0 ? void 0 : _facets$find.id : null;
+  const lit = fid => coherenceMode || activeFacetId === fid || hoverFacet === fid || hoverItemFacet === fid;
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "100%",
+    height: "100%",
+    viewBox: "-48 -48 ".concat(SIZE + 96, " ").concat(SIZE + 96),
+    style: {
+      display: 'block',
+      width: '100%',
+      height: '100%'
+    },
+    onClick: e => {
+      if (e.target.tagName === 'svg') onCanvasClick();
+    },
+    "aria-label": "Do or Don't wheel"
+  }, facets.map((_, i) => {
+    const fid = facets[i].id;
+    if (!lit(fid)) return null;
+    const a = angle(i) + half;
+    return /*#__PURE__*/React.createElement("line", {
+      key: i,
+      x1: CX,
+      y1: CX,
+      x2: CX + Math.cos(a) * MAX_R,
+      y2: CX + Math.sin(a) * MAX_R,
+      stroke: T.border,
+      strokeWidth: ".6"
+    });
+  }), facets.map((f, i) => {
+    const illuminated = lit(f.id);
+    return /*#__PURE__*/React.createElement("path", {
+      key: f.id,
+      d: wedgePath(i),
+      fill: illuminated ? f.color : 'transparent',
+      fillOpacity: illuminated ? coherenceMode ? .07 : activeFacetId === f.id ? .11 : .05 : 0,
+      stroke: "transparent",
+      style: {
+        cursor: 'default',
+        transition: 'fill-opacity 0.3s',
+        pointerEvents: 'none'
+      }
+    });
+  }), facets.map((f, i) => {
+    const fItems = itemsByFacet[f.id] || [];
+    const illuminated = lit(f.id);
+    return fItems.map(item => {
+      const _placeDot = placeDot(item, i),
+        _placeDot2 = _slicedToArray(_placeDot, 2),
+        x = _placeDot2[0],
+        y = _placeDot2[1];
+      const tier = TIERS[item.tier] || TIERS.easy;
+      const r = tier.r;
+      const isHov = hoverItem === item.id;
+      const completed = item.status === 'completed';
+      const showColor = illuminated || isHov;
+      const dotColor = showColor ? f.color : T.gray;
+      return /*#__PURE__*/React.createElement("g", {
+        key: item.id,
+        style: {
+          cursor: 'pointer'
+        },
+        onMouseUp: e => {
+          e.stopPropagation();
+          onSelectItem(item);
+        },
+        onMouseEnter: () => setHoverItem(item.id),
+        onMouseLeave: () => setHoverItem(null)
+      }, /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: y,
+        r: Math.max(r + 10, 14),
+        fill: "transparent"
+      }), tier.ring && completed && /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: y,
+        r: r + 3.5,
+        fill: "none",
+        stroke: dotColor,
+        strokeWidth: "1.2",
+        opacity: showColor ? .9 : .5,
+        style: {
+          transition: 'all .2s'
+        }
+      }), isHov && /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: y,
+        r: r + 4,
+        fill: "none",
+        stroke: f.color,
+        strokeWidth: ".8",
+        opacity: ".7"
+      }), completed ? /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: y,
+        r: r,
+        fill: dotColor,
+        opacity: tier.opacity,
+        style: {
+          transition: 'all .2s'
+        }
+      }) : /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: y,
+        r: r,
+        fill: "none",
+        stroke: dotColor,
+        strokeWidth: "1.5",
+        opacity: showColor ? .9 : .5,
+        style: {
+          transition: 'all .2s'
+        }
+      }));
+    });
+  }), /*#__PURE__*/React.createElement("g", {
+    style: {
+      cursor: 'pointer'
+    },
+    onClick: () => {}
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: CX,
+    cy: CX,
+    r: MIN_R,
+    fill: T.bg,
+    fillOpacity: "0.01",
+    stroke: "none"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: CX,
+    y: CX + 5,
+    textAnchor: "middle",
+    fontSize: "15",
+    fontFamily: T.fontDisplay,
+    fontStyle: "italic",
+    fill: T.textMuted,
+    style: {
+      pointerEvents: 'none',
+      userSelect: 'none'
+    }
+  }, "do or don't")), facets.map((f, i) => {
+    const a = angle(i);
+    const labelR = MAX_R + 42;
+    const x = CX + Math.cos(a) * labelR,
+      y = CX + Math.sin(a) * labelR;
+    const illuminated = lit(f.id);
+    return /*#__PURE__*/React.createElement("g", {
+      key: f.id,
+      style: {
+        cursor: 'pointer'
+      },
+      onClick: e => {
+        e.stopPropagation();
+        onSelectFacet(f.id);
+      },
+      onMouseEnter: () => setHoverFacet(f.id),
+      onMouseLeave: () => setHoverFacet(null)
+    }, /*#__PURE__*/React.createElement("rect", {
+      x: x - 62,
+      y: y - 14,
+      width: 124,
+      height: 28,
+      fill: "transparent"
+    }), /*#__PURE__*/React.createElement("text", {
+      x: x,
+      y: y,
+      textAnchor: "middle",
+      dominantBaseline: "central",
+      fontSize: "10",
+      fontFamily: T.fontMono,
+      fill: flashLabels ? f.color : illuminated ? f.color : T.gray,
+      letterSpacing: ".15em",
+      style: {
+        textTransform: 'uppercase',
+        transition: flashLabels ? 'fill 2s ease' : 'fill .25s',
+        pointerEvents: 'none',
+        userSelect: 'none'
+      }
+    }, f.label));
+  }));
+}
+
+// ---------------------------------------------------------------------------
+// FACET PANEL
+// ---------------------------------------------------------------------------
+function FacetPanel(_ref6) {
+  let facet = _ref6.facet,
+    facetIndex = _ref6.facetIndex,
+    facetList = _ref6.facetList,
+    items = _ref6.items,
+    suggestions = _ref6.suggestions,
+    onCommit = _ref6.onCommit,
+    onComplete = _ref6.onComplete,
+    onDelete = _ref6.onDelete,
+    onSelectItem = _ref6.onSelectItem,
+    onCycle = _ref6.onCycle,
+    onClose = _ref6.onClose,
+    side = _ref6.side;
+  const _useState45 = useState('easy'),
+    _useState46 = _slicedToArray(_useState45, 2),
+    tier = _useState46[0],
+    setTier = _useState46[1];
+  const _useState47 = useState(''),
+    _useState48 = _slicedToArray(_useState47, 2),
+    note = _useState48[0],
+    setNote = _useState48[1];
+  const _useState49 = useState(0),
+    _useState50 = _slicedToArray(_useState49, 2),
+    suggIdx = _useState50[0],
+    setSuggIdx = _useState50[1];
+  const tierSugg = (suggestions === null || suggestions === void 0 ? void 0 : suggestions[tier]) || [];
+  const currentSugg = tierSugg[suggIdx % Math.max(tierSugg.length, 1)] || '';
+  const committed = items.filter(it => it.status === 'committed').sort((a, b) => b.timestamp - a.timestamp);
+  const completed = items.filter(it => it.status === 'completed').sort((a, b) => b.timestamp - a.timestamp);
+  const handleCommit = () => {
+    const text = note.trim() || currentSugg;
+    if (!text) return;
+    onCommit(tier, text);
+    setNote('');
+    // Advance to next suggestion so user doesn't accidentally commit same thing
+    if (!note.trim()) setSuggIdx(i => (i + 1) % Math.max(tierSugg.length, 1));
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.drawerInner
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.drawerHead
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => onCycle(-1),
+    style: S.facetNavBtn,
+    "aria-label": "Previous facet"
+  }, "\u2039"), /*#__PURE__*/React.createElement("div", {
+    style: S.facetHeadCenter
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '.15em',
+      textTransform: 'uppercase',
+      color: facet.color
+    }
+  }, facet.label)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => onCycle(1),
+    style: S.facetNavBtn,
+    "aria-label": "Next facet"
+  }, "\u203A"), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: S.closeBtn,
+    "aria-label": "Close"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "13",
+    height: "13",
+    viewBox: "0 0 13 13"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2l9 9M11 2l-9 9",
+    stroke: "currentColor",
+    strokeWidth: "1",
+    strokeLinecap: "round"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: S.section
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.microLabel
+  }, "How challenging is it?"), /*#__PURE__*/React.createElement("div", {
+    style: S.tierRow
+  }, TIER_ORDER.map(t => /*#__PURE__*/React.createElement("button", {
+    key: t,
+    onClick: () => {
+      setTier(t);
+      setSuggIdx(0);
+    },
+    style: _objectSpread(_objectSpread({}, S.tierBtn), tier === t ? {
+      borderColor: facet.color,
+      color: facet.color,
+      background: 'rgba(242,239,232,0.04)'
+    } : null)
+  }, /*#__PURE__*/React.createElement(TierDot, {
+    tier: TIERS[t],
+    color: tier === t ? facet.color : T.textMuted,
+    completed: false
+  }), /*#__PURE__*/React.createElement("span", {
+    style: S.tierLabel
+  }, TIERS[t].label)))), /*#__PURE__*/React.createElement("div", {
+    style: S.tierDesc
+  }, TIERS[tier].desc)), /*#__PURE__*/React.createElement("div", {
+    style: S.section
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.suggBox
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setSuggIdx(i => (i - 1 + tierSugg.length) % Math.max(tierSugg.length, 1)),
+    style: S.suggArrow,
+    disabled: tierSugg.length < 2
+  }, "\u2039"), /*#__PURE__*/React.createElement("div", {
+    style: S.suggText,
+    onClick: () => setNote(currentSugg)
+  }, currentSugg), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setSuggIdx(i => (i + 1) % Math.max(tierSugg.length, 1)),
+    style: S.suggArrow,
+    disabled: tierSugg.length < 2
+  }, "\u203A")), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: note,
+    onChange: e => setNote(e.target.value),
+    onKeyDown: e => {
+      if (e.key === 'Enter') handleCommit();
+    },
+    placeholder: "What are you committing to?",
+    style: _objectSpread(_objectSpread({}, S.input), {}, {
+      width: '100%',
+      marginTop: 8,
+      marginBottom: 8
+    })
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: handleCommit,
+    style: _objectSpread(_objectSpread({}, S.commitBtn), {}, {
+      background: facet.color,
+      opacity: note.trim() || currentSugg ? 1 : .35,
+      cursor: note.trim() || currentSugg ? 'pointer' : 'not-allowed'
+    })
+  }, "Commit")), /*#__PURE__*/React.createElement("div", {
+    style: S.section
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.microLabel
+  }, "Committed to \xB7 ", committed.length), /*#__PURE__*/React.createElement("div", {
+    style: S.itemScroll
+  }, committed.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: S.empty
+  }, "Nothing committed yet."), committed.map(it => /*#__PURE__*/React.createElement(ItemRow, {
+    key: it.id,
+    item: it,
+    facet: facet,
+    onComplete: () => {
+      onComplete(it.id);
+      onClose();
+    },
+    onDelete: () => onDelete(it.id),
+    onSelect: () => onSelectItem(it)
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: S.section
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.microLabel
+  }, "Completed \xB7 ", completed.length), /*#__PURE__*/React.createElement("div", {
+    style: S.itemScroll
+  }, completed.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: S.empty
+  }, "Nothing completed yet."), completed.map(it => /*#__PURE__*/React.createElement(ItemRow, {
+    key: it.id,
+    item: it,
+    facet: facet,
+    completed: true,
+    onDelete: () => onDelete(it.id),
+    onSelect: () => onSelectItem(it)
+  })))));
+}
+function ItemRow(_ref7) {
+  let item = _ref7.item,
+    facet = _ref7.facet,
+    completed = _ref7.completed,
+    onComplete = _ref7.onComplete,
+    onDelete = _ref7.onDelete,
+    onSelect = _ref7.onSelect;
+  const tier = TIERS[item.tier] || TIERS.easy;
+  const _useState51 = useState(false),
+    _useState52 = _slicedToArray(_useState51, 2),
+    hov = _useState52[0],
+    setHov = _useState52[1];
+  return /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.itemRow), hov ? {
+      background: 'rgba(242,239,232,0.03)'
+    } : null),
+    onMouseEnter: () => setHov(true),
+    onMouseLeave: () => setHov(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flexShrink: 0,
+      cursor: 'pointer'
+    },
+    onClick: () => onSelect(item)
+  }, /*#__PURE__*/React.createElement(TierDot, {
+    tier: tier,
+    color: facet.color,
+    completed: !!completed
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0,
+      cursor: 'pointer'
+    },
+    onClick: () => onSelect(item)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: T.text,
+      lineHeight: 1.4,
+      marginBottom: 2
+    }
+  }, item.note), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: T.textSubtle,
+      letterSpacing: '.04em'
+    }
+  }, tier.label.toLowerCase(), " \xB7 ", fmtShort(new Date(item.timestamp)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      flexShrink: 0
+    }
+  }, !completed && onComplete && /*#__PURE__*/React.createElement("button", {
+    onClick: onComplete,
+    style: _objectSpread(_objectSpread({}, S.smallBtn), {}, {
+      borderColor: facet.color,
+      color: facet.color
+    })
+  }, "Complete"), /*#__PURE__*/React.createElement("button", {
+    onClick: onDelete,
+    style: S.smallBtnGhost
+  }, "\xD7")));
+}
+function TierDot(_ref8) {
+  let tier = _ref8.tier,
+    color = _ref8.color,
+    completed = _ref8.completed;
+  const r = tier.r;
+  const size = (r + 4) * 2;
+  return /*#__PURE__*/React.createElement("svg", {
+    width: size,
+    height: size,
+    viewBox: "0 0 ".concat(size, " ").concat(size),
+    style: {
+      display: 'block',
+      flexShrink: 0
+    }
+  }, tier.ring && completed && /*#__PURE__*/React.createElement("circle", {
+    cx: size / 2,
+    cy: size / 2,
+    r: r + 2,
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.2",
+    opacity: ".8"
+  }), completed ? /*#__PURE__*/React.createElement("circle", {
+    cx: size / 2,
+    cy: size / 2,
+    r: r,
+    fill: color,
+    opacity: tier.opacity
+  }) : /*#__PURE__*/React.createElement("circle", {
+    cx: size / 2,
+    cy: size / 2,
+    r: r,
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.5",
+    opacity: ".85"
+  }));
+}
+
+// ---------------------------------------------------------------------------
+// DOT PANEL
+// ---------------------------------------------------------------------------
+function DotPanel(_ref9) {
+  let item = _ref9.item,
+    facet = _ref9.facet,
+    onClose = _ref9.onClose,
+    onDelete = _ref9.onDelete,
+    onComplete = _ref9.onComplete;
+  const tier = TIERS[item.tier] || TIERS.easy;
+  const completed = item.status === 'completed';
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.drawerInner
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.drawerHead
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(TierDot, {
+    tier: tier,
+    color: (facet === null || facet === void 0 ? void 0 : facet.color) || T.text,
+    completed: completed
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '.15em',
+      textTransform: 'uppercase',
+      color: facet === null || facet === void 0 ? void 0 : facet.color,
+      marginBottom: 2
+    }
+  }, facet === null || facet === void 0 ? void 0 : facet.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: T.textSubtle,
+      textTransform: 'uppercase',
+      letterSpacing: '.1em'
+    }
+  }, tier.label, " \xB7 ", completed ? 'Completed' : 'Committed'))), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: S.closeBtn,
+    "aria-label": "Close"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "13",
+    height: "13",
+    viewBox: "0 0 13 13"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2l9 9M11 2l-9 9",
+    stroke: "currentColor",
+    strokeWidth: "1",
+    strokeLinecap: "round"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: S.section
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontSize: 18,
+      color: T.text,
+      lineHeight: 1.4,
+      fontStyle: 'italic',
+      marginBottom: 10
+    }
+  }, item.note), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.textSubtle
+    }
+  }, fmtShort(new Date(item.timestamp)), " \xB7 ", fmtTime(new Date(item.timestamp)))), !completed && /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      onComplete();
+      onClose();
+    },
+    style: _objectSpread(_objectSpread({}, S.commitBtn), {}, {
+      background: facet === null || facet === void 0 ? void 0 : facet.color,
+      marginBottom: 10
+    })
+  }, "Mark Complete"), /*#__PURE__*/React.createElement("button", {
+    onClick: onDelete,
+    style: S.deleteBtn
+  }, "Delete"));
+}
+
+// ---------------------------------------------------------------------------
+// EDIT PANEL — active facets on top with color, inactive at bottom grayed out
+// ---------------------------------------------------------------------------
+function EditPanel(_ref0) {
+  let side = _ref0.side,
+    list = _ref0.list,
+    onDone = _ref0.onDone;
+  const storageKey = "dod-hidden-".concat(side);
+  const _useState53 = useState(() => {
+      try {
+        var _window$localStorage7;
+        const s = (_window$localStorage7 = window.localStorage) === null || _window$localStorage7 === void 0 ? void 0 : _window$localStorage7.getItem(storageKey);
+        return s ? JSON.parse(s) : [];
+      } catch (e) {
+        return [];
+      }
+    }),
+    _useState54 = _slicedToArray(_useState53, 2),
+    hidden = _useState54[0],
+    setHidden = _useState54[1];
+  const toggle = id => {
+    setHidden(prev => {
+      const next = prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id];
+      try {
+        var _window$localStorage8;
+        (_window$localStorage8 = window.localStorage) === null || _window$localStorage8 === void 0 || _window$localStorage8.setItem(storageKey, JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
+  };
+  const active = list.filter(f => !hidden.includes(f.id));
+  const inactive = list.filter(f => hidden.includes(f.id));
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.drawerInner
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.drawerHead
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '.15em',
+      textTransform: 'uppercase',
+      color: T.textMuted,
+      flex: 1
+    }
+  }, side === 'do' ? 'Settings · Do' : 'Settings · Don\'t'), /*#__PURE__*/React.createElement("button", {
+    onClick: onDone,
+    style: S.closeBtn
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "13",
+    height: "13",
+    viewBox: "0 0 13 13"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2l9 9M11 2l-9 9",
+    stroke: "currentColor",
+    strokeWidth: "1",
+    strokeLinecap: "round"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 5
+    }
+  }, active.map(f => /*#__PURE__*/React.createElement("div", {
+    key: f.id,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      padding: '10px 12px',
+      border: "0.5px solid ".concat(T.border),
+      borderRadius: 2,
+      background: 'rgba(242,239,232,0.03)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: '50%',
+      background: f.color,
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      fontSize: 11,
+      letterSpacing: '.12em',
+      textTransform: 'uppercase',
+      color: T.text
+    }
+  }, f.label), /*#__PURE__*/React.createElement("button", {
+    onClick: () => toggle(f.id),
+    style: S.editToggleBtn,
+    "aria-label": "Remove"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: T.textSubtle,
+      fontSize: 16,
+      lineHeight: 1
+    }
+  }, "\u2212")))), inactive.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '0.5px',
+      background: T.border,
+      margin: '8px 0'
+    }
+  }), inactive.map(f => /*#__PURE__*/React.createElement("div", {
+    key: f.id,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      padding: '10px 12px',
+      border: "0.5px solid ".concat(T.borderFaint || 'rgba(242,239,232,0.05)'),
+      borderRadius: 2,
+      opacity: 0.5
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: '50%',
+      background: T.gray,
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      fontSize: 11,
+      letterSpacing: '.12em',
+      textTransform: 'uppercase',
+      color: T.textSubtle
+    }
+  }, f.label), /*#__PURE__*/React.createElement("button", {
+    onClick: () => toggle(f.id),
+    style: S.editToggleBtn,
+    "aria-label": "Add"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: T.textMuted,
+      fontSize: 16,
+      lineHeight: 1
+    }
+  }, "+"))))));
+}
+
+// ---------------------------------------------------------------------------
+// BRIEFING PANEL
+// ---------------------------------------------------------------------------
+function BriefingPanel(_ref1) {
+  let items = _ref1.items,
+    visibleItems = _ref1.visibleItems,
+    itemsByFacet = _ref1.itemsByFacet,
+    visibleFacets = _ref1.visibleFacets,
+    dayCount = _ref1.dayCount,
+    view = _ref1.view,
+    range = _ref1.range,
+    side = _ref1.side,
+    onClose = _ref1.onClose;
+  const committed = visibleItems.filter(it => it.status === 'committed').length;
+  const completed = visibleItems.filter(it => it.status === 'completed').length;
+  const allTime = items.length;
+  const active = visibleFacets.filter(f => (itemsByFacet[f.id] || []).length > 0);
+  const quiet = visibleFacets.filter(f => !(itemsByFacet[f.id] || []).length);
+  const nudge = quiet[0];
+  return /*#__PURE__*/React.createElement("div", {
+    style: S.drawerInner
+  }, /*#__PURE__*/React.createElement("div", {
+    style: S.drawerHead
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '.15em',
+      textTransform: 'uppercase',
+      color: T.textMuted,
+      marginBottom: 4
+    }
+  }, "Day ", dayCount), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontStyle: 'italic',
+      fontSize: 22,
+      color: T.text
+    }
+  }, "This week"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.textSubtle,
+      marginTop: 4
+    }
+  }, view, " \xB7 ", range)), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: S.closeBtn
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "13",
+    height: "13",
+    viewBox: "0 0 13 13"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2l9 9M11 2l-9 9",
+    stroke: "currentColor",
+    strokeWidth: "1",
+    strokeLinecap: "round"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 24,
+      marginBottom: '1.5rem',
+      paddingBottom: '1.25rem',
+      borderBottom: "0.5px solid ".concat(T.border)
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: S.microLabel
+  }, "Committed"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontSize: 22,
+      color: T.text
+    }
+  }, committed)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: S.microLabel
+  }, "Completed"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: T.fontDisplay,
+      fontSize: 22,
+      color: T.text
+    }
+  }, completed))), active.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '1.25rem',
+      paddingBottom: '1.25rem',
+      borderBottom: "0.5px solid ".concat(T.border)
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.microLabel), {}, {
+      marginBottom: 12
+    })
+  }, "Active this ", view), active.map(f => {
+    const count = (itemsByFacet[f.id] || []).length;
+    const done = (itemsByFacet[f.id] || []).filter(it => it.status === 'completed').length;
+    return /*#__PURE__*/React.createElement("div", {
+      key: f.id,
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 5,
+        height: 5,
+        borderRadius: '50%',
+        background: f.color,
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        letterSpacing: '.12em',
+        textTransform: 'uppercase',
+        color: f.color
+      }
+    }, f.label), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        color: T.textSubtle
+      }
+    }, done, "/", count, " completed"))));
+  })), nudge && /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingBottom: '1.25rem',
+      marginBottom: '1.25rem',
+      borderBottom: "0.5px solid ".concat(T.border)
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: _objectSpread(_objectSpread({}, S.microLabel), {}, {
+      marginBottom: 6
+    })
+  }, "One nudge"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: T.text,
+      fontFamily: T.fontDisplay,
+      fontStyle: 'italic',
+      lineHeight: 1.5
+    }
+  }, nudge.label.toLowerCase(), " has been quiet this ", view, ". One easy commitment would help.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: T.textSubtle,
+      textAlign: 'center',
+      letterSpacing: '.1em',
+      textTransform: 'uppercase'
+    }
+  }, allTime, " total entries \xB7 all time"));
+}
+function FontImport() {
+  return /*#__PURE__*/React.createElement("style", null, "@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');input::placeholder{color:rgba(242,239,232,0.28);}*,*::before,*::after{box-sizing:border-box;}");
+}
+
+// ---------------------------------------------------------------------------
+// STYLES
+// ---------------------------------------------------------------------------
+const S = {
+  root: {
+    fontFamily: T.fontMono,
+    background: T.bg,
+    color: T.text,
+    width: '100%',
+    height: '100vh',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  intro: {
+    position: 'fixed',
+    inset: 0,
+    background: T.bg,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1.5rem',
+    zIndex: 200,
+    padding: '4rem 3rem',
+    pointerEvents: 'auto',
+    userSelect: 'none'
+  },
+  introBlock: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '0.5rem'
+  },
+  introVerb: {
+    fontFamily: T.fontDisplay,
+    fontStyle: 'italic',
+    fontSize: 'clamp(64px,10vw,120px)',
+    color: T.text,
+    letterSpacing: '-.5px',
+    lineHeight: 1
+  },
+  introCycleWord: {
+    fontSize: 'clamp(13px,1.8vw,20px)',
+    color: T.textMuted,
+    fontFamily: T.fontMono,
+    letterSpacing: '.06em',
+    textAlign: 'center',
+    minHeight: '1.6em'
+  },
+  introOr: {
+    fontFamily: T.fontDisplay,
+    fontStyle: 'italic',
+    fontSize: 'clamp(32px,5vw,60px)',
+    color: T.text,
+    lineHeight: 1
+  },
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: '1.25rem 1.75rem',
+    zIndex: 30,
+    pointerEvents: 'none'
+  },
+  wordmark: {
+    fontFamily: T.fontDisplay,
+    fontStyle: 'italic',
+    fontSize: 24,
+    color: T.text,
+    letterSpacing: '-.5px',
+    lineHeight: 1,
+    marginBottom: 5,
+    pointerEvents: 'auto'
+  },
+  tagline: {
+    fontSize: 10,
+    color: T.textSubtle,
+    letterSpacing: '.02em',
+    fontStyle: 'italic',
+    fontFamily: T.fontDisplay,
+    lineHeight: 1.5,
+    maxWidth: 340
+  },
+  headerRight: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    pointerEvents: 'auto'
+  },
+  dayBtn: {
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: 8,
+    background: 'rgba(10,10,9,0.8)',
+    backdropFilter: 'blur(8px)',
+    border: "0.5px solid ".concat(T.border),
+    padding: '7px 14px',
+    borderRadius: 2,
+    cursor: 'pointer',
+    fontFamily: T.fontMono
+  },
+  dayLabel: {
+    fontSize: 9,
+    letterSpacing: '.18em',
+    textTransform: 'uppercase',
+    color: T.textSubtle
+  },
+  dayNum: {
+    fontFamily: T.fontDisplay,
+    fontSize: 18,
+    color: T.text
+  },
+  iconBtn: {
+    background: 'rgba(10,10,9,0.8)',
+    backdropFilter: 'blur(8px)',
+    border: "0.5px solid ".concat(T.border),
+    color: T.textMuted,
+    width: 36,
+    height: 36,
+    borderRadius: 2,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'border-color .2s,color .2s'
+  },
+  canvas: {
+    position: 'absolute',
+    inset: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  sideToggleWrap: {
+    position: 'absolute',
+    top: 80,
+    left: '1.75rem',
+    zIndex: 10
+  },
+  viewWrap: {
+    position: 'absolute',
+    bottom: '1.5rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    zIndex: 10
+  },
+  wheelWrap: {
+    width: 'min(86vh,86vw)',
+    height: 'min(86vh,86vw)',
+    maxWidth: 620,
+    maxHeight: 620
+  },
+  sideToggle: {
+    display: 'flex',
+    background: 'rgba(10,10,9,0.8)',
+    backdropFilter: 'blur(10px)',
+    border: "0.5px solid ".concat(T.border),
+    borderRadius: 2,
+    overflow: 'hidden'
+  },
+  sideTab: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textMuted,
+    padding: '8px 16px',
+    fontSize: 12,
+    fontFamily: T.fontMono,
+    letterSpacing: '.05em',
+    cursor: 'pointer',
+    transition: 'background .2s,color .2s'
+  },
+  sideTabActive: {
+    background: 'rgba(242,239,232,0.08)',
+    color: T.text
+  },
+  viewSelector: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 6,
+    background: 'rgba(10,10,9,0.8)',
+    backdropFilter: 'blur(10px)',
+    border: "0.5px solid ".concat(T.border),
+    borderRadius: 2,
+    padding: '0 4px'
+  },
+  viewTab: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textMuted,
+    padding: '8px 12px',
+    fontSize: 11,
+    fontFamily: T.fontMono,
+    letterSpacing: '.1em',
+    textTransform: 'uppercase',
+    cursor: 'pointer',
+    transition: 'color .2s'
+  },
+  viewTabActive: {
+    color: T.text
+  },
+  navArrow: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textMuted,
+    width: 28,
+    height: 32,
+    fontFamily: T.fontMono,
+    fontSize: 16,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  rangeLabel: {
+    fontSize: 10,
+    color: T.textSubtle,
+    letterSpacing: '.06em',
+    paddingRight: 8,
+    paddingLeft: 4
+  },
+  drawer: {
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: 'min(400px,94vw)',
+    background: 'rgba(12,11,10,0.98)',
+    backdropFilter: 'blur(20px)',
+    borderLeft: "0.5px solid ".concat(T.borderMid),
+    zIndex: 50,
+    overflowY: 'auto',
+    transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)'
+  },
+  drawerInner: {
+    padding: '1.5rem'
+  },
+  drawerHead: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    paddingBottom: '1rem',
+    marginBottom: '1rem',
+    borderBottom: "0.5px solid ".concat(T.border)
+  },
+  facetHeadCenter: {
+    flex: 1,
+    textAlign: 'center'
+  },
+  facetNavBtn: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textMuted,
+    fontSize: 18,
+    cursor: 'pointer',
+    padding: '4px 8px',
+    fontFamily: T.fontMono,
+    lineHeight: 1
+  },
+  closeBtn: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textSubtle,
+    cursor: 'pointer',
+    padding: 8,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 'auto'
+  },
+  section: {
+    marginBottom: '1.25rem',
+    paddingBottom: '1.25rem',
+    borderBottom: "0.5px solid ".concat(T.border)
+  },
+  microLabel: {
+    fontSize: 9,
+    color: T.textSubtle,
+    letterSpacing: '.18em',
+    textTransform: 'uppercase',
+    marginBottom: '0.6rem',
+    display: 'block'
+  },
+  tierRow: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4,1fr)',
+    gap: 5,
+    marginBottom: 8
+  },
+  tierBtn: {
+    background: 'transparent',
+    border: "0.5px solid ".concat(T.border),
+    borderRadius: 2,
+    padding: '9px 4px',
+    cursor: 'pointer',
+    fontFamily: T.fontMono,
+    color: T.textMuted,
+    transition: 'all .2s',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 4
+  },
+  tierLabel: {
+    fontSize: 9,
+    letterSpacing: '.1em',
+    textTransform: 'uppercase'
+  },
+  tierDesc: {
+    fontSize: 11,
+    color: T.textMuted,
+    fontStyle: 'italic',
+    fontFamily: T.fontDisplay,
+    lineHeight: 1.5,
+    minHeight: 28
+  },
+  suggBox: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+    background: 'rgba(242,239,232,0.03)',
+    border: "0.5px solid ".concat(T.border),
+    borderRadius: 2,
+    padding: '10px 4px'
+  },
+  suggArrow: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textMuted,
+    fontSize: 18,
+    cursor: 'pointer',
+    padding: '0 8px',
+    fontFamily: T.fontMono,
+    lineHeight: 1,
+    flexShrink: 0
+  },
+  suggText: {
+    flex: 1,
+    fontSize: 12,
+    color: T.text,
+    fontFamily: T.fontMono,
+    lineHeight: 1.45,
+    cursor: 'pointer',
+    textAlign: 'center'
+  },
+  inputRow: {
+    display: 'flex',
+    gap: 6,
+    alignItems: 'center'
+  },
+  input: {
+    flex: 1,
+    minWidth: 80,
+    background: 'rgba(242,239,232,0.04)',
+    border: "0.5px solid ".concat(T.border),
+    color: T.text,
+    padding: '9px 11px',
+    fontSize: 12,
+    fontFamily: T.fontMono,
+    borderRadius: 2,
+    outline: 'none'
+  },
+  commitBtn: {
+    border: 'none',
+    color: T.bg,
+    padding: '9px 16px',
+    fontSize: 11,
+    fontFamily: T.fontMono,
+    letterSpacing: '.1em',
+    textTransform: 'uppercase',
+    borderRadius: 2,
+    fontWeight: 500,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    width: '100%',
+    marginTop: 6
+  },
+  itemScroll: {
+    maxHeight: 160,
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4
+  },
+  itemRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    padding: '8px 6px',
+    borderRadius: 2,
+    transition: 'background .15s'
+  },
+  smallBtn: {
+    background: 'transparent',
+    border: "0.5px solid currentColor",
+    padding: '4px 10px',
+    fontSize: 10,
+    fontFamily: T.fontMono,
+    letterSpacing: '.08em',
+    textTransform: 'uppercase',
+    borderRadius: 2,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap'
+  },
+  smallBtnGhost: {
+    background: 'transparent',
+    border: 'none',
+    color: T.textSubtle,
+    fontSize: 16,
+    cursor: 'pointer',
+    padding: '2px 6px',
+    lineHeight: 1
+  },
+  empty: {
+    fontSize: 11,
+    color: T.textSubtle,
+    fontStyle: 'italic',
+    fontFamily: T.fontDisplay,
+    padding: '8px 0'
+  },
+  editToggleBtn: {
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '2px 8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0
+  },
+  deleteBtn: {
+    background: 'transparent',
+    border: "0.5px solid ".concat(T.border),
+    color: T.textSubtle,
+    padding: '8px 14px',
+    fontSize: 10,
+    fontFamily: T.fontMono,
+    letterSpacing: '.1em',
+    textTransform: 'uppercase',
+    borderRadius: 2,
+    cursor: 'pointer',
+    width: '100%'
+  }
+};
+const _root = ReactDOM.createRoot(document.getElementById('root'));
+_root.render(React.createElement(DoOrDont));</script>
+</body>
+</html>
