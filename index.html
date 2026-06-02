@@ -318,10 +318,10 @@
   /* Device row — browser maximizes width, phone pinned narrow on the right, equal height */
   .module-devices{
     --dev-h:clamp(360px,56vh,600px);
-    display:flex; align-items:flex-end; gap:26px;
+    display:flex; align-items:flex-end; justify-content:center; gap:40px;
   }
   .asset{position:relative; display:block; cursor:pointer; text-decoration:none;}
-  .asset-wide{flex:1 1 auto; min-width:0;}
+  .asset-wide{flex:0 1 auto; min-width:0; display:flex; justify-content:center;}
   .asset-phone{flex:0 0 auto; position:relative; align-self:flex-end; display:inline-flex;}
   .phone-link{display:block; text-decoration:none;}
   .asset .asset-label{
@@ -332,24 +332,25 @@
     white-space:nowrap; z-index:2; pointer-events:none;
   }
 
-  /* MacBook "browser" frame — fills available width, pinned to --dev-h */
-  .browser-frame{
-    width:100%; height:var(--dev-h); display:flex; flex-direction:column;
-    border:1px solid var(--line); border-radius:10px; overflow:hidden;
-    background:#0d0d0f; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  /* iMac frame — height-driven off a real screen ratio, sits next to the phone */
+  .imac-frame{
+    height:var(--dev-h); display:flex; flex-direction:column; align-items:center;
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
   }
-  .asset:hover .browser-frame{transform:translateY(-4px);}
-  .browser-bar{
-    display:flex; align-items:center; gap:6px; padding:0 13px; flex:0 0 auto; height:32px;
-    background:var(--amber); border-bottom:1px solid rgba(0,0,0,0.12);
+  .asset:hover .imac-frame{transform:translateY(-4px);}
+  .imac-monitor{
+    height:calc(var(--dev-h) - 42px); aspect-ratio:16/10.6; max-width:100%;
+    background:#1b1b1e; border:1px solid #2a2a2e; border-radius:14px 14px 6px 6px;
+    padding:10px 10px 0; display:flex; flex-direction:column;
   }
-  .browser-bar i{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.55); display:block;}
-  .browser-screen{
+  .imac-screen{
     position:relative; flex:1 1 auto; min-height:0; width:100%;
-    overflow:hidden; background:var(--ink-2);
+    border-radius:4px; overflow:hidden; background:#0d0d0f;
   }
-  .browser-screen{background:#0d0d0f;}
-  .browser-screen video, .browser-screen img{width:100%; height:100%; object-fit:contain; display:block;}
+  .imac-screen video, .imac-screen img{width:100%; height:100%; object-fit:contain; display:block;}
+  .imac-chin{height:22px; flex:0 0 auto;}
+  .imac-neck{width:96px; height:22px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(20% 0,80% 0,100% 100%,0 100%); flex:0 0 auto;}
+  .imac-foot{width:34%; min-width:160px; height:9px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 10px 10px; flex:0 0 auto;}
 
   /* iPhone frame — pinned to the same --dev-h, narrow, on the right */
   .phone-frame{
@@ -372,10 +373,11 @@
     .module-head{flex-direction:column; align-items:flex-start; gap:14px;}
     .head-rule{display:none;}
     .module-head .m-desc{align-self:flex-start; -webkit-line-clamp:4;}
-    .module-devices{--dev-h:auto; flex-direction:column; align-items:stretch; gap:20px;}
+    .module-devices{--dev-h:auto; flex-direction:column; align-items:center; gap:24px;}
     .asset-wide, .asset-phone{flex:0 0 auto;}
-    .browser-frame{height:auto;}
-    .browser-screen{height:auto; width:100%; aspect-ratio:16/10; flex:none;}
+    .imac-frame{height:auto; width:100%;}
+    .imac-monitor{height:auto; width:100%; max-width:none;}
+    .imac-screen{height:auto; width:100%; aspect-ratio:16/9; flex:none;}
     .phone-frame{height:auto; width:150px; align-self:center;}
   }
 
@@ -566,12 +568,13 @@
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/elua-ux">
-              <div class="browser-frame">
-                <div class="browser-bar"><i></i><i></i><i></i></div>
-                <div class="browser-screen">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
                   <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
                   <span class="asset-label">[ elua/elua-desktop.png ]</span>
-                </div>
+                </div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
               </div>
             </a>
             <div class="asset asset-phone"><a class="phone-link" href="/elua-ux">
@@ -600,12 +603,13 @@
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/do-or-dont-project">
-              <div class="browser-frame">
-                <div class="browser-bar"><i></i><i></i><i></i></div>
-                <div class="browser-screen">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
                   <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
                   <span class="asset-label">[ dod/dod-desktop.mp4 ]</span>
-                </div>
+                </div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
               </div>
             </a>
             <div class="asset asset-phone"><a class="phone-link" href="/do-or-dont-project">
@@ -655,12 +659,13 @@
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/deep-fried-bananas">
-              <div class="browser-frame">
-                <div class="browser-bar"><i></i><i></i><i></i></div>
-                <div class="browser-screen">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
                   <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
                   <span class="asset-label">[ dfb/dfb-desktop.png ]</span>
-                </div>
+                </div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
               </div>
             </a>
             <div class="asset asset-phone"><a class="phone-link" href="/deep-fried-bananas">
@@ -690,11 +695,12 @@
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/pumamala">
-              <div class="browser-frame">
-                <div class="browser-bar"><i></i><i></i><i></i></div>
-                <div class="browser-screen">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
                   <video src="/pumamala-reel.mp4?v=2" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png"></video>
-                </div>
+                </div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
               </div>
             </a>
             <div class="asset asset-phone"><a class="phone-link" href="/pumamala">

@@ -942,6 +942,7 @@ const SIGNUP_ENDPOINT = '';
 function SignupScreen(_ref2) {
   const onDone = _ref2.onDone;
   const [vis, setVis] = useState(false);
+  const [step, setStep] = useState(1);
   const [firstName, setFirstName] = useState('');
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState('');
@@ -951,29 +952,52 @@ function SignupScreen(_ref2) {
     return () => clearTimeout(t);
   }, []);
   const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-  const ready = firstName.trim() && dob && validEmail(email);
-  const submit = () => {
+  const next = () => {
     if (!firstName.trim()) { setErr('Add your first name.'); return; }
     if (!dob) { setErr('Add your date of birth.'); return; }
+    setErr(''); setStep(2);
+  };
+  const finish = () => {
     if (!validEmail(email)) { setErr('Add a valid email.'); return; }
     setErr('');
     onDone({ firstName: firstName.trim(), dob: dob, email: email.trim() });
   };
   const label = (txt) => React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: T.textSubtle, marginBottom: 6 } }, txt);
   const inputStyle = { background: 'transparent', border: 'none', borderBottom: '1px solid ' + T.borderMid, color: T.text, fontSize: 18, fontFamily: T.fontMono, width: '100%', outline: 'none', padding: '8px 0' };
+  const stepDots = React.createElement('div', { style: { display: 'flex', gap: 7, marginBottom: 22 } },
+    React.createElement('div', { style: { width: 22, height: 3, borderRadius: 2, background: step >= 1 ? T.text : T.border } }),
+    React.createElement('div', { style: { width: 22, height: 3, borderRadius: 2, background: step >= 2 ? T.text : T.border } })
+  );
+  const btn = (txt, fn, on) => React.createElement('button', { onClick: fn, style: { marginTop: 22, background: on ? T.text : 'transparent', color: on ? T.bg : T.textSubtle, border: '0.5px solid ' + (on ? T.text : T.border), fontFamily: T.fontMono, fontSize: 14, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 20px', borderRadius: 2, cursor: on ? 'pointer' : 'default', transition: 'all .2s', width: '100%' } }, txt);
+
+  let content;
+  if (step === 1) {
+    content = React.createElement('div', { key: 's1', style: { display: 'flex', flexDirection: 'column' } },
+      React.createElement('div', { style: { fontFamily: T.fontDisplay, fontStyle: 'italic', fontSize: 'clamp(30px,5vw,44px)', color: T.text, lineHeight: 1.12, marginBottom: 16 } }, "Your data never leaves your device."),
+      React.createElement('p', { style: { fontFamily: T.fontMono, fontSize: 13.5, lineHeight: 1.65, color: T.textMuted, marginBottom: 30, textWrap: 'pretty' } }, "Everything you track is saved in your browser. We never see it, and it never gets sent anywhere. That's the whole point."),
+      React.createElement('div', { style: { marginBottom: 22 } }, label('First name'), React.createElement('input', { type: 'text', value: firstName, onChange: (e) => setFirstName(e.target.value), onKeyDown: (e) => { if (e.key === 'Enter') next(); }, placeholder: 'Alex', style: inputStyle, autoFocus: true })),
+      React.createElement('div', { style: { marginBottom: 6 } }, label('Date of birth'), React.createElement('input', { type: 'date', value: dob, onChange: (e) => setDob(e.target.value), max: new Date().toISOString().slice(0, 10), style: _objectSpread(_objectSpread({}, inputStyle), {}, { colorScheme: 'dark' }) })),
+      err && React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 12, color: '#C2613F', marginTop: 12 } }, err),
+      btn('Next \u2192', next, firstName.trim() && dob)
+    );
+  } else {
+    content = React.createElement('div', { key: 's2', style: { display: 'flex', flexDirection: 'column' } },
+      React.createElement('div', { style: { fontFamily: T.fontDisplay, fontStyle: 'italic', fontSize: 'clamp(30px,5vw,44px)', color: T.text, lineHeight: 1.12, marginBottom: 16 } }, "Last thing. What's your email?"),
+      React.createElement('p', { style: { fontFamily: T.fontMono, fontSize: 13.5, lineHeight: 1.65, color: T.textMuted, marginBottom: 30, textWrap: 'pretty' } }, "We use it for one thing: a free newsletter, twice a month, on building good habits and dropping bad ones. Unsubscribe anytime."),
+      React.createElement('div', { style: { marginBottom: 6 } }, label('Email'), React.createElement('input', { type: 'email', value: email, onChange: (e) => setEmail(e.target.value), onKeyDown: (e) => { if (e.key === 'Enter') finish(); }, placeholder: 'you@email.com', style: inputStyle, autoFocus: true })),
+      err && React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 12, color: '#C2613F', marginTop: 12 } }, err),
+      btn('Start tracking \u2192', finish, validEmail(email)),
+      React.createElement('button', { onClick: () => { setErr(''); setStep(1); }, style: { marginTop: 14, background: 'none', border: 'none', color: T.textSubtle, fontFamily: T.fontMono, fontSize: 12, cursor: 'pointer', textAlign: 'center' } }, '\u2190 Back')
+    );
+  }
+
   return React.createElement('div', {
     style: _objectSpread(_objectSpread({}, S.intro), {}, { opacity: vis ? 1 : 0, transition: 'opacity 0.5s ease', gap: 0, overflowY: 'auto', justifyContent: 'center' })
   },
     React.createElement('div', { style: { width: '100%', maxWidth: 420, display: 'flex', flexDirection: 'column' } },
-      React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: T.textSubtle, marginBottom: 14 } }, 'Before you start'),
-      React.createElement('div', { style: { fontFamily: T.fontDisplay, fontStyle: 'italic', fontSize: 'clamp(32px,5vw,46px)', color: T.text, lineHeight: 1.15, marginBottom: 18 } }, "It's free. It stays yours."),
-      React.createElement('p', { style: { fontFamily: T.fontMono, fontSize: 13.5, lineHeight: 1.65, color: T.textMuted, marginBottom: 30, textWrap: 'pretty' } }, "Your tracking never leaves this browser. We never see it. The only thing we ask for is your email, so we can send you one short habit note every couple of weeks. Unsubscribe anytime. No strings."),
-      React.createElement('div', { style: { marginBottom: 22 } }, label('First name'), React.createElement('input', { type: 'text', value: firstName, onChange: (e) => setFirstName(e.target.value), placeholder: 'Alex', style: inputStyle, autoFocus: true })),
-      React.createElement('div', { style: { marginBottom: 22 } }, label('Date of birth'), React.createElement('input', { type: 'date', value: dob, onChange: (e) => setDob(e.target.value), max: new Date().toISOString().slice(0, 10), style: _objectSpread(_objectSpread({}, inputStyle), {}, { colorScheme: 'dark' }) })),
-      React.createElement('div', { style: { marginBottom: 14 } }, label('Email'), React.createElement('input', { type: 'email', value: email, onChange: (e) => setEmail(e.target.value), onKeyDown: (e) => { if (e.key === 'Enter') submit(); }, placeholder: 'you@email.com', style: inputStyle })),
-      err && React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 12, color: '#C2613F', marginBottom: 10 } }, err),
-      React.createElement('button', { onClick: submit, style: { marginTop: 18, background: ready ? T.text : 'transparent', color: ready ? T.bg : T.textSubtle, border: '0.5px solid ' + (ready ? T.text : T.border), fontFamily: T.fontMono, fontSize: 14, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 20px', borderRadius: 2, cursor: ready ? 'pointer' : 'default', transition: 'all .2s', width: '100%' } }, 'Start tracking \u2192'),
-      React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, color: T.textFaint, marginTop: 16, textAlign: 'center' } }, '100% free. No credit card. No download.')
+      stepDots,
+      content,
+      React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, color: T.textFaint, marginTop: 18, textAlign: 'center' } }, '100% free. No credit card. No download.')
     )
   );
 }
