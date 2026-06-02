@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Company · Restaurant AI · Seth Quest</title>
+<meta name="description" content="My Company · Restaurant AI. A project by Seth Quest, Multidisciplinary AI Builder." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --ink:#F4F0E6; --ink-2:#EDE7D8; --ink-3:#E2DAC6;
+    --bone:#1A1814; --bone-dim:rgba(26,24,20,0.62); --bone-faint:rgba(26,24,20,0.18);
+    --line:rgba(26,24,20,0.10); --line-strong:rgba(26,24,20,0.25);
+    --amber:#B06C28; --amber-bright:#DE832A; --amber-deep:#8A5520;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter Tight',sans-serif; background:var(--ink); color:var(--bone);
+    -webkit-font-smoothing:antialiased; line-height:1.5; overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--amber); color:var(--ink);}
+  .wrap{width:100%; max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* nav */
+  nav.top{
+    position:fixed; top:0; left:0; right:0; z-index:50; padding:20px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+    backdrop-filter:blur(12px); background:rgba(244,240,230,0.7); border-bottom:1px solid var(--line);
+  }
+  nav.top .mark{font-family:'Fraunces',serif; font-weight:500; font-size:18px;}
+  nav.top .mark .arrow{color:var(--amber); margin-right:8px;}
+  nav.top .links{display:flex; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;}
+  nav.top .links a{color:var(--bone-dim); padding:9px 18px; border:1px solid var(--line-strong); border-radius:999px; transition:all .3s;}
+  nav.top .links a:hover{color:var(--ink); background:var(--bone); border-color:var(--bone);}
+  nav.top .links a.cta{background:var(--amber); color:#fff; border-color:var(--amber);}
+  nav.top .links a.cta:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
+
+  /* hero */
+  .hero{padding:150px 0 50px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .ftag{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:var(--amber); padding:5px 12px; border-radius:999px;}
+  .hero h1{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(52px,8.5vw,116px); line-height:0.92; letter-spacing:-0.035em; margin-top:24px; color:var(--bone);}
+  .hero h1 em{font-style:italic; color:var(--amber); font-weight:400;}
+  .hero .lead{font-size:clamp(19px,2.1vw,26px); line-height:1.45; color:var(--bone-dim); max-width:62ch; margin-top:30px;}
+  .hero .lead strong{color:var(--bone); font-weight:500;}
+  .meta-row{display:flex; gap:54px; flex-wrap:wrap; margin-top:48px; padding-top:30px; border-top:1px solid var(--line);}
+  .meta-row .item .label{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-dim); margin-bottom:8px;}
+  .meta-row .item .val{font-size:15px; color:var(--bone);}
+
+  /* image slots */
+  .shot{margin:14px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--ink-2);}
+  .shot .bar{display:flex; align-items:center; gap:6px; padding:0 13px; height:32px; background:var(--amber); border-bottom:1px solid rgba(0,0,0,0.12);}
+  .shot .bar i{width:10px;height:10px;border-radius:50%; background:rgba(255,255,255,0.55);}
+  .shot .screen{position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; background:var(--ink-2); display:flex; align-items:center; justify-content:center;}
+  .shot .screen img{width:100%;height:100%;object-fit:cover;display:block;}
+  .shot .screen .slot{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(26,24,20,0.32);}
+  .hero-shot{margin-top:60px;}
+
+  /* sections */
+  section.block{padding:70px 0; border-top:1px solid var(--line);}
+  .sec-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); margin-bottom:30px;}
+  .block h2{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4vw,52px); line-height:1.05; letter-spacing:-0.02em; margin-bottom:30px; max-width:20ch;}
+  .block p.body{font-size:17px; line-height:1.7; color:var(--bone-dim); max-width:64ch; margin-bottom:18px;}
+  .block p.body strong{color:var(--bone); font-weight:500;}
+
+  .group{margin-top:40px;}
+  .group h3{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bone); margin-bottom:18px;}
+  ul.points{list-style:none; max-width:70ch;}
+  ul.points li{position:relative; padding-left:30px; margin-bottom:16px; font-size:16.5px; line-height:1.6; color:var(--bone-dim);}
+  ul.points li::before{content:""; position:absolute; left:0; top:11px; width:8px; height:8px; border-radius:50%; background:var(--amber);}
+  ul.points li strong{color:var(--bone); font-weight:600;}
+
+  .stats{display:flex; gap:48px; flex-wrap:wrap; margin-top:10px;}
+  .stats .stat .n{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(40px,5vw,64px); line-height:1; color:var(--amber);}
+  .stats .stat .l{font-size:14px; color:var(--bone-dim); margin-top:10px; max-width:22ch;}
+
+  /* testimonial */
+  .quote-block{padding:80px 0; border-top:1px solid var(--line); text-align:center;}
+  .quote-block blockquote{font-family:'Fraunces',serif; font-weight:300; font-style:italic; font-size:clamp(26px,3.4vw,42px); line-height:1.28; color:var(--bone); max-width:26ch; margin:0 auto;}
+  .quote-block .attr{margin-top:30px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim);}
+
+  /* CTA buttons */
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap; margin-top:36px;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 28px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; transition:all .3s;}
+  .btn.primary{background:var(--amber); color:#fff;}
+  .btn.primary:hover{background:var(--amber-bright);}
+  .btn.ghost{border:1px solid var(--line-strong); color:var(--bone);}
+  .btn.ghost:hover{background:var(--bone); color:var(--ink); border-color:var(--bone);}
+
+  /* footer */
+  footer{padding:90px 0 70px; border-top:1px solid var(--line);}
+  footer .f-top{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px;}
+  footer .next a{font-family:'Fraunces',serif; font-style:italic; font-size:clamp(28px,4vw,48px); color:var(--bone); border-bottom:1px solid var(--bone-faint); transition:all .3s;}
+  footer .next a:hover{color:var(--amber); border-color:var(--amber);}
+  footer .back{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim);}
+  footer .back:hover{color:var(--amber);}
+
+  @media(max-width:720px){
+    nav.top .links a:not(.cta){display:none;}
+    .hero{padding:120px 0 40px;}
+    .meta-row{gap:30px;}
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a href="/" class="mark"><span class="arrow">&larr;</span>Seth Quest</a>
+  <div class="links">
+    <a href="/#work">Work</a>
+    <a href="/#contact" class="cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow"><span>My Company · Restaurant AI</span></div>
+  <h1>Deep Fried <em>Bananas</em></h1>
+  <p class="lead">A company I'm building: a <strong>clear AI roadmap and dashboard for restaurant owners</strong>, across twelve pillars of the business.</p>
+  <div class="meta-row">
+      <div class="item"><div class="label">Role</div><div class="val">Founder, design, build</div></div>
+      <div class="item"><div class="label">Type</div><div class="val">Company</div></div>
+      <div class="item"><div class="label">Status</div><div class="val">In beta</div></div>
+  </div>
+</div></header>
+  <div class="wrap hero-shot"><div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen" style="aspect-ratio:16/10;">
+        <img src="/dfb/dfb-desktop.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="slot" style="display:none;">[ /dfb/dfb-desktop.png ]</span>
+      </div></div></div>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Overview</div>
+      <p class="body">Restaurant owners are some of the most overwhelmed people when it comes to AI: enormous pressure, thin margins, and no time to figure out which tools matter. Deep Fried Bananas cuts through it with a community and a dashboard that map AI to the twelve pillars that actually run a restaurant.</p>
+      <p class="body">Owners can take the full path to franchise-readiness, or pick a single, outcome-focused fix and start there.</p>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">What I did</div>
+    <h2>The work, broken down.</h2>
+      <div class="group">
+        <h3>What I built</h3>
+      <ul class="points">
+        <li>A <strong>dashboard</strong> that scores a restaurant across twelve business pillars and shows where AI moves the needle first.</li>
+        <li>Two clear engagement paths: a full <strong>franchise-readiness</strong> package, or single outcome-focused fixes like a profit-driven menu redesign.</li>
+        <li>A community layer so owners learn from each other, not just from tools.</li>
+        <li>Designed and built the product end to end. Currently in beta.</li>
+      </ul>
+      </div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Outcome</div>
+    <p class="body">A real product taking its first users, built to prove the model: give an overwhelmed owner a sequenced roadmap instead of a pile of tools, and adoption actually happens.</p>
+
+      <ul class="points">
+        <li>Twelve-pillar AI roadmap framework.</li>
+        <li>Two pricing paths, from single fixes to franchise-readiness.</li>
+        <li>Live dashboard and landing page in beta.</li>
+      </ul>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">See it live</div>
+    <div class="cta-row">
+      <a class="btn primary" href="https://claude.ai/public/artifacts/ebbb7d97-ab3c-4e0a-a5a9-5a1938deecb3" target=_blank rel=noopener>See the dashboard</a>
+      <a class="btn ghost" href="https://claude.ai/public/artifacts/3b5bb0a8-17a1-4b29-b877-dc6ff3472ab6" target=_blank rel=noopener>See the landing page</a>
+    </div>
+  </div></section>
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Gallery</div>
+<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen" style="aspect-ratio:9/19.5;">
+        <img src="/dfb/dfb-social.mp4" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="slot" style="display:none;">[ /dfb/dfb-social.mp4 ]</span>
+      </div></div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="f-top">
+      <a class="back" href="/#work">&larr; All work</a>
+      <div class="next"><a href="/pumamala">Next: Puma Mala &rarr;</a></div>
+    </div>
+  </div></footer>
+</body>
+</html>
