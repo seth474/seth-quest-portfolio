@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Seth Quest — Multidisciplinary AI Specialist</title>
-<meta name="description" content="Seth Quest — Multidisciplinary AI Specialist. I help businesses put AI to work across design, software, operations, and architecture." />
+<title>Seth Quest. Multidisciplinary AI Builder</title>
+<meta name="description" content="Seth Quest. Multidisciplinary AI Builder. I help businesses put AI to work across design, software, operations, and architecture." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -56,16 +56,21 @@
   }
   nav.top .mark{font-family:'Fraunces',serif; font-weight:500; font-size:18px; letter-spacing:-0.01em;}
   nav.top .mark .dot{color:var(--amber);}
-  nav.top .links{display:flex; gap:32px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;}
-  nav.top .links a{color:var(--bone-dim); transition:color 0.3s;}
-  nav.top .links a:hover{color:var(--bone);}
+  nav.top .links{display:flex; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;}
+  nav.top .links a{
+    color:var(--bone-dim); padding:9px 18px; border:1px solid var(--line-strong);
+    border-radius:999px; transition:all 0.3s;
+  }
+  nav.top .links a:hover{color:var(--ink); background:var(--bone); border-color:var(--bone);}
+  nav.top .links a.contact-link{background:var(--amber); color:#fff; border-color:var(--amber);}
+  nav.top .links a.contact-link:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
   @media (max-width:720px){
     nav.top{padding:18px 24px;}
     nav.top .links a:not(.contact-link){display:none;}
   }
 
   /* ============ HERO ============ */
-  .hero{min-height:100vh; padding:140px 0 80px; display:flex; align-items:center; position:relative;}
+  .hero{padding:150px 0 44px; position:relative;}
   .hero-inner{display:grid; grid-template-columns:1fr; gap:48px; width:100%;}
 
   .hero .eyebrow{
@@ -83,30 +88,39 @@
   }
 
   .hero h1{
-    font-family:'Inter Tight',sans-serif; font-weight:500; font-size:clamp(64px, 13vw, 200px);
-    line-height:0.9; letter-spacing:-0.05em; margin-top:24px;
+    font-family:'Inter Tight',sans-serif; font-weight:500; font-size:clamp(56px, 10.5vw, 154px);
+    line-height:0.88; letter-spacing:-0.05em; margin-top:22px;
     color:var(--bone);
+  }
+  .hero-top{display:flex; align-items:flex-end; justify-content:space-between; gap:48px; flex-wrap:wrap;}
+  .hero-id{flex:0 1 auto;}
+  .hero-statement{flex:0 1 auto; text-align:right; padding-bottom:14px;}
+  .hero-statement p{
+    font-family:'Inter Tight',sans-serif; font-weight:500; line-height:0.98;
+    font-size:clamp(28px, 3.6vw, 56px); letter-spacing:-0.03em; color:var(--bone);
+  }
+  .hero-statement p em{font-style:normal; color:var(--amber);}
+  .hero-statement .hero-proof{
+    display:block; margin-top:16px; font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--bone-dim);
+  }
+  @media (max-width:820px){
+    .hero-top{flex-direction:column; align-items:flex-start; gap:30px;}
+    .hero-statement{text-align:left; padding-bottom:0;}
   }
   .hero h1 .row{display:block; overflow:hidden;}
   .hero h1 .word{display:inline-block;}
   .hero h1 em{font-style:normal; font-weight:500; color:var(--amber);}
 
   .hero-meta{
-    display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:64px;
-    padding-top:36px; border-top:1px solid var(--line);
+    margin-top:50px; padding-top:34px; border-top:1px solid var(--line);
   }
-  .hero-meta .label{
-    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em;
-    text-transform:uppercase; color:var(--bone-dim); margin-bottom:14px;
-  }
-  .hero-meta .role{font-family:'Fraunces',serif; font-size:22px; line-height:1.3; font-weight:400;}
-  .hero-meta .role em{font-style:italic; color:var(--amber);}
-  .hero-meta .pitch{font-size:17px; line-height:1.6; color:var(--bone-dim); max-width:48ch;}
-  .hero-meta .pitch strong{color:var(--bone); font-weight:500;}
+  .hero-meta .hero-range{font-size:clamp(18px,1.9vw,24px); line-height:1.5; color:var(--bone-dim); max-width:68ch;}
+  .hero-meta .hero-range strong{color:var(--bone); font-weight:500;}
 
   @media (max-width:720px){
-    .hero{padding:120px 0 60px;}
-    .hero-meta{grid-template-columns:1fr; gap:32px; margin-top:48px;}
+    .hero{padding:120px 0 40px;}
+    .hero-meta{margin-top:40px;}
   }
 
   /* hero video slot */
@@ -149,10 +163,16 @@
   /* ============ SECTION KICKER ============ */
   .section{padding:120px 0; position:relative;}
   .section-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:24px; margin-bottom:64px;}
+  .section-title{margin-bottom:84px;}
+  .section-title .num{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); display:block; margin-bottom:22px;}
+  .section-title h2{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(54px, 8.5vw, 124px); line-height:0.9; letter-spacing:-0.035em; color:var(--bone);}
+  .section-title h2 em{font-style:italic; color:var(--amber); font-weight:400;}
   .section-head .kicker{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-dim); display:flex; align-items:center; gap:14px;}
   .section-head .kicker .num{color:var(--amber); font-weight:500;}
-  .section-head h2{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(38px, 6vw, 72px); line-height:1; letter-spacing:-0.03em; max-width:18ch;}
+  .section-head h2{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(40px, 6vw, 78px); line-height:1.02; letter-spacing:-0.03em; max-width:none;}
   .section-head h2 em{font-style:italic; color:var(--amber); font-weight:400;}
+  .head-statement{max-width:640px;}
+  .head-sub{font-family:'Inter Tight',sans-serif; font-size:17px; line-height:1.55; color:var(--bone-dim); margin-top:22px; max-width:46ch;}
 
   /* ============ FILTER + GRID ============ */
   .filter-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:48px;}
@@ -247,6 +267,157 @@
   .card-body .cta-row{margin-top:20px; display:flex; gap:28px; flex-wrap:wrap;}
   .card-body .cta-row .cta{margin-top:0;}
 
+  /* ============ PROJECT MODULES (desktop + social) ============ */
+  .module{
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    background:var(--ink-2); margin-bottom:80px;
+    min-height:80vh; display:flex; flex-direction:column; justify-content:center;
+    transition:border-color 0.5s;
+  }
+  .module:hover{border-color:var(--line-strong);}
+
+  .module-grid{
+    display:flex; flex-direction:column; gap:30px;
+    padding:44px;
+  }
+
+  /* Header: [title + gold category] | vertical rule | paragraph */
+  .module-head{display:flex; align-items:flex-start; gap:30px;}
+  .head-left{flex:0 0 auto;}
+  .head-left h3{
+    font-family:'Fraunces',serif; font-weight:400; font-size:clamp(28px,3vw,44px);
+    color:var(--bone); letter-spacing:-0.01em; line-height:1; margin-bottom:10px;
+  }
+  .head-left .m-cat{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--amber); display:block;
+  }
+  .head-rule{width:1px; align-self:stretch; background:var(--line-strong); flex:0 0 auto;}
+  .module-head .m-desc{
+    align-self:center; max-width:52ch;
+    font-size:14.5px; line-height:1.6; color:var(--bone-dim);
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+
+  /* Device row — browser maximizes width, phone pinned narrow on the right, equal height */
+  .module-devices{
+    --dev-h:clamp(360px,56vh,600px);
+    display:flex; align-items:flex-end; gap:26px;
+  }
+  .asset{position:relative; display:block; cursor:pointer; text-decoration:none;}
+  .asset-wide{flex:1 1 auto; min-width:0;}
+  .asset-phone{flex:0 0 auto;}
+  .asset .asset-label{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.16em;
+    text-transform:uppercase; color:rgba(245,241,232,0.38); text-align:center;
+    white-space:nowrap; z-index:2; pointer-events:none;
+  }
+
+  /* MacBook "browser" frame — fills available width, pinned to --dev-h */
+  .browser-frame{
+    width:100%; height:var(--dev-h); display:flex; flex-direction:column;
+    border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    background:#0d0d0f; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .asset:hover .browser-frame{transform:translateY(-4px);}
+  .browser-bar{
+    display:flex; align-items:center; gap:6px; padding:0 13px; flex:0 0 auto; height:32px;
+    background:var(--amber); border-bottom:1px solid rgba(0,0,0,0.12);
+  }
+  .browser-bar i{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.55); display:block;}
+  .browser-screen{
+    position:relative; flex:1 1 auto; min-height:0; width:100%;
+    overflow:hidden; background:var(--ink-2);
+  }
+  .browser-screen video, .browser-screen img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  /* iPhone frame — pinned to the same --dev-h, narrow, on the right */
+  .phone-frame{
+    height:var(--dev-h); aspect-ratio:1206/2622; width:auto;
+    border:7px solid #0e0e10; border-radius:30px; overflow:hidden;
+    background:#000; box-shadow:0 0 0 1px var(--line);
+    position:relative; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .asset:hover .phone-frame{transform:translateY(-4px);}
+  .phone-frame::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:32%; height:15px; background:#0e0e10; border-radius:0 0 11px 11px; z-index:3;
+  }
+  .phone-screen{position:relative; width:100%; height:100%; overflow:hidden; background:#0A0A09;}
+  .phone-screen video, .phone-screen img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  @media (max-width:920px){
+    .module{min-height:0;}
+    .module-grid{gap:24px; padding:28px 22px;}
+    .module-head{flex-direction:column; align-items:flex-start; gap:14px;}
+    .head-rule{display:none;}
+    .module-head .m-desc{align-self:flex-start; -webkit-line-clamp:4;}
+    .module-devices{--dev-h:auto; flex-direction:column; align-items:stretch; gap:20px;}
+    .asset-wide, .asset-phone{flex:0 0 auto;}
+    .browser-frame{height:auto;}
+    .browser-screen{height:auto; width:100%; aspect-ratio:16/10; flex:none;}
+    .phone-frame{height:auto; width:150px; align-self:center;}
+  }
+
+  /* alternate the phone to the left on every other project for rhythm */
+  .modules article.module:nth-of-type(even) .module-devices{flex-direction:row-reverse;}
+
+  /* featured project gets more presence */
+  .module--featured{border-color:var(--amber); box-shadow:0 0 0 1px rgba(176,108,40,0.25);}
+  .module--featured .module-devices{--dev-h:clamp(400px,62vh,680px);}
+  .featured-tag{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px;
+    letter-spacing:0.2em; text-transform:uppercase; color:#fff; background:var(--amber);
+    padding:5px 12px; border-radius:999px; margin-bottom:18px;
+  }
+
+  /* testimonial break between projects */
+  .testimonial{
+    margin:24px 0 96px; padding:64px 8px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  .testimonial .t-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--amber); display:block; margin-bottom:28px;
+  }
+  .testimonial blockquote{
+    font-family:'Fraunces',serif; font-weight:300; font-style:italic;
+    font-size:clamp(26px,3.6vw,46px); line-height:1.25; letter-spacing:-0.02em;
+    color:var(--bone); max-width:24ch; margin:0 auto;
+  }
+  .testimonial .t-attr{
+    margin-top:32px; font-family:'JetBrains Mono',monospace; font-size:12px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim);
+  }
+  /* carousel */
+  .t-viewport{overflow:hidden; margin-top:8px;}
+  .t-track{display:flex; transition:transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+  .t-slide{flex:0 0 100%; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 12px;}
+  .t-slide figcaption{margin:0;}
+  .t-controls{display:flex; align-items:center; justify-content:center; gap:26px; margin-top:44px;}
+  .t-arrow{width:46px; height:46px; border-radius:999px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--bone-dim); transition:all 0.3s;}
+  .t-arrow:hover{background:var(--bone); color:var(--ink); border-color:var(--bone);}
+  .t-dots{display:flex; gap:10px; align-items:center;}
+  .t-dots .t-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); transition:all 0.3s; padding:0;}
+  .t-dots .t-dot.active{background:var(--amber); width:24px;}
+
+  /* statement bands that break up the projects */
+  .interstitial{margin:40px 0 104px; padding:30px 0;}
+  .interstitial--big{text-align:center; padding:40px 0;}
+  .interstitial--big p{
+    font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4.6vw,62px);
+    line-height:1.12; letter-spacing:-0.025em; max-width:28ch; margin:0 auto; color:var(--bone);
+  }
+  .interstitial--big em{font-style:italic; color:var(--amber);}
+  .interstitial--statement{display:flex; gap:30px; align-items:flex-start; max-width:1060px;}
+  .interstitial--statement .bar{width:2px; flex:0 0 auto; align-self:stretch; background:var(--amber);}
+  .interstitial--statement p{
+    font-family:'Fraunces',serif; font-weight:300; font-size:clamp(22px,2.7vw,36px);
+    line-height:1.38; letter-spacing:-0.01em; color:var(--bone-dim);
+  }
+  .interstitial--statement em{font-style:normal; color:var(--bone); font-weight:400;}
+
   /* ============ MANIFESTO ============ */
   .manifesto{padding:140px 0; border-top:1px solid var(--line);}
   .manifesto-inner{max-width:900px;}
@@ -315,7 +486,6 @@
   <a href="#" class="mark">Seth Quest<span class="dot">.</span></a>
   <div class="links">
     <a href="#work">Work</a>
-    <a href="#manifesto">Approach</a>
     <a href="#contact" class="contact-link">Contact</a>
   </div>
 </nav>
@@ -325,32 +495,30 @@
   <!-- HERO -->
   <section class="hero wrap">
     <div class="hero-inner">
-      <div class="eyebrow" id="hero-eyebrow">
-        <span class="pulse"></span>
-        <span>Multidisciplinary AI Specialist · Available Q3</span>
+      <div class="hero-top">
+        <div class="hero-id">
+          <div class="eyebrow" id="hero-eyebrow">
+            <span class="pulse"></span>
+            <span>Multidisciplinary AI Builder</span>
+          </div>
+          <h1 id="hero-h1">
+            <span class="row"><span class="word">Seth</span></span>
+            <span class="row"><span class="word"><em>Quest</em></span></span>
+          </h1>
+        </div>
+        <div class="hero-statement reveal">
+          <p>Building epic sh*t with <em>AI</em>.</p>
+          <span class="hero-proof">Every project here, and this site itself, I built.</span>
+        </div>
       </div>
-
-      <h1 id="hero-h1">
-        <span class="row"><span class="word">Seth</span></span>
-        <span class="row"><span class="word"><em>Quest</em></span></span>
-      </h1>
-
       <div class="hero-meta" id="hero-meta">
-        <div>
-          <div class="label">The Role</div>
-          <p class="role">I help businesses become <em>AI-native</em> — implementing the systems and training your team to own them.</p>
-        </div>
-        <div>
-          <div class="label">The Range</div>
-          <p class="pitch"><strong>Fifteen years across design, software, and operations</strong> — now using AI end to end, from concept and rapid prototyping to the systems that ship. The work below proves it.</p>
-        </div>
+        <p class="hero-range"><strong>Fifteen years across product design, industrial design, innovation, and operations.</strong> AI has been a complete paradigm shift in how I build. Now I take ideas from concept to shipped systems, end to end, faster than entire teams.</p>
       </div>
     </div>
   </section>
 
   <!-- CLIENT MARQUEE -->
   <section class="marquee-section">
-    <div class="wrap"><div class="marquee-label">Selected clients & projects</div></div>
     <div class="marquee" aria-hidden="true">
       <span>Elua</span><span>W Hotel</span><span>Levi Strauss</span><span>Four Barrel Coffee</span><span>The Mill</span><span>Apple iMac</span><span>Pumamala Wellness</span><span>Canine Connection</span>
       <span>Elua</span><span>W Hotel</span><span>Levi Strauss</span><span>Four Barrel Coffee</span><span>The Mill</span><span>Apple iMac</span><span>Pumamala Wellness</span><span>Canine Connection</span>
@@ -359,258 +527,184 @@
 
   <!-- WORK -->
   <section id="work" class="section wrap">
-    <div class="section-head reveal">
-      <div class="kicker"><span class="num">01</span><span>Selected work</span></div>
-      <h2>I don't just advise on AI. I <em>implement</em> it — and empower your team to own it.</h2>
+    <div class="section-title reveal">
+      <span class="num">01 / Work</span>
+      <h2>Selected <em>Work</em></h2>
     </div>
 
-    <div class="filter-row reveal">
-      <button class="chip active" data-filter="all">All</button>
-      <button class="chip" data-filter="ai">AI Implementation</button>
-      <button class="chip" data-filter="ux">Product &amp; UX</button>
-      <button class="chip" data-filter="branding">Branding</button>
-    </div>
+    <div class="modules">
 
-    <div class="grid" id="project-grid">
-
-      <!-- 01 · ELUA — AI-NATIVE TRANSFORMATION (most prominent) -->
-      <article class="card span-8" data-cat="ai ux">
-        <div class="card-visual" style="background:linear-gradient(135deg,#3D5A80 0%,#5C7AA8 42%,#C08A3E 100%);">
-          <div class="grain"></div>
-          <span class="bignum">01</span>
-          <span class="cat-chip">AI Implementation</span>
-          <span class="placeholder-text">[ Elua — Operations Dashboard ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Elua — AI-Native Transformation</h3>
-          <p class="desc">Took an early-stage AI startup from a scattered tool stack to an AI-native operating system in three months — led the ChatGPT-to-Claude migration, rebuilt the knowledge base, chose the meeting and comms stack, and shipped a custom React operations dashboard.</p>
-          <a class="cta" href="/elua-ai">View the case study →</a>
-        </div>
-      </article>
-
-      <!-- 02 · ELUA — PRODUCT & UX DESIGN -->
-      <article class="card span-4" data-cat="ux ai">
-        <div class="card-visual" style="background:linear-gradient(135deg,#C08A3E 0%,#7D4C2A 100%);">
-          <div class="grain"></div>
-          <span class="bignum">02</span>
-          <span class="cat-chip">Product &amp; UX</span>
-          <span class="placeholder-text">[ Elua — Interactive Analysis ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Elua — Product &amp; UX Design</h3>
-          <p class="desc">Designed the product's analytical backbone and visual language — turning 20-page reports into interactive, deeply-linked experiences where every claim traces back to its source.</p>
-          <a class="cta" href="/elua-ux">View the case study →</a>
-        </div>
-      </article>
-
-      <!-- 03 · DEEP FRIED BANANAS -->
-      <article class="card" data-cat="ai branding">
-        <div class="card-visual has-video">
-          <video src="/dfb-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-          <span class="bignum">03</span>
-          <span class="cat-chip">My Company · Restaurant AI</span>
-        </div>
-        <div class="card-body">
-          <h3>Deep Fried Bananas</h3>
-          <p class="desc">A company I'm building on weekends: a community and dashboard that gives restaurant owners a roadmap for putting AI to work across 12 pillars of their business — from a full franchise-readiness build to single, outcome-focused fixes like a profit-driven menu redesign. Currently in beta.</p>
-          <div class="cta-row">
-            <a class="cta" href="https://claude.ai/public/artifacts/3b5bb0a8-17a1-4b29-b877-dc6ff3472ab6" target="_blank" rel="noopener">Landing page →</a>
-            <a class="cta" href="https://claude.ai/public/artifacts/ebbb7d97-ab3c-4e0a-a5a9-5a1938deecb3" target="_blank" rel="noopener">View the dashboard →</a>
+      <article class="module module--featured reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <span class="featured-tag">Featured engagement</span>
+              <h3>Elua</h3>
+              <span class="m-cat">AI Platform · Product &amp; UX</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">A 3-month AI-native transformation for an early-stage startup. I migrated their stack, built the operations dashboard, and designed a 20-method analysis system with fully source-linked reports.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/elua-ux">
+              <div class="browser-frame">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="browser-screen">
+                  <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'" />
+                  <span class="asset-label">[ elua/elua-desktop.png ]</span>
+                </div>
+              </div>
+            </a>
+            <a class="asset asset-phone" href="/elua-ux">
+              <div class="phone-frame"><div class="phone-screen">
+              <video src="/elua/elua-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <span class="asset-label">[ elua/elua-social.mp4 ]</span>
+            </div></div>
+            </a>
           </div>
         </div>
       </article>
 
-      <!-- 03b · DO OR DON'T -->
-      <article class="card" data-cat="ux">
-        <a href="/do-or-dont" target="_blank" rel="noopener" style="position:absolute;inset:0;z-index:3;" aria-label="Open Do or Don't"></a>
-        <div class="card-visual" style="background:#0A0A09;">
-          <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;">
-            <g transform="translate(100,75)">
-              <circle r="3.5" cx="0" cy="-44" fill="#8B7ED8"/>
-              <circle r="3" cx="26" cy="-38" fill="#6B9FE4"/>
-              <circle r="4" cx="42" cy="-18" fill="#4A9EC4"/>
-              <circle r="3" cx="48" cy="6" fill="#2E8B6E"/>
-              <circle r="3.5" cx="40" cy="26" fill="#52B88A"/>
-              <circle r="3" cx="24" cy="40" fill="#5ECAA5"/>
-              <circle r="4.5" cx="0" cy="46" fill="#3DAF6F"/>
-              <circle r="3" cx="-24" cy="40" fill="#6BA8A3"/>
-              <circle r="3.5" cx="-40" cy="26" fill="#5285B8"/>
-              <circle r="3" cx="-48" cy="4" fill="#9B80CC"/>
-              <circle r="4" cx="-42" cy="-18" fill="#C8603A"/>
-              <circle r="3" cx="-26" cy="-38" fill="#D4855A"/>
-              <circle r="2.5" cx="16" cy="-22" fill="#E89548" opacity="0.85"/>
-              <circle r="2.5" cx="22" cy="14" fill="#C03020" opacity="0.85"/>
-              <circle r="2.5" cx="-16" cy="20" fill="#AD2418" opacity="0.85"/>
-              <circle r="2.5" cx="-20" cy="-14" fill="#870C0C" opacity="0.85"/>
-              <text x="0" y="3" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="11" fill="rgba(242,239,232,0.6)">do or don't</text>
-            </g>
-          </svg>
-          <span class="bignum">03</span>
-          <span class="cat-chip">Product &amp; UX · Live App</span>
-        </div>
-        <div class="card-body">
-          <h3>Do or Don't</h3>
-          <p class="desc">A daily habit and life tracker I designed and built — a radial map of the twelve things that build you and the things that corrode you, scored by difficulty and traceable over time. Interactive, live, and yours to try.</p>
-          <a class="cta" href="/do-or-dont" target="_blank" rel="noopener" style="position:relative;z-index:4;">Try the live app →</a>
-        </div>
-      </article>
-
-      <!-- 04 · PUMA MALA -->
-      <article class="card span-12" data-cat="branding ai">
-        <div class="card-visual has-video">
-          <video src="/pumamala-reel.mp4?v=2" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png"></video>
-          <span class="bignum">04</span>
-          <span class="cat-chip">Architecture · Branding</span>
-        </div>
-        <div class="card-body">
-          <h3>Puma Mala</h3>
-          <p class="desc">An integrated wellness development — spa, functional medicine, and residences in one place. Brand, strategy, AI-driven renderings, and digital experience for a project that doesn't fit any one category.</p>
-          <a class="cta" href="/pumamala">View the case study →</a>
-        </div>
-      </article>
-
-    </div>
-
-    <!--
-    ============================================================
-    HIDDEN PROJECTS — preserved, not deleted.
-    To reactivate any of these, move the <article> back up into
-    #project-grid above and renumber the .bignum spans.
-    ============================================================
-
-      <article class="card span-4" data-cat="architecture">
-        <div class="card-visual" style="background:linear-gradient(135deg,#8E8B7F 0%,#5C5A52 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Architecture</span>
-          <span class="placeholder-text">[ Carbon — image placeholder ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Carbon</h3>
-          <p class="desc">Off-grid home, engineered from a human constraint: every wall is a 4×4 panel sized at ~45 lb so one person can carry it down a trail no truck can reach.</p>
-          <a class="cta" href="/carbon">Step into the project →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="branding ai">
-        <div class="card-visual" style="background:linear-gradient(135deg,#B47A4F 0%,#7D4C2A 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Branding · AI</span>
-          <span class="placeholder-text">[ Canine Connection ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Canine Connection</h3>
-          <p class="desc">Brand and business-model work for a local dog company — repositioning the operation and using AI to scale its content engine.</p>
-          <a class="cta" href="/canine-connection">See the work →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="industrial">
-        <div class="card-visual" style="background:linear-gradient(135deg,#8A8E94 0%,#5A5E66 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Industrial Design</span>
-          <span class="placeholder-text">[ W Hotel Light Fixture ]</span>
-        </div>
-        <div class="card-body">
-          <h3>W Hotel Light Fixture</h3>
-          <p class="desc">A commissioned lighting piece — a continuous loop translated into a hospitality-grade fixture installed in W properties.</p>
-          <a class="cta" href="/w-hotel">See the work →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="industrial">
-        <div class="card-visual" style="background:linear-gradient(135deg,#5E7A8E 0%,#384D5E 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Industrial Design</span>
-          <span class="placeholder-text">[ Levi Strauss Fixture ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Levi Strauss</h3>
-          <p class="desc">A commissioned light fixture for Levi Strauss — sculptural, functional, and built to anchor a flagship retail interior.</p>
-          <a class="cta" href="/levi-strauss">See the work →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="industrial">
-        <div class="card-visual" style="background:linear-gradient(135deg,#A47A4E 0%,#6A4A26 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Industrial Design</span>
-          <span class="placeholder-text">[ iMac Invention ]</span>
-        </div>
-        <div class="card-body">
-          <h3>iMac Accessory</h3>
-          <p class="desc">An invention for the iMac that solves a daily friction nobody else thought to fix — designed for manufacturability and a price that ships.</p>
-          <a class="cta" href="/imac">See the work →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="ux ai">
-        <div class="card-visual" style="background:linear-gradient(135deg,#7A8A78 0%,#4A5A48 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">UX · AI</span>
-          <span class="placeholder-text">[ Tax Pro ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Tax Pro</h3>
-          <p class="desc">What if taxes weren't boring? An end-to-end software experience that makes a dry domain feel considered, alive, and worth using.</p>
-          <a class="cta" href="/tax-pro">See the work →</a>
-        </div>
-      </article>
-
-      <article class="card span-4" data-cat="industrial">
-        <div class="card-visual" style="background:linear-gradient(135deg,#9A6D7E 0%,#5E3E4E 100%);">
-          <div class="grain"></div>
-          <span class="bignum">00</span>
-          <span class="cat-chip">Industrial Design</span>
-          <span class="placeholder-text">[ Double-Hitch Carrier ]</span>
-        </div>
-        <div class="card-body">
-          <h3>Double-Hitch Carrier</h3>
-          <p class="desc">A product invention solving a specific outdoor-gear friction — designed around the moment of use, manufactured to ship.</p>
-          <a class="cta" href="/double-hitch">See the work →</a>
-        </div>
-      </article>
-
-    ============================================================
-    -->
-  </section>
-
-  <!-- MANIFESTO -->
-  <section id="manifesto" class="manifesto wrap">
-    <div class="manifesto-inner reveal">
-      <div class="kicker" style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-dim); margin-bottom:40px;">
-        <span style="color:var(--amber); font-weight:500;">02</span> &nbsp;Approach
+            <div class="interstitial interstitial--big reveal">
+        <p>My job is simple: get AI <em>working</em> inside your business, and leave your team able to run it without me.</p>
       </div>
-      <p class="quote">
-        Most businesses don't need <em>more AI</em>. They need the right few tools, in the right order, applied by someone who's actually shipped.
-      </p>
-      <p style="font-size:18px; line-height:1.7; color:var(--bone-dim); max-width:62ch; margin-top:30px;">
-        After two years deep in the AI landscape — code, design, branding, video, operations — I keep seeing the same thing stall small businesses and startups: too many tools, and no clear order to adopt them in. Overwhelm kills adoption. My job is to cut through it — a sequenced roadmap of a few powerful tools, implemented in the order that makes them stick, so AI becomes part of how the team actually works instead of another subscription nobody opens.
-      </p>
-      <p class="sig">— Seth Quest · 2026</p>
+
+<article class="module reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <h3>Do or Don't</h3>
+              <span class="m-cat">Personal Project · Product &amp; UX</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">A habit tracker I designed and built: a radial map of what builds you and what corrodes you, scored and tracked over time.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/do-or-dont-project">
+              <div class="browser-frame">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="browser-screen">
+                  <video src="/dod/dod-desktop.mp4" poster="/dod/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+                  <span class="asset-label">[ dod/dod-desktop.mp4 ]</span>
+                </div>
+              </div>
+            </a>
+            <a class="asset asset-phone" href="/do-or-dont-project">
+              <div class="phone-frame"><div class="phone-screen">
+              <video src="/dod/dod-ad.mp4" poster="/dod/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <span class="asset-label">[ dod/dod-ad.mp4 ]</span>
+            </div></div>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <div class="testimonial t-carousel reveal">
+        <span class="t-label">Working with me</span>
+        <div class="t-viewport">
+          <div class="t-track">
+            <figure class="t-slide">
+              <blockquote>[ Andrew, founder of Elua. Drop in his real testimonial here ]</blockquote>
+              <figcaption class="t-attr">Andrew · Founder, Elua</figcaption>
+            </figure>
+            <figure class="t-slide">
+              <blockquote>[ Second testimonial goes here ]</blockquote>
+              <figcaption class="t-attr">[ Name · Role, Company ]</figcaption>
+            </figure>
+            <figure class="t-slide">
+              <blockquote>[ Third testimonial goes here ]</blockquote>
+              <figcaption class="t-attr">[ Name · Role, Company ]</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="t-controls">
+          <button class="t-arrow t-prev" aria-label="Previous testimonial">&larr;</button>
+          <div class="t-dots"></div>
+          <button class="t-arrow t-next" aria-label="Next testimonial">&rarr;</button>
+        </div>
+      </div>
+
+<article class="module reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <h3>Deep Fried Bananas</h3>
+              <span class="m-cat">My Company · Restaurant AI</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">My company. A dashboard giving restaurant owners a clear roadmap for putting AI to work across their whole business.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/deep-fried-bananas">
+              <div class="browser-frame">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="browser-screen">
+                  <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'" />
+                  <span class="asset-label">[ dfb/dfb-desktop.png ]</span>
+                </div>
+              </div>
+            </a>
+            <a class="asset asset-phone" href="/deep-fried-bananas">
+              <div class="phone-frame"><div class="phone-screen">
+              <video src="/dfb/dfb-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <span class="asset-label">[ dfb/dfb-social.mp4 ]</span>
+            </div></div>
+            </a>
+          </div>
+        </div>
+      </article>
+
+            <div class="interstitial interstitial--statement reveal">
+        <div class="bar"></div>
+        <p>After two years deep in the tools, I've narrowed the field to the few that <em>actually move the needle</em>, in the order that makes them stick. I enable small businesses to leverage AI without the overwhelm: I implement the systems, then <em>teach your team to own them</em>, so AI becomes how you work instead of another subscription nobody opens.</p>
+      </div>
+
+<article class="module reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <h3>Puma Mala</h3>
+              <span class="m-cat">Architecture · Brand · AI</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">An integrated wellness development. Brand, strategy, AI renderings, and the concept website, all in one project.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/pumamala">
+              <div class="browser-frame">
+                <div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="browser-screen">
+                  <video src="/pumamala-reel.mp4?v=2" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png"></video>
+                </div>
+              </div>
+            </a>
+            <a class="asset asset-phone" href="/pumamala">
+              <div class="phone-frame"><div class="phone-screen">
+              <video src="/pumamala-social.mp4" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png" onerror="this.style.display='none'"></video>
+              <span class="asset-label">[ pumamala-social.mp4 ]</span>
+            </div></div>
+            </a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="contact wrap">
-    <div class="kicker reveal">
-      <span style="color:var(--amber); font-weight:500;">03</span> &nbsp;Get in touch
-    </div>
-    <h2 class="reveal">Whatever you're <em>building</em> — let's answer it together.</h2>
+    <div class="kicker reveal" style="color:var(--amber); letter-spacing:0.2em;">02 / Contact</div>
+    <h2 class="reveal">Whatever you're <em>building</em>, let's answer it together.</h2>
+    <p class="reveal" style="font-family:'Inter Tight',sans-serif; font-size:17px; line-height:1.6; color:var(--bone-dim); max-width:54ch; margin-top:20px;">Open to a fractional role, 10 to 15 hours a week, embedding with your team to put AI to work and make it stick.</p>
     <a class="email-link reveal" href="mailto:seth@sethquest.com">seth@sethquest.com →</a>
     <div class="meta reveal">
       <div class="item">
         <div class="label">Engagements</div>
-        <div class="val">Fractional · Implementation · Advisory</div>
+        <div class="val">Fractional AI team member · Hands-on implementation</div>
       </div>
       <div class="item">
         <div class="label">Availability</div>
-        <div class="val">Q3 2026 · Limited slots</div>
+        <div class="val">Open now · 10-15 hrs/week</div>
       </div>
       <div class="item">
         <div class="label">Based</div>
@@ -790,6 +884,40 @@
       if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
     });
   });
+</script>
+<script>
+  // testimonial carousel — builds dots from slide count, so adding slides "just works"
+  (function(){
+    var root = document.querySelector('.t-carousel');
+    if(!root) return;
+    var track = root.querySelector('.t-track');
+    var slides = Array.prototype.slice.call(track.children);
+    if(slides.length < 2){ var c = root.querySelector('.t-controls'); if(c) c.style.display='none'; return; }
+    var dotsWrap = root.querySelector('.t-dots');
+    var prev = root.querySelector('.t-prev');
+    var next = root.querySelector('.t-next');
+    var i = 0, timer = null;
+    slides.forEach(function(_, k){
+      var b = document.createElement('button');
+      b.className = 't-dot' + (k===0 ? ' active' : '');
+      b.setAttribute('aria-label', 'Go to testimonial ' + (k+1));
+      b.addEventListener('click', function(){ go(k); });
+      dotsWrap.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+    function render(){
+      track.style.transform = 'translateX(' + (-i*100) + '%)';
+      dots.forEach(function(d,k){ d.classList.toggle('active', k===i); });
+    }
+    function go(n){ i = (n + slides.length) % slides.length; render(); }
+    if(prev) prev.addEventListener('click', function(){ go(i-1); });
+    if(next) next.addEventListener('click', function(){ go(i+1); });
+    function start(){ stop(); timer = setInterval(function(){ go(i+1); }, 6500); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+    root.addEventListener('pointerenter', stop);
+    root.addEventListener('pointerleave', start);
+    render(); start();
+  })();
 </script>
 </body>
 </html>
