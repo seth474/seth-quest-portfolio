@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Platform · Product &amp; UX · Seth Quest</title>
+<meta name="description" content="AI Platform · Product &amp; UX. A project by Seth Quest, Multidisciplinary AI Builder." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --ink:#F4F0E6; --ink-2:#EDE7D8; --ink-3:#E2DAC6;
+    --bone:#1A1814; --bone-dim:rgba(26,24,20,0.62); --bone-faint:rgba(26,24,20,0.18);
+    --line:rgba(26,24,20,0.10); --line-strong:rgba(26,24,20,0.25);
+    --amber:#B06C28; --amber-bright:#DE832A; --amber-deep:#8A5520;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter Tight',sans-serif; background:var(--ink); color:var(--bone);
+    -webkit-font-smoothing:antialiased; line-height:1.5; overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--amber); color:var(--ink);}
+  .wrap{width:100%; max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* nav */
+  nav.top{
+    position:fixed; top:0; left:0; right:0; z-index:50; padding:20px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+    backdrop-filter:blur(12px); background:rgba(244,240,230,0.7); border-bottom:1px solid var(--line);
+  }
+  nav.top .mark{font-family:'Fraunces',serif; font-weight:500; font-size:18px;}
+  nav.top .mark .arrow{color:var(--amber); margin-right:8px;}
+  nav.top .links{display:flex; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;}
+  nav.top .links a{color:var(--bone-dim); padding:9px 18px; border:1px solid var(--line-strong); border-radius:999px; transition:all .3s;}
+  nav.top .links a:hover{color:var(--ink); background:var(--bone); border-color:var(--bone);}
+  nav.top .links a.cta{background:var(--amber); color:#fff; border-color:var(--amber);}
+  nav.top .links a.cta:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
+
+  /* hero */
+  .hero{padding:150px 0 50px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .ftag{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:var(--amber); padding:5px 12px; border-radius:999px;}
+  .hero h1{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(52px,8.5vw,116px); line-height:0.92; letter-spacing:-0.035em; margin-top:24px; color:var(--bone);}
+  .hero h1 em{font-style:italic; color:var(--amber); font-weight:400;}
+  .hero .lead{font-size:clamp(19px,2.1vw,26px); line-height:1.45; color:var(--bone-dim); max-width:62ch; margin-top:30px;}
+  .hero .lead strong{color:var(--bone); font-weight:500;}
+  .meta-row{display:flex; gap:54px; flex-wrap:wrap; margin-top:48px; padding-top:30px; border-top:1px solid var(--line);}
+  .meta-row .item .label{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-dim); margin-bottom:8px;}
+  .meta-row .item .val{font-size:15px; color:var(--bone);}
+
+  /* image slots */
+  .shot{margin:14px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--ink-2);}
+  .shot .bar{display:flex; align-items:center; gap:6px; padding:0 13px; height:32px; background:var(--amber); border-bottom:1px solid rgba(0,0,0,0.12);}
+  .shot .bar i{width:10px;height:10px;border-radius:50%; background:rgba(255,255,255,0.55);}
+  .shot .screen{position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; background:var(--ink-2); display:flex; align-items:center; justify-content:center;}
+  .shot .screen img{width:100%;height:100%;object-fit:cover;display:block;}
+  .shot .screen .slot{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(26,24,20,0.32);}
+  .hero-shot{margin-top:60px;}
+
+  /* sections */
+  section.block{padding:70px 0; border-top:1px solid var(--line);}
+  .sec-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--amber); margin-bottom:30px;}
+  .block h2{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4vw,52px); line-height:1.05; letter-spacing:-0.02em; margin-bottom:30px; max-width:20ch;}
+  .block p.body{font-size:17px; line-height:1.7; color:var(--bone-dim); max-width:64ch; margin-bottom:18px;}
+  .block p.body strong{color:var(--bone); font-weight:500;}
+
+  .group{margin-top:40px;}
+  .group h3{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bone); margin-bottom:18px;}
+  ul.points{list-style:none; max-width:70ch;}
+  ul.points li{position:relative; padding-left:30px; margin-bottom:16px; font-size:16.5px; line-height:1.6; color:var(--bone-dim);}
+  ul.points li::before{content:""; position:absolute; left:0; top:11px; width:8px; height:8px; border-radius:50%; background:var(--amber);}
+  ul.points li strong{color:var(--bone); font-weight:600;}
+
+  .stats{display:flex; gap:48px; flex-wrap:wrap; margin-top:10px;}
+  .stats .stat .n{font-family:'Fraunces',serif; font-weight:300; font-size:clamp(40px,5vw,64px); line-height:1; color:var(--amber);}
+  .stats .stat .l{font-size:14px; color:var(--bone-dim); margin-top:10px; max-width:22ch;}
+
+  /* testimonial */
+  .quote-block{padding:80px 0; border-top:1px solid var(--line); text-align:center;}
+  .quote-block blockquote{font-family:'Fraunces',serif; font-weight:300; font-style:italic; font-size:clamp(26px,3.4vw,42px); line-height:1.28; color:var(--bone); max-width:26ch; margin:0 auto;}
+  .quote-block .attr{margin-top:30px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim);}
+
+  /* CTA buttons */
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap; margin-top:36px;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 28px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; transition:all .3s;}
+  .btn.primary{background:var(--amber); color:#fff;}
+  .btn.primary:hover{background:var(--amber-bright);}
+  .btn.ghost{border:1px solid var(--line-strong); color:var(--bone);}
+  .btn.ghost:hover{background:var(--bone); color:var(--ink); border-color:var(--bone);}
+
+  /* footer */
+  footer{padding:90px 0 70px; border-top:1px solid var(--line);}
+  footer .f-top{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px;}
+  footer .next a{font-family:'Fraunces',serif; font-style:italic; font-size:clamp(28px,4vw,48px); color:var(--bone); border-bottom:1px solid var(--bone-faint); transition:all .3s;}
+  footer .next a:hover{color:var(--amber); border-color:var(--amber);}
+  footer .back{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim);}
+  footer .back:hover{color:var(--amber);}
+
+  @media(max-width:720px){
+    nav.top .links a:not(.cta){display:none;}
+    .hero{padding:120px 0 40px;}
+    .meta-row{gap:30px;}
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a href="/" class="mark"><span class="arrow">&larr;</span>Seth Quest</a>
+  <div class="links">
+    <a href="/#work">Work</a>
+    <a href="/#contact" class="cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow"><span>AI Platform · Product &amp; UX</span><span class="ftag">Featured engagement</span></div>
+  <h1>Elua</h1>
+  <p class="lead">A <strong>3-month AI-native transformation</strong> for an early-stage startup: I rebuilt how the team works with AI, and how their analysis reaches clients.</p>
+  <div class="meta-row">
+      <div class="item"><div class="label">Role</div><div class="val">AI implementation + Product/UX</div></div>
+      <div class="item"><div class="label">Timeline</div><div class="val">3 months</div></div>
+      <div class="item"><div class="label">Engagement</div><div class="val">Fractional</div></div>
+  </div>
+</div></header>
+  <div class="wrap hero-shot"><div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen" style="aspect-ratio:16/10;">
+        <img src="/elua/elua-desktop.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="slot" style="display:none;">[ /elua/elua-desktop.png ]</span>
+      </div></div></div>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Overview</div>
+      <p class="body">Elua is an early-stage startup with a strong analytical product and the same problem most teams face right now: too many AI tools, no clear order to adopt them, and a manual process holding everything back. Their analysis was rigorous, but it lived in static documents that did not do the thinking justice.</p>
+      <p class="body">The goal was twofold: make the team genuinely AI-native in how they operate day to day, and turn their dense, twenty-page analyses into interactive experiences a client would actually want to read.</p>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">What I did</div>
+    <h2>The work, broken down.</h2>
+      <div class="group">
+        <h3>AI-native transformation</h3>
+      <ul class="points">
+        <li>Migrated the team from ad-hoc ChatGPT use to a structured <strong>Claude workspace</strong>, including a custom <strong>Ask Elua</strong> assistant trained on their context.</li>
+        <li>Selected and implemented the right meeting, communications, and e-signature stack, in the order that made it stick.</li>
+        <li>Consolidated 30+ scattered documents from Notion into an organized Google Drive system.</li>
+        <li>Built a <strong>React operations dashboard</strong> to run the business day to day.</li>
+      </ul>
+      </div>
+      <div class="group">
+        <h3>Product &amp; UX</h3>
+      <ul class="points">
+        <li>Turned their <strong>Depra</strong> 20-method analysis approach into a usable, repeatable system.</li>
+        <li>Designed a blue-and-amber <strong>visual design system</strong> for the product.</li>
+        <li>Designed <strong>20 interactive, deeply-linked report artifacts</strong> with three-layer citation drill-down, so every claim traces back to its source.</li>
+        <li>Built the <strong>Elua Wins</strong> app and the Solan scoring interfaces.</li>
+      </ul>
+      </div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Outcome</div>
+    <p class="body">AI moved from a novelty to the operating layer of the business. Analysis went from static decks to interactive, source-linked experiences, and the team was left able to run all of it without me.</p>
+      <div class="stats">
+        <div class="stat"><div class="n">3 mo</div><div class="l">End-to-end engagement</div></div>
+        <div class="stat"><div class="n">20</div><div class="l">Interactive report artifacts</div></div>
+        <div class="stat"><div class="n">30+</div><div class="l">Documents migrated and organized</div></div>
+      </div>
+      <ul class="points">
+        <li>A repeatable, AI-assisted analysis pipeline the team owns.</li>
+        <li>Client-facing reports where every claim is traceable to its evidence.</li>
+        <li>Daily operations running through systems I built and handed off.</li>
+      </ul>
+  </div></section>
+  <div class="quote-block"><div class="wrap">
+    <blockquote>[ Andrew, founder of Elua. Drop in his real testimonial here ]</blockquote>
+    <div class="attr">Andrew · Founder, Elua</div>
+  </div></div>
+
+  <section class="block"><div class="wrap">
+    <div class="sec-label">Gallery</div>
+<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen" style="aspect-ratio:16/10;">
+        <img src="/elua/elua-report.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="slot" style="display:none;">[ /elua/elua-report.png ]</span>
+      </div></div>
+<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen" style="aspect-ratio:9/19.5;">
+        <img src="/elua/elua-social.mp4" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="slot" style="display:none;">[ /elua/elua-social.mp4 ]</span>
+      </div></div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="f-top">
+      <a class="back" href="/#work">&larr; All work</a>
+      <div class="next"><a href="/do-or-dont-project">Next: Do or Don't &rarr;</a></div>
+    </div>
+  </div></footer>
+</body>
+</html>
