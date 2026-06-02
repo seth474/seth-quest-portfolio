@@ -31,6 +31,9 @@
     min-height:100vh; position:relative;
   }
   ::selection{background:var(--amber); color:var(--ink);}
+  /* widow control: balance headings, prevent orphans in body */
+  h1, h2, h3, blockquote, .lead, .hero-statement p, .interstitial p, .m-desc, .head-sub, .hero-range, .dd-row span:last-child { text-wrap: balance; }
+  p.body, .meta-row .val, .head-meta .m-desc { text-wrap: pretty; }
   a{color:inherit; text-decoration:none;}
   button{font:inherit; cursor:pointer; background:none; border:none; color:inherit;}
 
@@ -269,11 +272,24 @@
 
   /* ============ PROJECT MODULES (desktop + social) ============ */
   .module{
+    position:relative;
     border:1px solid var(--line); border-radius:14px; overflow:hidden;
     background:var(--ink-2); margin-bottom:80px;
     min-height:80vh; display:flex; flex-direction:column; justify-content:center;
     transition:border-color 0.5s;
   }
+  .sound-btn{
+    position:absolute; bottom:14px; right:14px; z-index:6;
+    width:38px; height:38px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.55);
+    backdrop-filter:blur(6px); color:#fff; transition:all 0.25s;
+  }
+  .sound-btn:hover{background:rgba(10,10,9,0.8); transform:scale(1.06);}
+  .sound-btn .ic-on{display:none;}
+  .sound-btn[data-on="true"]{background:var(--amber); border-color:var(--amber);}
+  .sound-btn[data-on="true"] .ic-on{display:block;}
+  .sound-btn[data-on="true"] .ic-off{display:none;}
   .module:hover{border-color:var(--line-strong);}
 
   .module-grid{
@@ -306,8 +322,10 @@
   }
   .asset{position:relative; display:block; cursor:pointer; text-decoration:none;}
   .asset-wide{flex:1 1 auto; min-width:0;}
-  .asset-phone{flex:0 0 auto;}
+  .asset-phone{flex:0 0 auto; position:relative; align-self:flex-end; display:inline-flex;}
+  .phone-link{display:block; text-decoration:none;}
   .asset .asset-label{
+    display:none;
     position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
     font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.16em;
     text-transform:uppercase; color:rgba(245,241,232,0.38); text-align:center;
@@ -330,7 +348,8 @@
     position:relative; flex:1 1 auto; min-height:0; width:100%;
     overflow:hidden; background:var(--ink-2);
   }
-  .browser-screen video, .browser-screen img{width:100%; height:100%; object-fit:cover; display:block;}
+  .browser-screen{background:#0d0d0f;}
+  .browser-screen video, .browser-screen img{width:100%; height:100%; object-fit:contain; display:block;}
 
   /* iPhone frame — pinned to the same --dev-h, narrow, on the right */
   .phone-frame{
@@ -550,17 +569,17 @@
               <div class="browser-frame">
                 <div class="browser-bar"><i></i><i></i><i></i></div>
                 <div class="browser-screen">
-                  <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'" />
+                  <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
                   <span class="asset-label">[ elua/elua-desktop.png ]</span>
                 </div>
               </div>
             </a>
-            <a class="asset asset-phone" href="/elua-ux">
+            <div class="asset asset-phone"><a class="phone-link" href="/elua-ux">
               <div class="phone-frame"><div class="phone-screen">
-              <video src="/elua/elua-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <video class="phone-video" src="/elua/elua-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ elua/elua-social.mp4 ]</span>
             </div></div>
-            </a>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
           </div>
         </div>
       </article>
@@ -574,27 +593,27 @@
           <div class="module-head">
             <div class="head-left">
               <h3>Do or Don't</h3>
-              <span class="m-cat">Personal Project · Product &amp; UX</span>
+              <span class="m-cat">Web App · Solo Build</span>
             </div>
             <div class="head-rule"></div>
-            <p class="m-desc">A habit tracker I designed and built: a radial map of what builds you and what corrodes you, scored and tracked over time.</p>
+            <p class="m-desc">A stupid-simple habit tracker for young people. Track the positive actions you DO and the negative ones you DON'T.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/do-or-dont-project">
               <div class="browser-frame">
                 <div class="browser-bar"><i></i><i></i><i></i></div>
                 <div class="browser-screen">
-                  <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+                  <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
                   <span class="asset-label">[ dod/dod-desktop.mp4 ]</span>
                 </div>
               </div>
             </a>
-            <a class="asset asset-phone" href="/do-or-dont-project">
+            <div class="asset asset-phone"><a class="phone-link" href="/do-or-dont-project">
               <div class="phone-frame"><div class="phone-screen">
-              <video src="/DOD/dod-ad.mp4" poster="/DOD/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <video class="phone-video" src="/DOD/dod-ad.mp4" poster="/DOD/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ dod/dod-ad.mp4 ]</span>
             </div></div>
-            </a>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
           </div>
         </div>
       </article>
@@ -639,17 +658,17 @@
               <div class="browser-frame">
                 <div class="browser-bar"><i></i><i></i><i></i></div>
                 <div class="browser-screen">
-                  <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'" />
+                  <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
                   <span class="asset-label">[ dfb/dfb-desktop.png ]</span>
                 </div>
               </div>
             </a>
-            <a class="asset asset-phone" href="/deep-fried-bananas">
+            <div class="asset asset-phone"><a class="phone-link" href="/deep-fried-bananas">
               <div class="phone-frame"><div class="phone-screen">
-              <video src="/dfb/dfb-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'"></video>
+              <video class="phone-video" src="/dfb/dfb-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ dfb/dfb-social.mp4 ]</span>
             </div></div>
-            </a>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
           </div>
         </div>
       </article>
@@ -678,12 +697,12 @@
                 </div>
               </div>
             </a>
-            <a class="asset asset-phone" href="/pumamala">
+            <div class="asset asset-phone"><a class="phone-link" href="/pumamala">
               <div class="phone-frame"><div class="phone-screen">
-              <video src="/pumamala-social.mp4" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png" onerror="this.style.display='none'"></video>
+              <video class="phone-video" src="/pumamala-social.mp4" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ pumamala-social.mp4 ]</span>
             </div></div>
-            </a>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
           </div>
         </div>
       </article>
@@ -917,6 +936,30 @@
     root.addEventListener('pointerenter', stop);
     root.addEventListener('pointerleave', start);
     render(); start();
+  })();
+</script>
+<script>
+  // Speaker icon per phone video — unmute + restart from 0:00, only one sounds at a time
+  (function(){
+    var btns = document.querySelectorAll('.sound-btn');
+    function allVids(){ return document.querySelectorAll('.phone-video'); }
+    btns.forEach(function(btn){
+      var wrap = btn.closest('.asset-phone');
+      var vid = wrap ? wrap.querySelector('.phone-video') : null;
+      if(!vid){ btn.style.display='none'; return; }
+      btn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        var turningOn = btn.getAttribute('data-on') !== 'true';
+        document.querySelectorAll('.sound-btn').forEach(function(b){ b.setAttribute('data-on','false'); });
+        allVids().forEach(function(v){ v.muted = true; });
+        if(turningOn){
+          vid.muted = false;
+          try{ vid.currentTime = 0; }catch(_){}
+          vid.play().catch(function(){});
+          btn.setAttribute('data-on','true');
+        }
+      });
+    });
   })();
 </script>
 </body>
