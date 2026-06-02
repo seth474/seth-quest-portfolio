@@ -561,6 +561,9 @@ function DoOrDont() {
     _useState18 = _slicedToArray(_useState17, 2),
     birthYear = _useState18[0],
     setBirthYear = _useState18[1];
+  const [signedUp, setSignedUp] = useState(() => {
+    try { return !!(window.localStorage && window.localStorage.getItem('dod-signed-up')); } catch (e) { return false; }
+  });
   const _useState19 = useState(false),
     _useState20 = _slicedToArray(_useState19, 2),
     coherenceMode = _useState20[0],
@@ -692,15 +695,28 @@ function DoOrDont() {
   }, /*#__PURE__*/React.createElement(FontImport, null), showIntro && /*#__PURE__*/React.createElement(IntroScreen, {
     onEnter: () => {
       setShowIntro(false);
-      if (!birthYear) setShowBirthYear(true);
+      if (!signedUp) setShowBirthYear(true);
     }
-  }), showBirthYear && /*#__PURE__*/React.createElement(BirthYearScreen, {
-    onDone: yr => {
+  }), showBirthYear && /*#__PURE__*/React.createElement(SignupScreen, {
+    onDone: data => {
+      const yr = (data.dob || '').slice(0, 4);
       setBirthYear(yr);
       try {
-        var _window$localStorage6;
-        (_window$localStorage6 = window.localStorage) === null || _window$localStorage6 === void 0 || _window$localStorage6.setItem('dod-birthyear', yr);
+        const ls = window.localStorage;
+        if (ls) {
+          ls.setItem('dod-birthyear', yr);
+          ls.setItem('dod-firstname', data.firstName);
+          ls.setItem('dod-dob', data.dob);
+          ls.setItem('dod-email', data.email);
+          ls.setItem('dod-signed-up', '1');
+        }
       } catch (e) {}
+      setSignedUp(true);
+      if (SIGNUP_ENDPOINT) {
+        try {
+          fetch(SIGNUP_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName: data.firstName, dob: data.dob, email: data.email, source: 'do-or-dont-app' }) }).catch(() => {});
+        } catch (e) {}
+      }
       setShowBirthYear(false);
     }
   }), /*#__PURE__*/React.createElement("header", {
@@ -916,97 +932,50 @@ function IntroScreen(_ref) {
 }
 
 // ---------------------------------------------------------------------------
-// BIRTH YEAR SCREEN — one question, zero friction
+// SIGNUP SCREEN — first name + date of birth + email. The email list is the asset.
+// To actually RECEIVE signups, set SIGNUP_ENDPOINT below to a form endpoint
+// (easiest: a free Formspree URL like https://formspree.io/f/xxxxxx, or your
+// email platform's API). Left blank, the app still works and stores locally.
 // ---------------------------------------------------------------------------
-function BirthYearScreen(_ref2) {
-  let onDone = _ref2.onDone;
-  const _useState37 = useState(''),
-    _useState38 = _slicedToArray(_useState37, 2),
-    year = _useState38[0],
-    setYear = _useState38[1];
-  const _useState39 = useState(false),
-    _useState40 = _slicedToArray(_useState39, 2),
-    vis = _useState40[0],
-    setVis = _useState40[1];
+const SIGNUP_ENDPOINT = '';
+
+function SignupScreen(_ref2) {
+  const onDone = _ref2.onDone;
+  const [vis, setVis] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [dob, setDob] = useState('');
+  const [email, setEmail] = useState('');
+  const [err, setErr] = useState('');
   useEffect(() => {
     const t = setTimeout(() => setVis(true), 60);
     return () => clearTimeout(t);
   }, []);
-  const handleSubmit = () => {
-    const y = parseInt(year, 10);
-    if (y >= 1920 && y <= new Date().getFullYear()) onDone(year);
+  const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  const ready = firstName.trim() && dob && validEmail(email);
+  const submit = () => {
+    if (!firstName.trim()) { setErr('Add your first name.'); return; }
+    if (!dob) { setErr('Add your date of birth.'); return; }
+    if (!validEmail(email)) { setErr('Add a valid email.'); return; }
+    setErr('');
+    onDone({ firstName: firstName.trim(), dob: dob, email: email.trim() });
   };
-  return /*#__PURE__*/React.createElement("div", {
-    style: _objectSpread(_objectSpread({}, S.intro), {}, {
-      opacity: vis ? 1 : 0,
-      transition: 'opacity 0.5s ease',
-      gap: '1rem'
-    })
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: T.fontDisplay,
-      fontStyle: 'italic',
-      fontSize: 'clamp(16px,2vw,22px)',
-      color: T.textMuted,
-      letterSpacing: '.02em',
-      marginBottom: '0.5rem'
-    }
-  }, "One quick question."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: T.fontDisplay,
-      fontStyle: 'italic',
-      fontSize: 'clamp(28px,4vw,48px)',
-      color: T.text,
-      lineHeight: 1.2,
-      textAlign: 'center'
-    }
-  }, "What year were you born?"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12,
-      marginTop: '1.5rem'
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "number",
-    value: year,
-    onChange: e => setYear(e.target.value),
-    onKeyDown: e => {
-      if (e.key === 'Enter') handleSubmit();
-    },
-    placeholder: "1990",
-    min: "1920",
-    max: new Date().getFullYear(),
-    style: {
-      background: 'transparent',
-      border: 'none',
-      borderBottom: "1px solid ".concat(T.borderMid),
-      color: T.text,
-      fontSize: 'clamp(28px,4vw,48px)',
-      fontFamily: T.fontDisplay,
-      fontStyle: 'italic',
-      width: 160,
-      textAlign: 'center',
-      outline: 'none',
-      padding: '4px 0'
-    },
-    autoFocus: true
-  }), /*#__PURE__*/React.createElement("button", {
-    onClick: handleSubmit,
-    style: {
-      background: 'transparent',
-      border: "0.5px solid ".concat(T.border),
-      color: year.length === 4 ? T.text : T.textSubtle,
-      fontSize: 20,
-      cursor: year.length === 4 ? 'pointer' : 'default',
-      padding: '8px 16px',
-      borderRadius: 2,
-      fontFamily: T.fontMono,
-      transition: 'color .2s, border-color .2s',
-      borderColor: year.length === 4 ? T.borderMid : T.border
-    },
-    "aria-label": "Continue"
-  }, "\u2192")));
+  const label = (txt) => React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: T.textSubtle, marginBottom: 6 } }, txt);
+  const inputStyle = { background: 'transparent', border: 'none', borderBottom: '1px solid ' + T.borderMid, color: T.text, fontSize: 18, fontFamily: T.fontMono, width: '100%', outline: 'none', padding: '8px 0' };
+  return React.createElement('div', {
+    style: _objectSpread(_objectSpread({}, S.intro), {}, { opacity: vis ? 1 : 0, transition: 'opacity 0.5s ease', gap: 0, overflowY: 'auto', justifyContent: 'center' })
+  },
+    React.createElement('div', { style: { width: '100%', maxWidth: 420, display: 'flex', flexDirection: 'column' } },
+      React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: T.textSubtle, marginBottom: 14 } }, 'Before you start'),
+      React.createElement('div', { style: { fontFamily: T.fontDisplay, fontStyle: 'italic', fontSize: 'clamp(32px,5vw,46px)', color: T.text, lineHeight: 1.15, marginBottom: 18 } }, "It's free. It stays yours."),
+      React.createElement('p', { style: { fontFamily: T.fontMono, fontSize: 13.5, lineHeight: 1.65, color: T.textMuted, marginBottom: 30, textWrap: 'pretty' } }, "Your tracking never leaves this browser. We never see it. The only thing we ask for is your email, so we can send you one short habit note every couple of weeks. Unsubscribe anytime. No strings."),
+      React.createElement('div', { style: { marginBottom: 22 } }, label('First name'), React.createElement('input', { type: 'text', value: firstName, onChange: (e) => setFirstName(e.target.value), placeholder: 'Alex', style: inputStyle, autoFocus: true })),
+      React.createElement('div', { style: { marginBottom: 22 } }, label('Date of birth'), React.createElement('input', { type: 'date', value: dob, onChange: (e) => setDob(e.target.value), max: new Date().toISOString().slice(0, 10), style: _objectSpread(_objectSpread({}, inputStyle), {}, { colorScheme: 'dark' }) })),
+      React.createElement('div', { style: { marginBottom: 14 } }, label('Email'), React.createElement('input', { type: 'email', value: email, onChange: (e) => setEmail(e.target.value), onKeyDown: (e) => { if (e.key === 'Enter') submit(); }, placeholder: 'you@email.com', style: inputStyle })),
+      err && React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 12, color: '#C2613F', marginBottom: 10 } }, err),
+      React.createElement('button', { onClick: submit, style: { marginTop: 18, background: ready ? T.text : 'transparent', color: ready ? T.bg : T.textSubtle, border: '0.5px solid ' + (ready ? T.text : T.border), fontFamily: T.fontMono, fontSize: 14, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 20px', borderRadius: 2, cursor: ready ? 'pointer' : 'default', transition: 'all .2s', width: '100%' } }, 'Start tracking \u2192'),
+      React.createElement('div', { style: { fontFamily: T.fontMono, fontSize: 11, color: T.textFaint, marginTop: 16, textAlign: 'center' } }, '100% free. No credit card. No download.')
+    )
+  );
 }
 // ---------------------------------------------------------------------------
 // SIDE TOGGLE
