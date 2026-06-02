@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Do or Don't Example Newsletter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F4F0E6; --ink:#1A1814; --dim:rgba(26,24,20,0.64); --faint:rgba(26,24,20,0.4);
+    --line:rgba(26,24,20,0.12); --amber:#B06C28; --green:#3c6e5a; --red:#b03c28;
+    --serif:'Fraunces',Georgia,serif; --body:'Inter Tight',sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{background:#E2DAC6; font-family:var(--body); color:var(--ink); padding:40px 16px; line-height:1.6;}
+  h1,h2,h3,p,li{text-wrap:pretty;}
+  h1,h2,h3{text-wrap:balance;}
+  .frame{max-width:560px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .meta{font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--faint); text-align:center; max-width:560px; margin:0 auto 14px;}
+  /* masthead */
+  .masthead{background:#0A0A09; color:#F2EFE8; padding:34px 36px 30px; text-align:center;}
+  .masthead .wm{font-family:var(--serif); font-style:italic; font-size:30px; letter-spacing:-0.01em;}
+  .masthead .wm .or{color:rgba(242,239,232,0.55); font-style:italic;}
+  .masthead .tag{font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(242,239,232,0.45); margin-top:10px;}
+  /* body */
+  .pad{padding:34px 36px;}
+  .issue{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber); margin-bottom:18px;}
+  .hed{font-family:var(--serif); font-size:30px; line-height:1.12; letter-spacing:-0.01em; margin-bottom:20px;}
+  .hed em{font-style:italic; color:var(--amber);}
+  .lede{font-size:17px; color:var(--ink); margin-bottom:22px;}
+  p.tx{font-size:15.5px; color:var(--dim); margin-bottom:18px;}
+  .rule{height:1px; background:var(--line); margin:28px 0;}
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--faint); margin-bottom:12px;}
+  .loop{list-style:none; margin:6px 0 8px;}
+  .loop li{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); font-size:15px;}
+  .loop li:last-child{border-bottom:none;}
+  .loop .step{font-family:var(--mono); font-size:11px; color:var(--amber); flex:0 0 78px; padding-top:2px; letter-spacing:0.06em;}
+  .loop .what b{font-weight:600;}
+  .loop .what span{display:block; color:var(--dim); font-size:13.5px; margin-top:2px;}
+  .pull{font-family:var(--serif); font-style:italic; font-size:21px; line-height:1.4; color:var(--ink); padding:6px 0 6px 18px; border-left:2px solid var(--amber); margin:6px 0 4px;}
+  .try{font-size:15.5px; color:var(--dim); margin-bottom:8px;}
+  .try b{color:var(--ink); font-weight:600;}
+  .cta{display:block; text-align:center; background:var(--ink); color:var(--paper); text-decoration:none; font-family:var(--mono); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; padding:15px; border-radius:4px; margin-top:26px;}
+  .sign{font-family:var(--serif); font-style:italic; font-size:16px; color:var(--dim); margin-top:24px;}
+  /* footer */
+  .foot{background:#EDE7D8; padding:24px 36px; text-align:center; border-top:1px solid var(--line);}
+  .foot p{font-family:var(--mono); font-size:11px; line-height:1.7; color:var(--faint);}
+  .foot a{color:var(--dim); text-decoration:underline;}
+  @media(max-width:480px){ .pad,.masthead,.foot{padding-left:22px; padding-right:22px;} .hed{font-size:25px;} }
+</style>
+</head>
+<body>
+  <div class="meta">[ Example issue &middot; built as a portfolio artifact for the Do or Don't newsletter ]</div>
+  <div class="frame">
+
+    <div class="masthead">
+      <div class="wm">Do <span class="or">or</span> Don't</div>
+      <div class="tag">A short note on building better days</div>
+    </div>
+
+    <div class="pad">
+      <div class="issue">Issue 01 &middot; The soda problem</div>
+      <h1 class="hed">You can't change what you can't <em>see</em>.</h1>
+      <p class="lede">Most people trying to fix a habit skip the only step that matters. They jump straight to willpower. Watch what happens when you don't.</p>
+
+      <p class="tx">Say someone wants to lose weight. Ask them why it isn't working and you get a shrug. "I don't know, I just can't." They are trying to fix a problem they have never actually looked at.</p>
+
+      <p class="tx">So before changing anything, they track. Just track. No shame, no rules. A week in, one number jumps off the screen: a liter of soda. Every single day. There it is. The thing hiding in plain sight.</p>
+
+      <div class="pull">That is the whole game. Track first, and the insight finds you.</div>
+
+      <div class="rule"></div>
+
+      <div class="kicker">Why this works (the science, fast)</div>
+      <p class="tx">Every habit runs the same four-step loop. Once you can see it, you can change it.</p>
+      <ul class="loop">
+        <li><span class="step">Cue</span><span class="what"><b>The trigger</b><span>Sitting down to lunch.</span></span></li>
+        <li><span class="step">Craving</span><span class="what"><b>The pull</b><span>You want the sugar hit and the fizz.</span></span></li>
+        <li><span class="step">Response</span><span class="what"><b>The action</b><span>You grab the soda.</span></span></li>
+        <li><span class="step">Reward</span><span class="what"><b>The payoff</b><span>Quick energy, and your brain files it to repeat.</span></span></li>
+      </ul>
+      <p class="tx">You don't need to attack all four. You just need to see the loop clearly, then make one small change to one part of it.</p>
+
+      <div class="rule"></div>
+
+      <div class="kicker">Try this week</div>
+      <p class="try"><b>Drop one. Add one.</b></p>
+      <p class="try">Make the bad one harder: <b>don't keep soda in the house.</b> If it isn't in the fridge, the loop never starts. (That's "make it invisible.")</p>
+      <p class="try">Then add one good one that's easy to win: <b>a ten-minute walk after lunch.</b> Small enough that you'll actually do it. Track both.</p>
+      <p class="tx">A month from now you won't be guessing why anything is or isn't working. You'll have the map.</p>
+
+      <a class="cta" href="https://sethquest.com/do-or-dont">Open your map &rarr;</a>
+
+      <p class="sign">See you in two weeks,<br/>Do or Don't</p>
+    </div>
+
+    <div class="foot">
+      <p>You're getting this because you signed up at Do or Don't.<br/>One short note every couple of weeks. <a href="#">Unsubscribe anytime</a>, no strings.</p>
+    </div>
+
+  </div>
+</body>
+</html>
