@@ -23,6 +23,9 @@
   }
   a{color:inherit; text-decoration:none;}
   ::selection{background:var(--amber); color:var(--ink);}
+  /* widow control: balance headings, prevent orphans in body */
+  h1, h2, h3, blockquote, .lead, .hero-statement p, .interstitial p, .m-desc, .head-sub, .hero-range, .dd-row span:last-child { text-wrap: balance; }
+  p.body, .meta-row .val, .head-meta .m-desc { text-wrap: pretty; }
   .wrap{width:100%; max-width:1180px; margin:0 auto; padding:0 32px;}
 
   /* nav */
@@ -104,6 +107,92 @@
     .hero{padding:120px 0 40px;}
     .meta-row{gap:30px;}
   }
+  .hero-split{display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:center;}
+  .hero-copy .cta-row{margin-top:32px;}
+  .hero-media{position:relative; display:flex; justify-content:center;}
+  .hero-media .phone-frame{
+    height:min(560px,68vh); aspect-ratio:1206/2622; width:auto;
+    border:7px solid #0e0e10; border-radius:34px; overflow:hidden;
+    background:#000; box-shadow:0 0 0 1px var(--line), 0 30px 60px -20px rgba(26,24,20,0.4);
+    position:relative;
+  }
+  .hero-media .phone-frame::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:32%; height:16px; background:#0e0e10; border-radius:0 0 12px 12px; z-index:3;
+  }
+  .hero-media .phone-screen{position:relative; width:100%; height:100%; overflow:hidden; background:#0A0A09;}
+  .hero-media .phone-screen video{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-media .phone-screen .slot{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  /* iMac-framed carousel */
+  .imac-block{padding:30px 0 80px;}
+  .imac{display:flex; flex-direction:column; align-items:center;}
+  .imac-monitor{
+    width:100%; max-width:900px; background:#1b1b1e; border:1px solid #2a2a2e;
+    border-radius:20px 20px 8px 8px; padding:16px 16px 0; box-shadow:0 30px 70px -30px rgba(26,24,20,0.45);
+  }
+  .imac-screen{position:relative; aspect-ratio:16/9; border-radius:6px; overflow:hidden; background:#0d0d0f;}
+  .imac-chin{height:42px;}
+  .imac-neck{width:120px; height:34px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);}
+  .imac-foot{width:300px; max-width:60%; height:12px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 12px 12px;}
+  .car-viewport{position:absolute; inset:0; overflow:hidden;}
+  .car-track{display:flex; height:100%; transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);}
+  .car-slide{flex:0 0 100%; height:100%; position:relative; background:#0d0d0f;}
+  .car-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .car-slide video{width:100%; height:100%; object-fit:contain; display:block;}
+  .car-slide .slot{display:none; position:absolute; inset:0; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  .car-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:4;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.5); color:#fff;
+    backdrop-filter:blur(6px); transition:all 0.25s;
+  }
+  .car-arrow:hover{background:rgba(10,10,9,0.85);}
+  .car-prev{left:12px;} .car-next{right:12px;}
+  .car-dots{display:flex; gap:9px; justify-content:center; margin-top:26px;}
+  .car-dots .car-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); border:none; padding:0; cursor:pointer; transition:all 0.3s;}
+  .car-dots .car-dot.active{background:var(--amber); width:24px;}
+  @media(max-width:720px){ .imac-monitor{padding:10px 10px 0;} .imac-chin{height:30px;} }
+  .do-dont{margin-top:24px; display:flex; flex-direction:column; gap:12px;}
+  .biz-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:36px; border-top:1px solid var(--line);}
+  .biz-item{padding:28px 26px 28px 0; border-bottom:1px solid var(--line);}
+  .biz-item:not(:nth-child(3n)){border-right:1px solid var(--line); padding-right:26px;}
+  .biz-item:nth-child(3n) .biz-n, .biz-item{padding-left:0;}
+  .biz-item{padding-left:26px;}
+  .biz-item:nth-child(3n+1){padding-left:0;}
+  .biz-n{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--amber); margin-bottom:14px;}
+  .biz-item h3{font-size:18px; margin:0 0 8px; line-height:1.25;}
+  .biz-item p{font-size:14.5px; line-height:1.55; color:var(--bone-dim); margin:0; text-wrap:pretty;}
+  .biz-link{margin-top:14px; background:none; border:none; padding:0; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); transition:opacity 0.2s;}
+  .biz-link:hover{opacity:0.65;}
+  .news-modal{position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(10,10,9,0.72); backdrop-filter:blur(4px);}
+  .news-modal.open{display:flex;}
+  .news-dialog{position:relative; width:100%; max-width:600px; height:min(86vh,860px); background:#E2DAC6; border-radius:10px; overflow:hidden; box-shadow:0 40px 90px -30px rgba(0,0,0,0.6);}
+  .news-dialog iframe{width:100%; height:100%; border:0; display:block;}
+  .news-close{position:absolute; top:12px; right:12px; z-index:3; width:38px; height:38px; border-radius:999px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; border:1px solid rgba(26,24,20,0.18); background:rgba(244,240,230,0.92); color:var(--bone); transition:all 0.2s;}
+  .news-close:hover{background:var(--bone); color:var(--ink);}
+  @media(max-width:820px){ .biz-grid{grid-template-columns:1fr;} .biz-item, .biz-item:not(:nth-child(3n)){border-right:none; padding:24px 0 !important;} }
+  .dd-row{display:flex; gap:14px; align-items:flex-start; font-size:15.5px; line-height:1.5; color:var(--bone-dim);}
+  .dd-tag{flex:0 0 auto; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.1em; padding:3px 10px; border-radius:6px; margin-top:2px;}
+  .dd-do .dd-tag{background:rgba(60,110,90,0.16); color:#3c6e5a;}
+  .dd-dont .dd-tag{background:rgba(176,60,40,0.14); color:#b03c28;}
+  .sound-btn{
+    position:absolute; bottom:14px; right:14px; z-index:6;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.55);
+    backdrop-filter:blur(6px); color:#fff; transition:all 0.25s;
+  }
+  .sound-btn:hover{background:rgba(10,10,9,0.8); transform:scale(1.06);}
+  .sound-btn .ic-on{display:none;}
+  .sound-btn[data-on="true"]{background:var(--amber); border-color:var(--amber);}
+  .sound-btn[data-on="true"] .ic-on{display:block;}
+  .sound-btn[data-on="true"] .ic-off{display:none;}
+  @media(max-width:820px){
+    .hero-split{grid-template-columns:1fr; gap:36px;}
+    .hero-media{justify-content:flex-start;}
+    .hero-media .phone-frame{height:auto; width:230px;}
+  }
 </style>
 </head>
 <body>
@@ -116,66 +205,124 @@
 </nav>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow"><span>Personal Project · Product &amp; UX</span></div>
-  <h1>Do or <em>Don't</em></h1>
-  <p class="lead">A habit tracker I designed and built from scratch: a <strong>radial map of what builds you and what corrodes you</strong>, scored and tracked over time.</p>
-  <div class="meta-row">
-      <div class="item"><div class="label">Role</div><div class="val">Concept, design, build</div></div>
-      <div class="item"><div class="label">Type</div><div class="val">Personal product</div></div>
-      <div class="item"><div class="label">Status</div><div class="val">Live</div></div>
+  <div class="hero-split">
+    <div class="hero-copy">
+      <div class="eyebrow"><span>Web App &middot; Solo Build</span></div>
+      <h1>Do or <em>Don't</em></h1>
+      <p class="lead">A stupid-simple habit tracker for young people.</p>
+      <div class="do-dont">
+        <div class="dd-row dd-do"><span class="dd-tag">DO</span><span>Track the positive habits and observable actions you take.</span></div>
+        <div class="dd-row dd-dont"><span class="dd-tag">DON'T</span><span>Track the negative habits and actions you want to avoid.</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="/do-or-dont" target="_blank" rel="noopener">Try the live app &rarr;</a>
+      </div>
+      <div class="meta-row">
+          <div class="item"><div class="label">Role</div><div class="val">Concept, UX design, development, branding, marketing, video production</div></div>
+          <div class="item"><div class="label">Type</div><div class="val">Web App</div></div>
+          <div class="item"><div class="label">Status</div><div class="val">Live · Mobile app in progress</div></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <button class="sound-btn" aria-label="Play with sound" data-on="false" type="button">
+        <svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <div class="phone-frame"><div class="phone-screen">
+        <video class="phone-video" src="/DOD/dod-ad.mp4" poster="/DOD/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+        <span class="slot" style="display:none;">[ /DOD/dod-ad.mp4 ]</span>
+      </div></div>
+    </div>
   </div>
 </div></header>
-  <div class="wrap hero-shot"><div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:16/10;">
-        <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
-        <span class="slot" style="display:none;">[ /DOD/dod-desktop.mp4 ]</span>
-      </div></div></div>
-
-  <section class="block"><div class="wrap">
+  <section class="block" style="border-top:none; padding-top:46px;"><div class="wrap">
     <div class="sec-label">Overview</div>
-      <p class="body">Most habit trackers are guilt machines: break a streak and the app punishes you. Do or Don't takes a different view. It treats your days as data, plotting the actions that build you against the ones that corrode you, so you can actually see the shape of your life rather than chase a number.</p>
-      <p class="body">I designed the concept, the interface, and built the whole thing myself, then designed a social campaign to launch it.</p>
+    <h2 style="max-width:24ch;">Not a guilt machine. A <em style="font-style:italic;color:var(--amber);">mirror</em>.</h2>
+    <p class="body" style="font-size:19px;">Most habit apps punish you for breaking a streak. Do or Don't just shows you the truth: the good things you do, and the negative ones, mapped side by side. No streaks to protect. No shame. Just a clear picture of what you're actually doing.</p>
+  </div></section>
+
+  <section class="imac-block"><div class="wrap">
+    <div class="imac">
+      <div class="imac-monitor">
+        <div class="imac-screen">
+          <button class="car-arrow car-prev" aria-label="Previous screen" type="button">&larr;</button>
+          <button class="car-arrow car-next" aria-label="Next screen" type="button">&rarr;</button>
+          <div class="car-viewport"><div class="car-track">
+            <div class="car-slide">
+              <img src="/DOD/dod-screen-1.jpg" alt="Do or Don't: the DO wheel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <span class="slot">[ DOD/dod-screen-1.jpg ]</span>
+            </div>
+            <div class="car-slide">
+              <img src="/DOD/dod-screen-2.jpg" alt="Do or Don't: the DON'T wheel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <span class="slot">[ DOD/dod-screen-2.jpg ]</span>
+            </div>
+            <div class="car-slide">
+              <img src="/DOD/dod-screen-3.jpg" alt="Do or Don't: selecting a facet" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <span class="slot">[ DOD/dod-screen-3.jpg ]</span>
+            </div>
+            <div class="car-slide">
+              <img src="/DOD/dod-screen-4.jpg" alt="Do or Don't: committing to an action" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <span class="slot">[ DOD/dod-screen-4.jpg ]</span>
+            </div>
+            <div class="car-slide">
+              <img src="/DOD/dod-screen-5.jpg" alt="Do or Don't: customizing your facets" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <span class="slot">[ DOD/dod-screen-5.jpg ]</span>
+            </div>
+            <div class="car-slide">
+              <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" muted loop playsinline preload="none" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+              <span class="slot">[ DOD/dod-desktop.mp4 ]</span>
+            </div>
+          </div></div>
+        </div>
+        <div class="imac-chin"></div>
+      </div>
+      <div class="imac-neck"></div>
+      <div class="imac-foot"></div>
+      <div class="car-dots"></div>
+    </div>
   </div></section>
 
   <section class="block"><div class="wrap">
     <div class="sec-label">What I did</div>
-    <h2>The work, broken down.</h2>
-      <div class="group">
-        <h3>Design &amp; build</h3>
+    <h2>One person. The whole thing.</h2>
       <ul class="points">
-        <li>Designed the radial <strong>wheel</strong>: 12 cool-toned facets for the things you DO, 13 warm orange-to-red facets for the things you DON'T.</li>
-        <li>Built four difficulty tiers into the dots, with hollow meaning committed and solid meaning completed.</li>
-        <li>Created week, month, and year views, with local persistence so your data stays yours.</li>
-        <li>Designed and built it for both desktop and mobile, plus a vertical social ad to launch it.</li>
+        <li>Designed the concept: a simple map of the good things you do and the negative ones you want to drop.</li>
+        <li>Designed the radial <strong>wheel</strong> and the color system, so a single glance shows you the shape of your week.</li>
+        <li>Built four difficulty levels into the dots, from quick wins all the way up to real milestones.</li>
+        <li>Made every chart editable, so you can add or remove what you track in a couple of taps.</li>
+        <li>Did the concept, UX, build, branding, and the vertical social campaign that launched it.</li>
       </ul>
-      </div>
+  </div></section>
+
+  <section class="block biz"><div class="wrap">
+    <div class="sec-label">The business model</div>
+    <h2>Free isn't the strategy. It's the <em>acquisition</em>.</h2>
+    <p class="body" style="font-size:19px;">The app is the on-ramp. The audience is the business. Here is how the pieces fit together.</p>
+    <div class="biz-grid">
+      <div class="biz-item"><div class="biz-n">01</div><h3>Free, forever.</h3><p>No paywall, no card, no download. Friction kills signups, so there is none.</p></div>
+      <div class="biz-item"><div class="biz-n">02</div><h3>Privacy is the product.</h3><p>Your habit data lives in your browser and never touches a server. That trust is exactly why people hand over the one thing I do ask for.</p></div>
+      <div class="biz-item"><div class="biz-n">03</div><h3>The email is the asset.</h3><p>First name, birthday, email. That is a list of people who have already said they want to change their life. The list is worth more than any feature.</p><button class="biz-link" type="button" id="open-news">View example email &rarr;</button></div>
+      <div class="biz-item"><div class="biz-n">04</div><h3>Acquisition runs itself.</h3><p>A roster of short-form characters on TikTok drives people to the site organically. No ad spend, so the cost of one more signup is close to zero.</p></div>
+      <div class="biz-item"><div class="biz-n">05</div><h3>The goal: 10,000 of the right people.</h3><p>Not vanity reach. Ten thousand people who are actively working on their habits.</p></div>
+      <div class="biz-item"><div class="biz-n">06</div><h3>Then the options open up.</h3><p>Launch a paid tier, partner with brands who want that audience, or get acquired. The product was always the way in.</p></div>
+    </div>
   </div></section>
 
   <section class="block"><div class="wrap">
     <div class="sec-label">Outcome</div>
-    <p class="body">A finished, living product I use myself, built to prove a point: the right interface can make self-tracking feel like seeing clearly instead of keeping score.</p>
-
-      <ul class="points">
-        <li>Fully working on desktop and mobile.</li>
-        <li>Designed, built, and shipped solo.</li>
-        <li>A matching vertical social campaign.</li>
-      </ul>
+    <p class="body" style="font-size:19px;">A finished, living product I use every day, and proof of the thing I keep telling clients: the right interface makes the hard thing feel easy. Mobile version in progress.</p>
   </div></section>
 
-  <section class="block"><div class="wrap">
-    <div class="sec-label">See it live</div>
-    <div class="cta-row">
-      <a class="btn primary" href="/do-or-dont">Try the live app</a>
+  <section class="block" style="text-align:center;"><div class="wrap">
+    <h2 style="max-width:26ch; margin:0 auto 28px;">Track your daily actions and the patterns appear. See the patterns and the insight follows. Do more of the good, and life follows that too.</h2>
+    <a class="btn primary" href="/do-or-dont" target="_blank" rel="noopener">Try the live app &rarr;</a>
+  </div></section>
+  <div class="news-modal" id="news-modal" aria-hidden="true">
+    <div class="news-dialog">
+      <button class="news-close" id="news-close" aria-label="Close" type="button">&times;</button>
+      <iframe id="news-frame" title="Do or Don't example newsletter" data-src="/do-or-dont-newsletter"></iframe>
     </div>
-  </div></section>
-  <section class="block"><div class="wrap">
-    <div class="sec-label">Gallery</div>
-<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:9/19.5;">
-        <video src="/DOD/dod-ad.mp4" poster="/DOD/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
-        <span class="slot" style="display:none;">[ /DOD/dod-ad.mp4 ]</span>
-      </div></div>
-  </div></section>
+  </div>
 
   <footer><div class="wrap">
     <div class="f-top">
@@ -183,5 +330,71 @@
       <div class="next"><a href="/deep-fried-bananas">Next: Deep Fried Bananas &rarr;</a></div>
     </div>
   </div></footer>
+<script>
+  (function(){
+    var btn = document.querySelector('.sound-btn');
+    if(btn){
+      var vid = document.querySelector('.hero-media .phone-video');
+      if(!vid){ btn.style.display='none'; }
+      else btn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        var turningOn = btn.getAttribute('data-on') !== 'true';
+        vid.muted = !turningOn;
+        if(turningOn){ try{ vid.currentTime = 0; }catch(_){} vid.play().catch(function(){}); }
+        btn.setAttribute('data-on', turningOn ? 'true' : 'false');
+      });
+    }
+    // iMac carousel
+    var track = document.querySelector('.car-track');
+    if(track){
+      var slides = Array.prototype.slice.call(track.children);
+      var dotsWrap = document.querySelector('.car-dots');
+      var i = 0;
+      slides.forEach(function(_, k){
+        var d = document.createElement('button');
+        d.className = 'car-dot' + (k===0?' active':'');
+        d.type = 'button';
+        d.addEventListener('click', function(){ go(k); });
+        dotsWrap.appendChild(d);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+      function render(){
+        track.style.transform = 'translateX(' + (-i*100) + '%)';
+        dots.forEach(function(d,k){ d.classList.toggle('active', k===i); });
+        slides.forEach(function(sl,k){
+          var v = sl.querySelector('video');
+          if(v){ if(k===i){ v.play().catch(function(){}); } else { v.pause(); } }
+        });
+      }
+      function go(n){ i = (n + slides.length) % slides.length; render(); }
+      var p=document.querySelector('.car-prev'), nx=document.querySelector('.car-next');
+      if(p) p.addEventListener('click', function(){ go(i-1); });
+      if(nx) nx.addEventListener('click', function(){ go(i+1); });
+      render();
+    }
+    // newsletter modal
+    var openBtn = document.getElementById('open-news');
+    var modal = document.getElementById('news-modal');
+    var closeBtn = document.getElementById('news-close');
+    var frame = document.getElementById('news-frame');
+    if(openBtn && modal && frame){
+      function openModal(){
+        if(!frame.src){ frame.src = frame.getAttribute('data-src'); }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+      openBtn.addEventListener('click', openModal);
+      if(closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    }
+  })();
+</script>
 </body>
 </html>
