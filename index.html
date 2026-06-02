@@ -332,25 +332,24 @@
     white-space:nowrap; z-index:2; pointer-events:none;
   }
 
-  /* iMac frame — height-driven off a real screen ratio, sits next to the phone */
+  /* iMac frame — 16:9 screen fed a static still, height-anchored, sits next to the phone */
   .imac-frame{
     height:var(--dev-h); display:flex; flex-direction:column; align-items:center;
     transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
   }
   .asset:hover .imac-frame{transform:translateY(-4px);}
   .imac-monitor{
-    height:calc(var(--dev-h) - 42px); aspect-ratio:16/10.6; max-width:100%;
-    background:#1b1b1e; border:1px solid #2a2a2e; border-radius:14px 14px 6px 6px;
-    padding:10px 10px 0; display:flex; flex-direction:column;
+    max-width:100%; background:#1b1b1e; border:1px solid #2a2a2e;
+    border-radius:16px 16px 7px 7px; padding:11px 11px 0; display:flex; flex-direction:column;
   }
   .imac-screen{
-    position:relative; flex:1 1 auto; min-height:0; width:100%;
-    border-radius:4px; overflow:hidden; background:#0d0d0f;
+    position:relative; height:calc(var(--dev-h) - 108px); aspect-ratio:16/9;
+    border-radius:5px; overflow:hidden; background:#0d0d0f;
   }
-  .imac-screen video, .imac-screen img{width:100%; height:100%; object-fit:contain; display:block;}
-  .imac-chin{height:22px; flex:0 0 auto;}
-  .imac-neck{width:96px; height:22px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(20% 0,80% 0,100% 100%,0 100%); flex:0 0 auto;}
-  .imac-foot{width:34%; min-width:160px; height:9px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 10px 10px; flex:0 0 auto;}
+  .imac-screen video, .imac-screen img{width:100%; height:100%; object-fit:cover; display:block;}
+  .imac-chin{height:40px; flex:0 0 auto;}
+  .imac-neck{width:124px; height:46px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(19% 0,81% 0,100% 100%,0 100%); flex:0 0 auto;}
+  .imac-foot{width:300px; max-width:52%; height:14px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 13px 13px; flex:0 0 auto;}
 
   /* iPhone frame — pinned to the same --dev-h, narrow, on the right */
   .phone-frame{
@@ -555,42 +554,6 @@
 
     <div class="modules">
 
-      <article class="module module--featured reveal">
-        <div class="module-grid">
-          <div class="module-head">
-            <div class="head-left">
-              <span class="featured-tag">Featured engagement</span>
-              <h3>Elua</h3>
-              <span class="m-cat">AI Platform · Product &amp; UX</span>
-            </div>
-            <div class="head-rule"></div>
-            <p class="m-desc">A 3-month AI-native transformation for an early-stage startup. I migrated their stack, built the operations dashboard, and designed a 20-method analysis system with fully source-linked reports.</p>
-          </div>
-          <div class="module-devices">
-            <a class="asset asset-wide" href="/elua-ux">
-              <div class="imac-frame">
-                <div class="imac-monitor"><div class="imac-screen">
-                  <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
-                  <span class="asset-label">[ elua/elua-desktop.png ]</span>
-                </div></div>
-                <div class="imac-neck"></div>
-                <div class="imac-foot"></div>
-              </div>
-            </a>
-            <div class="asset asset-phone"><a class="phone-link" href="/elua-ux">
-              <div class="phone-frame"><div class="phone-screen">
-              <video class="phone-video" src="/elua/elua-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
-              <span class="asset-label">[ elua/elua-social.mp4 ]</span>
-            </div></div>
-            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
-          </div>
-        </div>
-      </article>
-
-            <div class="interstitial interstitial--big reveal">
-        <p>My job is simple: get AI <em>working</em> inside your business, and leave your team able to run it without me.</p>
-      </div>
-
 <article class="module reveal">
         <div class="module-grid">
           <div class="module-head">
@@ -605,9 +568,9 @@
             <a class="asset asset-wide" href="/do-or-dont-project">
               <div class="imac-frame">
                 <div class="imac-monitor"><div class="imac-screen">
-                  <video src="/DOD/dod-desktop.mp4" poster="/DOD/dod-desktop-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
-                  <span class="asset-label">[ dod/dod-desktop.mp4 ]</span>
-                </div></div>
+                  <img src="/DOD/dod-screen-1.jpg" alt="Do or Don't web app" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ DOD/dod-screen-1.jpg ]</span>
+                </div><div class="imac-chin"></div></div>
                 <div class="imac-neck"></div>
                 <div class="imac-foot"></div>
               </div>
@@ -616,6 +579,77 @@
               <div class="phone-frame"><div class="phone-screen">
               <video class="phone-video" src="/DOD/dod-ad.mp4" poster="/DOD/dod-ad-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ dod/dod-ad.mp4 ]</span>
+            </div></div>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
+          </div>
+        </div>
+      </article>
+
+            <div class="interstitial interstitial--big reveal">
+        <p>My job is simple: get AI <em>working</em> inside your business, and leave your team able to run it without me.</p>
+      </div>
+
+<article class="module reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <h3>Deep Fried Bananas</h3>
+              <span class="m-cat">My Company · Restaurant AI</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">My company. A dashboard giving restaurant owners a clear roadmap for putting AI to work across their whole business.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/deep-fried-bananas">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
+                  <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ dfb/dfb-desktop.png ]</span>
+                </div><div class="imac-chin"></div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
+              </div>
+            </a>
+            <div class="asset asset-phone"><a class="phone-link" href="/deep-fried-bananas">
+              <div class="phone-frame"><div class="phone-screen">
+              <video class="phone-video" src="/dfb/dfb-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <span class="asset-label">[ dfb/dfb-social.mp4 ]</span>
+            </div></div>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
+          </div>
+        </div>
+      </article>
+
+            <div class="interstitial interstitial--statement reveal">
+        <div class="bar"></div>
+        <p>After two years deep in the tools, I've narrowed the field to the few that <em>actually move the needle</em>, in the order that makes them stick. I enable small businesses to leverage AI without the overwhelm: I implement the systems, then <em>teach your team to own them</em>, so AI becomes how you work instead of another subscription nobody opens.</p>
+      </div>
+
+      <article class="module reveal">
+        <div class="module-grid">
+          <div class="module-head">
+            <div class="head-left">
+              <h3>Elua</h3>
+              <span class="m-cat">AI Platform · Product &amp; UX</span>
+            </div>
+            <div class="head-rule"></div>
+            <p class="m-desc">A 3-month AI-native transformation for an early-stage startup. I migrated their stack, built the operations dashboard, and designed a 20-method analysis system with fully source-linked reports.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/elua-ux">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
+                  <img src="/elua/elua-desktop.png" alt="Elua interactive analysis platform" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ elua/elua-desktop.png ]</span>
+                </div><div class="imac-chin"></div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
+              </div>
+            </a>
+            <div class="asset asset-phone"><a class="phone-link" href="/elua-ux">
+              <div class="phone-frame"><div class="phone-screen">
+              <video class="phone-video" src="/elua/elua-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <span class="asset-label">[ elua/elua-social.mp4 ]</span>
             </div></div>
             </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
           </div>
@@ -651,42 +685,6 @@
         <div class="module-grid">
           <div class="module-head">
             <div class="head-left">
-              <h3>Deep Fried Bananas</h3>
-              <span class="m-cat">My Company · Restaurant AI</span>
-            </div>
-            <div class="head-rule"></div>
-            <p class="m-desc">My company. A dashboard giving restaurant owners a clear roadmap for putting AI to work across their whole business.</p>
-          </div>
-          <div class="module-devices">
-            <a class="asset asset-wide" href="/deep-fried-bananas">
-              <div class="imac-frame">
-                <div class="imac-monitor"><div class="imac-screen">
-                  <img src="/dfb/dfb-desktop.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
-                  <span class="asset-label">[ dfb/dfb-desktop.png ]</span>
-                </div></div>
-                <div class="imac-neck"></div>
-                <div class="imac-foot"></div>
-              </div>
-            </a>
-            <div class="asset asset-phone"><a class="phone-link" href="/deep-fried-bananas">
-              <div class="phone-frame"><div class="phone-screen">
-              <video class="phone-video" src="/dfb/dfb-social.mp4" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
-              <span class="asset-label">[ dfb/dfb-social.mp4 ]</span>
-            </div></div>
-            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
-          </div>
-        </div>
-      </article>
-
-            <div class="interstitial interstitial--statement reveal">
-        <div class="bar"></div>
-        <p>After two years deep in the tools, I've narrowed the field to the few that <em>actually move the needle</em>, in the order that makes them stick. I enable small businesses to leverage AI without the overwhelm: I implement the systems, then <em>teach your team to own them</em>, so AI becomes how you work instead of another subscription nobody opens.</p>
-      </div>
-
-<article class="module reveal">
-        <div class="module-grid">
-          <div class="module-head">
-            <div class="head-left">
               <h3>Puma Mala</h3>
               <span class="m-cat">Architecture · Brand · AI</span>
             </div>
@@ -698,7 +696,7 @@
               <div class="imac-frame">
                 <div class="imac-monitor"><div class="imac-screen">
                   <video src="/pumamala-reel.mp4?v=2" autoplay muted loop playsinline preload="auto" poster="/pumamala/images/puma_mala_hero.png"></video>
-                </div></div>
+                </div><div class="imac-chin"></div></div>
                 <div class="imac-neck"></div>
                 <div class="imac-foot"></div>
               </div>

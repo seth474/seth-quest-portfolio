@@ -23,6 +23,9 @@
   }
   a{color:inherit; text-decoration:none;}
   ::selection{background:var(--amber); color:var(--ink);}
+  /* widow control: balance headings, prevent orphans in body */
+  h1, h2, h3, blockquote, .lead, .hero-statement p, .interstitial p, .m-desc, .head-sub, .hero-range, .dd-row span:last-child { text-wrap: balance; }
+  p.body, .meta-row .val, .head-meta .m-desc { text-wrap: pretty; }
   .wrap{width:100%; max-width:1180px; margin:0 auto; padding:0 32px;}
 
   /* nav */
@@ -181,7 +184,7 @@
   <footer><div class="wrap">
     <div class="f-top">
       <a class="back" href="/#work">&larr; All work</a>
-      <div class="next"><a href="/pumamala">Next: Puma Mala &rarr;</a></div>
+      <div class="next"><a href="/elua-ux">Next: Elua &rarr;</a></div>
     </div>
   </div></footer>
 </body>
