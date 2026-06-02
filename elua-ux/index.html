@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI Platform · Product &amp; UX · Seth Quest</title>
-<meta name="description" content="AI Platform · Product &amp; UX. A project by Seth Quest, Multidisciplinary AI Builder." />
+<title>Elua · Seth Quest</title>
+<meta name="description" content="Personal Project · Product &amp; UX. A project by Seth Quest, Multidisciplinary AI Builder." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,10 +107,95 @@
     .hero{padding:120px 0 40px;}
     .meta-row{gap:30px;}
   }
+  .hero-split{display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:center;}
+  .hero-copy .cta-row{margin-top:32px;}
+  .hero-media{position:relative; display:flex; justify-content:center;}
+  .hero-media .phone-frame{
+    height:auto; width:min(284px,70vw); aspect-ratio:13/25;
+    border:7px solid #0e0e10; border-radius:38px; overflow:hidden;
+    background:#000; box-shadow:0 0 0 1px var(--line), 0 30px 60px -20px rgba(26,24,20,0.4);
+    position:relative;
+  }
+  .hero-media .phone-frame::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:30%; height:16px; background:#0e0e10; border-radius:0 0 12px 12px; z-index:3;
+  }
+  .hero-media .phone-screen{position:relative; width:100%; height:100%; overflow:hidden; background:#000;}
+  .hero-media .phone-screen video{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-media .phone-screen .slot{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  /* iMac-framed carousel */
+  .imac-block{padding:30px 0 80px;}
+  .imac{display:flex; flex-direction:column; align-items:center;}
+  .imac-monitor{
+    width:100%; max-width:900px; background:#1b1b1e; border:1px solid #2a2a2e;
+    border-radius:20px 20px 8px 8px; padding:16px 16px 0; box-shadow:0 30px 70px -30px rgba(26,24,20,0.45);
+  }
+  .imac-screen{position:relative; aspect-ratio:16/9; border-radius:6px; overflow:hidden; background:#0d0d0f;}
+  .imac-chin{height:42px;}
+  .imac-neck{width:124px; height:46px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(19% 0,81% 0,100% 100%,0 100%);}
+  .imac-foot{width:300px; max-width:58%; height:14px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 13px 13px;}
+  .car-viewport{position:absolute; inset:0; overflow:hidden;}
+  .car-track{display:flex; height:100%; transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);}
+  .car-slide{flex:0 0 100%; height:100%; position:relative; background:#0d0d0f;}
+  .car-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .car-slide video{width:100%; height:100%; object-fit:contain; display:block;}
+  .car-slide .slot{display:none; position:absolute; inset:0; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  .car-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:4;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.5); color:#fff;
+    backdrop-filter:blur(6px); transition:all 0.25s;
+  }
+  .car-arrow:hover{background:rgba(10,10,9,0.85);}
+  .car-prev{left:12px;} .car-next{right:12px;}
+  .car-dots{display:flex; gap:9px; justify-content:center; margin-top:26px;}
+  .car-dots .car-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); border:none; padding:0; cursor:pointer; transition:all 0.3s;}
+  .car-dots .car-dot.active{background:var(--amber); width:24px;}
+  @media(max-width:720px){ .imac-monitor{padding:10px 10px 0;} .imac-chin{height:30px;} }
+  .do-dont{margin-top:24px; display:flex; flex-direction:column; gap:12px;}
+  .biz-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:36px; border-top:1px solid var(--line);}
+  .biz-item{padding:28px 26px 28px 0; border-bottom:1px solid var(--line);}
+  .biz-item:not(:nth-child(3n)){border-right:1px solid var(--line); padding-right:26px;}
+  .biz-item:nth-child(3n) .biz-n, .biz-item{padding-left:0;}
+  .biz-item{padding-left:26px;}
+  .biz-item:nth-child(3n+1){padding-left:0;}
+  .biz-n{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--amber); margin-bottom:14px;}
+  .biz-item h3{font-size:18px; margin:0 0 8px; line-height:1.25;}
+  .biz-item p{font-size:14.5px; line-height:1.55; color:var(--bone-dim); margin:0; text-wrap:pretty;}
+  .biz-link{margin-top:14px; background:none; border:none; padding:0; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); transition:opacity 0.2s;}
+  .biz-link:hover{opacity:0.65;}
+  .news-modal{position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(10,10,9,0.72); backdrop-filter:blur(4px);}
+  .news-modal.open{display:flex;}
+  .news-dialog{position:relative; width:100%; max-width:600px; height:min(86vh,860px); background:#E2DAC6; border-radius:10px; overflow:hidden; box-shadow:0 40px 90px -30px rgba(0,0,0,0.6);}
+  .news-dialog iframe{width:100%; height:100%; border:0; display:block;}
+  .news-close{position:absolute; top:12px; right:12px; z-index:3; width:38px; height:38px; border-radius:999px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; border:1px solid rgba(26,24,20,0.18); background:rgba(244,240,230,0.92); color:var(--bone); transition:all 0.2s;}
+  .news-close:hover{background:var(--bone); color:var(--ink);}
+  @media(max-width:820px){ .biz-grid{grid-template-columns:1fr;} .biz-item, .biz-item:not(:nth-child(3n)){border-right:none; padding:24px 0 !important;} }
+  .dd-row{display:flex; gap:14px; align-items:flex-start; font-size:15.5px; line-height:1.5; color:var(--bone-dim);}
+  .dd-tag{flex:0 0 auto; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.1em; padding:3px 10px; border-radius:6px; margin-top:2px;}
+  .dd-do .dd-tag{background:rgba(60,110,90,0.16); color:#3c6e5a;}
+  .dd-dont .dd-tag{background:rgba(176,60,40,0.14); color:#b03c28;}
+  .sound-btn{
+    position:absolute; bottom:14px; right:14px; z-index:6;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.55);
+    backdrop-filter:blur(6px); color:#fff; transition:all 0.25s;
+  }
+  .sound-btn:hover{background:rgba(10,10,9,0.8); transform:scale(1.06);}
+  .sound-btn .ic-on{display:none;}
+  .sound-btn[data-on="true"]{background:var(--amber); border-color:var(--amber);}
+  .sound-btn[data-on="true"] .ic-on{display:block;}
+  .sound-btn[data-on="true"] .ic-off{display:none;}
+  @media(max-width:820px){
+    .hero-split{grid-template-columns:1fr; gap:36px;}
+    .hero-media{justify-content:flex-start;}
+    .hero-media .phone-frame{height:auto; width:230px;}
+  }
 </style>
 </head>
-<body>
-<nav class="top">
+<body><nav class="top">
   <a href="/" class="mark"><span class="arrow">&larr;</span>Seth Quest</a>
   <div class="links">
     <a href="/#work">Work</a>
@@ -119,30 +204,67 @@
 </nav>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow"><span>AI Platform · Product &amp; UX</span><span class="ftag">Featured engagement</span></div>
-  <h1>Elua</h1>
-  <p class="lead">A <strong>3-month AI-native transformation</strong> for an early-stage startup: I rebuilt how the team works with AI, and how their analysis reaches clients.</p>
-  <div class="meta-row">
-      <div class="item"><div class="label">Role</div><div class="val">AI implementation + Product/UX</div></div>
-      <div class="item"><div class="label">Timeline</div><div class="val">3 months</div></div>
-      <div class="item"><div class="label">Engagement</div><div class="val">Fractional</div></div>
+  <div class="hero-split">
+    <div class="hero-copy">
+      <div class="eyebrow"><span>AI Platform &middot; Real Client</span></div>
+      <h1>Elua</h1>
+      <p class="lead">A 3-month AI-native transformation for an early-stage startup. I rebuilt how the team works with AI, and how their analysis reaches clients.</p>
+      <div class="do-dont">
+        <div class="dd-row dd-do"><span class="dd-tag">BEFORE</span><span>Rigorous analysis trapped in static, twenty-page documents and ad-hoc tools.</span></div>
+        <div class="dd-row dd-dont"><span class="dd-tag">AFTER</span><span>An AI-native team and interactive, source-linked reports clients actually read.</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="/#contact">Want this in your business? &rarr;</a>
+      </div>
+      <div class="meta-row">
+          <div class="item"><div class="label">Role</div><div class="val">AI implementation, systems, product and UX</div></div>
+          <div class="item"><div class="label">Timeline</div><div class="val">3 months</div></div>
+          <div class="item"><div class="label">Engagement</div><div class="val">Fractional</div></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <button class="sound-btn" aria-label="Play with sound" data-on="false" type="button">
+        <svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <div class="phone-frame"><div class="phone-screen">
+        <video class="phone-video" src="/elua/elua-social.mp4" poster="/elua/elua-social-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+        <span class="slot" style="display:none;">[ /elua/elua-social.mp4 ]</span>
+      </div></div>
+    </div>
   </div>
 </div></header>
-  <div class="wrap hero-shot"><div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:16/10;">
-        <img src="/elua/elua-desktop.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <span class="slot" style="display:none;">[ /elua/elua-desktop.png ]</span>
-      </div></div></div>
 
-  <section class="block"><div class="wrap">
+  <section class="block" style="border-top:none; padding-top:46px;"><div class="wrap">
     <div class="sec-label">Overview</div>
-      <p class="body">Elua is an early-stage startup with a strong analytical product and the same problem most teams face right now: too many AI tools, no clear order to adopt them, and a manual process holding everything back. Their analysis was rigorous, but it lived in static documents that did not do the thinking justice.</p>
-      <p class="body">The goal was twofold: make the team genuinely AI-native in how they operate day to day, and turn their dense, twenty-page analyses into interactive experiences a client would actually want to read.</p>
+    <h2 style="max-width:24ch;">Rigorous thinking, <em>trapped in a PDF</em>.</h2>
+    <p class="body" style="font-size:19px;">Elua had a strong analytical product and the same problem most teams have right now: too many AI tools, no clear order to adopt them, and a manual process holding it all back. The work was twofold. Make the team genuinely AI-native day to day, and turn their dense twenty-page analyses into interactive experiences a client actually wants to read.</p>
+  </div></section>
+
+  <section class="imac-block"><div class="wrap">
+    <div class="imac">
+      <div class="imac-monitor">
+        <div class="imac-screen">
+          <button class="car-arrow car-prev" aria-label="Previous screen" type="button">&larr;</button>
+          <button class="car-arrow car-next" aria-label="Next screen" type="button">&rarr;</button>
+          <div class="car-viewport"><div class="car-track">
+            <div class="car-slide"><img src="/elua/elua-screen-1.png" alt="Elua interactive report" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ elua/elua-screen-1.png ]</span></div>
+            <div class="car-slide"><img src="/elua/elua-screen-2.png" alt="Citation drill-down" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ elua/elua-screen-2.png ]</span></div>
+            <div class="car-slide"><img src="/elua/elua-screen-3.png" alt="Operations dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ elua/elua-screen-3.png ]</span></div>
+            <div class="car-slide"><img src="/elua/elua-screen-4.png" alt="Elua Wins app" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ elua/elua-screen-4.png ]</span></div>
+          </div></div>
+        </div>
+        <div class="imac-chin"></div>
+      </div>
+      <div class="imac-neck"></div>
+      <div class="imac-foot"></div>
+      <div class="car-dots"></div>
+    </div>
   </div></section>
 
   <section class="block"><div class="wrap">
     <div class="sec-label">What I did</div>
-    <h2>The work, broken down.</h2>
+    <h2>Two fronts: how they work, and what they ship.</h2>
       <div class="group">
         <h3>AI-native transformation</h3>
       <ul class="points">
@@ -155,7 +277,7 @@
       <div class="group">
         <h3>Product &amp; UX</h3>
       <ul class="points">
-        <li>Turned their <strong>Depra</strong> 20-method analysis approach into a usable, repeatable system.</li>
+        <li>Turned their <strong>Depra</strong> twenty-method analysis into a usable, repeatable system.</li>
         <li>Designed a blue-and-amber <strong>visual design system</strong> for the product.</li>
         <li>Designed <strong>20 interactive, deeply-linked report artifacts</strong> with three-layer citation drill-down, so every claim traces back to its source.</li>
         <li>Built the <strong>Elua Wins</strong> app and the Solan scoring interfaces.</li>
@@ -163,37 +285,40 @@
       </div>
   </div></section>
 
+  <section class="block biz"><div class="wrap">
+    <div class="sec-label">The engagement model</div>
+    <h2>Hired to fix the business, <em>not the screens</em>.</h2>
+    <p class="body" style="font-size:19px;">This is the work I want more of: embed with a team, put AI to work across how they operate, then hand it back so they own it. Design is part of it, but the mandate is the business.</p>
+    <div class="biz-grid">
+      <div class="biz-item"><div class="biz-n">01</div><h3>Fractional, not forever.</h3><p>I embed for a defined window, move fast, and leave. Lower cost than a hire, faster than an agency.</p></div>
+      <div class="biz-item"><div class="biz-n">02</div><h3>The mandate is operations.</h3><p>Not a logo or a screen refresh. I changed how the whole team works with AI, day to day.</p></div>
+      <div class="biz-item"><div class="biz-n">03</div><h3>Implement, then hand off.</h3><p>The goal is zero dependency on me. The team runs every system I built after I'm gone.</p></div>
+      <div class="biz-item"><div class="biz-n">04</div><h3>AI as the operating layer.</h3><p>Tools chosen and sequenced so AI becomes how they work, not another subscription nobody opens.</p></div>
+      <div class="biz-item"><div class="biz-n">05</div><h3>Outcomes a client can see.</h3><p>Static decks became interactive, source-linked reports where every claim traces to its evidence.</p></div>
+      <div class="biz-item"><div class="biz-n">06</div><h3>A system they own.</h3><p>A repeatable, AI-assisted pipeline that compounds long after the engagement ends.</p></div>
+    </div>
+  </div></section>
+
   <section class="block"><div class="wrap">
     <div class="sec-label">Outcome</div>
-    <p class="body">AI moved from a novelty to the operating layer of the business. Analysis went from static decks to interactive, source-linked experiences, and the team was left able to run all of it without me.</p>
+    <p class="body" style="font-size:19px;">AI moved from a novelty to the operating layer of the business, and their analysis went from static decks to interactive, source-linked experiences. The team was left able to run all of it without me.</p>
       <div class="stats">
         <div class="stat"><div class="n">3 mo</div><div class="l">End-to-end engagement</div></div>
         <div class="stat"><div class="n">20</div><div class="l">Interactive report artifacts</div></div>
         <div class="stat"><div class="n">30+</div><div class="l">Documents migrated and organized</div></div>
       </div>
-      <ul class="points">
-        <li>A repeatable, AI-assisted analysis pipeline the team owns.</li>
-        <li>Client-facing reports where every claim is traceable to its evidence.</li>
-        <li>Daily operations running through systems I built and handed off.</li>
-      </ul>
   </div></section>
+
   <div class="quote-block"><div class="wrap">
     <blockquote>[ Andrew, founder of Elua. Drop in his real testimonial here ]</blockquote>
-    <div class="attr">Andrew · Founder, Elua</div>
+    <div class="attr">Andrew &middot; Founder, Elua</div>
   </div></div>
 
-  <section class="block"><div class="wrap">
-    <div class="sec-label">Gallery</div>
-<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:16/10;">
-        <img src="/elua/elua-report.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <span class="slot" style="display:none;">[ /elua/elua-report.png ]</span>
-      </div></div>
-<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:9/19.5;">
-        <img src="/elua/elua-social.mp4" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <span class="slot" style="display:none;">[ /elua/elua-social.mp4 ]</span>
-      </div></div>
+  <section class="block" style="text-align:center;"><div class="wrap">
+    <h2 style="max-width:24ch; margin:0 auto 28px;">Want AI working inside your business, and your team able to run it?</h2>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn primary" href="/#contact">Let's talk &rarr;</a>
+    </div>
   </div></section>
 
   <footer><div class="wrap">
@@ -202,5 +327,71 @@
       <div class="next"><a href="/pumamala">Next: Puma Mala &rarr;</a></div>
     </div>
   </div></footer>
+<script>
+  (function(){
+    var btn = document.querySelector('.sound-btn');
+    if(btn){
+      var vid = document.querySelector('.hero-media .phone-video');
+      if(!vid){ btn.style.display='none'; }
+      else btn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        var turningOn = btn.getAttribute('data-on') !== 'true';
+        vid.muted = !turningOn;
+        if(turningOn){ try{ vid.currentTime = 0; }catch(_){} vid.play().catch(function(){}); }
+        btn.setAttribute('data-on', turningOn ? 'true' : 'false');
+      });
+    }
+    // iMac carousel
+    var track = document.querySelector('.car-track');
+    if(track){
+      var slides = Array.prototype.slice.call(track.children);
+      var dotsWrap = document.querySelector('.car-dots');
+      var i = 0;
+      slides.forEach(function(_, k){
+        var d = document.createElement('button');
+        d.className = 'car-dot' + (k===0?' active':'');
+        d.type = 'button';
+        d.addEventListener('click', function(){ go(k); });
+        dotsWrap.appendChild(d);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+      function render(){
+        track.style.transform = 'translateX(' + (-i*100) + '%)';
+        dots.forEach(function(d,k){ d.classList.toggle('active', k===i); });
+        slides.forEach(function(sl,k){
+          var v = sl.querySelector('video');
+          if(v){ if(k===i){ v.play().catch(function(){}); } else { v.pause(); } }
+        });
+      }
+      function go(n){ i = (n + slides.length) % slides.length; render(); }
+      var p=document.querySelector('.car-prev'), nx=document.querySelector('.car-next');
+      if(p) p.addEventListener('click', function(){ go(i-1); });
+      if(nx) nx.addEventListener('click', function(){ go(i+1); });
+      render();
+    }
+    // newsletter modal
+    var openBtn = document.getElementById('open-news');
+    var modal = document.getElementById('news-modal');
+    var closeBtn = document.getElementById('news-close');
+    var frame = document.getElementById('news-frame');
+    if(openBtn && modal && frame){
+      function openModal(){
+        if(!frame.src){ frame.src = frame.getAttribute('data-src'); }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+      openBtn.addEventListener('click', openModal);
+      if(closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    }
+  })();
+</script>
 </body>
 </html>

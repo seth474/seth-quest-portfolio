@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Company · Restaurant AI · Seth Quest</title>
-<meta name="description" content="My Company · Restaurant AI. A project by Seth Quest, Multidisciplinary AI Builder." />
+<title>Deep Fried Bananas · Seth Quest</title>
+<meta name="description" content="Personal Project · Product &amp; UX. A project by Seth Quest, Multidisciplinary AI Builder." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,10 +107,95 @@
     .hero{padding:120px 0 40px;}
     .meta-row{gap:30px;}
   }
+  .hero-split{display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:center;}
+  .hero-copy .cta-row{margin-top:32px;}
+  .hero-media{position:relative; display:flex; justify-content:center;}
+  .hero-media .phone-frame{
+    height:auto; width:min(284px,70vw); aspect-ratio:13/25;
+    border:7px solid #0e0e10; border-radius:38px; overflow:hidden;
+    background:#000; box-shadow:0 0 0 1px var(--line), 0 30px 60px -20px rgba(26,24,20,0.4);
+    position:relative;
+  }
+  .hero-media .phone-frame::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:30%; height:16px; background:#0e0e10; border-radius:0 0 12px 12px; z-index:3;
+  }
+  .hero-media .phone-screen{position:relative; width:100%; height:100%; overflow:hidden; background:#000;}
+  .hero-media .phone-screen video{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-media .phone-screen .slot{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  /* iMac-framed carousel */
+  .imac-block{padding:30px 0 80px;}
+  .imac{display:flex; flex-direction:column; align-items:center;}
+  .imac-monitor{
+    width:100%; max-width:900px; background:#1b1b1e; border:1px solid #2a2a2e;
+    border-radius:20px 20px 8px 8px; padding:16px 16px 0; box-shadow:0 30px 70px -30px rgba(26,24,20,0.45);
+  }
+  .imac-screen{position:relative; aspect-ratio:16/9; border-radius:6px; overflow:hidden; background:#0d0d0f;}
+  .imac-chin{height:42px;}
+  .imac-neck{width:124px; height:46px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(19% 0,81% 0,100% 100%,0 100%);}
+  .imac-foot{width:300px; max-width:58%; height:14px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 13px 13px;}
+  .car-viewport{position:absolute; inset:0; overflow:hidden;}
+  .car-track{display:flex; height:100%; transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);}
+  .car-slide{flex:0 0 100%; height:100%; position:relative; background:#0d0d0f;}
+  .car-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .car-slide video{width:100%; height:100%; object-fit:contain; display:block;}
+  .car-slide .slot{display:none; position:absolute; inset:0; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(245,241,232,0.4);}
+  .car-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:4;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.5); color:#fff;
+    backdrop-filter:blur(6px); transition:all 0.25s;
+  }
+  .car-arrow:hover{background:rgba(10,10,9,0.85);}
+  .car-prev{left:12px;} .car-next{right:12px;}
+  .car-dots{display:flex; gap:9px; justify-content:center; margin-top:26px;}
+  .car-dots .car-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); border:none; padding:0; cursor:pointer; transition:all 0.3s;}
+  .car-dots .car-dot.active{background:var(--amber); width:24px;}
+  @media(max-width:720px){ .imac-monitor{padding:10px 10px 0;} .imac-chin{height:30px;} }
+  .do-dont{margin-top:24px; display:flex; flex-direction:column; gap:12px;}
+  .biz-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:36px; border-top:1px solid var(--line);}
+  .biz-item{padding:28px 26px 28px 0; border-bottom:1px solid var(--line);}
+  .biz-item:not(:nth-child(3n)){border-right:1px solid var(--line); padding-right:26px;}
+  .biz-item:nth-child(3n) .biz-n, .biz-item{padding-left:0;}
+  .biz-item{padding-left:26px;}
+  .biz-item:nth-child(3n+1){padding-left:0;}
+  .biz-n{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--amber); margin-bottom:14px;}
+  .biz-item h3{font-size:18px; margin:0 0 8px; line-height:1.25;}
+  .biz-item p{font-size:14.5px; line-height:1.55; color:var(--bone-dim); margin:0; text-wrap:pretty;}
+  .biz-link{margin-top:14px; background:none; border:none; padding:0; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); transition:opacity 0.2s;}
+  .biz-link:hover{opacity:0.65;}
+  .news-modal{position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(10,10,9,0.72); backdrop-filter:blur(4px);}
+  .news-modal.open{display:flex;}
+  .news-dialog{position:relative; width:100%; max-width:600px; height:min(86vh,860px); background:#E2DAC6; border-radius:10px; overflow:hidden; box-shadow:0 40px 90px -30px rgba(0,0,0,0.6);}
+  .news-dialog iframe{width:100%; height:100%; border:0; display:block;}
+  .news-close{position:absolute; top:12px; right:12px; z-index:3; width:38px; height:38px; border-radius:999px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; border:1px solid rgba(26,24,20,0.18); background:rgba(244,240,230,0.92); color:var(--bone); transition:all 0.2s;}
+  .news-close:hover{background:var(--bone); color:var(--ink);}
+  @media(max-width:820px){ .biz-grid{grid-template-columns:1fr;} .biz-item, .biz-item:not(:nth-child(3n)){border-right:none; padding:24px 0 !important;} }
+  .dd-row{display:flex; gap:14px; align-items:flex-start; font-size:15.5px; line-height:1.5; color:var(--bone-dim);}
+  .dd-tag{flex:0 0 auto; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.1em; padding:3px 10px; border-radius:6px; margin-top:2px;}
+  .dd-do .dd-tag{background:rgba(60,110,90,0.16); color:#3c6e5a;}
+  .dd-dont .dd-tag{background:rgba(176,60,40,0.14); color:#b03c28;}
+  .sound-btn{
+    position:absolute; bottom:14px; right:14px; z-index:6;
+    width:40px; height:40px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.55);
+    backdrop-filter:blur(6px); color:#fff; transition:all 0.25s;
+  }
+  .sound-btn:hover{background:rgba(10,10,9,0.8); transform:scale(1.06);}
+  .sound-btn .ic-on{display:none;}
+  .sound-btn[data-on="true"]{background:var(--amber); border-color:var(--amber);}
+  .sound-btn[data-on="true"] .ic-on{display:block;}
+  .sound-btn[data-on="true"] .ic-off{display:none;}
+  @media(max-width:820px){
+    .hero-split{grid-template-columns:1fr; gap:36px;}
+    .hero-media{justify-content:flex-start;}
+    .hero-media .phone-frame{height:auto; width:230px;}
+  }
 </style>
 </head>
-<body>
-<nav class="top">
+<body><nav class="top">
   <a href="/" class="mark"><span class="arrow">&larr;</span>Seth Quest</a>
   <div class="links">
     <a href="/#work">Work</a>
@@ -119,66 +204,100 @@
 </nav>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow"><span>My Company · Restaurant AI</span></div>
-  <h1>Deep Fried <em>Bananas</em></h1>
-  <p class="lead">A company I'm building: a <strong>clear AI roadmap and dashboard for restaurant owners</strong>, across twelve pillars of the business.</p>
-  <div class="meta-row">
-      <div class="item"><div class="label">Role</div><div class="val">Founder, design, build</div></div>
-      <div class="item"><div class="label">Type</div><div class="val">Company</div></div>
-      <div class="item"><div class="label">Status</div><div class="val">In beta</div></div>
+  <div class="hero-split">
+    <div class="hero-copy">
+      <div class="eyebrow"><span>My Company &middot; Restaurant AI</span></div>
+      <h1>Deep Fried <em>Bananas</em></h1>
+      <p class="lead">A company I'm building: a clear AI roadmap and dashboard for restaurant owners, across the twelve pillars that actually run the business.</p>
+      <div class="do-dont">
+        <div class="dd-row dd-do"><span class="dd-tag">PROBLEM</span><span>Owners are buried in AI hype, thin margins, and no time to find what matters.</span></div>
+        <div class="dd-row dd-dont"><span class="dd-tag">FIX</span><span>One sequenced roadmap instead of a pile of tools, so adoption actually happens.</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="https://claude.ai/public/artifacts/ebbb7d97-ab3c-4e0a-a5a9-5a1938deecb3" target="_blank" rel="noopener">See the live dashboard &rarr;</a>
+      </div>
+      <div class="meta-row">
+          <div class="item"><div class="label">Role</div><div class="val">Founder, product, design, build, go-to-market</div></div>
+          <div class="item"><div class="label">Type</div><div class="val">Company</div></div>
+          <div class="item"><div class="label">Status</div><div class="val">In beta</div></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <button class="sound-btn" aria-label="Play with sound" data-on="false" type="button">
+        <svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <div class="phone-frame"><div class="phone-screen">
+        <video class="phone-video" src="/dfb/dfb-social.mp4" poster="/dfb/dfb-social-poster.jpg" autoplay muted loop playsinline preload="auto" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+        <span class="slot" style="display:none;">[ /dfb/dfb-social.mp4 ]</span>
+      </div></div>
+    </div>
   </div>
 </div></header>
-  <div class="wrap hero-shot"><div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:16/10;">
-        <img src="/dfb/dfb-desktop.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <span class="slot" style="display:none;">[ /dfb/dfb-desktop.png ]</span>
-      </div></div></div>
 
-  <section class="block"><div class="wrap">
+  <section class="block" style="border-top:none; padding-top:46px;"><div class="wrap">
     <div class="sec-label">Overview</div>
-      <p class="body">Restaurant owners are some of the most overwhelmed people when it comes to AI: enormous pressure, thin margins, and no time to figure out which tools matter. Deep Fried Bananas cuts through it with a community and a dashboard that map AI to the twelve pillars that actually run a restaurant.</p>
-      <p class="body">Owners can take the full path to franchise-readiness, or pick a single, outcome-focused fix and start there.</p>
+    <h2 style="max-width:24ch;">A pile of tools is not a <em>strategy</em>.</h2>
+    <p class="body" style="font-size:19px;">Restaurant owners are some of the most overwhelmed people on the planet when it comes to AI: huge pressure, thin margins, and zero time to figure out which tools matter. Deep Fried Bananas scores the business across twelve pillars and hands the owner a sequenced roadmap, so they fix the right thing first instead of drowning in apps.</p>
+  </div></section>
+
+  <section class="imac-block"><div class="wrap">
+    <div class="imac">
+      <div class="imac-monitor">
+        <div class="imac-screen">
+          <button class="car-arrow car-prev" aria-label="Previous screen" type="button">&larr;</button>
+          <button class="car-arrow car-next" aria-label="Next screen" type="button">&rarr;</button>
+          <div class="car-viewport"><div class="car-track">
+            <div class="car-slide"><img src="/dfb/dfb-screen-1.png" alt="Deep Fried Bananas dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ dfb/dfb-screen-1.png ]</span></div>
+            <div class="car-slide"><img src="/dfb/dfb-screen-2.png" alt="Twelve-pillar scoring" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ dfb/dfb-screen-2.png ]</span></div>
+            <div class="car-slide"><img src="/dfb/dfb-screen-3.png" alt="AI roadmap" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><span class="slot">[ dfb/dfb-screen-3.png ]</span></div>
+          </div></div>
+        </div>
+        <div class="imac-chin"></div>
+      </div>
+      <div class="imac-neck"></div>
+      <div class="imac-foot"></div>
+      <div class="car-dots"></div>
+    </div>
   </div></section>
 
   <section class="block"><div class="wrap">
     <div class="sec-label">What I did</div>
-    <h2>The work, broken down.</h2>
-      <div class="group">
-        <h3>What I built</h3>
+    <h2>Founder, product, and build.</h2>
       <ul class="points">
-        <li>A <strong>dashboard</strong> that scores a restaurant across twelve business pillars and shows where AI moves the needle first.</li>
-        <li>Two clear engagement paths: a full <strong>franchise-readiness</strong> package, or single outcome-focused fixes like a profit-driven menu redesign.</li>
-        <li>A community layer so owners learn from each other, not just from tools.</li>
-        <li>Designed and built the product end to end. Currently in beta.</li>
+        <li>Designed the <strong>twelve-pillar framework</strong> that scores a restaurant and shows where AI moves the needle first.</li>
+        <li>Built the <strong>dashboard</strong> end to end: the scoring, the roadmap, and the owner-facing interface.</li>
+        <li>Created two ways in: a full <strong>franchise-readiness</strong> path, or a single outcome-focused fix like a profit-driven menu redesign.</li>
+        <li>Added a <strong>community layer</strong> so owners learn from each other, not just from the tools.</li>
+        <li>Did the concept, product, design, build, and the go-to-market. Currently in beta.</li>
       </ul>
-      </div>
+  </div></section>
+
+  <section class="block biz"><div class="wrap">
+    <div class="sec-label">The business model</div>
+    <h2>One product, <em>three ways to earn</em>.</h2>
+    <p class="body" style="font-size:19px;">A hybrid model so the business isn't betting on a single revenue line. The dashboard gets owners in the door; the community and the course deepen the relationship and the margin.</p>
+    <div class="biz-grid">
+      <div class="biz-item"><div class="biz-n">01</div><h3>Three subscription tiers.</h3><p>From a single outcome-focused fix up to full franchise-readiness, owners pay for the depth they need and upgrade as they grow.</p></div>
+      <div class="biz-item"><div class="biz-n">02</div><h3>A community, not just a tool.</h3><p>Owners learn from each other inside the platform. Community is the moat: it raises retention and makes the product stickier than software alone.</p></div>
+      <div class="biz-item"><div class="biz-n">03</div><h3>A course as the high-margin layer.</h3><p>I package the roadmap into a course sold to the community. Near-zero marginal cost, and it turns expertise into a product that scales past my time.</p></div>
+      <div class="biz-item"><div class="biz-n">04</div><h3>The dashboard is the on-ramp.</h3><p>The scored roadmap is the low-friction entry point that earns trust, then routes owners toward the higher-value tiers, community, and course.</p></div>
+      <div class="biz-item"><div class="biz-n">05</div><h3>Built to franchise.</h3><p>The same framework that fixes one restaurant readies an owner to scale to many, which is exactly who pays for the top tier.</p></div>
+      <div class="biz-item"><div class="biz-n">06</div><h3>Owned end to end.</h3><p>I designed, built, and am taking it to market myself, which keeps the economics and the direction in my hands.</p></div>
+    </div>
   </div></section>
 
   <section class="block"><div class="wrap">
     <div class="sec-label">Outcome</div>
-    <p class="body">A real product taking its first users, built to prove the model: give an overwhelmed owner a sequenced roadmap instead of a pile of tools, and adoption actually happens.</p>
-
-      <ul class="points">
-        <li>Twelve-pillar AI roadmap framework.</li>
-        <li>Two pricing paths, from single fixes to franchise-readiness.</li>
-        <li>Live dashboard and landing page in beta.</li>
-      </ul>
+    <p class="body" style="font-size:19px;">A real product taking its first users, built to prove a point I keep making to clients: give an overwhelmed owner a sequenced roadmap instead of a pile of tools, and adoption actually happens.</p>
   </div></section>
 
-  <section class="block"><div class="wrap">
-    <div class="sec-label">See it live</div>
-    <div class="cta-row">
-      <a class="btn primary" href="https://claude.ai/public/artifacts/ebbb7d97-ab3c-4e0a-a5a9-5a1938deecb3" target=_blank rel=noopener>See the dashboard</a>
-      <a class="btn ghost" href="https://claude.ai/public/artifacts/3b5bb0a8-17a1-4b29-b877-dc6ff3472ab6" target=_blank rel=noopener>See the landing page</a>
+  <section class="block" style="text-align:center;"><div class="wrap">
+    <h2 style="max-width:24ch; margin:0 auto 28px;">See the roadmap a restaurant actually needs.</h2>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn primary" href="https://claude.ai/public/artifacts/ebbb7d97-ab3c-4e0a-a5a9-5a1938deecb3" target="_blank" rel="noopener">See the dashboard &rarr;</a>
+      <a class="btn ghost" href="https://claude.ai/public/artifacts/3b5bb0a8-17a1-4b29-b877-dc6ff3472ab6" target="_blank" rel="noopener">See the landing page</a>
     </div>
-  </div></section>
-  <section class="block"><div class="wrap">
-    <div class="sec-label">Gallery</div>
-<div class="shot"><div class="bar"><i></i><i></i><i></i></div>
-      <div class="screen" style="aspect-ratio:9/19.5;">
-        <img src="/dfb/dfb-social.mp4" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-        <span class="slot" style="display:none;">[ /dfb/dfb-social.mp4 ]</span>
-      </div></div>
   </div></section>
 
   <footer><div class="wrap">
@@ -187,5 +306,71 @@
       <div class="next"><a href="/elua-ux">Next: Elua &rarr;</a></div>
     </div>
   </div></footer>
+<script>
+  (function(){
+    var btn = document.querySelector('.sound-btn');
+    if(btn){
+      var vid = document.querySelector('.hero-media .phone-video');
+      if(!vid){ btn.style.display='none'; }
+      else btn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        var turningOn = btn.getAttribute('data-on') !== 'true';
+        vid.muted = !turningOn;
+        if(turningOn){ try{ vid.currentTime = 0; }catch(_){} vid.play().catch(function(){}); }
+        btn.setAttribute('data-on', turningOn ? 'true' : 'false');
+      });
+    }
+    // iMac carousel
+    var track = document.querySelector('.car-track');
+    if(track){
+      var slides = Array.prototype.slice.call(track.children);
+      var dotsWrap = document.querySelector('.car-dots');
+      var i = 0;
+      slides.forEach(function(_, k){
+        var d = document.createElement('button');
+        d.className = 'car-dot' + (k===0?' active':'');
+        d.type = 'button';
+        d.addEventListener('click', function(){ go(k); });
+        dotsWrap.appendChild(d);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+      function render(){
+        track.style.transform = 'translateX(' + (-i*100) + '%)';
+        dots.forEach(function(d,k){ d.classList.toggle('active', k===i); });
+        slides.forEach(function(sl,k){
+          var v = sl.querySelector('video');
+          if(v){ if(k===i){ v.play().catch(function(){}); } else { v.pause(); } }
+        });
+      }
+      function go(n){ i = (n + slides.length) % slides.length; render(); }
+      var p=document.querySelector('.car-prev'), nx=document.querySelector('.car-next');
+      if(p) p.addEventListener('click', function(){ go(i-1); });
+      if(nx) nx.addEventListener('click', function(){ go(i+1); });
+      render();
+    }
+    // newsletter modal
+    var openBtn = document.getElementById('open-news');
+    var modal = document.getElementById('news-modal');
+    var closeBtn = document.getElementById('news-close');
+    var frame = document.getElementById('news-frame');
+    if(openBtn && modal && frame){
+      function openModal(){
+        if(!frame.src){ frame.src = frame.getAttribute('data-src'); }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+      openBtn.addEventListener('click', openModal);
+      if(closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    }
+  })();
+</script>
 </body>
 </html>
