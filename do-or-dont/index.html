@@ -4,10 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Do or Don't — Seth Quest</title>
+<meta name="description" content="Track what you want to do, and what you don't.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sethquest.com/do-or-dont">
+<meta property="og:title" content="Do or Don't · A stupid-simple habit tracker">
+<meta property="og:description" content="Track what you want to do, and what you don't.">
+<meta property="og:image" content="https://sethquest.com/og/og-do-or-dont.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Do or Don't · A stupid-simple habit tracker">
+<meta name="twitter:description" content="Track what you want to do, and what you don't.">
+<meta name="twitter:image" content="https://sethquest.com/og/og-do-or-dont.jpg">
+
 <meta name="description" content="Do or Don't — a map of what builds you and what doesn't. A daily habit and life tracker designed and built by Seth Quest.">
 <style>
   html,body{margin:0;padding:0;background:#0A0A09;}
   #root{width:100%;min-height:100vh;}
+  input[type="date"]::-webkit-calendar-picker-indicator{ display:none; -webkit-appearance:none; opacity:0; }
+  input[type="date"]::-webkit-inner-spin-button{ display:none; -webkit-appearance:none; }
 </style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -714,7 +729,8 @@ function DoOrDont() {
       setSignedUp(true);
       if (SIGNUP_ENDPOINT) {
         try {
-          fetch(SIGNUP_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName: data.firstName, dob: data.dob, email: data.email, source: 'do-or-dont-app' }) }).catch(() => {});
+          var _qp = new URLSearchParams(window.location.search);
+          fetch(SIGNUP_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName: data.firstName, dob: data.dob, email: data.email, source: 'do-or-dont-app', utm_source: _qp.get('utm_source') || '', utm_medium: _qp.get('utm_medium') || '', utm_campaign: _qp.get('utm_campaign') || '', referring_site: document.referrer || '' }) }).catch(() => {});
         } catch (e) {}
       }
       setShowBirthYear(false);
@@ -937,7 +953,7 @@ function IntroScreen(_ref) {
 // (easiest: a free Formspree URL like https://formspree.io/f/xxxxxx, or your
 // email platform's API). Left blank, the app still works and stores locally.
 // ---------------------------------------------------------------------------
-const SIGNUP_ENDPOINT = '';
+const SIGNUP_ENDPOINT = '/api/subscribe';
 
 function SignupScreen(_ref2) {
   const onDone = _ref2.onDone;
