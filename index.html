@@ -348,7 +348,7 @@
     white-space:nowrap; z-index:2; pointer-events:none;
   }
 
-  /* iMac frame — 16:9 screen fed a static still, height-anchored, sits next to the phone */
+  /* iMac frame — screen ratio matches app screenshots (~1.89:1), height-anchored, sits next to the phone */
   .imac-frame{
     height:var(--dev-h); display:flex; flex-direction:column; align-items:center;
     transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
@@ -359,7 +359,7 @@
     border-radius:16px 16px 7px 7px; padding:11px 11px 0; display:flex; flex-direction:column;
   }
   .imac-screen{
-    position:relative; height:calc(var(--dev-h) - 108px); aspect-ratio:16/9;
+    position:relative; height:calc(var(--dev-h) - 108px); aspect-ratio:1.89;
     border-radius:5px; overflow:hidden; background:#0d0d0f;
   }
   .imac-screen video, .imac-screen img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -392,7 +392,7 @@
     .asset-wide, .asset-phone{flex:0 0 auto;}
     .imac-frame{height:auto; width:100%;}
     .imac-monitor{height:auto; width:100%; max-width:none;}
-    .imac-screen{height:auto; width:100%; aspect-ratio:16/9; flex:none;}
+    .imac-screen{height:auto; width:100%; aspect-ratio:1.89; flex:none;}
     .phone-frame{height:auto; width:150px; align-self:center;}
   }
 
