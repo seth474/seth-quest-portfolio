@@ -1,0 +1,11 @@
+PUMA MALA UPDATE  —  all three files go in your repo ROOT.
+
+  index.html             ->  repo ROOT  (Puma Mala iMac now shows a static image, not a video;
+                                          also includes the DFB homepage image fix from before)
+  pumamala-desktop.jpg   ->  repo ROOT  (the new iMac image, cropped to 1.89 to fit)
+  pumamala-social.mp4    ->  repo ROOT  (the new phone video; replaces the old social clip)
+
+The phone already points at /pumamala-social.mp4 and the iMac now points at /pumamala-desktop.jpg,
+so once these three are committed it just works -- no editing.
+
+(Old files /pumamala-reel.mp4 is no longer used by the home card; safe to leave or delete.)
