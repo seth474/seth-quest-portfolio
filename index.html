@@ -70,7 +70,7 @@
     backdrop-filter:blur(12px); background:rgba(244,240,230,0.7); border-bottom:1px solid var(--line);
     transition:padding 0.4s ease;
   }
-  nav.top .mark{font-family:'Fraunces',serif; font-weight:500; font-size:18px; letter-spacing:-0.01em;}
+  nav.top .mark{font-family:'Inter Tight',sans-serif; font-weight:600; font-size:17px; letter-spacing:-0.02em;}
   nav.top .mark .dot{color:var(--amber);}
   nav.top .links{display:flex; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;}
   nav.top .links a{
@@ -81,12 +81,12 @@
   nav.top .links a.contact-link{background:var(--amber); color:#fff; border-color:var(--amber);}
   nav.top .links a.contact-link:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
   @media (max-width:720px){
-    nav.top{padding:11px 16px;}
+    nav.top{padding:11px 22px;}
     nav.top .links a:not(.contact-link){display:none;}
   }
 
   /* ============ HERO ============ */
-  .hero{padding:150px 0 30px; position:relative;}
+  .hero{padding-top:150px; padding-bottom:30px; position:relative;}
   .first-screen{min-height:100svh; display:flex; flex-direction:column;}
   .first-screen .hero{flex:1 1 auto;}
   .hero-inner{display:grid; grid-template-columns:1fr; gap:48px; width:100%;}
@@ -131,7 +131,7 @@
   .hero-meta .hero-range strong{color:var(--bone); font-weight:500;}
 
   @media (max-width:720px){
-    .hero{padding:120px 0 40px;}
+    .hero{padding-top:120px; padding-bottom:40px;}
     .hero-meta{margin-top:40px;}
   }
 
@@ -173,7 +173,7 @@
   @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
   /* ============ SECTION KICKER ============ */
-  .section{padding:120px 0; position:relative;}
+  .section{padding-top:120px; padding-bottom:120px; position:relative;}
   #work{padding-top:46px; padding-bottom:0; scroll-margin-top:90px;}
   .modules article.module{scroll-margin-top:96px;}
   .section-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:24px; margin-bottom:64px;}
@@ -356,16 +356,16 @@
   .asset:hover .imac-frame{transform:translateY(-4px);}
   .imac-monitor{
     max-width:100%; background:#1b1b1e; border:1px solid #2a2a2e;
-    border-radius:16px 16px 7px 7px; padding:11px 11px 0; display:flex; flex-direction:column;
+    border-radius:14px 14px 9px 9px; padding:6px 6px 0; display:flex; flex-direction:column; overflow:hidden;
   }
   .imac-screen{
-    position:relative; height:calc(var(--dev-h) - 108px); aspect-ratio:1.89;
-    border-radius:5px; overflow:hidden; background:#0d0d0f;
+    position:relative; height:calc(var(--dev-h) - 102px); aspect-ratio:1.89;
+    border-radius:3px; overflow:hidden; background:#0d0d0f;
   }
   .imac-screen video, .imac-screen img{width:100%; height:100%; object-fit:cover; display:block;}
-  .imac-chin{height:40px; flex:0 0 auto;}
-  .imac-neck{width:124px; height:46px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(19% 0,81% 0,100% 100%,0 100%); flex:0 0 auto;}
-  .imac-foot{width:300px; max-width:52%; height:14px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 13px 13px; flex:0 0 auto;}
+  .imac-chin{height:30px; margin:6px -6px 0; background:linear-gradient(#d6d2c7,#bdb9ad); flex:0 0 auto;}
+  .imac-neck{width:42%; max-width:150px; height:42px; background:linear-gradient(#d6d2c7,#bdb9ad); clip-path:polygon(32% 0,68% 0,100% 100%,0 100%); flex:0 0 auto;}
+  .imac-foot{width:42%; max-width:150px; height:13px; background:linear-gradient(#cfcabd,#b3afa3); border-radius:0 0 11px 11px; flex:0 0 auto;}
 
   /* iPhone frame — pinned to the same --dev-h, narrow, on the right */
   .phone-frame{
@@ -388,12 +388,22 @@
     .module-head{flex-direction:column; align-items:flex-start; gap:14px;}
     .head-rule{display:none;}
     .module-head .m-desc{align-self:flex-start; -webkit-line-clamp:4;}
-    .module-devices{--dev-h:auto; flex-direction:column; align-items:center; gap:24px;}
-    .asset-wide, .asset-phone{flex:0 0 auto;}
+    /* keep the iMac + phone SIDE BY SIDE on mobile, scaled to fit the screen */
+    .module-devices,
+    .modules article.module:nth-of-type(even) .module-devices{
+      --dev-h:auto; flex-direction:row; align-items:flex-end; justify-content:center; gap:12px;
+    }
+    .module--featured .module-devices{--dev-h:auto;}
+    .asset-wide{flex:1 1 auto; min-width:0;}     /* iMac fills the leftover width */
+    .asset-phone{flex:0 0 auto;}
     .imac-frame{height:auto; width:100%;}
     .imac-monitor{height:auto; width:100%; max-width:none;}
     .imac-screen{height:auto; width:100%; aspect-ratio:1.89; flex:none;}
-    .phone-frame{height:auto; width:150px; align-self:center;}
+    .imac-chin{height:18px; margin:4px -6px 0;}
+    .imac-neck{width:42%; height:22px;}
+    .imac-foot{width:42%; height:8px;}
+    .phone-frame{height:auto; width:90px; align-self:flex-end; border-width:5px; border-radius:18px; flex:0 0 auto;}
+    .phone-frame::before{height:9px;}
   }
 
   /* alternate the phone to the left on every other project for rhythm */
@@ -411,7 +421,7 @@
   /* testimonial break between projects */
   .testimonial{
     margin:20px 0 44px; padding:18px 52px;
-    text-align:left; position:relative;
+    text-align:center; position:relative;
   }
   .testimonial .t-label{
     font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em;
@@ -420,7 +430,7 @@
   .testimonial blockquote{
     font-family:'Fraunces',serif; font-weight:300; font-style:italic;
     font-size:clamp(19px,2.5vw,30px); line-height:1.3; letter-spacing:-0.02em;
-    color:var(--bone); max-width:46ch; margin:0;
+    color:var(--bone); max-width:46ch; margin:0 auto;
   }
   .testimonial .t-attr{
     margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:12px;
@@ -429,13 +439,13 @@
   /* carousel */
   .t-viewport{overflow:hidden; margin-top:8px;}
   .t-track{display:flex; transition:transform 0.6s cubic-bezier(0.22,1,0.36,1);}
-  .t-slide{flex:0 0 100%; min-width:0; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:2px 0;}
+  .t-slide{flex:0 0 100%; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2px 0;}
   .t-slide figcaption{margin:0;}
-  .t-controls{display:flex; align-items:center; justify-content:flex-start; gap:0; margin-top:14px;}
+  .t-controls{display:flex; align-items:center; justify-content:center; gap:0; margin-top:14px;}
   .t-arrow{width:40px; height:40px; border-radius:999px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--bone-dim); transition:all 0.3s; background:var(--ink);}
   .t-arrow:hover{background:var(--bone); color:var(--ink); border-color:var(--bone);}
-  .testimonial .t-arrow.t-prev{position:absolute; left:0; top:50%; transform:translateY(-50%);}
-  .testimonial .t-arrow.t-next{position:absolute; right:0; top:50%; transform:translateY(-50%);}
+  .testimonial .t-arrow.t-prev{position:absolute; left:6px; top:50%; transform:translateY(-50%);}
+  .testimonial .t-arrow.t-next{position:absolute; right:6px; top:50%; transform:translateY(-50%);}
   @media (max-width:600px){ .testimonial{padding:16px 40px;} .t-arrow{width:34px; height:34px; font-size:13px;} }
   .t-dots{display:flex; gap:10px; align-items:center;}
   .t-dots .t-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); transition:all 0.3s; padding:0;}
@@ -460,7 +470,7 @@
   .interstitial--statement em{font-style:normal; color:var(--amber); font-weight:400;}
 
   /* ============ MANIFESTO ============ */
-  .manifesto{padding:140px 0; border-top:1px solid var(--line);}
+  .manifesto{padding-top:140px; padding-bottom:140px; border-top:1px solid var(--line);}
   .manifesto-inner{max-width:900px;}
   .manifesto .quote{
     font-family:'Fraunces',serif; font-weight:300; font-style:italic;
@@ -473,7 +483,7 @@
   }
 
   /* ============ CONTACT ============ */
-  .contact{padding:24px 0 60px; text-align:left; position:relative;}
+  .contact{padding-top:24px; padding-bottom:60px; text-align:left; position:relative;}
   .contact .kicker{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-dim); margin-bottom:32px;}
   .contact h2{
     font-family:'Fraunces',serif; font-weight:300; font-size:clamp(48px, 9vw, 130px);
@@ -489,6 +499,7 @@
   }
   .to-top{position:absolute; right:0; bottom:14px; width:52px; height:52px; border-radius:50%; border:1px solid var(--line-strong); background:none; color:var(--bone); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:all .25s;}
   .to-top:hover{background:var(--amber); border-color:var(--amber); color:#fff; transform:translateY(-3px);}
+  @media (max-width:600px){ .to-top{width:44px; height:44px; right:6px; bottom:8px;} .contact h2{font-size:clamp(40px,11vw,72px);} }
 
   /* ============ FOOTER ============ */
   footer{padding:36px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
@@ -572,7 +583,7 @@
 <div class="cursor" id="cursor"></div>
 
 <nav class="top">
-  <a href="#" class="mark">Seth Quest<span class="dot">.</span></a>
+  <a href="#" class="mark">Seth Quest</a>
   <div class="nav-projects" id="navProjects">
     <button class="pr-item" data-i="0" type="button">Do or Don't</button>
     <button class="pr-item" data-i="1" type="button">Deep Fried Bananas</button>
@@ -666,10 +677,10 @@
           <div class="module-head">
             <div class="head-left">
               <h3>Deep Fried Bananas</h3>
-              <span class="m-cat">Consultancy · Food &amp; Beverage</span>
+              <span class="m-cat">AI Platform · Food &amp; Beverage</span>
             </div>
             <div class="head-rule"></div>
-            <p class="m-desc">A food-and-beverage consultancy I'm building: a dashboard that gives owners a clear roadmap to put AI to work across the twelve pillars of their business.</p>
+            <p class="m-desc">A platform for small businesses in the food &amp; beverage niche, giving owners a clear roadmap to leverage AI across the twelve pillars of their business.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/deep-fried-bananas">
@@ -695,7 +706,7 @@
 
             <div class="interstitial interstitial--statement reveal">
         <div class="bar"></div>
-        <p>Over the last eighteen months I've done a deep dive into a wide range of AI software, and become <em>highly proficient</em> with the best tools.</p>
+        <p>Over the last twelve months I've been exploring and using a wide range of AI software, and have become <em>highly proficient</em> with the best tools.</p>
       </div>
 
       <article class="module reveal">
@@ -706,7 +717,7 @@
               <span class="m-cat">AI Platform · Product &amp; UX</span>
             </div>
             <div class="head-rule"></div>
-            <p class="m-desc">A 3-month AI-native transformation for an early-stage startup. I migrated their stack, built the operations dashboard, and designed a 20-method analysis system with fully source-linked reports.</p>
+            <p class="m-desc">Elua is a platform that helps ecosystem stewards make sense of complex problems, connecting investors, funders, and nonprofits around a shared goal. I made the team AI-native and turned their dense analysis into interactive, source-linked reports.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/elua-ux">
@@ -808,16 +819,12 @@
         <div class="t-viewport">
           <div class="t-track">
             <figure class="t-slide">
-              <blockquote>[ Andrew, founder of Elua. Drop in his real testimonial here ]</blockquote>
-              <figcaption class="t-attr">Andrew · Founder, Elua</figcaption>
+              <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond. He's also brought tremendous value to the product design and user experience.</blockquote>
+              <figcaption class="t-attr">Andrew Hewitt<br>Elua &middot; Founder</figcaption>
             </figure>
             <figure class="t-slide">
-              <blockquote>[ Second testimonial goes here ]</blockquote>
-              <figcaption class="t-attr">[ Name · Role, Company ]</figcaption>
-            </figure>
-            <figure class="t-slide">
-              <blockquote>[ Third testimonial goes here ]</blockquote>
-              <figcaption class="t-attr">[ Name · Role, Company ]</figcaption>
+              <blockquote>I'm amazed with these intergraphics. Incredible work that adds so much value to the exploration and analysis process. Kudos for this whole development.</blockquote>
+              <figcaption class="t-attr">Thijn Holthuis<br>Elua &middot; Lead UX Designer</figcaption>
             </figure>
           </div>
         </div>
@@ -867,8 +874,8 @@
 
   <section id="contact" class="contact wrap">
     <div class="kicker reveal" style="color:var(--amber); letter-spacing:0.2em;">Contact</div>
-    <h2 class="reveal">Let's <em>build something</em>.</h2>
-    <p class="contact-sub reveal">Hiring, or building something ambitious? I'd want to hear about it.</p>
+    <h2 class="reveal">Hiring or <em>building something ambitious</em>?</h2>
+    <p class="contact-sub reveal">I'd love to hear about it.</p>
     <div class="contact-email reveal">seth@sethquest.com</div>
     <button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
   </section>
