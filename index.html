@@ -290,10 +290,10 @@
     transition:border-color 0.5s;
   }
   .sound-btn{
-    position:absolute; bottom:14px; right:14px; z-index:6;
-    width:38px; height:38px; border-radius:999px; cursor:pointer;
+    position:absolute; top:34px; right:-15px; bottom:auto; z-index:8;
+    width:36px; height:36px; border-radius:999px; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
-    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.55);
+    border:1px solid rgba(255,255,255,0.25); background:rgba(10,10,9,0.62);
     backdrop-filter:blur(6px); color:#fff; transition:all 0.25s;
   }
   .sound-btn:hover{background:rgba(10,10,9,0.8); transform:scale(1.06);}
@@ -301,6 +301,10 @@
   .sound-btn[data-on="true"]{background:var(--amber); border-color:var(--amber);}
   .sound-btn[data-on="true"] .ic-on{display:block;}
   .sound-btn[data-on="true"] .ic-off{display:none;}
+  @media (max-width:760px){
+    .sound-btn{ top:22px; right:-12px; width:30px; height:30px; }
+    .sound-btn svg{ width:13px; height:13px; }
+  }
   .module:hover{border-color:var(--line-strong);}
 
   .module-grid{
@@ -668,8 +672,9 @@
               <a class="module-cta" href="/do-or-dont-project">View project <span>&rarr;</span></a>
       </article>
 
-            <div class="interstitial interstitial--big reveal">
-        <p>Not a consultant. No strategy decks. Just <em>real things</em>, built with AI.</p>
+      <div class="interstitial interstitial--big reveal">
+        <p class="big-q">I help companies become <em>AI-native</em>.</p>
+        <p class="big-a">Most companies use AI for productivity. I weave it into your team's foundational workflows.</p>
       </div>
 
 <article class="module reveal">
@@ -741,9 +746,25 @@
               <a class="module-cta" href="/elua-ux">View project <span>&rarr;</span></a>
       </article>
 
-      <div class="interstitial interstitial--big reveal">
-        <p class="big-q">I help companies become <em>AI-native</em>.</p>
-        <p class="big-a">Most companies use AI for productivity. I weave it into your team's foundational workflows.</p>
+      <div class="testimonial t-carousel reveal">
+        <span class="t-label">Testimonials</span>
+        <div class="t-viewport">
+          <div class="t-track">
+            <figure class="t-slide">
+              <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond. He's also brought tremendous value to the product design and user experience.</blockquote>
+              <figcaption class="t-attr">Andrew Hewitt<br>Elua &middot; Founder</figcaption>
+            </figure>
+            <figure class="t-slide">
+              <blockquote>I'm amazed with these intergraphics. Incredible work that adds so much value to the exploration and analysis process. Kudos for this whole development.</blockquote>
+              <figcaption class="t-attr">Thijn Holthuis<br>Elua &middot; Lead UX Designer</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="t-controls">
+          <button class="t-arrow t-prev" aria-label="Previous testimonial">&larr;</button>
+          <div class="t-dots"></div>
+          <button class="t-arrow t-next" aria-label="Next testimonial">&rarr;</button>
+        </div>
       </div>
 
 <article class="module reveal">
@@ -814,25 +835,8 @@
               <a class="module-cta" href="/real-estate-ai-tours">View project <span>&rarr;</span></a>
       </article>
 
-            <div class="testimonial t-carousel reveal">
-        <span class="t-label">Testimonials</span>
-        <div class="t-viewport">
-          <div class="t-track">
-            <figure class="t-slide">
-              <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond. He's also brought tremendous value to the product design and user experience.</blockquote>
-              <figcaption class="t-attr">Andrew Hewitt<br>Elua &middot; Founder</figcaption>
-            </figure>
-            <figure class="t-slide">
-              <blockquote>I'm amazed with these intergraphics. Incredible work that adds so much value to the exploration and analysis process. Kudos for this whole development.</blockquote>
-              <figcaption class="t-attr">Thijn Holthuis<br>Elua &middot; Lead UX Designer</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="t-controls">
-          <button class="t-arrow t-prev" aria-label="Previous testimonial">&larr;</button>
-          <div class="t-dots"></div>
-          <button class="t-arrow t-next" aria-label="Next testimonial">&rarr;</button>
-        </div>
+      <div class="interstitial interstitial--big reveal">
+        <p>Not a consultant. No strategy decks. Just real products, built with AI and focused on the <em>business outcome</em>.</p>
       </div>
 
       <article class="module reveal">
@@ -1148,8 +1152,12 @@
       hardTimer=setTimeout(go, CAP);
     });
   }
-  function startTour(){ vids=getVids(); if(!vids.length) return; touring=true; idx=0; btn.textContent='Stop tour'; playAt(0); }
-  function endTour(loopBack){ touring=false; restore(current); current=null; clearTimers(); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(0); } }
+  function startTour(){ vids=getVids(); if(!vids.length) return; touring=true; window.__reelTouring=true; idx=0; btn.textContent='Stop tour';
+    /* iOS only lets a video carry sound if its playback was kicked off inside this tap.
+       "Bless" all of them right now (muted) so each can be unmuted when the tour reaches it. */
+    vids.forEach(function(v){ try{ v.muted=true; var p=v.play(); if(p&&p.then){ p.then(function(){}).catch(function(){}); } }catch(e){} });
+    playAt(0); }
+  function endTour(loopBack){ touring=false; window.__reelTouring=false; restore(current); current=null; clearTimers(); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(0); } }
   btn.addEventListener('click', function(e){ e.preventDefault(); if(touring) endTour(false); else startTour(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && touring) endTour(false); });
 })();
@@ -1163,7 +1171,7 @@
   function setActive(i){ items.forEach(function(b,n){ b.classList.toggle('active', n===i); }); }
   window.__projSetActive=setActive;
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0) setActive(i); } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0){ setActive(i); if(!window.__reelTouring){ var pv=e.target.querySelector('.phone-video'); if(pv){ try{ pv.currentTime=0; pv.play().catch(function(){}); }catch(_){} } } } } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
     modules.forEach(function(m){ io.observe(m); });
   }
   items.forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-i'); var m=modules[i]; if(!m) return;
