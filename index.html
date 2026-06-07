@@ -114,10 +114,10 @@
   .hero-row h1{margin-top:0;}
   .hero-divider{align-self:stretch; width:2px; min-height:1.6em; background:var(--line-strong); flex:0 0 auto;}
   .hero-right{display:flex; flex-direction:column; align-items:flex-start; gap:24px;}
-  .hero-tag{font-family:'Inter Tight',sans-serif; font-weight:500; font-size:clamp(20px,2.6vw,32px); letter-spacing:-0.02em; line-height:1.12; color:var(--bone); margin:0;}
+  .hero-tag{font-family:'Inter Tight',sans-serif; font-weight:500; font-size:clamp(20px,2.6vw,32px); letter-spacing:-0.02em; line-height:1.12; color:var(--bone); margin:0; white-space:nowrap;}
   .hero-right .snap-trigger{margin-top:0;}
   @media (max-width:820px){
-    .hero-row{flex-direction:column; align-items:flex-start; gap:18px; margin-top:48px;}
+    .hero-row{flex-direction:column; align-items:flex-start; gap:18px; margin-top:22px;}
     .hero-divider{display:none;}
   }
   .hero h1 .row{display:block; overflow:hidden;}
@@ -131,7 +131,7 @@
   .hero-meta .hero-range strong{color:var(--bone); font-weight:500;}
 
   @media (max-width:720px){
-    .hero{padding-top:120px; padding-bottom:40px;}
+    .hero{padding-top:96px; padding-bottom:40px;}
     .hero-meta{margin-top:40px;}
   }
 
@@ -328,7 +328,7 @@
   .module-cta:hover{background:var(--amber); color:#fff; border-color:var(--amber);}
   .module-cta span{transition:transform .2s;}
   .module-cta:hover span{transform:translateX(4px);}
-  @media (max-width:760px){ .module-cta{bottom:16px; right:16px; padding:9px 15px; font-size:10.5px;} }
+    @media (max-width:760px){ .module-cta{position:static; align-self:center; bottom:auto; right:auto; margin-top:12px; padding:11px 20px; font-size:11px;} }
   .module-head .m-desc{
     align-self:center; max-width:52ch;
     font-size:14.5px; line-height:1.6; color:var(--bone-dim);
@@ -495,24 +495,43 @@
   }
   .contact h2 em{font-style:italic; color:var(--amber); font-weight:400;}
   .contact .contact-sub{font-family:'Inter Tight',sans-serif; font-size:clamp(16px,1.8vw,19px); line-height:1.55; color:var(--bone-dim); max-width:50ch; margin-top:22px;}
-  .contact .contact-email{
-    display:inline-block; margin-top:40px; text-decoration:none;
-    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
-    font-size:clamp(28px, 4.5vw, 52px); line-height:1.1; letter-spacing:-0.02em;
-    color:var(--bone); user-select:all; -webkit-user-select:all; transition:color .2s;
+  .contact-bar{
+    margin-top:40px; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;
+    padding:12px 22px;
+    border:1px solid var(--line-strong); border-radius:999px; background:var(--ink-2);
   }
-  .contact .contact-email:hover{color:var(--amber);}
-  .contact .contact-socials{margin-top:30px; display:flex; gap:18px;}
-  .contact .contact-socials a{color:var(--amber); display:inline-flex; transition:color .2s, transform .2s;}
-  .contact .contact-socials a:hover{color:var(--amber-bright); transform:translateY(-2px);}
-  .contact .contact-socials svg{width:26px; height:26px;}
-  .contact .resume-row{margin-top:28px;}
-  .contact .resume-btn{display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); border:1px solid var(--amber); border-radius:40px; padding:12px 22px; text-decoration:none; transition:all .2s;}
-  .contact .resume-btn:hover{background:var(--amber); color:#fff; transform:translateY(-2px);}
-  .contact .resume-btn svg{width:15px; height:15px;}
-  .to-top{position:absolute; right:0; bottom:14px; width:52px; height:52px; border-radius:50%; border:1px solid var(--line-strong); background:none; color:var(--bone); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:all .25s;}
-  .to-top:hover{background:var(--amber); border-color:var(--amber); color:#fff; transform:translateY(-3px);}
-  @media (max-width:600px){ .to-top{width:44px; height:44px; right:6px; bottom:8px;} .contact h2{font-size:clamp(40px,11vw,72px);} }
+  .contact-bar .cb-div{width:1px; height:26px; background:var(--line-strong); flex:0 0 auto;}
+  .contact-bar .cb-resume{
+    display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone);
+    border:1px solid var(--amber); border-radius:999px; padding:10px 18px; background:var(--ink);
+    text-decoration:none; transition:all .2s; white-space:nowrap;
+  }
+  .contact-bar .cb-resume:hover{background:var(--amber); color:#fff; transform:translateY(-2px);}
+  .contact-bar .cb-resume svg{width:14px; height:14px;}
+  .contact-bar .cb-email{
+    font-family:'Inter Tight',sans-serif; font-weight:600;
+    font-size:clamp(15px,1.7vw,18px); letter-spacing:-0.01em; color:var(--bone);
+    text-decoration:none; user-select:all; -webkit-user-select:all; transition:color .2s;
+  }
+  .contact-bar .cb-email:hover{color:var(--amber);}
+  .contact-bar .cb-socials{display:inline-flex; align-items:center; gap:14px;}
+  .contact-bar .cb-icon{display:inline-flex; color:var(--amber); transition:color .2s, transform .2s;}
+  .contact-bar .cb-icon:hover{color:var(--amber-bright); transform:translateY(-2px);}
+  .contact-bar .cb-icon svg{width:22px; height:22px;}
+  .contact-bar .cb-top{
+    width:40px; height:40px; flex:0 0 auto; border-radius:50%; border:1px solid var(--amber);
+    background:var(--ink); color:var(--bone); display:inline-flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all .25s;
+  }
+  .contact-bar .cb-top:hover{background:var(--amber); border-color:var(--amber); color:#fff; transform:translateY(-2px);}
+  .contact-bar .cb-top svg{width:18px; height:18px;}
+  @media (max-width:600px){
+    .contact h2{font-size:clamp(40px,11vw,72px);}
+    .contact-bar{padding:12px 16px; gap:12px;}
+    .contact-bar .cb-div{display:none;}
+    .contact-bar .cb-email{flex:1 1 100%; order:-1; text-align:center; margin-bottom:2px;}
+  }
 
   /* ============ FOOTER ============ */
   footer{padding:36px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
@@ -543,7 +562,8 @@
   .ainative .ai-body{margin:0 0 6px; font-family:'Inter Tight',sans-serif; font-size:clamp(16.5px,1.8vw,20px); line-height:1.62; color:var(--bone-dim); max-width:62ch; text-wrap:pretty;}
   .work-intro{margin:14px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(16px,1.8vw,20px); line-height:1.5; color:var(--bone-dim); max-width:58ch;}
   /* ===== 60-SECOND SNAPSHOT ===== */
-  .snap-trigger{margin-top:0; display:inline-flex; align-items:center; background:var(--amber); color:#fff; border:none; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:14px 26px; border-radius:40px; cursor:pointer; transition:transform .2s ease, background .2s ease; animation:ctaPulse 2.4s infinite;}
+  .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:9px; white-space:nowrap; background:var(--amber); color:#fff; border:none; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:14px 26px; border-radius:40px; cursor:pointer; transition:transform .2s ease, background .2s ease; animation:ctaPulse 2.4s infinite;}
+  @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:13px 20px; gap:7px;} }
   .snap-trigger:hover{background:var(--amber-bright); color:#fff; transform:translateY(-2px);}
   @keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(176,108,40,0.5);}70%{box-shadow:0 0 0 16px rgba(176,108,40,0);}100%{box-shadow:0 0 0 0 rgba(176,108,40,0);}}
   .snap-trigger .play{display:inline-flex; width:20px; height:20px; border-radius:50%; background:var(--amber); color:#fff; align-items:center; justify-content:center; font-size:9px; transition:background .2s;}
@@ -620,8 +640,8 @@
         </h1>
         <span class="hero-divider" aria-hidden="true"></span>
         <div class="hero-right">
-          <p class="hero-tag">AI-Native<br>Builder</p>
-          <button class="snap-trigger" id="snapTrigger" type="button">Watch the 60s highlight reel</button>
+          <p class="hero-tag">AI-Native Builder</p>
+          <button class="snap-trigger" id="snapTrigger" type="button"><span class="play">&#9654;</span> 60-Second Highlight Reel</button>
         </div>
       </div>
     </div>
@@ -889,17 +909,18 @@
     <div class="kicker reveal" style="color:var(--amber); letter-spacing:0.2em;">Contact</div>
     <h2 class="reveal">Hiring or <em>building something ambitious</em>?</h2>
     <p class="contact-sub reveal">I'd love to hear about it.</p>
-    <a class="contact-email reveal" href="mailto:seth@sethquest.com">seth@sethquest.com</a>
-    <div class="resume-row reveal"><a class="resume-btn" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Download résumé <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a></div>
-    <div class="contact-socials reveal">
-      <a href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/sethquest/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
-      </a>
+    <div class="contact-bar reveal">
+      <a class="cb-resume" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+      <span class="cb-div"></span>
+      <a class="cb-email" href="mailto:seth@sethquest.com">seth@sethquest.com</a>
+      <span class="cb-div"></span>
+      <div class="cb-socials">
+        <a class="cb-icon" href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        <a class="cb-icon" href="https://www.instagram.com/sethquest/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+      </div>
+      <span class="cb-div"></span>
+      <button class="cb-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
     </div>
-    <button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
   </section>
 
 </div>
@@ -1132,7 +1153,7 @@
   if(!btn) return;
   var CAP=12000;
   var touring=false, idx=0, vids=[], current=null, hardTimer=null, missTimer=null;
-  var defaultLabel='<span class="play">&#9654;</span> Watch the highlight reel';
+  var defaultLabel='<span class="play">&#9654;</span> 60-Second Highlight Reel';
 
   function getVids(){ return [].slice.call(document.querySelectorAll('.modules .phone-video')); }
 
