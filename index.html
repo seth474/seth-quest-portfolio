@@ -120,7 +120,7 @@
     .hero-row{flex-direction:column; align-items:flex-start; gap:18px; margin-top:22px;}
     .hero-divider{display:none;}
   }
-  .hero h1 .row{display:block; overflow:hidden;}
+  .hero h1 .row{display:block; overflow:hidden; padding-bottom:0.18em; margin-bottom:-0.18em;}
   .hero h1 .word{display:inline-block;}
   .hero h1 em{font-style:normal; font-weight:500; color:var(--amber);}
 
@@ -388,7 +388,7 @@
 
   @media (max-width:920px){
     .module{min-height:0;}
-    .module-grid{gap:24px; padding:28px 22px;}
+    .module-grid{gap:24px; padding:28px 22px 36px;}
     .module-head{flex-direction:column; align-items:flex-start; gap:14px;}
     .head-rule{display:none;}
     .module-head .m-desc{align-self:flex-start; -webkit-line-clamp:4;}
@@ -433,7 +433,7 @@
   }
   .testimonial blockquote{
     font-family:'Inter Tight',sans-serif; font-weight:400; font-style:normal;
-    font-size:clamp(22px,2.9vw,38px); line-height:1.32; letter-spacing:-0.02em;
+    font-size:clamp(19px,2.4vw,32px); line-height:1.32; letter-spacing:-0.02em;
     color:var(--bone); max-width:46ch; margin:0 auto;
   }
   .testimonial .t-attr{
@@ -445,11 +445,10 @@
   .t-track{display:flex; transition:transform 0.6s cubic-bezier(0.22,1,0.36,1);}
   .t-slide{flex:0 0 100%; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2px 0;}
   .t-slide figcaption{margin:0;}
-  .t-controls{display:flex; align-items:center; justify-content:center; gap:0; margin-top:14px;}
+  .t-controls{display:flex; align-items:center; justify-content:center; gap:16px; margin-top:14px;}
   .t-arrow{width:40px; height:40px; border-radius:999px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--bone-dim); transition:all 0.3s; background:var(--ink);}
   .t-arrow:hover{background:var(--bone); color:var(--ink); border-color:var(--bone);}
-  .testimonial .t-arrow.t-prev{position:absolute; left:6px; top:50%; transform:translateY(-50%);}
-  .testimonial .t-arrow.t-next{position:absolute; right:6px; top:50%; transform:translateY(-50%);}
+  .testimonial .t-arrow.t-prev, .testimonial .t-arrow.t-next{position:static; transform:none;}
   @media (max-width:600px){ .testimonial{padding:16px 40px;} .t-arrow{width:34px; height:34px; font-size:13px;} }
   .t-dots{display:flex; gap:10px; align-items:center;}
   .t-dots .t-dot{width:8px; height:8px; border-radius:999px; background:var(--bone-faint); transition:all 0.3s; padding:0;}
@@ -496,13 +495,13 @@
   .contact h2 em{font-style:normal; color:var(--amber); font-weight:500;}
   .contact .contact-sub{font-family:'Inter Tight',sans-serif; font-weight:400; font-size:clamp(20px,2.4vw,28px); line-height:1.4; color:var(--bone-dim); max-width:50ch; margin-top:24px;}
   .contact-bar{
-    margin-top:40px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px;
-    padding:12px 20px;
-    border:1px solid var(--line-strong); border-radius:999px; background:var(--ink-2);
+    margin-top:40px; display:flex; align-items:center; justify-content:flex-start;
+    gap:18px; flex-wrap:wrap; padding:0; border:none; background:none;
   }
-  .contact-bar .cb-mid{justify-self:center; display:flex; align-items:center; gap:18px;}
+  .contact-bar .cb-info{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .contact-bar .cb-socials{display:inline-flex; align-items:center; gap:16px;}
+  .contact-bar .cb-actions{display:flex; align-items:center; gap:12px; flex:0 0 auto;}
   .contact-bar .cb-resume{
-    justify-self:start;
     display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone);
     border:1px solid var(--amber); border-radius:999px; padding:10px 18px; background:var(--ink);
@@ -516,11 +515,14 @@
     text-decoration:none; user-select:all; -webkit-user-select:all; transition:color .2s; white-space:nowrap;
   }
   .contact-bar .cb-email:hover{color:var(--amber);}
-  .contact-bar .cb-icon{display:inline-flex; color:var(--amber); transition:color .2s, transform .2s;}
-  .contact-bar .cb-icon:hover{color:var(--amber-bright); transform:translateY(-2px);}
-  .contact-bar .cb-icon svg{width:21px; height:21px;}
+  .contact-bar .cb-icon{
+    width:40px; height:40px; flex:0 0 auto; border-radius:50%; border:1px solid var(--amber);
+    background:var(--ink); color:var(--amber); display:inline-flex; align-items:center; justify-content:center;
+    transition:all .25s;
+  }
+  .contact-bar .cb-icon:hover{background:var(--amber); border-color:var(--amber); color:#fff; transform:translateY(-2px);}
+  .contact-bar .cb-icon svg{width:18px; height:18px;}
   .contact-bar .cb-top{
-    justify-self:end;
     width:40px; height:40px; flex:0 0 auto; border-radius:50%; border:1px solid var(--amber);
     background:var(--ink); color:var(--bone); display:inline-flex; align-items:center; justify-content:center;
     cursor:pointer; transition:all .25s;
@@ -529,8 +531,8 @@
   .contact-bar .cb-top svg{width:18px; height:18px;}
   @media (max-width:600px){
     .contact h2{font-size:clamp(40px,11vw,72px);}
-    .contact-bar{display:flex; flex-wrap:wrap; justify-content:center; padding:14px 18px; gap:14px;}
-    .contact-bar .cb-mid{order:-1; flex:1 1 100%; justify-content:center; gap:16px;}
+    .contact-bar{justify-content:flex-start; gap:14px;}
+    .contact-bar .cb-info{justify-content:flex-start; gap:14px;}
   }
 
   /* ============ FOOTER ============ */
@@ -560,13 +562,13 @@
   .ainative .ai-lead em{color:var(--amber); font-style:italic;}
   .ainative .ai-lead.second{margin-top:64px; font-size:clamp(46px,7vw,80px); line-height:1.1; max-width:20ch;}
   .ainative .ai-body{margin:0 0 6px; font-family:'Inter Tight',sans-serif; font-size:clamp(16.5px,1.8vw,20px); line-height:1.62; color:var(--bone-dim); max-width:62ch; text-wrap:pretty;}
-  .work-intro{margin:16px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch;}
+  .work-intro{margin:16px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch; text-wrap:balance;}
   /* ===== 60-SECOND SNAPSHOT ===== */
   .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:14px; white-space:nowrap; background:var(--ink); color:var(--bone); border:1px solid var(--amber); font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:9px 11px 9px 26px; border-radius:40px; cursor:pointer; transition:all .2s ease; animation:ctaPulse 2.4s infinite;}
   @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:8px 9px 8px 20px; gap:11px;} .snap-trigger .play{width:28px; height:28px; font-size:11px;} }
   .snap-trigger:hover{background:var(--ink-2); color:var(--bone); border-color:var(--amber-bright); transform:translateY(-2px);}
   @keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(176,108,40,0.5);}70%{box-shadow:0 0 0 16px rgba(176,108,40,0);}100%{box-shadow:0 0 0 0 rgba(176,108,40,0);}}
-  .snap-trigger .play{display:inline-flex; flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--amber); color:#fff; align-items:center; justify-content:center; font-size:13px; padding-left:2px; transition:background .2s;}
+  .snap-trigger .play{display:inline-flex; flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--amber); color:#fff; align-items:center; justify-content:center; font-size:13px; padding:0 0 6px 2px; transition:background .2s;}
   .snap-trigger:hover .play{background:var(--amber-bright); color:#fff;}
   .snap{position:fixed; inset:0; z-index:1000; background:rgba(8,7,6,0.94); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); opacity:0; visibility:hidden; transition:opacity .35s ease; display:flex; align-items:center; justify-content:center;}
   .snap.open{opacity:1; visibility:visible;}
@@ -664,7 +666,7 @@
     <div class="section-title reveal">
       <span class="num">Portfolio</span>
       <h2>Six Selected <em>Projects</em></h2>
-      <p class="work-intro">Every project here was taken from concept to launch.<br>Strategy, design, build, and iteration.</p>
+      <p class="work-intro">Every project here was taken from concept to launch.<br><br>Concept development, design, rapid prototyping, and&nbsp;build.</p>
     </div>
 
     <div class="modules">
@@ -676,7 +678,7 @@
             <div class="head-rule"></div>
             <span class="m-cat"><span>Web App</span><span>Solo Build</span></span>
             <div class="head-rule"></div>
-            <p class="m-desc">A stupid-simple habit tracker. Track what you want to <strong style="color:var(--amber); font-weight:600;">do</strong>, and what you <strong style="color:var(--amber); font-weight:600;">don't</strong>.</p>
+            <p class="m-desc">Track what you <strong style="color:var(--amber); font-weight:600;">do</strong>, and what you <strong style="color:var(--amber); font-weight:600;">don't</strong>.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/do-or-dont-project">
@@ -710,9 +712,9 @@
           <div class="module-head">
             <h3>Deep Fried<br>Bananas</h3>
             <div class="head-rule"></div>
-            <span class="m-cat"><span>AI Platform</span><span>Food &amp; Beverage</span></span>
+            <span class="m-cat"><span>Food &amp; Beverage Platform</span></span>
             <div class="head-rule"></div>
-            <p class="m-desc">A platform for small businesses in the food &amp; beverage niche, giving owners a clear roadmap to leverage AI across the twelve pillars of their business.</p>
+            <p class="m-desc">A platform for food &amp; beverage business owners to implement AI.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/deep-fried-bananas">
@@ -738,7 +740,7 @@
 
             <div class="interstitial interstitial--statement reveal">
         <div class="bar"></div>
-        <p>Over the last twelve months I've been exploring and using a wide range of AI software, and have become <em>highly proficient</em> with the best tools.</p>
+        <p>Over the last twelve months, I've gone on an <em>obsessive deep dive</em> into AI software, becoming highly proficient with the best tools.</p>
       </div>
 
       <article class="module reveal">
@@ -748,7 +750,7 @@
             <div class="head-rule"></div>
             <span class="m-cat"><span>AI Platform</span><span>Product &amp; UX</span></span>
             <div class="head-rule"></div>
-            <p class="m-desc">Elua is a platform that helps ecosystem stewards make sense of complex problems, connecting investors, funders, and nonprofits around a shared goal. I made the team AI-native and turned their dense analysis into interactive, source-linked reports.</p>
+            <p class="m-desc">Elua is a platform that helps investors and ecosystem stewards make sense of complex problems.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/elua-ux">
@@ -798,9 +800,9 @@
           <div class="module-head">
             <h3>Puma Mala</h3>
             <div class="head-rule"></div>
-            <span class="m-cat"><span>Concept</span><span>Brand</span><span>Web</span></span>
+            <span class="m-cat"><span>Branding</span><span>Website</span></span>
             <div class="head-rule"></div>
-            <p class="m-desc">A wellness center and condo development in Costa Rica. I created the refined concept website and the investor presentation for enrolling key stakeholders.</p>
+            <p class="m-desc">A wellness center and condo development in Costa Rica. I refined the branding and built the concept site.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/pumamala">
@@ -825,7 +827,7 @@
       </article>
 
       <div class="interstitial interstitial--big reveal">
-        <p>Most companies aren't behind on AI. They're <em>buried</em> in it.</p>
+        <p>Most companies aren't behind on AI &mdash; they're <em>overwhelmed</em> by the options. My job is to clarify.</p>
       </div>
 
       <article class="module reveal">
@@ -860,7 +862,7 @@
       </article>
 
       <div class="interstitial interstitial--big reveal">
-        <p>Not a consultant. No strategy decks. Just real products, built with AI and focused on the <em>business outcome</em>.</p>
+        <p>Not a consultant. No strategy decks. Just real products, built with AI and <em>focused on the business outcome</em>.</p>
       </div>
 
       <article class="module reveal">
@@ -870,7 +872,7 @@
             <div class="head-rule"></div>
             <span class="m-cat"><span>AI-Built Product</span><span>Financial Planning</span></span>
             <div class="head-rule"></div>
-            <p class="m-desc">The anti wealth-management app. A simple three-year financial planning tool for young people: diversify your income, set a North Star, and track your expenses. Built in twenty-four hours.</p>
+            <p class="m-desc">The anti wealth-management app. A simple financial planning tool for young people.</p>
           </div>
           <div class="module-devices">
             <a class="asset asset-wide" href="/oceanis-project">
@@ -904,13 +906,17 @@
     <h2 class="reveal">Building something<br>ambitious?</h2>
     <p class="contact-sub reveal">I'd love to hear about it.</p>
     <div class="contact-bar reveal">
-      <a class="cb-resume" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
-      <div class="cb-mid">
-        <a class="cb-icon" href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M4.8 0H19.2A4.8 4.8 0 0 1 24 4.8V19.2A4.8 4.8 0 0 1 19.2 24H4.8A4.8 4.8 0 0 1 0 19.2V4.8A4.8 4.8 0 0 1 4.8 0ZM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+      <div class="cb-info">
         <a class="cb-email" href="mailto:seth@sethquest.com">seth@sethquest.com</a>
-        <a class="cb-icon" href="https://www.instagram.com/sethquest/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+        <span class="cb-socials">
+          <a class="cb-icon" href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M4.8 0H19.2A4.8 4.8 0 0 1 24 4.8V19.2A4.8 4.8 0 0 1 19.2 24H4.8A4.8 4.8 0 0 1 0 19.2V4.8A4.8 4.8 0 0 1 4.8 0ZM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+          <a class="cb-icon" href="https://www.instagram.com/sethquest/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+        </span>
       </div>
-      <button class="cb-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+      <div class="cb-actions">
+        <a class="cb-resume" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+        <button class="cb-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+      </div>
     </div>
   </section>
 
