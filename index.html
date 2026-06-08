@@ -496,12 +496,13 @@
   .contact h2 em{font-style:normal; color:var(--amber); font-weight:500;}
   .contact .contact-sub{font-family:'Inter Tight',sans-serif; font-weight:400; font-size:clamp(20px,2.4vw,28px); line-height:1.4; color:var(--bone-dim); max-width:50ch; margin-top:24px;}
   .contact-bar{
-    margin-top:40px; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    margin-top:40px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px;
     padding:12px 20px;
     border:1px solid var(--line-strong); border-radius:999px; background:var(--ink-2);
   }
-  .contact-bar .cb-mid{display:flex; align-items:center; gap:18px;}
+  .contact-bar .cb-mid{justify-self:center; display:flex; align-items:center; gap:18px;}
   .contact-bar .cb-resume{
+    justify-self:start;
     display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone);
     border:1px solid var(--amber); border-radius:999px; padding:10px 18px; background:var(--ink);
@@ -519,6 +520,7 @@
   .contact-bar .cb-icon:hover{color:var(--amber-bright); transform:translateY(-2px);}
   .contact-bar .cb-icon svg{width:21px; height:21px;}
   .contact-bar .cb-top{
+    justify-self:end;
     width:40px; height:40px; flex:0 0 auto; border-radius:50%; border:1px solid var(--amber);
     background:var(--ink); color:var(--bone); display:inline-flex; align-items:center; justify-content:center;
     cursor:pointer; transition:all .25s;
@@ -527,7 +529,7 @@
   .contact-bar .cb-top svg{width:18px; height:18px;}
   @media (max-width:600px){
     .contact h2{font-size:clamp(40px,11vw,72px);}
-    .contact-bar{padding:14px 18px; gap:14px; justify-content:center;}
+    .contact-bar{display:flex; flex-wrap:wrap; justify-content:center; padding:14px 18px; gap:14px;}
     .contact-bar .cb-mid{order:-1; flex:1 1 100%; justify-content:center; gap:16px;}
   }
 
@@ -560,12 +562,12 @@
   .ainative .ai-body{margin:0 0 6px; font-family:'Inter Tight',sans-serif; font-size:clamp(16.5px,1.8vw,20px); line-height:1.62; color:var(--bone-dim); max-width:62ch; text-wrap:pretty;}
   .work-intro{margin:16px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch;}
   /* ===== 60-SECOND SNAPSHOT ===== */
-  .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:9px; white-space:nowrap; background:var(--amber); color:#fff; border:none; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:14px 26px; border-radius:40px; cursor:pointer; transition:transform .2s ease, background .2s ease; animation:ctaPulse 2.4s infinite;}
-  @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:13px 20px; gap:7px;} }
-  .snap-trigger:hover{background:var(--amber-bright); color:#fff; transform:translateY(-2px);}
+  .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:14px; white-space:nowrap; background:var(--ink); color:var(--bone); border:1px solid var(--amber); font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:9px 11px 9px 26px; border-radius:40px; cursor:pointer; transition:all .2s ease; animation:ctaPulse 2.4s infinite;}
+  @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:8px 9px 8px 20px; gap:11px;} .snap-trigger .play{width:28px; height:28px; font-size:11px;} }
+  .snap-trigger:hover{background:var(--ink-2); color:var(--bone); border-color:var(--amber-bright); transform:translateY(-2px);}
   @keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(176,108,40,0.5);}70%{box-shadow:0 0 0 16px rgba(176,108,40,0);}100%{box-shadow:0 0 0 0 rgba(176,108,40,0);}}
-  .snap-trigger .play{display:inline-flex; width:20px; height:20px; border-radius:50%; background:var(--amber); color:#fff; align-items:center; justify-content:center; font-size:9px; transition:background .2s;}
-  .snap-trigger:hover .play{background:#fff; color:var(--amber);}
+  .snap-trigger .play{display:inline-flex; flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--amber); color:#fff; align-items:center; justify-content:center; font-size:13px; padding-left:2px; transition:background .2s;}
+  .snap-trigger:hover .play{background:var(--amber-bright); color:#fff;}
   .snap{position:fixed; inset:0; z-index:1000; background:rgba(8,7,6,0.94); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); opacity:0; visibility:hidden; transition:opacity .35s ease; display:flex; align-items:center; justify-content:center;}
   .snap.open{opacity:1; visibility:visible;}
   .snap-inner{position:relative; width:min(412px,92vw); height:min(84vh,748px); display:flex; flex-direction:column;}
@@ -639,7 +641,7 @@
         <span class="hero-divider" aria-hidden="true"></span>
         <div class="hero-right">
           <p class="hero-tag">AI-Native Builder</p>
-          <button class="snap-trigger" id="snapTrigger" type="button"><span class="play">&#9654;</span> 60-Second Highlight Reel</button>
+          <button class="snap-trigger" id="snapTrigger" type="button">60-Second Highlight Reel <span class="play">&#9654;</span></button>
         </div>
       </div>
     </div>
@@ -952,6 +954,7 @@
       // scroll reveals
       if(typeof ScrollTrigger !== 'undefined'){
         gsap.utils.toArray('.reveal, .card').forEach(el=>{
+          if(el.classList.contains('contact-bar')) return; /* always visible; bottom-most element can't satisfy the trigger */
           gsap.fromTo(el, { opacity:0, y:36 }, {
             opacity:1, y:0, duration:1.1, ease:'expo.out',
             scrollTrigger:{ trigger:el, start:'top 88%' }
@@ -1164,7 +1167,7 @@
   if(!btn) return;
   var CAP=12000;
   var touring=false, idx=0, vids=[], current=null, hardTimer=null, missTimer=null;
-  var defaultLabel='<span class="play">&#9654;</span> 60-Second Highlight Reel';
+  var defaultLabel='60-Second Highlight Reel <span class="play">&#9654;</span>';
 
   function getVids(){ return [].slice.call(document.querySelectorAll('.modules .phone-video')); }
 
@@ -1182,6 +1185,7 @@
     } else { window.scrollTo({top:targetY, behavior:'smooth'}); setTimeout(once, 1300); }
   }
   function restore(v){ if(!v) return; v.onended=null; v.ontimeupdate=null; v.onerror=null;
+    var rw=v.closest('.asset-phone'); var rb=rw&&rw.querySelector('.sound-btn'); if(rb) rb.setAttribute('data-on','false');
     try{ v.muted=true; v.loop=true; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }catch(e){} }
   function clearTimers(){ if(hardTimer){clearTimeout(hardTimer);hardTimer=null;} if(missTimer){clearTimeout(missTimer);missTimer=null;} }
   function advance(){ if(!touring) return; restore(current); clearTimers(); playAt(idx+1); }
@@ -1197,17 +1201,18 @@
       v.ontimeupdate=function(){ if(v.duration && v.currentTime*1000>=CAP) go(); };
       v.onerror=function(){ missTimer=setTimeout(go,2500); };
       try{ v.loop=false; v.muted=false; v.currentTime=0; }catch(e){}
+      var sw=v.closest('.asset-phone'); var sbtn=sw&&sw.querySelector('.sound-btn'); if(sbtn) sbtn.setAttribute('data-on','true');
       var p; try{ p=v.play(); }catch(e){}
       if(p&&p.catch) p.catch(function(){ missTimer=setTimeout(go,2500); });
       hardTimer=setTimeout(go, CAP);
     });
   }
-  function startTour(){ vids=getVids(); if(!vids.length) return; if(window.__soundReset){ try{ window.__soundReset(); }catch(_){} } touring=true; window.__reelTouring=true; idx=0; btn.textContent='Stop tour';
+  function startTour(){ vids=getVids(); if(!vids.length) return; if(window.__soundReset){ try{ window.__soundReset(); }catch(_){} } document.querySelectorAll('.sound-btn').forEach(function(b){ b.setAttribute('data-on','false'); }); touring=true; window.__reelTouring=true; idx=0; btn.textContent='Stop tour';
     /* iOS only lets a video carry sound if its playback was kicked off inside this tap.
        "Bless" all of them right now (muted) so each can be unmuted when the tour reaches it. */
     vids.forEach(function(v){ try{ v.muted=true; var p=v.play(); if(p&&p.then){ p.then(function(){}).catch(function(){}); } }catch(e){} });
     playAt(0); }
-  function endTour(loopBack){ touring=false; window.__reelTouring=false; restore(current); current=null; clearTimers(); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(0); } }
+  function endTour(loopBack){ touring=false; window.__reelTouring=false; restore(current); current=null; clearTimers(); document.querySelectorAll('.sound-btn').forEach(function(b){ b.setAttribute('data-on','false'); }); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(0); } }
   btn.addEventListener('click', function(e){ e.preventDefault(); if(touring) endTour(false); else startTour(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && touring) endTour(false); });
 })();
