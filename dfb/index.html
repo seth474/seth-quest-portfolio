@@ -315,7 +315,7 @@
   .scene-footer {
     background: var(--cream-w);
     border-top: 3px solid var(--ink);
-    padding: 14px 22px;
+    padding: 9px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -324,39 +324,26 @@
   }
   .scene-tip {
     font-family: var(--hand);
-    font-size: 22px;
+    font-size: 19px;
     color: var(--p-deep);
     font-weight: 600;
   }
-  .scene-tip-sub {
-    font-family: var(--body);
-    font-size: 13px;
-    color: var(--ink-soft);
-    margin-left: 8px;
-  }
-  .scene-key {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11.5px;
-    color: var(--ink-mute);
-    font-family: var(--body);
-  }
   .debug-toggle {
     background: transparent;
-    border: 1.5px solid var(--ink-mute);
-    color: var(--ink-mute);
-    padding: 4px 10px;
-    border-radius: 6px;
+    border: 1.5px solid var(--p-deep);
+    color: var(--p-deep);
+    padding: 5px 14px;
+    border-radius: 999px;
     font-size: 10.5px;
-    font-family: var(--body);
+    font-family: var(--display);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: all 0.15s;
   }
   .debug-toggle:hover {
+    background: var(--p);
     border-color: var(--ink);
     color: var(--ink);
   }
@@ -391,9 +378,10 @@
     border: 3px solid var(--ink);
     border-radius: 22px;
     box-shadow: 10px 10px 0 0 var(--p);
-    width: 100%;
-    max-width: 920px;
-    max-height: calc(100vh - 80px);
+    width: 80vw;
+    max-width: 1200px;
+    height: 86vh;
+    max-height: 900px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -526,6 +514,136 @@
     font-weight: 600;
   }
 
+  /* ============================================================
+     WORKSPACE ENGINE — landing dashboard + guided steps
+     ============================================================ */
+  .ws-progress-wrap { margin-top: 18px; }
+  .ws-progress-track {
+    height: 10px; background: rgba(31,26,23,0.12);
+    border: 2px solid var(--ink); border-radius: 999px; overflow: hidden;
+  }
+  .ws-progress-fill {
+    height: 100%; background: var(--p); border-radius: 999px;
+    transition: width 0.4s cubic-bezier(0.34,1.4,0.64,1);
+  }
+  .ws-progress-label {
+    font-size: 12px; font-weight: 700; color: var(--ink);
+    margin-top: 7px; font-family: var(--display); letter-spacing: 0.01em;
+  }
+
+  .ws-why {
+    background: var(--p-soft); border: 2px solid var(--ink);
+    border-radius: 12px; padding: 14px 18px; margin: 18px 0 0;
+    font-size: 14px; line-height: 1.55; color: var(--ink);
+  }
+  .ws-why strong { font-family: var(--display); }
+
+  .ws-steps-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+  .ws-step-row {
+    display: flex; align-items: center; gap: 14px;
+    background: white; border: 2px solid var(--ink); border-radius: 12px;
+    padding: 14px 16px; cursor: pointer; transition: all 0.15s; text-align: left;
+    font-family: var(--body); width: 100%;
+  }
+  .ws-step-row:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 0 var(--p); }
+  .ws-step-num {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-weight: 700; font-size: 13px; background: var(--cream);
+  }
+  .ws-step-row.done .ws-step-num { background: var(--p); }
+  .ws-step-title { font-family: var(--display); font-weight: 600; font-size: 15px; flex: 1; }
+  .ws-step-check { font-size: 16px; color: var(--p-deep); }
+  .ws-start-btn {
+    margin-top: 24px; width: 100%;
+    background: var(--y); color: var(--ink); border: 3px solid var(--ink);
+    padding: 16px; border-radius: 14px; font-family: var(--display);
+    font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.15s;
+  }
+  .ws-start-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 0 var(--p); }
+
+  /* Step view */
+  .ws-step-view { display: flex; flex-direction: column; min-height: 100%; }
+  .ws-step-counter { font-family: var(--display); font-weight: 700; font-size: 12px;
+    color: var(--p-deep); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+  .ws-step-h { font-family: var(--display); font-size: 26px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 14px; }
+  .ws-step-body { font-size: 15px; line-height: 1.65; color: var(--ink); margin-bottom: 18px; }
+
+  .ws-input {
+    width: 100%; border: 2px solid var(--ink); border-radius: 10px;
+    padding: 13px 15px; font-family: var(--body); font-size: 15px;
+    background: white; color: var(--ink); resize: vertical; min-height: 90px;
+  }
+  .ws-input:focus { outline: none; box-shadow: 3px 3px 0 0 var(--p); }
+
+  .ws-prompt-box {
+    background: var(--ink); color: var(--cream); border-radius: 12px;
+    padding: 18px 18px 14px; position: relative; margin-bottom: 6px;
+  }
+  .ws-prompt-label { font-family: var(--display); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--y); margin-bottom: 10px; }
+  .ws-prompt-text { font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 13px; line-height: 1.6; color: var(--cream); white-space: pre-wrap; }
+  .ws-copy-btn {
+    margin-top: 14px; background: var(--y); color: var(--ink); border: 2px solid var(--cream);
+    padding: 9px 18px; border-radius: 999px; font-family: var(--display);
+    font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.15s;
+  }
+  .ws-copy-btn:hover { background: var(--p); }
+  .ws-copy-hint { font-size: 12px; color: rgba(31,26,23,0.6); margin-top: 8px; font-style: italic; }
+
+  .ws-check-list { display: flex; flex-direction: column; gap: 10px; }
+  .ws-check-item {
+    display: flex; align-items: flex-start; gap: 12px; background: white;
+    border: 2px solid var(--ink); border-radius: 10px; padding: 13px 15px;
+    cursor: pointer; transition: all 0.12s; font-size: 14.5px; line-height: 1.4;
+  }
+  .ws-check-item:hover { background: var(--cream); }
+  .ws-check-box {
+    width: 22px; height: 22px; border: 2px solid var(--ink); border-radius: 6px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: var(--ink); background: white;
+  }
+  .ws-check-item.checked .ws-check-box { background: var(--p); }
+  .ws-check-item.checked .ws-check-label { text-decoration: line-through; opacity: 0.6; }
+
+  .ws-choice-row { display: flex; flex-direction: column; gap: 10px; }
+  .ws-choice {
+    background: white; border: 2px solid var(--ink); border-radius: 10px;
+    padding: 14px 16px; cursor: pointer; font-family: var(--body); font-size: 15px;
+    text-align: left; transition: all 0.12s; width: 100%;
+  }
+  .ws-choice:hover { background: var(--cream); transform: translate(-2px,-2px); box-shadow: 3px 3px 0 0 var(--p); }
+  .ws-choice.selected { background: var(--y); font-weight: 600; }
+
+  .ws-upload {
+    border: 2px dashed var(--ink); border-radius: 12px; padding: 26px;
+    text-align: center; background: rgba(255,224,102,0.12); cursor: pointer; transition: all 0.15s;
+  }
+  .ws-upload:hover { background: rgba(255,224,102,0.22); }
+  .ws-upload-icon { font-size: 30px; margin-bottom: 8px; }
+  .ws-upload-text { font-size: 14px; color: var(--ink); font-weight: 600; }
+  .ws-upload-sub { font-size: 12.5px; color: rgba(31,26,23,0.6); margin-top: 4px; }
+
+  .ws-nav {
+    display: flex; gap: 12px; align-items: center; margin-top: auto; padding-top: 24px;
+  }
+  .ws-nav-btn {
+    border: 2px solid var(--ink); border-radius: 999px; padding: 12px 22px;
+    font-family: var(--display); font-weight: 700; font-size: 14px; cursor: pointer;
+    transition: all 0.15s; background: var(--cream); color: var(--ink);
+  }
+  .ws-nav-btn:hover:not(:disabled) { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 0 var(--p); }
+  .ws-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ws-nav-btn.primary { background: var(--y); margin-left: auto; }
+  .ws-nav-btn.done-btn { background: var(--p); margin-left: auto; }
+
+  @media (max-width: 720px) {
+    .modal-card { width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0; border: none; }
+    .ws-step-h { font-size: 22px; }
+  }
+
   /* Modal responsive */
   @media (max-width: 720px) {
     .modal-backdrop {
@@ -585,7 +703,7 @@
       <div class="sidebar-brand-circle">DFB</div>
       <div>
         <div class="sidebar-brand-text">Deep Fried Bananas</div>
-        <div class="sidebar-brand-sub">your shop's workshop</div>
+        <div class="sidebar-brand-sub"></div>
       </div>
     </a>
 
@@ -673,6 +791,8 @@
   const state = {
     name: 'Seth',
     touched: {},  // tracks which workspaces user has visited
+    progress: {}, // { workspaceId: { stepIndex: true } } — completed steps
+    inputs: {},   // { workspaceId_stepIndex: "saved text/choice" }
   };
 
   function loadState() {
@@ -692,6 +812,350 @@
   }
 
   // ============================================================
+  // ===== WORKSPACE CONTENT (injected) =====
+// ============================================================
+// DFB WORKSPACE CONTENT
+// Each workspace: { id, name, emoji, tagline, overview, steps[] }
+// Step types: 'info' | 'checklist' | 'text' | 'upload' | 'prompt' | 'choice'
+// 'prompt' steps carry an AI prompt the user copies into Claude.
+// Progress is tracked per-step in localStorage.
+// ============================================================
+
+const WORKSPACES = {
+
+  // ========================================================
+  // FLAGSHIP 1 — BRAND & SIGNAGE  (Week 1 demo piece)
+  // ========================================================
+  brand: {
+    id: 'brand',
+    name: 'Brand & signage',
+    emoji: '🎨',
+    tagline: 'What your shop looks like, sounds like, and feels like.',
+    overview: "Your brand is the difference between a stranger walking past and a stranger walking in. We'll refresh your logo, lock your colors and fonts, and make sure everything — your awning, menu, Instagram, a coffee cup — looks like it came from the same place. The kind of work a brand agency charges $5K+ for. We'll do it with AI, together.",
+    why: "A consistent, current brand makes a small shop look established and trustworthy. It's the cheapest way to charge a little more and be remembered.",
+    steps: [
+      {
+        type: 'info',
+        title: 'What good branding actually is',
+        body: "Forget 'brand books' and agency jargon. For your shop, a brand is five things: a logo that works small and big, 2–3 colors you use every time, one or two fonts, a consistent voice, and photos that feel like you. That's it. By the end of this workspace you'll have all five, locked in one place."
+      },
+      {
+        type: 'upload',
+        title: 'Upload your current logo (or describe it)',
+        body: "Drop in your current logo — or if you don't have one, just describe your shop in a sentence. We'll use this as the starting point for the refresh.",
+        placeholder: "e.g. 'a hand-drawn coffee cup with our name in a script font, navy and cream'"
+      },
+      {
+        type: 'prompt',
+        title: 'Refresh your logo with AI',
+        body: "Paste this into Claude (or an image tool like Midjourney/DALL·E) along with your current logo. It refreshes the logo for 2026 without losing what made it yours.",
+        prompt: "I run a small food & beverage shop. Here is my current logo: [attach or describe it]. Refresh it for 2026 — keep the soul and recognizability, but make it cleaner and more versatile. It needs to work on: an awning, a printed menu, an Instagram profile picture, a coffee cup, and a hat. Give me: (1) 3 refreshed logo directions described in detail, (2) the exact colors (hex codes) for each, (3) which direction you'd recommend and why. Keep it warm and approachable, not corporate."
+      },
+      {
+        type: 'text',
+        title: 'Lock your colors',
+        body: "From the logo refresh, write down your 2–3 brand colors here (hex codes if you have them). These get used on everything from now on — no more guessing.",
+        placeholder: "Primary: #______   Secondary: #______   Accent: #______"
+      },
+      {
+        type: 'prompt',
+        title: 'Find your fonts',
+        body: "Paste this into Claude to get a font pairing that matches your refreshed logo — one for headlines, one for everyday text. All free Google Fonts so you can actually use them.",
+        prompt: "My shop's brand is [describe the vibe — e.g. 'warm, playful, hand-made coffee shop']. My brand colors are [paste your colors]. Recommend a font pairing using only free Google Fonts: one display font for signs and headlines, one body font for menus and everyday text. Give me the exact font names, why they fit, and a sentence showing them used together. Keep it readable for older customers too."
+      },
+      {
+        type: 'text',
+        title: 'Write your one-line voice',
+        body: "How does your shop sound? Friendly? Cheeky? Calm? Write one sentence the way your shop would say 'we're open and we're glad you're here.' That's your voice — use it on signs, posts, and packaging.",
+        placeholder: "e.g. 'Pull up a stool, the coffee's hot and the bananas are fresh.'"
+      },
+      {
+        type: 'checklist',
+        title: 'Apply it everywhere — the consistency check',
+        body: "Now make everything match. Check each off as you update it:",
+        items: [
+          "Logo updated on the storefront / awning",
+          "Logo + colors on the printed menu",
+          "Instagram profile photo and bio colors",
+          "Coffee cups / packaging / stickers",
+          "Staff hats or aprons (if you have them)",
+          "Google Business Profile photo"
+        ]
+      },
+      {
+        type: 'info',
+        title: 'Your brand chapter is done',
+        body: "You now have a refreshed logo, locked colors, a font pairing, a voice, and a consistency checklist. Save this — it's the first chapter of your shop's playbook, and it makes every other workspace (menu, merch, marketing) faster because the look is already decided."
+      }
+    ]
+  },
+
+  // ========================================================
+  // FLAGSHIP 2 — CHECKLISTS & SOPS  (the user's example)
+  // ========================================================
+  recipes: {
+    id: 'recipes',
+    name: 'Checklists & SOPs',
+    emoji: '📋',
+    tagline: 'All the stuff that probably lives in your head right now.',
+    overview: "Right now, the knowledge of how your shop runs is mostly in your head. That means you can't take a day off, a new hire takes forever to train, and things get done differently every time. We'll get it written down — starting with the opening checklist you probably already do without thinking. (This is what people mean by 'SOPs' — Standard Operating Procedures. Same thing, less scary word.)",
+    why: "Written checklists are what let you NOT be there and have the shop still run right. It's the first real step toward a business that could be sold, franchised, or just give you a Sunday off.",
+    steps: [
+      {
+        type: 'info',
+        title: 'Why this matters more than it sounds',
+        body: "Every step you write down is a step you no longer have to personally supervise. A shop that runs on checklists is worth more, trains faster, and stresses you less. We'll start with what you already do, then fill the gaps."
+      },
+      {
+        type: 'choice',
+        title: 'Do you have an opening checklist?',
+        body: "Almost every shop has one, even if it's just in your head or on a sticky note.",
+        choices: ["Yes, it's written down", "It's in my head", "No, nothing yet"]
+      },
+      {
+        type: 'upload',
+        title: 'Upload or type your opening routine',
+        body: "Type out (or upload) everything you do to open the shop — even the obvious stuff. Unlock doors, turn on machines, count the till, prep stations. Don't worry about order or polish. We'll clean it up with AI next.",
+        placeholder: "Unlock front door, turn on espresso machine (takes 20 min to heat), count register float, turn on open sign, prep banana station, check the fridge temps..."
+      },
+      {
+        type: 'prompt',
+        title: 'Turn it into a real opening SOP',
+        body: "Paste your rough notes into Claude with this prompt. It turns your brain-dump into a clean, ordered checklist a new hire could follow.",
+        prompt: "Here is my rough opening routine for my food & beverage shop: [paste your notes]. Turn this into a clean, professional opening checklist (SOP) that a brand-new employee could follow on their first day with no other training. Order the steps logically, group them by area (front of house, kitchen/prep, register), add time estimates where useful, and flag anything that's a food-safety or money-handling step. Format it so I can print it and laminate it."
+      },
+      {
+        type: 'prompt',
+        title: 'Now build your closing SOP',
+        body: "Same idea for closing. Paste this prompt and answer Claude's questions, or paste your closing notes.",
+        prompt: "Now help me build a closing checklist (SOP) for the same food & beverage shop. Ask me up to 8 quick questions about how I close (cleaning, cash handling, equipment shutdown, security, prep for tomorrow), then turn my answers into a clean, ordered closing checklist a new employee could follow. Flag the steps that protect against theft, spoilage, or fire risk."
+      },
+      {
+        type: 'checklist',
+        title: 'The core SOP set every shop should have',
+        body: "These are the documents that let your shop run without you. Check off the ones you've created:",
+        items: [
+          "Opening checklist",
+          "Closing checklist",
+          "Key recipes / prep steps written down",
+          "How to handle a customer complaint",
+          "What to do if an employee calls out",
+          "Cash handling + end-of-day count process",
+          "Cleaning schedule (daily / weekly / deep)"
+        ]
+      },
+      {
+        type: 'prompt',
+        title: 'Document your signature recipe',
+        body: "Your recipes are SOPs too. Paste this to turn your 'I just know how' into something repeatable.",
+        prompt: "Help me document my signature recipe so any trained employee can make it exactly the same every time. I'll describe how I make it: [describe your item]. Turn it into a standardized recipe card with exact quantities, steps, timing, yield, and the 2-3 things that most often go wrong and how to avoid them. Make it printable for the prep station."
+      },
+      {
+        type: 'info',
+        title: 'You just made your shop transferable',
+        body: "Everything you wrote here is what an investor, a buyer, or a franchisee wants to see — proof the business runs on systems, not just on you. Keep adding to it. This is the backbone of the whole 'make your shop worth more' path."
+      }
+    ]
+  },
+
+  // ========================================================
+  // FLAGSHIP 3 — MONEY  (highest value / most feared)
+  // ========================================================
+  money: {
+    id: 'money',
+    name: 'Money',
+    emoji: '💰',
+    tagline: 'Where the money goes — and where it could stay.',
+    overview: "Most shop owners know what's in the register but not what's actually profitable. We'll build a simple, real picture of your money — what comes in, what goes out, and where it's quietly leaking. No accounting degree required. The math is simpler than anyone made it seem, and AI does the heavy lifting.",
+    why: "You can't fix what you can't see. A clear picture of your money is what lets you raise prices with confidence, cut the right costs, and show an investor or buyer real numbers.",
+    steps: [
+      {
+        type: 'info',
+        title: 'The only 3 numbers that matter to start',
+        body: "Don't drown in spreadsheets. To begin, you need three things: what you sold (revenue), what the ingredients/products cost (COGS), and what it costs to keep the doors open (rent, labor, utilities — overhead). Everything else is detail. We'll get these three first."
+      },
+      {
+        type: 'upload',
+        title: 'Pull your last 3 months of sales',
+        body: "Export sales totals from your POS (Square, Toast, Clover) or just write down monthly revenue for the last 3 months. Rough is fine to start.",
+        placeholder: "Month 1: $_____   Month 2: $_____   Month 3: $_____"
+      },
+      {
+        type: 'prompt',
+        title: 'Build your P&L in 15 minutes with AI',
+        body: "This is the one that normally costs $1,000 and takes a bookkeeper a week. Paste your numbers into Claude with this prompt.",
+        prompt: "Help me build a simple, clear Profit & Loss statement for my small food & beverage shop. Here are my numbers for the last 3 months: Revenue: [paste]. Cost of goods (ingredients/products): [paste or estimate %]. Rent: [paste]. Labor: [paste]. Utilities + other: [paste]. Build me a clean monthly P&L, show my gross margin and net profit, tell me which numbers look healthy vs. concerning for a shop my size, and flag the single biggest opportunity to improve profit. Explain it like I've never read a P&L before."
+      },
+      {
+        type: 'prompt',
+        title: 'Find your food cost leaks',
+        body: "Food cost should usually run 25–35% of revenue. Paste this to find out where yours is bleeding.",
+        prompt: "My food/product cost is running about [X]% of revenue. For a [type of shop — e.g. smoothie shop / café], industry healthy range is 25–35%. Walk me through the most common places shops like mine lose money on food cost (over-portioning, spoilage, waste, supplier pricing, theft), help me figure out which is most likely my issue, and give me 5 specific actions to bring it down 3-5 points without hurting quality."
+      },
+      {
+        type: 'prompt',
+        title: 'Test a price increase',
+        body: "Most owners underprice out of fear. Paste this to model what a small price bump actually does.",
+        prompt: "I'm scared to raise prices but my margins are tight. My best-selling item is [item] priced at $[X], and it costs me about $[Y] to make. I sell about [Z] per week. Model what happens to my monthly profit if I raise the price by $0.25, $0.50, and $1.00 — and estimate how many customers I could lose at each level before it's not worth it. Then give me a script for how to communicate a price increase to regulars without losing goodwill."
+      },
+      {
+        type: 'checklist',
+        title: 'Your money foundation',
+        body: "Check these off as you lock them in:",
+        items: [
+          "Last 3 months revenue known",
+          "P&L built and understood",
+          "Food cost % calculated",
+          "One price tested/adjusted",
+          "Biggest leak identified",
+          "Monthly money review scheduled (even 30 min)"
+        ]
+      },
+      {
+        type: 'info',
+        title: 'This is the chapter investors read first',
+        body: "Clean numbers are the foundation of the 'raise or sell' path. When you can show a real P&L and explain your margins, you go from 'a person with a shop' to 'an operator with a business.' Keep this updated monthly — it compounds."
+      }
+    ]
+  },
+
+  // ========================================================
+  // SCAFFOLDED (8) — real structure, lighter content to refine
+  // ========================================================
+  menu: {
+    id: 'menu',
+    name: 'Menu & pricing',
+    emoji: '📝',
+    tagline: 'What you sell, what you charge, what actually makes money.',
+    overview: "We'll look at your current menu, find the items doing the heavy lifting, cut the dead weight, and redesign it so it reads in 3 seconds and steers people toward your highest-margin items. The goal isn't a bigger menu — it's a sharper one.",
+    why: "A well-engineered menu raises your average ticket without a single new customer. It's the fastest profit lever a shop has.",
+    steps: [
+      { type: 'info', title: 'Menu = your #1 salesperson', body: "Your menu sells more than any employee. We'll make it work harder: better design, smarter pricing, fewer choices that paralyze customers." },
+      { type: 'upload', title: 'Upload your current menu', body: "Drop in a photo or type out your menu with current prices.", placeholder: "Item — $price, one per line..." },
+      { type: 'prompt', title: 'Find your stars and your duds', body: "Paste your menu + rough sales into Claude.", prompt: "Here's my menu with prices and roughly how often each item sells: [paste]. Do a menu-engineering analysis: identify my 'stars' (high profit + popular), 'workhorses' (popular, low margin), 'puzzles' (high margin, low sales), and 'dogs' (low both). Tell me what to promote, what to reprice, what to cut, and how to redesign the layout to steer customers toward the stars." },
+      { type: 'prompt', title: 'Rewrite your item descriptions', body: "Words sell. Paste this to make items irresistible.", prompt: "Rewrite my menu item descriptions to be appetizing and on-brand for a [type] shop with a [voice] vibe. Here are my items: [paste]. Keep them short, sensory, and honest. Don't oversell." },
+      { type: 'checklist', title: 'Menu refresh checklist', body: "Lock it in:", items: ["Stars identified and featured","Dogs cut or fixed","Prices adjusted on low-margin items","Descriptions rewritten","New layout reads in 3 seconds","Reprinted / updated online"] },
+      { type: 'info', title: 'Chapter done', body: "A sharper menu is live. This pairs with the Money workspace — repricing here shows up in your P&L there." }
+    ]
+  },
+
+  customers: {
+    id: 'customers',
+    name: 'Loyal customers',
+    emoji: '❤️',
+    tagline: 'The regulars. The hat-wearers. The case studies waiting to happen.',
+    overview: "Your repeat customers are worth more than any ad. We'll find them, turn them into evangelists, build a simple loyalty system, and get your happy regulars leaving the Google reviews that bring in strangers.",
+    why: "It costs 5x more to win a new customer than keep one. Loyalty is the cheapest growth there is.",
+    steps: [
+      { type: 'info', title: 'Your regulars are your marketing', body: "A handful of loyal customers, activated, will out-perform any paid ad. We'll make it easy for them to support you." },
+      { type: 'prompt', title: 'Build your Google reviews system', body: "Reviews are the #1 way new customers find you. Paste this.", prompt: "Help me build a simple system to get more Google reviews for my [type] shop. I currently have about [X] reviews. Give me: the exact wording for a QR-code card at the register, a follow-up text message, the best moment to ask, and how to respond to both good and bad reviews. Make it feel natural, not pushy." },
+      { type: 'choice', title: 'Do you have a loyalty program?', body: "", choices: ["Yes, digital","Yes, paper punch card","No, none yet"] },
+      { type: 'prompt', title: 'Design a loyalty program that fits', body: "Paste this for a program that actually works for a small shop.", prompt: "Design a simple loyalty program for my [type] shop that doesn't require expensive software. Give me 2-3 options (punch card, QR-based, app-free digital), the math on what reward keeps people coming without killing margin, and how to launch it to existing customers." },
+      { type: 'checklist', title: 'Loyalty checklist', body: "", items: ["Review QR card at register","Follow-up ask in place","Responding to all reviews","Loyalty program live","Top 10 regulars identified by name"] },
+      { type: 'info', title: 'Chapter done', body: "Your regulars are now an engine, not an accident." }
+    ]
+  },
+
+  storefront: {
+    id: 'storefront',
+    name: 'Storefront',
+    emoji: '🏪',
+    tagline: 'The space, the signage, the first impression.',
+    overview: "From awning to sidewalk — the first 10 feet a customer sees decides whether they walk in. We'll mock up a refresh that makes your shop photographable and inviting, often for under $500.",
+    why: "Curb appeal is free foot traffic. A photographable storefront is also free Instagram marketing every time a customer posts.",
+    steps: [
+      { type: 'info', title: 'The first 10 feet', body: "Customers decide in seconds from the sidewalk. We'll fix what they see first." },
+      { type: 'upload', title: 'Photo of your storefront', body: "Upload a straight-on photo of your shop from the sidewalk.", placeholder: "Describe it if you can't upload: awning color, sign, window, A-frame..." },
+      { type: 'prompt', title: 'Get a refresh plan', body: "Paste this with your photo.", prompt: "Here's a photo of my [type] shop storefront: [attach]. Give me a prioritized, budget-conscious refresh plan ($0-500 range). What to fix first for maximum impact: signage, window display, lighting, A-frame sign, plants, cleanliness. For each, estimate cost and impact. Make it more inviting and photographable without a renovation." },
+      { type: 'checklist', title: 'Storefront checklist', body: "", items: ["Sign clean / updated","Window display refreshed","A-frame / sidewalk sign","Lighting checked","One photographable moment created","Entrance clutter cleared"] },
+      { type: 'info', title: 'Chapter done', body: "Your storefront now earns walk-ins." }
+    ]
+  },
+
+  marketing: {
+    id: 'marketing',
+    name: 'Marketing',
+    emoji: '📣',
+    tagline: 'Telling people you exist (without spending a fortune).',
+    overview: "Social posts, a content rhythm you can actually keep, and local partnerships. We'll set up a simple system so marketing happens without eating your whole Sunday.",
+    why: "Consistent, cheap, local marketing beats expensive sporadic campaigns for a neighborhood shop.",
+    steps: [
+      { type: 'info', title: 'Marketing without burnout', body: "You don't need to be everywhere. You need one or two channels done consistently. We'll build a rhythm." },
+      { type: 'prompt', title: 'Plan a month of posts in one sitting', body: "Paste this to batch your content.", prompt: "Plan a month of social media posts for my [type] shop with a [voice] vibe. Give me 12 post ideas (3/week) mixing behind-the-scenes, product features, customer love, and local community. For each: the concept, a caption, and what to photograph. Make it doable for a busy owner with just a phone." },
+      { type: 'prompt', title: 'Write your captions', body: "Paste your post ideas back for ready-to-use captions.", prompt: "Write ready-to-post captions for these post ideas for my [type] shop, in a [voice] tone: [paste ideas]. Include relevant local hashtags and a soft call-to-action on each. Keep them short and human." },
+      { type: 'checklist', title: 'Marketing system checklist', body: "", items: ["One primary channel chosen","Month of content planned","Posting day/time scheduled","Google Business Profile updated","One local partnership idea","Email or text list started"] },
+      { type: 'info', title: 'Chapter done', body: "Marketing is now a system, not a scramble." }
+    ]
+  },
+
+  merch: {
+    id: 'merch',
+    name: 'Product & merch',
+    emoji: '🧢',
+    tagline: 'What else you sell besides the food.',
+    overview: "Hats, mugs, totes, branded gear — a second revenue stream and walking marketing rolled into one. We'll design merch worth wearing and order it with no upfront inventory via print-on-demand.",
+    why: "Merch is margin you're leaving on the table, and every item is a tiny billboard for your shop.",
+    steps: [
+      { type: 'info', title: 'Merch = profit + marketing', body: "Done right, merch makes money AND turns customers into walking ads. Done wrong, it's a closet of unsold t-shirts. We'll do it right — no inventory risk." },
+      { type: 'prompt', title: 'Design merch worth wearing', body: "Paste this (bring your brand colors from the Brand workspace).", prompt: "Design a small merch line for my [type] shop. My brand colors are [paste] and vibe is [voice]. Suggest 3-4 items people would actually wear/use (not just a logo slapped on a shirt), describe the design for each, and tell me which print-on-demand service fits (Printful, Printify, etc.) so I carry zero inventory." },
+      { type: 'prompt', title: 'Price it for profit', body: "Paste this so your merch makes money.", prompt: "For these print-on-demand merch items [paste], with these base costs [paste or estimate], tell me what to price each at for a healthy margin while still feeling fair to customers. Include the math." },
+      { type: 'checklist', title: 'Merch checklist', body: "", items: ["3-4 items designed","Print-on-demand account set up","Prices set with margin","First samples ordered","Listed for sale (in shop / online)","Staff wearing it"] },
+      { type: 'info', title: 'Chapter done', body: "A new revenue stream that markets itself." }
+    ]
+  },
+
+  equipment: {
+    id: 'equipment',
+    name: 'Equipment',
+    emoji: '🍳',
+    tagline: 'The gear that keeps you open.',
+    overview: "What you have, what you need, what's worth upgrading. We'll inventory your equipment, set up maintenance so nothing dies mid-rush, and figure out which upgrades actually pay for themselves.",
+    why: "A failed espresso machine at 8am costs a day of sales. Knowing your gear and maintaining it is pure risk reduction.",
+    steps: [
+      { type: 'info', title: 'Gear = uptime', body: "Equipment failures cost sales and stress. A little tracking prevents the worst surprises." },
+      { type: 'text', title: 'List your key equipment', body: "List your major equipment and roughly how old each is.", placeholder: "Espresso machine (3 yrs), blender x2, fridge, freezer, POS, oven..." },
+      { type: 'prompt', title: 'Build a maintenance schedule', body: "Paste your list.", prompt: "Here's my [type] shop equipment list with ages: [paste]. Build me a simple preventive maintenance schedule (daily/weekly/monthly/annual) for each, flag which are most likely to fail and what that would cost me in downtime, and tell me which are worth servicing vs. replacing. Keep it practical for a non-technical owner." },
+      { type: 'prompt', title: 'Evaluate an upgrade', body: "Thinking of buying something? Paste this.", prompt: "I'm considering buying/upgrading [equipment] for about $[X] for my [type] shop. Help me decide: estimate the payback period, whether it increases capacity/quality/speed enough to matter, lease vs. buy, and whether there's a smarter cheaper option. Be honest if it's not worth it." },
+      { type: 'checklist', title: 'Equipment checklist', body: "", items: ["Key equipment inventoried","Ages / warranties noted","Maintenance schedule set","Backup plan for critical gear","Vendor/repair contacts saved"] },
+      { type: 'info', title: 'Chapter done', body: "Fewer surprises, more uptime." }
+    ]
+  },
+
+  supply: {
+    id: 'supply',
+    name: 'Supply & inventory',
+    emoji: '📦',
+    tagline: "What you've got, what you're running out of, what costs too much.",
+    overview: "The boring work that decides whether you keep the lights on. We'll map your supply chain, find where you're overpaying or over-spoiling, and set up simple inventory tracking so you stop running out — or over-ordering.",
+    why: "Inventory is cash sitting on a shelf (or rotting in a bin). Tightening it directly improves your margins and cash flow.",
+    steps: [
+      { type: 'info', title: 'Inventory = cash flow', body: "Every item on your shelf is money. Too much = waste and tied-up cash. Too little = lost sales. We'll find your balance." },
+      { type: 'text', title: 'Map your main suppliers', body: "List your main suppliers and what you get from each.", placeholder: "Produce — [vendor], dairy — [vendor], cups/packaging — [vendor]..." },
+      { type: 'prompt', title: 'Find your supply leaks', body: "Paste your supplier + spend info.", prompt: "Here's my [type] shop's supply situation: main suppliers and what I spend [paste]. Help me find leaks: where am I likely overpaying, over-ordering, or losing money to spoilage? Give me questions to ask my suppliers to negotiate, which items to buy in bulk vs. fresh, and a simple weekly inventory routine I can actually stick to." },
+      { type: 'prompt', title: 'Estimate your spoilage', body: "Paste this to size the problem.", prompt: "Help me estimate and reduce spoilage/waste at my [type] shop. I throw out roughly [describe] each week. Help me quantify what that costs per month, identify the top culprits, and give me 5 specific tactics to cut it (par levels, FIFO, prep timing, repurposing, ordering changes)." },
+      { type: 'checklist', title: 'Supply checklist', body: "", items: ["Suppliers mapped","Spend per category known","Spoilage estimated","Weekly inventory routine set","One supplier renegotiated","Par levels set for key items"] },
+      { type: 'info', title: 'Chapter done', body: "Tighter supply = better margins, less waste." }
+    ]
+  },
+
+  calls: {
+    id: 'calls',
+    name: 'Calls',
+    emoji: '📅',
+    tagline: 'When we meet, what we talk about, who shows up.',
+    overview: "Three live Google Meet calls a week. Each one is a specific project we do together, live. Drop in for the ones that matter to you, skip the rest. Every call is recorded and added to your library — so you never miss anything.",
+    why: "This is the heart of the community. Show up, do the work alongside other operators, and steal every workflow.",
+    isCalls: true,
+    steps: [
+      { type: 'info', title: 'How the calls work', body: "Three a week — Monday, Wednesday, Friday. Each is one focused project (logo refresh, menu redesign, etc.). Come live to do it with the group, or watch the recording later. No homework, no pressure." },
+      { type: 'info', title: 'This week', body: "Mon — Logo refresh without losing the soul (10am ET)\nWed — Menu redesign, live (2pm ET)\nFri — Apply your brand to actual stuff (12pm ET)" },
+      { type: 'checklist', title: 'Get set up for calls', body: "", items: ["Added the weekly Google Meet link to your calendar","Joined the community","Picked your first call to attend","Said hi in the group"] },
+      { type: 'info', title: "See you on a call", body: "The recordings live in your library forever. Join one when it fits — that's the whole point." }
+    ]
+  }
+};
+
+
   // ROUTES — definitions for each workspace
   // ============================================================
   const ROUTES = {
@@ -771,12 +1235,10 @@
 
     return `
       <div class="greeting-row">
-        <div>
-          <div class="greeting-sub">Tap anything in the stand to get started. Or use the menu →</div>
-        </div>
+        <div></div>
         <button class="pill" onclick="location.hash='#/calls'">
           <span class="pill-dot"></span>
-          Next call: Mon · 10am ET
+          Join the next group call · Mon 10am ET
         </button>
       </div>
 
@@ -785,46 +1247,226 @@
           ${hotspotHtml}
         </div>
         <div class="scene-footer">
-          <div>
-            <span class="scene-tip">tap anywhere on the stand to begin</span>
-            <span class="scene-tip-sub">or use the menu →</span>
-          </div>
-          <div style="display:inline-flex; align-items:center; gap:14px;">
-            <div class="scene-key">9 clickable areas · hover to discover</div>
-            <button class="debug-toggle" id="debug-toggle" onclick="toggleDebug()">show hotspots</button>
-          </div>
+          <span class="scene-tip">explore the stand to navigate your business</span>
+          <button class="debug-toggle" id="debug-toggle" onclick="toggleDebug()">show hotspots</button>
         </div>
       </div>
     `;
   }
 
+  // ============================================================
+  // WORKSPACE ENGINE
+  // ============================================================
+  // viewState tracks whether we're on a workspace's landing dashboard
+  // or inside a specific step. Reset when a new modal opens.
+  let wsView = { id: null, stepIndex: -1 }; // stepIndex -1 = landing
+
+  function wsProgress(id) {
+    const done = state.progress[id] || {};
+    return Object.keys(done).filter(k => done[k]).length;
+  }
+
   function renderModal(route, path) {
+    const id = path.replace('/', '');
+    const ws = WORKSPACES[id];
+
+    // If no rich workspace defined, fall back to a simple info panel
+    const inner = ws ? renderWorkspace(ws) : `
+      <div class="ws-header">
+        <div class="ws-header-eyebrow"><span style="width:6px;height:6px;border-radius:50%;background:var(--y);"></span>Workspace</div>
+        <h1>${escapeBreak(route.name)}</h1>
+        <p>${route.intro || ''}</p>
+      </div>
+      <div class="ws-body"><p>${route.what || ''}</p></div>`;
+
     return `
       <div class="modal-backdrop" id="modal-backdrop">
         <div class="modal-card" role="dialog" aria-modal="true" aria-label="${route.name}">
           <button class="modal-close" id="modal-close" aria-label="Close">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
-          <div class="ws-header">
-            <div class="ws-header-eyebrow">
-              <span style="width:6px;height:6px;border-radius:50%;background:var(--y);"></span>
-              Workspace
-            </div>
-            <h1>${escapeBreak(route.name)}</h1>
-            <p>${route.intro}</p>
-          </div>
-          <div class="ws-body">
-            <h2>What we'll do here</h2>
-            <p>${route.what}</p>
-            <p>This workspace is being built. The next session will turn it into a real illustrated walkthrough — scrollable, with prompts, with mini-tools, and with output that becomes a chapter of your shop's playbook.</p>
-            <div class="ws-coming-soon">
-              <span>🍌</span>
-              <span>being built right now — come back soon</span>
-            </div>
-          </div>
+          ${inner}
         </div>
       </div>
     `;
+  }
+
+  function renderWorkspace(ws) {
+    // Landing dashboard, or a step view
+    if (wsView.id !== ws.id) { wsView = { id: ws.id, stepIndex: -1 }; }
+    return wsView.stepIndex === -1 ? renderWsLanding(ws) : renderWsStep(ws, wsView.stepIndex);
+  }
+
+  function renderWsLanding(ws) {
+    const total = ws.steps.length;
+    const done = wsProgress(ws.id);
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const started = done > 0;
+
+    const stepRows = ws.steps.map((s, i) => {
+      const isDone = (state.progress[ws.id] || {})[i];
+      return `
+        <button class="ws-step-row ${isDone ? 'done' : ''}" data-ws-step="${i}">
+          <span class="ws-step-num">${isDone ? '✓' : (i + 1)}</span>
+          <span class="ws-step-title">${s.title}</span>
+          ${isDone ? '<span class="ws-step-check">done</span>' : ''}
+        </button>`;
+    }).join('');
+
+    return `
+      <div class="ws-header">
+        <div class="ws-header-eyebrow"><span style="width:6px;height:6px;border-radius:50%;background:var(--y);"></span>${ws.emoji} Workspace</div>
+        <h1>${escapeBreak(ws.name)}</h1>
+        <p>${ws.tagline}</p>
+        <div class="ws-progress-wrap">
+          <div class="ws-progress-track"><div class="ws-progress-fill" style="width:${pct}%"></div></div>
+          <div class="ws-progress-label">${done} of ${total} steps complete${pct === 100 ? ' — chapter done! 🎉' : ''}</div>
+        </div>
+      </div>
+      <div class="ws-body">
+        <p style="font-size:15.5px;line-height:1.7;">${ws.overview}</p>
+        <div class="ws-why"><strong>Why it matters:</strong> ${ws.why}</div>
+        <div class="ws-steps-grid">${stepRows}</div>
+        <button class="ws-start-btn" data-ws-step="${started ? firstUnfinished(ws) : 0}">
+          ${started ? (pct === 100 ? 'Review the steps →' : 'Continue where you left off →') : 'Start →'}
+        </button>
+      </div>`;
+  }
+
+  function firstUnfinished(ws) {
+    const done = state.progress[ws.id] || {};
+    for (let i = 0; i < ws.steps.length; i++) { if (!done[i]) return i; }
+    return 0;
+  }
+
+  function renderWsStep(ws, i) {
+    const s = ws.steps[i];
+    const total = ws.steps.length;
+    const isDone = (state.progress[ws.id] || {})[i];
+    const inputKey = ws.id + '_' + i;
+    const saved = state.inputs[inputKey] || '';
+
+    let inputHtml = '';
+    if (s.type === 'text' || s.type === 'upload') {
+      if (s.type === 'upload') {
+        inputHtml += `<div class="ws-upload" data-ws-upload><div class="ws-upload-icon">📎</div><div class="ws-upload-text">Click to upload (or just type below)</div><div class="ws-upload-sub">Photos, PDFs, or paste text — your call</div></div><div style="height:12px"></div>`;
+      }
+      inputHtml += `<textarea class="ws-input" id="ws-step-input" placeholder="${(s.placeholder||'').replace(/"/g,'&quot;')}">${saved.replace(/</g,'&lt;')}</textarea>`;
+    } else if (s.type === 'prompt') {
+      inputHtml = `
+        <div class="ws-prompt-box">
+          <div class="ws-prompt-label">📋 Copy this into Claude</div>
+          <div class="ws-prompt-text" id="ws-prompt-text">${s.prompt.replace(/</g,'&lt;')}</div>
+          <button class="ws-copy-btn" id="ws-copy-btn">Copy prompt</button>
+        </div>
+        <div class="ws-copy-hint">Paste it into Claude (or your AI tool), fill in the [brackets] with your details, and bring the result back here.</div>`;
+    } else if (s.type === 'checklist') {
+      const items = s.items.map((it, idx) => {
+        const checked = (state.inputs[inputKey + '_' + idx]);
+        return `<button class="ws-check-item ${checked ? 'checked' : ''}" data-ws-check="${idx}"><span class="ws-check-box">${checked ? '✓' : ''}</span><span class="ws-check-label">${it}</span></button>`;
+      }).join('');
+      inputHtml = `<div class="ws-check-list">${items}</div>`;
+    } else if (s.type === 'choice') {
+      inputHtml = `<div class="ws-choice-row">${s.choices.map(c => `<button class="ws-choice ${saved === c ? 'selected' : ''}" data-ws-choice="${c.replace(/"/g,'&quot;')}">${c}</button>`).join('')}</div>`;
+    }
+
+    const isLast = i === total - 1;
+    return `
+      <div class="ws-header">
+        <div class="ws-header-eyebrow"><span style="width:6px;height:6px;border-radius:50%;background:var(--y);"></span>${ws.emoji} ${ws.name}</div>
+        <h1 style="font-size:clamp(22px,3vw,32px);">${ws.name}</h1>
+      </div>
+      <div class="ws-body">
+        <div class="ws-step-view">
+          <div class="ws-step-counter">Step ${i + 1} of ${total}</div>
+          <div class="ws-step-h">${s.title}</div>
+          <div class="ws-step-body">${(s.body || '').replace(/\n/g,'<br>')}</div>
+          ${inputHtml}
+          <div class="ws-nav">
+            <button class="ws-nav-btn" id="ws-back" ${i === 0 ? '' : ''}>${i === 0 ? '← Overview' : '← Back'}</button>
+            ${isLast
+              ? `<button class="ws-nav-btn done-btn" id="ws-finish">Finish chapter ✓</button>`
+              : `<button class="ws-nav-btn primary" id="ws-next">${isDone ? 'Next →' : 'Mark done & continue →'}</button>`}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function gotoWsStep(i) { wsView.stepIndex = i; rerenderModalBody(); }
+  function gotoWsLanding() { wsView.stepIndex = -1; rerenderModalBody(); }
+
+  function markStepDone(ws, i) {
+    if (!state.progress[ws.id]) state.progress[ws.id] = {};
+    state.progress[ws.id][i] = true;
+    saveState();
+  }
+
+  // Re-render just the modal card contents (keeps backdrop, avoids full page flicker)
+  function rerenderModalBody() {
+    const path = (location.hash || '#/').replace(/^#/, '') || '/';
+    const id = path.replace('/', '');
+    const ws = WORKSPACES[id];
+    const card = document.querySelector('.modal-card');
+    if (!ws || !card) return;
+    const closeBtn = `<button class="modal-close" id="modal-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;
+    card.innerHTML = closeBtn + renderWorkspace(ws);
+    wireWsInner(ws);
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+  }
+
+  function wireWsInner(ws) {
+    // Landing: step rows + start button
+    document.querySelectorAll('[data-ws-step]').forEach(el => {
+      el.addEventListener('click', () => gotoWsStep(parseInt(el.dataset.wsStep, 10)));
+    });
+    // Step nav
+    const back = document.getElementById('ws-back');
+    if (back) back.addEventListener('click', () => {
+      saveCurrentInput(ws);
+      wsView.stepIndex === 0 ? gotoWsLanding() : gotoWsStep(wsView.stepIndex - 1);
+    });
+    const next = document.getElementById('ws-next');
+    if (next) next.addEventListener('click', () => {
+      saveCurrentInput(ws); markStepDone(ws, wsView.stepIndex); gotoWsStep(wsView.stepIndex + 1);
+    });
+    const finish = document.getElementById('ws-finish');
+    if (finish) finish.addEventListener('click', () => {
+      saveCurrentInput(ws); markStepDone(ws, wsView.stepIndex); gotoWsLanding();
+    });
+    // Copy prompt
+    const copy = document.getElementById('ws-copy-btn');
+    if (copy) copy.addEventListener('click', () => {
+      const txt = document.getElementById('ws-prompt-text').innerText;
+      navigator.clipboard.writeText(txt).then(() => { copy.textContent = 'Copied! ✓'; setTimeout(() => copy.textContent = 'Copy prompt', 1800); });
+    });
+    // Checklist items
+    document.querySelectorAll('[data-ws-check]').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = el.dataset.wsCheck;
+        const key = ws.id + '_' + wsView.stepIndex + '_' + idx;
+        state.inputs[key] = !state.inputs[key];
+        saveState();
+        el.classList.toggle('checked');
+        el.querySelector('.ws-check-box').textContent = state.inputs[key] ? '✓' : '';
+      });
+    });
+    // Choices
+    document.querySelectorAll('[data-ws-choice]').forEach(el => {
+      el.addEventListener('click', () => {
+        state.inputs[ws.id + '_' + wsView.stepIndex] = el.dataset.wsChoice;
+        saveState();
+        document.querySelectorAll('[data-ws-choice]').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+      });
+    });
+    // Upload placeholder (no real upload yet — focuses the textarea)
+    const up = document.querySelector('[data-ws-upload]');
+    if (up) up.addEventListener('click', () => { const t = document.getElementById('ws-step-input'); if (t) t.focus(); });
+  }
+
+  function saveCurrentInput(ws) {
+    const t = document.getElementById('ws-step-input');
+    if (t) { state.inputs[ws.id + '_' + wsView.stepIndex] = t.value; saveState(); }
   }
 
   function closeModal() {
@@ -844,6 +1486,11 @@
     // Escape key closes modal (one listener, replaced each open)
     document.removeEventListener('keydown', escHandler);
     document.addEventListener('keydown', escHandler);
+
+    // Wire the workspace engine (landing rows, start button, etc.)
+    const path = (location.hash || '#/').replace(/^#/, '') || '/';
+    const ws = WORKSPACES[path.replace('/', '')];
+    if (ws) { wsView = { id: ws.id, stepIndex: -1 }; wireWsInner(ws); }
   }
   function escHandler(e) {
     if (e.key === 'Escape') closeModal();
