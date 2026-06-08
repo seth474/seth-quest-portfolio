@@ -428,12 +428,12 @@
     text-align:center; position:relative;
   }
   .testimonial .t-label{
-    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em;
+    font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; letter-spacing:0.2em;
     text-transform:uppercase; color:var(--amber); display:block; margin-bottom:14px;
   }
   .testimonial blockquote{
     font-family:'Inter Tight',sans-serif; font-weight:400; font-style:normal;
-    font-size:clamp(19px,2.4vw,32px); line-height:1.32; letter-spacing:-0.02em;
+    font-size:clamp(17px,2.1vw,28px); line-height:1.32; letter-spacing:-0.02em;
     color:var(--bone); max-width:46ch; margin:0 auto;
   }
   .testimonial .t-attr{
@@ -463,7 +463,7 @@
   }
   .interstitial--big em{font-style:italic; color:var(--amber);}
   .interstitial--big .big-q{font-size:clamp(40px,7vw,80px); line-height:1.08; margin:0 auto;}
-  .interstitial--big .big-a{font-family:'Inter Tight',sans-serif; font-size:clamp(16px,1.8vw,21px); line-height:1.55; color:var(--bone-dim); max-width:48ch; margin:26px auto 0;}
+  .interstitial--big .big-a{font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2.1vw,26px); line-height:1.5; color:var(--bone-dim); max-width:52ch; margin:26px auto 0;}
   .interstitial--statement{display:flex; gap:30px; align-items:flex-start; max-width:1060px;}
   .interstitial--statement .bar{width:2px; flex:0 0 auto; align-self:stretch; background:var(--amber);}
   .interstitial--statement p{
@@ -568,7 +568,7 @@
   .ainative .ai-lead em{color:var(--amber); font-style:italic;}
   .ainative .ai-lead.second{margin-top:64px; font-size:clamp(46px,7vw,80px); line-height:1.1; max-width:20ch;}
   .ainative .ai-body{margin:0 0 6px; font-family:'Inter Tight',sans-serif; font-size:clamp(16.5px,1.8vw,20px); line-height:1.62; color:var(--bone-dim); max-width:62ch; text-wrap:pretty;}
-  .work-intro{margin:16px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch; text-wrap:balance;}
+  .work-intro{margin:30px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch; text-wrap:balance;}
   /* ===== 60-SECOND SNAPSHOT ===== */
   .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:14px; white-space:nowrap; background:var(--ink); color:var(--bone); border:1px solid var(--amber); font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:9px 11px 9px 26px; border-radius:40px; cursor:pointer; transition:all .2s ease; animation:ctaPulse 2.4s infinite;}
   @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:8px 9px 8px 20px; gap:11px;} .snap-trigger .play{width:28px; height:28px; font-size:11px;} }
@@ -671,8 +671,8 @@
   <section id="work" class="section wrap">
     <div class="section-title reveal">
       <span class="num">Portfolio</span>
-      <h2>Six Selected <em>Projects</em></h2>
-      <p class="work-intro">Every project here was taken from concept to launch.<br><br>Concept development, design, rapid prototyping, and&nbsp;build.</p>
+      <h2>Selected <em>Projects</em></h2>
+      <p class="work-intro">Every project here was taken from concept to launch: design, rapid prototyping, iteration, and continuous shipping and testing.</p>
     </div>
 
     <div class="modules">
@@ -710,7 +710,7 @@
 
       <div class="interstitial interstitial--big reveal">
         <p class="big-q">I help companies become <em>AI-native</em>.</p>
-        <p class="big-a">Most companies use AI for productivity. I weave it into your team's foundational workflows.</p>
+        <p class="big-a">Companies are using AI for productivity gains. I weave it into your team's foundational workflows, supporting the transition to being truly AI-native.</p>
       </div>
 
 <article class="module reveal">
@@ -746,7 +746,7 @@
 
             <div class="interstitial interstitial--statement reveal">
         <div class="bar"></div>
-        <p>Over the last twelve months, I've gone on an <em>obsessive deep dive</em> into AI software, becoming highly proficient with the best tools.</p>
+        <p>Over the last two years, I've gone on an <em>obsessive deep dive into AI</em>, becoming highly proficient with the best tools.</p>
       </div>
 
       <article class="module reveal">
@@ -833,7 +833,7 @@
       </article>
 
       <div class="interstitial interstitial--big reveal">
-        <p>Most companies aren't behind on AI &mdash; they're <em>overwhelmed</em> by the options. My job is to clarify.</p>
+        <p>Most companies are overwhelmed by all the AI options. My role is to clarify and <em>implement the best</em>.</p>
       </div>
 
       <article class="module reveal">
@@ -913,12 +913,12 @@
     <p class="contact-sub reveal">I'd love to hear about it.</p>
     <a class="contact-email" href="mailto:seth@sethquest.com">seth@sethquest.com</a>
     <div class="contact-bar reveal">
-      <a class="cb-resume" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
       <div class="cb-actions">
+        <a class="cb-resume" href="/seth-quest-resume.pdf" download="Seth-Quest-Resume.pdf">Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
         <a class="cb-icon" href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M4.8 0H19.2A4.8 4.8 0 0 1 24 4.8V19.2A4.8 4.8 0 0 1 19.2 24H4.8A4.8 4.8 0 0 1 0 19.2V4.8A4.8 4.8 0 0 1 4.8 0ZM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
         <a class="cb-icon" href="https://www.instagram.com/sethquest/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
-        <button class="cb-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
       </div>
+      <button class="cb-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
     </div>
   </section>
 
