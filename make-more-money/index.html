@@ -11,97 +11,153 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   /* EDIT: video -> set data-youtube="VIDEO_ID" on #vsl */
-  :root{--ink:#0a0a0a;--ink2:#131313;--paper:#fff;--green:#2BE36B;--leak:#ff4d4d;--muted:#8a8a8a;--line:#262626}
+  :root{--ink:#0a0a0a;--paper:#fff;--green:#2BE36B;--leak:#ff4d4d;--muted:#8a8a8a;--line:#262626}
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
-  body{background:var(--ink);color:#fff;font-family:Inter,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;padding-bottom:84px}
+  body{background:var(--ink);color:#fff;font-family:Inter,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;padding-bottom:76px}
   a{color:inherit}
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
   .d{font-family:"Bebas Neue",Oswald,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.9;text-transform:uppercase}
   .g{color:var(--green)}
 
-  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:760px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1120px;margin:0 auto}
   header .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
   header .ph{font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid #fff;padding:6px 10px;border-radius:6px}
 
-  .hero{position:relative;padding:14px 0 40px;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#1b1b1b 1px,transparent 1px),linear-gradient(90deg,#1b1b1b 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 20%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 30%,transparent 75%);pointer-events:none}
-  .hero .wrap{position:relative}
-  .hero .kick{font-size:clamp(30px,8.4vw,54px);color:#d8d8d8}
-  .hero h1{font-size:clamp(78px,23.5vw,156px);margin:6px 0 16px}
-  .hero .sub{font-size:19px;max-width:32ch;color:#e6e6e6}
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:10px 0 48px}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#1b1b1b 1px,transparent 1px),linear-gradient(90deg,#1b1b1b 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 30% 30%,#000 25%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 30% 30%,#000 25%,transparent 70%);pointer-events:none}
+  .hgrid{position:relative;display:grid;gap:30px}
+  .hero .kick{font-size:clamp(30px,8.4vw,52px);color:#d8d8d8}
+  .hero h1{font-size:clamp(80px,24vw,170px);margin:6px 0 18px}
+  .hero .sub{font-size:19px;max-width:30ch;color:#e6e6e6}
   .hero .sub b{color:var(--ink);background:var(--green);padding:0 5px;border-radius:2px}
-
-  #vsl{margin:26px auto 0;max-width:380px;aspect-ratio:9/16;background:#000;border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;box-shadow:0 0 0 6px #111,0 30px 80px rgba(43,227,107,.12)}
-  #vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  #vsl .ph-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px;gap:14px}
-  #vsl .ph-card .d{font-size:56px}
-  #vsl .ph-card p{color:#aaa;font-size:15px}
-  .vlabel{text-align:center;font-weight:800;font-size:12px;letter-spacing:.16em;margin-top:12px;color:var(--muted)}
-
-  .ctas{display:grid;gap:10px;margin:24px 0 4px}
-  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 18px;border-radius:10px;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+  .ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;max-width:460px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 18px;border-radius:10px;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .15s}
+  .btn:active{transform:scale(.97)}
   .btn.p{background:var(--green);color:var(--ink)}
   .btn.o{border:1.5px solid #fff;color:#fff;background:transparent}
   .btn.k{background:var(--ink);color:#fff}
-  .ctas small{text-align:center;color:var(--muted);font-size:14px;grid-column:1/-1}
+  .sched{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:#cfcfcf;font-weight:700;font-size:15px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px}
+  .sched:hover{color:#fff;border-color:var(--green)}
+  .phone{justify-self:center;width:100%;max-width:300px}
+  #vsl{aspect-ratio:9/16;background:#000;border:1px solid #333;border-radius:28px;overflow:hidden;position:relative;box-shadow:0 0 0 8px #141414,0 0 0 9px #2a2a2a,0 30px 90px rgba(43,227,107,.16)}
+  #vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #vsl .ph-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px;gap:12px}
+  #vsl .ph-card .d{font-size:50px}
+  #vsl .ph-card p{color:#aaa;font-size:14px}
+  .vlabel{text-align:center;font-weight:800;font-size:12px;letter-spacing:.16em;margin-top:16px;color:var(--muted)}
 
-  section{padding:56px 0}
-  .step{border-top:1px solid var(--line)}
-  .num{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.14em;color:var(--green)}
+  /* FUNNEL (HOW IT WORKS) */
+  .hiw{border-top:1px solid var(--line);padding:40px 0 30px}
+  .hiw .top{max-width:980px;margin:0 auto 10px;padding:0 16px}
+  .stage{position:relative;height:min(calc(100svh - 96px),860px);min-height:600px;max-width:980px;margin:0 auto;padding:14px 16px 10px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:18px;background:#0b0b0b}
+  .stage>.cap,.stage>.chips,.stage>#fc,.stage>.sbar{transition:filter .6s,opacity .6s}
+  .stage.locked>.cap,.stage.locked>.chips,.stage.locked>#fc,.stage.locked>.sbar{filter:blur(7px);opacity:.45;pointer-events:none}
+  .playov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:3;text-align:center;padding:20px}
+  .stage:not(.locked) .playov{display:none}
+  .playbtn{width:108px;height:108px;border-radius:50%;background:var(--green);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(43,227,107,.6);animation:pulse 1.6s infinite}
+  .playbtn svg{width:40px;height:40px;margin-left:6px}
+  .playov .d{font-size:clamp(34px,8vw,54px)}
+  .playov small{color:#aaa;font-size:14px}
+  .cap{position:relative;min-height:96px}
+  .cap h3{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:clamp(34px,9vw,58px);line-height:.95;text-transform:uppercase;padding-right:96px}
+  .cap p{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;color:#9a9a9a;margin-top:6px;min-height:1.4em}
+  .cur{display:inline-block;width:.5em;height:.85em;background:var(--green);margin-left:4px;vertical-align:-.05em;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .ctl{position:absolute;top:2px;right:0;display:flex;gap:6px}
+  .ctl button{background:none;border:1px solid #333;color:#aaa;border-radius:8px;height:32px;min-width:36px;padding:0 9px;font:700 12px Inter,sans-serif;cursor:pointer}
+  .ctl button:hover{color:#fff;border-color:#666}
+  .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .chip{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;background:#0f0f0f;border:1px solid #262626;border-radius:10px;padding:7px 3px 6px;color:#6d6d6d;font:800 9.5px/1.15 Inter,sans-serif;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;text-align:center;min-height:54px;transition:border-color .25s,color .25s,box-shadow .25s,background .25s}
+  .chip .box{width:14px;height:14px;border:1.5px solid #555;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink);transition:all .25s}
+  .chip .w{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:9px;color:#4d4d4d;text-transform:none}
+  .chip.on{border-color:var(--green);color:#fff;background:#0f1a12;box-shadow:0 0 14px rgba(43,227,107,.22)}
+  .chip.on .box{background:var(--green);border-color:var(--green)}
+  .chip.on .box::after{content:"✓";font-weight:800}
+  .chip.on .w{color:var(--green)}
+  .chip.pop{animation:pop .45s}
+  @keyframes pop{40%{transform:scale(1.1)}}
+  #fc{flex:1;min-height:0;width:100%;display:block}
+  .sbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+  .st .n{font-family:"Bebas Neue",sans-serif;font-size:42px;line-height:.85}
+  .st .l{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+  .st.bad .n{color:var(--leak)} .st.good .n{color:var(--green)}
+  .sbtns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .sbtns .btn{min-height:46px;font-size:15px;padding:0 14px}
+  .sbtns .btn[hidden]{display:none}
+  .pulse{animation:pulse 1.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,227,107,.6)}70%{box-shadow:0 0 0 14px rgba(43,227,107,0)}100%{box-shadow:0 0 0 0 rgba(43,227,107,0)}}
+
+  /* POPUP */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal[hidden]{display:none}
+  .mcard{position:relative;max-width:440px;width:100%;background:#0f0f0f;border:1px solid var(--green);border-radius:18px;padding:28px 22px 20px;box-shadow:0 30px 90px rgba(43,227,107,.2);animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rise{from{transform:translateY(20px);opacity:0}}
+  .mcard .d{font-size:44px}
+  .mcard p{color:#cfcfcf;margin:10px 0 18px}
+  .mcard .ctas{grid-template-columns:1fr;max-width:none;margin-top:0}
+  .mx{position:absolute;top:10px;right:12px;background:none;border:0;color:#888;font-size:26px;cursor:pointer;line-height:1}
+  .mno{display:block;margin:12px auto 0;background:none;border:0;color:#777;font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:underline}
+
+  /* KEYNOTE SLIDES */
+  .slide{min-height:100svh;display:flex;align-items:center;border-top:1px solid var(--line);padding:60px 0}
+  .sgrid{display:grid;gap:10px;align-items:center;width:100%}
+  .bign{font-family:"Bebas Neue",sans-serif;font-size:clamp(150px,44vw,360px);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--green);text-shadow:0 0 60px rgba(43,227,107,.18)}
+  .slide h2{font-size:clamp(56px,15vw,110px);margin-bottom:18px}
+  .pts{list-style:none;display:grid;gap:12px}
+  .pts li{border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px 52px;position:relative;background:#0f0f0f}
+  .pts li::before{content:"";position:absolute;left:20px;top:25px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .pts b{display:block;font-size:19px}
+  .pts span{color:#aaa;font-size:15px}
+  .js .rev{opacity:0;transform:translateX(-40px)}
+  .js .in .rev{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+
+  /* REST */
+  section.pad{padding:72px 0}
   h2{font-size:clamp(52px,14vw,96px);margin:4px 0 14px}
   .lead{font-size:19px;color:#cfcfcf;max-width:36ch}
-  .pts{list-style:none;display:grid;gap:12px;margin-top:22px}
-  .pts li{border:1px solid var(--line);border-radius:12px;padding:16px 16px 16px 48px;position:relative;background:#0f0f0f}
-  .pts li::before{content:"";position:absolute;left:18px;top:21px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-  .pts b{display:block;font-size:18px}
-  .pts span{color:#aaa;font-size:15px}
-
-  .fbox{margin-top:22px;border:1px solid var(--line);border-radius:16px;background:#0c0c0c;overflow:hidden}
-  #fcanvas{display:block;width:100%;height:580px}
-  .fbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
-  .stat .n{font-family:"Bebas Neue",sans-serif;font-size:52px;line-height:.9}
-  .stat .l{font-size:13px;color:var(--muted)}
-  .stat.bad .n{color:var(--leak)} .stat.good .n{color:var(--green)}
-  #plug{min-height:52px;font-size:16px}
-  .fnote{font-size:13px;color:var(--muted);margin-top:10px}
-
-  .how{background:var(--paper);color:var(--ink)}
-  .how .num{color:#0f9a45}
-  .steps{list-style:none;display:grid;gap:22px;counter-reset:s;margin-top:18px}
-  .steps li{display:grid;grid-template-columns:58px 1fr;gap:14px;align-items:start}
-  .steps li::before{counter-increment:s;content:counter(s);font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.85;color:var(--ink)}
-  .steps b{display:block;font-size:20px}
-  .steps span{color:#555}
-  .how .ctas .o{border-color:var(--ink);color:var(--ink)}
-
-  .price .big{font-size:clamp(96px,30vw,180px)}
-  .price .big small{font-size:.35em}
-  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-  .vs div{border:1px solid var(--line);border-radius:12px;padding:14px}
-  .vs .d{font-size:48px}
-  .vs span{font-size:14px;color:var(--muted)}
-
+  .eyebrow{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.14em;color:var(--green)}
+  .split{display:grid;gap:14px;margin-top:26px;align-items:stretch}
+  .or{display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:28px;color:#777}
+  .or span{width:58px;height:58px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center;background:var(--ink)}
+  .card{border:1px solid var(--line);border-radius:18px;padding:24px 20px;background:#0f0f0f}
+  .card.hot{border-color:var(--green);box-shadow:0 0 40px rgba(43,227,107,.08)}
+  .card .tag{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+  .card .big{font-family:"Bebas Neue",sans-serif;font-size:88px;line-height:.9;margin:6px 0}
+  .card .big small{font-size:.38em}
+  .card h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:44px;line-height:.95;margin:6px 0 8px}
+  .card p{color:#bdbdbd}
+  .ticks{list-style:none;display:grid;gap:8px;margin-top:14px}
+  .ticks li{padding-left:24px;position:relative;color:#dcdcdc}
+  .ticks li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .plist{list-style:none;margin-top:12px}
+  .plist li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed #2a2a2a;font-weight:600}
+  .plist li span{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--green);white-space:nowrap}
+  .fine{font-size:13px;color:var(--muted);margin-top:12px}
+  .card .ctas{grid-template-columns:1fr 1fr;max-width:none}
   .guar{background:var(--green);color:var(--ink)}
   .guar .lead{color:var(--ink)}
-
-  .final{text-align:center}
-  .final h2{font-size:clamp(76px,21vw,140px)}
   footer{padding:26px 20px 40px;text-align:center;font-weight:800;letter-spacing:.1em;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
-
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .bar a{min-height:52px;font-size:17px}
+  .bar a{min-height:50px;font-size:17px}
 
-  @media (min-width:780px){
+  @media (min-width:860px){
     body{padding-bottom:0}
     .bar{display:none}
-    .ctas{grid-template-columns:1fr 1fr}
-    .pts{grid-template-columns:1fr 1fr 1fr}
-    #fcanvas{height:640px}
+    .hgrid{grid-template-columns:1.35fr .65fr;align-items:center;min-height:calc(100svh - 80px)}
+    .hero h1{font-size:min(12.5vw,178px)}
+    .phone{max-width:290px}
+    .chip{font-size:11px;min-height:58px}
+    .chip .w{font-size:10px}
+    .sgrid{grid-template-columns:.8fr 1.2fr;gap:40px}
+    .split{grid-template-columns:1fr 70px 1fr}
+    .bign{text-align:center}
   }
+  @media (prefers-reduced-motion:reduce){.js .rev{opacity:1;transform:none}.cur,.pulse{animation:none}}
 </style>
 </head>
 <body>
@@ -112,125 +168,194 @@
 </header>
 
 <main>
+  <!-- HERO -->
   <div class="hero">
-    <div class="wrap">
-      <div class="d kick">Get more leads<span class="g">.</span><br>Close more sales<span class="g">.</span></div>
-      <h1 class="d">Make more money<span class="g">.</span></h1>
-      <p class="sub">I work with local businesses to <b>implement AI &amp; get real results.</b> Guaranteed or you don't pay.</p>
-
-      <div id="vsl" data-youtube="">
-        <div class="ph-card">
-          <div class="d">60 seconds<span class="g">.</span></div>
-          <p>Video's dropping soon. Faster version: it's 1, 2, 3. Scroll down.</p>
+    <div class="wrap hgrid">
+      <div>
+        <div class="d kick">Get more leads<span class="g">.</span><br>Close more sales<span class="g">.</span></div>
+        <h1 class="d">Make more money<span class="g">.</span></h1>
+        <p class="sub">I work with local businesses to <b>implement AI &amp; get real results.</b> Guaranteed or you don't pay.</p>
+        <div class="ctas">
+          <a class="btn p" href="tel:+19348990796">📞 Call Seth</a>
+          <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text Seth</a>
         </div>
+        <a class="sched" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20my%20free%2030-minute%20sales%20funnel%20audit.%20My%20business%20is%3A%20">📅 Book a free 30-minute sales funnel audit →</a>
       </div>
-      <div class="vlabel">▶ 60-SECOND VIDEO</div>
-
-      <div class="ctas">
-        <a class="btn p" href="tel:+19348990796">📞 Call Seth</a>
-        <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text Seth</a>
-        <small>15 minutes. Straight answers. No contract.</small>
+      <div class="phone">
+        <div id="vsl" data-youtube="">
+          <div class="ph-card">
+            <div class="d">60 seconds<span class="g">.</span></div>
+            <p>Video's dropping soon. Scroll down and hit play on your sales funnel.</p>
+          </div>
+        </div>
+        <div class="vlabel">▶ 60-SECOND VIDEO</div>
       </div>
     </div>
   </div>
 
   <!-- 1 -->
-  <section class="step">
-    <div class="wrap">
-      <div class="num">01</div>
-      <h2 class="d">Get more leads<span class="g">.</span></h2>
-      <p class="lead">More of the right people finding you and calling.</p>
-      <ul class="pts">
-        <li><b>Google Business Profile</b><span>The first thing people see when they Google you. Reviews, photos, services, towns.</span></li>
-        <li><b>Google Ads</b><span>Show up first when someone searches your trade in your town.</span></li>
-        <li><b>Facebook &amp; Instagram ads</b><span>Short videos of your real work, shown to homeowners nearby.</span></li>
-      </ul>
+  <section class="slide">
+    <div class="wrap sgrid">
+      <div class="bign rev">1</div>
+      <div>
+        <h2 class="d rev">Get more leads<span class="g">.</span></h2>
+        <ul class="pts">
+          <li class="rev" style="--d:.15s"><b>Google Business Profile</b><span>The first thing people see when they Google you. Reviews, photos, services, towns.</span></li>
+          <li class="rev" style="--d:.3s"><b>Google Ads</b><span>Show up first when someone searches your trade in your town.</span></li>
+          <li class="rev" style="--d:.45s"><b>Facebook / Instagram ads</b><span>Short videos of your real work, shown to homeowners nearby.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- 2 -->
-  <section class="step">
-    <div class="wrap">
-      <div class="num">02</div>
-      <h2 class="d">Close more sales<span class="g">.</span></h2>
-      <p class="lead">Your sales funnel is leaking. Grey holes are normal, every business has them. <span style="color:#ff6e6e">Red holes are jobs you should be winning.</span></p>
-
-      <div class="fbox">
-        <canvas id="fcanvas" role="img" aria-label="Animated sales funnel. Leads fall in from Google profile, Google Ads, Facebook and Instagram, referrals and yard signs. Grey holes every business has: just looking, went with someone else, not ready yet. Red holes you can fix: poorly converting website, too many steps to book, missed calls, slow quotes, no follow-up. With the red holes open about 3 in 100 leads become paid jobs; fixed, about 9."></canvas>
-        <div class="fbar">
-          <div class="stat bad" id="statbox"><div class="n" id="jobs">3</div><div class="l" id="statl">paid jobs from every 100 leads</div></div>
-          <button class="btn p" id="plug" type="button">Fix your sales funnel →</button>
-        </div>
+  <section class="slide">
+    <div class="wrap sgrid">
+      <div class="bign rev">2</div>
+      <div>
+        <h2 class="d rev">Close more sales<span class="g">.</span></h2>
+        <ul class="pts">
+          <li class="rev" style="--d:.15s"><b>A website built to convert</b><span>Modern, fast, one tap to call. Not one from 1998.</span></li>
+          <li class="rev" style="--d:.3s"><b>Book in one tap, quote same day</b><span>No phone tag. No week-long wait for a price.</span></li>
+          <li class="rev" style="--d:.45s"><b>Every call answered, every lead followed up</b><span>Missed calls get a text back. Every quote gets chased. One place to see every lead and your close rate.</span></li>
+        </ul>
       </div>
-      <p class="fnote">Illustration, not your numbers. Your real holes are what I find when we talk.</p>
-
-      <ul class="pts">
-        <li><b>A website built to convert</b><span>Modern, fast, one tap to call. Not one people leave.</span></li>
-        <li><b>Book in one tap, quote same day</b><span>No phone tag. No week-long wait for a price.</span></li>
-        <li><b>Every call answered, every lead followed up</b><span>Missed calls get a text back. Every quote gets chased. One place to see every lead and your close rate.</span></li>
-      </ul>
     </div>
   </section>
 
   <!-- 3 -->
-  <section class="step">
-    <div class="wrap">
-      <div class="num">03</div>
-      <h2 class="d">Make more money<span class="g">.</span></h2>
-      <p class="lead">1 and 2 bring in more jobs. Then we make every job worth more.</p>
-      <ul class="pts">
-        <li><b>AI on your numbers</b><span>Biggest costs, truck routes, and whether you're charging enough.</span></li>
-        <li><b>A brand that looks the part</b><span>Truck, shirts, yard signs, door hangers, cards. All matching, all modern.</span></li>
-        <li><b>Keep improving</b><span>Every week, the next thing that makes you money.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- HOW -->
-  <section class="how">
-    <div class="wrap">
-      <div class="num">It's that simple</div>
-      <h2 class="d">How it works<span style="color:var(--green)">.</span></h2>
-      <ol class="steps">
-        <li><div><b>Call or text me.</b><span>Or grab me when I stop by your shop.</span></div></li>
-        <li><div><b>Free look at your business.</b><span>15 minutes, in person or on the phone. I show you where the money is.</span></div></li>
-        <li><div><b>Pick what we work on.</b><span>Start with the thing that pays you back fastest.</span></div></li>
-      </ol>
-      <div class="ctas">
-        <a class="btn k" href="tel:+19348990796">📞 Call 934-899-0796</a>
-        <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text me</a>
+  <section class="slide">
+    <div class="wrap sgrid">
+      <div class="bign rev">3</div>
+      <div>
+        <h2 class="d rev">Make more money<span class="g">.</span></h2>
+        <ul class="pts">
+          <li class="rev" style="--d:.15s"><b>AI on your numbers</b><span>Biggest costs, truck routes, and whether you're charging enough.</span></li>
+          <li class="rev" style="--d:.3s"><b>A brand that looks the part</b><span>Truck, shirts, yard signs, door hangers, cards. All matching, all modern.</span></li>
+          <li class="rev" style="--d:.45s"><b>Keep improving</b><span>Every week, the next thing that makes you money.</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- PRICE -->
-  <section class="price">
-    <div class="wrap">
-      <div class="d big">$75<small>/hr</small></div>
-      <p class="lead">Or flat-rate per project. No corporate contracts. No bullshit.</p>
-      <div class="vs">
-        <div><div class="d">$130+</div><span>What you bill for a tech</span></div>
-        <div><div class="d g">$75</div><span>What I cost</span></div>
+  <!-- HOW IT WORKS: funnel -->
+  <section class="hiw" id="how">
+    <div class="top">
+      <div class="eyebrow">How it works</div>
+    </div>
+    <div class="stage locked" id="stage">
+      <div class="playov">
+        <button class="playbtn" id="playBtn" type="button" aria-label="Play: see where your jobs are going"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M6 4l14 8-14 8z"/></svg></button>
+        <div class="d">Where are your jobs going<span class="g">?</span></div>
+        <small>30 seconds · sound on 🔊</small>
+      </div>
+      <div class="cap">
+        <h3 id="capH">Where are your jobs going?</h3>
+        <p id="capP"></p>
+        <div class="ctl">
+          <button id="sndBtn" type="button" aria-label="Sound on">🔊</button>
+          <button id="replay" type="button" aria-label="Replay">↺ Replay</button>
+        </div>
+      </div>
+      <div class="chips" id="chips" aria-label="Lead sources. Tap to turn on or off."></div>
+      <canvas id="fc" role="img" aria-label="Animated sales funnel. Lead sources at the top send leads into the funnel. Bullets punch holes in it: poorly converting website, too many steps to book, missed calls, slow quotes, no follow-up, plus holes every business has: just looking, went with someone else, not ready yet. About 3 in 100 leads become paid jobs. Fixing the funnel makes it about 9. Adding more lead sources into the fixed funnel brings more jobs."></canvas>
+      <div class="sbar">
+        <div class="st"><div class="n" id="leadsN">0</div><div class="l">Leads / month</div></div>
+        <div class="st" id="jobsBox"><div class="n" id="jobsN">0</div><div class="l">Paid jobs / month</div></div>
+        <div class="sbtns">
+          <button class="btn p" id="fixBtn" type="button" hidden>Fix your sales funnel →</button>
+          <button class="btn p" id="fuelBtn" type="button" hidden>Add more lead sources →</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="guar">
+  <!-- PRICING -->
+  <section class="pad" id="pricing">
+    <div class="wrap">
+      <div class="eyebrow">No surprises</div>
+      <h2 class="d">Honest, upfront pricing<span class="g">.</span></h2>
+      <div class="split">
+        <div class="card">
+          <div class="tag">Hourly</div>
+          <div class="big">$75<small>/hr</small></div>
+          <p>Less than you bill for a tech. The easiest way to start working together.</p>
+          <ul class="ticks">
+            <li>Low commitment</li>
+            <li>2-hour minimum ($150)</li>
+            <li>You pick the work, stop anytime</li>
+            <li>No corporate contracts</li>
+          </ul>
+        </div>
+        <div class="or"><span>OR</span></div>
+        <div class="card hot">
+          <div class="tag">Flat rate per project</div>
+          <h3>Know the price before we start<span class="g">.</span></h3>
+          <ul class="plist">
+            <li>Missed-call text-back <span>from $150</span></li>
+            <li>Google Business Profile tune-up <span>from $225</span></li>
+            <li>Automatic review requests <span>from $225</span></li>
+            <li>Quote follow-up automation <span>from $300</span></li>
+            <li>Google Ads setup <span>from $450</span></li>
+            <li>Facebook / Instagram video ad <span>from $600</span></li>
+            <li>Website rebuild <span>from $750</span></li>
+            <li>Brand refresh: truck, signs, cards <span>from $750</span></li>
+          </ul>
+          <p class="fine">Exact price on the call, based on your business. Ad spend and software fees are separate and in your name.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guar pad">
     <div class="wrap">
       <h2 class="d">Guaranteed<span style="color:var(--ink)">.</span></h2>
       <p class="lead">Before any project, we write down the result it has to hit. If it doesn't hit it, you don't pay for it.</p>
     </div>
   </section>
 
-  <section class="final">
+  <!-- LET'S TALK -->
+  <section class="pad" id="talk">
     <div class="wrap">
-      <h2 class="d">Make more money<span class="g">.</span></h2>
-      <div class="ctas">
-        <a class="btn p" href="tel:+19348990796">📞 Call 934-899-0796</a>
-        <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text me</a>
+      <h2 class="d">Let's talk about your business<span class="g">.</span></h2>
+      <div class="split">
+        <div class="card">
+          <div class="tag">Curious?</div>
+          <h3>Call or text me<span class="g">.</span></h3>
+          <p>Happy to answer quick questions. No pressure.</p>
+          <div class="ctas">
+            <a class="btn p" href="tel:+19348990796">📞 Call</a>
+            <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20a%20quick%20question.%20My%20business%20is%3A%20">💬 Text</a>
+          </div>
+        </div>
+        <div class="or"><span>OR</span></div>
+        <div class="card hot">
+          <div class="tag">Serious?</div>
+          <h3>Free 30-minute sales funnel audit<span class="g">.</span></h3>
+          <p>I learn your business, find the holes, and show you exactly what to fix first.</p>
+          <div class="ctas" style="grid-template-columns:1fr">
+            <!-- CAL: swap this href for the Cal.com link when ready -->
+            <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20my%20free%2030-minute%20sales%20funnel%20audit.%20My%20business%20is%3A%20">📅 Book my free audit →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- POPUP after the funnel plays -->
+  <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="mcard">
+      <button class="mx" id="mClose" type="button" aria-label="Close">×</button>
+      <div class="eyebrow">Free · No obligation</div>
+      <div class="d" id="mTitle">Want me to find the holes in your funnel<span class="g">?</span></div>
+      <p>Free 30-minute sales funnel audit. I look at your leads, your holes, and what to fix first. No pressure.</p>
+      <div class="ctas">
+        <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20my%20free%2030-minute%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text me to book it</a>
+        <a class="btn o" href="tel:+19348990796">📞 Or call 934-899-0796</a>
+      </div>
+      <button class="mno" id="mNo" type="button">Not right now</button>
+    </div>
+  </div>
 </main>
 
 <footer>SETH QUEST · <a href="https://sethquest.com">SETHQUEST.COM</a> · CELL <a href="tel:+19348990796">934-899-0796</a></footer>
@@ -241,19 +366,85 @@
 </nav>
 
 <script>
+document.documentElement.classList.add('js');
+var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* video */
 (function(){
   var box=document.getElementById('vsl'), id=(box.getAttribute('data-youtube')||'').trim();
   if(!id) return;
   box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&playsinline=1" title="60-second video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 })();
 
-/* Sales funnel: people who find you fall in from 5 sources. Red holes are fixable leaks; grey holes (just looking,
-   not ready, went elsewhere) exist in every business and are never plugged. Tuned so broken = ~3, fixed = ~9 per 100 leads. */
+/* keynote slides: points slide in one at a time */
 (function(){
-  var cv=document.getElementById('fcanvas'), ctx=cv.getContext('2d');
-  var GREEN='#2BE36B', LEAK='#ff4d4d', GREY='#7a7a7a', BG='#0c0c0c';
-  var SOURCES=[['GOOGLE','PROFILE'],['GOOGLE','ADS'],['FACEBOOK','INSTAGRAM'],['REFERRALS',''],['YARD','SIGNS']];
-  // top to bottom; fix:true = red hole we can plug
+  var slides=document.querySelectorAll('.slide');
+  if(!('IntersectionObserver' in window)||REDUCE){slides.forEach(function(s){s.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});
+  slides.forEach(function(s){io.observe(s)});
+})();
+
+/* SOUND: all synthesized in the browser (no files). Original spy-style bass line, subtle SFX. */
+var SFX=(function(){
+  var AC=null,master=null,NB=null,muted=false,seq=null,step=0,mode='tense';
+  try{muted=localStorage.getItem('mmm-sound')==='off'}catch(e){}
+  function init(){
+    if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=muted?0:1;master.connect(AC.destination);
+      NB=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1}catch(e){AC=null}}
+    if(AC&&AC.state==='suspended')AC.resume();
+  }
+  function ok(){return AC&&!muted}
+  function tone(f,dur,type,vol,to,delay){if(!ok())return;var t=AC.currentTime+(delay||0),o=AC.createOscillator(),g=AC.createGain();o.type=type||'sine';
+    o.frequency.setValueAtTime(f,t);if(to)o.frequency.exponentialRampToValueAtTime(to,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.connect(g);g.connect(master);o.start(t);o.stop(t+dur+.05)}
+  function noise(dur,vol,f0,f1,type,delay){if(!ok())return;var t=AC.currentTime+(delay||0),s=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();
+    s.buffer=NB;fl.type=type||'bandpass';fl.frequency.setValueAtTime(f0,t);if(f1)fl.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    s.connect(fl);fl.connect(g);g.connect(master);s.start(t);s.stop(t+dur+.05)}
+  function bass(f){if(!ok())return;var t=AC.currentTime,o=AC.createOscillator(),fl=AC.createBiquadFilter(),g=AC.createGain();
+    o.type='sawtooth';o.frequency.value=f;fl.type='lowpass';fl.frequency.setValueAtTime(900,t);fl.frequency.exponentialRampToValueAtTime(220,t+.22);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.07,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.24);
+    o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+.3)}
+  var PAT={tense:[110,110,130.8,110,98,110,164.8,146.8],bright:[110,138.6,164.8,220,164.8,138.6,196,220]};
+  function beat(){var p=PAT[mode];bass(p[step%p.length]);if(step%2===0)noise(.03,.025,7000,null,'highpass');if(mode==='bright'&&step%4===0)tone(880,.18,'triangle',.02);step++}
+  return{
+    init:init,
+    muted:function(){return muted},
+    setMuted:function(m){muted=m;try{localStorage.setItem('mmm-sound',m?'off':'on')}catch(e){}if(master)master.gain.value=m?0:1},
+    music:function(on,m){if(m)mode=m;if(on&&!seq){step=0;seq=setInterval(beat,268)}if(!on&&seq){clearInterval(seq);seq=null}},
+    tick:function(){noise(.02,.035,4500,null,'highpass')},
+    pop:function(){tone(660,.12,'sine',.1,1320)},
+    whoosh:function(){noise(.22,.14,500,3500)},
+    thud:function(){tone(150,.22,'sine',.3,40);noise(.08,.08,1200,300,'lowpass')},
+    chime:function(){tone(1568,.22,'triangle',.035)},
+    rise:function(){[523,659,784,1047].forEach(function(f,i){tone(f,.28,'triangle',.07,null,i*.09)})},
+    hit:function(){tone(220,.5,'sawtooth',.05,110);noise(.4,.04,300,100,'lowpass')}
+  };
+})();
+
+/* FUNNEL (HOW IT WORKS): press play -> story runs -> popup */
+(function(){
+  var cv=document.getElementById('fc'), ctx=cv.getContext('2d'), stage=document.getElementById('stage');
+  var chipsEl=document.getElementById('chips'), capH=document.getElementById('capH'), capP=document.getElementById('capP');
+  var leadsN=document.getElementById('leadsN'), jobsN=document.getElementById('jobsN'), jobsBox=document.getElementById('jobsBox');
+  var fixBtn=document.getElementById('fixBtn'), fuelBtn=document.getElementById('fuelBtn'), replayBtn=document.getElementById('replay');
+  var playBtn=document.getElementById('playBtn'), sndBtn=document.getElementById('sndBtn');
+  var modal=document.getElementById('modal');
+  var GREEN='#2BE36B', LEAK='#ff4d4d', GREY='#7a7a7a';
+
+  var SRC=[
+    {n:'Google<br>Profile', w:20, def:1, big:'GOOGLE.'},
+    {n:'Website<br>/ SEO', w:25, def:1, big:'YOUR WEBSITE.'},
+    {n:'Referrals', w:30, def:1, big:'REFERRALS.'},
+    {n:'Yard<br>signs', w:15, def:1, big:'YARD SIGNS.'},
+    {n:'Truck<br>wrap', w:10, def:1, big:'YOUR TRUCK.'},
+    {n:'Google<br>Ads', w:20},
+    {n:'Facebook / Instagram ads', w:20},
+    {n:'ChatGPT<br>search', w:10},
+    {n:'Mailers', w:10},
+    {n:'Door<br>hangers', w:5}
+  ];
   var HOLES=[
     {fix:true, t:['POORLY','CONVERTING','WEBSITE'], f:['MODERN SITE','BUILT TO','CONVERT']},
     {fix:false,t:['JUST','LOOKING']},
@@ -264,101 +455,221 @@
     {fix:true, t:['NO','FOLLOW-UP'], f:['AUTOMATIC','FOLLOW-UP']},
     {fix:false,t:['NOT','READY YET']}
   ];
-  var GREY_RATE=[0,.55,0,0,.55,0,0,.55], RED_RATE=.197; // grey only: ~9 per 100 leads; red holes open: ~3
-  var N=HOLES.length, plugged=false, dots=[], flash=[], W=0,H=0, acc=0, running=false, last=0;
-  for(var q=0;q<N;q++)flash.push(0);
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var GREY_RATE=.55, RED_RATE=.197; // ~3 jobs per 100 leads broken, ~9 fixed
+  var N=HOLES.length;
+  var S, W=0,H=0, chipX=[], running=false, last=0, visible=false, played=false, playing=false, runId=0, lastChime=0;
 
-  function rate(i){return HOLES[i].fix?(plugged?0:RED_RATE):GREY_RATE[i]}
-  function paidPer100(){var s=1;for(var i=0;i<N;i++)s*=1-rate(i);return Math.round(s*100)}
-  function size(){var r=cv.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function geo(){var n=W<520;return{cx:W/2,top:96,bot:H-70,tw:W*(n?.5:.46),bw:W*(n?.15:.11),n:n}}
+  function reset(){
+    S={draw:0, holes:'none', open:[], labelA:[], flash:[], on:[], acc:[], dots:[], bullets:[], sparks:[], ov:null, shake:0};
+    for(var i=0;i<N;i++){S.open.push(false);S.labelA.push(0);S.flash.push(0)}
+    for(var j=0;j<SRC.length;j++){S.on.push(false);S.acc.push(0)}
+  }
+  reset();
+
+  SRC.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="box"></span><span>'+s.n+'</span><span class="w">+'+s.w+'</span>';
+    b.addEventListener('click',function(){SFX.init();setSource(i,!S.on[i]);if(S.draw<1)S.draw=1});
+    chipsEl.appendChild(b);
+  });
+  var chipEls=chipsEl.querySelectorAll('.chip');
+  function paintChips(){chipEls.forEach(function(c,i){c.classList.toggle('on',S.on[i]);c.setAttribute('aria-pressed',S.on[i]?'true':'false')})}
+  function setSource(i,on,big){
+    S.on[i]=on;var c=chipEls[i];paintChips();
+    if(on){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');SFX.pop();if(big)S.ov={text:big,t:0}}
+    stats();
+  }
+
+  function rate(i){if(!S.open[i]||S.holes==='none')return 0;return HOLES[i].fix?(S.holes==='fixed'?0:RED_RATE):GREY_RATE}
+  function conv(){var s=1;for(var i=0;i<N;i++)s*=1-rate(i);return s}
+  function leads(){var t=0;SRC.forEach(function(s,i){if(S.on[i])t+=s.w});return t}
+  function tween(el,to){var from=parseInt(el.textContent,10)||0,t0=performance.now();if(el._raf)cancelAnimationFrame(el._raf);
+    (function st(t){var k=Math.min(1,(t-t0)/600);el.textContent=Math.round(from+(to-from)*k);if(k<1)el._raf=requestAnimationFrame(st)})(t0)}
+  function stats(){
+    var L=leads(),J=Math.round(L*conv());tween(leadsN,L);tween(jobsN,J);
+    jobsBox.className='st'+(S.holes==='broken'?' bad':(L>0?' good':''));
+    fixBtn.hidden=S.holes==='none';
+    fixBtn.textContent=S.holes==='fixed'?'← Go back':'Fix your sales funnel →';
+    fixBtn.className='btn '+(S.holes==='fixed'?'o':'p pulse');
+    fuelBtn.hidden=!(S.holes==='fixed'&&S.on.some(function(x){return !x}));
+    if(REDUCE)staticFrame();
+  }
+
+  function size(){
+    var r=cv.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;
+    cv.width=Math.max(1,W*dpr);cv.height=Math.max(1,H*dpr);
+    chipX=[];chipEls.forEach(function(c){var b=c.getBoundingClientRect();chipX.push(b.left+b.width/2-r.left)});
+  }
+  function geo(){var n=W<520;return{cx:W/2,top:46,bot:H-44,tw:Math.min(W*(n?.5:.4),380),bw:Math.min(W*(n?.15:.1),90),n:n}}
   function half(g,y){var t=Math.max(0,Math.min(1,(y-g.top)/(g.bot-g.top)));return(g.tw+(g.bw-g.tw)*t)/2}
   function holeY(g,i){return g.top+(g.bot-g.top)*(i+.6)/N}
   function side(i){return i%2===0?-1:1}
-  function srcX(i){return W*(.1+i*.2)}
   function smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t)}
-  function pick(){for(var i=0;i<N;i++){if(Math.random()<rate(i))return i}return -1}
+  function repick(d){var g=geo();d.k=-1;for(var i=0;i<N;i++){if(holeY(g,i)>d.y+6&&Math.random()<rate(i)){d.k=i;break}}}
+  function spawn(src){var d={src:src,u:Math.random()*1.6-.8,y:-4,k:-1,st:0,x:chipX[src]||W/2,vx:0,vy:0,a:1,sp:80+Math.random()*30,r:2.3+Math.random()*1};repick(d);S.dots.push(d)}
 
-  function spawn(){dots.push({src:Math.floor(Math.random()*5),u:Math.random()*1.6-.8,y:40,k:pick(),st:0,x:0,vx:0,vy:0,a:1,sp:70+Math.random()*30,r:2.4+Math.random()*1})}
-  function update(dt){
-    var g=geo();acc+=dt*(g.n?16:22);while(acc>1){spawn();acc--}
-    for(var i=0;i<N;i++)flash[i]=Math.max(0,flash[i]-dt*1.6);
-    dots.forEach(function(d){
+  function update(dt,silent){
+    var g=geo(), K=g.n?.10:.13;
+    if(S.draw>=1){SRC.forEach(function(s,i){if(!S.on[i])return;S.acc[i]+=dt*s.w*K;while(S.acc[i]>1){spawn(i);S.acc[i]--}})}
+    for(var i=0;i<N;i++){S.flash[i]=Math.max(0,S.flash[i]-dt*1.6);if(S.open[i])S.labelA[i]=Math.min(1,S.labelA[i]+dt*2.5)}
+    if(S.ov){S.ov.t+=dt;if(S.ov.t>1.3)S.ov=null}
+    S.shake=Math.max(0,S.shake-dt);
+    S.dots.forEach(function(d){
       if(d.st===0){
         var py=d.y;d.y+=d.sp*dt;var u=d.u;
         if(d.k>=0){var hy=holeY(g,d.k),start=hy-(g.bot-g.top)/7,s=side(d.k);
           u=d.u+(s*.98-d.u)*smooth((d.y-start)/(hy-start));
-          if(py<hy&&d.y>=hy){d.st=1;d.red=HOLES[d.k].fix;d.x=g.cx+s*half(g,hy);d.vx=s*(30+Math.random()*40);d.vy=20+Math.random()*25;flash[d.k]=1}}
+          if(py<hy&&d.y>=hy){d.st=1;d.red=HOLES[d.k].fix;d.x=g.cx+s*half(g,hy);d.vx=s*(30+Math.random()*40);d.vy=20+Math.random()*25;S.flash[d.k]=1}}
         if(d.st===0){
-          if(d.y<g.top){var t=smooth((d.y-40)/(g.top-40));d.x=srcX(d.src)+((g.cx+u*g.tw/2)-srcX(d.src))*t}
+          if(d.y<g.top){var t=smooth(d.y/g.top);var sx=chipX[d.src]||g.cx;d.x=sx+((g.cx+u*g.tw/2)-sx)*t}
           else d.x=g.cx+u*half(g,d.y);
-          if(d.y>=g.bot){d.st=2;d.vy=70}
+          if(d.y>=g.bot){d.st=2;d.vy=70;var now=performance.now();if(!silent&&S.holes!=='none'&&now-lastChime>220){lastChime=now;SFX.chime()}}
         }
       }else if(d.st===1){d.x+=d.vx*dt;d.y+=d.vy*dt;d.vy+=260*dt;d.a-=dt*.8}
       else{d.y+=d.vy*dt;d.x+=(g.cx-d.x)*dt*5;d.a-=dt*1.1}
     });
-    dots=dots.filter(function(d){return d.a>0&&d.y<H+30});
+    S.dots=S.dots.filter(function(d){return d.a>0&&d.y<H+30});
+    S.bullets.forEach(function(b){
+      if(b.wait>0){b.wait-=dt;if(b.wait<=0&&!silent)SFX.whoosh();return}
+      var tx=g.cx+b.s*half(g,holeY(g,b.i));b.x+=b.dir*2600*dt;
+      if(!b.hit&&((b.dir>0&&b.x>=tx)||(b.dir<0&&b.x<=tx))){b.hit=true;punch(b.i,tx,holeY(g,b.i),silent)}
+      if(b.hit)b.after+=dt;
+    });
+    S.bullets=S.bullets.filter(function(b){return !(b.hit&&b.after>.08)});
+    S.sparks.forEach(function(p){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=400*dt;p.a-=dt*2.2});
+    S.sparks=S.sparks.filter(function(p){return p.a>0});
+  }
+  function punch(i,x,y,silent){
+    S.open[i]=true;S.flash[i]=1;S.shake=.14;if(!silent)SFX.thud();
+    for(var k=0;k<10;k++){var a=Math.random()*Math.PI*2,v=80+Math.random()*180;S.sparks.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,a:1})}
+    S.dots.forEach(function(d){if(d.st===0)repick(d)});
+    stats();
   }
   function lines(arr,x,y,fs){var n=arr.filter(Boolean),lh=fs*1.2,y0=y-(n.length-1)*lh/2;n.forEach(function(t,j){ctx.fillText(t,x,y0+j*lh)})}
   function draw(){
-    var g=geo(),fs=g.n?9:11.5;ctx.clearRect(0,0,W,H);ctx.textBaseline='middle';
-    ctx.textAlign='center';ctx.fillStyle='#a0a0a0';ctx.font='800 '+fs+'px Inter,system-ui,sans-serif';
-    SOURCES.forEach(function(s,i){lines(s,srcX(i),20,fs)});
-    var steps=40;ctx.beginPath();
-    for(var j=0;j<=steps;j++){var y=g.top+(g.bot-g.top)*j/steps;ctx.lineTo(g.cx-half(g,y),y)}
-    for(j=steps;j>=0;j--){y=g.top+(g.bot-g.top)*j/steps;ctx.lineTo(g.cx+half(g,y),y)}
-    ctx.closePath();ctx.fillStyle='#151515';ctx.fill();
-    var tsz=g.n?26:32;ctx.font='400 '+tsz+'px "Bebas Neue",Impact,sans-serif';var tw=ctx.measureText('SALES FUNNEL').width;
-    if(tw>g.tw*.9){tsz*=g.tw*.9/tw;ctx.font='400 '+tsz+'px "Bebas Neue",Impact,sans-serif'}
-    ctx.fillStyle='#5a5a5a';ctx.fillText('SALES FUNNEL',g.cx,g.top-14);
-    var GAP=13;
-    [-1,1].forEach(function(s){ // wall = line with breaks where the holes are
-      var ys=[g.top];for(var i=0;i<N;i++){if(side(i)===s){ys.push(holeY(g,i)-GAP,holeY(g,i)+GAP)}}ys.push(g.bot);
-      ctx.strokeStyle='#3a3a3a';ctx.lineWidth=2;ctx.lineCap='butt';
-      for(var k=0;k<ys.length;k+=2){ctx.beginPath();ctx.moveTo(g.cx+s*half(g,ys[k]),ys[k]);ctx.lineTo(g.cx+s*half(g,ys[k+1]),ys[k+1]);ctx.stroke()}
-    });
-    for(var i=0;i<N;i++){
-      var h=HOLES[i],hy=holeY(g,i),s=side(i),hx=g.cx+s*half(g,hy),f=flash[i],fixed=h.fix&&plugged;
-      if(fixed){ctx.strokeStyle=GREEN;ctx.lineWidth=3;ctx.shadowColor=GREEN;ctx.shadowBlur=8;ctx.beginPath();
-        ctx.moveTo(g.cx+s*half(g,hy-GAP),hy-GAP);ctx.lineTo(g.cx+s*half(g,hy+GAP),hy+GAP);ctx.stroke();ctx.shadowBlur=0}
-      ctx.textAlign=s<0?'right':'left';
-      ctx.fillStyle=fixed?GREEN:(h.fix?'rgba(255,110,110,'+(.8+f*.2)+')':'rgba(150,150,150,'+(.75+f*.25)+')');
-      ctx.font='800 '+fs+'px Inter,system-ui,sans-serif';
-      lines(fixed?h.f:h.t,hx+s*12,hy,fs);
+    var g=geo(),fs=g.n?9:11.5,dpr=Math.min(window.devicePixelRatio||1,2);ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,H);
+    if(S.shake>0)ctx.translate((Math.random()-.5)*6,(Math.random()-.5)*6);
+    ctx.textBaseline='middle';
+    var p=smooth(S.draw),yEnd=g.top+(g.bot-g.top)*p;
+    if(p>0){
+      ctx.globalAlpha=p;ctx.beginPath();var steps=40;
+      for(var j=0;j<=steps;j++){var y=g.top+(g.bot-g.top)*j/steps;ctx.lineTo(g.cx-half(g,y),y)}
+      for(j=steps;j>=0;j--){y=g.top+(g.bot-g.top)*j/steps;ctx.lineTo(g.cx+half(g,y),y)}
+      ctx.closePath();ctx.fillStyle='#141414';ctx.fill();ctx.globalAlpha=1;
+      var tsz=g.n?24:32;ctx.font='400 '+tsz+'px "Bebas Neue",Impact,sans-serif';var tw=ctx.measureText('SALES FUNNEL').width;
+      if(tw>g.tw*.9){tsz*=g.tw*.9/tw;ctx.font='400 '+tsz+'px "Bebas Neue",Impact,sans-serif'}
+      ctx.textAlign='center';ctx.fillStyle='rgba(120,120,120,'+p+')';ctx.fillText('SALES FUNNEL',g.cx,g.top-16);
+      var GAP=13;
+      [-1,1].forEach(function(s){
+        var ys=[g.top];for(var i=0;i<N;i++){if(side(i)===s&&S.open[i]){ys.push(holeY(g,i)-GAP,holeY(g,i)+GAP)}}ys.push(g.bot);
+        ctx.strokeStyle=S.holes==='none'&&S.draw>=1?'#4a4a4a':'#3a3a3a';ctx.lineWidth=2;
+        for(var k=0;k<ys.length;k+=2){var a=ys[k],b=Math.min(ys[k+1],yEnd);if(b<=a)continue;
+          ctx.beginPath();ctx.moveTo(g.cx+s*half(g,a),a);ctx.lineTo(g.cx+s*half(g,b),b);ctx.stroke()}
+      });
+      for(var i=0;i<N;i++){
+        if(!S.open[i])continue;
+        var h=HOLES[i],hy=holeY(g,i),s=side(i),hx=g.cx+s*half(g,hy),f=S.flash[i],fixed=h.fix&&S.holes==='fixed',la=S.labelA[i];
+        if(fixed){ctx.strokeStyle=GREEN;ctx.lineWidth=3;ctx.shadowColor=GREEN;ctx.shadowBlur=8;ctx.beginPath();
+          ctx.moveTo(g.cx+s*half(g,hy-GAP),hy-GAP);ctx.lineTo(g.cx+s*half(g,hy+GAP),hy+GAP);ctx.stroke();ctx.shadowBlur=0}
+        ctx.textAlign=s<0?'right':'left';
+        ctx.fillStyle=fixed?GREEN:(h.fix?'rgba(255,110,110,'+la*(.8+f*.2)+')':'rgba(150,150,150,'+la*(.75+f*.25)+')');
+        ctx.font='800 '+fs+'px Inter,system-ui,sans-serif';lines(fixed?h.f:h.t,hx+s*12,hy,fs);
+      }
+      ctx.textAlign='center';
+      ctx.fillStyle='rgba(43,227,107,'+(.16*p)+')';ctx.fillRect(g.cx-g.bw/2,g.bot,g.bw,8);
+      ctx.fillStyle='rgba(43,227,107,'+p+')';ctx.font='400 '+(g.n?26:32)+'px "Bebas Neue",Impact,sans-serif';ctx.fillText('PAID JOBS',g.cx,g.bot+30);
     }
-    ctx.textAlign='center';
-    ctx.fillStyle='rgba(43,227,107,.16)';ctx.fillRect(g.cx-g.bw/2,g.bot,g.bw,10);
-    ctx.fillStyle=GREEN;ctx.font='400 '+(g.n?28:34)+'px "Bebas Neue",Impact,sans-serif';ctx.fillText('PAID JOBS',g.cx,g.bot+42);
-    dots.forEach(function(d){ctx.globalAlpha=Math.max(0,d.a);ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    if(S.ov){var t=S.ov.t,al=t<.2?t/.2:(t>1?Math.max(0,(1.3-t)/.3):1);ctx.globalAlpha=al;ctx.fillStyle=GREEN;ctx.textAlign='center';
+      var bs=g.n?44:64;ctx.font='400 '+bs+'px "Bebas Neue",Impact,sans-serif';ctx.shadowColor=GREEN;ctx.shadowBlur=24;
+      ctx.fillText(S.ov.text,g.cx,g.top+(g.bot-g.top)*.33-(1-al)*10);ctx.shadowBlur=0;ctx.globalAlpha=1}
+    S.dots.forEach(function(d){ctx.globalAlpha=Math.max(0,d.a);ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
       if(d.st===1){ctx.fillStyle=d.red?LEAK:GREY;ctx.fill()}
       else{ctx.fillStyle=GREEN;ctx.shadowColor=GREEN;ctx.shadowBlur=d.st===2?14:6;ctx.fill();ctx.shadowBlur=0}});
     ctx.globalAlpha=1;
+    S.bullets.forEach(function(b){if(b.wait>0)return;var tail=110,y=holeY(g,b.i),x0=b.x-b.dir*tail;
+      var gr=ctx.createLinearGradient(x0,y,b.x,y);gr.addColorStop(0,'rgba(255,220,120,0)');gr.addColorStop(1,'rgba(255,245,200,1)');
+      ctx.strokeStyle=gr;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(b.x,y);ctx.stroke();
+      ctx.fillStyle='#fff8d6';ctx.shadowColor='#ffd166';ctx.shadowBlur=14;ctx.beginPath();ctx.arc(b.x,y,3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0});
+    S.sparks.forEach(function(p){ctx.globalAlpha=Math.max(0,p.a);ctx.fillStyle='#ffb347';ctx.fillRect(p.x,p.y,2,2)});
+    ctx.globalAlpha=1;
   }
   function loop(t){if(!running)return;var dt=Math.min(.05,(t-last)/1000||0);last=t;update(dt);draw();requestAnimationFrame(loop)}
-  function staticFrame(){dots=[];for(var i=0;i<300;i++)update(1/30);draw()}
-
-  var jobsEl=document.getElementById('jobs'),box=document.getElementById('statbox'),btn=document.getElementById('plug'),lbl=document.getElementById('statl');
-  function tween(to){var from=parseInt(jobsEl.textContent,10),t0=performance.now();(function st(t){var k=Math.min(1,(t-t0)/700);jobsEl.textContent=Math.round(from+(to-from)*k);if(k<1)requestAnimationFrame(st)})(t0)}
-  btn.addEventListener('click',function(){
-    plugged=!plugged;
-    dots.forEach(function(d){if(d.st===0){ if(plugged&&d.k>=0&&HOLES[d.k].fix)d.k=pick(); }}); // nothing goes through a plugged hole
-    tween(paidPer100());
-    box.className='stat '+(plugged?'good':'bad');
-    btn.textContent=plugged?'← Go back':'Fix your sales funnel →';
-    btn.className='btn '+(plugged?'o':'p');
-    lbl.innerHTML=plugged?'paid jobs from the same 100 leads. <b style="color:#fff">3x more.</b>':'paid jobs from every 100 leads';
-    if(reduce)staticFrame();
-  });
-  jobsEl.textContent=paidPer100();
-  function start(){if(running||reduce)return;running=true;last=performance.now();requestAnimationFrame(loop)}
+  function staticFrame(){S.dots=[];for(var i=0;i<200;i++)update(1/30,true);draw()}
+  function start(){if(running||REDUCE||!played)return;running=true;last=performance.now();requestAnimationFrame(loop)}
   function stop(){running=false}
-  size();window.addEventListener('resize',function(){size();if(reduce)staticFrame()});
-  if(reduce)staticFrame();
-  else if('IntersectionObserver'in window)new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?start():stop()})},{threshold:.05}).observe(cv);
-  else start();
-  document.addEventListener('visibilitychange',function(){document.hidden?stop():start()});
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(reduce)staticFrame()});
+
+  // teaser behind the blur: the broken funnel
+  function teaser(){reset();SRC.forEach(function(s,i){if(s.def)S.on[i]=true});S.draw=1;S.holes='broken';
+    for(var i=0;i<N;i++){S.open[i]=true;S.labelA[i]=1}paintChips();leadsN.textContent='100';jobsN.textContent='3';jobsBox.className='st bad';staticFrame()}
+
+  // typewriter captions
+  var typeTok=0;
+  function wait(ms){var id=runId;return new Promise(function(r,rej){setTimeout(function(){id===runId?r():rej('cancel')},REDUCE?0:ms)})}
+  function caption(h,p){
+    var tok=++typeTok;capP.textContent='';
+    function typeInto(el,text,withCur){return new Promise(function(res){
+      if(REDUCE){el.innerHTML=text+(withCur?'<span class="cur"></span>':'');res();return}
+      var i=0;(function tick(){if(tok!==typeTok)return res();i++;el.innerHTML=text.slice(0,i)+(withCur?'<span class="cur"></span>':'');
+        if(i%2===0&&text.charAt(i-1)!==' ')SFX.tick();if(i<text.length)setTimeout(tick,26);else res()})()})}
+    return typeInto(capH,h,!p).then(function(){if(p&&tok===typeTok){capH.innerHTML=h;return typeInto(capP,'> '+p,true)}});
+  }
+  function drawFunnel(){return new Promise(function(res){if(REDUCE){S.draw=1;return res()}
+    var t0=performance.now();(function st(t){S.draw=Math.min(1,(t-t0)/1000);if(S.draw<1)requestAnimationFrame(st);else res()})(t0)})}
+  function fireBullets(){
+    S.holes='broken';var order=[0,3,6,1,5,2,7,4];
+    if(REDUCE){order.forEach(function(i){S.open[i]=true;S.labelA[i]=1});stats();return wait(0)}
+    order.forEach(function(i,k){var s=side(i);S.bullets.push({i:i,s:s,dir:s<0?1:-1,x:s<0?-60:W+60,wait:.01+k*.17,hit:false,after:0})});
+    return wait(order.length*170+400);
+  }
+  function fix(){S.holes='fixed';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.rise();SFX.music(true,'bright');stats()}
+  function unfix(){S.holes='broken';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.music(playing,'tense');stats()}
+  function addFuel(){var idx=[];S.on.forEach(function(v,i){if(!v)idx.push(i)});
+    var p=Promise.resolve();idx.forEach(function(i){p=p.then(function(){setSource(i,true);return wait(450)})});return p}
+
+  function run(){
+    var id=++runId;playing=true;typeTok++;reset();paintChips();leadsN.textContent='0';jobsN.textContent='0';stats();
+    SFX.music(true,'tense');
+    return caption('Every business has a sales funnel.').then(drawFunnel).then(function(){return wait(700)})
+    .then(function(){return caption('Where do your leads come from?')})
+    .then(function(){var p=wait(300);SRC.forEach(function(s,i){if(s.def)p=p.then(function(){setSource(i,true,s.big);return wait(900)})});return p})
+    .then(function(){return caption("If every lead became a paid job,","you'd have a perfect sales funnel.")}).then(function(){return wait(1400)})
+    .then(function(){SFX.hit();return caption('But sales funnels leak.')}).then(fireBullets)
+    .then(function(){return caption('But sales funnels leak.','Every red hole is a job you already paid for.')}).then(function(){return wait(1600)})
+    .then(function(){return caption("Don't pour gas on a leaky funnel.","Fix it first.")}).then(function(){return wait(1800)})
+    .then(function(){if(S.holes!=='fixed'){fix();return wait(1000)}})
+    .then(function(){return caption('Fixed. Same leads, 3x the jobs.')}).then(function(){return wait(1400)})
+    .then(function(){return caption('Then add fuel.','More leads into a funnel that holds.')}).then(addFuel).then(function(){return wait(600)})
+    .then(function(){return caption('That’s how you make more money.','More leads. Fewer leaks. More jobs.')}).then(function(){return wait(2600)})
+    .then(function(){if(id!==runId)return;playing=false;SFX.music(false);showModal()})
+    .catch(function(){});
+  }
+
+  var modalShown=false;
+  function showModal(){if(modalShown)return;modalShown=true;modal.hidden=false;document.getElementById('mClose').focus()}
+  function hideModal(){modal.hidden=true}
+  document.getElementById('mClose').addEventListener('click',hideModal);
+  document.getElementById('mNo').addEventListener('click',hideModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)hideModal()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hideModal()});
+
+  function paintSnd(){sndBtn.textContent=SFX.muted()?'🔇':'🔊';sndBtn.setAttribute('aria-label',SFX.muted()?'Sound off':'Sound on')}
+  sndBtn.addEventListener('click',function(){SFX.init();SFX.setMuted(!SFX.muted());paintSnd()});paintSnd();
+
+  playBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
+  replayBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
+  fixBtn.addEventListener('click',function(){SFX.init();
+    if(S.holes==='broken'){fix();if(!playing)caption('Fixed.','Same leads, 3x the jobs.')}
+    else{unfix();if(!playing)caption('But sales funnels leak.','Every red hole is a job you already paid for.')}});
+  fuelBtn.addEventListener('click',function(){SFX.init();if(!playing)caption('Then add fuel.','More leads into a funnel that holds.');addFuel().catch(function(){})});
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;visible?start():stop()})},{threshold:.01}).observe(stage);
+  } else visible=true;
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(visible)start()});
+  size();teaser();
+  window.addEventListener('resize',function(){size();if(!played||REDUCE)draw()});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){size();if(!played)teaser()});
 })();
 </script>
 </body>
