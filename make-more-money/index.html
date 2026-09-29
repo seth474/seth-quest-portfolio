@@ -222,6 +222,21 @@
   .qs summary::after{content:"+";position:absolute;right:0;top:14px;font-size:24px;color:var(--green);transition:transform .25s}
   .qs details[open] summary::after{transform:rotate(45deg)}
   .qs details p{color:#c9c9c9;padding:0 0 18px;font-size:16px}
+  .aud{border-top:1px solid var(--line)}
+  .agrid{display:grid;gap:12px;margin-top:22px}
+  .agrid .mi .md{padding-left:52px}
+  .allin .aicard{border:1px solid var(--green);border-radius:22px;padding:34px 22px;background:radial-gradient(ellipse at 20% 0%,rgba(43,227,107,.12),transparent 60%),#0d0d0d;box-shadow:0 0 60px rgba(43,227,107,.08)}
+  .aidept{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+  .aidept li{font:700 12px "JetBrains Mono",monospace;color:#cfcfcf;border:1px solid #2c2c2c;border-radius:20px;padding:6px 11px}
+  .aiprice{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:22px 0 8px}
+  .aiprice .big{font-family:"Bebas Neue",sans-serif;font-size:clamp(64px,16vw,96px);line-height:.85}
+  .aiprice .big small{font-size:.38em;color:#aaa}
+  .aiprice .k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .aiprice .arrow{font-size:34px;color:var(--green)}
+  .anchor{font-size:18px;color:#cfcfcf;margin-top:10px}
+  .anchor b{color:#fff}
+  .allin .ctas{max-width:520px}
+  #aiPick.on{background:transparent;color:var(--green);border:1.5px solid var(--green)}
   .loc{margin-top:22px;text-align:center;color:#bdbdbd;font-weight:700}
   #mbar{position:fixed;left:0;right:0;bottom:0;z-index:12;background:rgba(10,10,10,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--green);padding:12px 16px calc(12px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .3s}
   #mbar.show{transform:none}
@@ -268,6 +283,8 @@
     .mdash.has .mcol:not(.open) .mhead h3{font-size:24px;padding-right:0}
     .mdash.has .mcol:not(.open) .mhead .ar{position:static;margin-top:10px}
     .mcol.open{flex-grow:3.6}
+    .agrid{grid-template-columns:1fr 1fr}
+    .allin .aicard{padding:48px 44px}
   }
   @media (prefers-reduced-motion:reduce){.js .rev{opacity:1;transform:none}.cur,.pulse{animation:none}}
 </style>
@@ -395,15 +412,47 @@
 
   <div class="ordiv" aria-hidden="true"><span>OR</span></div>
 
+  <!-- AUDITS -->
+  <section class="pad aud" id="audits">
+    <div class="wrap">
+      <div class="eyebrow">Not sure where to start?</div>
+      <h2 class="d">Start with an audit<span class="g">.</span></h2>
+      <p class="lead">Pick one. I find what's costing you the most, and you get a plan ranked by what pays back fastest.</p>
+      <div class="agrid" id="agrid"></div>
+    </div>
+  </section>
+
   <!-- FLAT-RATE MENU -->
   <section class="menu pad" id="menu">
     <div class="wrap">
-      <div class="eyebrow">Pick what you want</div>
+      <div class="eyebrow">À la carte</div>
       <h2 class="d">Flat-rate menu<span class="g">.</span></h2>
-      <p class="lead">Check what you're interested in. Bundle 2 or more and save up to 20%.</p>
-      <div class="tiers" id="tiers"><span data-n="2">2 = 5% off</span><span data-n="3">3 = 10% off</span><span data-n="4">4 = 15% off</span><span data-n="5">5+ = 20% off</span></div>
+      <p class="lead">Pick what you're interested in. The more you bundle, the more you save.</p>
       <div class="mdash" id="mgroups"></div>
-      <p class="mnote">Tap a card to see details and pick. Exact price confirmed on our call. Bundle discount applies to flat-rate items. Ad spend and software fees are separate and in your name. Everything's guaranteed: we agree on the result first.</p>
+      <p class="mnote">Estimated pricing. Ad spend and software fees not included.</p>
+    </div>
+  </section>
+
+  <!-- ALL IN -->
+  <section class="pad allin" id="allin">
+    <div class="wrap">
+      <div class="aicard">
+        <div class="eyebrow">Ready to go all in?</div>
+        <h2 class="d">Make your business AI-native<span class="g">.</span></h2>
+        <p class="lead">I join your team as your AI specialist and work across every part of your business. Everything above, plus the stuff you don't know exists yet.</p>
+        <ul class="aidept"><li>AI</li><li>Design</li><li>Branding</li><li>Video</li><li>Ads</li><li>Websites</li><li>Marketing</li><li>Sales</li><li>Software</li><li>Team training</li></ul>
+        <div class="aiprice">
+          <div><div class="big">$4,000<small>/mo</small></div><div class="k">First 3 months · the heavy lifting</div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div><div class="big">$2,000<small>/mo</small></div><div class="k">After that · cancel anytime</div></div>
+        </div>
+        <p class="anchor">Hiring an AI specialist on staff: <b>$120K a year.</b></p>
+        <p class="fine">Guarantee: we set month-one goals together. Miss them, month two is free. In person or remote.</p>
+        <div class="ctas">
+          <button class="btn p" id="aiPick" type="button">Add to my picks</button>
+          <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27m%20interested%20in%20you%20joining%20the%20team%20as%20our%20AI%20specialist.%20My%20business%20is%3A%20">💬 Let's talk</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -531,11 +580,11 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 (function(){
   // Paste a Formspree form URL here (e.g. https://formspree.io/f/xxxx) and Save will submit silently + email you.
   var FORM_ENDPOINT='https://formspree.io/f/meaonlel';
-  var G=[
-    {h:'Start here',n:'',tl:'Find the leaks first.',sm:1,items:[
-      {id:'free',t:'Sales funnel audit',s:'On a call or Zoom',p:0,free:1,who:'Any owner who wants to know where jobs are slipping away.',what:'We talk about your business and I find where you are losing the most money.',why:'You walk away with a plan: what to fix first. Free, no pressure.'},
+  var AUD=[
       {id:'quick',t:'Quick Audit',s:'Written report + action plan',p:300,who:'Owners who want a clear plan in writing.',what:'I grade your Google profile, website, reviews, ads and follow-up, then hand you a written report.',why:'Know exactly what to fix first, in order of what pays back fastest.'},
-      {id:'deep',t:'Deep-Dive Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}]},
+      {id:'deep',t:'Deep-Dive Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}];
+  var FRAC={id:'frac',t:'Fractional AI team member',p:12000,pl:'$4,000/mo',note:'× 3, then $2,000/mo',nod:1};
+  var G=[
     {h:'Get more leads',n:'1',tl:'More people finding you.',items:[
       {id:'gbp',t:'Google Business Profile tune-up',p:300,who:'Every local business.',what:'Categories, services, towns, photos, hours and posts, set up right.',why:'Show up when locals search your trade.'},
       {id:'refer',t:'Reviews + referrals campaign',p:600,who:'Businesses with happy past customers.',what:'A simple email and text campaign asking past customers for reviews and referrals.',why:'More 5-star reviews and more word of mouth from people who already love you.'},
@@ -549,41 +598,50 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
       {id:'quote',t:'Quotes',s:'Faster quotes + automatic follow-up',p:600,who:'Businesses that send estimates.',what:'Quote templates, same-day turnaround, and follow-up on every estimate until they say yes or no.',why:'More of the quotes you already send turn into paid jobs.'},
       {id:'paid',t:'Getting paid',s:'Deposits, payment links, reminders',p:600,who:'Anyone waiting on unpaid invoices.',what:'Deposits up front, card on file, one-tap payment links and automatic reminders.',why:'Cash in the bank faster, and a lot less chasing.'},
       {id:'web',t:'Website built to convert',p:1500,from:1,who:'Anyone whose site is slow, dated or hard to use on a phone.',what:'A fast, modern site with one tap to call and easy booking.',why:'More of the people who find you actually call.'}]},
-    {h:'Optimize & automate',n:'3',tl:'Cut costs. Save time. Grow profit.',items:[
-      {id:'frac',t:'Fractional AI team member',s:'3-month commitment, then month to month',p:12000,pl:'$4,000/mo',note:'× 3, then $2,000/mo',nod:1,feat:1,who:'Owners who want it all done, by someone on their team.',what:'One team member, every department: AI, design, branding, video, ads, websites, marketing, sales. Plus better software for payroll, HR, project management and team chat. I find the best tools and roll them out with your team. In person or remote.',why:'Hiring an AI specialist on staff: $120K a year. This is $4,000 a month for three months of heavy lifting, then $2,000 a month to keep improving. Cancel anytime after month three.',g:'We set month-one goals together. Miss them, month two is free.'},
-      {id:'auto',t:'Custom automation',s:'Emails, scheduling, invoices',quote:1,who:'Businesses losing hours to repeat tasks.',what:'Automations and AI agents for the tasks that waste your time and cost you business.',why:'Hours back every week. Priced by the project, once we know what it saves you.'},
-      {id:'train',t:'Train your team on AI',s:'Hands-on, with your real work',quote:1,who:'Teams that only use ChatGPT for questions, if at all.',what:'Hands-on training on the AI tools that fit your business, using your real jobs, emails and quotes.',why:'Your team gets more done every day, far beyond asking ChatGPT questions or summarizing documents.'}]}
+    {h:'Automate',n:'3',tl:'Hours back, every week.',items:[
+      {id:'inv',t:'Invoicing automation',s:'Invoices, reminders, receipts',p:750,pmax:1500,from:1,note:'depends on size + systems',who:'Anyone who still builds and chases invoices by hand.',what:'Invoices go out automatically when a job is done, with reminders and receipts, connected to your books.',why:'Hours back every week, and you get paid faster.'},
+      {id:'sched',t:'Scheduling automation',s:'Booking, confirmations, reminders',p:750,pmax:1500,from:1,note:'depends on size + systems',who:'Anyone juggling the calendar by phone and text.',what:'Customers book themselves, and confirmations, reminders and crew schedules go out on their own.',why:'Fewer no-shows, less back and forth, fuller days.'},
+      {id:'mail',t:'Email + follow-up automation',s:'Replies, follow-ups, check-ins',p:750,pmax:1500,from:1,note:'depends on size + systems',who:'Anyone whose inbox eats their evenings.',what:'AI drafts replies, follows up on leads and checks in with past customers, in your voice.',why:'No lead goes cold and no customer gets forgotten.'},
+      {id:'train',t:'Team AI training',s:'Go beyond the basics of ChatGPT',p:750,pmax:1500,from:1,note:'depends on team size',who:'Teams that only use ChatGPT for questions, if at all.',what:'A hands-on session on the AI tools that fit your business, using your real jobs, emails and quotes.',why:'Empower your employees to get more done every day, far beyond the basics.'}]}
   ];
   var money=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
-  function plabel(it){return it.free?'FREE':it.quote?'QUOTED':it.pl?it.pl:(it.from?'from ':'')+money(it.p)}
+  function plabel(it){return it.free?'FREE':it.quote?'QUOTED':it.pl?it.pl:it.pmax?money(it.p)+'–'+money(it.pmax):(it.from?'from ':'')+money(it.p)}
   var wrap=document.getElementById('mgroups'), picked={}, byId={}, boxes={}, cols=[];
   function openCol(c){var was=c.classList.contains('open');cols.forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');wrap.classList.toggle('has',!was);
     if(!was&&window.innerWidth<860){setTimeout(function(){c.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'})},60)}}
+  function makeItem(it,peek,onPick){
+    byId[it.id]=it;
+    var el=document.createElement('div');el.className='mi';
+    var price=it.free?'<span class="mfree">FREE</span>':(plabel(it))+(it.note?'<small>'+it.note+'</small>':'');
+    el.innerHTML='<label class="mrow"><input type="checkbox"><span class="cb"></span><span class="mt">'+it.t+(it.s?'<small>'+it.s+'</small>':'')+'</span><span class="mp">'+price+'</span>'+
+      '<button type="button" class="mexp" aria-expanded="false" aria-label="Details on '+it.t+'">+</button></label>'+
+      '<div class="md" hidden><div><span class="k">Who it’s for</span>'+it.who+'</div><div><span class="k">What gets done</span>'+it.what+'</div><div><span class="k">Benefit for your business</span>'+it.why+'</div></div>';
+    var cb=el.querySelector('input'),ex=el.querySelector('.mexp'),md=el.querySelector('.md');
+    boxes[it.id]={cb:cb,el:el,peek:peek};
+    cb.addEventListener('change',function(){if(onPick)onPick(it.id,cb.checked);set(it.id,cb.checked)});
+    ex.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var o=md.hidden;md.hidden=!o;ex.setAttribute('aria-expanded',o?'true':'false');ex.textContent=o?'–':'+'});
+    return el;
+  }
+  // audits: pick one or the other
+  var ag=document.getElementById('agrid');
+  AUD.forEach(function(it){ag.appendChild(makeItem(it,null,function(id,on){if(on)AUD.forEach(function(o){if(o.id!==id&&picked[o.id])set(o.id,false)})}))});
+  // all in
+  (function(){byId.frac=FRAC;var btn=document.getElementById('aiPick'),cb=document.createElement('input');cb.type='checkbox';
+    boxes.frac={cb:cb,el:btn,peek:null};
+    btn.addEventListener('click',function(){set('frac',!picked.frac)})})();
   G.forEach(function(g){
-    var sec=document.createElement('div');sec.className='mcol'+(g.sm?' sm':'');
-    sec.innerHTML='<button type="button" class="mhead" aria-expanded="false">'+(g.n?'<div class="n">'+g.n+'</div>':'<div class="n">★</div>')+'<h3>'+g.h.replace('&','&amp;')+'</h3><span class="tl">'+g.tl+'</span><span class="pc"></span><span class="ar" aria-hidden="true">+</span></button>'+
+    var sec=document.createElement('div');sec.className='mcol';
+    sec.innerHTML='<button type="button" class="mhead" aria-expanded="false"><div class="n">'+g.n+'</div><h3>'+g.h+'</h3><span class="tl">'+g.tl+'</span><span class="pc"></span><span class="ar" aria-hidden="true">+</span></button>'+
       '<ul class="mpeek">'+g.items.map(function(it){return '<li data-id="'+it.id+'">'+it.t+'<span>'+plabel(it)+'</span></li>'}).join('')+'</ul><button type="button" class="mmore">Open to pick →</button><div class="mlist"></div>';
     var list=sec.querySelector('.mlist'),hd=sec.querySelector('.mhead');
     cols.push(sec);sec._pc=sec.querySelector('.pc');sec._ids=g.items.map(function(i){return i.id});
     hd.addEventListener('click',function(){openCol(sec);cols.forEach(function(x){x.querySelector('.mhead').setAttribute('aria-expanded',x.classList.contains('open')?'true':'false')})});
     sec.querySelector('.mpeek').addEventListener('click',function(){hd.click()});
     sec.querySelector('.mmore').addEventListener('click',function(){hd.click()});
-    g.items.forEach(function(it){
-      byId[it.id]=it;
-      var el=document.createElement('div');el.className='mi';
-      var price=it.free?'<span class="mfree">FREE</span>':it.quote?'QUOTED':(it.pl?it.pl:(it.from?'from ':'')+money(it.p))+(it.note?'<small>'+it.note+'</small>':'');
-      el.innerHTML='<label class="mrow"><input type="checkbox"><span class="cb"></span><span class="mt">'+it.t+(it.s?'<small>'+it.s+'</small>':'')+'</span><span class="mp">'+price+'</span>'+
-        '<button type="button" class="mexp" aria-expanded="'+(it.feat?'true':'false')+'" aria-label="Details on '+it.t+'">'+(it.feat?'–':'+')+'</button></label>'+
-        '<div class="md'+(it.feat?' feat':'')+'"'+(it.feat?'':' hidden')+'><div><span class="k">Who it’s for</span>'+it.who+'</div><div><span class="k">What gets done</span>'+it.what+'</div><div><span class="k">Benefit for your business</span>'+it.why+'</div>'+(it.g?'<div><span class="k">Guarantee</span>'+it.g+'</div>':'')+'</div>';
-      var cb=el.querySelector('input'),ex=el.querySelector('.mexp'),md=el.querySelector('.md');
-      boxes[it.id]={cb:cb,el:el,peek:sec.querySelector('.mpeek li[data-id="'+it.id+'"]')};
-      cb.addEventListener('change',function(){set(it.id,cb.checked)});
-      ex.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var o=md.hidden;md.hidden=!o;ex.setAttribute('aria-expanded',o?'true':'false');ex.textContent=o?'–':'+'});
-      list.appendChild(el);
-    });
+    g.items.forEach(function(it){list.appendChild(makeItem(it,sec.querySelector('.mpeek li[data-id="'+it.id+'"]')))});
     wrap.appendChild(sec);
   });
-  function set(id,on){var b=boxes[id];b.cb.checked=on;b.el.classList.toggle('on',on);if(b.peek)b.peek.classList.toggle('on',on);if(on)picked[id]=byId[id];else delete picked[id];store();update()}
+  function set(id,on){var b=boxes[id];b.cb.checked=on;b.el.classList.toggle('on',on);if(b.peek)b.peek.classList.toggle('on',on);if(id==='frac')b.el.textContent=on?'✓ In my picks':'Add to my picks';if(on)picked[id]=byId[id];else delete picked[id];store();update()}
   function store(){try{localStorage.setItem('mmm-picks',JSON.stringify(Object.keys(picked)))}catch(e){}}
   var bar=document.getElementById('mbar'),C=document.getElementById('mbC'),WAS=document.getElementById('mbWas'),NOW=document.getElementById('mbNow'),LBL=document.getElementById('mbLbl'),tiers=document.querySelectorAll('#tiers span');
   var inView=false;
