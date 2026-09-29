@@ -374,12 +374,12 @@
       <button class="mx" id="sClose" type="button" aria-label="Close">×</button>
       <div class="eyebrow">No obligation</div>
       <div class="d" id="sTitle">Save your picks<span class="g">.</span></div>
-      <p>I'll send you your list and follow up with an exact price. No spam, no pressure.</p>
+      <p>I'll use your picks to build the agenda for our call. No spam, no pressure.</p>
       <ul class="spick" id="sList"></ul>
       <form id="sForm" novalidate>
         <input class="fld" id="sContact" type="text" inputmode="email" autocomplete="email" placeholder="Your cell or email" aria-label="Your cell or email">
         <div class="serr" id="sErr"></div>
-        <button class="btn p" id="sBtn" type="submit" style="width:100%">Save &amp; text to Seth →</button>
+        <button class="btn p" id="sBtn" type="submit" style="width:100%">Save &amp; Send to Seth →</button>
       </form>
     </div>
   </div>
@@ -464,7 +464,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 /* FLAT-RATE MENU */
 (function(){
   // Paste a Formspree form URL here (e.g. https://formspree.io/f/xxxx) and Save will submit silently + email you.
-  var FORM_ENDPOINT='';
+  var FORM_ENDPOINT='https://formspree.io/f/meaonlel';
   var G=[
     {h:'Start here',n:'',items:[
       {id:'free',t:'Sales funnel audit',s:'On a call or Zoom',p:0,free:1,who:'Any owner who wants to know where jobs are slipping away.',what:'We talk about your business and I find where you are losing the most money.',why:'You walk away with a plan: what to fix first. Free, no pressure.'},
@@ -527,7 +527,6 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 
   // save popup
   var sm=document.getElementById('saveModal'),sList=document.getElementById('sList'),sForm=document.getElementById('sForm'),sC=document.getElementById('sContact'),sErr=document.getElementById('sErr'),sBtn=document.getElementById('sBtn');
-  if(FORM_ENDPOINT)sBtn.textContent='Save my picks →';
   function summary(r){return r.ids.map(function(k){var it=picked[k];return it.t+' ('+(it.free?'free':(it.from?'from ':'')+money(it.p))+')'})}
   function openSave(){var r=calc();sList.innerHTML=r.ids.map(function(k){var it=picked[k];return '<li>'+it.t+'<span>'+(it.free?'FREE':(it.from?'from ':'')+money(it.p))+'</span></li>'}).join('')+
       '<li style="border-top:1px solid #2c2c2c;padding-top:6px;margin-top:4px"><b>'+(r.d?'Bundle price ('+Math.round(r.d*100)+'% off)':'Total')+'</b><span>'+(r.sum?(r.from?'from ':'')+money(r.tot):'FREE')+'</span></li>';
@@ -544,9 +543,9 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
     try{localStorage.setItem('mmm-contact',v)}catch(err){}
     if(FORM_ENDPOINT){
       sBtn.disabled=true;sBtn.textContent='Saving…';
-      fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({contact:v,picks:lines.join('; '),total:total,page:location.href})})
-        .then(function(res){if(!res.ok)throw 0;sBtn.textContent='Saved ✓ I’ll be in touch';setTimeout(closeSave,1800)})
-        .catch(function(){sBtn.disabled=false;sBtn.textContent='Save my picks →';sErr.textContent='That didn’t go through. Try again, or call 934-899-0796.'});
+      fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(Object.assign({_subject:'New picks from sethquest.com: '+total,contact:v,picks:lines.join('; '),total:total,page:location.href},v.indexOf('@')>0?{email:v}:{}))})
+        .then(function(res){if(!res.ok)throw 0;sBtn.textContent='Saved & sent ✓ I’ll be in touch';setTimeout(function(){closeSave();sBtn.disabled=false;sBtn.textContent='Save & Send to Seth →'},2200)})
+        .catch(function(){sBtn.disabled=false;sBtn.textContent='Save & Send to Seth →';sErr.textContent='That didn’t go through. Try again, or call 934-899-0796.'});
       return;
     }
     var body='Hey Seth, I saved these picks:\n- '+lines.join('\n- ')+'\nTotal: '+total+'\nMy contact: '+v+'\nMy business is: ';
