@@ -160,6 +160,8 @@
   .hourly .big small{font-size:.32em}
   .hourly .lead{margin:0 auto;max-width:34ch}
   .hourly .lead b{color:#fff}
+  .four{font-size:clamp(40px,10vw,72px);margin:0 0 44px;color:#fff}
+  .hourly h2:not(.four){margin-top:6px}
   .ordiv{display:flex;align-items:center;gap:18px;max-width:760px;margin:0 auto;padding:0 20px}
   .ordiv::before,.ordiv::after{content:"";flex:1;height:1px;background:#2c2c2c}
   .ordiv span{font-family:"Bebas Neue",sans-serif;font-size:40px;color:#888;width:84px;height:84px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center}
@@ -222,7 +224,6 @@
   .qs summary::after{content:"+";position:absolute;right:0;top:14px;font-size:24px;color:var(--green);transition:transform .25s}
   .qs details[open] summary::after{transform:rotate(45deg)}
   .qs details p{color:#c9c9c9;padding:0 0 18px;font-size:16px}
-  .aud{border-top:1px solid var(--line)}
   .agrid{display:grid;gap:12px;margin-top:22px}
   .agrid .mi .md{padding-left:52px}
   .allin .aicard{border:1px solid var(--green);border-radius:22px;padding:34px 22px;background:radial-gradient(ellipse at 20% 0%,rgba(43,227,107,.12),transparent 60%),#0d0d0d;box-shadow:0 0 60px rgba(43,227,107,.08)}
@@ -404,9 +405,11 @@
   <!-- HOURLY -->
   <section class="hourly pad" id="pricing">
     <div class="wrap">
-      <div class="eyebrow">Honest, upfront pricing</div>
+      <h2 class="d four">Four ways to work with me<span class="g">.</span></h2>
+      <div class="eyebrow">The easiest way to start working together.</div>
+      <h2 class="d">Start hourly<span class="g">.</span></h2>
       <div class="big">$75<small>/hr</small></div>
-      <p class="lead"><b>Hourly.</b> 2-hour minimum ($150). Low commitment, stop anytime. Less than you bill for a tech.</p>
+      <p class="lead">A straightforward hourly rate. 2-hour minimum. We take it step by step.</p>
     </div>
   </section>
 
@@ -415,31 +418,35 @@
   <!-- AUDITS -->
   <section class="pad aud" id="audits">
     <div class="wrap">
-      <div class="eyebrow">Not sure where to start?</div>
-      <h2 class="d">Start with an audit<span class="g">.</span></h2>
-      <p class="lead">Pick one. I find what's costing you the most, and you get a plan ranked by what pays back fastest.</p>
+      <div class="eyebrow">Not sure where to begin?</div>
+      <h2 class="d">Start with an AI audit<span class="g">.</span></h2>
+      <p class="lead">We take a holistic look at your business and find the highest-leverage projects to tackle first.</p>
       <div class="agrid" id="agrid"></div>
     </div>
   </section>
 
+  <div class="ordiv" aria-hidden="true"><span>OR</span></div>
+
   <!-- FLAT-RATE MENU -->
   <section class="menu pad" id="menu">
     <div class="wrap">
-      <div class="eyebrow">À la carte</div>
-      <h2 class="d">Flat-rate menu<span class="g">.</span></h2>
-      <p class="lead">Pick what you're interested in. The more you bundle, the more you save.</p>
+      <div class="eyebrow">Confident about what you want done?</div>
+      <h2 class="d">Choose from the<br>flat-rate options<span class="g">.</span></h2>
+      <p class="lead">For owners who want to focus on one part of the business they know needs fixing, or where they think AI can help. The more you bundle, the more you save.</p>
       <div class="mdash" id="mgroups"></div>
       <p class="mnote">Estimated pricing. Ad spend and software fees not included.</p>
     </div>
   </section>
 
+  <div class="ordiv" aria-hidden="true"><span>OR</span></div>
+
   <!-- ALL IN -->
   <section class="pad allin" id="allin">
     <div class="wrap">
       <div class="aicard">
-        <div class="eyebrow">Ready to go all in?</div>
+        <div class="eyebrow">Ready to go all in on AI, but don't have the time?</div>
         <h2 class="d">Make your business AI-native<span class="g">.</span></h2>
-        <p class="lead">I join your team as your AI specialist and work across every part of your business. Everything above, plus the stuff you don't know exists yet.</p>
+        <p class="lead">I join your team for three months as an AI specialist and fractional team member, working across every area of your business.</p>
         <ul class="aidept"><li>AI</li><li>Design</li><li>Branding</li><li>Video</li><li>Ads</li><li>Websites</li><li>Marketing</li><li>Sales</li><li>Software</li><li>Team training</li></ul>
         <div class="aiprice">
           <div><div class="big">$4,000<small>/mo</small></div><div class="k">First 3 months · the heavy lifting</div></div>
@@ -581,8 +588,8 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   // Paste a Formspree form URL here (e.g. https://formspree.io/f/xxxx) and Save will submit silently + email you.
   var FORM_ENDPOINT='https://formspree.io/f/meaonlel';
   var AUD=[
-      {id:'quick',t:'Quick Audit',s:'Written report + action plan',p:300,who:'Owners who want a clear plan in writing.',what:'I grade your Google profile, website, reviews, ads and follow-up, then hand you a written report.',why:'Know exactly what to fix first, in order of what pays back fastest.'},
-      {id:'deep',t:'Deep-Dive Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}];
+      {id:'quick',t:'Quick AI Audit',s:'Written report + action plan',p:300,who:'Owners who want a clear plan in writing.',what:'I grade your Google profile, website, reviews, ads and follow-up, then hand you a written report.',why:'Know exactly what to fix first, in order of what pays back fastest.'},
+      {id:'deep',t:'Deep-Dive AI Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}];
   var FRAC={id:'frac',t:'Fractional AI team member',p:12000,pl:'$4,000/mo',note:'× 3, then $2,000/mo',nod:1};
   var G=[
     {h:'Get more leads',n:'1',tl:'More people finding you.',items:[
