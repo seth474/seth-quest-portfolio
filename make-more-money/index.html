@@ -118,11 +118,17 @@
   .slide h2{font-size:clamp(56px,15vw,110px);margin-bottom:18px}
   .pts{list-style:none;display:grid;gap:12px}
   .pts li{border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px 52px;position:relative;background:#0f0f0f}
-  .pts li::before{content:"";position:absolute;left:20px;top:25px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .pts li::before{content:"";position:absolute;left:19px;top:24px;width:14px;height:14px;border-radius:50%;background:#1c1c1c;border:1.5px solid #444;transition:background .45s,border-color .45s,box-shadow .6s;transition-delay:calc(var(--d,0s) + .5s)}
+  .in .pts li::before{background:var(--green);border-color:var(--green);box-shadow:0 0 12px var(--green),0 0 0 5px rgba(43,227,107,.14)}
   .pts b{display:block;font-size:19px}
   .pts span{color:#aaa;font-size:15px}
   .js .rev{opacity:0;transform:translateX(-40px)}
   .js .in .rev{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+  .js .in .pts li.rev{border-color:rgba(43,227,107,.32);transition:opacity .6s cubic-bezier(.2,.8,.2,1) var(--d,0s),transform .6s cubic-bezier(.2,.8,.2,1) var(--d,0s),border-color .5s calc(var(--d,0s) + .5s)}
+  .bign{-webkit-text-stroke-color:#3a3a3a;text-shadow:none}
+  .js .in .bign.rev{-webkit-text-stroke-color:var(--green);text-shadow:0 0 60px rgba(43,227,107,.28);transition:opacity .6s,transform .6s,-webkit-text-stroke-color .6s 1.3s,text-shadow .9s 1.3s}
+  .eq{white-space:nowrap;font-size:clamp(40px,10.5vw,92px);margin-top:26px;color:var(--green);text-shadow:0 0 24px rgba(43,227,107,.4)}
+  .eq span{color:#fff}
 
   /* REST */
   section.pad{padding:72px 0}
@@ -183,6 +189,40 @@
   .md[hidden]{display:none}
   .md b{color:#fff}
   .mnote{font-size:13px;color:var(--muted);margin-top:22px}
+  /* dashboard menu */
+  .mdash{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .mcol{border:1px solid var(--line);border-radius:16px;background:#0d0d0d;min-width:0;overflow:hidden;display:flex;flex-direction:column;transition:flex-grow .5s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+  .mcol.open{border-color:var(--green);box-shadow:0 0 30px rgba(43,227,107,.1)}
+  .mhead{display:block;width:100%;text-align:left;background:none;border:0;color:#fff;font:inherit;cursor:pointer;padding:16px 16px 12px;position:relative}
+  .mhead .n{font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:.8;color:var(--green)}
+  .mhead h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:30px;line-height:.95;margin-top:4px;padding-right:34px}
+  .mhead .tl{display:block;font-size:13px;color:#8f8f8f;margin-top:4px}
+  .mhead .pc{display:inline-block;margin-top:8px;font:700 11px "JetBrains Mono",monospace;color:var(--ink);background:var(--green);border-radius:20px;padding:3px 8px}
+  .mhead .pc:empty{display:none}
+  .mhead .ar{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:18px;transition:transform .3s,background .3s,color .3s}
+  .mcol.open .mhead .ar{transform:rotate(45deg);background:var(--green);color:var(--ink);border-color:var(--green)}
+  .mpeek{list-style:none;padding:0 16px 16px;display:grid;gap:6px;font-size:13.5px;cursor:pointer}
+  .mpeek li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed #222;padding-bottom:6px;color:#cfcfcf}
+  .mpeek li span{font:700 12.5px "JetBrains Mono",monospace;color:var(--green);white-space:nowrap}
+  .mpeek li.on{color:var(--green)}
+  .mpeek li.on::before{content:"●";margin-right:-2px;font-size:9px;align-self:center}
+  .mcol .mlist{display:none;padding:0 12px 14px}
+  .mcol.open .mlist{display:grid;animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+  .mcol.open .mpeek{display:none}
+  .mdash.has .mcol:not(.open) .mpeek,.mdash.has .mcol:not(.open) .tl{display:none}
+  .mi .md.feat{border-top:1px dashed #2a2a2a;padding-top:12px}
+  .mmore{display:block;margin:2px 16px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#777;background:none;border:0;cursor:pointer;text-align:left;padding:0}
+  .mcol.open .mmore,.mdash.has .mcol:not(.open) .mmore{display:none}
+  /* FAQ */
+  .qs{display:grid;gap:10px;margin-top:22px;max-width:820px}
+  .qs details{border:1px solid var(--line);border-radius:14px;background:#0f0f0f;padding:0 18px}
+  .qs details[open]{border-color:rgba(43,227,107,.45)}
+  .qs summary{list-style:none;cursor:pointer;padding:18px 34px 18px 0;font-weight:700;font-size:17px;position:relative}
+  .qs summary::-webkit-details-marker{display:none}
+  .qs summary::after{content:"+";position:absolute;right:0;top:14px;font-size:24px;color:var(--green);transition:transform .25s}
+  .qs details[open] summary::after{transform:rotate(45deg)}
+  .qs details p{color:#c9c9c9;padding:0 0 18px;font-size:16px}
+  .loc{margin-top:22px;text-align:center;color:#bdbdbd;font-weight:700}
   #mbar{position:fixed;left:0;right:0;bottom:0;z-index:12;background:rgba(10,10,10,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--green);padding:12px 16px calc(12px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .3s}
   #mbar.show{transform:none}
   #mbar .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:14px}
@@ -221,6 +261,13 @@
     .sgrid{grid-template-columns:.8fr 1.2fr;gap:40px}
     .split{grid-template-columns:1fr 70px 1fr}
     .bign{text-align:center}
+    .mdash{flex-direction:row;align-items:stretch}
+    .mcol{flex:1 1 0}
+    .mcol.sm{flex-grow:.8}
+    .mdash.has .mcol:not(.open){flex-grow:.42}
+    .mdash.has .mcol:not(.open) .mhead h3{font-size:24px;padding-right:0}
+    .mdash.has .mcol:not(.open) .mhead .ar{position:static;margin-top:10px}
+    .mcol.open{flex-grow:3.6}
   }
   @media (prefers-reduced-motion:reduce){.js .rev{opacity:1;transform:none}.cur,.pulse{animation:none}}
 </style>
@@ -293,12 +340,13 @@
     <div class="wrap sgrid">
       <div class="bign rev">3</div>
       <div>
-        <h2 class="d rev">Make more money<span class="g">.</span></h2>
+        <h2 class="d rev">Optimize &amp; automate<span class="g">.</span></h2>
         <ul class="pts">
-          <li class="rev" style="--d:.15s"><b>AI on your numbers</b><span>Biggest costs, truck routes, and whether you're charging enough.</span></li>
-          <li class="rev" style="--d:.3s"><b>A brand that looks the part</b><span>Truck, shirts, yard signs, door hangers, cards. All matching, all modern.</span></li>
-          <li class="rev" style="--d:.45s"><b>Keep improving</b><span>Every week, the next thing that makes you money.</span></li>
+          <li class="rev" style="--d:.15s"><b>Automate the busywork</b><span>Emails, scheduling, invoices: the tasks that waste your time and cost you business.</span></li>
+          <li class="rev" style="--d:.3s"><b>Optimize the business</b><span>Cut costs, boost productivity, grow profit.</span></li>
+          <li class="rev" style="--d:.45s"><b>Train your team on AI</b><span>Far beyond asking ChatGPT questions or summarizing documents.</span></li>
         </ul>
+        <div class="d eq rev" style="--d:1.6s"><span>=</span> Make more money<span>.</span></div>
       </div>
     </div>
   </section>
@@ -354,8 +402,8 @@
       <h2 class="d">Flat-rate menu<span class="g">.</span></h2>
       <p class="lead">Check what you're interested in. Bundle 2 or more and save up to 20%.</p>
       <div class="tiers" id="tiers"><span data-n="2">2 = 5% off</span><span data-n="3">3 = 10% off</span><span data-n="4">4 = 15% off</span><span data-n="5">5+ = 20% off</span></div>
-      <div id="mgroups"></div>
-      <p class="mnote">Exact price confirmed on our call. Ad spend and software fees are separate and in your name. Everything's guaranteed: we agree on the result first.</p>
+      <div class="mdash" id="mgroups"></div>
+      <p class="mnote">Tap a card to see details and pick. Exact price confirmed on our call. Bundle discount applies to flat-rate items. Ad spend and software fees are separate and in your name. Everything's guaranteed: we agree on the result first.</p>
     </div>
   </section>
 
@@ -391,17 +439,34 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="pad faq" id="faq">
+    <div class="wrap">
+      <div class="eyebrow">Questions</div>
+      <h2 class="d">FAQ<span class="g">.</span></h2>
+      <div class="qs">
+        <details><summary>What do you actually do with AI?</summary><p>I use AI and the newest software to get you more leads, close more of them, and cut the busywork. Then I set it up and hand it over. Not theory. Real tools, running in your business.</p></details>
+        <details><summary>Do I need to be good with tech?</summary><p>No. I do the setup. You get something simple that you and your team can run from your phone.</p></details>
+        <details><summary>What does "guaranteed or you don't pay" mean?</summary><p>Before any project, we write down the result it has to hit. If it misses, you don't pay for it. On the fractional plan, we set month-one goals together. Miss them, and month two is free.</p></details>
+        <details><summary>How fast will I see results?</summary><p>Quick fixes like missed-call text-back work the same week. Ads, reviews and referrals build over a few weeks. The free audit shows you what pays back fastest, so we start there.</p></details>
+        <details><summary>What's a fractional AI team member?</summary><p>One team member, every department: AI, design, branding, video, ads, websites, marketing and sales. Plus the stuff most owners don't know exists, like better software for payroll, HR, project management and team chat. I find the best tools and roll them out with your team. Hiring an AI specialist on staff runs about $120K a year. This is $4,000 a month for three months of heavy lifting, then $2,000 a month, cancel anytime.</p></details>
+        <details><summary>Why start at $75/hr?</summary><p>So it's easy to try me. It's less than you bill for a tech, there's a 2-hour minimum, and you can stop anytime. If it's working, we keep going.</p></details>
+        <details><summary>Where are you based?</summary><p>East Hampton, NY. I work in person across the Hamptons, and remote anywhere.</p></details>
+      </div>
+    </div>
+  </section>
+
   <!-- LET'S TALK -->
   <section class="pad" id="talk">
     <div class="wrap">
       <h2 class="d">Let's talk about your business<span class="g">.</span></h2>
       <div class="split">
-        <div class="card">
+        <div class="card hot">
           <div class="tag">Curious?</div>
           <h3>Call or text me<span class="g">.</span></h3>
           <p>Happy to answer quick questions. No pressure.</p>
           <div class="ctas">
-            <a class="btn p" href="tel:+19348990796">📞 Call</a>
+            <a class="btn o" href="tel:+19348990796">📞 Call</a>
             <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20a%20quick%20question.%20My%20business%20is%3A%20">💬 Text</a>
           </div>
         </div>
@@ -416,6 +481,7 @@
           </div>
         </div>
       </div>
+      <p class="loc">📍 Based in East Hampton, NY. I come to you.</p>
     </div>
   </section>
 
@@ -435,7 +501,7 @@
   </div>
 </main>
 
-<footer>SETH QUEST · <a href="https://sethquest.com">SETHQUEST.COM</a> · CELL <a href="tel:+19348990796">934-899-0796</a></footer>
+<footer>SETH QUEST · EAST HAMPTON, NY · <a href="https://sethquest.com">SETHQUEST.COM</a> · CELL <a href="tel:+19348990796">934-899-0796</a></footer>
 
 <nav class="bar" aria-label="Contact">
   <a class="btn p" href="tel:+19348990796">📞 Call</a>
@@ -466,70 +532,82 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   // Paste a Formspree form URL here (e.g. https://formspree.io/f/xxxx) and Save will submit silently + email you.
   var FORM_ENDPOINT='https://formspree.io/f/meaonlel';
   var G=[
-    {h:'Start here',n:'',items:[
+    {h:'Start here',n:'',tl:'Find the leaks first.',sm:1,items:[
       {id:'free',t:'Sales funnel audit',s:'On a call or Zoom',p:0,free:1,who:'Any owner who wants to know where jobs are slipping away.',what:'We talk about your business and I find where you are losing the most money.',why:'You walk away with a plan: what to fix first. Free, no pressure.'},
       {id:'quick',t:'Quick Audit',s:'Written report + action plan',p:300,who:'Owners who want a clear plan in writing.',what:'I grade your Google profile, website, reviews, ads and follow-up, then hand you a written report.',why:'Know exactly what to fix first, in order of what pays back fastest.'},
       {id:'deep',t:'Deep-Dive Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}]},
-    {h:'Fix the funnel',n:'1. ',items:[
+    {h:'Get more leads',n:'1',tl:'More people finding you.',items:[
+      {id:'gbp',t:'Google Business Profile tune-up',p:300,who:'Every local business.',what:'Categories, services, towns, photos, hours and posts, set up right.',why:'Show up when locals search your trade.'},
+      {id:'refer',t:'Reviews + referrals campaign',p:600,who:'Businesses with happy past customers.',what:'A simple email and text campaign asking past customers for reviews and referrals.',why:'More 5-star reviews and more word of mouth from people who already love you.'},
+      {id:'vad',t:'Facebook / Instagram video ad',s:'One ad',p:450,who:'Owners who want to test social ads.',what:'One short video ad of your real work, set up and targeted to your area.',why:'See if social ads work for you without a big commitment.'},
+      {id:'meta',t:'Facebook / Instagram campaign',s:'10 weeks, managed',p:2000,who:'Owners ready for steady leads from social.',what:'Videos, targeting and weekly tuning for 10 weeks.',why:'A steady stream of local leads, with a report you can read in two minutes.'},
+      {id:'gads',t:'Google Ads',s:'Setup + 12 weeks managed',p:2550,note:'$750 + $150/wk',who:'Owners who want to show up first on Google.',what:'Audit or setup, call tracking, then weekly optimizing for 12 weeks.',why:'Show up first without burning cash on clicks that never call.'},
+      {id:'brand',t:'Brand refresh',s:'Truck, shirts, signs, cards',p:750,from:1,who:'Businesses whose truck, signs and cards do not match.',what:'Logo cleanup, then matching truck, shirts, yard signs, door hangers and cards.',why:'Look like the pro you are, and charge like it.'}]},
+    {h:'Close more sales',n:'2',tl:'More of them saying yes.',items:[
       {id:'rev',t:'Google Reviews Report',s:'What customers love and hate',p:150,who:'Any business with Google reviews.',what:'I pull every one of your reviews and have AI break down the patterns.',why:'Fix what is costing you stars, and put what they love into your ads.'},
       {id:'mctb',t:'Missed-call text-back',p:450,who:'Anyone who misses calls while on a job.',what:'Miss a call and they get a text back from your business in seconds.',why:'Stop losing jobs to the next guy on Google while you are on a roof.'},
       {id:'quote',t:'Quotes',s:'Faster quotes + automatic follow-up',p:600,who:'Businesses that send estimates.',what:'Quote templates, same-day turnaround, and follow-up on every estimate until they say yes or no.',why:'More of the quotes you already send turn into paid jobs.'},
       {id:'paid',t:'Getting paid',s:'Deposits, payment links, reminders',p:600,who:'Anyone waiting on unpaid invoices.',what:'Deposits up front, card on file, one-tap payment links and automatic reminders.',why:'Cash in the bank faster, and a lot less chasing.'},
       {id:'web',t:'Website built to convert',p:1500,from:1,who:'Anyone whose site is slow, dated or hard to use on a phone.',what:'A fast, modern site with one tap to call and easy booking.',why:'More of the people who find you actually call.'}]},
-    {h:'Add more leads',n:'2. ',items:[
-      {id:'gbp',t:'Google Business Profile tune-up',p:300,who:'Every local business.',what:'Categories, services, towns, photos, hours and posts, set up right.',why:'Show up when locals search your trade.'},
-      {id:'refer',t:'Reviews + referrals campaign',p:600,who:'Businesses with happy past customers.',what:'A simple email and text campaign asking past customers for reviews and referrals.',why:'More 5-star reviews and more word of mouth from people who already love you.'},
-      {id:'vad',t:'Facebook / Instagram video ad',s:'One ad',p:450,who:'Owners who want to test social ads.',what:'One short video ad of your real work, set up and targeted to your area.',why:'See if social ads work for you without a big commitment.'},
-      {id:'meta',t:'Facebook / Instagram campaign',s:'10 weeks, managed',p:2000,who:'Owners ready for steady leads from social.',what:'Videos, targeting and weekly tuning for 10 weeks.',why:'A steady stream of local leads, with a report you can read in two minutes.'},
-      {id:'gads',t:'Google Ads',s:'Setup + 12 weeks managed',p:2550,note:'$750 + $150/wk',who:'Owners who want to show up first on Google.',what:'Audit or setup, call tracking, then weekly optimizing for 12 weeks.',why:'Show up first without burning cash on clicks that never call.'}]},
-    {h:'Make more money',n:'3. ',items:[
-      {id:'brand',t:'Brand refresh',s:'Truck, shirts, signs, cards',p:750,from:1,who:'Businesses whose truck, signs and cards do not match.',what:'Logo cleanup, then matching truck, shirts, yard signs, door hangers and cards.',why:'Look like the pro you are, and charge like it.'},
-      {id:'frac',t:'Fractional AI guy',s:'12-week build, done for you',p:9000,note:'$3,000/mo × 3',who:'Owners who want all of it done for them.',what:'Everything above that fits your business, built and running in 12 weeks. You keep it all.',why:'One extra job a month usually pays for the whole thing.'}]}
+    {h:'Optimize & automate',n:'3',tl:'Cut costs. Save time. Grow profit.',items:[
+      {id:'frac',t:'Fractional AI team member',s:'3-month commitment, then month to month',p:12000,pl:'$4,000/mo',note:'× 3, then $2,000/mo',nod:1,feat:1,who:'Owners who want it all done, by someone on their team.',what:'One team member, every department: AI, design, branding, video, ads, websites, marketing, sales. Plus better software for payroll, HR, project management and team chat. I find the best tools and roll them out with your team. In person or remote.',why:'Hiring an AI specialist on staff: $120K a year. This is $4,000 a month for three months of heavy lifting, then $2,000 a month to keep improving. Cancel anytime after month three.',g:'We set month-one goals together. Miss them, month two is free.'},
+      {id:'auto',t:'Custom automation',s:'Emails, scheduling, invoices',quote:1,who:'Businesses losing hours to repeat tasks.',what:'Automations and AI agents for the tasks that waste your time and cost you business.',why:'Hours back every week. Priced by the project, once we know what it saves you.'},
+      {id:'train',t:'Train your team on AI',s:'Hands-on, with your real work',quote:1,who:'Teams that only use ChatGPT for questions, if at all.',what:'Hands-on training on the AI tools that fit your business, using your real jobs, emails and quotes.',why:'Your team gets more done every day, far beyond asking ChatGPT questions or summarizing documents.'}]}
   ];
   var money=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
-  var wrap=document.getElementById('mgroups'), picked={}, byId={}, boxes={};
+  function plabel(it){return it.free?'FREE':it.quote?'QUOTED':it.pl?it.pl:(it.from?'from ':'')+money(it.p)}
+  var wrap=document.getElementById('mgroups'), picked={}, byId={}, boxes={}, cols=[];
+  function openCol(c){var was=c.classList.contains('open');cols.forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');wrap.classList.toggle('has',!was);
+    if(!was&&window.innerWidth<860){setTimeout(function(){c.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'})},60)}}
   G.forEach(function(g){
-    var sec=document.createElement('div');sec.className='mgroup';
-    sec.innerHTML='<h3><span class="n">'+g.n+'</span>'+g.h+'</h3><div class="mlist"></div>';
-    var list=sec.querySelector('.mlist');
+    var sec=document.createElement('div');sec.className='mcol'+(g.sm?' sm':'');
+    sec.innerHTML='<button type="button" class="mhead" aria-expanded="false">'+(g.n?'<div class="n">'+g.n+'</div>':'<div class="n">★</div>')+'<h3>'+g.h.replace('&','&amp;')+'</h3><span class="tl">'+g.tl+'</span><span class="pc"></span><span class="ar" aria-hidden="true">+</span></button>'+
+      '<ul class="mpeek">'+g.items.map(function(it){return '<li data-id="'+it.id+'">'+it.t+'<span>'+plabel(it)+'</span></li>'}).join('')+'</ul><button type="button" class="mmore">Open to pick →</button><div class="mlist"></div>';
+    var list=sec.querySelector('.mlist'),hd=sec.querySelector('.mhead');
+    cols.push(sec);sec._pc=sec.querySelector('.pc');sec._ids=g.items.map(function(i){return i.id});
+    hd.addEventListener('click',function(){openCol(sec);cols.forEach(function(x){x.querySelector('.mhead').setAttribute('aria-expanded',x.classList.contains('open')?'true':'false')})});
+    sec.querySelector('.mpeek').addEventListener('click',function(){hd.click()});
+    sec.querySelector('.mmore').addEventListener('click',function(){hd.click()});
     g.items.forEach(function(it){
       byId[it.id]=it;
       var el=document.createElement('div');el.className='mi';
-      var price=it.free?'<span class="mfree">FREE</span>':(it.from?'from ':'')+money(it.p)+(it.note?'<small>'+it.note+'</small>':'');
+      var price=it.free?'<span class="mfree">FREE</span>':it.quote?'QUOTED':(it.pl?it.pl:(it.from?'from ':'')+money(it.p))+(it.note?'<small>'+it.note+'</small>':'');
       el.innerHTML='<label class="mrow"><input type="checkbox"><span class="cb"></span><span class="mt">'+it.t+(it.s?'<small>'+it.s+'</small>':'')+'</span><span class="mp">'+price+'</span>'+
-        '<button type="button" class="mexp" aria-expanded="false" aria-label="Details on '+it.t+'">+</button></label>'+
-        '<div class="md" hidden><div><span class="k">Who it’s for</span>'+it.who+'</div><div><span class="k">What gets done</span>'+it.what+'</div><div><span class="k">Benefit for your business</span>'+it.why+'</div></div>';
+        '<button type="button" class="mexp" aria-expanded="'+(it.feat?'true':'false')+'" aria-label="Details on '+it.t+'">'+(it.feat?'–':'+')+'</button></label>'+
+        '<div class="md'+(it.feat?' feat':'')+'"'+(it.feat?'':' hidden')+'><div><span class="k">Who it’s for</span>'+it.who+'</div><div><span class="k">What gets done</span>'+it.what+'</div><div><span class="k">Benefit for your business</span>'+it.why+'</div>'+(it.g?'<div><span class="k">Guarantee</span>'+it.g+'</div>':'')+'</div>';
       var cb=el.querySelector('input'),ex=el.querySelector('.mexp'),md=el.querySelector('.md');
-      boxes[it.id]={cb:cb,el:el};
+      boxes[it.id]={cb:cb,el:el,peek:sec.querySelector('.mpeek li[data-id="'+it.id+'"]')};
       cb.addEventListener('change',function(){set(it.id,cb.checked)});
       ex.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var o=md.hidden;md.hidden=!o;ex.setAttribute('aria-expanded',o?'true':'false');ex.textContent=o?'–':'+'});
       list.appendChild(el);
     });
     wrap.appendChild(sec);
   });
-  function set(id,on){var b=boxes[id];b.cb.checked=on;b.el.classList.toggle('on',on);if(on)picked[id]=byId[id];else delete picked[id];store();update()}
+  function set(id,on){var b=boxes[id];b.cb.checked=on;b.el.classList.toggle('on',on);if(b.peek)b.peek.classList.toggle('on',on);if(on)picked[id]=byId[id];else delete picked[id];store();update()}
   function store(){try{localStorage.setItem('mmm-picks',JSON.stringify(Object.keys(picked)))}catch(e){}}
   var bar=document.getElementById('mbar'),C=document.getElementById('mbC'),WAS=document.getElementById('mbWas'),NOW=document.getElementById('mbNow'),LBL=document.getElementById('mbLbl'),tiers=document.querySelectorAll('#tiers span');
   var inView=false;
   function disc(n){return n>=5?.20:n===4?.15:n===3?.10:n===2?.05:0}
-  function calc(){var ids=Object.keys(picked),paid=ids.filter(function(k){return !picked[k].free}),sum=0,from=false;
-    paid.forEach(function(k){sum+=picked[k].p;if(picked[k].from)from=true});
-    var d=disc(paid.length);return{ids:ids,n:ids.length,np:paid.length,sum:sum,d:d,tot:sum*(1-d),from:from}}
+  function calc(){var ids=Object.keys(picked),paid=ids.filter(function(k){return !picked[k].free&&!picked[k].quote}),dp=paid.filter(function(k){return !picked[k].nod}),sum=0,dsum=0,from=false,q=ids.some(function(k){return picked[k].quote});
+    paid.forEach(function(k){sum+=picked[k].p;if(!picked[k].nod)dsum+=picked[k].p;if(picked[k].from)from=true});
+    var d=disc(dp.length);return{ids:ids,n:ids.length,np:dp.length,sum:sum,d:d,tot:sum-dsum*d,from:from,q:q}}
   function update(){
     var r=calc();
     C.innerHTML=r.n+' picked'+(r.d?' · <b>'+Math.round(r.d*100)+'% bundle discount</b>':(r.np===1?' · add 1 more to save 5%':''));
     if(r.d){WAS.hidden=false;WAS.textContent=money(r.sum);NOW.textContent=(r.from?'from ':'')+money(r.tot);LBL.textContent='Bundle price'}
     else{WAS.hidden=true;NOW.textContent=r.sum?(r.from?'from ':'')+money(r.sum):'FREE';LBL.textContent=r.sum?'Total':''}
     tiers.forEach(function(t){var tn=+t.getAttribute('data-n');t.classList.toggle('on',r.np>=tn&&(tn===5||r.np<tn+1))});
+    if(r.q&&r.sum)LBL.textContent+=' + quoted';else if(r.q&&!r.sum){NOW.textContent='QUOTED';LBL.textContent='on our call'}
+    cols.forEach(function(c){var k=c._ids.filter(function(i){return picked[i]}).length;c._pc.textContent=k?k+' picked':''});
     show();
   }
   function show(){var on=Object.keys(picked).length>0;bar.classList.toggle('show',on);document.body.classList.toggle('menuon',on)}
 
   // save popup
   var sm=document.getElementById('saveModal'),sList=document.getElementById('sList'),sForm=document.getElementById('sForm'),sC=document.getElementById('sContact'),sErr=document.getElementById('sErr'),sBtn=document.getElementById('sBtn');
-  function summary(r){return r.ids.map(function(k){var it=picked[k];return it.t+' ('+(it.free?'free':(it.from?'from ':'')+money(it.p))+')'})}
-  function openSave(){var r=calc();sList.innerHTML=r.ids.map(function(k){var it=picked[k];return '<li>'+it.t+'<span>'+(it.free?'FREE':(it.from?'from ':'')+money(it.p))+'</span></li>'}).join('')+
-      '<li style="border-top:1px solid #2c2c2c;padding-top:6px;margin-top:4px"><b>'+(r.d?'Bundle price ('+Math.round(r.d*100)+'% off)':'Total')+'</b><span>'+(r.sum?(r.from?'from ':'')+money(r.tot):'FREE')+'</span></li>';
+  function summary(r){return r.ids.map(function(k){var it=picked[k];return it.t+' ('+plabel(it).toLowerCase()+(it.note?' '+it.note:'')+')'})}
+  function openSave(){var r=calc();sList.innerHTML=r.ids.map(function(k){var it=picked[k];return '<li>'+it.t+'<span>'+plabel(it)+'</span></li>'}).join('')+
+      '<li style="border-top:1px solid #2c2c2c;padding-top:6px;margin-top:4px"><b>'+(r.d?'Bundle price ('+Math.round(r.d*100)+'% off)':'Total')+'</b><span>'+(r.sum?(r.from?'from ':'')+money(r.tot)+(r.q?' + quoted':''):(r.q?'QUOTED':'FREE'))+'</span></li>';
     sErr.textContent='';sm.hidden=false;setTimeout(function(){sC.focus()},50)}
   function closeSave(){sm.hidden=true}
   document.getElementById('mbSave').addEventListener('click',openSave);
@@ -539,7 +617,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   sForm.addEventListener('submit',function(e){
     e.preventDefault();var v=sC.value.trim(),digits=v.replace(/[^0-9]/g,'');
     if(!(v.indexOf('@')>0||digits.length>=10)){sErr.textContent='Enter a cell number or email so I can send it to you.';return}
-    var r=calc(),lines=summary(r),total=(r.sum?(r.from?'from ':'')+money(r.tot):'free')+(r.d?' after '+Math.round(r.d*100)+'% bundle discount':'');
+    var r=calc(),lines=summary(r),total=(r.sum?(r.from?'from ':'')+money(r.tot):(r.q?'quoted':'free'))+(r.d?' after '+Math.round(r.d*100)+'% bundle discount':'')+(r.q&&r.sum?' + quoted items':'');
     try{localStorage.setItem('mmm-contact',v)}catch(err){}
     if(FORM_ENDPOINT){
       sBtn.disabled=true;sBtn.textContent='Saving…';
