@@ -4,120 +4,147 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Make More Money. — Seth Quest</title>
-<meta name="description" content="I implement AI for local trades and service businesses. More leads, more closed jobs. $75/hr or flat-rate. Guaranteed or you don't pay.">
+<meta name="description" content="Your business is a funnel, and it leaks. I use AI to find where local businesses lose jobs and plug the leaks. Free Leak Check. $75/hr or flat-rate. Guaranteed or you don't pay.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
-<meta property="og:description" content="Missed-call text-back, Google profile fixes, automatic reviews and follow-up for local businesses. Guaranteed or you don't pay.">
+<meta property="og:description" content="Get more leads. Close more sales. Make more money. Free Leak Check for local businesses.">
 <meta property="og:url" content="https://sethquest.com/make-more-money">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ====== EDIT THESE 3 THINGS ====== */
-  /* 1. VIDEO: set data-youtube="YOUR_VIDEO_ID" on #vsl below (unlisted YouTube or a Short) */
-  /* 2. BOOKING: add a Cal.com button once the link exists */
-  /* 3. Prices live in the "What I'll do" cards */
-
+  /* EDIT: video -> set data-youtube="VIDEO_ID" on #vsl */
   :root{
-    --ink:#0a0a0a; --paper:#ffffff; --green:#2BE36B; --green-ink:#0a0a0a;
-    --muted:#555; --line:#e6e6e6; --soft:#f4f4f2;
+    --ink:#0a0a0a; --ink2:#141414; --paper:#ffffff; --soft:#f3f3f1;
+    --green:#2BE36B; --leak:#ff4d4d; --muted:#8a8a8a; --line:#262626;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;padding-bottom:84px}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--ink);color:#fff;font-family:Inter,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;padding-bottom:84px}
   a{color:inherit}
-  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
   .d{font-family:"Bebas Neue",Oswald,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.9;text-transform:uppercase}
   .g{color:var(--green)}
-  .dot{color:var(--green)}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
 
-  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:720px;margin:0 auto}
-  header .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.06em;text-decoration:none}
-  header .ph{font-weight:800;font-size:14px;text-decoration:none;border:2px solid var(--ink);padding:6px 10px;border-radius:6px}
+  /* header */
+  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:760px;margin:0 auto}
+  header .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
+  header .ph{font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid #fff;padding:6px 10px;border-radius:6px}
 
-  .hero{padding:18px 0 8px}
-  .hero .kick{font-size:clamp(30px,8.5vw,52px)}
-  .hero h1{font-size:clamp(76px,23vw,150px);margin:4px 0 14px}
-  .hero .sub{font-size:19px;max-width:34ch}
-  .hero .sub b{background:var(--green);padding:0 4px}
+  /* hero */
+  .hero{position:relative;padding:14px 0 34px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#1b1b1b 1px,transparent 1px),linear-gradient(90deg,#1b1b1b 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 20%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 30%,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative}
+  .hero .kick{font-size:clamp(30px,8.4vw,54px);color:#d8d8d8}
+  .hero h1{font-size:clamp(78px,23.5vw,156px);margin:6px 0 16px}
+  .hero .sub{font-size:19px;max-width:32ch;color:#e6e6e6}
+  .hero .sub b{color:var(--ink);background:var(--green);padding:0 5px;border-radius:2px}
 
-  #vsl{margin:22px auto 0;max-width:400px;aspect-ratio:9/16;background:var(--ink);border-radius:14px;overflow:hidden;position:relative}
-  #vsl iframe,#vsl video{position:absolute;inset:0;width:100%;height:100%;border:0}
-  #vsl .ph-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:28px;gap:14px}
-  #vsl .ph-card .d{font-size:54px}
-  #vsl .ph-card p{color:#bbb;font-size:15px}
-  .vlabel{text-align:center;font-weight:800;font-size:13px;letter-spacing:.12em;margin-top:10px;color:var(--muted)}
+  #vsl{margin:26px auto 0;max-width:380px;aspect-ratio:9/16;background:#000;border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;box-shadow:0 0 0 6px #111,0 30px 80px rgba(43,227,107,.12)}
+  #vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #vsl .ph-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px;gap:14px}
+  #vsl .ph-card .d{font-size:56px}
+  #vsl .ph-card p{color:#aaa;font-size:15px}
+  .vlabel{text-align:center;font-weight:800;font-size:12px;letter-spacing:.16em;margin-top:12px;color:var(--muted)}
 
-  .ctas{display:grid;gap:10px;margin:22px 0 6px}
-  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:10px;font-weight:800;font-size:18px;text-decoration:none;letter-spacing:.01em}
-  .btn.p{background:var(--green);color:var(--green-ink)}
+  .ctas{display:grid;gap:10px;margin:24px 0 4px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 18px;border-radius:10px;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+  .btn.p{background:var(--green);color:var(--ink)}
+  .btn.w{background:#fff;color:var(--ink)}
+  .btn.o{border:1.5px solid #fff;color:#fff;background:transparent}
   .btn.k{background:var(--ink);color:#fff}
-  .btn.o{border:2px solid var(--ink);color:var(--ink)}
-  .ctas small{text-align:center;color:var(--muted);font-size:14px}
+  .ctas small{text-align:center;color:var(--muted);font-size:14px;grid-column:1/-1}
 
-  section{padding:44px 0}
-  h2{font-size:clamp(46px,12vw,72px);margin-bottom:18px}
+  section{padding:56px 0}
+  h2{font-size:clamp(50px,13vw,80px);margin:10px 0 16px}
+  .lead{font-size:19px;color:#cfcfcf;max-width:38ch}
 
-  .pain{background:var(--soft)}
-  .pain ol{list-style:none;display:grid;gap:14px}
-  .pain li{background:#fff;border-left:6px solid var(--ink);padding:14px 16px;border-radius:4px}
-  .pain li b{display:block;font-size:19px}
-  .pain li span{color:var(--muted)}
+  /* funnel */
+  .funnel{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fbox{margin-top:22px;border:1px solid var(--line);border-radius:16px;background:#0c0c0c;overflow:hidden}
+  #fcanvas{display:block;width:100%;height:540px}
+  .fbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .stat .n{font-family:"Bebas Neue",sans-serif;font-size:54px;line-height:.9}
+  .stat .l{font-size:13px;color:var(--muted)}
+  .stat.bad .n{color:var(--leak)} .stat.good .n{color:var(--green)}
+  #plug{min-height:52px;font-size:16px}
+  .fnote{font-size:13px;color:var(--muted);margin-top:10px}
 
-  .cards{display:grid;gap:14px}
-  .card{border:2px solid var(--ink);border-radius:12px;padding:18px}
-  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-  .card h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:32px;line-height:1}
-  .card .price{font-family:"Bebas Neue",sans-serif;font-size:30px;white-space:nowrap}
-  .card p{margin-top:8px}
-  .card .gt{margin-top:10px;font-size:14px;font-weight:600;padding-top:10px;border-top:1px dashed #bbb}
-  .card .gt::before{content:"✓ ";color:#12a84a;font-weight:800}
+  /* levers */
+  .levers{display:grid;gap:14px;margin-top:22px}
+  .lever{border:1px solid var(--line);border-radius:14px;padding:20px;background:#0f0f0f}
+  .lever .num{font-family:"Bebas Neue",sans-serif;font-size:18px;color:var(--green);letter-spacing:.1em}
+  .lever h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:40px;line-height:1;margin:4px 0 10px}
+  .lever ul{list-style:none;display:grid;gap:8px}
+  .lever li{padding-left:22px;position:relative;color:#d6d6d6}
+  .lever li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--green)}
 
-  .rate{background:var(--ink);color:#fff}
-  .rate .big{font-size:clamp(90px,28vw,170px)}
-  .rate .big small{font-size:.35em}
-  .rate p{color:#ccc;max-width:36ch}
-  .rate p b{color:#fff}
-  .rate .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
-  .rate .vs div{border:1px solid #333;border-radius:10px;padding:14px}
-  .rate .vs .d{font-size:44px}
-  .rate .vs span{font-size:14px;color:#aaa}
-  .rate .frac{border:2px solid var(--green);border-radius:12px;padding:16px;margin-top:8px}
-  .rate .frac .d{font-size:34px;color:var(--green)}
+  /* scorecard (white) */
+  .light{background:var(--paper);color:var(--ink)}
+  .light .lead{color:#444}
+  .light .eyebrow{color:#0f9a45}
+  .score{margin-top:24px;border:2px solid var(--ink);border-radius:16px;overflow:hidden}
+  .score .top{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--ink);color:#fff}
+  .score .top b{font-size:15px;letter-spacing:.06em}
+  .score .top span{font-size:12px;color:#aaa;display:block}
+  .grade{font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.8}
+  .row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:13px 18px;border-top:1px solid #e6e6e6}
+  .row .t{font-weight:700}
+  .row .s{font-size:14px;color:#666}
+  .row .gr{font-family:"Bebas Neue",sans-serif;font-size:38px;width:44px;text-align:center;border-radius:8px;line-height:1.1}
+  .gA{background:#d9fbe6;color:#0b7a37}.gB{background:#eef9d8;color:#4d7a0b}.gC{background:#fff4d1;color:#8a6200}.gD{background:#ffe2d6;color:#a13a0b}.gF{background:#ffd9d9;color:#b10f0f}
+  .score .foot{padding:12px 18px;font-size:13px;color:#666;background:var(--soft)}
 
-  .guar{background:var(--green)}
-  .guar h2{margin-bottom:10px}
-  .guar p{font-size:19px;max-width:34ch}
-  .guar ul{margin-top:16px;padding-left:20px;display:grid;gap:6px;font-weight:600}
+  /* offer */
+  .offer{display:grid;gap:14px;margin-top:22px}
+  .tier{border:1px solid var(--line);border-radius:14px;padding:20px;background:#0f0f0f}
+  .tier.hot{border:2px solid var(--green)}
+  .tier .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .tier h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:1}
+  .tier .price{font-family:"Bebas Neue",sans-serif;font-size:34px;white-space:nowrap}
+  .tier p{margin-top:8px;color:#cfcfcf}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  .vs div{border:1px solid var(--line);border-radius:12px;padding:14px}
+  .vs .d{font-size:48px}
+  .vs span{font-size:14px;color:var(--muted)}
 
-  .steps{list-style:none;display:grid;gap:18px;counter-reset:s}
-  .steps li{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start}
-  .steps li::before{counter-increment:s;content:counter(s);font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.85;color:var(--ink);-webkit-text-stroke:0;}
+  /* guarantee */
+  .guar{background:var(--green);color:var(--ink)}
+  .guar .lead{color:var(--ink)}
+  .guar ul{margin-top:16px;padding-left:20px;display:grid;gap:6px;font-weight:700}
+
+  /* steps */
+  .steps{list-style:none;display:grid;gap:20px;counter-reset:s;margin-top:18px}
+  .steps li{display:grid;grid-template-columns:58px 1fr;gap:14px;align-items:start}
+  .steps li::before{counter-increment:s;content:counter(s);font-family:"Bebas Neue",sans-serif;font-size:62px;line-height:.85;color:var(--green)}
   .steps b{display:block;font-size:19px}
-  .steps span{color:var(--muted)}
+  .steps span{color:#bbb}
 
-  .no{background:var(--ink);color:#fff;text-align:center}
-  .no .d{font-size:clamp(44px,12vw,80px)}
-
-  details{border-top:2px solid var(--ink);padding:14px 0}
-  details:last-of-type{border-bottom:2px solid var(--ink)}
+  /* faq */
+  details{border-top:1px solid #333;padding:16px 0}
+  details:last-of-type{border-bottom:1px solid #333}
   summary{font-weight:800;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
-  summary::after{content:"+";font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:.8}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:"Bebas Neue",sans-serif;font-size:30px;line-height:.8;color:var(--green)}
   details[open] summary::after{content:"–"}
-  details p{margin-top:8px;color:#333}
+  details p{margin-top:8px;color:#c9c9c9}
 
   .final{text-align:center}
-  .final h2{font-size:clamp(70px,20vw,130px)}
-  footer{padding:24px 20px 40px;text-align:center;font-weight:800;letter-spacing:.08em;font-size:13px;color:var(--muted)}
+  .final h2{font-size:clamp(76px,21vw,140px)}
+  footer{padding:26px 20px 40px;text-align:center;font-weight:800;letter-spacing:.1em;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 
-  .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--ink);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .bar a{min-height:52px;font-size:17px}
 
-  @media (min-width:760px){
+  @media (min-width:780px){
     body{padding-bottom:0}
     .bar{display:none}
     .ctas{grid-template-columns:1fr 1fr}
-    .cards{grid-template-columns:1fr 1fr}
+    .levers{grid-template-columns:1fr 1fr 1fr}
+    .lever h3{font-size:34px}
+    .offer{grid-template-columns:1fr 1fr 1fr}
+    #fcanvas{height:600px}
   }
 </style>
 </head>
@@ -129,133 +156,183 @@
 </header>
 
 <main>
-  <div class="wrap hero">
-    <div class="d kick">Get more leads<span class="dot">.</span><br>Close more sales<span class="dot">.</span></div>
-    <h1 class="d">Make more money<span class="dot">.</span></h1>
-    <p class="sub">I work with local businesses to <b>implement AI &amp; get real results.</b> Guaranteed or you don't pay.</p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="d kick">Get more leads<span class="g">.</span><br>Close more sales<span class="g">.</span></div>
+      <h1 class="d">Make more money<span class="g">.</span></h1>
+      <p class="sub">I work with local businesses to <b>implement AI &amp; get real results.</b> Guaranteed or you don't pay.</p>
 
-    <!-- VIDEO: put your YouTube video ID in data-youtube (e.g. data-youtube="dQw4w9WgXcQ"). Leave empty to show the placeholder. -->
-    <div id="vsl" data-youtube="">
-      <div class="ph-card">
-        <div class="d">60 seconds<span class="dot">.</span></div>
-        <p>Video's coming. Faster version: call or text me and I'll tell you in 60 seconds where your business is leaking money.</p>
+      <div id="vsl" data-youtube="">
+        <div class="ph-card">
+          <div class="d">60 seconds<span class="g">.</span></div>
+          <p>Video's dropping soon. Faster version: scroll down and watch your money leak out of the funnel.</p>
+        </div>
       </div>
-    </div>
-    <div class="vlabel">▶ 60-SECOND VIDEO</div>
+      <div class="vlabel">▶ 60-SECOND VIDEO</div>
 
-    <div class="ctas">
-      <a class="btn p" href="tel:+19348990796">📞 Call Seth</a>
-      <a class="btn k" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text Seth</a>
-      <small style="grid-column:1/-1">No pitch deck. No contract. 15 minutes, straight answers.</small>
+      <div class="ctas">
+        <a class="btn p" href="tel:+19348990796">📞 Call Seth</a>
+        <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20I%20want%20the%20free%20Leak%20Check.%20My%20business%20is%3A%20">💬 Text Seth</a>
+        <small>Ask for the free Leak Check. No pitch deck. No contract.</small>
+      </div>
     </div>
   </div>
 
-  <section class="pain">
+  <!-- FUNNEL -->
+  <section class="funnel">
     <div class="wrap">
-      <h2 class="d">Where your money's going<span class="dot">.</span></h2>
-      <ol>
-        <li><b>You miss the call.</b><span>You're on a roof, under a sink, behind a mower. They hang up and call the next guy on Google.</span></li>
-        <li><b>Nobody follows up.</b><span>You sent the quote. They went quiet. So did you. That job's gone.</span></li>
-        <li><b>You're invisible on Google.</b><span>Three reviews, old photos, wrong hours. The guy with 140 reviews gets the call.</span></li>
-      </ol>
-    </div>
-  </section>
+      <div class="eyebrow">Your business, drawn out</div>
+      <h2 class="d">Your funnel is leaking<span class="g">.</span></h2>
+      <p class="lead">Every green dot is someone who wanted to hire you. Watch how many make it to a paid job.</p>
 
-  <section>
-    <div class="wrap">
-      <h2 class="d">What I'll do for you<span class="dot">.</span></h2>
-      <div class="cards">
-        <div class="card">
-          <div class="top"><h3>Missed-call text-back</h3><div class="price">$350</div></div>
-          <p>Miss a call, the customer gets a text from your number in seconds: "Sorry I missed you — what do you need?" You keep the lead instead of the next guy.</p>
-          <div class="gt">If it doesn't text back every missed call, you don't pay.</div>
-        </div>
-        <div class="card">
-          <div class="top"><h3>Google profile fix</h3><div class="price">$500</div></div>
-          <p>Categories, service areas, services, photos, hours, posts — the full tune-up so you show up when people near you search.</p>
-          <div class="gt">More calls from Google in 60 days or your money back.</div>
-        </div>
-        <div class="card">
-          <div class="top"><h3>Review autopilot</h3><div class="price">$400</div></div>
-          <p>Every finished job gets a text asking for a Google review. Automatically. Stop hoping, start stacking stars.</p>
-          <div class="gt">New reviews in 30 days or you don't pay.</div>
-        </div>
-        <div class="card">
-          <div class="top"><h3>Quote follow-up</h3><div class="price">$750</div></div>
-          <p>Every estimate you send gets followed up — day 2, day 5, day 10 — until they say yes or no. You never chase again.</p>
-          <div class="gt">If it's not following up on every quote, you don't pay.</div>
-        </div>
-        <div class="card">
-          <div class="top"><h3>Website that gets calls</h3><div class="price">from $1,500</div></div>
-          <p>Fast, mobile, one big "call now" button, built for your town. Not a brochure — a phone-ringer.</p>
-          <div class="gt">Live in 2 weeks. Don't like it, don't pay.</div>
+      <div class="fbox">
+        <canvas id="fcanvas" aria-label="Animated sales funnel: leads from Google, referrals, ads and yard signs fall in the top. Some leak out at four points: weak Google profile, missed call, slow quote, and no follow-up. The rest become paid jobs." role="img"></canvas>
+        <div class="fbar">
+          <div class="stat bad" id="statbox"><div class="n" id="jobs">32</div><div class="l" id="statl">paid jobs out of every 100 leads</div></div>
+          <button class="btn p" id="plug" type="button">Plug the leaks with AI →</button>
         </div>
       </div>
-      <p style="margin-top:14px;color:var(--muted);font-size:14px">Some tools carry a small monthly software fee (usually $20–$100). It's in your name — you own it, not me.</p>
+      <p class="fnote">Illustration, not your numbers. The free Leak Check shows where <i>your</i> leaks actually are.</p>
     </div>
   </section>
 
-  <section class="rate">
+  <!-- THREE LEVERS -->
+  <section>
     <div class="wrap">
-      <div class="d big">$75<small>/hr</small></div>
-      <p>Or a flat price per job. <b>No corporate contracts. No bullshit.</b></p>
+      <div class="eyebrow">Only three ways to grow</div>
+      <h2 class="d">Three levers<span class="g">.</span> I pull all of them<span class="g">.</span></h2>
+      <div class="levers">
+        <div class="lever">
+          <div class="num">01</div>
+          <h3>Get more leads</h3>
+          <ul>
+            <li>Google profile that wins the search</li>
+            <li>More reviews, fast. Email past customers.</li>
+            <li>Google Ads that aren't burning cash</li>
+            <li>Facebook &amp; Instagram video ads</li>
+            <li>Yard signs &amp; neighbor mailers on every job</li>
+          </ul>
+        </div>
+        <div class="lever">
+          <div class="num">02</div>
+          <h3>Close more sales</h3>
+          <ul>
+            <li>Never lose a missed call again</li>
+            <li>A phone script + 3 qualifying questions</li>
+            <li>Quotes out the same day, not next week</li>
+            <li>Follow-up that runs itself</li>
+            <li>Walk big quotes on a call, don't just email them</li>
+          </ul>
+        </div>
+        <div class="lever">
+          <div class="num">03</div>
+          <h3>Keep more profit</h3>
+          <ul>
+            <li>Kill the ads that don't bring jobs</li>
+            <li>Track which calls come from where</li>
+            <li>Cut the office busywork with AI</li>
+            <li>Raise prices where your reviews earn it</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCORECARD -->
+  <section class="light">
+    <div class="wrap">
+      <div class="eyebrow">Step one is free</div>
+      <h2 class="d">The Leak Check<span style="color:var(--green)">.</span></h2>
+      <p class="lead">I grade your business the way your customers see it, then walk you through it in 20 minutes on the phone. You keep the scorecard either way.</p>
+
+      <div class="score" aria-label="Sample scorecard">
+        <div class="top"><div><b>SAMPLE SCORECARD</b><span>Local fence company · East End</span></div><div class="grade" style="color:#ffb020">C–</div></div>
+        <div class="row"><div><div class="t">Google profile</div><div class="s">11 reviews. Top competitor has 140.</div></div><div class="gr gD">D</div></div>
+        <div class="row"><div><div class="t">Brand search</div><div class="s">A competitor's ad shows above their own name.</div></div><div class="gr gF">F</div></div>
+        <div class="row"><div><div class="t">Website</div><div class="s">No tap-to-call. Slow on phones.</div></div><div class="gr gC">C</div></div>
+        <div class="row"><div><div class="t">Speed to quote</div><div class="s">Quotes go out in 3–5 days.</div></div><div class="gr gD">D</div></div>
+        <div class="row"><div><div class="t">Reviews sentiment</div><div class="s">People love the crew. Complain about callbacks.</div></div><div class="gr gB">B</div></div>
+        <div class="foot">Sample for illustration. Yours is built from your real Google, site, ads, and reviews.</div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn k" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20the%20free%20Leak%20Check.%20My%20business%20is%3A%20">💬 Text me "Leak Check"</a>
+        <a class="btn o" style="border-color:var(--ink);color:var(--ink)" href="tel:+19348990796">📞 Call 934-899-0796</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Then we fix it</div>
+      <h2 class="d">$75/hr or flat-rate<span class="g">.</span></h2>
+      <p class="lead">No corporate contracts. No bullshit. You own every account and login.</p>
+      <div class="offer">
+        <div class="tier">
+          <div class="top"><h3>Plug one leak</h3><div class="price">from $500</div></div>
+          <p>Pick the worst grade on your scorecard. I fix it for a flat price agreed up front.</p>
+        </div>
+        <div class="tier hot">
+          <div class="top"><h3>The 12-week build</h3><div class="price">$3K/mo</div></div>
+          <p>Every lever, done for you, in 12 weeks. At the end it's all built, running, and yours, whether you keep me or not.</p>
+        </div>
+        <div class="tier">
+          <div class="top"><h3>Hourly</h3><div class="price">$75/hr</div></div>
+          <p>Ten-hour blocks for the top fixes on your scorecard. I tell you when the block's used up.</p>
+        </div>
+      </div>
       <div class="vs">
         <div><div class="d">$130+</div><span>What you bill for a tech</span></div>
         <div><div class="d g">$75</div><span>What I cost</span></div>
       </div>
-      <div class="frac">
-        <div class="d">Your fractional AI guy<span style="color:#fff">.</span></div>
-        <p style="margin-top:6px">10 hours a week, ~$3,000/mo. I keep fixing the next leak every week. Cancel any month.</p>
-      </div>
     </div>
   </section>
 
+  <!-- GUARANTEE -->
   <section class="guar">
     <div class="wrap">
       <h2 class="d">Guaranteed<span style="color:var(--ink)">.</span></h2>
-      <p>Every job has a result we agree on before I start. If it doesn't get that result, you don't pay for it. Simple.</p>
+      <p class="lead">Before I start any job, we write down the result it has to hit. If it doesn't hit it, you don't pay for it.</p>
       <ul>
         <li>Result agreed up front, in writing</li>
         <li>No long-term contract</li>
-        <li>You own every account and login</li>
+        <li>Everything in your name</li>
       </ul>
     </div>
   </section>
 
+  <!-- HOW -->
   <section>
     <div class="wrap">
-      <h2 class="d">How it works<span class="dot">.</span></h2>
+      <h2 class="d">How it works<span class="g">.</span></h2>
       <ol class="steps">
-        <li><div><b>Call or text me.</b><span>15 minutes. Tell me what kind of work you do and where it hurts.</span></div></li>
-        <li><div><b>I pick the one fix that pays first.</b><span>Flat price, and the result I'll hit. No 40-page proposal.</span></div></li>
-        <li><div><b>I build it. You make more money.</b><span>Usually live in days, not months. If it doesn't work, you don't pay.</span></div></li>
+        <li><div><b>Call or text me.</b><span>Tell me your trade and your town. That's it.</span></div></li>
+        <li><div><b>I grade your business. Free.</b><span>Google, reviews, website, ads, speed to quote. 20-minute call to walk it.</span></div></li>
+        <li><div><b>We plug the biggest leak first.</b><span>Flat price, result agreed in writing. If it doesn't work, you don't pay.</span></div></li>
       </ol>
     </div>
   </section>
 
-  <section class="no">
+  <!-- FAQ -->
+  <section style="padding-top:10px">
     <div class="wrap">
-      <div class="d">No contracts<span class="dot">.</span><br>No bullshit<span class="dot">.</span></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2 class="d">Questions<span class="dot">.</span></h2>
-      <details><summary>I'm not a computer guy. Does that matter?</summary><p>No. That's the point. I set it up, I show you the one or two things you'll ever touch, and it runs.</p></details>
-      <details><summary>Is a robot going to answer my phone?</summary><p>No. Your phone rings like it always does. The AI only kicks in when you <i>can't</i> pick up, or when something needs a follow-up you'd forget.</p></details>
-      <details><summary>Who do you work with?</summary><p>Owner-operators. HVAC, plumbing, electrical, landscaping, contractors, and other local service businesses on the East End.</p></details>
-      <details><summary>What's the catch?</summary><p>I'm picky. I only take jobs where I'm pretty sure I can make you money — otherwise the guarantee costs me. If I can't help, I'll tell you in the first call.</p></details>
-      <details><summary>How do I pay?</summary><p>Flat-rate jobs: invoice when it's live. Hourly: billed weekly. Cancel any time.</p></details>
+      <h2 class="d">Questions<span class="g">.</span></h2>
+      <details><summary>What's the catch on the free Leak Check?</summary><p>No catch. It's how I show you I know what I'm doing. If you want help fixing what I find, we talk. If not, keep the scorecard.</p></details>
+      <details><summary>I'm not a computer guy. Does that matter?</summary><p>No. That's the point. I build it, I run it, I show you the one or two things you'll ever touch.</p></details>
+      <details><summary>I get all my work from referrals.</summary><p>Most of the good ones do. But when a friend gives someone your name, the first thing they do is Google you. What they find decides whether they call.</p></details>
+      <details><summary>Who do you work with?</summary><p>Owner-operators on the East End. HVAC, plumbing, electrical, landscaping, fencing, roofing, contractors.</p></details>
+      <details><summary>Is AI going to answer my phone?</summary><p>No. Your phone rings like it always does. AI works in the background: follow-ups, reviews, quotes, reports. The stuff that falls through the cracks when you're on a job.</p></details>
     </div>
   </section>
 
   <section class="final">
     <div class="wrap">
-      <h2 class="d">Make more money<span class="dot">.</span></h2>
+      <h2 class="d">Make more money<span class="g">.</span></h2>
       <div class="ctas">
         <a class="btn p" href="tel:+19348990796">📞 Call 934-899-0796</a>
-        <a class="btn k" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text me</a>
+        <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20the%20free%20Leak%20Check.%20My%20business%20is%3A%20">💬 Text me</a>
       </div>
     </div>
   </section>
@@ -265,15 +342,151 @@
 
 <nav class="bar" aria-label="Contact">
   <a class="btn p" href="tel:+19348990796">📞 Call</a>
-  <a class="btn o" style="border-color:#fff;color:#fff" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text</a>
+  <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20I%20want%20the%20free%20Leak%20Check.%20My%20business%20is%3A%20">💬 Text</a>
 </nav>
 
 <script>
-  (function(){
-    var box=document.getElementById('vsl'), id=(box.getAttribute('data-youtube')||'').trim();
-    if(!id) return;
-    box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&playsinline=1" title="60-second video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-  })();
+/* video */
+(function(){
+  var box=document.getElementById('vsl'), id=(box.getAttribute('data-youtube')||'').trim();
+  if(!id) return;
+  box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&playsinline=1" title="60-second video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+})();
+
+/* leaking funnel */
+(function(){
+  var cv=document.getElementById('fcanvas'), ctx=cv.getContext('2d');
+  var GREEN='#2BE36B', LEAK='#ff4d4d';
+  var SOURCES=['GOOGLE','REFERRALS','ADS','YARD SIGNS'];
+  var STAGES=['FOUND YOU','CALLED','QUOTED','FOLLOWED UP'];
+  var LEAKS=[['WEAK GOOGLE','PROFILE'],['MISSED','CALL'],['SLOW','QUOTE'],['NO','FOLLOW-UP']];
+  var RATES={leaky:[.30,.25,.20,.25], plugged:[.10,.08,.08,.10]};
+  var mode='leaky', dots=[], flash=[0,0,0,0], W=0,H=0,dpr=1, spawnAcc=0, running=false, last=0;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function survive(r){var s=1;r.forEach(function(x){s*=1-x});return Math.round(s*100)}
+  function size(){
+    var r=cv.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
+    W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function geo(){
+    var narrow=W<520;
+    return {cx:W/2, top:78, bot:H-86, tw:W*(narrow?.56:.52), bw:W*(narrow?.16:.14)};
+  }
+  function half(g,y){var t=Math.max(0,Math.min(1,(y-g.top)/(g.bot-g.top)));return (g.tw+(g.bw-g.tw)*t)/2}
+  function stageY(g,i){return g.top+(g.bot-g.top)*(i+1)/4}
+
+  function spawn(){
+    var r=RATES[mode], leakAt=-1;
+    for(var i=0;i<4;i++){ if(Math.random()<r[i]){leakAt=i;break} }
+    var src=Math.floor(Math.random()*4);
+    dots.push({u:(Math.random()*1.7-.85), y:34, sx:src, leakAt:leakAt, state:0, vx:0, vy:0, x:0, a:1, sp:70+Math.random()*40, r:3.2+Math.random()*1.4});
+  }
+  function update(dt){
+    var g=geo();
+    spawnAcc+=dt*(W<520?7:9);
+    while(spawnAcc>1){spawn();spawnAcc--}
+    for(var i=0;i<4;i++) flash[i]=Math.max(0,flash[i]-dt*1.6);
+    dots.forEach(function(d){
+      if(d.state===0){ // falling in funnel
+        var prevY=d.y; d.y+=d.sp*dt;
+        if(d.y<g.top){ // entering: glide from source column toward funnel mouth
+          var sxp=W*(.14+d.sx*.24); var target=g.cx+d.u*half(g,g.top);
+          var t=(d.y-34)/(g.top-34); d.x=sxp+(target-sxp)*Math.max(0,t);
+        } else {
+          d.x=g.cx+d.u*half(g,d.y);
+        }
+        if(d.leakAt>=0){
+          var ly=stageY(g,d.leakAt);
+          if(prevY<ly && d.y>=ly){
+            d.state=1; var side=(d.leakAt%2===0)?-1:1; // alternate sides to match labels
+            d.x=g.cx+side*half(g,ly); d.vx=side*(90+Math.random()*80); d.vy=30+Math.random()*50; flash[d.leakAt]=1;
+          }
+        }
+        if(d.y>=g.bot){ d.state=2; d.vy=60; }
+      } else if(d.state===1){ // leaking out
+        d.x+=d.vx*dt; d.y+=d.vy*dt; d.vy+=120*dt; d.a-=dt*.9;
+      } else { // made it: drop into jobs bin
+        d.y+=d.vy*dt; d.x+=(g.cx-d.x)*dt*4; d.a-=dt*1.4;
+      }
+    });
+    dots=dots.filter(function(d){return d.a>0 && d.y<H+20});
+  }
+  function draw(){
+    var g=geo(); ctx.clearRect(0,0,W,H);
+    var small=W<520, fs=small?10:12;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    // sources
+    ctx.font='800 '+fs+'px Inter,system-ui,sans-serif';
+    SOURCES.forEach(function(s,i){ctx.fillStyle='#9a9a9a';ctx.fillText(s,W*(.14+i*.24),18)});
+    // funnel bands
+    for(var i=0;i<4;i++){
+      var y0=i===0?g.top:stageY(g,i-1), y1=stageY(g,i);
+      ctx.beginPath();
+      ctx.moveTo(g.cx-half(g,y0),y0); ctx.lineTo(g.cx+half(g,y0),y0);
+      ctx.lineTo(g.cx+half(g,y1),y1); ctx.lineTo(g.cx-half(g,y1),y1); ctx.closePath();
+      ctx.fillStyle=i%2?'#131313':'#171717'; ctx.fill();
+      ctx.strokeStyle='#2c2c2c'; ctx.lineWidth=1; ctx.stroke();
+      ctx.fillStyle='#5f5f5f'; ctx.font='800 '+fs+'px Inter,system-ui,sans-serif';
+      ctx.fillText(STAGES[i], g.cx, (y0+y1)/2);
+      // leak marker + label
+      var side=(i%2===0)?-1:1, lx=g.cx+side*half(g,y1), f=flash[i];
+      ctx.beginPath(); ctx.arc(lx,y1,4+f*4,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,77,77,'+(.35+f*.65)+')'; ctx.fill();
+      var tx=side<0 ? lx-10 : lx+10; ctx.textAlign=side<0?'right':'left';
+      ctx.fillStyle='rgba(255,'+Math.round(120-f*43)+','+Math.round(120-f*43)+','+(.7+f*.3)+')';
+      ctx.font='800 '+(small?10:12)+'px Inter,system-ui,sans-serif';
+      ctx.fillText(LEAKS[i][0],tx,y1-7); ctx.fillText(LEAKS[i][1],tx,y1+7);
+      ctx.textAlign='center';
+    }
+    // jobs bin
+    ctx.fillStyle=GREEN; ctx.font='400 '+(small?26:32)+'px "Bebas Neue",Impact,sans-serif';
+    ctx.fillText('PAID JOBS', g.cx, g.bot+46);
+    ctx.fillStyle='rgba(43,227,107,.14)'; ctx.fillRect(g.cx-g.bw/2, g.bot, g.bw, 18);
+    // dots
+    dots.forEach(function(d){
+      ctx.globalAlpha=Math.max(0,d.a);
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle=d.state===1?LEAK:GREEN;
+      if(d.state!==1){ctx.shadowColor=GREEN;ctx.shadowBlur=8}
+      ctx.fill(); ctx.shadowBlur=0;
+    });
+    ctx.globalAlpha=1;
+  }
+  function loop(t){
+    if(!running) return;
+    var dt=Math.min(.05,(t-last)/1000||0); last=t;
+    update(dt); draw(); requestAnimationFrame(loop);
+  }
+  function staticFrame(){ dots=[]; for(var i=0;i<240;i++) update(1/30); draw(); }
+
+  // counter + toggle
+  var jobsEl=document.getElementById('jobs'), box=document.getElementById('statbox'), btn=document.getElementById('plug'), lbl=document.getElementById('statl');
+  function tween(to){
+    var from=parseInt(jobsEl.textContent,10), t0=performance.now();
+    (function step(t){var k=Math.min(1,(t-t0)/700); jobsEl.textContent=Math.round(from+(to-from)*k); if(k<1) requestAnimationFrame(step)})(t0);
+  }
+  btn.addEventListener('click',function(){
+    mode = mode==='leaky' ? 'plugged' : 'leaky';
+    var n=survive(RATES[mode]); tween(n);
+    box.className='stat '+(mode==='leaky'?'bad':'good');
+    btn.textContent = mode==='leaky' ? 'Plug the leaks with AI →' : '← Show me leaking again';
+    btn.className = 'btn '+(mode==='leaky'?'p':'o');
+    lbl.textContent = mode==='leaky' ? 'paid jobs out of every 100 leads' : 'paid jobs out of the same 100 leads';
+    if(reduce) staticFrame();
+  });
+  jobsEl.textContent=survive(RATES.leaky);
+
+  function start(){ if(running||reduce) return; running=true; last=performance.now(); requestAnimationFrame(loop); }
+  function stop(){ running=false; }
+  size(); window.addEventListener('resize',function(){size(); if(reduce) staticFrame();});
+  if(reduce){ staticFrame(); }
+  else if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting?start():stop(); }); },{threshold:.05}).observe(cv);
+  } else start();
+  document.addEventListener('visibilitychange',function(){ document.hidden?stop():start(); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ if(reduce) staticFrame(); });
+})();
 </script>
 </body>
 </html>
