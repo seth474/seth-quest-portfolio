@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Make More Money. — Seth Quest</title>
+<meta name="description" content="I implement AI for local trades and service businesses. More leads, more closed jobs. $75/hr or flat-rate. Guaranteed or you don't pay.">
+<meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
+<meta property="og:description" content="Missed-call text-back, Google profile fixes, automatic reviews and follow-up for local businesses. Guaranteed or you don't pay.">
+<meta property="og:url" content="https://sethquest.com/make-more-money">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* ====== EDIT THESE 3 THINGS ====== */
+  /* 1. VIDEO: set data-youtube="YOUR_VIDEO_ID" on #vsl below (unlisted YouTube or a Short) */
+  /* 2. BOOKING: add a Cal.com button once the link exists */
+  /* 3. Prices live in the "What I'll do" cards */
+
+  :root{
+    --ink:#0a0a0a; --paper:#ffffff; --green:#2BE36B; --green-ink:#0a0a0a;
+    --muted:#555; --line:#e6e6e6; --soft:#f4f4f2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;padding-bottom:84px}
+  a{color:inherit}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .d{font-family:"Bebas Neue",Oswald,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.9;text-transform:uppercase}
+  .g{color:var(--green)}
+  .dot{color:var(--green)}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:720px;margin:0 auto}
+  header .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.06em;text-decoration:none}
+  header .ph{font-weight:800;font-size:14px;text-decoration:none;border:2px solid var(--ink);padding:6px 10px;border-radius:6px}
+
+  .hero{padding:18px 0 8px}
+  .hero .kick{font-size:clamp(30px,8.5vw,52px)}
+  .hero h1{font-size:clamp(76px,23vw,150px);margin:4px 0 14px}
+  .hero .sub{font-size:19px;max-width:34ch}
+  .hero .sub b{background:var(--green);padding:0 4px}
+
+  #vsl{margin:22px auto 0;max-width:400px;aspect-ratio:9/16;background:var(--ink);border-radius:14px;overflow:hidden;position:relative}
+  #vsl iframe,#vsl video{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #vsl .ph-card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:28px;gap:14px}
+  #vsl .ph-card .d{font-size:54px}
+  #vsl .ph-card p{color:#bbb;font-size:15px}
+  .vlabel{text-align:center;font-weight:800;font-size:13px;letter-spacing:.12em;margin-top:10px;color:var(--muted)}
+
+  .ctas{display:grid;gap:10px;margin:22px 0 6px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:10px;font-weight:800;font-size:18px;text-decoration:none;letter-spacing:.01em}
+  .btn.p{background:var(--green);color:var(--green-ink)}
+  .btn.k{background:var(--ink);color:#fff}
+  .btn.o{border:2px solid var(--ink);color:var(--ink)}
+  .ctas small{text-align:center;color:var(--muted);font-size:14px}
+
+  section{padding:44px 0}
+  h2{font-size:clamp(46px,12vw,72px);margin-bottom:18px}
+
+  .pain{background:var(--soft)}
+  .pain ol{list-style:none;display:grid;gap:14px}
+  .pain li{background:#fff;border-left:6px solid var(--ink);padding:14px 16px;border-radius:4px}
+  .pain li b{display:block;font-size:19px}
+  .pain li span{color:var(--muted)}
+
+  .cards{display:grid;gap:14px}
+  .card{border:2px solid var(--ink);border-radius:12px;padding:18px}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .card h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:32px;line-height:1}
+  .card .price{font-family:"Bebas Neue",sans-serif;font-size:30px;white-space:nowrap}
+  .card p{margin-top:8px}
+  .card .gt{margin-top:10px;font-size:14px;font-weight:600;padding-top:10px;border-top:1px dashed #bbb}
+  .card .gt::before{content:"✓ ";color:#12a84a;font-weight:800}
+
+  .rate{background:var(--ink);color:#fff}
+  .rate .big{font-size:clamp(90px,28vw,170px)}
+  .rate .big small{font-size:.35em}
+  .rate p{color:#ccc;max-width:36ch}
+  .rate p b{color:#fff}
+  .rate .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+  .rate .vs div{border:1px solid #333;border-radius:10px;padding:14px}
+  .rate .vs .d{font-size:44px}
+  .rate .vs span{font-size:14px;color:#aaa}
+  .rate .frac{border:2px solid var(--green);border-radius:12px;padding:16px;margin-top:8px}
+  .rate .frac .d{font-size:34px;color:var(--green)}
+
+  .guar{background:var(--green)}
+  .guar h2{margin-bottom:10px}
+  .guar p{font-size:19px;max-width:34ch}
+  .guar ul{margin-top:16px;padding-left:20px;display:grid;gap:6px;font-weight:600}
+
+  .steps{list-style:none;display:grid;gap:18px;counter-reset:s}
+  .steps li{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start}
+  .steps li::before{counter-increment:s;content:counter(s);font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.85;color:var(--ink);-webkit-text-stroke:0;}
+  .steps b{display:block;font-size:19px}
+  .steps span{color:var(--muted)}
+
+  .no{background:var(--ink);color:#fff;text-align:center}
+  .no .d{font-size:clamp(44px,12vw,80px)}
+
+  details{border-top:2px solid var(--ink);padding:14px 0}
+  details:last-of-type{border-bottom:2px solid var(--ink)}
+  summary{font-weight:800;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::after{content:"+";font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:.8}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:8px;color:#333}
+
+  .final{text-align:center}
+  .final h2{font-size:clamp(70px,20vw,130px)}
+  footer{padding:24px 20px 40px;text-align:center;font-weight:800;letter-spacing:.08em;font-size:13px;color:var(--muted)}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--ink);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .bar a{min-height:52px;font-size:17px}
+
+  @media (min-width:760px){
+    body{padding-bottom:0}
+    .bar{display:none}
+    .ctas{grid-template-columns:1fr 1fr}
+    .cards{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="https://sethquest.com">Seth Quest</a>
+  <a class="ph" href="tel:+19348990796">934-899-0796</a>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div class="d kick">Get more leads<span class="dot">.</span><br>Close more sales<span class="dot">.</span></div>
+    <h1 class="d">Make more money<span class="dot">.</span></h1>
+    <p class="sub">I work with local businesses to <b>implement AI &amp; get real results.</b> Guaranteed or you don't pay.</p>
+
+    <!-- VIDEO: put your YouTube video ID in data-youtube (e.g. data-youtube="dQw4w9WgXcQ"). Leave empty to show the placeholder. -->
+    <div id="vsl" data-youtube="">
+      <div class="ph-card">
+        <div class="d">60 seconds<span class="dot">.</span></div>
+        <p>Video's coming. Faster version: call or text me and I'll tell you in 60 seconds where your business is leaking money.</p>
+      </div>
+    </div>
+    <div class="vlabel">▶ 60-SECOND VIDEO</div>
+
+    <div class="ctas">
+      <a class="btn p" href="tel:+19348990796">📞 Call Seth</a>
+      <a class="btn k" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text Seth</a>
+      <small style="grid-column:1/-1">No pitch deck. No contract. 15 minutes, straight answers.</small>
+    </div>
+  </div>
+
+  <section class="pain">
+    <div class="wrap">
+      <h2 class="d">Where your money's going<span class="dot">.</span></h2>
+      <ol>
+        <li><b>You miss the call.</b><span>You're on a roof, under a sink, behind a mower. They hang up and call the next guy on Google.</span></li>
+        <li><b>Nobody follows up.</b><span>You sent the quote. They went quiet. So did you. That job's gone.</span></li>
+        <li><b>You're invisible on Google.</b><span>Three reviews, old photos, wrong hours. The guy with 140 reviews gets the call.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="d">What I'll do for you<span class="dot">.</span></h2>
+      <div class="cards">
+        <div class="card">
+          <div class="top"><h3>Missed-call text-back</h3><div class="price">$350</div></div>
+          <p>Miss a call, the customer gets a text from your number in seconds: "Sorry I missed you — what do you need?" You keep the lead instead of the next guy.</p>
+          <div class="gt">If it doesn't text back every missed call, you don't pay.</div>
+        </div>
+        <div class="card">
+          <div class="top"><h3>Google profile fix</h3><div class="price">$500</div></div>
+          <p>Categories, service areas, services, photos, hours, posts — the full tune-up so you show up when people near you search.</p>
+          <div class="gt">More calls from Google in 60 days or your money back.</div>
+        </div>
+        <div class="card">
+          <div class="top"><h3>Review autopilot</h3><div class="price">$400</div></div>
+          <p>Every finished job gets a text asking for a Google review. Automatically. Stop hoping, start stacking stars.</p>
+          <div class="gt">New reviews in 30 days or you don't pay.</div>
+        </div>
+        <div class="card">
+          <div class="top"><h3>Quote follow-up</h3><div class="price">$750</div></div>
+          <p>Every estimate you send gets followed up — day 2, day 5, day 10 — until they say yes or no. You never chase again.</p>
+          <div class="gt">If it's not following up on every quote, you don't pay.</div>
+        </div>
+        <div class="card">
+          <div class="top"><h3>Website that gets calls</h3><div class="price">from $1,500</div></div>
+          <p>Fast, mobile, one big "call now" button, built for your town. Not a brochure — a phone-ringer.</p>
+          <div class="gt">Live in 2 weeks. Don't like it, don't pay.</div>
+        </div>
+      </div>
+      <p style="margin-top:14px;color:var(--muted);font-size:14px">Some tools carry a small monthly software fee (usually $20–$100). It's in your name — you own it, not me.</p>
+    </div>
+  </section>
+
+  <section class="rate">
+    <div class="wrap">
+      <div class="d big">$75<small>/hr</small></div>
+      <p>Or a flat price per job. <b>No corporate contracts. No bullshit.</b></p>
+      <div class="vs">
+        <div><div class="d">$130+</div><span>What you bill for a tech</span></div>
+        <div><div class="d g">$75</div><span>What I cost</span></div>
+      </div>
+      <div class="frac">
+        <div class="d">Your fractional AI guy<span style="color:#fff">.</span></div>
+        <p style="margin-top:6px">10 hours a week, ~$3,000/mo. I keep fixing the next leak every week. Cancel any month.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="guar">
+    <div class="wrap">
+      <h2 class="d">Guaranteed<span style="color:var(--ink)">.</span></h2>
+      <p>Every job has a result we agree on before I start. If it doesn't get that result, you don't pay for it. Simple.</p>
+      <ul>
+        <li>Result agreed up front, in writing</li>
+        <li>No long-term contract</li>
+        <li>You own every account and login</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="d">How it works<span class="dot">.</span></h2>
+      <ol class="steps">
+        <li><div><b>Call or text me.</b><span>15 minutes. Tell me what kind of work you do and where it hurts.</span></div></li>
+        <li><div><b>I pick the one fix that pays first.</b><span>Flat price, and the result I'll hit. No 40-page proposal.</span></div></li>
+        <li><div><b>I build it. You make more money.</b><span>Usually live in days, not months. If it doesn't work, you don't pay.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="no">
+    <div class="wrap">
+      <div class="d">No contracts<span class="dot">.</span><br>No bullshit<span class="dot">.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="d">Questions<span class="dot">.</span></h2>
+      <details><summary>I'm not a computer guy. Does that matter?</summary><p>No. That's the point. I set it up, I show you the one or two things you'll ever touch, and it runs.</p></details>
+      <details><summary>Is a robot going to answer my phone?</summary><p>No. Your phone rings like it always does. The AI only kicks in when you <i>can't</i> pick up, or when something needs a follow-up you'd forget.</p></details>
+      <details><summary>Who do you work with?</summary><p>Owner-operators. HVAC, plumbing, electrical, landscaping, contractors, and other local service businesses on the East End.</p></details>
+      <details><summary>What's the catch?</summary><p>I'm picky. I only take jobs where I'm pretty sure I can make you money — otherwise the guarantee costs me. If I can't help, I'll tell you in the first call.</p></details>
+      <details><summary>How do I pay?</summary><p>Flat-rate jobs: invoice when it's live. Hourly: billed weekly. Cancel any time.</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2 class="d">Make more money<span class="dot">.</span></h2>
+      <div class="ctas">
+        <a class="btn p" href="tel:+19348990796">📞 Call 934-899-0796</a>
+        <a class="btn k" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text me</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>SETH QUEST · <a href="https://sethquest.com">SETHQUEST.COM</a> · CELL <a href="tel:+19348990796">934-899-0796</a></footer>
+
+<nav class="bar" aria-label="Contact">
+  <a class="btn p" href="tel:+19348990796">📞 Call</a>
+  <a class="btn o" style="border-color:#fff;color:#fff" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20got%20your%20flyer.%20My%20business%20is%3A%20">💬 Text</a>
+</nav>
+
+<script>
+  (function(){
+    var box=document.getElementById('vsl'), id=(box.getAttribute('data-youtube')||'').trim();
+    if(!id) return;
+    box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&playsinline=1" title="60-second video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  })();
+</script>
+</body>
+</html>
