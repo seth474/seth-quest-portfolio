@@ -25,7 +25,7 @@
 
   header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1120px;margin:0 auto}
   header .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
-  header .ph{font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid #fff;padding:6px 10px;border-radius:6px}
+  header .ph{font:800 14px Inter,sans-serif;text-decoration:none;border:0;background:var(--green);color:var(--ink);padding:9px 14px;border-radius:8px;cursor:pointer}
 
   /* HERO */
   .hero{position:relative;overflow:hidden;padding:10px 0 48px}
@@ -109,6 +109,14 @@
   .mcard p{color:#cfcfcf;margin:10px 0 18px}
   .mcard .ctas{grid-template-columns:1fr;max-width:none;margin-top:0}
   .mx{position:absolute;top:10px;right:12px;background:none;border:0;color:#888;font-size:26px;cursor:pointer;line-height:1}
+  .mcard .ctas.two{grid-template-columns:1fr 1fr}
+  .mcard .num{text-align:center;font:700 13px "JetBrains Mono",monospace;color:#9a9a9a;margin-top:8px}
+  .mor{display:flex;align-items:center;gap:10px;margin:16px 0 10px;color:#8a8a8a;font-size:13px;font-weight:700}
+  .mor::before,.mor::after{content:"";flex:1;height:1px;background:#2c2c2c}
+  .erow{display:grid;grid-template-columns:1fr auto;gap:8px}
+  .erow .fld{margin-bottom:0}
+  .erow .btn{min-height:54px;padding:0 20px}
+  #aErr{margin:8px 0 0}
   .mno{display:block;margin:12px auto 0;background:none;border:0;color:#777;font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:underline}
 
   /* KEYNOTE SLIDES */
@@ -126,7 +134,7 @@
   .js .in .rev{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
   .js .in .pts li.rev{border-color:rgba(43,227,107,.32);transition:opacity .6s cubic-bezier(.2,.8,.2,1) var(--d,0s),transform .6s cubic-bezier(.2,.8,.2,1) var(--d,0s),border-color .5s calc(var(--d,0s) + .5s)}
   .bign{-webkit-text-stroke-color:#3a3a3a;text-shadow:none}
-  .js .in .bign.rev{-webkit-text-stroke-color:var(--green);text-shadow:0 0 60px rgba(43,227,107,.28);transition:opacity .6s,transform .6s,-webkit-text-stroke-color .6s 1.3s,text-shadow .9s 1.3s}
+  .js .in .bign.rev{-webkit-text-stroke-color:var(--green);text-shadow:0 0 60px rgba(43,227,107,.28);transition:opacity .6s,transform .6s,-webkit-text-stroke-color .6s .35s,text-shadow .9s .35s}
   .eq{white-space:nowrap;font-size:clamp(40px,10.5vw,92px);margin-top:26px;color:var(--green);text-shadow:0 0 24px rgba(43,227,107,.4)}
   .eq span{color:#fff}
 
@@ -161,10 +169,13 @@
   .hourly .lead{margin:0 auto;max-width:34ch}
   .hourly .lead b{color:#fff}
   .four{font-size:clamp(40px,10vw,72px);margin:0 0 44px;color:#fff}
+  .four.ways{text-align:center}
+  .freeln{display:inline-block;margin-top:18px;font-weight:800;font-size:17px;color:#fff;text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:2px}
   .hourly h2:not(.four){margin-top:6px}
   .ordiv{display:flex;align-items:center;gap:18px;max-width:760px;margin:0 auto;padding:0 20px}
-  .ordiv::before,.ordiv::after{content:"";flex:1;height:1px;background:#2c2c2c}
-  .ordiv span{font-family:"Bebas Neue",sans-serif;font-size:40px;color:#888;width:84px;height:84px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center}
+  .ordiv::before,.ordiv::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(43,227,107,.55))}
+  .ordiv::after{background:linear-gradient(90deg,rgba(43,227,107,.55),transparent)}
+  .ordiv span{font-family:"Bebas Neue",sans-serif;font-size:40px;color:var(--green);width:84px;height:84px;border-radius:50%;border:1px solid rgba(43,227,107,.6);box-shadow:0 0 18px rgba(43,227,107,.12);display:flex;align-items:center;justify-content:center}
   .menu .tiers{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .menu .tiers span{font:700 12px "JetBrains Mono",monospace;color:#9a9a9a;border:1px solid #2c2c2c;border-radius:20px;padding:5px 10px}
   .menu .tiers span.on{color:var(--ink);background:var(--green);border-color:var(--green)}
@@ -184,7 +195,9 @@
   .mt small{display:block;font-weight:500;color:#8f8f8f;font-size:13px;margin-top:2px}
   .mp{font:700 15px "JetBrains Mono",monospace;color:var(--green);text-align:right;white-space:nowrap}
   .mp small{display:block;font-size:11px;color:#8f8f8f;font-weight:500}
-  .mexp{width:34px;height:34px;border-radius:50%;border:1px solid #333;background:none;color:#aaa;font-size:20px;line-height:1;cursor:pointer;justify-self:end}
+  .mexp{width:34px;height:34px;border-radius:50%;border:1px solid #333;background:none;color:#aaa;cursor:pointer;justify-self:end;display:flex;align-items:center;justify-content:center;padding:0}
+  .mexp svg{width:16px;height:16px;transition:transform .25s}
+  .mexp[aria-expanded="true"] svg{transform:rotate(180deg)}
   .mexp[aria-expanded="true"]{color:var(--ink);background:var(--green);border-color:var(--green)}
   .md{padding:0 16px 16px 52px;color:#c9c9c9;font-size:15px;display:grid;gap:8px}
   .md .k{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:1px}
@@ -201,8 +214,8 @@
   .mhead .tl{display:block;font-size:13px;color:#8f8f8f;margin-top:4px}
   .mhead .pc{display:inline-block;margin-top:8px;font:700 11px "JetBrains Mono",monospace;color:var(--ink);background:var(--green);border-radius:20px;padding:3px 8px}
   .mhead .pc:empty{display:none}
-  .mhead .ar{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:18px;transition:transform .3s,background .3s,color .3s}
-  .mcol.open .mhead .ar{transform:rotate(45deg);background:var(--green);color:var(--ink);border-color:var(--green)}
+  .mhead .ar{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;border:1px solid #333;display:none;align-items:center;justify-content:center;color:#aaa;font-size:18px;transition:transform .3s,background .3s,color .3s}
+  .mcol.open .mhead .ar{display:flex;transform:rotate(45deg);background:var(--green);color:var(--ink);border-color:var(--green)}
   .mpeek{list-style:none;padding:0 16px 16px;display:grid;gap:6px;font-size:13.5px;cursor:pointer}
   .mpeek li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed #222;padding-bottom:6px;color:#cfcfcf}
   .mpeek li span{font:700 12.5px "JetBrains Mono",monospace;color:var(--green);white-space:nowrap}
@@ -212,9 +225,12 @@
   .mcol.open .mlist{display:grid;animation:rise .35s cubic-bezier(.2,.8,.2,1)}
   .mcol.open .mpeek{display:none}
   .mdash.has .mcol:not(.open) .mpeek,.mdash.has .mcol:not(.open) .tl{display:none}
+  .mdash.has .mcol:not(.open) .mmore{margin-top:0}
   .mi .md.feat{border-top:1px dashed #2a2a2a;padding-top:12px}
-  .mmore{display:block;margin:2px 16px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#777;background:none;border:0;cursor:pointer;text-align:left;padding:0}
-  .mcol.open .mmore,.mdash.has .mcol:not(.open) .mmore{display:none}
+  .mmore{display:flex;align-items:center;justify-content:center;gap:8px;margin:auto 16px 16px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--green);background:transparent;color:var(--green);font:800 15px Inter,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+  .mmore:hover{background:var(--green);color:var(--ink)}
+  .mmore svg{width:16px;height:16px}
+  .mcol.open .mmore{display:none}
   /* FAQ */
   .qs{display:grid;gap:10px;margin-top:22px;max-width:820px}
   .qs details{border:1px solid var(--line);border-radius:14px;background:#0f0f0f;padding:0 18px}
@@ -227,6 +243,11 @@
   .agrid{display:grid;gap:12px;margin-top:22px}
   .agrid .mi .md{padding-left:52px}
   .allin .aicard{border:1px solid var(--green);border-radius:22px;padding:34px 22px;background:radial-gradient(ellipse at 20% 0%,rgba(43,227,107,.12),transparent 60%),#0d0d0d;box-shadow:0 0 60px rgba(43,227,107,.08)}
+  .aisteps{list-style:none;counter-reset:s;display:grid;gap:10px;margin:22px 0 4px}
+  .aisteps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;align-items:center;column-gap:12px;border:1px solid #1f3a28;border-radius:14px;padding:14px 16px;background:rgba(43,227,107,.04)}
+  .aisteps li::before{content:counter(s);grid-row:span 2;font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:1;color:var(--green)}
+  .aisteps b{font-size:18px}
+  .aisteps span{color:#bdbdbd;font-size:15px}
   .aidept{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
   .aidept li{font:700 12px "JetBrains Mono",monospace;color:#cfcfcf;border:1px solid #2c2c2c;border-radius:20px;padding:6px 11px}
   .aiprice{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:22px 0 8px}
@@ -282,10 +303,14 @@
     .mcol.sm{flex-grow:.8}
     .mdash.has .mcol:not(.open){flex-grow:.42}
     .mdash.has .mcol:not(.open) .mhead h3{font-size:24px;padding-right:0}
-    .mdash.has .mcol:not(.open) .mhead .ar{position:static;margin-top:10px}
     .mcol.open{flex-grow:3.6}
+    .mdash.has .mcol:not(.open) .mmore{margin:auto 10px 14px;padding:0 8px}
+    .mdash.has .mcol:not(.open) .mmore .lb{display:none}
     .agrid{grid-template-columns:1fr 1fr}
     .allin .aicard{padding:48px 44px}
+    .aisteps{grid-template-columns:repeat(3,1fr)}
+    .aisteps li{grid-template-columns:1fr;align-content:start}
+    .aisteps li::before{grid-row:auto}
   }
   @media (prefers-reduced-motion:reduce){.js .rev{opacity:1;transform:none}.cur,.pulse{animation:none}}
 </style>
@@ -294,7 +319,7 @@
 
 <header>
   <a class="brand" href="https://sethquest.com">Seth Quest</a>
-  <a class="ph" href="tel:+19348990796">934-899-0796</a>
+  <button class="ph" id="hdrBook" type="button">Book a free audit</button>
 </header>
 
 <main>
@@ -330,9 +355,9 @@
       <div>
         <h2 class="d rev">Get more leads<span class="g">.</span></h2>
         <ul class="pts">
-          <li class="rev" style="--d:.15s"><b>Google Business Profile</b><span>The first thing people see when they Google you. Reviews, photos, services, towns.</span></li>
-          <li class="rev" style="--d:.3s"><b>Google Ads</b><span>Show up first when someone searches your trade in your town.</span></li>
-          <li class="rev" style="--d:.45s"><b>Facebook / Instagram ads</b><span>Short videos of your real work, shown to homeowners nearby.</span></li>
+          <li class="rev" style="--d:.8s"><b>Google Business Profile</b><span>The first thing people see when they Google you. Reviews, photos, services, towns.</span></li>
+          <li class="rev" style="--d:1.15s"><b>Google Ads</b><span>Show up first when someone searches your trade in your town.</span></li>
+          <li class="rev" style="--d:1.5s"><b>Facebook / Instagram ads</b><span>Short videos of your real work, shown to homeowners nearby.</span></li>
         </ul>
       </div>
     </div>
@@ -345,9 +370,9 @@
       <div>
         <h2 class="d rev">Close more sales<span class="g">.</span></h2>
         <ul class="pts">
-          <li class="rev" style="--d:.15s"><b>A website built to convert</b><span>Modern, fast, one tap to call. Not one from 1998.</span></li>
-          <li class="rev" style="--d:.3s"><b>Book in one tap, quote same day</b><span>No phone tag. No week-long wait for a price.</span></li>
-          <li class="rev" style="--d:.45s"><b>Every call answered, every lead followed up</b><span>Missed calls get a text back. Every quote gets chased. One place to see every lead and your close rate.</span></li>
+          <li class="rev" style="--d:.8s"><b>A website built to convert</b><span>Modern, fast, one tap to call. Not one from 1998.</span></li>
+          <li class="rev" style="--d:1.15s"><b>Book in one tap, quote same day</b><span>No phone tag. No week-long wait for a price.</span></li>
+          <li class="rev" style="--d:1.5s"><b>Every call answered, every lead followed up</b><span>Missed calls get a text back. Every quote gets chased. One place to see every lead and your close rate.</span></li>
         </ul>
       </div>
     </div>
@@ -360,11 +385,10 @@
       <div>
         <h2 class="d rev">Optimize &amp; automate<span class="g">.</span></h2>
         <ul class="pts">
-          <li class="rev" style="--d:.15s"><b>Automate the busywork</b><span>Emails, scheduling, invoices: the tasks that waste your time and cost you business.</span></li>
-          <li class="rev" style="--d:.3s"><b>Optimize the business</b><span>Cut costs, boost productivity, grow profit.</span></li>
-          <li class="rev" style="--d:.45s"><b>Train your team on AI</b><span>Far beyond asking ChatGPT questions or summarizing documents.</span></li>
+          <li class="rev" style="--d:.8s"><b>Automate the busywork</b><span>Emails, scheduling, invoices: the tasks that waste your time and cost you business.</span></li>
+          <li class="rev" style="--d:1.15s"><b>Optimize the business</b><span>Cut costs, boost productivity, grow profit.</span></li>
+          <li class="rev" style="--d:1.5s"><b>Train your team on AI</b><span>Far beyond asking ChatGPT questions or summarizing documents.</span></li>
         </ul>
-        <div class="d eq rev" style="--d:1.6s"><span>=</span> Make more money<span>.</span></div>
       </div>
     </div>
   </section>
@@ -378,7 +402,7 @@
       <div class="playov">
         <button class="playbtn" id="playBtn" type="button" aria-label="Play: see where your jobs are going"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M6 4l14 8-14 8z"/></svg></button>
         <div class="d">Where are your jobs going<span class="g">?</span></div>
-        <small>40 seconds · sound on 🔊</small>
+        <small>15 seconds · sound on 🔊</small>
       </div>
       <div class="cap">
         <h3 id="capH">Where are your jobs going?</h3>
@@ -393,7 +417,6 @@
       <div class="sbar">
         <div class="st"><div class="n" id="leadsN">0</div><div class="l">Leads / month</div></div>
         <div class="st" id="jobsBox"><div class="n" id="jobsN">0</div><div class="l">Paid jobs / month</div></div>
-        <div class="mmm" id="mmm">Make more money.</div>
         <div class="sbtns">
           <button class="btn p" id="fixBtn" type="button" hidden>Fix your sales funnel →</button>
           <button class="btn p" id="fuelBtn" type="button" hidden>Add more leads →</button>
@@ -402,28 +425,33 @@
     </div>
   </section>
 
-  <!-- HOURLY -->
-  <section class="hourly pad" id="pricing">
+
+  <!-- ALL IN -->
+  <section class="pad allin" id="pricing">
     <div class="wrap">
-      <h2 class="d four">Four ways to work with me<span class="g">.</span></h2>
-      <div class="eyebrow">The easiest way to start working together.</div>
-      <h2 class="d">Start hourly<span class="g">.</span></h2>
-      <div class="big">$75<small>/hr</small></div>
-      <p class="lead">A straightforward hourly rate. 2-hour minimum. We take it step by step.</p>
+      <h2 class="d four ways">Three ways to work with me<span class="g">.</span></h2>
+      <div class="aicard">
+        <div class="eyebrow">Ready to go all in on AI, but don't have the time?</div>
+        <h2 class="d">Make your business AI-native<span class="g">.</span></h2>
+        <ol class="aisteps">
+          <li><b>Audit</b><span>We kick off with a deep audit of your business.</span></li>
+          <li><b>Plan</b><span>I find where AI will make the biggest impact and build the strategy and timeline.</span></li>
+          <li><b>Execute</b><span>We roll it out in an order that doesn't overwhelm your team.</span></li>
+        </ol>
+        <div class="aiprice">
+          <div><div class="big">$4,000<small>/mo</small></div><div class="k">3-month engagement · the heavy lifting</div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div><div class="big">$2,000<small>/mo</small></div><div class="k">Month to month · maintain + refine</div></div>
+        </div>
+        <p class="anchor">Hiring an AI specialist on staff: <b>$120K a year.</b></p>
+        <div class="ctas">
+          <button class="btn p" id="aiPick" type="button">Add to my picks</button>
+          <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27m%20interested%20in%20you%20joining%20the%20team%20as%20our%20AI%20specialist.%20My%20business%20is%3A%20">💬 Let's talk</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="ordiv" aria-hidden="true"><span>OR</span></div>
-
-  <!-- AUDITS -->
-  <section class="pad aud" id="audits">
-    <div class="wrap">
-      <div class="eyebrow">Not sure where to begin?</div>
-      <h2 class="d">Start with an AI audit<span class="g">.</span></h2>
-      <p class="lead">We take a holistic look at your business and find the highest-leverage projects to tackle first.</p>
-      <div class="agrid" id="agrid"></div>
-    </div>
-  </section>
 
   <div class="ordiv" aria-hidden="true"><span>OR</span></div>
 
@@ -440,26 +468,13 @@
 
   <div class="ordiv" aria-hidden="true"><span>OR</span></div>
 
-  <!-- ALL IN -->
-  <section class="pad allin" id="allin">
+  <!-- HOURLY -->
+  <section class="hourly pad" id="hourly">
     <div class="wrap">
-      <div class="aicard">
-        <div class="eyebrow">Ready to go all in on AI, but don't have the time?</div>
-        <h2 class="d">Make your business AI-native<span class="g">.</span></h2>
-        <p class="lead">I join your team for three months as an AI specialist and fractional team member, working across every area of your business.</p>
-        <ul class="aidept"><li>AI</li><li>Design</li><li>Branding</li><li>Video</li><li>Ads</li><li>Websites</li><li>Marketing</li><li>Sales</li><li>Software</li><li>Team training</li></ul>
-        <div class="aiprice">
-          <div><div class="big">$4,000<small>/mo</small></div><div class="k">First 3 months · the heavy lifting</div></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div><div class="big">$2,000<small>/mo</small></div><div class="k">After that · cancel anytime</div></div>
-        </div>
-        <p class="anchor">Hiring an AI specialist on staff: <b>$120K a year.</b></p>
-        <p class="fine">Guarantee: we set month-one goals together. Miss them, month two is free. In person or remote.</p>
-        <div class="ctas">
-          <button class="btn p" id="aiPick" type="button">Add to my picks</button>
-          <a class="btn o" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27m%20interested%20in%20you%20joining%20the%20team%20as%20our%20AI%20specialist.%20My%20business%20is%3A%20">💬 Let's talk</a>
-        </div>
-      </div>
+      <div class="eyebrow">The easiest way to start working together.</div>
+      <h2 class="d">Start hourly<span class="g">.</span></h2>
+      <div class="big">$75<small>/hr</small></div>
+      <p class="lead">A straightforward hourly rate. 2-hour minimum. We take it step by step.</p>
     </div>
   </section>
 
@@ -503,12 +518,23 @@
       <div class="qs">
         <details><summary>What do you actually do with AI?</summary><p>I use AI and the newest software to get you more leads, close more of them, and cut the busywork. Then I set it up and hand it over. Not theory. Real tools, running in your business.</p></details>
         <details><summary>Do I need to be good with tech?</summary><p>No. I do the setup. You get something simple that you and your team can run from your phone.</p></details>
-        <details><summary>What does "guaranteed or you don't pay" mean?</summary><p>Before any project, we write down the result it has to hit. If it misses, you don't pay for it. On the fractional plan, we set month-one goals together. Miss them, and month two is free.</p></details>
+        <details><summary>What does "guaranteed or you don't pay" mean?</summary><p>Before any project, we write down the result it has to hit. If it misses, you don't pay for it.</p></details>
         <details><summary>How fast will I see results?</summary><p>Quick fixes like missed-call text-back work the same week. Ads, reviews and referrals build over a few weeks. The free audit shows you what pays back fastest, so we start there.</p></details>
-        <details><summary>What's a fractional AI team member?</summary><p>One team member, every department: AI, design, branding, video, ads, websites, marketing and sales. Plus the stuff most owners don't know exists, like better software for payroll, HR, project management and team chat. I find the best tools and roll them out with your team. Hiring an AI specialist on staff runs about $120K a year. This is $4,000 a month for three months of heavy lifting, then $2,000 a month, cancel anytime.</p></details>
+        <details><summary>What does "AI-native" mean?</summary><p>AI built into how your whole business runs, not just a tool on the side. We start with a deep audit, I find where AI makes the biggest impact, build the plan and timeline, and roll it out in an order that doesn't overwhelm your team. It's $4,000 a month for a 3-month engagement, then $2,000 a month to maintain and refine. Hiring an AI specialist on staff runs about $120K a year.</p></details>
         <details><summary>Why start at $75/hr?</summary><p>So it's easy to try me. It's less than you bill for a tech, there's a 2-hour minimum, and you can stop anytime. If it's working, we keep going.</p></details>
         <details><summary>Where are you based?</summary><p>East Hampton, NY. I work in person across the Hamptons, and remote anywhere.</p></details>
       </div>
+    </div>
+  </section>
+
+  <!-- AUDITS -->
+  <section class="pad aud" id="audits">
+    <div class="wrap">
+      <div class="eyebrow">Still not sure where to start?</div>
+      <h2 class="d">Start with an AI audit<span class="g">.</span></h2>
+      <p class="lead">We take a holistic look at your business and find the highest-leverage projects to tackle first.</p>
+      <div class="agrid" id="agrid"></div>
+      <a class="freeln" href="#talk">Or start with a <span class="g">free</span> sales funnel audit ↓</a>
     </div>
   </section>
 
@@ -548,10 +574,16 @@
       <div class="eyebrow">Free · No obligation</div>
       <div class="d" id="mTitle">Want me to find the holes in your funnel<span class="g">?</span></div>
       <p>Free sales funnel audit. We talk about your business, I find where you're losing money, and you leave with a plan. No pressure.</p>
-      <div class="ctas">
-        <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20my%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text me to book it</a>
-        <a class="btn o" href="tel:+19348990796">📞 Or call 934-899-0796</a>
+      <div class="ctas two">
+        <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%20want%20my%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text me</a>
+        <a class="btn o" href="tel:+19348990796">📞 Call me</a>
       </div>
+      <div class="num">934-899-0796</div>
+      <div class="mor"><span>or leave your email</span></div>
+      <form id="aForm" novalidate>
+        <div class="erow"><input class="fld" id="aEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@yourbusiness.com" aria-label="Your email"><button class="btn p" id="aBtn" type="submit">Send</button></div>
+        <div class="serr" id="aErr"></div>
+      </form>
       <button class="mno" id="mNo" type="button">Not right now</button>
     </div>
   </div>
@@ -579,7 +611,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 (function(){
   var slides=document.querySelectorAll('.slide');
   if(!('IntersectionObserver' in window)||REDUCE){slides.forEach(function(s){s.classList.add('in')});return}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px -65% 0px'});
   slides.forEach(function(s){io.observe(s)});
 })();
 
@@ -590,7 +622,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   var AUD=[
       {id:'quick',t:'Quick AI Audit',s:'Written report + action plan',p:300,who:'Owners who want a clear plan in writing.',what:'I grade your Google profile, website, reviews, ads and follow-up, then hand you a written report.',why:'Know exactly what to fix first, in order of what pays back fastest.'},
       {id:'deep',t:'Deep-Dive AI Audit',s:'One week inside your business',p:750,who:'Owners ready to go all in.',what:'A full week on your calls, quotes, pricing, ads, website and reviews.',why:'A 12-week roadmap ranked by payback, so every dollar goes to the biggest win first.'}];
-  var FRAC={id:'frac',t:'Fractional AI team member',p:12000,pl:'$4,000/mo',note:'× 3, then $2,000/mo',nod:1};
+  var FRAC={id:'frac',t:'Fractional AI team member',p:12000,pl:'$4,000/mo',note:'3-mo engagement, then $2,000/mo',nod:1};
   var G=[
     {h:'Get more leads',n:'1',tl:'More people finding you.',items:[
       {id:'gbp',t:'Google Business Profile tune-up',p:300,who:'Every local business.',what:'Categories, services, towns, photos, hours and posts, set up right.',why:'Show up when locals search your trade.'},
@@ -620,12 +652,12 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
     var el=document.createElement('div');el.className='mi';
     var price=it.free?'<span class="mfree">FREE</span>':(plabel(it))+(it.note?'<small>'+it.note+'</small>':'');
     el.innerHTML='<label class="mrow"><input type="checkbox"><span class="cb"></span><span class="mt">'+it.t+(it.s?'<small>'+it.s+'</small>':'')+'</span><span class="mp">'+price+'</span>'+
-      '<button type="button" class="mexp" aria-expanded="false" aria-label="Details on '+it.t+'">+</button></label>'+
+      '<button type="button" class="mexp" aria-expanded="false" aria-label="Details on '+it.t+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></label>'+
       '<div class="md" hidden><div><span class="k">Who it’s for</span>'+it.who+'</div><div><span class="k">What gets done</span>'+it.what+'</div><div><span class="k">Benefit for your business</span>'+it.why+'</div></div>';
     var cb=el.querySelector('input'),ex=el.querySelector('.mexp'),md=el.querySelector('.md');
     boxes[it.id]={cb:cb,el:el,peek:peek};
     cb.addEventListener('change',function(){if(onPick)onPick(it.id,cb.checked);set(it.id,cb.checked)});
-    ex.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var o=md.hidden;md.hidden=!o;ex.setAttribute('aria-expanded',o?'true':'false');ex.textContent=o?'–':'+'});
+    ex.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var o=md.hidden;md.hidden=!o;ex.setAttribute('aria-expanded',o?'true':'false')});
     return el;
   }
   // audits: pick one or the other
@@ -638,7 +670,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   G.forEach(function(g){
     var sec=document.createElement('div');sec.className='mcol';
     sec.innerHTML='<button type="button" class="mhead" aria-expanded="false"><div class="n">'+g.n+'</div><h3>'+g.h+'</h3><span class="tl">'+g.tl+'</span><span class="pc"></span><span class="ar" aria-hidden="true">+</span></button>'+
-      '<ul class="mpeek">'+g.items.map(function(it){return '<li data-id="'+it.id+'">'+it.t+'<span>'+plabel(it)+'</span></li>'}).join('')+'</ul><button type="button" class="mmore">Open to pick →</button><div class="mlist"></div>';
+      '<ul class="mpeek">'+g.items.map(function(it){return '<li data-id="'+it.id+'">'+it.t+'<span>'+plabel(it)+'</span></li>'}).join('')+'</ul><div class="mlist"></div><button type="button" class="mmore"><span class="lb">View details</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>';
     var list=sec.querySelector('.mlist'),hd=sec.querySelector('.mhead');
     cols.push(sec);sec._pc=sec.querySelector('.pc');sec._ids=g.items.map(function(i){return i.id});
     hd.addEventListener('click',function(){openCol(sec);cols.forEach(function(x){x.querySelector('.mhead').setAttribute('aria-expanded',x.classList.contains('open')?'true':'false')})});
@@ -700,9 +732,9 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   update();
 })();
 
-/* SOUND: all synthesized in the browser (no files). Three music options: ?music=1 spy-game, ?music=2 cinematic, ?music=3 (default) high-energy arcade. */
+/* SOUND: all synthesized in the browser (no files). Music options: ?music=1 spy-game loop, ?music=2 cinematic, ?music=3 arcade, ?music=4 (default) spy intro + outro only. */
 var SFX=(function(){
-  var TH=(function(){var m=(location.search.match(/[?&]music=(\d)/)||[])[1];return m==='1'||m==='2'||m==='3'?+m:3})();
+  var TH=(function(){var m=(location.search.match(/[?&]music=(\d)/)||[])[1];return m==='1'||m==='2'||m==='3'||m==='4'?+m:0})();
   var AC=null,master=null,NB=null,muted=false,quiet=false,seq=null,step=0,mode='intro';
   try{muted=localStorage.getItem('mmm-sound')==='off'}catch(e){}
   function init(){
@@ -783,22 +815,51 @@ var SFX=(function(){
       if(st%2===0){var n=tri[LEAD3[(st/2)%8]]*(mode==='bright'?2:1);syn(n,.16,'square',mode==='bright'?.03:.024,mode==='bright'?4200:2800,true)}
       if(st===0)syn(tri[0],1.8,'sawtooth',.016,1400,true)}
     step++}
+  // THEME 4 (default): spy-movie intro + outro only, silence in between
+  function at(d,fn){setTimeout(fn,d*1000)}
+  function brass(fs,dur,vol){if(!ok())return;var t=AC.currentTime,fl=AC.createBiquadFilter(),g=AC.createGain();fl.type='lowpass';fl.Q.value=2;
+    fl.frequency.setValueAtTime(350,t);fl.frequency.exponentialRampToValueAtTime(2600,t+.08);fl.frequency.exponentialRampToValueAtTime(700,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.03);g.gain.exponentialRampToValueAtTime(vol*.45,t+.35);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    fs.forEach(function(f){[-8,0,8].forEach(function(c){var o=AC.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=c;o.connect(fl);o.start(t);o.stop(t+dur+.1)})});
+    fl.connect(g);out(g,bus(),true)}
+  function twang(f,vol){if(!ok())return;var t=AC.currentTime,o=AC.createOscillator(),o2=AC.createOscillator(),fl=AC.createBiquadFilter(),g=AC.createGain();
+    o.type='sawtooth';o2.type='triangle';o.frequency.setValueAtTime(f*.97,t);o.frequency.exponentialRampToValueAtTime(f,t+.06);o2.frequency.value=f*2;
+    fl.type='lowpass';fl.frequency.setValueAtTime(2400,t);fl.frequency.exponentialRampToValueAtTime(900,t+1.2);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+1.6);
+    o.connect(fl);o2.connect(fl);fl.connect(g);out(g,bus(),true);o.start(t);o2.start(t);o.stop(t+1.7);o2.stop(t+1.7)}
+  function lowb(f,vol){if(!ok())return;var t=AC.currentTime,o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain();o.type='sine';o2.type='triangle';o.frequency.value=f;o2.frequency.value=f;
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.45);o.connect(g);o2.connect(g);g.connect(bus());o.start(t);o2.start(t);o.stop(t+.5);o2.stop(t+.5)}
+  function boom(v){if(!ok())return;var t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.setValueAtTime(70,t);o.frequency.exponentialRampToValueAtTime(34,t+.8);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+1.4);o.connect(g);g.connect(bus());o.start(t);o.stop(t+1.5)}
+  function cym(dur,v,swell){if(!ok())return;var t=AC.currentTime,sr=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();sr.buffer=NB;sr.loop=true;fl.type='highpass';fl.frequency.value=6000;
+    g.gain.setValueAtTime(.0001,t);if(swell){g.gain.exponentialRampToValueAtTime(v,t+dur);g.gain.exponentialRampToValueAtTime(.0001,t+dur+.05)}else{g.gain.exponentialRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+dur)}
+    sr.connect(fl);fl.connect(g);out(g,bus(),true);sr.start(t);sr.stop(t+dur+.1)}
+  var SPY=[164.81,196,246.94,311.13,369.99];// Em(maj9): the classic spy chord
+  function spyIntro(){boom(.2);cym(1.5,.035,true);
+    [82.41,98,110,116.54].forEach(function(f,i){at(.25+i*.33,function(){lowb(f,.2)})});
+    at(1.6,function(){brass(SPY,2.6,.05);lowb(41.2,.3);boom(.25);cym(1.8,.05)});
+    at(2.45,function(){twang(246.94,.05)});at(2.75,function(){twang(329.63,.055)})}
+  function spyOutro(){[116.54,110,98,82.41].forEach(function(f,i){at(i*.22,function(){lowb(f,.2)})});cym(.9,.03,true);
+    at(.95,function(){brass(SPY.map(function(f){return f*2}),3.2,.045);brass([82.41,123.47],3.2,.03);boom(.3);cym(2.4,.05)});
+    at(1.7,function(){twang(659.25,.045)})}
+  function stopBus(){if(MB){var old=MB,t=AC.currentTime;old.gain.setValueAtTime(old.gain.value,t);old.gain.linearRampToValueAtTime(.0001,t+.6);setTimeout(function(){try{old.disconnect()}catch(e){}},900);MB=null;DL=null}}
   return{
     init:init,
     muted:function(){return muted},
     setMuted:function(m){muted=m;try{localStorage.setItem('mmm-sound',m?'off':'on')}catch(e){}if(master)master.gain.value=m?0:1},
-    music:function(on,m){if(!AC)return;var ch=m&&m!==mode;if(m)mode=m;
+    music:function(on,m){if(!AC)return;if(TH===0){if(m)mode=m;if(!on)stopBus();return}if(TH===4){if(m)mode=m;if(!on)stopBus();else if(m==='intro')spyIntro();return}var ch=m&&m!==mode;if(m)mode=m;
       if(on&&!seq){step=0;beat();seq=setInterval(beat,TH===3?125:300)}else if(on&&ch){step=0}
       if(!on&&seq){clearInterval(seq);seq=null;if(MB){var old=MB,t=AC.currentTime;old.gain.setValueAtTime(old.gain.value,t);old.gain.linearRampToValueAtTime(.0001,t+.6);setTimeout(function(){try{old.disconnect()}catch(e){}},900);MB=null;DL=null}}},
     quiet:function(q){quiet=q},
-    sting:function(){if(TH!==2){[220,277.2,329.6,440].forEach(function(f){tone(f,1.6,TH===3?'sawtooth':'triangle',TH===3?.035:.06)});tone(55,1.4,'sine',.25,50);if(TH===3){noise(1.2,.05,6000,2000,'highpass');[440,554.37,659.25,880].forEach(function(f,i){setTimeout(function(){tone(f,.25,'square',.03)},i*70)})}return}pad([130.81,196,261.63,329.63,392,523.25],3.2,.035,master);[523.25,659.25,783.99].forEach(function(f,i){setTimeout(function(){pluck(f,.04,master)},i*110)});tone(65.4,1.6,'sine',.18,60)},
+    sting:function(){if(TH===0)return;if(TH===-1){[523.25,659.25,783.99,1046.5].forEach(function(f,i){setTimeout(function(){pluck(f,.045,master)},i*90)});tone(65.4,1.2,'sine',.16,55);return}if(TH===4)return spyOutro();if(TH!==2){[220,277.2,329.6,440].forEach(function(f){tone(f,1.6,TH===3?'sawtooth':'triangle',TH===3?.035:.06)});tone(55,1.4,'sine',.25,50);if(TH===3){noise(1.2,.05,6000,2000,'highpass');[440,554.37,659.25,880].forEach(function(f,i){setTimeout(function(){tone(f,.25,'square',.03)},i*70)})}return}pad([130.81,196,261.63,329.63,392,523.25],3.2,.035,master);[523.25,659.25,783.99].forEach(function(f,i){setTimeout(function(){pluck(f,.04,master)},i*110)});tone(65.4,1.6,'sine',.18,60)},
+    levelup:function(){if(!AC||muted)return;var q=quiet;quiet=false;[523.25,659.25,783.99,1046.5].forEach(function(f,i){tone(f,.14,'square',.035,null,i*.075)});tone(1046.5,.5,'square',.03,null,.32);tone(1568,.5,'triangle',.03,null,.32);quiet=q},
     tick:function(){noise(.02,.035,4500,null,'highpass')},
-    pop:function(){if(TH!==2)return tone(660,.12,'sine',.1,1320);pluck(880,.05,master)},
+    pop:function(){if((TH===1||TH===3))return tone(660,.12,'sine',.1,1320);pluck(880,.05,master)},
     whoosh:function(){noise(.22,.14,500,3500)},
-    thud:function(){tone(150,.22,'sine',.3,40);noise(.08,.08,1200,300,'lowpass')},
-    chime:function(){if(TH!==2)return tone(1568,.22,'triangle',.035);tone(1318.5,.35,'sine',.022)},
-    rise:function(){if(TH!==2){[523,659,784,1047].forEach(function(f,i){tone(f,.28,'triangle',.07,null,i*.09)});return}noise(.9,.05,400,6000,'bandpass');[261.63,329.63,392,523.25].forEach(function(f,i){setTimeout(function(){pluck(f,.04,master)},200+i*90)})},
-    hit:function(){if(TH!==2){tone(220,.5,'sawtooth',.05,110);noise(.4,.04,300,100,'lowpass');if(TH===3)tone(55,.8,'sine',.3,35);return}tone(70,.9,'sine',.28,38);noise(.5,.05,900,120,'lowpass')}
+    thud:function(){if(TH===0)return;tone(150,.22,'sine',.3,40);noise(.08,.08,1200,300,'lowpass')},
+    chime:function(){if(TH===0)return;if((TH===1||TH===3))return tone(1568,.22,'triangle',.035);tone(1318.5,.35,'sine',.022)},
+    rise:function(){if(TH===0)return;if((TH===1||TH===3)){[523,659,784,1047].forEach(function(f,i){tone(f,.28,'triangle',.07,null,i*.09)});return}noise(.9,.05,400,6000,'bandpass');[261.63,329.63,392,523.25].forEach(function(f,i){setTimeout(function(){pluck(f,.04,master)},200+i*90)})},
+    hit:function(){if(TH===0)return;if((TH===1||TH===3)){tone(220,.5,'sawtooth',.05,110);noise(.4,.04,300,100,'lowpass');if(TH===3)tone(55,.8,'sine',.3,35);return}tone(70,.9,'sine',.28,38);noise(.5,.05,900,120,'lowpass')}
   };
 })();
 
@@ -853,9 +914,9 @@ var SFX=(function(){
   });
   var chipEls=chipsEl.querySelectorAll('.chip');
   function paintChips(){chipEls.forEach(function(c,i){c.classList.toggle('on',S.on[i]);c.setAttribute('aria-pressed',S.on[i]?'true':'false')})}
-  function setSource(i,on,big){
+  function setSource(i,on,big,quiet){
     S.on[i]=on;var c=chipEls[i];paintChips();
-    if(on){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');SFX.pop();if(big)S.ov={text:big,t:0}}
+    if(on){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');if(!quiet)SFX.pop();if(big)S.ov={text:big,t:0}}
     stats();
   }
 
@@ -909,7 +970,7 @@ var SFX=(function(){
     });
     S.dots=S.dots.filter(function(d){return d.a>0&&d.y<H+30});
     S.bullets.forEach(function(b){
-      if(b.wait>0){b.wait-=dt;if(b.wait<=0&&!silent)SFX.whoosh();return}
+      if(b.wait>0){b.wait-=dt;if(b.wait<=0&&!silent&&b.snd)SFX.whoosh();return}
       var tx=g.cx+b.s*half(g,holeY(g,b.i));b.x+=b.dir*2600*dt;
       if(!b.hit&&((b.dir>0&&b.x>=tx)||(b.dir<0&&b.x<=tx))){b.hit=true;punch(b.i,tx,holeY(g,b.i),silent)}
       if(b.hit)b.after+=dt;
@@ -984,7 +1045,7 @@ var SFX=(function(){
 
   // typewriter captions
   var typeTok=0;
-  var PACE=1.25;
+  var PACE=1;
   function wait(ms){var id=runId;return new Promise(function(r,rej){setTimeout(function(){id===runId?r():rej('cancel')},REDUCE?0:ms*PACE)})}
   function caption(h,p){
     var tok=++typeTok;capP.textContent='';
@@ -999,31 +1060,27 @@ var SFX=(function(){
   function fireBullets(){
     S.holes='broken';var order=[0,3,6,1,5,2,7,4];
     if(REDUCE){order.forEach(function(i){S.open[i]=true;S.labelA[i]=1});stats();return wait(0)}
-    order.forEach(function(i,k){var s=side(i);S.bullets.push({i:i,s:s,dir:s<0?1:-1,x:s<0?-60:W+60,wait:.01+k*.21,hit:false,after:0})});
-    return wait(order.length*170+500);
+    order.forEach(function(i,k){var s=side(i),v=Math.floor(k/3);S.bullets.push({i:i,s:s,dir:s<0?1:-1,x:s<0?-60:W+60,wait:.01+v*.5+(k%3)*.05,snd:k%3===0,hit:false,after:0})});
+    return wait(1500);
   }
   function fix(){S.holes='fixed';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.rise();if(playing)SFX.music(true,'bright');stats()}
   function unfix(){S.holes='broken';S.dots.forEach(function(d){if(d.st===0)repick(d)});if(playing)SFX.music(true,'drive');stats()}
-  function addFuel(){var idx=[];S.on.forEach(function(v,i){if(!v)idx.push(i)});
-    var p=Promise.resolve();idx.forEach(function(i){p=p.then(function(){setSource(i,true);return wait(450)})});return p}
+  function groups(idx){var g=[];for(var k=0;k<idx.length;k+=2)g.push(idx.slice(k,k+2));return g}
+  function lightGroups(idx,gap){var p=Promise.resolve();groups(idx).forEach(function(gr){p=p.then(function(){SFX.pop();gr.forEach(function(i){setSource(i,true,null,true)});return wait(gap)})});return p}
+  function addFuel(){var idx=[];S.on.forEach(function(v,i){if(!v)idx.push(i)});return lightGroups(idx,380)}
 
   function run(){
     var id=++runId;playing=true;typeTok++;reset();paintChips();leadsN.textContent='0';jobsN.textContent='0';
-    jobsBox.classList.remove('ring');mmm.classList.remove('show');hideModal();SFX.quiet(false);stats();
+    jobsBox.classList.remove('ring');hideModal();SFX.quiet(false);stats();
     SFX.music(false);SFX.music(true,'intro');
-    return caption('Every business has a sales funnel.').then(drawFunnel).then(function(){return wait(700)})
-    .then(function(){SFX.music(true,'tense');return caption('Where do your leads come from?')})
-    .then(function(){var p=wait(300);SRC.forEach(function(s,i){if(s.def)p=p.then(function(){setSource(i,true,s.big);return wait(900)})});return p})
-    .then(function(){return caption("If every lead became a paid job,","you'd have a perfect sales funnel.")}).then(function(){return wait(1400)})
-    .then(function(){SFX.hit();SFX.music(true,'drive');return caption('But every sales funnel leaks.')}).then(fireBullets)
-    .then(function(){return caption('But every sales funnel leaks.','Red holes = jobs you are losing.')}).then(function(){return wait(1600)})
-    .then(function(){return caption('Step 1: Fix the funnel.')}).then(function(){return wait(500)})
-    .then(function(){if(S.holes!=='fixed')fix();else SFX.music(true,'bright');return wait(900)})
-    .then(function(){return caption('Step 1: Fix the funnel.','Same leads. 3x the jobs.')}).then(function(){return wait(1500)})
-    .then(function(){return caption('Step 2: Add more leads.')}).then(addFuel).then(function(){return wait(600)})
-    .then(function(){return caption('Step 2: Add more leads.','Into a funnel that holds.')}).then(function(){return wait(1200)})
-    .then(function(){return caption('Step 3: Make more money.')})
-    .then(function(){SFX.music(false);SFX.sting();mmm.classList.add('show');return wait(3200)})
+    return caption('Your sales funnel is broken.').then(drawFunnel).then(function(){return wait(300)})
+    .then(function(){return caption('Leads come in.')})
+    .then(function(){var idx=[];SRC.forEach(function(s,i){if(s.def)idx.push(i)});return lightGroups(idx,500)})
+    .then(function(){return wait(400)})
+    .then(function(){return caption('It leaks. Losing you jobs.')}).then(fireBullets).then(function(){return wait(1400)})
+    .then(function(){return caption('Fix the funnel.')}).then(function(){if(S.holes!=='fixed')fix();return wait(2000)})
+    .then(function(){return caption('Then add more leads.')}).then(addFuel).then(function(){return wait(1600)})
+    .then(function(){SFX.levelup();return caption('Make more money.')}).then(function(){return wait(1800)})
     .then(function(){if(id!==runId)return;playing=false;showModal()})
     .catch(function(){});
   }
@@ -1032,6 +1089,14 @@ var SFX=(function(){
   function hideModal(){modal.hidden=true}
   document.getElementById('mClose').addEventListener('click',hideModal);
   document.getElementById('mNo').addEventListener('click',hideModal);
+  document.getElementById('hdrBook').addEventListener('click',function(){SFX.init();showModal()});
+  (function(){var f=document.getElementById('aForm'),e=document.getElementById('aEmail'),b=document.getElementById('aBtn'),er=document.getElementById('aErr');
+    f.addEventListener('submit',function(ev){ev.preventDefault();var v=e.value.trim();er.textContent='';
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){er.textContent='Enter a valid email.';return}
+      b.disabled=true;b.textContent='…';
+      fetch('https://formspree.io/f/meaonlel',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'Free audit request: '+v,email:v,request:'Free sales funnel audit',page:location.href})})
+        .then(function(r){if(!r.ok)throw 0;b.textContent='Sent ✓';er.style.color='var(--green)';er.textContent='Got it. I\u2019ll email you to set it up.';try{localStorage.setItem('mmm-contact',v)}catch(x){}})
+        .catch(function(){b.disabled=false;b.textContent='Send';er.style.color='';er.textContent='That didn\u2019t go through. Try again, or text 934-899-0796.'})})})();
   modal.addEventListener('click',function(e){if(e.target===modal)hideModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')hideModal()});
 
@@ -1041,9 +1106,9 @@ var SFX=(function(){
   playBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
   replayBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
   fixBtn.addEventListener('click',function(){SFX.init();
-    if(S.holes==='broken'){fix();if(!playing)caption('Step 1: Fix the funnel.','Same leads. 3x the jobs.')}
-    else{unfix();if(!playing)caption('But every sales funnel leaks.','Red holes = jobs you are losing.')}});
-  fuelBtn.addEventListener('click',function(){SFX.init();if(!playing)caption('Step 2: Add more leads.','Into a funnel that holds.');addFuel().catch(function(){})});
+    if(S.holes==='broken'){fix();if(!playing)caption('Fix the funnel.')}
+    else{unfix();if(!playing)caption('It leaks. Losing you jobs.')}});
+  fuelBtn.addEventListener('click',function(){SFX.init();if(!playing)caption('Then add more leads.');addFuel().catch(function(){})});
 
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;visible?start():stop()})},{threshold:.01}).observe(stage);
