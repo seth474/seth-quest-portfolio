@@ -89,6 +89,14 @@
   .sbtns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
   .sbtns .btn{min-height:46px;font-size:15px;padding:0 14px}
   .sbtns .btn[hidden]{display:none}
+  #jobsBox{position:relative}
+  #jobsBox svg{position:absolute;left:-18px;top:-16px;width:calc(100% + 36px);height:calc(100% + 30px);overflow:visible;pointer-events:none;opacity:0}
+  #jobsBox svg ellipse{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-dasharray:480;stroke-dashoffset:480;filter:drop-shadow(0 0 6px rgba(43,227,107,.6))}
+  #jobsBox.ring svg{opacity:1}
+  #jobsBox.ring svg ellipse{animation:draw .9s cubic-bezier(.6,.1,.3,1) forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .mmm{white-space:nowrap;font-family:"Bebas Neue",sans-serif;font-size:clamp(28px,6.5vw,46px);line-height:.9;color:var(--green);text-shadow:0 0 18px rgba(43,227,107,.45);opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .5s}
+  .mmm.show{opacity:1;transform:none}
   .pulse{animation:pulse 1.4s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,227,107,.6)}70%{box-shadow:0 0 0 14px rgba(43,227,107,0)}100%{box-shadow:0 0 0 0 rgba(43,227,107,0)}}
 
@@ -247,7 +255,7 @@
       <div class="playov">
         <button class="playbtn" id="playBtn" type="button" aria-label="Play: see where your jobs are going"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M6 4l14 8-14 8z"/></svg></button>
         <div class="d">Where are your jobs going<span class="g">?</span></div>
-        <small>30 seconds · sound on 🔊</small>
+        <small>40 seconds · sound on 🔊</small>
       </div>
       <div class="cap">
         <h3 id="capH">Where are your jobs going?</h3>
@@ -261,10 +269,11 @@
       <canvas id="fc" role="img" aria-label="Animated sales funnel. Lead sources at the top send leads into the funnel. Bullets punch holes in it: poorly converting website, too many steps to book, missed calls, slow quotes, no follow-up, plus holes every business has: just looking, went with someone else, not ready yet. About 3 in 100 leads become paid jobs. Fixing the funnel makes it about 9. Adding more lead sources into the fixed funnel brings more jobs."></canvas>
       <div class="sbar">
         <div class="st"><div class="n" id="leadsN">0</div><div class="l">Leads / month</div></div>
-        <div class="st" id="jobsBox"><div class="n" id="jobsN">0</div><div class="l">Paid jobs / month</div></div>
+        <div class="st" id="jobsBox"><div class="n" id="jobsN">0</div><div class="l">Paid jobs / month</div><svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="50" rx="96" ry="45" transform="rotate(-3 100 50)"/></svg></div>
+        <div class="mmm" id="mmm">Make more money.</div>
         <div class="sbtns">
           <button class="btn p" id="fixBtn" type="button" hidden>Fix your sales funnel →</button>
-          <button class="btn p" id="fuelBtn" type="button" hidden>Add more lead sources →</button>
+          <button class="btn p" id="fuelBtn" type="button" hidden>Add more leads →</button>
         </div>
       </div>
     </div>
@@ -386,14 +395,14 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 
 /* SOUND: all synthesized in the browser (no files). Original spy-style bass line, subtle SFX. */
 var SFX=(function(){
-  var AC=null,master=null,NB=null,muted=false,seq=null,step=0,mode='tense';
+  var AC=null,master=null,NB=null,muted=false,quiet=false,seq=null,step=0,mode='intro';
   try{muted=localStorage.getItem('mmm-sound')==='off'}catch(e){}
   function init(){
     if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=muted?0:1;master.connect(AC.destination);
       NB=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1}catch(e){AC=null}}
     if(AC&&AC.state==='suspended')AC.resume();
   }
-  function ok(){return AC&&!muted}
+  function ok(){return AC&&!muted&&!quiet}
   function tone(f,dur,type,vol,to,delay){if(!ok())return;var t=AC.currentTime+(delay||0),o=AC.createOscillator(),g=AC.createGain();o.type=type||'sine';
     o.frequency.setValueAtTime(f,t);if(to)o.frequency.exponentialRampToValueAtTime(to,t+dur);
     g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
@@ -406,13 +415,21 @@ var SFX=(function(){
     o.type='sawtooth';o.frequency.value=f;fl.type='lowpass';fl.frequency.setValueAtTime(900,t);fl.frequency.exponentialRampToValueAtTime(220,t+.22);
     g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.07,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.24);
     o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+.3)}
-  var PAT={tense:[110,110,130.8,110,98,110,164.8,146.8],bright:[110,138.6,164.8,220,164.8,138.6,196,220]};
-  function beat(){var p=PAT[mode];bass(p[step%p.length]);if(step%2===0)noise(.03,.025,7000,null,'highpass');if(mode==='bright'&&step%4===0)tone(880,.18,'triangle',.02);step++}
+  var PAT={intro:[55,0,0,0,55,0,0,0],tense:[110,110,130.8,110,98,110,164.8,146.8],drive:[110,110,130.8,110,98,110,164.8,146.8],bright:[110,138.6,164.8,220,164.8,138.6,196,220]};
+  function kick(){tone(90,.16,'sine',.22,40)}
+  function beat(){var p=PAT[mode],f=p[step%p.length];
+    if(mode==='intro'){if(f)tone(f,.9,'sine',.09);if(step%4===2)noise(.02,.012,7000,null,'highpass')}
+    else{bass(f);if(step%2===0)noise(.03,.025,7000,null,'highpass')}
+    if(mode==='drive'){if(step%4===0)kick();if(step%4===2)noise(.06,.05,1800,null,'bandpass')}
+    if(mode==='bright'){if(step%4===0){kick();tone(880,.18,'triangle',.02)}}
+    step++}
   return{
     init:init,
     muted:function(){return muted},
     setMuted:function(m){muted=m;try{localStorage.setItem('mmm-sound',m?'off':'on')}catch(e){}if(master)master.gain.value=m?0:1},
-    music:function(on,m){if(m)mode=m;if(on&&!seq){step=0;seq=setInterval(beat,268)}if(!on&&seq){clearInterval(seq);seq=null}},
+    music:function(on,m){if(m)mode=m;if(on&&!seq){step=0;seq=setInterval(beat,300)}if(!on&&seq){clearInterval(seq);seq=null}},
+    quiet:function(q){quiet=q},
+    sting:function(){[220,277.2,329.6,440].forEach(function(f){tone(f,1.6,'triangle',.06)});tone(55,1.4,'sine',.25,50)},
     tick:function(){noise(.02,.035,4500,null,'highpass')},
     pop:function(){tone(660,.12,'sine',.1,1320)},
     whoosh:function(){noise(.22,.14,500,3500)},
@@ -430,7 +447,7 @@ var SFX=(function(){
   var leadsN=document.getElementById('leadsN'), jobsN=document.getElementById('jobsN'), jobsBox=document.getElementById('jobsBox');
   var fixBtn=document.getElementById('fixBtn'), fuelBtn=document.getElementById('fuelBtn'), replayBtn=document.getElementById('replay');
   var playBtn=document.getElementById('playBtn'), sndBtn=document.getElementById('sndBtn');
-  var modal=document.getElementById('modal');
+  var modal=document.getElementById('modal'), mmm=document.getElementById('mmm');
   var GREEN='#2BE36B', LEAK='#ff4d4d', GREY='#7a7a7a';
 
   var SRC=[
@@ -469,7 +486,7 @@ var SFX=(function(){
   SRC.forEach(function(s,i){
     var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed','false');
     b.innerHTML='<span class="box"></span><span>'+s.n+'</span><span class="w">+'+s.w+'</span>';
-    b.addEventListener('click',function(){SFX.init();setSource(i,!S.on[i]);if(S.draw<1)S.draw=1});
+    b.addEventListener('click',function(){SFX.init();if(modal.hidden)SFX.quiet(false);setSource(i,!S.on[i]);if(S.draw<1)S.draw=1});
     chipsEl.appendChild(b);
   });
   var chipEls=chipsEl.querySelectorAll('.chip');
@@ -605,48 +622,51 @@ var SFX=(function(){
 
   // typewriter captions
   var typeTok=0;
-  function wait(ms){var id=runId;return new Promise(function(r,rej){setTimeout(function(){id===runId?r():rej('cancel')},REDUCE?0:ms)})}
+  var PACE=1.25;
+  function wait(ms){var id=runId;return new Promise(function(r,rej){setTimeout(function(){id===runId?r():rej('cancel')},REDUCE?0:ms*PACE)})}
   function caption(h,p){
     var tok=++typeTok;capP.textContent='';
     function typeInto(el,text,withCur){return new Promise(function(res){
       if(REDUCE){el.innerHTML=text+(withCur?'<span class="cur"></span>':'');res();return}
       var i=0;(function tick(){if(tok!==typeTok)return res();i++;el.innerHTML=text.slice(0,i)+(withCur?'<span class="cur"></span>':'');
-        if(i%2===0&&text.charAt(i-1)!==' ')SFX.tick();if(i<text.length)setTimeout(tick,26);else res()})()})}
+        if(i%2===0&&text.charAt(i-1)!==' ')SFX.tick();if(i<text.length)setTimeout(tick,32);else res()})()})}
     return typeInto(capH,h,!p).then(function(){if(p&&tok===typeTok){capH.innerHTML=h;return typeInto(capP,'> '+p,true)}});
   }
   function drawFunnel(){return new Promise(function(res){if(REDUCE){S.draw=1;return res()}
-    var t0=performance.now();(function st(t){S.draw=Math.min(1,(t-t0)/1000);if(S.draw<1)requestAnimationFrame(st);else res()})(t0)})}
+    var t0=performance.now();(function st(t){S.draw=Math.min(1,(t-t0)/1250);if(S.draw<1)requestAnimationFrame(st);else res()})(t0)})}
   function fireBullets(){
     S.holes='broken';var order=[0,3,6,1,5,2,7,4];
     if(REDUCE){order.forEach(function(i){S.open[i]=true;S.labelA[i]=1});stats();return wait(0)}
-    order.forEach(function(i,k){var s=side(i);S.bullets.push({i:i,s:s,dir:s<0?1:-1,x:s<0?-60:W+60,wait:.01+k*.17,hit:false,after:0})});
-    return wait(order.length*170+400);
+    order.forEach(function(i,k){var s=side(i);S.bullets.push({i:i,s:s,dir:s<0?1:-1,x:s<0?-60:W+60,wait:.01+k*.21,hit:false,after:0})});
+    return wait(order.length*170+500);
   }
-  function fix(){S.holes='fixed';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.rise();SFX.music(true,'bright');stats()}
-  function unfix(){S.holes='broken';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.music(playing,'tense');stats()}
+  function fix(){S.holes='fixed';S.dots.forEach(function(d){if(d.st===0)repick(d)});SFX.rise();if(playing)SFX.music(true,'bright');stats()}
+  function unfix(){S.holes='broken';S.dots.forEach(function(d){if(d.st===0)repick(d)});if(playing)SFX.music(true,'drive');stats()}
   function addFuel(){var idx=[];S.on.forEach(function(v,i){if(!v)idx.push(i)});
     var p=Promise.resolve();idx.forEach(function(i){p=p.then(function(){setSource(i,true);return wait(450)})});return p}
 
   function run(){
-    var id=++runId;playing=true;typeTok++;reset();paintChips();leadsN.textContent='0';jobsN.textContent='0';stats();
-    SFX.music(true,'tense');
+    var id=++runId;playing=true;typeTok++;reset();paintChips();leadsN.textContent='0';jobsN.textContent='0';
+    jobsBox.classList.remove('ring');mmm.classList.remove('show');hideModal();SFX.quiet(false);stats();
+    SFX.music(false);SFX.music(true,'intro');
     return caption('Every business has a sales funnel.').then(drawFunnel).then(function(){return wait(700)})
-    .then(function(){return caption('Where do your leads come from?')})
+    .then(function(){SFX.music(true,'tense');return caption('Where do your leads come from?')})
     .then(function(){var p=wait(300);SRC.forEach(function(s,i){if(s.def)p=p.then(function(){setSource(i,true,s.big);return wait(900)})});return p})
     .then(function(){return caption("If every lead became a paid job,","you'd have a perfect sales funnel.")}).then(function(){return wait(1400)})
-    .then(function(){SFX.hit();return caption('But sales funnels leak.')}).then(fireBullets)
-    .then(function(){return caption('But sales funnels leak.','Every red hole is a job you already paid for.')}).then(function(){return wait(1600)})
-    .then(function(){return caption("Don't pour gas on a leaky funnel.","Fix it first.")}).then(function(){return wait(1800)})
-    .then(function(){if(S.holes!=='fixed'){fix();return wait(1000)}})
-    .then(function(){return caption('Fixed. Same leads, 3x the jobs.')}).then(function(){return wait(1400)})
-    .then(function(){return caption('Then add fuel.','More leads into a funnel that holds.')}).then(addFuel).then(function(){return wait(600)})
-    .then(function(){return caption('That’s how you make more money.','More leads. Fewer leaks. More jobs.')}).then(function(){return wait(2600)})
-    .then(function(){if(id!==runId)return;playing=false;SFX.music(false);showModal()})
+    .then(function(){SFX.hit();SFX.music(true,'drive');return caption('But every sales funnel leaks.')}).then(fireBullets)
+    .then(function(){return caption('But every sales funnel leaks.','Red holes = jobs you are losing.')}).then(function(){return wait(1600)})
+    .then(function(){return caption('Step 1: Fix the funnel.')}).then(function(){return wait(500)})
+    .then(function(){if(S.holes!=='fixed')fix();else SFX.music(true,'bright');return wait(900)})
+    .then(function(){return caption('Step 1: Fix the funnel.','Same leads. 3x the jobs.')}).then(function(){return wait(1500)})
+    .then(function(){return caption('Step 2: Add more leads.')}).then(addFuel).then(function(){return wait(600)})
+    .then(function(){return caption('Step 2: Add more leads.','Into a funnel that holds.')}).then(function(){return wait(1200)})
+    .then(function(){return caption('Step 3: Make more money.')})
+    .then(function(){SFX.music(false);SFX.sting();jobsBox.classList.add('ring');mmm.classList.add('show');return wait(3200)})
+    .then(function(){if(id!==runId)return;playing=false;showModal()})
     .catch(function(){});
   }
 
-  var modalShown=false;
-  function showModal(){if(modalShown)return;modalShown=true;modal.hidden=false;document.getElementById('mClose').focus()}
+  function showModal(){SFX.music(false);SFX.quiet(true);modal.hidden=false;document.getElementById('mClose').focus()}
   function hideModal(){modal.hidden=true}
   document.getElementById('mClose').addEventListener('click',hideModal);
   document.getElementById('mNo').addEventListener('click',hideModal);
@@ -659,9 +679,9 @@ var SFX=(function(){
   playBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
   replayBtn.addEventListener('click',function(){SFX.init();played=true;stage.classList.remove('locked');start();run()});
   fixBtn.addEventListener('click',function(){SFX.init();
-    if(S.holes==='broken'){fix();if(!playing)caption('Fixed.','Same leads, 3x the jobs.')}
-    else{unfix();if(!playing)caption('But sales funnels leak.','Every red hole is a job you already paid for.')}});
-  fuelBtn.addEventListener('click',function(){SFX.init();if(!playing)caption('Then add fuel.','More leads into a funnel that holds.');addFuel().catch(function(){})});
+    if(S.holes==='broken'){fix();if(!playing)caption('Step 1: Fix the funnel.','Same leads. 3x the jobs.')}
+    else{unfix();if(!playing)caption('But every sales funnel leaks.','Red holes = jobs you are losing.')}});
+  fuelBtn.addEventListener('click',function(){SFX.init();if(!playing)caption('Step 2: Add more leads.','Into a funnel that holds.');addFuel().catch(function(){})});
 
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;visible?start():stop()})},{threshold:.01}).observe(stage);
