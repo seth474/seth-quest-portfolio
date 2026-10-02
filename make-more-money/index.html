@@ -729,7 +729,7 @@ var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
   });
 
   // restore saved picks from a previous visit
-  try{var prev=JSON.parse(localStorage.getItem('mmm-picks')||'[]');prev.forEach(function(id){if(byId[id])set(id,true)});var pc=localStorage.getItem('mmm-contact');if(pc)sC.value=pc}catch(e){}
+  try{localStorage.removeItem('mmm-picks');var pc=localStorage.getItem('mmm-contact');if(pc)sC.value=pc}catch(e){}
   update();
 })();
 
