@@ -72,9 +72,11 @@
   /* funnel drawing */
   .f-body{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
   .f-rim{fill:none;stroke:var(--ink);stroke-width:2.5}
-  .crack{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;opacity:0;transition:opacity .5s,stroke .5s}
-  .lk .crack{opacity:1}
-  .fixd .crack{stroke:var(--green)}
+  .hole{fill:var(--paper);stroke:var(--red);stroke-width:2.5;opacity:0;transition:opacity .5s,fill .5s,stroke .5s}
+  .lk .hole{opacity:1}
+  .fixd .hole{fill:var(--gb);stroke:var(--green)}
+  .src{font:600 15px Inter,sans-serif;fill:var(--mut);transition:fill .5s}
+  .more .src{fill:var(--ink)}
   .lbl{font:600 15px Inter,sans-serif;fill:var(--red);opacity:0;transition:opacity .5s,fill .5s}
   .lk .lbl{opacity:1}
   .fixd .lbl{fill:var(--green)}
@@ -164,7 +166,7 @@
         <p class="lead">I find the practical ways your business can bring in more customers and close more of them. Then I help you put them in place.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
-          <a class="btn o" href="#vid" id="watch">▶ Watch the video</a>
+          <a class="btn o" href="#vid" id="watch">▶ Watch the 60-second video</a>
         </div>
         <p class="small">No pitch. You leave with your top 3 fixes either way.</p>
       </div>
@@ -172,11 +174,11 @@
         <div id="vid" data-youtube="">
           <div class="ph">
             <div class="play"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M6 4l14 8-14 8z"/></svg></div>
-            <div class="d">30 seconds<span class="g">.</span></div>
+            <div class="d">60 seconds<span class="g">.</span></div>
             <p>Video coming soon.</p>
           </div>
         </div>
-        <div class="vlabel">The lowdown in 30 seconds</div>
+        <div class="vlabel">How to make more money in 60 seconds</div>
       </div>
     </div>
   </section>
@@ -190,16 +192,23 @@
       </div>
       <div class="mid">
         <div class="fun">
-          <svg id="fsvg" viewBox="-60 30 520 450" role="img" aria-label="A sales funnel: leads go in the top, leaks get fixed, money comes out the bottom">
+          <svg id="fsvg" viewBox="-60 -50 520 530" role="img" aria-label="A sales funnel: leads go in the top, leaks get fixed, money comes out the bottom">
             <ellipse class="f-rim" cx="200" cy="60" rx="160" ry="14"/>
             <path class="f-body" d="M40 60 L160 300 L160 372 M360 60 L240 300 L240 372"/>
             <g id="leaks">
-              <path class="crack" d="M70 116 l-9 6 l7 4 l-10 7"/>
-              <path class="crack" d="M118 212 l-9 6 l7 4 l-10 7"/>
-              <path class="crack" d="M318 160 l9 6 l-7 4 l10 7"/>
-              <text class="lbl" x="50" y="128" text-anchor="end">Missed calls</text>
-              <text class="lbl" x="98" y="224" text-anchor="end">No follow-up</text>
-              <text class="lbl" x="340" y="172">Slow quotes</text>
+              <circle class="hole" cx="71" cy="122" r="8"/>
+              <circle class="hole" cx="119" cy="218" r="8"/>
+              <circle class="hole" cx="307" cy="166" r="8"/>
+              <text class="lbl" x="54" y="127" text-anchor="end">Missed calls</text>
+              <text class="lbl" x="102" y="223" text-anchor="end">No follow-up</text>
+              <text class="lbl" x="324" y="171">Slow quotes</text>
+            </g>
+            <g id="srcs">
+              <text class="src" x="40" y="8" text-anchor="middle">Referrals</text>
+              <text class="src" x="122" y="-14" text-anchor="middle">Google</text>
+              <text class="src" x="200" y="-24" text-anchor="middle">Ads</text>
+              <text class="src" x="278" y="-14" text-anchor="middle">Your truck</text>
+              <text class="src" x="360" y="8" text-anchor="middle">Yard signs</text>
             </g>
             <g id="dots"></g>
             <rect class="bin" x="120" y="392" width="160" height="80" rx="10"/>
@@ -209,11 +218,11 @@
           </svg>
         </div>
         <div class="copy">
-          <div class="cp on" data-i="0"><div class="k">01 / 05</div><h3>Leads come in<span class="g">.</span></h3><p>Referrals, Google, your truck, your yard signs. Every one is a job you could win.</p></div>
-          <div class="cp r" data-i="1"><div class="k">02 / 05</div><h3>But it leaks<span class="g">.</span></h3><p>Missed calls. Slow quotes. No follow-up. Each leak is a job going to the other guy.</p></div>
-          <div class="cp" data-i="2"><div class="k">03 / 05</div><h3>I fix the leaks<span class="g">.</span></h3><p>Every missed call gets a text back. Quotes go out same day. Follow-up happens without you.</p></div>
-          <div class="cp r" data-i="3"><div class="k">04 / 05</div><h3>Then more leads<span class="g">.</span></h3><p>Now it's worth turning up the top. A better Google listing, more reviews, ads that pay for themselves.</p></div>
-          <div class="cp" data-i="4"><div class="k">05 / 05</div><h3>More money<span class="g">.</span></h3><p>Same crew. Same hours. More jobs out the bottom.</p></div>
+          <div class="cp on" data-i="0"><div class="k">01 / 05</div><h3>Leads come in<span class="g">.</span></h3><p>Referrals, Google, ads, your truck, your yard signs. Every one is a job you could win.</p></div>
+          <div class="cp r" data-i="1"><div class="k">02 / 05</div><h3>Your sales funnel leaks<span class="g">.</span></h3><p>Missed calls. Slow quotes. No follow-up. Each leak is a job going to the other guy.</p></div>
+          <div class="cp" data-i="2"><div class="k">03 / 05</div><h3>Fix the leaks<span class="g">.</span></h3><p>Every missed call gets a text back. Quotes go out same day. Follow-up happens without you.</p></div>
+          <div class="cp r" data-i="3"><div class="k">04 / 05</div><h3>Generate more leads<span class="g">.</span></h3><p>Now it's worth turning up the top. A better Google listing, more reviews, ads that pay for themselves.</p></div>
+          <div class="cp" data-i="4"><div class="k">05 / 05</div><h3>Make more money<span class="g">.</span></h3><p>Same crew. Same hours. More jobs out the bottom.</p></div>
         </div>
       </div>
       <div class="scrollhint">Keep scrolling</div>
@@ -323,7 +332,7 @@
     if(i===step)return;step=i;
     cps.forEach(function(c,k){c.classList.toggle('on',k===i)});
     bars.forEach(function(b,k){b.classList.toggle('on',k<=i)});
-    svg.classList.toggle('lk',i>=1);svg.classList.toggle('fixd',i>=2);
+    svg.classList.toggle('lk',i>=1);svg.classList.toggle('fixd',i>=2);svg.classList.toggle('more',i>=3);
     var h=Math.round(80*FILL[i]);fill.setAttribute('y',472-h);fill.setAttribute('height',h);
   }
   function onScroll(){
@@ -339,12 +348,14 @@
   /* dots: leads falling through the funnel */
   if(reduce)return;
   var NS='http://www.w3.org/2000/svg',pool=[],live=[],acc=0,running=false,last=0;
-  var CRACKS=[{y:122,side:-1},{y:218,side:-1},{y:166,side:1}];
+  var CRACKS=[{y:122,side:-1,x:71},{y:218,side:-1,x:119},{y:166,side:1,x:307}];
+  var SRC=[[40,16],[122,-6],[200,-16],[278,-6],[360,16]];
   function hw(y){return y<=300?160-(y-60)*(120/240):40}
   for(var k=0;k<70;k++){var c=document.createElementNS(NS,'circle');c.setAttribute('r','5');c.setAttribute('class','dot');c.style.display='none';dotsG.appendChild(c);pool.push(c)}
   function spawn(){
     var el=pool.pop();if(!el)return;
-    var d={el:el,u:Math.random()*1.7-.85,y:44,v:.9+Math.random()*.5,out:0,vx:0,a:1,hit:{}};
+    var sp=SRC[Math.floor(Math.random()*SRC.length)];
+    var d={el:el,u:Math.random()*1.7-.85,sx:sp[0],sy:sp[1],y:sp[1],v:.7+Math.random()*.4,out:0,leak:null,vx:0,a:1,hit:{}};
     el.setAttribute('class','dot');el.style.display='';el.style.opacity=1;live.push(d);
   }
   function frame(t){
@@ -356,13 +367,19 @@
       var d=live[i],x;
       if(d.out){
         d.vx+=.02*d.out*dt;d.v+=.12*dt;d.x+=d.vx*dt*2.2;d.y+=d.v*dt;d.a-=.02*dt;x=d.x;
+      }else if(d.leak){
+        /* slide sideways to the hole, then drop out red */
+        d.x+=d.leak.side*3*dt;x=d.x;
+        if((d.x-d.leak.x)*d.leak.side>=0){d.out=d.leak.side;d.vx=d.leak.side*1.1;d.v=.4;d.el.setAttribute('class','dot x')}
+      }else if(d.y<60){
+        d.y+=d.v*dt;var ex=200+d.u*hw(60)*.86;x=d.sx+(ex-d.sx)*((d.y-d.sy)/(60-d.sy));
       }else{
         d.v=Math.min(d.v+.015*dt,2.6);d.y+=d.v*dt;
         var w=hw(d.y)*.86;x=200+d.u*w;
         if(step===1){
           for(var j=0;j<3;j++){var ck=CRACKS[j];
             if(!d.hit[j]&&d.y>=ck.y){d.hit[j]=1;
-              if(ck.side*d.u>.35&&Math.random()<.85){d.out=ck.side;d.x=x;d.vx=ck.side*1.2;d.v=.6;d.el.setAttribute('class','dot x')}
+              if(ck.side*d.u>.15&&Math.random()<.9){d.leak=ck;d.x=x;d.y=ck.y}
             }}
         }
         if(d.y>392){d.a-=.12*dt}
