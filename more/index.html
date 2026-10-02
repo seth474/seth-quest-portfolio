@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Make More Money. — Seth Quest</title>
-<meta name="description" content="More leads. More sales. More money. I help local businesses find practical ways to bring in more customers and close more of them, then help put it in place. Book a free 15-minute growth call.">
+<meta name="description" content="More leads. More sales. More money. I help local businesses bring in more customers and close more of them. Book a free 15-minute growth call.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
 <meta property="og:description" content="More leads. More sales. More money. Book a free 15-minute growth call.">
 <meta property="og:url" content="https://sethquest.com/more">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#f6f5f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
   /* EDIT: video -> set data-youtube="VIDEO_ID" on #vid */
-  :root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--mut:#6b6b6b;--line:#e3e1db}
+  :root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--red:#d9534f;--mut:#6b6b6b;--line:#e3e1db}
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,sans-serif;padding-bottom:84px}
@@ -51,20 +51,51 @@
   .vlabel{text-align:center;font:600 12px Inter,sans-serif;letter-spacing:.14em;color:var(--mut);margin-top:12px;text-transform:uppercase}
   section.pad{padding:56px 0;border-top:1px solid var(--line)}
   h2{font-size:clamp(46px,11vw,72px);margin:6px 0 22px}
-  .steps{list-style:none;display:grid;gap:12px}
-  .steps li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:48px 1fr;gap:4px 14px;align-items:start}
-  .steps .n{grid-row:span 2;font-family:"Bebas Neue",sans-serif;font-size:44px;line-height:.9;color:var(--green)}
-  .steps b{font-size:18px}
-  .steps span{color:#444}
-  .note{margin-top:16px;color:#444}
+
+  /* ---------- scroll story: funnel stays pinned, words slide in ---------- */
+  .story{position:relative;height:calc(100svh + 5 * 70svh);border-top:1px solid var(--line)}
+  .stage{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:18px 20px 96px;overflow:hidden}
+  .stage-top{display:flex;justify-content:space-between;align-items:center;max-width:1080px;width:100%;margin:0 auto}
+  .prog{display:flex;gap:6px}
+  .prog i{width:22px;height:4px;border-radius:2px;background:var(--line);transition:background .4s}
+  .prog i.on{background:var(--ink)}
+  .fun{min-height:0;display:flex;align-items:center;justify-content:center}
+  .fun svg{height:100%;max-height:600px;width:auto;max-width:100%;overflow:visible}
+  .copy{position:relative;display:grid;min-height:150px}
+  .cp{grid-area:1/1;align-self:start;opacity:0;transform:translateX(-56px);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+  .cp.r{transform:translateX(56px)}
+  .cp.on{opacity:1;transform:none;pointer-events:auto}
+  .cp .k{font:600 12px Inter,sans-serif;letter-spacing:.14em;color:var(--mut)}
+  .cp h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(44px,12vw,64px);line-height:.9;margin:6px 0 8px;text-transform:uppercase}
+  .cp p{color:#333;max-width:34ch}
+  .scrollhint{text-align:center;font:600 11px Inter,sans-serif;letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
+  /* funnel drawing */
+  .f-body{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+  .f-rim{fill:none;stroke:var(--ink);stroke-width:2.5}
+  .crack{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;opacity:0;transition:opacity .5s,stroke .5s}
+  .lk .crack{opacity:1}
+  .fixd .crack{stroke:var(--green)}
+  .lbl{font:600 15px Inter,sans-serif;fill:var(--red);opacity:0;transition:opacity .5s,fill .5s}
+  .lk .lbl{opacity:1}
+  .fixd .lbl{fill:var(--green)}
+  .bin{fill:none;stroke:var(--ink);stroke-width:2.5}
+  #fill{fill:var(--gb);transition:y 1s cubic-bezier(.2,.8,.2,1),height 1s cubic-bezier(.2,.8,.2,1)}
+  .binlbl{font-family:"Bebas Neue",sans-serif;font-size:30px;fill:var(--ink);letter-spacing:.02em}
+  .dot{fill:var(--ink)}
+  .dot.x{fill:var(--red)}
+
   .three{display:grid;gap:12px}
   .three div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
   .three h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95}
   .three p{color:#444;margin-top:8px}
-  .about{display:grid;gap:18px}
-  .about p{max-width:60ch;color:#2a2a2a}
-  .facts{display:flex;flex-wrap:wrap;gap:8px}
-  .facts span{font:600 13px Inter,sans-serif;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+  .tst{display:grid;gap:12px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;display:flex;flex-direction:column;gap:16px}
+  .q blockquote{font-size:19px;line-height:1.5;color:#1a1a1a}
+  .q blockquote::before{content:"“";display:block;font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.6;color:var(--green);margin-bottom:6px}
+  .q .who{font:600 14px Inter,sans-serif}
+  .q .who span{display:block;font-weight:500;color:var(--mut)}
+  .q.soon{background:transparent;border:1.5px dashed #c9c6bd}
+  .q.soon blockquote{color:var(--mut);font-style:italic}
   .final{background:var(--ink);color:#fff;border-radius:24px;padding:40px 24px;text-align:center}
   .final h2{margin:0 0 10px}
   .final p{color:#ccc;max-width:40ch;margin:0 auto}
@@ -94,9 +125,26 @@
     body{padding-bottom:0}
     .bar{display:none}
     .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 90px)}
-    .steps,.three{grid-template-columns:repeat(3,1fr)}
-    .about{grid-template-columns:1fr 1fr;align-items:start}
+    .three,.tst{grid-template-columns:repeat(3,1fr)}
+    .tst{grid-template-columns:1fr 1fr}
     .final{padding:56px}
+    .stage{grid-template-rows:auto 1fr;padding:24px 20px 28px}
+    .mid{display:grid;grid-template-columns:1fr minmax(0,460px) 1fr;gap:28px;align-items:center;max-width:1180px;width:100%;margin:0 auto;min-height:0}
+    .fun{grid-column:2;grid-row:1;height:100%}
+    .copy{display:contents}
+    .cp{grid-row:1;grid-column:1;align-self:center;justify-self:end;text-align:right}
+    .cp p{margin-left:auto}
+    .cp.r{grid-column:3;justify-self:start;text-align:left}
+    .cp.r p{margin-left:0}
+    .scrollhint{display:none}
+  }
+  @media(max-width:859px){
+    .mid{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px;min-height:0}
+    .cp,.cp.r{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cp,.cp.r{transition:opacity .3s;transform:none}
+    #fill{transition:none}
   }
 </style>
 </head>
@@ -118,36 +166,63 @@
           <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
           <a class="btn o" href="#vid" id="watch">▶ Watch the video</a>
         </div>
-        <p class="small">No pitch. You leave with your top 3 opportunities either way.</p>
+        <p class="small">No pitch. You leave with your top 3 fixes either way.</p>
       </div>
       <div class="vidbox">
         <div id="vid" data-youtube="">
           <div class="ph">
             <div class="play"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M6 4l14 8-14 8z"/></svg></div>
-            <div class="d">60 seconds<span class="g">.</span></div>
+            <div class="d">30 seconds<span class="g">.</span></div>
             <p>Video coming soon.</p>
           </div>
         </div>
-        <div class="vlabel">A minute with Seth</div>
+        <div class="vlabel">The lowdown in 30 seconds</div>
       </div>
     </div>
   </section>
 
-  <section class="pad">
-    <div class="wrap">
-      <div class="eyebrow">The free growth call</div>
-      <h2 class="d">15 minutes. 3 opportunities<span class="g">.</span></h2>
-      <ol class="steps">
-        <li><span class="n">1</span><b>We talk about your business</b><span>Where your work comes from and what you want more of.</span></li>
-        <li><span class="n">2</span><b>I show you where jobs slip away</b><span>Your Google listing, reviews, website, and how fast leads get answered.</span></li>
-        <li><span class="n">3</span><b>You get your top 3 fixes</b><span>In order, written down, yours to keep. Whether we work together or not.</span></li>
-      </ol>
+  <!-- Scroll story: funnel pinned in the middle, one line per step -->
+  <section class="story" id="story" aria-label="How your sales funnel makes more money">
+    <div class="stage">
+      <div class="stage-top">
+        <div class="eyebrow">Your sales funnel</div>
+        <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="mid">
+        <div class="fun">
+          <svg id="fsvg" viewBox="-60 30 520 450" role="img" aria-label="A sales funnel: leads go in the top, leaks get fixed, money comes out the bottom">
+            <ellipse class="f-rim" cx="200" cy="60" rx="160" ry="14"/>
+            <path class="f-body" d="M40 60 L160 300 L160 372 M360 60 L240 300 L240 372"/>
+            <g id="leaks">
+              <path class="crack" d="M70 116 l-9 6 l7 4 l-10 7"/>
+              <path class="crack" d="M118 212 l-9 6 l7 4 l-10 7"/>
+              <path class="crack" d="M318 160 l9 6 l-7 4 l10 7"/>
+              <text class="lbl" x="50" y="128" text-anchor="end">Missed calls</text>
+              <text class="lbl" x="98" y="224" text-anchor="end">No follow-up</text>
+              <text class="lbl" x="340" y="172">Slow quotes</text>
+            </g>
+            <g id="dots"></g>
+            <rect class="bin" x="120" y="392" width="160" height="80" rx="10"/>
+            <clipPath id="binclip"><rect x="121.5" y="393.5" width="157" height="77" rx="9"/></clipPath>
+            <rect id="fill" x="120" y="472" width="160" height="0" clip-path="url(#binclip)"/>
+            <text class="binlbl" x="200" y="442" text-anchor="middle">$</text>
+          </svg>
+        </div>
+        <div class="copy">
+          <div class="cp on" data-i="0"><div class="k">01 / 05</div><h3>Leads come in<span class="g">.</span></h3><p>Referrals, Google, your truck, your yard signs. Every one is a job you could win.</p></div>
+          <div class="cp r" data-i="1"><div class="k">02 / 05</div><h3>But it leaks<span class="g">.</span></h3><p>Missed calls. Slow quotes. No follow-up. Each leak is a job going to the other guy.</p></div>
+          <div class="cp" data-i="2"><div class="k">03 / 05</div><h3>I fix the leaks<span class="g">.</span></h3><p>Every missed call gets a text back. Quotes go out same day. Follow-up happens without you.</p></div>
+          <div class="cp r" data-i="3"><div class="k">04 / 05</div><h3>Then more leads<span class="g">.</span></h3><p>Now it's worth turning up the top. A better Google listing, more reviews, ads that pay for themselves.</p></div>
+          <div class="cp" data-i="4"><div class="k">05 / 05</div><h3>More money<span class="g">.</span></h3><p>Same crew. Same hours. More jobs out the bottom.</p></div>
+        </div>
+      </div>
+      <div class="scrollhint">Keep scrolling</div>
     </div>
   </section>
 
   <section class="pad">
     <div class="wrap">
-      <div class="eyebrow">What I help with</div>
+      <div class="eyebrow">What I fix</div>
       <h2 class="d">Three things<span class="g">.</span></h2>
       <div class="three">
         <div><h3>More leads<span class="g">.</span></h3><p>Show up when people search for what you do. Better Google listing, more reviews, ads that pay for themselves.</p></div>
@@ -158,15 +233,19 @@
   </section>
 
   <section class="pad">
-    <div class="wrap about">
-      <div>
-        <div class="eyebrow">Who you'd be talking to</div>
-        <h2 class="d">Hi, I'm Seth<span class="g">.</span></h2>
-      </div>
-      <div>
-        <p>I'm a designer and builder based in East Hampton. I help local businesses get found, win more of their calls, and run smoother, using whatever works: better marketing, simple systems, and the right tools.</p>
-        <p style="margin-top:12px">Hands-on. Straight answers. I'd rather show you one fix that makes money this month than hand you a 40-page report.</p>
-        <div class="facts" style="margin-top:18px"><span>Based in East Hampton, NY</span><span>Hourly or flat-rate</span><span>We agree on the result first</span></div>
+    <div class="wrap">
+      <div class="eyebrow">What people say</div>
+      <h2 class="d">Don't take my word for it<span class="g">.</span></h2>
+      <div class="tst">
+        <!-- EDIT: paste Ryan's quote here, then remove class "soon" -->
+        <figure class="q soon">
+          <blockquote>Testimonial coming soon.</blockquote>
+          <figcaption class="who">Hamptons Adventure Company<span>Amagansett, NY</span></figcaption>
+        </figure>
+        <figure class="q">
+          <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond.</blockquote>
+          <figcaption class="who">Andrew Hewitt<span>Founder, Elua</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -175,7 +254,7 @@
     <div class="wrap">
       <div class="final">
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
-        <p>Free, no pressure. You'll leave knowing exactly where your next jobs are coming from.</p>
+        <p>Free, no pressure. You'll leave with your top 3 fixes, in order, whether we work together or not.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
           <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
@@ -215,6 +294,8 @@
   var FORM='https://formspree.io/f/meaonlel';
   var box=document.getElementById('vid'),id=(box.getAttribute('data-youtube')||'').trim();
   if(id){box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&playsinline=1" title="Video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'}
+
+  /* ---- booking modal ---- */
   var m=document.getElementById('book');
   function open(){m.hidden=false;setTimeout(function(){document.getElementById('bkX').focus()},30)}
   function close(){m.hidden=true}
@@ -232,6 +313,71 @@
       .then(function(r){if(!r.ok)throw 0;s.textContent='Sent ✓';er.className='err ok';er.textContent='Got it. I’ll reach out today to set a time.'})
       .catch(function(){s.disabled=false;s.textContent='Request my call';er.textContent='That didn’t go through. Text or call 934-899-0796.'});
   });
+
+  /* ---- scroll story ---- */
+  var story=document.getElementById('story'),svg=document.getElementById('fsvg'),dotsG=document.getElementById('dots'),fill=document.getElementById('fill');
+  var cps=[].slice.call(document.querySelectorAll('.cp')),bars=[].slice.call(document.querySelectorAll('.prog i'));
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var step=-1,FILL=[.12,.08,.38,.62,1];
+  function setStep(i){
+    if(i===step)return;step=i;
+    cps.forEach(function(c,k){c.classList.toggle('on',k===i)});
+    bars.forEach(function(b,k){b.classList.toggle('on',k<=i)});
+    svg.classList.toggle('lk',i>=1);svg.classList.toggle('fixd',i>=2);
+    var h=Math.round(80*FILL[i]);fill.setAttribute('y',472-h);fill.setAttribute('height',h);
+  }
+  function onScroll(){
+    var r=story.getBoundingClientRect(),vh=window.innerHeight,run=r.height-vh;
+    var p=Math.min(Math.max(-r.top/run,0),.9999);
+    setStep(Math.floor(p*5));
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;onScroll()})}},{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  /* dots: leads falling through the funnel */
+  if(reduce)return;
+  var NS='http://www.w3.org/2000/svg',pool=[],live=[],acc=0,running=false,last=0;
+  var CRACKS=[{y:122,side:-1},{y:218,side:-1},{y:166,side:1}];
+  function hw(y){return y<=300?160-(y-60)*(120/240):40}
+  for(var k=0;k<70;k++){var c=document.createElementNS(NS,'circle');c.setAttribute('r','5');c.setAttribute('class','dot');c.style.display='none';dotsG.appendChild(c);pool.push(c)}
+  function spawn(){
+    var el=pool.pop();if(!el)return;
+    var d={el:el,u:Math.random()*1.7-.85,y:44,v:.9+Math.random()*.5,out:0,vx:0,a:1,hit:{}};
+    el.setAttribute('class','dot');el.style.display='';el.style.opacity=1;live.push(d);
+  }
+  function frame(t){
+    if(!running)return;
+    var dt=Math.min((t-last)/16.67,3);last=t;
+    var rate=step>=3?.11:.04;acc+=rate*dt;
+    while(acc>1){acc--;spawn()}
+    for(var i=live.length-1;i>=0;i--){
+      var d=live[i],x;
+      if(d.out){
+        d.vx+=.02*d.out*dt;d.v+=.12*dt;d.x+=d.vx*dt*2.2;d.y+=d.v*dt;d.a-=.02*dt;x=d.x;
+      }else{
+        d.v=Math.min(d.v+.015*dt,2.6);d.y+=d.v*dt;
+        var w=hw(d.y)*.86;x=200+d.u*w;
+        if(step===1){
+          for(var j=0;j<3;j++){var ck=CRACKS[j];
+            if(!d.hit[j]&&d.y>=ck.y){d.hit[j]=1;
+              if(ck.side*d.u>.35&&Math.random()<.85){d.out=ck.side;d.x=x;d.vx=ck.side*1.2;d.v=.6;d.el.setAttribute('class','dot x')}
+            }}
+        }
+        if(d.y>392){d.a-=.12*dt}
+      }
+      if(d.a<=0||d.y>470){d.el.style.display='none';pool.push(d.el);live.splice(i,1);continue}
+      d.el.setAttribute('cx',x.toFixed(1));d.el.setAttribute('cy',d.y.toFixed(1));d.el.style.opacity=Math.max(d.a,0);
+    }
+    requestAnimationFrame(frame);
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!running){running=true;last=performance.now();requestAnimationFrame(frame)}
+      else if(!e.isIntersecting){running=false}
+    })}).observe(story);
+  }
 })();
 </script>
 </body>
