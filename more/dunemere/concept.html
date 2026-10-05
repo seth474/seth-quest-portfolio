@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><script>try{if(sessionStorage.getItem("dm-ok")!=="1")location.replace("/more/dunemere");}catch(e){location.replace("/more/dunemere")}</script>
+<title>Dunemere Website Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: quiet coastal one-pager — navy brand carried from the existing logo, sea-grass and sand neutrals, photo frames marked for real photography. Single light look by choice. */
+:root{
+  --navy:#16294a; --navy-2:#223b66; --grass:#6f8a7a; --sand:#e9e4da; --paper:#fbfaf7; --ink:#1b2230; --muted:#5d6675; --line:#dcd8cf; --white:#ffffff;
+  --display:"Gloock",Georgia,serif; --body:"Manrope",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--grass)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:4px;font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid var(--navy);cursor:pointer;font-family:var(--body)}
+.btn.primary{background:var(--navy);color:var(--white)}
+.btn.primary:hover{background:var(--navy-2)}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--grass);outline-offset:2px}
+
+.draft{background:var(--sand);color:var(--ink);font-size:13px;text-align:center;padding:8px 20px}
+.draft b{color:var(--navy)}
+
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+.logo b{font-family:var(--display);font-weight:400;font-size:24px;color:var(--navy)}
+.logo span{font-size:10px;letter-spacing:.42em;color:var(--muted);margin-top:4px}
+.links{display:flex;gap:24px;font-size:15px;font-weight:600}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--navy)}
+.navcta{display:flex;align-items:center;gap:16px}
+.navcta .tel{font-weight:700;color:var(--navy);text-decoration:none;font-size:15px}
+@media (max-width:900px){.links{display:none}}
+@media (max-width:560px){.navcta .tel{display:none}.navcta .btn{min-height:42px;padding:0 14px;font-size:14px}}
+
+/* photo frames */
+.photo{position:relative;background:linear-gradient(160deg,#c9d3cf 0%,#9fb1ab 45%,#6f8a7a 100%);border-radius:6px;overflow:hidden;min-height:220px;max-width:100%}
+.photo::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,transparent 58%,rgba(233,228,218,.9) 58%,rgba(233,228,218,.9) 61%,transparent 61%),
+  radial-gradient(120% 60% at 50% 110%,rgba(22,41,74,.35),transparent 60%)}
+.photo .house{position:absolute;left:50%;bottom:30%;transform:translateX(-50%);width:62%;max-width:420px;aspect-ratio:2.6/1;background:
+  linear-gradient(135deg,transparent 49.5%,#7d8a92 50%) left top/50% 46% no-repeat,
+  linear-gradient(225deg,transparent 49.5%,#7d8a92 50%) right top/50% 46% no-repeat,
+  linear-gradient(#8f9aa1,#8f9aa1) left bottom/100% 54% no-repeat;opacity:.55}
+.photo .tag{position:absolute;left:14px;bottom:14px;right:14px;background:rgba(255,255,255,.92);color:var(--ink);font-size:12.5px;line-height:1.4;padding:8px 10px;border-radius:4px;border-left:3px solid var(--navy)}
+.photo .tag b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+
+/* hero */
+.hero{padding-block:56px 64px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,64px);color:var(--navy)}
+.hero .copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.hero .lede{font-size:19px;color:var(--muted);max-width:34ch}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.proof{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted);font-weight:600}
+.proof span::before{content:"✓ ";color:var(--grass)}
+.hero .photo{min-height:460px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:32px}.hero .photo{min-height:300px}}
+
+section{padding-block:72px}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:640px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(30px,3.6vw,44px);color:var(--navy)}
+.sec-head p{color:var(--muted)}
+
+/* weekly check */
+.check{background:var(--white);border-block:1px solid var(--line)}
+.check .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media (max-width:860px){.check .grid{grid-template-columns:1fr}}
+.points{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;list-style:none;padding:0;margin:0}
+.points li{display:flex;gap:10px;font-size:16px;padding-block:8px;border-bottom:1px solid var(--line)}
+.points li::before{content:"";flex:0 0 18px;height:18px;margin-top:4px;border:1.5px solid var(--grass);border-radius:3px;background:linear-gradient(var(--grass),var(--grass)) center/8px 8px no-repeat}
+@media (max-width:480px){.points{grid-template-columns:1fr}}
+.report{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 18px 40px -24px rgba(22,41,74,.35)}
+.report .hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.report .hd b{font-family:var(--display);font-weight:400;font-size:20px;color:var(--navy)}
+.report .hd span{font-size:13px;color:var(--muted)}
+.report table{width:100%;border-collapse:collapse;font-size:14.5px}
+.report td{padding:8px 0;border-bottom:1px solid var(--line)}
+.report td:last-child{text-align:right;font-weight:700}
+.ok{color:#2f6b4f}.att{color:#9a6512}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumbs div{aspect-ratio:4/3;border-radius:4px;background:linear-gradient(160deg,#c9d3cf,#8fa39b);display:grid;place-items:end start;padding:6px;font-size:11px;color:var(--ink)}
+.report .note{font-size:13px;color:var(--muted)}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media (max-width:980px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.svc{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:22px;color:var(--navy)}
+.card p{font-size:15.5px;color:var(--muted)}
+.card .price{margin-top:auto;padding-top:10px;font-size:14px;font-weight:700;color:var(--ink)}
+
+/* ryan */
+.ryan{background:var(--navy);color:#e8ecf3}
+.ryan .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+@media (max-width:860px){.ryan .grid{grid-template-columns:1fr;gap:32px}}
+.ryan h2{color:var(--white);font-size:clamp(30px,3.6vw,44px)}
+.ryan .eyebrow{color:#a9c2b4}
+.ryan .copy{display:flex;flex-direction:column;gap:18px;min-width:0}
+.ryan .copy p{color:#c9d2e0;max-width:58ch}
+.ryan blockquote{margin:0;font-family:var(--display);font-size:24px;line-height:1.3;color:var(--white);border-left:2px solid #a9c2b4;padding-left:18px}
+.ryan .photo{min-height:440px}
+.facts{display:flex;flex-wrap:wrap;gap:28px}
+.facts div{display:flex;flex-direction:column}
+.facts b{font-family:var(--display);font-weight:400;font-size:34px;color:var(--white)}
+.facts span{font-size:13px;color:#a9b6ca}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--navy);padding-top:18px}
+.step .n{font-family:var(--display);font-size:40px;color:var(--grass);line-height:1}
+.step h3{font-size:22px;color:var(--navy)}
+.step p{color:var(--muted);font-size:16px}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:860px){.quotes{grid-template-columns:1fr}}
+.quote{background:var(--white);border:1px dashed var(--grass);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.quote p{font-family:var(--display);font-size:19px;line-height:1.4;color:var(--ink)}
+.quote span{font-size:13px;color:var(--muted);font-weight:600}
+.quote small{font-size:12px;color:var(--grass);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+/* towns + realtors */
+.towns{display:flex;flex-wrap:wrap;gap:10px}
+.towns span{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:600}
+.towns span.core{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.realtor{margin-top:48px;background:var(--sand);border-radius:8px;padding:32px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.realtor div{display:flex;flex-direction:column;gap:8px;max-width:620px;min-width:0}
+.realtor h3{font-size:26px;color:var(--navy)}
+.realtor p{color:var(--muted)}
+
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}
+@media (max-width:860px){.faq{grid-template-columns:1fr;gap:16px}}
+details{border-bottom:1px solid var(--line);padding-block:18px}
+summary{cursor:pointer;font-weight:700;font-size:17px;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";font-family:var(--display);font-size:24px;line-height:1;color:var(--grass)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);max-width:62ch}
+
+/* contact */
+.contact{background:var(--white);border-top:1px solid var(--line)}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media (max-width:860px){.contact .grid{grid-template-columns:1fr;gap:32px}}
+.contact .direct{display:flex;flex-direction:column;gap:18px}
+.contact .direct .big{font-family:var(--display);font-size:32px;color:var(--navy);text-decoration:none}
+form{display:flex;flex-direction:column;gap:14px}
+label{font-size:14px;font-weight:700;display:flex;flex-direction:column;gap:6px}
+input,textarea,select{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+.formmsg{font-size:14px;color:#2f6b4f;font-weight:600}
+
+footer{background:var(--navy);color:#b9c3d3;font-size:14px;padding-block:40px 96px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer b{color:var(--white);font-family:var(--display);font-weight:400;font-size:22px}
+
+.mbar{display:none}
+@media (max-width:700px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--white);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}
+  .mbar .btn{min-height:46px}
+}
+
+.svc.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.svc.three{grid-template-columns:1fr}}
+.card .price{display:flex;flex-direction:column;gap:4px;font-size:20px;font-family:var(--display);font-weight:400;color:var(--navy);border-top:1px solid var(--line)}
+.card .price .sub{font-family:var(--body);font-size:13px;color:var(--muted);font-weight:500}
+.card.feature{border:1.5px solid var(--navy);box-shadow:0 18px 40px -26px rgba(22,41,74,.45)}
+.badge{align-self:flex-start;background:var(--navy);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.menu{margin-top:28px;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:28px;display:grid;grid-template-columns:.8fr 1.2fr;gap:32px}
+@media (max-width:860px){.menu{grid-template-columns:1fr;gap:16px}}
+.menu > div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.menu h3{font-size:24px;color:var(--navy)}
+.menu p{color:var(--muted);font-size:15.5px}
+.menu ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+@media (max-width:560px){.menu ul{grid-template-columns:1fr}}
+.menu li{font-size:15px;padding-block:9px;border-bottom:1px solid var(--line)}
+.rep{background:var(--sand)}
+.rep .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media (max-width:860px){.rep .grid{grid-template-columns:1fr;gap:28px}}
+.rep .copy{display:flex;flex-direction:column;gap:16px;min-width:0}
+.rep h2{font-size:clamp(30px,3.6vw,44px);color:var(--navy)}
+.rep .copy p{color:var(--muted);max-width:58ch}
+.example{background:var(--white);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 18px 40px -26px rgba(22,41,74,.4)}
+.example h3{font-size:22px;color:var(--navy)}
+.example table{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+.example td{padding:8px 0;border-bottom:1px solid var(--line)}
+.example td:last-child{text-align:right;color:var(--muted);white-space:nowrap;padding-left:12px}
+.example tr.tot td{font-weight:700;color:var(--ink)}
+.example .note{font-size:12.5px;color:var(--muted)}
+
+.why{padding-bottom:0}
+.whys{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media (max-width:860px){.whys{grid-template-columns:1fr}}
+.whys div{display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--grass);padding-top:16px}
+.whys h3{font-size:22px;color:var(--navy)}
+.whys p{color:var(--muted);font-size:16px}
+.badge.soft{background:var(--sand);color:var(--navy)}
+.lp-hero{padding-block:56px;background:var(--navy);color:#dfe6f0}
+.lp-hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:860px){.lp-hero .wrap{grid-template-columns:1fr}}
+.lp-hero h1{color:var(--white);font-size:clamp(34px,4.6vw,54px)}
+.lp-hero .eyebrow{color:#a9c2b4}
+.lp-hero .copy{display:flex;flex-direction:column;gap:18px;min-width:0}
+.lp-hero .copy p{color:#c9d2e0;font-size:18px;max-width:46ch}
+.lp-hero .btn.ghost{color:var(--white);border-color:#a9c2b4}
+.lp-hero .photo{min-height:340px}
+.back{display:inline-block;font-size:14px;font-weight:700;color:var(--grass);text-decoration:none;margin-top:24px}
+.lp-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;list-style:none;padding:0;margin:0}
+@media (max-width:620px){.lp-list{grid-template-columns:1fr}}
+.lp-list li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.lp-list b{color:var(--navy)}
+.lp-list span{color:var(--muted);font-size:15px}
+.lp-form{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:14px;max-width:640px}
+</style>
+<div style="background:#0a0a0a;color:#fff;font:600 13px/1.4 system-ui,sans-serif;padding:10px 16px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap"><span>New website preview for Dunemere Management · not live yet · prepared by MORE</span><a href="/more/dunemere/recap" style="color:#2be36b;font-weight:800;text-decoration:none">← Back to the report</a></div>
+
+
+<div class="draft"><b>Concept draft for Ryan.</b> Green photo frames mark where real Dunemere photos go. Anything in [brackets] needs Ryan to confirm. Ad landing pages: <a href="#winter">Winter house watching</a> · <a href="#projects">Project oversight</a> · <a href="#top">Home</a></div>
+
+<nav class="top" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>Dunemere</b><span>MANAGEMENT</span></a>
+    <div class="links"><a href="#check">Weekly checks</a><a href="#services">Membership</a><a href="#winter">Winter watch</a><a href="#projects">Project oversight</a><a href="#ryan">About Ryan</a><a href="#faq">FAQ</a></div>
+    <div class="navcta"><a class="tel" href="tel:+16312238966">(631) 223-8966</a><a class="btn primary" href="#contact">Book a home check</a></div>
+  </div>
+</nav>
+
+<div id="v-home">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="copy">
+      <div class="eyebrow">House watching &amp; property management · East Hampton</div>
+      <h1>Your Hamptons home, looked after like it's our own.</h1>
+      <p class="lede">East Hampton native Ryan Struble and his team watch over second homes from Southampton to Amagansett with weekly checks, seasonal openings and closings, and the big projects in between, all through one point of contact.</p>
+      <div class="ctas"><a class="btn primary" href="#contact">Book a free home check</a><a class="btn ghost" href="tel:+16312238966">Call (631) 223-8966</a></div>
+      <div class="proof"><span>Clients of 20 years</span><span>East End native</span><span>[Fully insured]</span></div>
+    </div>
+    <div class="photo" role="img" aria-label="Photo placeholder: a client home in East Hampton">
+      <div class="house"></div>
+      <div class="tag"><b>Real photo here</b>A shingle-style client home in East Hampton or Amagansett at golden hour (with the owner's permission)</div>
+    </div>
+  </div>
+</header>
+
+<section class="check" id="check">
+  <div class="wrap grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <div class="eyebrow">What a weekly check covers</div>
+        <h2>We walk the house so you don't have to wonder.</h2>
+        <p>Every visit follows the same checklist, inside and out, and you get a short report with photos the same day.</p>
+      </div>
+      <ul class="points">
+        <li>Doors, windows and locks</li><li>Heat and thermostats</li>
+        <li>Water, leaks and plumbing</li><li>Roof and gutters (from the ground)</li>
+        <li>Pool and spa</li><li>Yard, drainage and storm damage</li>
+        <li>Exterior lighting</li><li>Alarm, mail and deliveries</li>
+      </ul>
+    </div>
+    <div class="report" aria-label="Sample weekly report">
+      <div class="hd"><b>Weekly Home Report</b><span>Sample · Further Lane, East Hampton</span></div>
+      <table>
+        <tr><td>Doors &amp; windows secure</td><td class="ok">OK</td></tr>
+        <tr><td>Heat set to 58°F, running</td><td class="ok">OK</td></tr>
+        <tr><td>Basement and water heater dry</td><td class="ok">OK</td></tr>
+        <tr><td>Gutter on north side clogged</td><td class="att">Scheduled Tue</td></tr>
+        <tr><td>Pool cover secure after storm</td><td class="ok">OK</td></tr>
+      </table>
+      <div class="thumbs"><div>Front entry</div><div>Mechanical room</div><div>North gutter</div></div>
+      <p class="note">Checked by the Dunemere team · Questions? Reply to this text and Ryan will call you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Why membership</div>
+      <h2>We don't do one-off visits. Here's why.</h2>
+      <p>You can't look after a house you see twice a year. Seeing it every week is what makes us useful.</p>
+    </div>
+    <div class="whys">
+      <div><h3>We learn your house</h3><p>The gate code, the corner of the basement that takes on water after a heavy rain, the gutter that clogs every November. You only learn those things by being there every week.</p></div>
+      <div><h3>We catch it early</h3><p>A bedroom that smells musty after two months shut up. A hairline crack that wasn't there last week. Small things stay small when someone notices them on time.</p></div>
+      <div><h3>No meter running</h3><p>One flat monthly fee means you never have to wonder whether a phone call is worth it. Call us whenever you have a question. That's what we're here for.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">How to work with us</div>
+      <h2>Become a Dunemere home. Everything else comes with it.</h2>
+      <p>Every client starts with weekly house watching. Once we know your house, we take care of whatever it needs, from a dripping spigot to a new roof, and you have one person to call.</p>
+    </div>
+    <div class="svc three">
+      <div class="card feature"><div class="badge">Start here</div><h3>House watching membership</h3><p>Weekly checks on a set schedule, a photo report after every visit, storm checks when the weather turns, and a team that knows your house as well as you do.</p><div class="price">$300/month <span class="sub">September–June. Paused in July and August while you're here.</span></div></div>
+      <div class="card"><div class="badge soft">Members</div><h3>Projects &amp; owner's representation</h3><p>Roofs, painting, renovations, storm repairs. We get the bids, hire trusted East End contractors, check the work in person and report to you, always in your interest, not the contractor's.</p><div class="price">Quoted per project <span class="sub">After a walkthrough, with the scope in writing.</span></div></div>
+      <div class="card"><div class="badge soft">Members</div><h3>Small tasks &amp; seasonal work</h3><p>Quick fixes and the seasonal jobs your landscaper and pool company don't handle, done by our own crew because we already know the house.</p><div class="price">$125/hour <span class="sub">Most seasonal visits run $250–500.</span></div></div>
+    </div>
+<div class="menu">
+      <div>
+        <div class="eyebrow">Member add-on · Seasonal menu</div>
+        <h3>Opening &amp; closing the house</h3>
+        <p>Choose what you need. We coordinate with your pool and landscape crews so nothing falls through the cracks.</p>
+      </div>
+      <ul>
+        <li>Teak furniture, cushions and umbrellas into storage, and back out in spring</li>
+        <li>Cover and winterize exterior spigots and outdoor showers</li>
+        <li>Storm shutters or plywood window covers up and down</li>
+        <li>Grill, fire pit and outdoor kitchen covered and secured</li>
+        <li>Thermostats, water heater and dehumidifiers set for the season</li>
+        <li>Fridge stocked, beds made and house aired out before you arrive</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="rep">
+  <div class="wrap grid">
+    <div class="copy">
+      <div class="eyebrow">Owner's representation</div>
+      <h2>Big project? You shouldn't have to fly in to manage it.</h2>
+      <p>Most of our clients have more than one home and very little time. When the cedar roof is due, the house needs painting, or a storm does damage, we take it from start to finish. We know which contractors do good work, we're on site to check it, and we tell you plainly when something can wait and when it can't.</p>
+      <p>You get one point of contact, a weekly update with photos, and a project that finishes on time, without having to manage it from New York or Palm Beach.</p>
+      <a class="btn primary" href="#projects" style="align-self:flex-start">See how project oversight works</a>
+    </div>
+    <div class="example">
+      <div class="eyebrow">Example</div>
+      <h3>Cedar shingle roof replacement</h3>
+      <table>
+        <tr><td>We collect and compare 3 bids</td><td>Week 1</td></tr>
+        <tr><td>You approve the contractor and scope</td><td>Week 2</td></tr>
+        <tr><td>On-site checks, photo updates every week</td><td>Weeks 3–6</td></tr>
+        <tr><td>Final walkthrough and punch list</td><td>Week 7</td></tr>
+        <tr class="tot"><td>Your involvement</td><td>2 decisions, 0 site visits</td></tr>
+      </table>
+      <p class="note">Illustrative example. Every project is quoted after a walkthrough.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ryan" id="ryan">
+  <div class="wrap grid">
+    <div class="photo" role="img" aria-label="Photo placeholder: Ryan Struble on a walkthrough">
+      <div class="tag"><b>Real photo here</b>Ryan on a walkthrough: clipboard or phone in hand, a client home behind him. A natural shot, not posed.</div>
+    </div>
+    <div class="copy">
+      <div class="eyebrow">Meet Ryan</div>
+      <h2>It started with one family and one oceanfront house.</h2>
+      <p>In his early twenties, Ryan Struble was asked to keep an eye on a family's oceanfront home. He walked it every week, checked for leaks and made sure the heat stayed on. Over the years they asked him to do more: manage contractors, open the house in spring, close it in fall. Then they introduced him to family and friends.</p>
+      <p>That's how Dunemere grew, one referral at a time. Ryan grew up in East Hampton and brings more than 15 years in real estate and 10 years in plumbing and home improvement. Some of his clients have been with him for 20 years.</p>
+      <blockquote>"Every house gets treated like it's mine. That's the whole job." <span style="font-family:var(--body);font-size:13px;color:#a9c2b4">[Draft line: Ryan to confirm or rewrite in his own words]</span></blockquote>
+      <div class="facts"><div><b>20 yrs</b><span>longest client relationship</span></div><div><b>Same day</b><span>response, always</span></div><div><b>[Year]</b><span>caring for East End homes since</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">How it works</div><h2>Getting started takes one visit.</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Free home check</h3><p>Ryan walks the property with you or your caretaker, notes anything that needs attention, and learns how you like to be kept informed.</p></div>
+      <div class="step"><div class="n">2</div><h3>Your plan</h3><p>You get a simple plan covering visit schedule, seasonal work and any repairs, with clear pricing.</p></div>
+      <div class="step"><div class="n">3</div><h3>Weekly reports</h3><p>Checks begin, and you get a photo report after every visit. If something needs fixing, we handle it and keep you posted.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">From our clients</div><h2>Homeowners who've trusted us for years.</h2></div>
+    <div class="quotes">
+      <div class="quote"><small>Real quote needed</small><p>Ask a client of 10+ years what changed once Ryan started looking after the house.</p><span>First name, town · client since [year]</span></div>
+      <div class="quote"><small>Real quote needed</small><p>Ask an owner about a storm or emergency Ryan caught before it became expensive.</p><span>First name, town · client since [year]</span></div>
+      <div class="quote"><small>Real quote needed</small><p>Ask a realtor who has referred clients why they send them to Dunemere.</p><span>Name, brokerage</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="area" style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Service area</div><h2>Southampton to Amagansett.</h2><p>We're based in East Hampton and spend most of our time in East Hampton and Amagansett, so we're close by when something comes up.</p></div>
+    <div class="towns"><span class="core">East Hampton</span><span class="core">Amagansett</span><span>Wainscott</span><span>Sagaponack</span><span>Bridgehampton</span><span>Sag Harbor</span><span>North Haven</span><span>Water Mill</span><span>Southampton</span></div>
+    <div class="realtor">
+      <div><h3>For realtors</h3><p>Your buyers need someone they can trust with the house once the deal closes. We take care of them and keep you in the loop. Many of our clients came to us through East End agents.</p></div>
+      <a class="btn primary" href="#contact">Refer a client</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <div class="sec-head"><div class="eyebrow">Questions</div><h2>Good to know.</h2></div>
+    <div>
+      <details open><summary>What does it cost?</summary><p>Membership is $300 a month from September through June, covering weekly checks and reports. As a member, small tasks are $125 an hour and larger projects are quoted after a walkthrough, with the scope in writing before work starts.</p></details>
+      <details><summary>Can you just check on my house now and then?</summary><p>We don't offer one-off or on-call visits. Weekly visits are how we learn a house well enough to take responsibility for it. If you want someone who knows your home, membership is the way to start.</p></details>
+      <details><summary>Can you manage a project if I'm not a member yet?</summary><p>For larger projects, yes. Call Ryan. Most project clients become members, because the house still needs looking after once the work is done.</p></details>
+      <details><summary>What happens if you find a problem?</summary><p>We call or text you right away with photos, fix small issues ourselves, and bring in a trusted contractor for anything bigger, with your approval first.</p></details>
+      <details><summary>Do I need a long contract?</summary><p>[Confirm Ryan's terms.] Most clients start with a seasonal or annual plan, and many have stayed with us for 10 years or more.</p></details>
+      <details><summary>Are you insured?</summary><p>[Confirm: Dunemere Management LLC is fully insured.] We're glad to send a certificate of insurance on request.</p></details>
+      <details><summary>Which homes do you work with?</summary><p>Mostly second homes in East Hampton and Amagansett, from cottages to large estates. If you're unsure whether we're a fit, call and we'll tell you honestly.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap grid">
+    <div class="direct">
+      <div class="eyebrow">Book a free home check</div>
+      <h2 style="font-size:clamp(30px,3.6vw,44px);color:var(--navy)">Let's walk the house together.</h2>
+      <p style="color:var(--muted)">Ryan answers his own phone and gets back to everyone the same day.</p>
+      <a class="big" href="tel:+16312238966">(631) 223-8966</a>
+      <p style="color:var(--muted)">ryan@dunemeremgt.com</p>
+    </div>
+    <form id="lead" class="leadform" novalidate>
+      <div class="row2"><label for="nm">Name<input id="nm" name="name" autocomplete="name"></label><label for="ph">Phone<input id="ph" name="phone" type="tel" autocomplete="tel"></label></div>
+      <label for="em">Email<input id="em" name="email" type="email" autocomplete="email"></label>
+      <div class="row2">
+        <label for="tw">Town<select id="tw" name="town"><option>East Hampton</option><option>Amagansett</option><option>Wainscott</option><option>Sagaponack</option><option>Bridgehampton</option><option>Sag Harbor</option><option>Other</option></select></label>
+        <label for="nd">Interested in<select id="nd" name="need"><option>Weekly house watching</option><option>Seasonal opening/closing</option><option>A project or repair</option><option>Not sure yet</option></select></label>
+      </div>
+      <label for="ms">Anything we should know?<textarea id="ms" name="message" rows="3"></textarea></label>
+      <button class="btn primary" type="submit">Request my home check</button>
+      <p class="formmsg" id="formmsg" hidden>Demo only: in the live site this goes straight to Ryan's phone and inbox.</p>
+    </form>
+  </div>
+</section>
+
+</div>
+
+<div id="v-winter" hidden>
+<header class="lp-hero">
+  <div class="wrap">
+    <div class="copy">
+      <div class="eyebrow">Winter house watching · East Hampton &amp; Amagansett</div>
+      <h1>Leaving for the winter? We'll watch the house every week.</h1>
+      <p>Weekly walkthroughs inside and out, a photo report after every visit, and a local team on call when a storm comes through. $300 a month, September through June.</p>
+      <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn primary" href="#winter-form" style="background:var(--white);color:var(--navy);border-color:var(--white)">Book a free home check</a><a class="btn ghost" href="tel:+16312238966">Call (631) 223-8966</a></div>
+    </div>
+    <div class="photo" role="img" aria-label="Photo placeholder: a Hamptons home in winter">
+      <div class="house"></div>
+      <div class="tag"><b>Real photo here</b>A client home in winter: bare trees, shingles, a lit porch. Or Ryan checking a mechanical room.</div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Every week, all winter</div><h2>What we check while you're away.</h2><p>The same checklist every visit, so nothing gets missed and you can see exactly what we looked at.</p></div>
+    <ul class="lp-list">
+      <li><b>Heat and thermostats</b><span>Confirmed running so pipes don't freeze.</span></li>
+      <li><b>Water and leaks</b><span>Basement, water heater, under sinks, ceilings.</span></li>
+      <li><b>Doors, windows and locks</b><span>Secure, sealed and undisturbed.</span></li>
+      <li><b>Air and smell</b><span>Musty rooms aired out, dehumidifiers checked.</span></li>
+      <li><b>After every storm</b><span>Roof, trees, gutters and storm covers checked the same day.</span></li>
+      <li><b>Mail, deliveries and alarm</b><span>Handled so the house never looks empty.</span></li>
+    </ul>
+  </div>
+</section>
+<section class="why" style="padding-bottom:72px;background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Why weekly matters</div><h2>Small problems stay small.</h2></div>
+    <div class="whys">
+      <div><h3>A frozen pipe</h3><p>Found in a day, not in March. That's the difference between a plumber's visit and a new ceiling.</p></div>
+      <div><h3>A musty bedroom</h3><p>Caught after two closed-up weeks, aired out and dried before it turns into mold.</p></div>
+      <div><h3>A clogged gutter</h3><p>Spotted on a walkthrough and cleared before ice backs up under the shingles.</p></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Book a free home check</div><h2>Let's walk the house before you leave.</h2><p>Ryan answers his own phone: (631) 223-8966.</p></div>
+    <form class="lp-form leadform" id="winter-form" novalidate>
+      <div class="row2"><label for="w-nm">Name<input id="w-nm" autocomplete="name"></label><label for="w-ph">Phone<input id="w-ph" type="tel" autocomplete="tel"></label></div>
+      <div class="row2"><label for="w-tw">Town<select id="w-tw"><option>East Hampton</option><option>Amagansett</option><option>Wainscott</option><option>Sagaponack</option><option>Other</option></select></label><label for="w-lv">Leaving around<input id="w-lv" placeholder="e.g. Nov 1"></label></div>
+      <button class="btn primary" type="submit">Request my home check</button>
+      <p class="formmsg" hidden>Demo only: in the live site this goes straight to Ryan's phone and inbox.</p>
+    </form>
+    <a class="back" href="#top">← Back to the full site</a>
+  </div>
+</section>
+</div>
+
+<div id="v-projects" hidden>
+<header class="lp-hero">
+  <div class="wrap">
+    <div class="copy">
+      <div class="eyebrow">Project oversight · Owner's representation</div>
+      <h1>A big project at your Hamptons house, managed while you're away.</h1>
+      <p>Roof, paint, renovation or storm repair. We get the bids, hire trusted East End contractors, check the work in person every week and report to you, always in your interest, not the contractor's.</p>
+      <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn primary" href="#projects-form" style="background:var(--white);color:var(--navy);border-color:var(--white)">Talk to Ryan about your project</a><a class="btn ghost" href="tel:+16312238966">Call (631) 223-8966</a></div>
+    </div>
+    <div class="photo" role="img" aria-label="Photo placeholder: a roof replacement in progress">
+      <div class="house"></div>
+      <div class="tag"><b>Real photo here</b>A real Dunemere project in progress: cedar roof, scaffolding, Ryan talking with the contractor.</div>
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">How it works</div><h2>You make the decisions. We handle the rest.</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Walkthrough and scope</h3><p>Ryan looks at the house, tells you plainly what's urgent and what can wait, and writes up the scope.</p></div>
+      <div class="step"><div class="n">2</div><h3>Bids and contractor</h3><p>We collect and compare bids from contractors we've worked with for years. You approve one.</p></div>
+      <div class="step"><div class="n">3</div><h3>Weekly oversight</h3><p>We're on site every week checking quality and schedule. You get photo updates and one person to call until the final walkthrough.</p></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Typical projects</div><h2>What we manage.</h2></div>
+    <ul class="lp-list">
+      <li><b>Cedar shingle roofs</b><span>Replacement and repair before damage reaches the inside.</span></li>
+      <li><b>Exterior and interior painting</b><span>Scheduled around the season so the house is ready by summer.</span></li>
+      <li><b>Renovations</b><span>Kitchens, baths and additions, tracked against the plan.</span></li>
+      <li><b>Storm damage</b><span>Assessed the same day, secured, and repaired.</span></li>
+    </ul>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Start with a walkthrough</div><h2>Tell us about the project.</h2><p>Projects are quoted after a walkthrough. Most project clients go on to become house watching members.</p></div>
+    <form class="lp-form leadform" id="projects-form" novalidate>
+      <div class="row2"><label for="p-nm">Name<input id="p-nm" autocomplete="name"></label><label for="p-ph">Phone<input id="p-ph" type="tel" autocomplete="tel"></label></div>
+      <label for="p-pj">What's the project?<textarea id="p-pj" rows="3" placeholder="e.g. Cedar roof replacement, spring timeline"></textarea></label>
+      <button class="btn primary" type="submit">Request a walkthrough</button>
+      <p class="formmsg" hidden>Demo only: in the live site this goes straight to Ryan's phone and inbox.</p>
+    </form>
+    <a class="back" href="#top">← Back to the full site</a>
+  </div>
+</section>
+</div>
+
+
+<footer>
+  <div class="wrap">
+    <div><b>Dunemere Management</b><br>House watching &amp; property management · East Hampton, NY</div>
+    <div>(631) 223-8966 · ryan@dunemeremgt.com<br>© 2026 Dunemere Management LLC</div>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn ghost" href="tel:+16312238966">Call</a><a class="btn primary" href="#contact">Book a home check</a></div>
+
+<script>
+document.querySelectorAll('form.leadform').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();f.querySelector('.formmsg').hidden=false;}));
+const views={winter:'v-winter',projects:'v-projects'};
+function route(){
+  const h=location.hash.slice(1); let key='home';
+  for(const k in views){ if(h===k||h.startsWith(k+'-')) key=k; }
+  const show=key==='home'?'v-home':views[key];
+  ['v-home','v-winter','v-projects'].forEach(id=>{document.getElementById(id).hidden=(id!==show);});
+  if(key!=='home' && h===key) window.scrollTo(0,0);
+  else if(h){const el=document.getElementById(h); if(el) el.scrollIntoView();}
+}
+window.addEventListener('hashchange',route); route();
+</script>

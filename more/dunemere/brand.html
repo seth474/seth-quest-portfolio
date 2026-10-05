@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><script>try{if(sessionStorage.getItem("dm-ok")!=="1")location.replace("/more/dunemere");}catch(e){location.replace("/more/dunemere")}</script>
+<title>Dunemere Brand & Positioning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* MORE brand: crisp white, deep money green accent, gray secondary, dark gray text. Single light theme by choice. */
+:root{
+  --bg:#ffffff; --surface:#f6f5f1; --fg:#0a0a0a; --muted:#6b6b6b; --line:#e3e1db;
+  --accent:#1fbf5a; --accent-soft:#e6f9ee;
+  --g-a:#1fbf5a; --g-b:#64dd17; --g-c:#ffc400; --g-d:#ff6d00; --g-f:#ff1744;
+  --display:"Plus Jakarta Sans",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:18px}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+header{display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px}
+header .intro{display:flex;flex-direction:column;gap:10px;min-width:0;flex:1 1 380px}
+.lede{color:var(--muted);max-width:60ch}
+.stamp{flex:0 0 auto;width:132px;border:2px solid var(--g-d);border-radius:10px;padding:12px;text-align:center;background:var(--surface)}
+.stamp .g{font-family:var(--display);font-size:56px;line-height:1;color:var(--g-d)}
+.stamp .l{font-size:12px;color:var(--muted);margin-top:6px}
+section{display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stat{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:4px}
+.stat b{font-family:var(--display);font-weight:400;font-size:26px}
+.stat span{font-size:13px;color:var(--muted)}
+.callout{background:var(--accent-soft);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.callout strong{color:var(--accent)}
+.math{font-family:var(--mono);font-size:14px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;max-width:520px}
+.math .r{text-align:right}
+.math .t{border-top:1px solid var(--line);padding-top:4px;font-weight:600}
+.ledger{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.grade{font-family:var(--display);font-size:30px;line-height:1;width:48px;height:48px;border-radius:8px;display:grid;place-items:center;border:2px solid currentColor}
+.A{color:var(--g-a)}.B{color:var(--g-b)}.C{color:var(--g-c)}.D{color:var(--g-d)}.F{color:var(--g-f)}
+.row .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.crit{font-size:13px;color:var(--muted)}
+.crit em{font-style:normal;font-weight:600}
+.fix{font-size:15px}
+.fix b{color:var(--accent)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.flags li::marker{color:var(--g-f)}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.phase .when{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.phase ul{font-size:15px}
+.note{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.toc a:focus-visible,.toc a:hover{border-color:var(--accent)}
+.alert{border:1px solid var(--g-f);border-radius:10px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.alert h3{color:var(--g-f)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center}
+.mini .grade{width:40px;height:40px;font-size:24px;flex:0 0 auto}
+.mini span{font-size:14px;font-weight:600}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.stage{display:grid;grid-template-columns:150px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-inline:auto;width:100%}
+.stage:nth-child(2){width:96%}.stage:nth-child(3){width:92%}.stage:nth-child(4){width:88%}.stage:nth-child(5){width:84%}
+.stage .name{font-family:var(--display);font-size:17px;color:var(--accent)}
+.stage .name small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);margin-top:2px}
+.stage p{font-size:15px;min-width:0}
+.stage .today{font-size:13px;color:var(--muted);margin-top:4px}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.compare > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.compare .flow{font-family:var(--mono);font-size:13px;line-height:1.8}
+@media (max-width:560px){.stage{grid-template-columns:1fr;gap:6px;width:100%!important}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.box.yes{border-color:var(--g-a)} .box.no{border-color:var(--g-f)}
+.box.yes h3{color:var(--g-a)} .box.no h3{color:var(--g-f)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.when{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.links2{display:flex;gap:10px;flex-wrap:wrap}
+.links2 a{color:var(--accent);font-weight:600}
+code{font-family:var(--mono);font-size:13px;background:var(--accent-soft);padding:1px 6px;border-radius:4px}
+
+.sitenav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.sitenav a{color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:999px;border:1px solid transparent}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--line);color:var(--fg)}
+.sitenav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.email{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.email .subj{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+.split > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;align-items:center;gap:16px}
+.split .grade{width:56px;height:56px;font-size:34px;flex:0 0 auto}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.p-agreed{color:var(--g-a)}.p-prop{color:var(--g-c)}.p-later{color:var(--muted)}.p-changed{color:var(--g-d)}
+
+h1,h2,h3{font-weight:700!important;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,44px)!important;font-weight:800!important}
+.stamp .g,.grade,.stat b{font-weight:800!important}
+.mark{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:4px}
+.mark .w{font-weight:800;font-size:22px;letter-spacing:.08em;color:var(--fg)}
+.mark .w i{font-style:normal;color:var(--accent)}
+.mark .t{font-size:13px;color:var(--muted)}
+.prep{font-size:13px;color:var(--muted)}
+.prep b{color:var(--fg);font-weight:600}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:var(--accent)}
+.grade{width:auto!important;min-width:48px;padding:0 6px;font-size:26px!important}.split .grade{min-width:60px}.mini .grade{min-width:40px;font-size:20px!important}
+a,.sitenav a[aria-current="page"],.eyebrow[style*="accent"],.callout strong,.mark .w i,.pill{font-weight:800!important}
+.sitenav a[aria-current="page"]{background:#1fbf5a!important;color:#fff!important}
+.stamp{border-color:var(--g-f)}.stamp .g{color:var(--g-f)}
+.grade{border-width:3px!important}
+h1,h2,.mark .w{font-family:"Bebas Neue",Oswald,Impact,sans-serif!important;font-weight:400!important;letter-spacing:.01em!important}
+h1{font-size:clamp(44px,7vw,64px)!important;line-height:.95}
+h2{font-size:34px!important;line-height:1}
+.mark .w{font-size:34px!important}
+.mark .w i{color:#2be36b!important}
+.btn{display:inline-block;background:#1fbf5a;color:#fff!important;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:8px;font-size:15px}
+.btn:hover,.btn:focus-visible{background:#0a0a0a}
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;600;700&display=swap">
+<style>
+.worst{border:3px solid var(--g-f);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px;background:#fff4f5}
+.worst blockquote{margin:0;font-size:clamp(22px,3.4vw,30px);font-weight:800;line-height:1.25;color:var(--fg)}
+.worst blockquote s{text-decoration:line-through;text-decoration-color:var(--g-f);text-decoration-thickness:4px}
+.worst .verdict{font-family:"Bebas Neue",Impact,sans-serif;font-size:34px;line-height:1;color:var(--g-f)}
+.spectrum{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-size:13px;font-weight:800}
+.spectrum .track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--g-f),#ffc400,var(--g-a))}
+.dm{font-family:"Gloock",Georgia,serif}
+.posline{background:#16294a;color:#fbfaf7;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.posline .big{font-family:"Gloock",Georgia,serif;font-size:clamp(34px,6vw,56px);line-height:1.05}
+.posline p{color:#e9e4da;max-width:60ch;font-family:"Manrope",system-ui,sans-serif}
+.posline .eb{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a9c2b3;font-weight:700}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.word{border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.word b{font-family:"Gloock",Georgia,serif;font-weight:400;font-size:22px;color:#16294a}
+.word p{font-size:14px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.sw{border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px}
+.sw i{display:block;height:72px}
+.sw div{padding:8px 10px;display:flex;flex-direction:column}
+.sw code{background:none;padding:0}
+.type{border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;background:#fbfaf7;color:#1b2230}
+.type .d{font-family:"Gloock",Georgia,serif;font-size:40px;line-height:1.05;color:#16294a}
+.type .b{font-family:"Manrope",system-ui,sans-serif;font-size:16px}
+.type small{font-family:"Manrope",system-ui,sans-serif;color:#5d6675}
+.logo{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:22px;border-radius:10px}
+.logo .n{font-family:"Gloock",Georgia,serif;font-size:42px;line-height:1}
+.logo .s{font-family:"Manrope",system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.32em;text-transform:uppercase}
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ban{display:flex;flex-wrap:wrap;gap:8px}
+.ban span{border:2px solid var(--g-f);color:var(--g-f);border-radius:999px;padding:3px 12px;font-weight:800;font-size:13px;text-decoration:line-through}
+.tbl td small{display:block;color:var(--muted);font-size:13px}
+.us td{background:#e6f9ee}
+.worstline{border-left:4px solid var(--g-f);background:#fff4f5;padding:12px 14px;border-radius:0 10px 10px 0;font-size:15px}
+.cmp{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cmph,.cmpr{display:grid;grid-template-columns:120px 1fr 1fr}
+.cmph span{padding:10px 14px;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.cmph .cur{color:var(--g-f)} .cmph .pro{color:var(--accent)}
+.cmpr{border-top:1px solid var(--line)}
+.cmpr > b{padding:12px 14px;font-size:14px}
+.cmpr > div{padding:12px 14px;font-size:15px;min-width:0}
+.cmpr .cur{background:#fff4f5;color:var(--fg)}
+.cmpr .pro{background:var(--accent-soft);color:var(--fg);font-weight:600}
+@media (max-width:640px){.cmph{display:none}.cmpr{grid-template-columns:1fr}.cmpr .cur::before{content:"Current: ";font-weight:800;color:var(--g-f)}.cmpr .pro::before{content:"Proposed: ";font-weight:800;color:var(--accent)}}
+</style>
+<div class="wrap">
+  <div class="mark"><span class="w">MORE<i>.</i></span><span class="t">More leads. More sales. More money.</span></div>
+  <nav class="sitenav" aria-label="Dunemere pages"><a href="/more/dunemere/recap">Recap</a><a href="/more/dunemere/audit">Funnel audit</a><a href="/more/dunemere/webaudit">Website audit</a><a href="/more/dunemere/brand" aria-current="page">Brand & positioning</a><a href="/more/dunemere/agree">Our agreement</a><a href="/more/dunemere/road">Growth roadmap</a><a href="/more/dunemere/webplan">Website plan</a><a href="/more/dunemere/concept">New website preview</a><a href="/more/dunemere/posts">Instagram posts</a><a href="/more/dunemere/emails">Email drafts</a><a href="/more/dunemere/master">Master list</a></nav>
+  <header>
+    <div class="intro">
+      <div class="eyebrow" style="color:var(--accent)">Make More Money · Brand &amp; Positioning</div>
+      <h1>Pick a position</h1>
+      <p class="prep">Prepared for <b>Ryan Struble, Dunemere Management</b> · October 5, 2026</p>
+      <p class="lede">Before the new website, the posts or the truck lettering, we had to answer one question: why would an owner pick Dunemere over every other house-watching company on the East End? This page is the answer, and it's why every word on the new site is there.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Current branding vs. proposed</h2>
+    <p class="worstline"><b>The worst sentence on the current site:</b> "The most refined, economical, and efficient…" Refined and economical sit at opposite ends of the market, so it convinces no one. You can't be everything to everybody. You have to pick a position.</p>
+    <div class="cmp">
+      <div class="cmph"><span></span><span class="cur">Current</span><span class="pro">Proposed</span></div>
+      <div class="cmpr"><b>Promise</b><div class="cur">"Refined, economical, and efficient." Contradicts itself.</div><div class="pro">"Few homes. Full attention."</div></div>
+      <div class="cmpr"><b>Size</b><div class="cur">"850 Protected Homes." Untrue, and it brags about the wrong thing.</div><div class="pro">Always under 30 homes, on purpose. You reach Ryan fast, and he knows your house inside and out, like it's his own.</div></div>
+      <div class="cmpr"><b>Who it's for</b><div class="cur">Everyone</div><div class="pro">Owners of $5M+ homes who want one person to call</div></div>
+      <div class="cmpr"><b>Proof</b><div class="cur">Made-up stats, stock-portrait testimonials</div><div class="pro">20 years in business, clients who've stayed 10 to 20 years, real Google reviews</div></div>
+      <div class="cmpr"><b>Photos</b><div class="cur">Stock living rooms and a villa with a pool</div><div class="pro">Ryan, the truck, real homes with the owner's OK</div></div>
+      <div class="cmpr"><b>Voice</b><div class="cur">Generic brochure: "unparalleled service"</div><div class="pro">Calm, direct, specific: "Checked at 8am. Basement dry, heat at 62."</div></div>
+      <div class="cmpr"><b>Look</b><div class="cur">Template, name misspelled "DENUMERE"</div><div class="pro">Navy wordmark on sand and paper</div></div>
+    </div>
+    <p class="note">Result today: an owner comparing three companies sees the same promises from all three and picks whoever has the most Google reviews. Dunemere has zero.</p>
+  </section>
+
+  <section>
+    <h2>The competition</h2>
+    <p>We reviewed the house-watching and property management firms an owner finds when they search for East Hampton house watching.</p>
+    <div class="tbl"><table>
+      <tr><th>Company</th><th>What they lead with</th><th>Position</th></tr>
+      <tr><td><b>A Votre Service!</b><small>Since 1994</small></td><td>"Our qualified and reliable team can assist you…" BBB A+, "Best of" awards</td><td>Big and full-service: handyman, cleaning, errands, rentals. Does everything.</td></tr>
+      <tr><td><b>Hamptons House Watching</b></td><td>"Your Way, Home or Away." Calls itself the Hamptons' most reputable; 37-point inspections</td><td>Peace of mind, "sanctuary" language. Reputation claim with little proof.</td></tr>
+      <tr><td><b>Haven Watch New York</b></td><td>"Discreet Home Oversight for Hamptons Properties." Same-day photo reports, tiered plans</td><td>Independent and local. The closest to where Dunemere should be.</td></tr>
+      <tr><td><b>Hamptons Home Away</b></td><td>"Your Hamptons Home, Perfectly Maintained." 5.0 stars on 16 Google reviews, 24/7</td><td>Luxury estate care. Wins on reviews.</td></tr>
+      <tr><td><b>Also in search results</b></td><td colspan="2">Hamptons Property Watch, Hamptons Home Watch, Our House Property Management</td></tr>
+      <tr class="us"><td><b>Dunemere today</b></td><td>"Refined, economical, and efficient." Fake stats, zero reviews</td><td>No position.</td></tr>
+    </table></div>
+    <div class="callout">
+      <p><strong>What we found:</strong> they all say the same words: reliable, discreet, peace of mind, perfectly maintained. Most present themselves as a team or a system.</p>
+      <p><strong>The gap nobody owns:</strong> small on purpose, run by the founder you can text directly, and on the owner's side when contractors are involved. That's exactly what Dunemere already is. It just never said so.</p>
+      <p><strong>The scoreboard:</strong> the firm with 16 reviews looks like the safe choice. Reviews are how Dunemere closes that gap, which is why the Google Business Profile comes right after the website.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The position</h2>
+    <div class="posline">
+      <span class="eb">Dunemere Management · East Hampton &amp; Amagansett</span>
+      <span class="big">Few homes.<br>Full attention.</span>
+      <p>A boutique house-watching firm that stays under 30 homes on purpose. You text the founder, not a call center. Through the off-season we make sure there are no leaks, no frozen pipes and no mold, and on every project we look out for you, not the contractor.</p>
+    </div>
+    <div class="two">
+      <div class="box yes"><h3>Who it's for</h3><p>Owners of $2M+ homes, often $5–15M, in East Hampton and Amagansett. They have several homes and little time, want one person to call, and treat people fairly.</p></div>
+      <div class="box no"><h3>Who it's not for</h3><p>Owners shopping for the cheapest check, one-off "look at it when I call" jobs, or anyone who wants a big company with a call center. Saying no to them is part of the position.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why these words</h2>
+    <p>Every word is chosen to say one thing competitors can't.</p>
+    <div class="words">
+      <div class="word"><b>Few homes</b><p>Turns being small from a weakness into the reason to choose you. Honest, and no competitor can copy it while bragging about scale.</p></div>
+      <div class="word"><b>Full attention</b><p>The benefit of being small, in two words. The owner gets your attention, not a rotation of staff.</p></div>
+      <div class="word"><b>Always under 30 homes</b><p>Small is the benefit, not a weakness: you get Ryan on the phone fast, and he knows every house like his own. Nobody bragging about hundreds of homes can say that.</p></div>
+      <div class="word"><b>Boutique</b><p>Signals high end without saying "luxury," which every competitor says.</p></div>
+      <div class="word"><b>Text the founder</b><p>The most concrete promise on the page. Owners of big homes hate phone trees; this ends that fear in four words.</p></div>
+      <div class="word"><b>Leaks, frozen pipes, mold</b><p>Names the real fears instead of "peace of mind." Specific problems are believable; vague comfort isn't.</p></div>
+      <div class="word"><b>On your side, not the contractor's</b><p>Owns the advocate role on big projects, where Dunemere makes most of its money. Nobody else claims it.</p></div>
+    </div>
+    <h3>Words we don't use</h3>
+    <div class="ban"><span>refined</span><span>economical</span><span>efficient</span><span>premier</span><span>luxury</span><span>peace of mind</span><span>sanctuary</span><span>best-in-class</span><span>850 homes</span><span>hundreds of homes</span></div>
+  </section>
+
+  <section>
+    <h2>Brand voice</h2>
+    <p>Dunemere sounds like Ryan on a good day: calm, direct, specific. A neighbor who knows houses, not a company brochure.</p>
+    <div class="tbl"><table>
+      <tr><th>Do</th><th>Don't</th></tr>
+      <tr><td>"Checked at 8am. Basement dry, heat at 62."</td><td>"Our team ensures your property is maintained to the highest standards."</td></tr>
+      <tr><td>Say "I" and "we." Short sentences.</td><td>Corporate "our valued clients."</td></tr>
+      <tr><td>Name the problem: leaks, pipes, mold, storms.</td><td>Promise "peace of mind."</td></tr>
+      <tr><td>Real numbers: 20 years, clients who've stayed 10 to 20.</td><td>Invented stats.</td></tr>
+      <tr><td>Real photos of Ryan, the truck, the work.</td><td>Stock living rooms and stock smiles.</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Brand guidelines</h2>
+    <p>One look for the website, Instagram, business cards and the truck. Proposed for Ryan's approval.</p>
+    <h3>Logo</h3>
+    <div class="logos">
+      <div class="logo" style="background:#fbfaf7;color:#16294a;border:1px solid var(--line)"><span class="n">Dunemere</span><span class="s">Management</span></div>
+      <div class="logo" style="background:#16294a;color:#fbfaf7"><span class="n">Dunemere</span><span class="s" style="color:#a9c2b3">Management</span></div>
+    </div>
+    <p class="note">A simple wordmark, no icon. On the truck: white wordmark on the driver and passenger doors, about 4 inches tall. Lettering only, not a wrap.</p>
+    <h3>Colors</h3>
+    <div class="swatches">
+      <div class="sw"><i style="background:#16294a"></i><div><b>Harbor navy</b><code>#16294A</code><span class="note">Logo, headlines</span></div></div>
+      <div class="sw"><i style="background:#6f8a7a"></i><div><b>Dune grass</b><code>#6F8A7A</code><span class="note">Accents, links</span></div></div>
+      <div class="sw"><i style="background:#e9e4da"></i><div><b>Sand</b><code>#E9E4DA</code><span class="note">Section backgrounds</span></div></div>
+      <div class="sw"><i style="background:#fbfaf7;border-bottom:1px solid var(--line)"></i><div><b>Paper</b><code>#FBFAF7</code><span class="note">Page background</span></div></div>
+      <div class="sw"><i style="background:#1b2230"></i><div><b>Ink</b><code>#1B2230</code><span class="note">Body text</span></div></div>
+    </div>
+    <h3>Type</h3>
+    <div class="type">
+      <span class="d">Few homes. Full attention.</span>
+      <span class="b">Manrope for everything else: clear, modern and easy to read on a phone. Used for body text, buttons, captions and the "Management" line in the logo.</span>
+      <small>Headlines: Gloock · Body: Manrope · both free Google Fonts</small>
+    </div>
+    <h3>Photos</h3>
+    <ul>
+      <li>Real only: Ryan, the truck, the crew at work, real homes with the owner's OK. No AI people, no stock.</li>
+      <li>Natural light, East End seasons: fall leaves, winter grey, spring opening.</li>
+      <li>Never show a house number, address or anything that identifies a client's home without permission.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Where this shows up</h2>
+    <div class="tbl"><table>
+      <tr><th>Place</th><th>How</th></tr>
+      <tr><td><b>Website</b></td><td>Headline "Few homes. Full attention.", the founder's photo with the truck, real numbers, and one action: book a free home check. <a href="/more/dunemere/concept">See the new website preview</a></td></tr>
+      <tr><td><b>Instagram</b></td><td>The 12 posts are written in this voice: house watching, projects, member extras. <a href="/more/dunemere/posts">See the posts</a></td></tr>
+      <tr><td><b>Business cards and truck</b></td><td>The wordmark, navy and paper, nothing else.</td></tr>
+      <tr><td><b>Emails and texts</b></td><td>Short, from Ryan, specific. Including the note to the Hamptons Adventure customer list.</td></tr>
+      <tr><td><b>Video ad, later</b></td><td>Ryan to camera: a boutique firm, a small portfolio, text me directly, here's what we check all winter.</td></tr>
+    </table></div>
+  </section>
+  <footer><span><b>MORE</b> · More leads. More sales. More money.</span><span>Seth Quest · seth@sethquest.com</span></footer>
+</div>

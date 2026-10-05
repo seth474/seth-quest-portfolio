@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><script>try{if(sessionStorage.getItem("dm-ok")!=="1")location.replace("/more/dunemere");}catch(e){location.replace("/more/dunemere")}</script>
+<title>Dunemere Email Drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* MORE brand: crisp white, deep money green accent, gray secondary, dark gray text. Single light theme by choice. */
+:root{
+  --bg:#ffffff; --surface:#f6f5f1; --fg:#0a0a0a; --muted:#6b6b6b; --line:#e3e1db;
+  --accent:#1fbf5a; --accent-soft:#e6f9ee;
+  --g-a:#1fbf5a; --g-b:#64dd17; --g-c:#ffc400; --g-d:#ff6d00; --g-f:#ff1744;
+  --display:"Plus Jakarta Sans",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:18px}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+header{display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px}
+header .intro{display:flex;flex-direction:column;gap:10px;min-width:0;flex:1 1 380px}
+.lede{color:var(--muted);max-width:60ch}
+.stamp{flex:0 0 auto;width:132px;border:2px solid var(--g-d);border-radius:10px;padding:12px;text-align:center;background:var(--surface)}
+.stamp .g{font-family:var(--display);font-size:56px;line-height:1;color:var(--g-d)}
+.stamp .l{font-size:12px;color:var(--muted);margin-top:6px}
+section{display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stat{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:4px}
+.stat b{font-family:var(--display);font-weight:400;font-size:26px}
+.stat span{font-size:13px;color:var(--muted)}
+.callout{background:var(--accent-soft);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.callout strong{color:var(--accent)}
+.math{font-family:var(--mono);font-size:14px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;max-width:520px}
+.math .r{text-align:right}
+.math .t{border-top:1px solid var(--line);padding-top:4px;font-weight:600}
+.ledger{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.grade{font-family:var(--display);font-size:30px;line-height:1;width:48px;height:48px;border-radius:8px;display:grid;place-items:center;border:2px solid currentColor}
+.A{color:var(--g-a)}.B{color:var(--g-b)}.C{color:var(--g-c)}.D{color:var(--g-d)}.F{color:var(--g-f)}
+.row .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.crit{font-size:13px;color:var(--muted)}
+.crit em{font-style:normal;font-weight:600}
+.fix{font-size:15px}
+.fix b{color:var(--accent)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.flags li::marker{color:var(--g-f)}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.phase .when{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.phase ul{font-size:15px}
+.note{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.toc a:focus-visible,.toc a:hover{border-color:var(--accent)}
+.alert{border:1px solid var(--g-f);border-radius:10px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.alert h3{color:var(--g-f)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center}
+.mini .grade{width:40px;height:40px;font-size:24px;flex:0 0 auto}
+.mini span{font-size:14px;font-weight:600}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.stage{display:grid;grid-template-columns:150px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-inline:auto;width:100%}
+.stage:nth-child(2){width:96%}.stage:nth-child(3){width:92%}.stage:nth-child(4){width:88%}.stage:nth-child(5){width:84%}
+.stage .name{font-family:var(--display);font-size:17px;color:var(--accent)}
+.stage .name small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);margin-top:2px}
+.stage p{font-size:15px;min-width:0}
+.stage .today{font-size:13px;color:var(--muted);margin-top:4px}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.compare > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.compare .flow{font-family:var(--mono);font-size:13px;line-height:1.8}
+@media (max-width:560px){.stage{grid-template-columns:1fr;gap:6px;width:100%!important}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.box.yes{border-color:var(--g-a)} .box.no{border-color:var(--g-f)}
+.box.yes h3{color:var(--g-a)} .box.no h3{color:var(--g-f)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.when{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.links2{display:flex;gap:10px;flex-wrap:wrap}
+.links2 a{color:var(--accent);font-weight:600}
+code{font-family:var(--mono);font-size:13px;background:var(--accent-soft);padding:1px 6px;border-radius:4px}
+
+.sitenav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.sitenav a{color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:999px;border:1px solid transparent}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--line);color:var(--fg)}
+.sitenav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.email{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.email .subj{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+.split > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;align-items:center;gap:16px}
+.split .grade{width:56px;height:56px;font-size:34px;flex:0 0 auto}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.p-agreed{color:var(--g-a)}.p-prop{color:var(--g-c)}.p-later{color:var(--muted)}.p-changed{color:var(--g-d)}
+
+h1,h2,h3{font-weight:700!important;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,44px)!important;font-weight:800!important}
+.stamp .g,.grade,.stat b{font-weight:800!important}
+.mark{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:4px}
+.mark .w{font-weight:800;font-size:22px;letter-spacing:.08em;color:var(--fg)}
+.mark .w i{font-style:normal;color:var(--accent)}
+.mark .t{font-size:13px;color:var(--muted)}
+.prep{font-size:13px;color:var(--muted)}
+.prep b{color:var(--fg);font-weight:600}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:var(--accent)}
+.grade{width:auto!important;min-width:48px;padding:0 6px;font-size:26px!important}.split .grade{min-width:60px}.mini .grade{min-width:40px;font-size:20px!important}
+a,.sitenav a[aria-current="page"],.eyebrow[style*="accent"],.callout strong,.mark .w i,.pill{font-weight:800!important}
+.sitenav a[aria-current="page"]{background:#1fbf5a!important;color:#fff!important}
+.stamp{border-color:var(--g-f)}.stamp .g{color:var(--g-f)}
+.grade{border-width:3px!important}
+h1,h2,.mark .w{font-family:"Bebas Neue",Oswald,Impact,sans-serif!important;font-weight:400!important;letter-spacing:.01em!important}
+h1{font-size:clamp(44px,7vw,64px)!important;line-height:.95}
+h2{font-size:34px!important;line-height:1}
+.mark .w{font-size:34px!important}
+.mark .w i{color:#2be36b!important}
+.btn{display:inline-block;background:#1fbf5a;color:#fff!important;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:8px;font-size:15px}
+.btn:hover,.btn:focus-visible{background:#0a0a0a}
+</style>
+
+<div class="wrap">
+  <div class="mark"><span class="w">MORE<i>.</i></span><span class="t">More leads. More sales. More money.</span></div>
+  <nav class="sitenav" aria-label="Dunemere pages"><a href="/more/dunemere/recap">Recap</a><a href="/more/dunemere/audit">Funnel audit</a><a href="/more/dunemere/webaudit">Website audit</a><a href="/more/dunemere/brand">Brand & positioning</a><a href="/more/dunemere/agree">Our agreement</a><a href="/more/dunemere/road">Growth roadmap</a><a href="/more/dunemere/webplan">Website plan</a><a href="/more/dunemere/concept">New website preview</a><a href="/more/dunemere/posts">Instagram posts</a><a href="/more/dunemere/emails" aria-current="page">Email drafts</a><a href="/more/dunemere/master">Master list</a></nav>
+  <header>
+    <div class="intro">
+      <div class="eyebrow" style="color:var(--accent)">Make More Money</div>
+      <h1>Email drafts</h1>
+      <p class="prep">Prepared for <b>Dunemere Management</b> · October 2026</p>
+      <p class="lede">Three short emails for Ryan to edit and send one at a time from his own email. Agents he already knows get a call or text first.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Referral email to current and past clients</h2>
+    <div class="email">
+      <p class="subj">Subject: A quick favor</p>
+      <p>Hi [first name],</p>
+      <p>Thank you for trusting me with your home. It means a lot, and I don't take it for granted.</p>
+      <p>I'm growing Dunemere this year and have room for a few more homes in East Hampton and Amagansett. If you know a friend or neighbor who needs someone to look after their house while they're away, I'd be grateful for an introduction. You can forward this email or send them to dunemeremgt.com.</p>
+      <p>Thanks, as always.</p>
+      <p>Ryan Struble<br>Dunemere Management · (631) 223-8966</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Reintroduction email to realtors</h2>
+    <div class="email">
+      <p class="subj">Subject: Looking after your buyers' homes</p>
+      <p>Hi [first name],</p>
+      <p>I'm Ryan Struble with Dunemere Management in East Hampton. We look after second homes with weekly checks, seasonal openings and closings, and contractor oversight, so your buyers have someone they can trust with the house once the deal closes.</p>
+      <p>If a client ever asks who can watch their home, I'd be glad to help, and I'll keep you posted along the way.</p>
+      <p>Ryan Struble<br>Dunemere Management · (631) 223-8966 · dunemeremgt.com<br>[business mailing address] · Reply "no thanks" and I won't email again.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Note to the Hamptons Adventure customer list</h2>
+    <div class="email">
+      <p class="subj">Subject: A different note from Ryan at Hamptons Adventure</p>
+      <p>Hi [first name],</p>
+      <p>This is Ryan from Hamptons Adventure Company. I don't usually send anything like this, but it occurred to me that a lot of you have homes out here, and most of you don't know about my other business.</p>
+      <p>For 20 years I've run Dunemere Management, a small, boutique house-watching firm in East Hampton and Amagansett. We look after a handful of homes through the off-season: checking for leaks, frozen pipes and mold, keeping the air moving, and handling any contractor work so the owner doesn't have to. You text me directly, not a call center.</p>
+      <p>If you or a friend want someone watching your house this winter, take a look: dunemeremgt.com</p>
+      <p>Either way, I hope you're having a great October. See you back on the bikes next summer.</p>
+      <p>Ryan</p>
+      <p class="note">Don't want emails like this? Reply "remove" and I'll take you off. · [business mailing address]</p>
+    </div>
+    <p class="note">Send once, from Ryan's own email, after the new website is live.</p>
+  </section>
+
+  <section>
+    <h2>Sending tips</h2>
+    <ul>
+      <li>Send one at a time, a handful per day, never as a mass blast</li>
+      <li>Call or text agents you know first, then follow up by email</li>
+      <li>Log every send and reply in the tracker</li>
+    </ul>
+  </section>
+  <footer><span><b>MORE</b> · More leads. More sales. More money.</span><span>Seth Quest · seth@sethquest.com</span></footer>
+</div>

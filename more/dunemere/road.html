@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><script>try{if(sessionStorage.getItem("dm-ok")!=="1")location.replace("/more/dunemere");}catch(e){location.replace("/more/dunemere")}</script>
+<title>Dunemere Game Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* MORE brand: crisp white, deep money green accent, gray secondary, dark gray text. Single light theme by choice. */
+:root{
+  --bg:#ffffff; --surface:#f6f5f1; --fg:#0a0a0a; --muted:#6b6b6b; --line:#e3e1db;
+  --accent:#1fbf5a; --accent-soft:#e6f9ee;
+  --g-a:#1fbf5a; --g-b:#64dd17; --g-c:#ffc400; --g-d:#ff6d00; --g-f:#ff1744;
+  --display:"Plus Jakarta Sans",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:18px}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+header{display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px}
+header .intro{display:flex;flex-direction:column;gap:10px;min-width:0;flex:1 1 380px}
+.lede{color:var(--muted);max-width:60ch}
+.stamp{flex:0 0 auto;width:132px;border:2px solid var(--g-d);border-radius:10px;padding:12px;text-align:center;background:var(--surface)}
+.stamp .g{font-family:var(--display);font-size:56px;line-height:1;color:var(--g-d)}
+.stamp .l{font-size:12px;color:var(--muted);margin-top:6px}
+section{display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stat{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:4px}
+.stat b{font-family:var(--display);font-weight:400;font-size:26px}
+.stat span{font-size:13px;color:var(--muted)}
+.callout{background:var(--accent-soft);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.callout strong{color:var(--accent)}
+.math{font-family:var(--mono);font-size:14px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;max-width:520px}
+.math .r{text-align:right}
+.math .t{border-top:1px solid var(--line);padding-top:4px;font-weight:600}
+.ledger{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.grade{font-family:var(--display);font-size:30px;line-height:1;width:48px;height:48px;border-radius:8px;display:grid;place-items:center;border:2px solid currentColor}
+.A{color:var(--g-a)}.B{color:var(--g-b)}.C{color:var(--g-c)}.D{color:var(--g-d)}.F{color:var(--g-f)}
+.row .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.crit{font-size:13px;color:var(--muted)}
+.crit em{font-style:normal;font-weight:600}
+.fix{font-size:15px}
+.fix b{color:var(--accent)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.flags li::marker{color:var(--g-f)}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.phase .when{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.phase ul{font-size:15px}
+.note{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.toc a:focus-visible,.toc a:hover{border-color:var(--accent)}
+.alert{border:1px solid var(--g-f);border-radius:10px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.alert h3{color:var(--g-f)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center}
+.mini .grade{width:40px;height:40px;font-size:24px;flex:0 0 auto}
+.mini span{font-size:14px;font-weight:600}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.stage{display:grid;grid-template-columns:150px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-inline:auto;width:100%}
+.stage:nth-child(2){width:96%}.stage:nth-child(3){width:92%}.stage:nth-child(4){width:88%}.stage:nth-child(5){width:84%}
+.stage .name{font-family:var(--display);font-size:17px;color:var(--accent)}
+.stage .name small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);margin-top:2px}
+.stage p{font-size:15px;min-width:0}
+.stage .today{font-size:13px;color:var(--muted);margin-top:4px}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.compare > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.compare .flow{font-family:var(--mono);font-size:13px;line-height:1.8}
+@media (max-width:560px){.stage{grid-template-columns:1fr;gap:6px;width:100%!important}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.box.yes{border-color:var(--g-a)} .box.no{border-color:var(--g-f)}
+.box.yes h3{color:var(--g-a)} .box.no h3{color:var(--g-f)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.when{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.links2{display:flex;gap:10px;flex-wrap:wrap}
+.links2 a{color:var(--accent);font-weight:600}
+code{font-family:var(--mono);font-size:13px;background:var(--accent-soft);padding:1px 6px;border-radius:4px}
+
+.sitenav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.sitenav a{color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:999px;border:1px solid transparent}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--line);color:var(--fg)}
+.sitenav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.email{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.email .subj{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+.split > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;align-items:center;gap:16px}
+.split .grade{width:56px;height:56px;font-size:34px;flex:0 0 auto}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.p-agreed{color:var(--g-a)}.p-prop{color:var(--g-c)}.p-later{color:var(--muted)}.p-changed{color:var(--g-d)}
+
+h1,h2,h3{font-weight:700!important;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,44px)!important;font-weight:800!important}
+.stamp .g,.grade,.stat b{font-weight:800!important}
+.mark{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:4px}
+.mark .w{font-weight:800;font-size:22px;letter-spacing:.08em;color:var(--fg)}
+.mark .w i{font-style:normal;color:var(--accent)}
+.mark .t{font-size:13px;color:var(--muted)}
+.prep{font-size:13px;color:var(--muted)}
+.prep b{color:var(--fg);font-weight:600}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:var(--accent)}
+.grade{width:auto!important;min-width:48px;padding:0 6px;font-size:26px!important}.split .grade{min-width:60px}.mini .grade{min-width:40px;font-size:20px!important}
+a,.sitenav a[aria-current="page"],.eyebrow[style*="accent"],.callout strong,.mark .w i,.pill{font-weight:800!important}
+.sitenav a[aria-current="page"]{background:#1fbf5a!important;color:#fff!important}
+.stamp{border-color:var(--g-f)}.stamp .g{color:var(--g-f)}
+.grade{border-width:3px!important}
+h1,h2,.mark .w{font-family:"Bebas Neue",Oswald,Impact,sans-serif!important;font-weight:400!important;letter-spacing:.01em!important}
+h1{font-size:clamp(44px,7vw,64px)!important;line-height:.95}
+h2{font-size:34px!important;line-height:1}
+.mark .w{font-size:34px!important}
+.mark .w i{color:#2be36b!important}
+.btn{display:inline-block;background:#1fbf5a;color:#fff!important;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:8px;font-size:15px}
+.btn:hover,.btn:focus-visible{background:#0a0a0a}
+</style>
+
+<div class="wrap">
+  <div class="mark"><span class="w">MORE<i>.</i></span><span class="t">More leads. More sales. More money.</span></div>
+  <nav class="sitenav" aria-label="Dunemere pages"><a href="/more/dunemere/recap">Recap</a><a href="/more/dunemere/audit">Funnel audit</a><a href="/more/dunemere/webaudit">Website audit</a><a href="/more/dunemere/brand">Brand & positioning</a><a href="/more/dunemere/agree">Our agreement</a><a href="/more/dunemere/road" aria-current="page">Growth roadmap</a><a href="/more/dunemere/webplan">Website plan</a><a href="/more/dunemere/concept">New website preview</a><a href="/more/dunemere/posts">Instagram posts</a><a href="/more/dunemere/emails">Email drafts</a><a href="/more/dunemere/master">Master list</a></nav>
+  <header>
+    <div class="intro">
+      <div class="eyebrow" style="color:var(--accent)">Make More Money</div>
+      <h1>Growth roadmap</h1>
+      <p class="prep">Prepared for <b>Dunemere Management</b> · October 2026</p>
+      <p class="lede">The first milestone is 5 new member clients, with no set deadline. The plan brings leads to Ryan instead of having him cold call: look credible online, ask the people who already trust him, then get found on Google.</p>
+    </div>
+    <div class="stamp" style="border-color:var(--accent)" aria-label="First milestone: 5 new clients"><div class="g" style="color:var(--accent)">5</div><div class="l">new clients, first milestone</div></div>
+  </header>
+
+  <section>
+    <h2>Business model</h2>
+    <div class="tbl"><table>
+      <tr><th>Stream</th><th>Price</th><th>Role</th></tr>
+      <tr><td><b>House watching membership</b></td><td>$300/month, Sept–June</td><td>Every client starts here; builds trust</td></tr>
+      <tr><td><b>Projects and owner's representation</b></td><td>Quoted per project</td><td>About 70% of income</td></tr>
+      <tr><td><b>Small tasks and seasonal work</b></td><td>$125/hour, members only</td><td>Convenience for members</td></tr>
+    </table></div>
+    <div class="two">
+      <div class="box yes"><h3>Ideal client</h3><p>Owns a $2M+ home (often $5–15M) in East Hampton or Amagansett, has several homes and little time, wants one person to call, and communicates fairly.</p></div>
+      <div class="box no"><h3>Not a fit</h3><p>One-off "check it when I call" hourly work, or owners who argue over every visit.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the leads come in, in order</h2>
+    <div class="ledger">
+      <div class="row"><div class="grade A" style="font-size:22px">1</div><div class="body"><h3>Look credible first (this block)</h3><p>New website with real photos, the correct phone number and easy booking. Every other channel sends people here.</p></div></div>
+      <div class="row"><div class="grade A" style="font-size:22px">2</div><div class="body"><h3>Ask the people who already trust Ryan (this block)</h3><p>A "we're growing" email, then a personal call, to every current and past client asking for introductions. His clients know other owners of $5M homes.</p></div></div>
+      <div class="row"><div class="grade A" style="font-size:22px">3</div><div class="body"><h3>Brokers Ryan already knows (this block)</h3><p>A handful of calls to agents who know Ryan, with the new website as the reason to reconnect. A bigger realtor list can come later, once calls are working.</p></div></div>
+      <div class="row"><div class="grade A" style="font-size:22px">+</div><div class="body"><h3>Hamptons Adventure customers (this block)</h3><p>Ryan already has a list of e-bike customers, and many own homes out here. One personal email from Ryan, after the new site is live, tells them about Dunemere.</p></div></div>
+      <div class="row"><div class="grade B" style="font-size:22px">4</div><div class="body"><h3>Get found on Google (next block)</h3><p>Google Business Profile plus the first 5 reviews from current clients.</p></div></div>
+      <div class="row"><div class="grade C" style="font-size:22px">5</div><div class="body"><h3>Later, once the basics work</h3><p>Instagram consistency, the weekly sales-report system, a small Google ads test, and HubSpot automation if it's still needed.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who does what</h2>
+    <div class="two">
+      <div class="box"><h3>Seth</h3><p>Builds and runs the systems in batched work sessions and sends a short update after each one.</p></div>
+      <div class="box"><h3>Ryan</h3><p>Answers inquiries the same day, makes the referral calls to clients and realtors he knows, and approves posts and emails.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Scoreboard</h2>
+    <div class="stats num">
+      <div class="stat"><b>5</b><span>new member clients (first milestone)</span></div>
+      <div class="stat"><b>5</b><span>Google reviews once the profile is live</span></div>
+      <div class="stat"><b>5–10</b><span>broker calls to start</span></div>
+      <div class="stat"><b>100%</b><span>of current and past clients asked for introductions</span></div>
+    </div>
+  </section>
+  <footer><span><b>MORE</b> · More leads. More sales. More money.</span><span>Seth Quest · seth@sethquest.com</span></footer>
+</div>

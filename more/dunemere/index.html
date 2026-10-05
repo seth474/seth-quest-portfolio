@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dunemere · Private</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#ffffff;--fg:#0a0a0a;--muted:#6b6b6b;--line:#e3e1db;--accent:#1fbf5a;--bright:#2be36b;--err:#ff1744}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Plus Jakarta Sans",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.card{width:100%;max-width:400px;display:flex;flex-direction:column;gap:22px}
+.mark{font-family:"Bebas Neue",Impact,sans-serif;font-size:40px;letter-spacing:.02em;line-height:1}
+.mark i{font-style:normal;color:var(--bright)}
+.tag{font-size:13px;color:var(--muted);margin-top:4px}
+.lock{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:56px;line-height:.95;margin:0}
+p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+form{display:flex;flex-direction:column;gap:10px}
+label{font-size:13px;font-weight:700}
+input{font:inherit;font-size:17px;padding:14px 16px;border:2px solid var(--line);border-radius:10px;outline:none}
+input:focus{border-color:var(--accent)}
+button{font:inherit;font-weight:800;font-size:16px;padding:14px;border:0;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer}
+button:hover,button:focus-visible{background:var(--fg)}
+.err{color:var(--err);font-size:14px;font-weight:700;min-height:20px}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+</style></head>
+<body>
+<main class="card">
+  <div><div class="mark">MORE<i>.</i></div><div class="tag">More leads. More sales. More money.</div></div>
+  <div class="lock"><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><rect x="1" y="6" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>Private client page</div>
+  <div style="display:flex;flex-direction:column;gap:10px"><h1>Welcome back, Ryan</h1><p>Your Dunemere Management growth dashboard: audits, brand, plan and progress. Enter your password to continue.</p></div>
+  <form id="f" autocomplete="off">
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autofocus>
+    <button type="submit">Open dashboard</button>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+  <footer>Prepared by Seth Quest · seth@sethquest.com</footer>
+</main>
+<script>
+try{if(sessionStorage.getItem("dm-ok")==="1")location.replace("/more/dunemere/recap");}catch(e){}
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();
+ var v=document.getElementById("pw").value.trim().toLowerCase();
+ if(v==="struble"){try{sessionStorage.setItem("dm-ok","1")}catch(x){} location.href="/more/dunemere/recap";}
+ else{document.getElementById("err").textContent="That password didn't work. Try again.";}
+});
+</script>
+</body></html>

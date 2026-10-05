@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><script>try{if(sessionStorage.getItem("dm-ok")!=="1")location.replace("/more/dunemere");}catch(e){location.replace("/more/dunemere")}</script>
+<title>Dunemere Website Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* MORE brand: crisp white, deep money green accent, gray secondary, dark gray text. Single light theme by choice. */
+:root{
+  --bg:#ffffff; --surface:#f6f5f1; --fg:#0a0a0a; --muted:#6b6b6b; --line:#e3e1db;
+  --accent:#1fbf5a; --accent-soft:#e6f9ee;
+  --g-a:#1fbf5a; --g-b:#64dd17; --g-c:#ffc400; --g-d:#ff6d00; --g-f:#ff1744;
+  --display:"Plus Jakarta Sans",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:18px}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+header{display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px}
+header .intro{display:flex;flex-direction:column;gap:10px;min-width:0;flex:1 1 380px}
+.lede{color:var(--muted);max-width:60ch}
+.stamp{flex:0 0 auto;width:132px;border:2px solid var(--g-d);border-radius:10px;padding:12px;text-align:center;background:var(--surface)}
+.stamp .g{font-family:var(--display);font-size:56px;line-height:1;color:var(--g-d)}
+.stamp .l{font-size:12px;color:var(--muted);margin-top:6px}
+section{display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stat{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:4px}
+.stat b{font-family:var(--display);font-weight:400;font-size:26px}
+.stat span{font-size:13px;color:var(--muted)}
+.callout{background:var(--accent-soft);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.callout strong{color:var(--accent)}
+.math{font-family:var(--mono);font-size:14px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;max-width:520px}
+.math .r{text-align:right}
+.math .t{border-top:1px solid var(--line);padding-top:4px;font-weight:600}
+.ledger{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.grade{font-family:var(--display);font-size:30px;line-height:1;width:48px;height:48px;border-radius:8px;display:grid;place-items:center;border:2px solid currentColor}
+.A{color:var(--g-a)}.B{color:var(--g-b)}.C{color:var(--g-c)}.D{color:var(--g-d)}.F{color:var(--g-f)}
+.row .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.crit{font-size:13px;color:var(--muted)}
+.crit em{font-style:normal;font-weight:600}
+.fix{font-size:15px}
+.fix b{color:var(--accent)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.flags li::marker{color:var(--g-f)}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.phase .when{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.phase ul{font-size:15px}
+.note{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.toc a:focus-visible,.toc a:hover{border-color:var(--accent)}
+.alert{border:1px solid var(--g-f);border-radius:10px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.alert h3{color:var(--g-f)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center}
+.mini .grade{width:40px;height:40px;font-size:24px;flex:0 0 auto}
+.mini span{font-size:14px;font-weight:600}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.stage{display:grid;grid-template-columns:150px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-inline:auto;width:100%}
+.stage:nth-child(2){width:96%}.stage:nth-child(3){width:92%}.stage:nth-child(4){width:88%}.stage:nth-child(5){width:84%}
+.stage .name{font-family:var(--display);font-size:17px;color:var(--accent)}
+.stage .name small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);margin-top:2px}
+.stage p{font-size:15px;min-width:0}
+.stage .today{font-size:13px;color:var(--muted);margin-top:4px}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.compare > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.compare .flow{font-family:var(--mono);font-size:13px;line-height:1.8}
+@media (max-width:560px){.stage{grid-template-columns:1fr;gap:6px;width:100%!important}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.box.yes{border-color:var(--g-a)} .box.no{border-color:var(--g-f)}
+.box.yes h3{color:var(--g-a)} .box.no h3{color:var(--g-f)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.when{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+.links2{display:flex;gap:10px;flex-wrap:wrap}
+.links2 a{color:var(--accent);font-weight:600}
+code{font-family:var(--mono);font-size:13px;background:var(--accent-soft);padding:1px 6px;border-radius:4px}
+
+.sitenav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.sitenav a{color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:999px;border:1px solid transparent}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--line);color:var(--fg)}
+.sitenav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.email{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.email .subj{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+.split > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;align-items:center;gap:16px}
+.split .grade{width:56px;height:56px;font-size:34px;flex:0 0 auto}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.p-agreed{color:var(--g-a)}.p-prop{color:var(--g-c)}.p-later{color:var(--muted)}.p-changed{color:var(--g-d)}
+
+h1,h2,h3{font-weight:700!important;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,44px)!important;font-weight:800!important}
+.stamp .g,.grade,.stat b{font-weight:800!important}
+.mark{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:4px}
+.mark .w{font-weight:800;font-size:22px;letter-spacing:.08em;color:var(--fg)}
+.mark .w i{font-style:normal;color:var(--accent)}
+.mark .t{font-size:13px;color:var(--muted)}
+.prep{font-size:13px;color:var(--muted)}
+.prep b{color:var(--fg);font-weight:600}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:var(--accent)}
+.grade{width:auto!important;min-width:48px;padding:0 6px;font-size:26px!important}.split .grade{min-width:60px}.mini .grade{min-width:40px;font-size:20px!important}
+a,.sitenav a[aria-current="page"],.eyebrow[style*="accent"],.callout strong,.mark .w i,.pill{font-weight:800!important}
+.sitenav a[aria-current="page"]{background:#1fbf5a!important;color:#fff!important}
+.stamp{border-color:var(--g-f)}.stamp .g{color:var(--g-f)}
+.grade{border-width:3px!important}
+h1,h2,.mark .w{font-family:"Bebas Neue",Oswald,Impact,sans-serif!important;font-weight:400!important;letter-spacing:.01em!important}
+h1{font-size:clamp(44px,7vw,64px)!important;line-height:.95}
+h2{font-size:34px!important;line-height:1}
+.mark .w{font-size:34px!important}
+.mark .w i{color:#2be36b!important}
+.btn{display:inline-block;background:#1fbf5a;color:#fff!important;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:8px;font-size:15px}
+.btn:hover,.btn:focus-visible{background:#0a0a0a}
+</style>
+
+<style>
+.shot{display:grid;grid-template-columns:3fr 1fr;gap:24px;align-items:start}
+@media (max-width:760px){.shot{grid-template-columns:1fr}}
+.shot figure{margin:0;min-width:0}
+.shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px}
+.shot figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.notes{position:sticky;top:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.note{border-left:4px solid var(--g-f);background:#fff4f5;border-radius:0 10px 10px 0;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.note .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--g-f);color:#fff;font-weight:800;font-size:15px}
+.note h3{font-size:15px!important;color:var(--fg)}
+.note p{font-size:14px;color:var(--fg)}
+.note .fix{font-size:13px;color:var(--muted)}
+.note .fix b{color:var(--accent)}
+.subgrades{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sg{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px}
+.sg .grade{flex:0 0 auto}
+.sg span{font-weight:700;font-size:14px}
+
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:620px){.scores{grid-template-columns:1fr}}
+.big{border:3px solid var(--fg);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.big .lbl{font-size:22px;font-weight:800;color:var(--fg)}
+.big .sub{font-size:14px;color:var(--muted);font-weight:600}
+.big .num{font-family:"Bebas Neue",Impact,sans-serif;font-size:84px;line-height:.9;font-variant-numeric:tabular-nums}
+.big .num small{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:18px;font-weight:700;color:var(--muted)}
+.big.l .num{color:var(--g-f)} .big.s .num{color:#e6a800}
+.big p{font-size:15px}
+.big .tgt{font-size:13px;color:var(--muted)} .big .tgt b{color:var(--accent)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}
+.flow div{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;min-width:0}
+.flow div b{display:block;font-size:14px}
+.flow div.s{background:#fff8e1;border-color:#ffe08a}
+.flow div.l{background:#fff4f5;border-color:#ffc2cb}
+.key3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:13px}
+.key3 div{border:1px solid var(--line);border-radius:8px;padding:10px}
+.key3 b{font-family:"Bebas Neue",Impact,sans-serif;font-size:26px;display:block;line-height:1}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.ck{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--bg)}
+.ckh{display:flex;align-items:center;gap:10px}
+.ckh h3{flex:1;font-size:17px!important;margin:0}
+.ckn{width:26px;height:26px;border-radius:50%;background:var(--fg);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 auto}
+.sc{font-weight:700;font-size:14px;color:var(--muted);white-space:nowrap}
+.sc b{font-family:"Bebas Neue",Impact,sans-serif;font-size:32px;line-height:1;font-weight:400}
+.sc.lo b{color:var(--g-f)} .sc.mid b{color:#e6a800} .sc.hi b{color:var(--g-a)}
+.meter{position:relative;height:10px;border-radius:5px;background:repeating-linear-gradient(90deg,var(--surface) 0 calc(10% - 2px),var(--bg) calc(10% - 2px) 10%);border:1px solid var(--line)}
+.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:5px 0 0 5px}
+.meter i.lo{background:var(--g-f)} .meter i.mid{background:#ffc400} .meter i.hi{background:var(--g-a)}
+.meter em{position:absolute;top:-5px;bottom:-5px;width:3px;background:var(--fg);border-radius:2px;transform:translateX(-1px)}
+.why{font-size:14px}
+.rub{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:12px;color:var(--muted)}
+.rub div{background:var(--surface);border-radius:6px;padding:7px 8px;line-height:1.35}
+.rub span{display:block;font-weight:800;color:var(--fg);font-size:12px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);align-items:center}
+.legend i{display:inline-block;width:3px;height:14px;background:var(--fg);vertical-align:-2px;margin-right:6px}
+.moves{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.mv{background:var(--accent-soft);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.mv b{font-size:15px}
+.mv span{font-size:13px;color:var(--muted)}
+.mv em{font-style:normal;font-weight:800;color:var(--accent)}
+
+.summary{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:12px;padding:16px}
+.srow{display:grid;grid-template-columns:170px 1fr 34px;gap:12px;align-items:center;font-size:14px}
+@media (max-width:520px){.srow{grid-template-columns:110px 1fr 28px;font-size:13px}}
+.sn{font-weight:700}
+.sv{font-family:"Bebas Neue",Impact,sans-serif;font-size:24px;line-height:1;text-align:right}
+.sv.lo{color:var(--g-f)}.sv.mid{color:#e6a800}.sv.hi{color:var(--g-a)}
+.see{font-size:12px;color:var(--muted)}
+</style>
+<div class="wrap">
+  <div class="mark"><span class="w">MORE<i>.</i></span><span class="t">More leads. More sales. More money.</span></div>
+  <nav class="sitenav" aria-label="Dunemere pages"><a href="/more/dunemere/recap">Recap</a><a href="/more/dunemere/audit">Funnel audit</a><a href="/more/dunemere/webaudit" aria-current="page">Website audit</a><a href="/more/dunemere/brand">Brand & positioning</a><a href="/more/dunemere/agree">Our agreement</a><a href="/more/dunemere/road">Growth roadmap</a><a href="/more/dunemere/webplan">Website plan</a><a href="/more/dunemere/concept">New website preview</a><a href="/more/dunemere/posts">Instagram posts</a><a href="/more/dunemere/emails">Email drafts</a><a href="/more/dunemere/master">Master list</a></nav>
+  <header>
+    <div class="intro">
+      <div class="eyebrow" style="color:var(--accent)">Make More Money · Website Audit</div>
+      <h1>dunemeremgt.com</h1>
+      <p class="prep">Prepared for <b>Ryan Struble, Dunemere Management</b> · Captured on a phone, October 2, 2026 · Scored October 5, 2026</p>
+      <p class="lede">For a business built on referrals, the website has one job: confirm that Ryan is the real deal when someone looks him up. Right now it does the opposite, and its main phone button doesn't even reach him.</p>
+    </div>
+    
+  </header>
+
+  <section class="scores">
+    <div class="big l"><span class="lbl">Website score</span><span class="num">23<small> out of 100 points</small></span><span class="sub">How well the site turns a visitor into a call</span><p>Ten parts of the website, each scored 0 to 10. The two that matter most for a referral business, trust and a working phone number, both score 0.</p><span class="tgt">Target for the new website: <b>81 points</b></span></div>
+    <div class="summary" aria-label="Score by category">
+<div class="srow"><span class="sn">First impression</span><span class="meter" aria-hidden="true"><i class="lo" style="width:30%"></i><em style="left:80%"></em></span><span class="sv lo">3</span></div>
+<div class="srow"><span class="sn">Trust and credibility</span><span class="meter" aria-hidden="true"><i class="lo" style="width:0%"></i><em style="left:70%"></em></span><span class="sv lo">0</span></div>
+<div class="srow"><span class="sn">Photos</span><span class="meter" aria-hidden="true"><i class="lo" style="width:10%"></i><em style="left:70%"></em></span><span class="sv lo">1</span></div>
+<div class="srow"><span class="sn">Calls to action</span><span class="meter" aria-hidden="true"><i class="lo" style="width:30%"></i><em style="left:90%"></em></span><span class="sv lo">3</span></div>
+<div class="srow"><span class="sn">Contact accuracy</span><span class="meter" aria-hidden="true"><i class="lo" style="width:0%"></i><em style="left:100%"></em></span><span class="sv lo">0</span></div>
+<div class="srow"><span class="sn">Copy and positioning</span><span class="meter" aria-hidden="true"><i class="lo" style="width:10%"></i><em style="left:80%"></em></span><span class="sv lo">1</span></div>
+<div class="srow"><span class="sn">Design and polish</span><span class="meter" aria-hidden="true"><i class="lo" style="width:30%"></i><em style="left:80%"></em></span><span class="sv lo">3</span></div>
+<div class="srow"><span class="sn">Mobile</span><span class="meter" aria-hidden="true"><i class="mid" style="width:50%"></i><em style="left:90%"></em></span><span class="sv mid">5</span></div>
+<div class="srow"><span class="sn">Speed</span><span class="meter" aria-hidden="true"><i class="lo" style="width:30%"></i><em style="left:80%"></em></span><span class="sv lo">3</span></div>
+<div class="srow"><span class="sn">Search basics</span><span class="meter" aria-hidden="true"><i class="mid" style="width:40%"></i><em style="left:70%"></em></span><span class="sv mid">4</span></div>
+      <div class="legend"><span><i></i>Target for the new website</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What we audited</h2>
+    <p>Every page of dunemeremgt.com on a phone, the way an owner sees it after a friend mentions Dunemere. Each part is scored 0 (not working), 5 (the basics) or 10 (best in the Hamptons).</p>
+    <div class="cards">
+<div class="ck">
+  <div class="ckh"><span class="ckn">1</span><h3>First impression</h3><span class="sc lo"><b>3</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="3 of 10, target 8"><i class="lo" style="width:30%"></i><em style="left:80%"></em></div>
+  <p class="why">An owner can&#x27;t tell in five seconds who Dunemere is for or why it&#x27;s different. The hero is a stock living room that loads blank on a phone.</p>
+  <div class="rub"><div><span>0</span>Can&#x27;t tell what the business does</div><div><span>5</span>Clear what you do and where</div><div><span>10</span>In five seconds: who it&#x27;s for, why you, and what to do next</div></div>
+  <p class="see">Screenshot notes: 2</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">2</span><h3>Trust and credibility</h3><span class="sc lo"><b>0</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="0 of 10, target 7"><i class="lo" style="width:0%"></i><em style="left:70%"></em></div>
+  <p class="why">Made-up stats (&quot;850 Protected Homes&quot;), stock-portrait testimonials and quotes about a service Dunemere doesn&#x27;t sell.</p>
+  <div class="rub"><div><span>0</span>Claims an owner can disprove</div><div><span>5</span>Honest claims, a few real quotes</div><div><span>10</span>Real reviews, named references, years in business, insured, a real face</div></div>
+  <p class="see">Screenshot notes: 3, 4</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">3</span><h3>Photos</h3><span class="sc lo"><b>1</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="1 of 10, target 7"><i class="lo" style="width:10%"></i><em style="left:70%"></em></div>
+  <p class="why">Every image is stock: living rooms, a villa with a pool, portraits. Nothing shows Ryan, the truck or a real house.</p>
+  <div class="rub"><div><span>0</span>All stock</div><div><span>5</span>Some real photos</div><div><span>10</span>Ryan, the crew and real homes on every page</div></div>
+  <p class="see">Screenshot notes: 2</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">4</span><h3>Calls to action</h3><span class="sc lo"><b>3</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="3 of 10, target 9"><i class="lo" style="width:30%"></i><em style="left:90%"></em></div>
+  <p class="why">There&#x27;s a call button, but it dials the wrong number. No booking, no form that reaches Ryan&#x27;s phone.</p>
+  <div class="rub"><div><span>0</span>No clear next step</div><div><span>5</span>A call button that works</div><div><span>10</span>One clear action on every screen: book a free home check</div></div>
+  <p class="see">Screenshot notes: 1</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">5</span><h3>Contact accuracy</h3><span class="sc lo"><b>0</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="0 of 10, target 10"><i class="lo" style="width:0%"></i><em style="left:100%"></em></div>
+  <p class="why">The phone button shows (631) 223-8966 but dials 631-233-8966. Anyone who taps it reaches a stranger.</p>
+  <div class="rub"><div><span>0</span>Contact details are wrong</div><div><span>5</span>Correct, but only in one place</div><div><span>10</span>Correct everywhere, tap to call or text, form goes straight to Ryan</div></div>
+  <p class="see">Screenshot notes: 1</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">6</span><h3>Copy and positioning</h3><span class="sc lo"><b>1</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="1 of 10, target 8"><i class="lo" style="width:10%"></i><em style="left:80%"></em></div>
+  <p class="why">&quot;Refined, economical, and efficient&quot; pulls in opposite directions and says nothing about who Dunemere is for.</p>
+  <div class="rub"><div><span>0</span>Generic or contradictory</div><div><span>5</span>Says what you do</div><div><span>10</span>Every line says who you serve and why you&#x27;re the one to call</div></div>
+  <p class="see">Screenshot notes: 7</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">7</span><h3>Design and polish</h3><span class="sc lo"><b>3</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="3 of 10, target 8"><i class="lo" style="width:30%"></i><em style="left:80%"></em></div>
+  <p class="why">&quot;DENUMERE&quot; misspelled on every page, &quot;Employes&quot; in the stats, social icons that go nowhere. Template look.</p>
+  <div class="rub"><div><span>0</span>Broken and full of typos</div><div><span>5</span>Clean, no errors</div><div><span>10</span>Looks like a firm that looks after $10M homes</div></div>
+  <p class="see">Screenshot notes: 5, 6</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">8</span><h3>Mobile</h3><span class="sc mid"><b>5</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="5 of 10, target 9"><i class="mid" style="width:50%"></i><em style="left:90%"></em></div>
+  <p class="why">The layout works on a phone, but the hero loads blank and the main button calls the wrong number.</p>
+  <div class="rub"><div><span>0</span>Unusable on a phone</div><div><span>5</span>Works on a phone</div><div><span>10</span>Built for the phone first: fast, one thumb, one tap to call</div></div>
+  <p class="see">Screenshot notes: 1, 2</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">9</span><h3>Speed</h3><span class="sc lo"><b>3</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="3 of 10, target 8"><i class="lo" style="width:30%"></i><em style="left:80%"></em></div>
+  <p class="why">Large stock images load slowly; the hero sits blank for several seconds on a phone.</p>
+  <div class="rub"><div><span>0</span>Takes ages to load</div><div><span>5</span>Loads in a few seconds</div><div><span>10</span>Loads almost instantly, even on a weak signal</div></div>
+  <p class="see">Screenshot notes: 2</p>
+</div>
+<div class="ck">
+  <div class="ckh"><span class="ckn">10</span><h3>Search basics</h3><span class="sc mid"><b>4</b> of 10</span></div>
+  <div class="meter" role="img" aria-label="4 of 10, target 7"><i class="mid" style="width:40%"></i><em style="left:70%"></em></div>
+  <p class="why">Google Analytics is installed and pages have titles, but there&#x27;s one generic page and no answers to the questions owners search.</p>
+  <div class="rub"><div><span>0</span>Google can&#x27;t read it</div><div><span>5</span>Titles, analytics, a sitemap</div><div><span>10</span>A page per service and town, question-based FAQ, ready for AI search</div></div>
+  <p class="see">Screenshot notes: —</p>
+</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The screenshots</h2>
+    <p>Each category card above lists the numbered notes that show the problem.</p>
+  </section>
+
+  <section>
+    <h2>Homepage, top of the page</h2>
+    <div class="shot">
+      <figure><img src="/more/dunemere/wa-1-hero.jpg" alt="Homepage hero on a phone with two red boxes: the phone button and the stock living room photo"><figcaption>The first thing an owner sees on a phone.</figcaption></figure>
+      <div class="notes">
+        <div class="note"><span class="n">1</span><h3>The phone button dials the wrong number</h3><p>It shows (631) 223-8966 but calls 631-233-8966. Anyone who taps it reaches a stranger.</p><p class="fix"><b>Fix:</b> correct the link today.</p></div>
+        <div class="note"><span class="n">2</span><h3>Stock photo, not a Hamptons home</h3><p>A generic living room, and on a phone it loads blank for several seconds first.</p><p class="fix"><b>Fix:</b> one real photo of Ryan at a client home.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stats section</h2>
+    <div class="shot">
+      <figure><img src="/more/dunemere/wa-2-stats.jpg" alt="Stats section showing 850 Protected Homes, 57 New Clients, 35 Experience and 18 Employes, marked with red boxes"><figcaption>Numbers over a stock villa with a pool.</figcaption></figure>
+      <div class="notes">
+        <div class="note"><span class="n">3</span><h3>Stats that aren't true</h3><p>"850 Protected Homes," "57 New Clients," "35 Experience," and a typo, "Employes." Dunemere looks after 9 homes. A prospect checking references will notice.</p><p class="fix"><b>Fix:</b> replace with real proof: clients of 20 years, same-day replies.</p></div>
+        <div class="note"><span class="n">2</span><h3>Another stock house</h3><p>Show the team instead: the crew and trucks in front of a real home says "18 people" better than a number.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Testimonials</h2>
+    <div class="shot">
+      <figure><img src="/more/dunemere/wa-3-testimonials.jpg" alt="Testimonials with stock portrait photos, marked with red boxes"><figcaption>Quotes paired with stock portraits.</figcaption></figure>
+      <div class="notes">
+        <div class="note"><span class="n">4</span><h3>Testimonials no one can check</h3><p>Stock portraits, names that can't be verified, and two of three quotes are about rental bookings, which isn't the service Ryan sells.</p><p class="fix"><b>Fix:</b> 3 real quotes from long-time clients, first name and town, with permission.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Footer, on every page</h2>
+    <div class="shot">
+      <figure><img src="/more/dunemere/wa-4-footer.jpg" alt="Footer showing ABOUT DENUMERE MANAGEMENT, a generic claim, social icons and the copyright line, marked with red boxes"><figcaption>The bottom of every page on the site.</figcaption></figure>
+      <div class="notes">
+        <div class="note"><span class="n">5</span><h3>The company name is misspelled</h3><p>"DENUMERE" appears in the footer heading and the copyright on every page.</p><p class="fix"><b>Fix:</b> correct it sitewide.</p></div>
+        <div class="note"><span class="n">7</span><h3>A claim that contradicts itself</h3><p>"The most refined, economical, and efficient" service. Refined and economical pull in opposite directions, and neither says who Dunemere is for.</p></div>
+        <div class="note"><span class="n">6</span><h3>Social icons go nowhere</h3><p>They link to facebook.com and similar home pages, not Dunemere accounts.</p><p class="fix"><b>Fix:</b> remove them until real accounts exist.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fix list, in order</h2>
+    <ol>
+      <li><b>Today:</b> fix the phone link, the "DENUMERE" misspelling, and remove the fake stats and dead social icons</li>
+      <li><b>This week:</b> a real photo of Ryan and real client homes; three real testimonials</li>
+      <li><b>Session 2:</b> launch the new site with one clear action, "Book a free home check," and a fast-loading page</li>
+      <li><b>Next:</b> a page for each service, a question-based FAQ, and a Google Business Profile with reviews</li>
+    </ol>
+  </section>
+  <footer><span><b>MORE</b> · More leads. More sales. More money.</span><span>Seth Quest · seth@sethquest.com</span></footer>
+</div>
