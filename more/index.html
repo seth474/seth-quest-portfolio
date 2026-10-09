@@ -38,6 +38,9 @@
   .btn.p{background:var(--ink);color:#fff}
   .btn.p b{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gb);margin-right:2px}
   .btn.o{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  #watch{-webkit-appearance:none;appearance:none;line-height:1.2;white-space:nowrap;box-shadow:none;text-align:center}
+  #watch svg{width:16px;height:16px;flex:none;fill:currentColor}
+  #vid video:fullscreen{width:100%;height:100%;object-fit:contain;background:#000}
   .small{font-size:14px;color:var(--mut);margin-top:12px}
   .vidbox{justify-self:center;width:100%;max-width:320px}
   #vid{position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.18)}
@@ -157,13 +160,13 @@
         <p class="lead">I find the practical ways your business can bring in more customers and close more of them. Then I help you put them in place.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
-          <button class="btn o" type="button" id="watch" aria-controls="growth-video">▶ Watch the video</button>
+          <button class="btn o" type="button" id="watch" aria-controls="growth-video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l15 9-15 9z"/></svg><span>Watch the video</span></button>
         </div>
         <p class="small">No hard close. No big contract. Just straight answers.</p>
       </div>
       <div class="vidbox">
         <div id="vid">
-          <video id="growth-video" controls playsinline preload="none" poster="/more/make-more-money-poster.jpg" aria-label="How to make more money — Seth Quest">
+          <video id="growth-video" controls playsinline preload="metadata" poster="/more/make-more-money-poster.jpg" aria-label="How to make more money — Seth Quest">
             <source src="/more/make-more-money.mp4" type="video/mp4">
             <a href="/more/make-more-money.mp4">Watch the finished video</a>.
           </video>
@@ -288,14 +291,33 @@
 (function(){
   var FORM='https://formspree.io/f/meaonlel';
   var video=document.getElementById('growth-video');
-  document.getElementById('watch').addEventListener('click',function(){
-    var playback=video.play();
-    if(playback){playback.catch(function(){video.focus({preventScroll:true})})}
+  function showInlineVideo(){
+    video.setAttribute('playsinline','');
     if(window.matchMedia('(max-width:859px)').matches){
       var bounds=video.getBoundingClientRect();
       if(bounds.top<24||bounds.bottom>window.innerHeight-100){
         video.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'center'});
       }
+    }
+  }
+  video.addEventListener('webkitendfullscreen',function(){video.setAttribute('playsinline','')});
+  document.getElementById('watch').addEventListener('click',function(){
+    var standardFullscreen=video.requestFullscreen&&document.fullscreenEnabled;
+    var nativeFullscreen=!standardFullscreen&&typeof video.webkitEnterFullscreen==='function';
+    // iPhone Safari can enter its native player as soon as playback starts.
+    if(nativeFullscreen){video.removeAttribute('playsinline')}
+    var playback=video.play();
+    if(playback){playback.catch(function(){showInlineVideo();video.focus({preventScroll:true})})}
+    // Request fullscreen directly from the tap, while user activation is available.
+    if(standardFullscreen){
+      try{video.requestFullscreen().catch(showInlineVideo)}catch(e){showInlineVideo()}
+    }else if(nativeFullscreen){
+      try{video.webkitEnterFullscreen()}catch(e){
+        // If metadata is still loading, play() can open the native player itself.
+        if(video.readyState>=1){showInlineVideo()}
+      }
+    }else{
+      showInlineVideo();
     }
   });
 
