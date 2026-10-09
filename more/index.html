@@ -300,25 +300,45 @@
       }
     }
   }
-  video.addEventListener('webkitendfullscreen',function(){video.setAttribute('playsinline','')});
-  document.getElementById('watch').addEventListener('click',function(){
-    var standardFullscreen=video.requestFullscreen&&document.fullscreenEnabled;
-    var nativeFullscreen=!standardFullscreen&&typeof video.webkitEnterFullscreen==='function';
-    // iPhone Safari can enter its native player as soon as playback starts.
-    if(nativeFullscreen){video.removeAttribute('playsinline')}
-    var playback=video.play();
-    if(playback){playback.catch(function(){showInlineVideo();video.focus({preventScroll:true})})}
-    // Request fullscreen directly from the tap, while user activation is available.
-    if(standardFullscreen){
-      try{video.requestFullscreen().catch(showInlineVideo)}catch(e){showInlineVideo()}
-    }else if(nativeFullscreen){
+  var mobileVideo=window.matchMedia('(max-width:859px)');
+  var fullscreenPending=false;
+  function configureVideoPlayback(){
+    // Let iPhone Safari open its native fullscreen player from its own play control.
+    if(mobileVideo.matches&&typeof video.webkitEnterFullscreen==='function'){
+      video.removeAttribute('playsinline');
+    }else{
+      video.setAttribute('playsinline','');
+    }
+  }
+  configureVideoPlayback();
+  mobileVideo.addEventListener('change',configureVideoPlayback);
+  video.addEventListener('webkitendfullscreen',configureVideoPlayback);
+  function openVideoFullscreen(){
+    if(fullscreenPending||document.fullscreenElement===video||video.webkitDisplayingFullscreen){return}
+    function fallback(){fullscreenPending=false;showInlineVideo()}
+    if(video.requestFullscreen&&document.fullscreenEnabled){
+      fullscreenPending=true;
+      try{
+        video.requestFullscreen().then(function(){fullscreenPending=false},fallback);
+      }catch(e){fallback()}
+    }else if(typeof video.webkitEnterFullscreen==='function'){
       try{video.webkitEnterFullscreen()}catch(e){
-        // If metadata is still loading, play() can open the native player itself.
-        if(video.readyState>=1){showInlineVideo()}
+        // Native playback can open fullscreen once the video's metadata arrives.
+        if(video.readyState>=1){fallback()}
       }
     }else{
-      showInlineVideo();
+      fallback();
     }
+  }
+  video.addEventListener('play',function(){
+    if(mobileVideo.matches){openVideoFullscreen()}
+  });
+  document.getElementById('watch').addEventListener('click',function(){
+    if(typeof video.webkitEnterFullscreen==='function'){video.removeAttribute('playsinline')}
+    var playback=video.play();
+    if(playback){playback.catch(function(){showInlineVideo();video.focus({preventScroll:true})})}
+    // Both play controls use the same fullscreen behavior.
+    openVideoFullscreen();
   });
 
   /* ---- booking modal ---- */
