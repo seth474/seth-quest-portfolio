@@ -21,10 +21,10 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   .d{font-family:"Bebas Neue",Oswald,Impact,sans-serif;font-weight:400;line-height:.9;letter-spacing:.01em;text-transform:uppercase}
   .g{color:var(--green)}
-  header{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:16px 20px}
+  header{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:24px 20px}
   .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
   .hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;background:none;cursor:pointer;color:var(--ink)}
-  .hero{padding:18px 0 56px}
+  .hero{padding:48px 0 56px}
   .hgrid{display:grid;gap:32px;align-items:center}
   .hgrid>*{min-width:0}
   .eyebrow{font:600 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
@@ -89,14 +89,6 @@
   .three div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
   .three h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95}
   .three p{color:#444;margin-top:8px}
-  .tst{display:grid;gap:12px}
-  .q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;display:flex;flex-direction:column;gap:16px}
-  .q blockquote{font-size:19px;line-height:1.5;color:#1a1a1a}
-  .q blockquote::before{content:"“";display:block;font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:.6;color:var(--green);margin-bottom:6px}
-  .q .who{font:600 14px Inter,sans-serif}
-  .q .who span{display:block;font-weight:500;color:var(--mut)}
-  .q.soon{background:transparent;border:1.5px dashed #c9c6bd}
-  .q.soon blockquote{color:var(--mut);font-style:italic}
   .final{background:var(--ink);color:#fff;border-radius:24px;padding:40px 24px;text-align:center}
   .final h2{margin:0 0 10px}
   .final p{color:#ccc;max-width:40ch;margin:0 auto}
@@ -125,9 +117,8 @@
   @media(min-width:860px){
     body{padding-bottom:0}
     .bar{display:none}
-    .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 90px)}
-    .three,.tst{grid-template-columns:repeat(3,1fr)}
-    .tst{grid-template-columns:1fr 1fr}
+    .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 190px)}
+    .three{grid-template-columns:repeat(3,1fr)}
     .final{padding:56px}
     .stage{grid-template-rows:auto 1fr;padding:24px 20px 28px}
     .mid{display:grid;grid-template-columns:1fr minmax(0,460px) 1fr;gap:28px;align-items:center;max-width:1180px;width:100%;margin:0 auto;min-height:0}
@@ -166,7 +157,7 @@
         <p class="lead">I find the practical ways your business can bring in more customers and close more of them. Then I help you put them in place.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
-          <a class="btn o" href="#vid" id="watch">▶ Watch the video</a>
+          <button class="btn o" type="button" id="watch" aria-controls="growth-video">▶ Watch the video</button>
         </div>
         <p class="small">No hard close. No big contract. Just straight answers.</p>
       </div>
@@ -256,24 +247,6 @@
 
   <section class="pad">
     <div class="wrap">
-      <div class="eyebrow">What people say</div>
-      <h2 class="d">Don't take my word for it<span class="g">.</span></h2>
-      <div class="tst">
-        <!-- EDIT: paste Ryan's quote here, then remove class "soon" -->
-        <figure class="q soon">
-          <blockquote>Testimonial coming soon.</blockquote>
-          <figcaption class="who">Hamptons Adventure Company<span>Amagansett, NY</span></figcaption>
-        </figure>
-        <figure class="q">
-          <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond.</blockquote>
-          <figcaption class="who">Andrew Hewitt<span>Founder, Elua</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad">
-    <div class="wrap">
       <div class="final">
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
         <p>Free, no pressure. If you want help after, it&rsquo;s $75 an hour. No big corporate contract.</p>
@@ -317,7 +290,13 @@
   var video=document.getElementById('growth-video');
   document.getElementById('watch').addEventListener('click',function(){
     var playback=video.play();
-    if(playback){playback.catch(function(){video.focus()})}
+    if(playback){playback.catch(function(){video.focus({preventScroll:true})})}
+    if(window.matchMedia('(max-width:859px)').matches){
+      var bounds=video.getBoundingClientRect();
+      if(bounds.top<24||bounds.bottom>window.innerHeight-100){
+        video.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'center'});
+      }
+    }
   });
 
   /* ---- booking modal ---- */
