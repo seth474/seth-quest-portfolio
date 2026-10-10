@@ -377,6 +377,25 @@
   /* equal space on both sides of every section divider */
   .guarantee .guar{margin-top:0}
   .foot{padding-top:27px}
+  /* v15: customer-view phone mockup, FAQ */
+  .stat b{font-size:40px}
+  .sees .sub{margin-bottom:22px}
+  .phone{position:relative;width:260px;max-width:100%;margin:0 auto;background:#fff;border:9px solid var(--ink);border-radius:38px;padding:30px 12px 18px;box-shadow:0 24px 50px rgba(0,0,0,.14);font-family:Inter,sans-serif}
+  .ph-notch{position:absolute;top:8px;left:50%;width:76px;height:18px;margin-left:-38px;background:var(--ink);border-radius:10px}
+  .ph-top{display:flex;align-items:center;gap:8px;padding:4px 4px 10px;border-bottom:1px solid #eee;font-size:14px}
+  .ph-av{width:28px;height:28px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font:700 13px Inter,sans-serif}
+  .ph-thread{display:flex;flex-direction:column;gap:8px;padding-top:12px}
+  .ph-sys{align-self:center;font-size:11px;color:#999;background:#f3f3f3;border-radius:999px;padding:3px 10px}
+  .ph-b{max-width:84%;font-size:13.5px;line-height:1.38;padding:9px 12px;border-radius:18px;overflow-wrap:anywhere}
+  .ph-b.out{align-self:flex-end;background:#1f8bff;color:#fff;border-bottom-right-radius:6px}
+  .ph-b.in{align-self:flex-start;background:#ececec;color:var(--ink);border-bottom-left-radius:6px}
+  .faqs{display:grid;gap:10px;margin-top:20px;max-width:720px}
+  .faqs details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+  .faqs summary{cursor:pointer;list-style:none;font-weight:700;font-size:17px;padding:16px 28px 16px 0;position:relative}
+  .faqs summary::-webkit-details-marker{display:none}
+  .faqs summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font:400 24px Inter,sans-serif;color:var(--green)}
+  .faqs details[open] summary::after{content:"\2013"}
+  .faqs details p{color:#444;padding:0 0 16px;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -463,11 +482,11 @@
           </svg>
         </div>
         <div class="copy">
-          <div class="cp on" data-i="0"><h3 aria-label="Step 1 of 5: Leads come in."><span class="n" aria-hidden="true">1</span><span class="t">Leads come in<span class="g">.</span></span></h3><!-- original: <p>Most of your work probably comes from word of mouth, Google or Facebook. Am I right? That&rsquo;s a good start.</p> --><p>Word of mouth, Google, Facebook. Am I right? Good start.</p></div>
+          <div class="cp on" data-i="0"><h3 aria-label="Step 1 of 5: Leads come in."><span class="n" aria-hidden="true">1</span><span class="t">Leads come in<span class="g">.</span></span></h3><!-- original: <p>Most of your work probably comes from word of mouth, Google or Facebook. Am I right? That&rsquo;s a good start.</p> --><p>Word of mouth, Google, Facebook. A good start.</p></div>
           <div class="cp r" data-i="1"><h3 aria-label="Step 2 of 5: Most leads leak out."><span class="n" aria-hidden="true">2</span><span class="t">Most leads leak out<span class="g">.</span></span></h3><!-- original: <p>Miss a call on the job, call back four hours later? They booked the other guy. A week to get out and quote? Gone. No follow-up? Gone.</p> --><p>Missed call. Slow quote. No follow&#8209;up. They booked the other guy.</p></div>
           <div class="cp" data-i="2"><h3 aria-label="Step 3 of 5: Fix the leaks."><span class="n" aria-hidden="true">3</span><span class="t">Fix the leaks<span class="g">.</span></span></h3><!-- original: <p>Every missed call gets a text back, right away, with a link to book. Quotes go out same day. Follow-ups are automatic. Some people are just looking. The rest is fixable.</p> --><p>Instant text&#8209;back on missed calls. Same&#8209;day quotes. Automatic follow&#8209;up.</p></div>
-          <div class="cp r" data-i="3"><h3 aria-label="Step 4 of 5: Generate more leads."><span class="n" aria-hidden="true">4</span><span class="t">Generate more leads<span class="g">.</span></span></h3><!-- original: <p>Google ads? Meta ads? An email list you actually email? Mailers, door hangers, a wrapped truck? Digital and in person. Every angle.</p> --><p>Google, Meta, email, mailers, door hangers, truck wrap. Every angle.</p></div>
-          <div class="cp" data-i="4"><h3 aria-label="Step 5 of 5: Make more money."><span class="n" aria-hidden="true">5</span><span class="t">Make more money<span class="g">.</span></span></h3><!-- original: <p>Fix the funnel, fill the funnel. More leads, more customers, more money.</p> --><p>Fix the funnel. Fill the funnel. More money.</p></div>
+          <div class="cp r" data-i="3"><h3 aria-label="Step 4 of 5: Generate more leads."><span class="n" aria-hidden="true">4</span><span class="t">Generate more leads<span class="g">.</span></span></h3><!-- original: <p>Google ads? Meta ads? An email list you actually email? Mailers, door hangers, a wrapped truck? Digital and in person. Every angle.</p> --><p>Google, Meta, email, mailers, door hangers, truck wrap.</p></div>
+          <div class="cp" data-i="4"><h3 aria-label="Step 5 of 5: Make more money."><span class="n" aria-hidden="true">5</span><span class="t">Make more money<span class="g">.</span></span></h3><!-- original: <p>Fix the funnel, fill the funnel. More leads, more customers, more money.</p> --><p>Fix the funnel. Fill the funnel. More leads. More jobs. More money.</p></div>
         </div>
       </div>
       <div class="hprog" aria-hidden="true"><span class="hf"></span><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
@@ -541,6 +560,24 @@
     </div>
   </section>
 
+  <!-- WHAT YOUR CUSTOMER SEES -->
+  <section class="pad sees" id="sees">
+    <div class="wrap">
+      <div class="eyebrow">Missed-call text-back</div>
+      <h2 class="d">What your customer sees<span class="g">.</span></h2>
+      <p class="sub">You miss a call on the job. Within seconds they get this:</p>
+      <div class="phone" role="img" aria-label="Text thread: after a missed call, the business texts back a booking link and the customer books Tuesday 9am">
+        <div class="ph-notch"></div>
+        <div class="ph-top"><span class="ph-av">M</span><b>Mike&rsquo;s Plumbing</b></div>
+        <div class="ph-thread">
+          <div class="ph-sys">Missed call &middot; 2:14 PM</div>
+          <div class="ph-b out">Hi, it&rsquo;s Mike from Mike&rsquo;s Plumbing. Sorry I missed you, I&rsquo;m on a job. Book a time here: <u>[booking link]</u> or reply and I&rsquo;ll call you right back.</div>
+          <div class="ph-b in">Great, booked for Tuesday 9am.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- GUARANTEE: said once -->
   <section class="pad guarantee" id="guarantee">
     <div class="wrap">
@@ -566,11 +603,11 @@
             <h3>Hamptons Adventure Company</h3>
             <div class="cmeta">E-bike tours &middot; Montauk</div>
           </div>
-          <div class="stat"><b>+50%</b><span>more clicks on their Google Ads</span></div>
+          <div class="stat"><b>Every call</b><span>from Google now gets through</span></div>
         </div>
         <p class="cint">An AI audit of their Google listing and ads found what was costing them customers.</p>
         <ul class="fixes">
-          <li><strong>Every call from Google now gets through.</strong> Corrected contact info, a service-area listing and fresh drone photos.</li>
+          <li><strong>Calls from Google weren&rsquo;t getting through.</strong> The wrong number was listed. Now every call does.</li>
           <li><strong>No more mix-ups on where to meet.</strong> Customers now go straight to the Montauk tour spot.</li>
           <li><strong>50% more clicks to their site.</strong> Optimized their Google Ads budget and keyword settings.</li>
         </ul>
@@ -587,6 +624,20 @@
           <figcaption class="who">Ryan<span>Hamptons Adventure Company, Montauk</span></figcaption>
         </figure>
         -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad faq" id="faq">
+    <div class="wrap">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="d">Questions<span class="g">.</span></h2>
+      <div class="faqs">
+        <details><summary>Do I keep my number?</summary><p>Yes. Your number stays the same. Missed calls just get a text back automatically.</p></details>
+        <details><summary>What if I&rsquo;m on a roof all day?</summary><p>That&rsquo;s the point. Every missed call gets an instant text with a booking link, so you don&rsquo;t lose the job while you work.</p></details>
+        <details><summary>Is there a contract?</summary><p>Fix the leaks is month to month. Fill the funnel is a 3-month minimum. No corporate contracts.</p></details>
+        <details><summary>What happens on the free audit?</summary><p>We look at your score together, find the biggest leaks, and you leave with a plan, whether you hire me or not.</p></details>
       </div>
     </div>
   </section>
