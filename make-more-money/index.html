@@ -38,7 +38,6 @@
   .btn{text-wrap:balance;line-height:1.2}
   .btn:active{transform:scale(.97)}
   .btn.p{background:var(--ink);color:#fff}
-  .btn.p b{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gb);margin-right:2px}
   .btn.o{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
   #watch{-webkit-appearance:none;appearance:none;line-height:1.2;white-space:nowrap;box-shadow:none;text-align:center}
   #watch svg{width:16px;height:16px;flex:none;fill:currentColor}
@@ -105,7 +104,6 @@
   .final p{color:#ccc;max-width:40ch;margin:0 auto}
   .final .ctas{justify-content:center}
   .final .btn.p{background:var(--gb);color:var(--ink)}
-  .final .btn.p b{background:var(--ink)}
   .final .btn.o{color:#fff;border-color:#fff}
   /* sticky bottom CTA bar removed (took ~1/5 of the mobile screen) */
   section.pad.last{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
@@ -315,6 +313,17 @@
     .hero .ctas .btn.p{font-size:16px;padding:0 18px;min-height:54px}
     .hero .ctas{margin-top:22px}
   }
+  /* v10: no pips; plan cards stacked at full width; eyebrow under the headline */
+  .hero h1.d{margin-bottom:10px}
+  .hero .eyebrow{margin:0 0 14px}
+  .steps>li{grid-template-columns:minmax(0,1fr);gap:14px;align-content:start}
+  .steps .sb h3{margin-top:2px}
+  .steps .btn.sm{width:100%;white-space:nowrap;margin-top:20px}
+  .final .ctas .btn{white-space:nowrap;max-width:100%}
+  @media(max-width:859px){
+    .steps>li{padding:24px 20px}
+    .steps .btn.sm{font-size:15px;padding:0 14px}
+  }
 </style>
 </head>
 <body>
@@ -327,12 +336,12 @@
   <section class="hero">
     <div class="wrap hgrid">
       <div>
-        <div class="eyebrow">For Hamptons service businesses</div>
         <h1 class="d">Make more money<span class="g">.</span></h1>
+        <div class="eyebrow">For Hamptons service businesses</div>
         <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
         <p class="lead">I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
+          <button class="btn p" type="button" data-book>Book a free sales funnel audit</button>
         </div>
       </div>
       <div class="vidbox">
@@ -417,7 +426,7 @@
         <div class="eyebrow">Free &middot; 2 minutes &middot; Do it yourself</div>
         <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
         <p>12 quick questions. Get a score out of 100, split into <strong>Leaks</strong> and <strong>Lead flow</strong>, plus a plain list of what to fix first.</p>
-        <button class="btn p" type="button" data-quiz><b></b>Score my funnel</button>
+        <button class="btn p" type="button" data-quiz>Score my funnel</button>
       </div>
     </div>
   </section>
@@ -435,7 +444,7 @@
             <h3>Free sales funnel audit call<span class="g">.</span></h3>
             <div class="price">Free &middot; 15 minutes &middot; No pressure</div>
             <p>We review your score together and pick where to focus for the biggest return.</p>
-            <button class="btn p sm" type="button" data-book><b></b>Book a free sales funnel audit</button>
+            <button class="btn p sm" type="button" data-book>Book a free sales funnel audit</button>
           </div>
         </li>
         <li>
@@ -529,7 +538,7 @@
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
         <p>Free. No pressure.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
+          <button class="btn p" type="button" data-book>Book a free sales funnel audit</button>
           <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
         </div>
         <button class="qlink2" type="button" data-quiz>Or score my funnel first &rarr;</button>
@@ -630,7 +639,7 @@
   });
 
   /* v9: keep the hero eyebrow and main button on one line, even with large iOS text */
-  function fitOne(){[].forEach.call(document.querySelectorAll('.hero .eyebrow,.hero .ctas .btn.p'),function(el){
+  function fitOne(){[].forEach.call(document.querySelectorAll('.hero .eyebrow,.hero .ctas .btn.p,.steps .btn,.final .btn'),function(el){
     if(el.dataset.fset!==undefined&&el.style.fontSize===el.dataset.fset){el.style.fontSize=el.dataset.fsb;el.style.letterSpacing=el.dataset.lsb}else{el.dataset.fsb=el.style.fontSize;el.dataset.lsb=el.style.letterSpacing}
     var w=el.parentNode.clientWidth,fs=parseFloat(getComputedStyle(el).fontSize),k=0;
     if(el.classList.contains('btn'))el.style.maxWidth='100%';
@@ -886,7 +895,7 @@
       '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span>'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
       '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span>'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
       '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+
-      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook"><b></b>Book a free sales funnel audit</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
+      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook">Book a free sales funnel audit</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
       '<p class="qr-print-only" style="margin-top:20px">Free 15-minute sales funnel audit: text or call Seth at 934-899-0796 &middot; sethquest.com/make-more-money</p>'+
       '<p class="qr-sent" id="qrSent"></p></div>';
     document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
