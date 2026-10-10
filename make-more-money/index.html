@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Make More Money. — Seth Quest</title>
 <meta name="description" content="More leads. More sales. More money. I help local businesses bring in more customers and close more of them. Book a free sales funnel audit.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
@@ -52,8 +52,8 @@
   h2{font-size:clamp(46px,11vw,72px);margin:6px 0 22px}
 
   /* ---------- scroll story: funnel stays pinned, words fade in ---------- */
-  .story{position:relative;height:calc(100svh + 5 * 105svh);border-top:1px solid var(--line)}
-  .stage{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto auto;padding:16px 20px calc(16px + env(safe-area-inset-bottom));overflow:hidden}
+  .story{position:relative;height:calc(100svh + 5 * 105svh);height:calc(var(--stageh,100svh) + 5 * 105svh);border-top:1px solid var(--line)}
+  .stage{position:sticky;top:0;height:100svh;height:var(--stageh,100svh);display:grid;grid-template-rows:auto 1fr auto auto;padding:16px 20px calc(16px + env(safe-area-inset-bottom));overflow:hidden}
   .stage-top{display:flex;justify-content:center;align-items:center;max-width:1080px;width:100%;margin:0 auto}
   .ftitle{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(40px,11vw,60px);line-height:.9;letter-spacing:.03em;text-transform:uppercase;text-align:center;margin:0}
   /* horizontal progress above "Keep scrolling": thin rail, fills left to right, 5 step ticks */
@@ -173,9 +173,9 @@
        - the step-text row is as tall as the tallest step; JS (below) measures the real rendered text
          (incl. iOS/Chrome text zoom) and reserves at least that, so the bar can never touch the text
        - spare height goes to the three spaces: under the title, between funnel and text, and above the bar */
-    .stage{--funh:calc((100vw - 16px) * 572 / 648);display:grid;height:100vh;height:100svh;grid-template-columns:minmax(0,1fr);
+    .stage{--funh:calc((100vw - 16px) * 572 / 648);display:grid;height:100vh;height:100svh;height:var(--stageh,100svh);grid-template-columns:minmax(0,1fr);
       grid-template-rows:auto minmax(26px,1fr) minmax(110px,var(--funh)) minmax(24px,.8fr) auto minmax(26px,1.3fr) auto auto;
-      padding:20px 20px calc(18px + env(safe-area-inset-bottom))}
+      padding:20px 20px calc(18px + env(safe-area-inset-bottom));padding-top:max(20px,calc(env(safe-area-inset-top) + 16px))}
     .mid{display:contents}
     .stage-top{grid-row:1}
     .fun{grid-row:3;position:relative;display:block;margin:0 -12px;height:auto;min-height:0;max-height:var(--funmax,none)}
@@ -627,7 +627,7 @@
   });
 
   /* ---- scroll story ---- */
-  var story=document.getElementById('story'),svg=document.getElementById('fsvg'),dotsG=document.getElementById('dots'),fill=document.getElementById('fill');
+  var stageEl=document.querySelector('.stage'),story=document.getElementById('story'),svg=document.getElementById('fsvg'),dotsG=document.getElementById('dots'),fill=document.getElementById('fill');
   var cps=[].slice.call(document.querySelectorAll('.cp')),bars=[].slice.call(document.querySelectorAll('.hprog i')),hf=document.querySelector('.hprog .hf');
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var step=-1,FILL=[.12,.08,.38,.62,1];
@@ -639,7 +639,7 @@
     var h=Math.round(80*FILL[i]);fill.setAttribute('y',472-h);fill.setAttribute('height',h);
   }
   function onScroll(){
-    var r=story.getBoundingClientRect(),vh=window.innerHeight,run=r.height-vh;
+    var r=story.getBoundingClientRect(),vh=stageEl.getBoundingClientRect().height||window.innerHeight,run=r.height-vh;
     var p=Math.min(Math.max(-r.top/run,0),.9999);
     hf.style.transform='scaleX('+Math.min(p*1.25,1).toFixed(4)+')';
     setStep(Math.floor(p*5));
@@ -669,6 +669,21 @@
     }
   }
   fitFunnel();
+  /* the pinned stage is exactly the visible viewport (iOS Safari/Chrome toolbar expanded or collapsed).
+     Measured from visualViewport (fallback innerHeight) into --stageh; CSS falls back to 100svh. */
+  var stageH=0,shT=0;
+  function setStageH(){
+    var ae=document.activeElement;if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName))return; /* keyboard open: leave it */
+    var vv=window.visualViewport,h=(vv&&vv.scale<1.01)?vv.height:window.innerHeight;
+    if(!h||Math.abs(h-stageH)<1)return;stageH=Math.round(h);
+    document.documentElement.style.setProperty('--stageh',stageH+'px');fitFunnel();onScroll();
+  }
+  function queueStageH(){cancelAnimationFrame(shT);shT=requestAnimationFrame(setStageH)}
+  setStageH();
+  window.addEventListener('resize',queueStageH);
+  window.addEventListener('orientationchange',function(){setTimeout(setStageH,250)});
+  window.addEventListener('pageshow',setStageH);
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',queueStageH);
   window.addEventListener('resize',fitFunnel);
   window.addEventListener('orientationchange',fitFunnel);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitFunnel);
@@ -846,10 +861,27 @@
     document.getElementById('qrPrint').addEventListener('click',function(){document.documentElement.classList.add('printing');window.print()});
   }
   window.addEventListener('afterprint',function(){document.documentElement.classList.remove('printing')});
+  /* ---- lead report for Seth: plain-text report + a private link that rebuilds the results page ---- */
+  function answerOf(q){var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:v):label(q,v))}
+  function reportText(r){
+    var L=[],sec=function(t){L.push('',t,new Array(t.length+1).join('-'))};
+    L.push('SALES FUNNEL SCORE: '+r.total+' / 100','Leaks: '+r.leaks+' / 50   |   Lead flow: '+r.flow+' / 50','',txt(verdict(r)));
+    sec('CONTACT');L.push('Name: '+lead.name,'Business: '+lead.business,'Cell: '+lead.phone);
+    [['ABOUT THEM','About you'],['LEAKS','Leaks'],['LEAD FLOW','Lead flow']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
+    sec('RECOMMENDED FIXES');L.push('Fix the leaks:');(r.fl.length?r.fl:[['Nothing big to fix here.','']]).forEach(function(x){L.push('  * '+txt(x[0])+(x[1]?' '+txt(x[1]):''))});
+    L.push('','Fill the funnel:');(r.ff.length?r.ff:[['Nothing big to fix here.','']]).forEach(function(x){L.push('  * '+txt(x[0])+(x[1]?' '+txt(x[1]):''))});
+    return L.join('\n');
+  }
+  function reportLink(){
+    var data={v:1,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone},a:A};
+    var b64=btoa(unescape(encodeURIComponent(JSON.stringify(data)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    var base=/(^|\.)sethquest\.com$/.test(location.hostname)?'https://sethquest.com/make-more-money/report':location.origin+'/make-more-money/report.html';
+    return base+'#'+b64;
+  }
   function send(){
-    var r=score(),ans={};Q.forEach(function(q){var v=A[q.id];ans[q.id]=q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:v):label(q,v))});
+    var r=score(),ans={};Q.forEach(function(q){ans[q.id]=answerOf(q)});
     var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,
-      score:r.total+'/100',leaks:r.leaks+'/50',lead_flow:r.flow+'/50',source:'sethquest.com/make-more-money quiz'},ans);
+      score:r.total+'/100',leaks:r.leaks+'/50',lead_flow:r.flow+'/50','View full report':reportLink(),Report:reportText(r),source:'sethquest.com/make-more-money quiz'},ans);
     var el=function(){return document.getElementById('qrSent')};
     fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(x){if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your score.'})
