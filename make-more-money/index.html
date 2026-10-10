@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Make More Money. — Seth Quest</title>
-<meta name="description" content="More leads. More sales. More money. I help local businesses bring in more customers and close more of them. Book a free 15-minute growth call.">
+<meta name="description" content="More leads. More sales. More money. I help local businesses bring in more customers and close more of them. Book a free sales funnel audit.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
-<meta property="og:description" content="More leads. More sales. More money. Book a free 15-minute growth call.">
+<meta property="og:description" content="More leads. More sales. More money. Book a free sales funnel audit.">
 <meta property="og:url" content="https://sethquest.com/make-more-money">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,8 @@
   header{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:24px 20px}
   .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
   .hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;background:none;cursor:pointer;color:var(--ink)}
+  .brand,.hcta{white-space:nowrap}
+  @media(max-width:389px){.hcta{font-size:12px;padding:7px 10px}}
   .hero{padding:48px 0 56px}
   .hgrid{display:grid;gap:32px;align-items:center}
   .hgrid>*{min-width:0}
@@ -34,6 +36,7 @@
   .lead{font-size:19px;max-width:32ch;margin-top:18px;color:#2a2a2a}
   .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:999px;font:800 17px Inter,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .15s}
+  .btn{text-wrap:balance;line-height:1.2}
   .btn:active{transform:scale(.97)}
   .btn.p{background:var(--ink);color:#fff}
   .btn.p b{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gb);margin-right:2px}
@@ -81,7 +84,7 @@
   .src{font:600 15px Inter,sans-serif;fill:var(--mut);transition:fill .5s}
   .more .src{fill:var(--ink)}
   .src.add{opacity:0;transition:opacity .6s,fill .5s}
-  .more .src.add{opacity:1;fill:var(--green)}
+  .more .src.add{opacity:1;fill:var(--ink)}
   .hole.keep,.fixd .hole.keep{fill:var(--paper);stroke:#a9a59b}
   .lbl.keep,.fixd .lbl.keep{fill:#a9a59b}
   .dot.k{fill:#a9a59b}
@@ -105,9 +108,8 @@
   .final .btn.p{background:var(--gb);color:var(--ink)}
   .final .btn.p b{background:var(--ink)}
   .final .btn.o{color:#fff;border-color:#fff}
-  footer{padding:28px 20px 36px;text-align:center;font:600 12px Inter,sans-serif;letter-spacing:.1em;color:var(--mut)}
-  /* sticky bottom CTA bar removed (took ~1/5 of the mobile screen); inline CTA after the funnel instead */
-  .fcta{padding:8px 20px 56px;text-align:center}
+  /* sticky bottom CTA bar removed (took ~1/5 of the mobile screen) */
+  section.pad.last{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
   /* modal */
   .modal{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
   .modal[hidden]{display:none}
@@ -144,14 +146,17 @@
   }
   @media(max-width:859px){
     /* fixed vertical layout: title / funnel / text / progress, with balanced space between (svh = stable on mobile) */
-    .stage{grid-template-rows:auto minmax(12px,.8fr) auto minmax(16px,1fr) auto minmax(10px,.8fr) auto auto;padding:18px 20px calc(14px + env(safe-area-inset-bottom))}
+    /* title / funnel / text / progress in a flex column. The funnel box is the only flexible item:
+       it is at most as tall as the drawing at full width and shrinks to whatever height is left.
+       The SVG is absolutely filled into that box with preserveAspectRatio=meet, so the drawing
+       (incl. the $ bin) always stays inside its box and above the text. JS guard below double-checks. */
+    .stage{display:flex;flex-direction:column;height:100vh;height:100svh;padding:18px 20px calc(14px + env(safe-area-inset-bottom))}
     .mid{display:contents}
-    .stage-top{grid-row:1}
-    .fun{grid-row:3;justify-self:center;display:block;width:min(calc(100vw - 16px),calc(48svh * 648 / 572));aspect-ratio:648/572;height:auto;min-height:0;margin:0}
-    .fun svg{display:block;width:100%;height:100%;max-height:none}
-    .copy{grid-row:5;min-height:0}
-    .hprog{grid-row:7}
-    .scrollhint{grid-row:8}
+    .stage-top,.copy,.hprog,.scrollhint{flex:none}
+    .fun{position:relative;display:block;flex:0 1 auto;width:auto;align-self:stretch;margin:auto -12px 0;height:calc((100vw - 16px) * 572 / 648);max-height:var(--funmax,none);min-height:120px}
+    .fun svg{position:absolute;inset:0;display:block;width:100%;height:100%;max-height:none;overflow:hidden}
+    .copy{margin-top:auto;padding-top:18px;min-height:0}
+    .hprog{margin:auto 0 12px;align-self:center}
     .cp,.cp.r{text-align:left}
     .cp p{font-size:19px;line-height:1.35;font-weight:500}
     .lbl,.src{font-size:20px}
@@ -165,7 +170,7 @@
 <body>
 <header>
   <a class="brand" href="https://sethquest.com">Seth Quest</a>
-  <button class="hcta" type="button" data-book>Book a free call</button>
+  <button class="hcta" type="button" data-book>Book a free sales funnel audit</button>
 </header>
 
 <main>
@@ -177,7 +182,7 @@
         <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
         <p class="lead">I find the practical ways your business can bring in more customers and close more of them. Then I help you put them in place.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
+          <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
           <button class="btn o" type="button" id="watch" aria-controls="growth-video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l15 9-15 9z"/></svg><span>Watch the video</span></button>
         </div>
         <p class="small">No hard close. No big contract. Just straight answers.</p>
@@ -253,7 +258,6 @@
       <div class="scrollhint">Keep scrolling</div>
     </div>
   </section>
-  <div class="fcta"><button class="btn p" type="button" data-book><b></b>Book a free 15-minute call</button></div>
 
   <section class="pad">
     <div class="wrap">
@@ -267,13 +271,13 @@
     </div>
   </section>
 
-  <section class="pad">
+  <section class="pad last">
     <div class="wrap">
       <div class="final">
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
         <p>Free, no pressure. If you want help after, it&rsquo;s $75 an hour. No big corporate contract.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-book><b></b>Book a free 15-minute growth call</button>
+          <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
           <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
         </div>
       </div>
@@ -281,18 +285,16 @@
   </section>
 </main>
 
-<footer>SETH QUEST · EAST HAMPTON, NY · <a href="tel:+19348990796">934-899-0796</a></footer>
 
-<!-- sticky bottom bar removed v2: <div class="bar"><button class="btn p" type="button" data-book><b></b>Book a free 15-minute call</button></div> -->
 
 <div class="modal" id="book" hidden role="dialog" aria-modal="true" aria-labelledby="bkT">
   <div class="mc">
     <button class="mx" type="button" id="bkX" aria-label="Close">×</button>
     <div class="eyebrow">Free · 15 minutes · No pressure</div>
-    <div class="d" id="bkT">Book your growth call<span class="g">.</span></div>
+    <div class="d" id="bkT">Book a free sales funnel audit<span class="g">.</span></div>
     <p>Fastest way: text or call me and we'll pick a time.</p>
     <div class="two">
-      <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27d%20like%20a%20free%2015-minute%20growth%20call.%20My%20business%20is%3A%20">💬 Text Seth</a>
+      <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27d%20like%20a%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text Seth</a>
       <a class="btn o" href="tel:+19348990796">📞 Call Seth</a>
     </div>
     <div class="or">or leave your info and I'll reach out</div>
@@ -301,7 +303,7 @@
       <input class="fld" id="bkB" type="text" autocomplete="organization" placeholder="Business name" aria-label="Business name">
       <input class="fld" id="bkC" type="text" inputmode="email" autocomplete="email" placeholder="Cell or email" aria-label="Cell or email">
       <div class="err" id="bkE"></div>
-      <button class="btn p" id="bkS" type="submit" style="width:100%">Request my call</button>
+      <button class="btn p" id="bkS" type="submit" style="width:100%">Book a free sales funnel audit</button>
     </form>
   </div>
 </div>
@@ -376,7 +378,7 @@
     s.disabled=true;s.textContent='Sending…';
     fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(Object.assign({_subject:'Growth call request: '+(b||n||c),name:n,business:b,contact:c,source:'sethquest.com/make-more-money'},c.indexOf('@')>0?{email:c}:{}))})
       .then(function(r){if(!r.ok)throw 0;s.textContent='Sent ✓';er.className='err ok';er.textContent='Got it. I’ll reach out today to set a time.'})
-      .catch(function(){s.disabled=false;s.textContent='Request my call';er.textContent='That didn’t go through. Text or call 934-899-0796.'});
+      .catch(function(){s.disabled=false;s.textContent='Book a free sales funnel audit';er.textContent='That didn’t go through. Text or call 934-899-0796.'});
   });
 
   /* ---- scroll story ---- */
@@ -401,6 +403,23 @@
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;onScroll()})}},{passive:true});
   window.addEventListener('resize',onScroll);
   onScroll();
+
+  /* guard: on phones the $ bin must always end at least 16px above the step headline */
+  var funBox=document.querySelector('.fun'),binEl=svg.querySelector('.bin'),mq=window.matchMedia('(max-width:859px)');
+  function fitFunnel(){
+    funBox.style.removeProperty('--funmax');
+    if(!mq.matches)return;
+    for(var k=0;k<3;k++){
+      var h3=cps[0].querySelector('h3').getBoundingClientRect(),bin=binEl.getBoundingClientRect(),over=bin.bottom+16-h3.top;
+      if(over<=0.5)break;
+      funBox.style.setProperty('--funmax',Math.max(120,funBox.getBoundingClientRect().height-over)+'px');
+    }
+  }
+  fitFunnel();
+  window.addEventListener('resize',fitFunnel);
+  window.addEventListener('orientationchange',fitFunnel);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitFunnel);
+  window.addEventListener('load',fitFunnel);
 
   /* dots: leads falling through the funnel */
   if(reduce)return;
