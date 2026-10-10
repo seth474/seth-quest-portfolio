@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Make More Money. — Seth Quest</title>
-<meta name="description" content="More leads. More sales. More money. I help local businesses bring in more customers and close more of them. Book a free sales funnel audit.">
+<meta name="description" content="I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales. Book a free sales funnel audit.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
-<meta property="og:description" content="More leads. More sales. More money. Book a free sales funnel audit.">
+<meta property="og:description" content="Get more jobs: fix the leaks, get more leads, close more sales. Book a free sales funnel audit.">
 <meta property="og:url" content="https://sethquest.com/make-more-money">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -345,6 +345,20 @@
     .hgrid{grid-template-columns:1.3fr .7fr;grid-template-areas:"head vid" "lead vid" "cta vid";grid-template-rows:auto auto 1fr;column-gap:40px;align-content:center;align-items:start}
     .vidbox{margin:0;align-self:center}
   }
+  /* v12: hero = eyebrow, headline, subline, video, button; equal gap above/below the eyebrow */
+  .hero{padding-top:16px}
+  .hero .eyebrow{margin:0 0 16px}
+  .hero h1.d{margin:0}
+  .hgrid>.lead{margin-top:20px}
+  .hgrid{grid-template-areas:"head" "lead" "vid" "cta"}
+  .vidbox{margin:24px auto 0}
+  .hero .ctas{margin-top:24px}
+  @media(min-width:860px){
+    .hero{padding-top:28px}
+    .hero .eyebrow{margin-bottom:28px}
+    .hgrid{grid-template-areas:"head vid" "lead vid" "cta vid"}
+    .vidbox{margin:0}
+  }
 </style>
 </head>
 <body>
@@ -367,7 +381,6 @@
       <div class="hhead">
         <div class="eyebrow">For Hamptons service businesses</div>
         <h1 class="d">Make more money<span class="g">.</span></h1>
-        <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
       </div>
       <p class="lead">I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
       <div class="ctas">
