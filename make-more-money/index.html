@@ -25,7 +25,6 @@
   .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
   .hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;background:none;cursor:pointer;color:var(--ink)}
   .brand,.hcta{white-space:nowrap}
-  @media(max-width:389px){.hcta{font-size:12px;padding:7px 10px}}
   .hero{padding:48px 0 56px}
   .hgrid{display:grid;gap:32px;align-items:center}
   .hgrid>*{min-width:0}
@@ -145,18 +144,30 @@
     .scrollhint{display:none}
   }
   @media(max-width:859px){
-    /* fixed vertical layout: title / funnel / text / progress, with balanced space between (svh = stable on mobile) */
-    /* title / funnel / text / progress in a flex column. The funnel box is the only flexible item:
-       it is at most as tall as the drawing at full width and shrinks to whatever height is left.
-       The SVG is absolutely filled into that box with preserveAspectRatio=meet, so the drawing
-       (incl. the $ bin) always stays inside its box and above the text. JS guard below double-checks. */
-    .stage{display:flex;flex-direction:column;height:100vh;height:100svh;padding:18px 20px calc(14px + env(safe-area-inset-bottom))}
+    /* phones: hero scaled down so headline, subhead, intro and CTA fit the first screen */
+    header{padding:16px 20px}
+    .hero{padding:18px 0 44px}
+    h1{font-size:clamp(52px,16vw,150px);margin:6px 0 8px}
+    .tri{font-size:clamp(21px,6vw,42px)}
+    .lead{font-size:17px;line-height:1.5;margin-top:14px}
+    .hero .ctas{margin-top:20px}
+    /* phones: the pinned funnel section is a fixed grid
+       title | space | funnel | space | step text | space | progress | keep scrolling
+       - the funnel row grows to the drawing's full-width height and is the only row that shrinks
+         (to 110px min) when height is short; the SVG is filled into it with meet, so the $ bin never leaves it
+       - the step-text row is as tall as the tallest step; JS (below) measures the real rendered text
+         (incl. iOS/Chrome text zoom) and reserves at least that, so the bar can never touch the text
+       - spare height goes to the three spaces: under the title, between funnel and text, and above the bar */
+    .stage{--funh:calc((100vw - 16px) * 572 / 648);display:grid;height:100vh;height:100svh;grid-template-columns:minmax(0,1fr);
+      grid-template-rows:auto minmax(26px,1fr) minmax(110px,var(--funh)) minmax(24px,.8fr) auto minmax(26px,1.3fr) auto auto;
+      padding:20px 20px calc(18px + env(safe-area-inset-bottom))}
     .mid{display:contents}
-    .stage-top,.copy,.hprog,.scrollhint{flex:none}
-    .fun{position:relative;display:block;flex:0 1 auto;width:auto;align-self:stretch;margin:auto -12px 0;height:calc((100vw - 16px) * 572 / 648);max-height:var(--funmax,none);min-height:120px}
+    .stage-top{grid-row:1}
+    .fun{grid-row:3;position:relative;display:block;margin:0 -12px;height:auto;min-height:0;max-height:var(--funmax,none)}
     .fun svg{position:absolute;inset:0;display:block;width:100%;height:100%;max-height:none;overflow:hidden}
-    .copy{margin-top:auto;padding-top:18px;min-height:0}
-    .hprog{margin:auto 0 12px;align-self:center}
+    .copy{grid-row:5;align-self:start;min-height:var(--copyh,0px)}
+    .hprog{grid-row:7;align-self:end;margin:0 0 12px}
+    .scrollhint{grid-row:8}
     .cp,.cp.r{text-align:left}
     .cp p{font-size:19px;line-height:1.35;font-weight:500}
     .lbl,.src{font-size:20px}
@@ -170,7 +181,7 @@
 <body>
 <header>
   <a class="brand" href="https://sethquest.com">Seth Quest</a>
-  <button class="hcta" type="button" data-book>Book a free sales funnel audit</button>
+  <button class="hcta" type="button" data-book>Contact</button>
 </header>
 
 <main>
@@ -404,15 +415,23 @@
   window.addEventListener('resize',onScroll);
   onScroll();
 
-  /* guard: on phones the $ bin must always end at least 16px above the step headline */
-  var funBox=document.querySelector('.fun'),binEl=svg.querySelector('.bin'),mq=window.matchMedia('(max-width:859px)');
+  /* phones: reserve the real rendered height of the tallest step text (text zoom safe),
+     then make sure the $ bin ends at least 16px above the step headline */
+  var funBox=document.querySelector('.fun'),copyBox=document.querySelector('.copy'),binEl=svg.querySelector('.bin'),mq=window.matchMedia('(max-width:859px)');
+  function textExtent(cp){
+    var top=cp.getBoundingClientRect().top,bottom=top,rg=document.createRange();rg.selectNodeContents(cp);
+    var rs=rg.getClientRects();for(var i=0;i<rs.length;i++){if(rs[i].height>0&&rs[i].bottom>bottom)bottom=rs[i].bottom}
+    return Math.max(bottom,cp.getBoundingClientRect().bottom)-top;
+  }
   function fitFunnel(){
     funBox.style.removeProperty('--funmax');
-    if(!mq.matches)return;
+    if(!mq.matches){copyBox.style.removeProperty('--copyh');return}
+    var need=0;cps.forEach(function(c){need=Math.max(need,textExtent(c))});
+    copyBox.style.setProperty('--copyh',Math.ceil(need+6)+'px');
     for(var k=0;k<3;k++){
       var h3=cps[0].querySelector('h3').getBoundingClientRect(),bin=binEl.getBoundingClientRect(),over=bin.bottom+16-h3.top;
       if(over<=0.5)break;
-      funBox.style.setProperty('--funmax',Math.max(120,funBox.getBoundingClientRect().height-over)+'px');
+      funBox.style.setProperty('--funmax',Math.max(90,funBox.getBoundingClientRect().height-over)+'px');
     }
   }
   fitFunnel();
@@ -420,6 +439,7 @@
   window.addEventListener('orientationchange',fitFunnel);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitFunnel);
   window.addEventListener('load',fitFunnel);
+  if('ResizeObserver' in window){var roT=0;new ResizeObserver(function(){cancelAnimationFrame(roT);roT=requestAnimationFrame(fitFunnel)}).observe(cps[1])}
 
   /* dots: leads falling through the funnel */
   if(reduce)return;
