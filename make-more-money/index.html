@@ -327,25 +327,51 @@
     .steps>li{padding:24px 20px}
     .steps .btn.sm{font-size:15px;padding:0 14px}
   }
+  /* v11: dark header bar (scrolls away); a fixed bar slides in after the funnel; video in the hero */
+  header.topbar{position:relative;max-width:none;margin:0;padding:0;background:var(--ink);color:#f5f3ee;display:block}
+  .tb-in{max-width:1080px;margin:0 auto;height:56px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .topbar .brand,.fbar .brand{color:#f5f3ee;font-size:22px;line-height:1;min-width:0}
+  .fbar .brand{letter-spacing:.04em}
+  .topbar .hcta,.fbar .hcta{color:var(--ink);background:#f5f3ee;border-color:#f5f3ee;padding:7px 14px}
+  .fbar{position:fixed;left:0;right:0;top:0;z-index:40;background:var(--ink);padding-top:env(safe-area-inset-top);transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  .fbar.on{transform:none}
+  @media(prefers-reduced-motion:reduce){.fbar{transition:none}}
+  .hgrid{grid-template-areas:"head" "vid" "lead" "cta";row-gap:0}
+  .hhead{grid-area:head}.hgrid>.lead{grid-area:lead}.hgrid>.ctas{grid-area:cta}.vidbox{grid-area:vid}
+  .hero .eyebrow{margin:0 0 6px}
+  .hero h1.d{margin:0 0 10px}
+  .vidbox{margin:26px auto 4px}
+  @media(min-width:860px){
+    .hgrid{grid-template-columns:1.3fr .7fr;grid-template-areas:"head vid" "lead vid" "cta vid";grid-template-rows:auto auto 1fr;column-gap:40px;align-content:center;align-items:start}
+    .vidbox{margin:0;align-self:center}
+  }
 </style>
 </head>
 <body>
-<header>
-  <a class="brand" href="https://sethquest.com">Seth Quest</a>
-  <button class="hcta" type="button" data-book>Contact</button>
+<header class="topbar" id="top">
+  <div class="tb-in">
+    <a class="brand" href="https://sethquest.com">Seth Quest</a>
+    <button class="hcta" type="button" data-book>Contact</button>
+  </div>
 </header>
+<div class="fbar" id="fbar" aria-hidden="true">
+  <div class="tb-in">
+    <a class="brand" href="#top" tabindex="-1">Make more money<span class="g">.</span></a>
+    <button class="hcta" type="button" data-book tabindex="-1">Contact</button>
+  </div>
+</div>
 
 <main>
   <section class="hero">
     <div class="wrap hgrid">
-      <div>
-        <h1 class="d">Make more money<span class="g">.</span></h1>
+      <div class="hhead">
         <div class="eyebrow">For Hamptons service businesses</div>
+        <h1 class="d">Make more money<span class="g">.</span></h1>
         <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
-        <p class="lead">I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
-        <div class="ctas">
-          <button class="btn p" type="button" data-book>Book a free sales funnel audit</button>
-        </div>
+      </div>
+      <p class="lead">I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
+      <div class="ctas">
+        <button class="btn p" type="button" data-book>Book a free sales funnel audit</button>
       </div>
       <div class="vidbox">
         <div id="vid">
@@ -354,7 +380,6 @@
             <a href="/more/make-more-money.mp4">Watch the finished video</a>.
           </video>
         </div>
-        <div class="vlabel">How to make more money</div>
       </div>
     </div>
   </section>
@@ -650,6 +675,10 @@
     el.dataset.fset=k?el.style.fontSize:'\u0000';
   })}
   fitOne();window.addEventListener('resize',fitOne);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitOne);window.addEventListener('load',fitOne);
+  /* v11: fixed bar shows only once the funnel section is fully scrolled past */
+  var fbar=document.getElementById('fbar'),storyEnd=document.getElementById('story');
+  function fbarSet(on){fbar.classList.toggle('on',on);fbar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(fbar.querySelectorAll('a,button'),function(x){x.tabIndex=on?0:-1})}
+  if('IntersectionObserver' in window&&storyEnd){new IntersectionObserver(function(es){es.forEach(function(e){fbarSet(!e.isIntersecting&&e.boundingClientRect.bottom<=0)})}).observe(storyEnd)}
   /* ---- booking modal ---- */
   var m=document.getElementById('book');
   function open(){m.hidden=false;setTimeout(function(){document.getElementById('bkX').focus()},30)}
