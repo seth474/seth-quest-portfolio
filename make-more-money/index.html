@@ -359,6 +359,18 @@
     .hgrid{grid-template-areas:"head vid" "lead vid" "cta vid"}
     .vidbox{margin:0}
   }
+  /* v13: tighter section spacing, quiz-first closing box, slim footer */
+  section.pad{padding:40px 0}
+  @media(min-width:860px){section.pad{padding:42px 0}}
+  section.pad.last{padding-bottom:28px}
+  .final .ctas{margin-top:22px}
+  .final .fnote{font-size:14px;color:#aaa;margin-top:10px}
+  .final .fcall{margin-top:18px;font-size:16px;color:#ddd}
+  .final .fcall a{color:#fff;font-weight:700;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:1px}
+  .foot{text-align:center;padding:22px 20px calc(26px + env(safe-area-inset-bottom));border-top:1px solid var(--line);font-size:13px;color:var(--mut);line-height:1.7}
+  .foot .fl1{font-family:"Bebas Neue",sans-serif;font-size:17px;letter-spacing:.12em;color:#555}
+  .foot a{color:var(--mut);text-decoration:none}
+  .foot .fl3{font-size:12px;margin-top:2px}
 </style>
 </head>
 <body>
@@ -576,17 +588,22 @@
   <section class="pad last">
     <div class="wrap">
       <div class="final">
-        <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
-        <p>Free. No pressure.</p>
+        <h2 class="d">Got 2 minutes<span class="g">?</span></h2>
+        <p>See exactly where your funnel is leaking.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-book>Book a call</button>
-          <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
+          <button class="btn p" type="button" data-quiz>Score your sales funnel</button>
         </div>
-        <button class="qlink2" type="button" data-quiz>Or score my funnel first &rarr;</button>
+        <p class="fnote">Free. Takes 2 minutes.</p>
+        <p class="fcall">Or call/text <a href="tel:+19348990796">934-899-0796</a></p>
       </div>
     </div>
   </section>
 </main>
+<footer class="foot">
+  <div class="fl1">Seth Quest &middot; East Hampton, NY</div>
+  <div class="fl2"><a href="https://sethquest.com">sethquest.com</a> &middot; <a href="tel:+19348990796">934-899-0796</a></div>
+  <div class="fl3">&copy; 2026 Seth Quest</div>
+</footer>
 
 
 
@@ -691,7 +708,10 @@
   /* v11: fixed bar shows only once the funnel section is fully scrolled past */
   var fbar=document.getElementById('fbar'),storyEnd=document.getElementById('story');
   function fbarSet(on){fbar.classList.toggle('on',on);fbar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(fbar.querySelectorAll('a,button'),function(x){x.tabIndex=on?0:-1})}
-  if('IntersectionObserver' in window&&storyEnd){new IntersectionObserver(function(es){es.forEach(function(e){fbarSet(!e.isIntersecting&&e.boundingClientRect.bottom<=0)})}).observe(storyEnd)}
+  var fbOn=null,fbT=0;function fbarCheck(){fbT=0;var on=storyEnd.getBoundingClientRect().bottom<=0;if(on!==fbOn){fbOn=on;fbarSet(on)}}
+  if('IntersectionObserver' in window&&storyEnd){new IntersectionObserver(fbarCheck).observe(storyEnd)}
+  /* also on scroll, so a jump (anchor, fast fling) past the funnel is caught */
+  window.addEventListener('scroll',function(){if(!fbT)fbT=requestAnimationFrame(fbarCheck)},{passive:true});window.addEventListener('resize',fbarCheck);fbarCheck();
   /* ---- booking modal ---- */
   var m=document.getElementById('book');
   function open(){m.hidden=false;setTimeout(function(){document.getElementById('bkX').focus()},30)}
