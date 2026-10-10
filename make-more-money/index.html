@@ -16,7 +16,7 @@
   :root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--red:#d9534f;--mut:#6b6b6b;--line:#e3e1db}
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,sans-serif;padding-bottom:84px}
+  body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,sans-serif}
   a{color:inherit}
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   .d{font-family:"Bebas Neue",Oswald,Impact,sans-serif;font-weight:400;line-height:.9;letter-spacing:.01em;text-transform:uppercase}
@@ -49,21 +49,27 @@
   section.pad{padding:56px 0;border-top:1px solid var(--line)}
   h2{font-size:clamp(46px,11vw,72px);margin:6px 0 22px}
 
-  /* ---------- scroll story: funnel stays pinned, words slide in ---------- */
-  .story{position:relative;height:calc(100svh + 5 * 70svh);border-top:1px solid var(--line)}
-  .stage{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:18px 20px 96px;overflow:hidden}
-  .stage-top{display:flex;justify-content:space-between;align-items:center;max-width:1080px;width:100%;margin:0 auto}
-  .prog{display:flex;gap:6px}
-  .prog i{width:22px;height:4px;border-radius:2px;background:var(--line);transition:background .4s}
-  .prog i.on{background:var(--ink)}
+  /* ---------- scroll story: funnel stays pinned, words fade in ---------- */
+  .story{position:relative;height:calc(100svh + 5 * 105svh);border-top:1px solid var(--line)}
+  .stage{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto auto;padding:16px 20px calc(16px + env(safe-area-inset-bottom));overflow:hidden}
+  .stage-top{display:flex;justify-content:center;align-items:center;max-width:1080px;width:100%;margin:0 auto}
+  .ftitle{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(40px,11vw,60px);line-height:.9;letter-spacing:.03em;text-transform:uppercase;text-align:center;margin:0}
+  /* horizontal progress above "Keep scrolling": thin rail, fills left to right, 5 step ticks */
+  .hprog{position:relative;justify-self:center;width:min(240px,62vw);height:3px;margin:14px 0 12px;border-radius:2px;background:var(--line);pointer-events:none}
+  .hprog .hf{position:absolute;inset:0;border-radius:2px;background:var(--ink);transform-origin:left;transform:scaleX(0);will-change:transform}
+  .hprog i{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--paper);border:2px solid var(--line);transition:border-color .3s,background .3s}
+  .hprog i.on{border-color:var(--ink)}
+  .hprog i.cur{background:var(--gb);border-color:var(--ink)}
   .fun{min-height:0;display:flex;align-items:center;justify-content:center}
   .fun svg{height:100%;max-height:600px;width:auto;max-width:100%;overflow:visible}
   .copy{position:relative;display:grid;min-height:150px}
-  .cp{grid-area:1/1;align-self:start;opacity:0;transform:translateX(-56px);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-  .cp.r{transform:translateX(56px)}
-  .cp.on{opacity:1;transform:none;pointer-events:auto}
-  .cp .k{font:600 12px Inter,sans-serif;letter-spacing:.14em;color:var(--mut)}
-  .cp h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(44px,12vw,64px);line-height:.9;margin:6px 0 8px;text-transform:uppercase}
+  /* all steps share one grid cell: the block is as tall as the longest step, text cross-fades in place */
+  .cp{grid-area:1/1;align-self:start;opacity:0;transition:opacity .45s ease;pointer-events:none}
+  .cp.on{opacity:1;pointer-events:auto}
+  .cp h3{display:flex;align-items:baseline;gap:.28em;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(44px,12vw,64px);line-height:.9;margin:0 0 8px;text-transform:uppercase}
+  .cp h3 .n{flex:none;color:var(--green);font-size:1.12em}
+  .cp h3 .t{min-width:0;overflow-wrap:anywhere}
+  .cp h3,.cp h3 .t{text-wrap:balance}
   .cp p{color:#333;max-width:34ch}
   .scrollhint{text-align:center;font:600 11px Inter,sans-serif;letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
   /* funnel drawing */
@@ -100,8 +106,8 @@
   .final .btn.p b{background:var(--ink)}
   .final .btn.o{color:#fff;border-color:#fff}
   footer{padding:28px 20px 36px;text-align:center;font:600 12px Inter,sans-serif;letter-spacing:.1em;color:var(--mut)}
-  .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(246,245,241,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
-  .bar .btn{width:100%}
+  /* sticky bottom CTA bar removed (took ~1/5 of the mobile screen); inline CTA after the funnel instead */
+  .fcta{padding:8px 20px 56px;text-align:center}
   /* modal */
   .modal{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
   .modal[hidden]{display:none}
@@ -118,24 +124,36 @@
   .err{font-size:13px;color:#c0392b;min-height:1em;margin:-2px 0 8px}
   .ok{color:var(--green)}
   @media(min-width:860px){
-    body{padding-bottom:0}
-    .bar{display:none}
     .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 190px)}
     .three{grid-template-columns:repeat(3,1fr)}
     .final{padding:56px}
-    .stage{grid-template-rows:auto 1fr;padding:24px 20px 28px}
+    .stage{grid-template-rows:auto 1fr auto;padding:24px 20px 28px}
+    .hprog{margin:10px 0 0}
     .mid{display:grid;grid-template-columns:1fr minmax(0,460px) 1fr;gap:28px;align-items:center;max-width:1180px;width:100%;margin:0 auto;min-height:0}
     .fun{grid-column:2;grid-row:1;height:100%}
     .copy{display:contents}
-    .cp{grid-row:1;grid-column:1;align-self:center;justify-self:end;text-align:right}
+    .cp{grid-row:1;grid-column:1;align-self:center;justify-self:end;text-align:right;min-height:260px}
     .cp p{margin-left:auto}
+    .cp h3{display:block}
+    .cp h3 .n{margin-right:.22em}
+    .cp.r h3{display:flex}
+    .cp.r h3 .n{margin-right:0}
     .cp.r{grid-column:3;justify-self:start;text-align:left}
     .cp.r p{margin-left:0}
     .scrollhint{display:none}
   }
   @media(max-width:859px){
-    .mid{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px;min-height:0}
+    /* fixed vertical layout: title / funnel / text / progress, with balanced space between (svh = stable on mobile) */
+    .stage{grid-template-rows:auto minmax(12px,.8fr) auto minmax(16px,1fr) auto minmax(10px,.8fr) auto auto;padding:18px 20px calc(14px + env(safe-area-inset-bottom))}
+    .mid{display:contents}
+    .stage-top{grid-row:1}
+    .fun{grid-row:3;justify-self:center;display:block;width:min(calc(100vw - 16px),calc(48svh * 648 / 572));aspect-ratio:648/572;height:auto;min-height:0;margin:0}
+    .fun svg{display:block;width:100%;height:100%;max-height:none}
+    .copy{grid-row:5;min-height:0}
+    .hprog{grid-row:7}
+    .scrollhint{grid-row:8}
     .cp,.cp.r{text-align:left}
+    .cp p{font-size:19px;line-height:1.35;font-weight:500}
     .lbl,.src{font-size:20px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -180,12 +198,11 @@
   <section class="story" id="story" aria-label="How your sales funnel makes more money">
     <div class="stage">
       <div class="stage-top">
-        <div class="eyebrow">Your sales funnel</div>
-        <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <h2 class="ftitle">Sales funnel</h2>
       </div>
       <div class="mid">
         <div class="fun">
-          <svg id="fsvg" viewBox="-110 -90 620 570" role="img" aria-label="A sales funnel: leads go in the top, leaks get fixed, money comes out the bottom">
+          <svg id="fsvg" viewBox="-124 -92 648 572" role="img" aria-label="A sales funnel: leads go in the top, leaks get fixed, money comes out the bottom">
             <ellipse class="f-rim" cx="200" cy="60" rx="160" ry="14"/>
             <path class="f-body" d="M40 60 L160 300 L160 372 M360 60 L240 300 L240 372"/>
             <g id="leaks">
@@ -225,16 +242,18 @@
           </svg>
         </div>
         <div class="copy">
-          <div class="cp on" data-i="0"><div class="k">01 / 05</div><h3>Leads come in<span class="g">.</span></h3><p>Most of your work probably comes from word of mouth, Google or Facebook. Am I right? That&rsquo;s a good start.</p></div>
-          <div class="cp r" data-i="1"><div class="k">02 / 05</div><h3>Your sales funnel leaks<span class="g">.</span></h3><p>Miss a call on the job, call back four hours later? They booked the other guy. A week to get out and quote? Gone. No follow-up? Gone.</p></div>
-          <div class="cp" data-i="2"><div class="k">03 / 05</div><h3>Fix the leaks<span class="g">.</span></h3><p>Every missed call gets a text back, right away, with a link to book. Quotes go out same day. Follow-ups are automatic. Some people are just looking. The rest is fixable.</p></div>
-          <div class="cp r" data-i="3"><div class="k">04 / 05</div><h3>Generate more leads<span class="g">.</span></h3><p>Google ads? Meta ads? An email list you actually email? Mailers, door hangers, a wrapped truck? Digital and in person. Every angle.</p></div>
-          <div class="cp" data-i="4"><div class="k">05 / 05</div><h3>Make more money<span class="g">.</span></h3><p>Fix the funnel, fill the funnel. More leads, more customers, more money.</p></div>
+          <div class="cp on" data-i="0"><h3 aria-label="Step 1 of 5: Leads come in."><span class="n" aria-hidden="true">1</span><span class="t">Leads come in<span class="g">.</span></span></h3><!-- original: <p>Most of your work probably comes from word of mouth, Google or Facebook. Am I right? That&rsquo;s a good start.</p> --><p>Word of mouth, Google, Facebook. Am I right? Good start.</p></div>
+          <div class="cp r" data-i="1"><h3 aria-label="Step 2 of 5: Your sales funnel leaks."><span class="n" aria-hidden="true">2</span><span class="t">Your sales funnel leaks<span class="g">.</span></span></h3><!-- original: <p>Miss a call on the job, call back four hours later? They booked the other guy. A week to get out and quote? Gone. No follow-up? Gone.</p> --><p>Missed call. Slow quote. No follow&#8209;up. They booked the other guy.</p></div>
+          <div class="cp" data-i="2"><h3 aria-label="Step 3 of 5: Fix the leaks."><span class="n" aria-hidden="true">3</span><span class="t">Fix the leaks<span class="g">.</span></span></h3><!-- original: <p>Every missed call gets a text back, right away, with a link to book. Quotes go out same day. Follow-ups are automatic. Some people are just looking. The rest is fixable.</p> --><p>Instant text&#8209;back on missed calls. Same&#8209;day quotes. Automatic follow&#8209;up.</p></div>
+          <div class="cp r" data-i="3"><h3 aria-label="Step 4 of 5: Generate more leads."><span class="n" aria-hidden="true">4</span><span class="t">Generate more leads<span class="g">.</span></span></h3><!-- original: <p>Google ads? Meta ads? An email list you actually email? Mailers, door hangers, a wrapped truck? Digital and in person. Every angle.</p> --><p>Google, Meta, email, mailers, door hangers, truck wrap. Every angle.</p></div>
+          <div class="cp" data-i="4"><h3 aria-label="Step 5 of 5: Make more money."><span class="n" aria-hidden="true">5</span><span class="t">Make more money<span class="g">.</span></span></h3><!-- original: <p>Fix the funnel, fill the funnel. More leads, more customers, more money.</p> --><p>Fix the funnel. Fill the funnel. More money.</p></div>
         </div>
       </div>
+      <div class="hprog" aria-hidden="true"><span class="hf"></span><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
       <div class="scrollhint">Keep scrolling</div>
     </div>
   </section>
+  <div class="fcta"><button class="btn p" type="button" data-book><b></b>Book a free 15-minute call</button></div>
 
   <section class="pad">
     <div class="wrap">
@@ -264,7 +283,7 @@
 
 <footer>SETH QUEST · EAST HAMPTON, NY · <a href="tel:+19348990796">934-899-0796</a></footer>
 
-<div class="bar"><button class="btn p" type="button" data-book><b></b>Book a free 15-minute call</button></div>
+<!-- sticky bottom bar removed v2: <div class="bar"><button class="btn p" type="button" data-book><b></b>Book a free 15-minute call</button></div> -->
 
 <div class="modal" id="book" hidden role="dialog" aria-modal="true" aria-labelledby="bkT">
   <div class="mc">
@@ -362,19 +381,20 @@
 
   /* ---- scroll story ---- */
   var story=document.getElementById('story'),svg=document.getElementById('fsvg'),dotsG=document.getElementById('dots'),fill=document.getElementById('fill');
-  var cps=[].slice.call(document.querySelectorAll('.cp')),bars=[].slice.call(document.querySelectorAll('.prog i'));
+  var cps=[].slice.call(document.querySelectorAll('.cp')),bars=[].slice.call(document.querySelectorAll('.hprog i')),hf=document.querySelector('.hprog .hf');
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var step=-1,FILL=[.12,.08,.38,.62,1];
   function setStep(i){
     if(i===step)return;step=i;
     cps.forEach(function(c,k){c.classList.toggle('on',k===i)});
-    bars.forEach(function(b,k){b.classList.toggle('on',k<=i)});
+    bars.forEach(function(b,k){b.classList.toggle('on',k<=i);b.classList.toggle('cur',k===i)});
     svg.classList.toggle('lk',i>=1);svg.classList.toggle('fixd',i>=2);svg.classList.toggle('more',i>=3);
     var h=Math.round(80*FILL[i]);fill.setAttribute('y',472-h);fill.setAttribute('height',h);
   }
   function onScroll(){
     var r=story.getBoundingClientRect(),vh=window.innerHeight,run=r.height-vh;
     var p=Math.min(Math.max(-r.top/run,0),.9999);
+    hf.style.transform='scaleX('+Math.min(p*1.25,1).toFixed(4)+')';
     setStep(Math.floor(p*5));
   }
   var ticking=false;
