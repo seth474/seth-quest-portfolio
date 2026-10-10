@@ -303,6 +303,18 @@
     html.printing .qr-p,html.printing .qr-fix li{break-inside:avoid}
     html.printing .qr-p .meter,html.printing .qr-p .meter i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
+  /* v9: one hero CTA, short guarantee */
+  .hero .eyebrow{white-space:nowrap}
+  .hero .ctas .btn.p{white-space:nowrap}
+  .guar{align-items:flex-start;padding:24px 22px;gap:16px;max-width:820px}
+  .guar h2.d{color:#fff;font-size:clamp(34px,8.5vw,56px);line-height:.95;margin:0 0 10px}
+  .guar .gi{margin-top:4px}
+  .guarantee .proj{margin-top:22px}
+  @media(max-width:859px){
+    .hero .eyebrow{font-size:12px;letter-spacing:.12em}
+    .hero .ctas .btn.p{font-size:16px;padding:0 18px;min-height:54px}
+    .hero .ctas{margin-top:22px}
+  }
 </style>
 </head>
 <body>
@@ -318,13 +330,10 @@
         <div class="eyebrow">For Hamptons service businesses</div>
         <h1 class="d">Make more money<span class="g">.</span></h1>
         <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
-        <p class="lead">I help Hamptons service businesses stop losing calls and get more leads. Every deliverable guaranteed in writing.</p>
+        <p class="lead">I help Hamptons service businesses stop losing calls and get more leads.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
-          <button class="btn o" type="button" id="watch" aria-controls="growth-video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l15 9-15 9z"/></svg><span>Watch the video</span></button>
         </div>
-        <button class="qlink" type="button" data-quiz>Score your funnel in 2 minutes &rarr;</button>
-        <p class="small">$75/hr or flat-rate. No corporate contracts. No bullshit.</p>
       </div>
       <div class="vidbox">
         <div id="vid">
@@ -398,6 +407,21 @@
     </div>
   </section>
 
+
+
+
+  <!-- QUIZ -->
+  <section class="pad quiz" id="quiz">
+    <div class="wrap">
+      <div class="qcard">
+        <div class="eyebrow">Free &middot; 2 minutes &middot; Do it yourself</div>
+        <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
+        <p>12 quick questions. Get a score out of 100, split into <strong>Leaks</strong> and <strong>Lead flow</strong>, plus a plain list of what to fix first.</p>
+        <button class="btn p" type="button" data-quiz><b></b>Score my funnel</button>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW WE WORK TOGETHER: one sequence, leaks first -->
   <section class="pad offer" id="how">
     <div class="wrap">
@@ -406,16 +430,16 @@
       <p class="sub"><strong>Fix the leaks first.</strong> Pouring more leads into a leaky funnel just wastes money. So we plug the leaks, then we fill it.</p>
       <ol class="steps">
         <li class="st0">
-          <div class="sn">0</div>
+          <div class="sn">1</div>
           <div class="sb">
-            <h3>Free sales funnel audit<span class="g">.</span></h3>
+            <h3>Free sales funnel audit call<span class="g">.</span></h3>
             <div class="price">Free &middot; 15 minutes &middot; No pressure</div>
-            <p>We look at how you get leads and where they slip away. You leave with a plan, whether you hire me or not.</p>
+            <p>We review your score together and pick where to focus for the biggest return.</p>
             <button class="btn p sm" type="button" data-book><b></b>Book a free sales funnel audit</button>
           </div>
         </li>
         <li>
-          <div class="sn">1</div>
+          <div class="sn">2</div>
           <div class="sb">
             <h3>Fix the leaks<span class="g">.</span></h3>
             <div class="price">$500 to start, then $297/mo once it&rsquo;s live</div>
@@ -430,7 +454,7 @@
           </div>
         </li>
         <li>
-          <div class="sn">2</div>
+          <div class="sn">3</div>
           <div class="sb">
             <h3>Fill the funnel<span class="g">.</span></h3>
             <div class="price">$1,250/mo &middot; 3-month minimum</div>
@@ -446,8 +470,20 @@
           </div>
         </li>
       </ol>
-      <div class="guar"><span class="gi" aria-hidden="true">✓</span><p><strong>Guaranteed or you don&rsquo;t pay.</strong> Before we start, we agree in writing on exactly what I&rsquo;ll deliver and how we&rsquo;ll measure it. If I don&rsquo;t deliver it, you don&rsquo;t pay for it.</p></div>
-      <p class="proj">Just need a specific project? $75/hr, sold in 10-hour blocks ($750), with scope agreed up front.</p>
+    </div>
+  </section>
+
+  <!-- GUARANTEE: said once -->
+  <section class="pad guarantee" id="guarantee">
+    <div class="wrap">
+      <div class="guar">
+        <span class="gi" aria-hidden="true">✓</span>
+        <div>
+          <h2 class="d">Guaranteed to improve your sales funnel, or you don&rsquo;t pay<span class="g">.</span></h2>
+          <p>We agree on the target in writing before we start.</p>
+        </div>
+      </div>
+      <p class="proj">Just need a specific project? $75/hr, sold in 10-hour blocks ($750), with scope agreed up front. No corporate contracts.</p>
     </div>
   </section>
 
@@ -487,28 +523,16 @@
     </div>
   </section>
 
-  <!-- QUIZ -->
-  <section class="pad quiz" id="quiz">
-    <div class="wrap">
-      <div class="qcard">
-        <div class="eyebrow">2 minutes &middot; 12 questions</div>
-        <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
-        <p>Get a score out of 100, split into <strong>Leaks</strong> and <strong>Lead flow</strong>, plus a plain list of what to fix first.</p>
-        <button class="btn p" type="button" data-quiz><b></b>Score your funnel in 2 minutes</button>
-      </div>
-    </div>
-  </section>
-
   <section class="pad last">
     <div class="wrap">
       <div class="final">
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
-        <p>Free sales funnel audit. No pressure. If you want help after, we fix the leaks first. Guaranteed or you don&rsquo;t pay.</p>
+        <p>Free. No pressure.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
           <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
         </div>
-        <button class="qlink2" type="button" data-quiz>Or score your funnel in 2 minutes &rarr;</button>
+        <button class="qlink2" type="button" data-quiz>Or score my funnel first &rarr;</button>
       </div>
     </div>
   </section>
@@ -597,7 +621,7 @@
   video.addEventListener('play',function(){
     if(mobileVideo.matches){openVideoFullscreen()}
   });
-  document.getElementById('watch').addEventListener('click',function(){
+  var watchBtn=document.getElementById('watch');if(watchBtn)watchBtn.addEventListener('click',function(){
     if(typeof video.webkitEnterFullscreen==='function'){video.removeAttribute('playsinline')}
     var playback=video.play();
     if(playback){playback.catch(function(){showInlineVideo();video.focus({preventScroll:true})})}
@@ -605,6 +629,15 @@
     openVideoFullscreen();
   });
 
+  /* v9: keep the hero eyebrow and main button on one line, even with large iOS text */
+  function fitOne(){[].forEach.call(document.querySelectorAll('.hero .eyebrow,.hero .ctas .btn.p'),function(el){
+    if(el.dataset.fset!==undefined&&el.style.fontSize===el.dataset.fset){el.style.fontSize=el.dataset.fsb;el.style.letterSpacing=el.dataset.lsb}else{el.dataset.fsb=el.style.fontSize;el.dataset.lsb=el.style.letterSpacing}
+    var w=el.parentNode.clientWidth,fs=parseFloat(getComputedStyle(el).fontSize),k=0;
+    if(el.classList.contains('btn'))el.style.maxWidth='100%';
+    while(el.scrollWidth>Math.min(w,el.parentNode.getBoundingClientRect().width)+0.5&&k<12){fs-=0.5;el.style.fontSize=fs+'px';if(el.classList.contains('eyebrow'))el.style.letterSpacing='.08em';k++}
+    el.dataset.fset=k?el.style.fontSize:'\u0000';
+  })}
+  fitOne();window.addEventListener('resize',fitOne);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitOne);window.addEventListener('load',fitOne);
   /* ---- booking modal ---- */
   var m=document.getElementById('book');
   function open(){m.hidden=false;setTimeout(function(){document.getElementById('bkX').focus()},30)}
@@ -841,8 +874,8 @@
   }
   var R=null;
   function verdict(r){
-    if(r.leaks<35)return 'Your funnel is leaking. Start with Step 1: Fix the leaks. More leads won&rsquo;t help until those are plugged.';
-    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s Step 2: Fill the funnel.';
+    if(r.leaks<35)return 'Your funnel is leaking. Start by fixing the leaks. More leads won&rsquo;t help until those are plugged.';
+    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s the Fill the funnel step.';
     return 'Solid funnel. A 15-minute audit will find the next few wins.';
   }
   function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}

@@ -379,8 +379,8 @@
   }
   var R=null;
   function verdict(r){
-    if(r.leaks<35)return 'Your funnel is leaking. Start with Step 1: Fix the leaks. More leads won&rsquo;t help until those are plugged.';
-    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s Step 2: Fill the funnel.';
+    if(r.leaks<35)return 'Your funnel is leaking. Start by fixing the leaks. More leads won&rsquo;t help until those are plugged.';
+    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s the Fill the funnel step.';
     return 'Solid funnel. A 15-minute audit will find the next few wins.';
   }
   function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
