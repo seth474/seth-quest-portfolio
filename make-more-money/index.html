@@ -113,12 +113,13 @@
   .modal{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
   .modal[hidden]{display:none}
   .mc{position:relative;width:100%;max-width:440px;background:var(--card);border-radius:20px;padding:28px 22px 22px;box-shadow:0 30px 80px rgba(0,0,0,.3);max-height:calc(100svh - 32px);overflow:auto}
-  .mc .d{font-size:40px}
+  .mc .d{font-size:40px;padding-right:28px;margin-bottom:22px}
   .mc p{color:#444;margin:8px 0 16px}
   .mx{position:absolute;top:10px;right:12px;background:none;border:0;font-size:26px;color:#888;cursor:pointer;line-height:1}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .two .btn{min-height:50px;font-size:16px;padding:0 10px}
-  .or{display:flex;align-items:center;gap:10px;margin:16px 0 12px;color:#888;font-size:13px;font-weight:600}
+  .two{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .two .btn{width:100%;min-height:54px;font-size:17px;padding:0 16px;white-space:nowrap}
+  .mc .mnote{margin:16px 0 0;text-align:center;font-size:13px;color:var(--mut)}
+  .or{display:flex;align-items:center;gap:10px;margin:22px 0 14px;color:#888;font-size:13px;font-weight:600}
   .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
   .fld{width:100%;min-height:50px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;font:500 16px Inter,sans-serif;margin-bottom:10px;background:#fff}
   .fld:focus{outline:none;border-color:var(--ink)}
@@ -176,6 +177,118 @@
     .cp,.cp.r{transition:opacity .3s;transform:none}
     #fill{transition:none}
   }
+  /* ---------- v7: offer, proof, quiz ---------- */
+  .hero .qlink{display:inline-block;margin-top:16px;font-weight:700;font-size:16px;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:2px;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;color:var(--ink);font-family:Inter,sans-serif}
+  .sub{font-size:19px;color:#2a2a2a;max-width:36ch;margin:-6px 0 28px}
+  .steps{list-style:none;display:grid;gap:14px}
+  .steps>li{display:grid;grid-template-columns:auto 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+  .steps>li.st0{background:transparent;border-style:dashed}
+  .sn{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--gb);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;padding-top:2px}
+  .st0 .sn{background:var(--gb);color:var(--ink)}
+  .sb{min-width:0}
+  .sb h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:36px;line-height:.95;text-transform:uppercase}
+  .price{font-weight:800;font-size:16px;margin:8px 0 12px;color:var(--ink)}
+  .pnote{font-size:15px;color:var(--mut);margin:-6px 0 14px}
+  .tnote{display:block;font-size:14px;color:var(--mut);margin-top:3px}
+  .sb p{color:#444}
+  .btn.sm{min-height:50px;font-size:16px;margin-top:16px;padding:0 18px}
+  .ticks{list-style:none;display:grid;gap:9px;color:#333}
+  .ticks li{position:relative;padding-left:26px}
+  .ticks li::before{content:"";position:absolute;left:2px;top:.42em;width:12px;height:7px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg)}
+  .when{margin-top:14px;font-weight:700;font-size:15px;color:var(--green)}
+  .guar{display:flex;gap:14px;align-items:flex-start;margin-top:22px;background:var(--ink);color:#fff;border-radius:18px;padding:20px}
+  .guar p{color:#ddd}.guar strong{color:#fff}
+  .gi{flex:none;width:34px;height:34px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800}
+  .proj{margin-top:18px;font-size:14px;color:var(--mut);max-width:52ch}
+  .case{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .ch{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-start}
+  .case h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95;text-transform:uppercase}
+  .cmeta{font:600 13px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:6px}
+  .stat{background:var(--paper);border-radius:14px;padding:12px 16px;max-width:190px}
+  .stat b{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:48px;line-height:.9;color:var(--green)}
+  .stat span{font-size:14px;font-weight:600;color:#333}
+  .cint{margin:18px 0 14px;color:#333}
+  .fixes{list-style:none;display:grid;gap:12px;counter-reset:f}
+  .fixes li{position:relative;padding-left:34px;color:#444;counter-increment:f}
+  .fixes li::before{content:counter(f);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font:700 13px/24px Inter,sans-serif;text-align:center}
+  .fixes strong{color:var(--ink)}
+  .tst{display:grid;gap:12px;margin-top:14px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .q blockquote{font-size:19px;line-height:1.5;color:#222}
+  .q blockquote::before{content:"\201C";display:block;font-family:"Bebas Neue",sans-serif;font-size:60px;line-height:.6;color:var(--green);margin-bottom:6px}
+  .who{margin-top:14px;font-weight:800}
+  .who span{display:block;font-weight:500;color:var(--mut);font-size:15px}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 22px;text-align:center}
+  .qcard h2{margin:8px 0 12px}
+  .qcard p{color:#444;max-width:40ch;margin:0 auto 22px}
+  .final .qlink2{display:inline-block;margin-top:18px;color:#fff;font-weight:700;background:none;border:0;border-bottom:2px solid var(--gb);padding:0 0 2px;cursor:pointer;font:700 16px Inter,sans-serif}
+  /* quiz modal */
+  .qz{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;justify-content:center}
+  .qz[hidden]{display:none}
+  .qz-in{width:100%;max-width:560px;height:100%;display:flex;flex-direction:column;padding:16px 20px calc(16px + env(safe-area-inset-bottom))}
+  .qz-top{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:4px 0 8px}
+  .qz-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+  .qz-bar span{display:block;height:100%;width:0;background:var(--ink);transition:width .35s ease}
+  .qz-count{font:600 12px Inter,sans-serif;letter-spacing:.12em;color:var(--mut)}
+  .qz-x{position:static;font-size:30px}
+  .qz-body{flex:1;overflow:auto;padding:28px 0 18px;-webkit-overflow-scrolling:touch}
+  .qz-k{font:600 12px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .qz-q{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(34px,9.5vw,48px);line-height:.95;text-transform:uppercase;margin:10px 0 8px}
+  .qz-h{color:#555;margin-bottom:20px}
+  .qz-opts{display:grid;gap:10px}
+  .qz-o{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:12px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font:600 17px Inter,sans-serif;color:var(--ink);text-align:left;cursor:pointer}
+  .qz-o .bx{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #cfcbc2}
+  .qz-o.multi .bx{border-radius:6px}
+  .qz-o[aria-pressed="true"],.qz-o[aria-checked="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .qz-o[aria-pressed="true"] .bx,.qz-o[aria-checked="true"] .bx{border-color:var(--ink);background:var(--gb);box-shadow:inset 0 0 0 3px #fff}
+  .qz-sel{width:100%;min-height:56px;border:1.5px solid var(--line);border-radius:14px;padding:0 14px;font:600 17px Inter,sans-serif;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+  .qz-txt{margin-top:10px}
+  .qz-nav{display:grid;grid-template-columns:auto 1fr;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .qz-nav[hidden]{display:none}
+  .qz-nav .btn{min-height:54px}
+  .qz-nav .btn:disabled{opacity:.4}
+  .qz-err{font-size:14px;color:#c0392b;min-height:1.2em;margin-top:8px}
+  .qz-gate .fld{margin-bottom:10px}
+  .qz-fine{font-size:13px;color:var(--mut);margin-top:6px}
+  /* results */
+  .qr-score{display:flex;align-items:flex-end;gap:10px;margin:8px 0 18px}
+  .qr-score b{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:96px;line-height:.8}
+  .qr-score span{font:700 18px Inter,sans-serif;color:var(--mut);padding-bottom:6px}
+  .qr-verdict{font-size:19px;font-weight:600;margin-bottom:18px}
+  .qr-parts{display:grid;gap:12px;margin-bottom:22px}
+  .qr-p{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .qr-p .row{display:flex;justify-content:space-between;font-weight:800}
+  .qr-p .meter{height:8px;border-radius:4px;background:var(--line);margin-top:10px;overflow:hidden}
+  .qr-p .meter i{display:block;height:100%;background:var(--gb);border-radius:4px}
+  .qr-p.lo .meter i{background:var(--red)}
+  .qr-h{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:30px;line-height:1;text-transform:uppercase;margin:22px 0 10px}
+  .qr-fix{list-style:none;display:grid;gap:10px}
+  .qr-fix li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:#333}
+  .qr-fix li b{display:block;color:var(--ink);margin-bottom:2px}
+  .qr-ok{color:var(--green);font-weight:700}
+  .qr-ctas{display:grid;gap:10px;margin-top:24px}
+  .qr-ctas .btn{width:100%}
+  .qr-sent{font-size:13px;color:var(--mut);margin-top:12px}
+  .qr-print-only{display:none}
+  @media(min-width:860px){
+    .steps{grid-template-columns:repeat(3,1fr);align-items:stretch}
+    .steps>li{grid-template-columns:1fr;align-content:start}
+    .guar{max-width:760px}
+    .tst{grid-template-columns:1fr 1fr}
+    .case{padding:32px}
+    .qcard{padding:48px}
+    .qz-in{padding-top:28px}
+  }
+  @media print{
+    html.printing body>*:not(.qz){display:none!important}
+    html.printing .qz{position:static;display:block!important;background:#fff}
+    html.printing .qz-top,html.printing .qz-nav,html.printing .qr-ctas,html.printing .qr-sent{display:none!important}
+    html.printing .qz-in{height:auto;max-width:none;padding:0}
+    html.printing .qz-body{overflow:visible;padding:0}
+    html.printing .qr-print-only{display:block}
+    html.printing .qr-p,html.printing .qr-fix li{break-inside:avoid}
+    html.printing .qr-p .meter,html.printing .qr-p .meter i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
 </style>
 </head>
 <body>
@@ -188,15 +301,16 @@
   <section class="hero">
     <div class="wrap hgrid">
       <div>
-        <div class="eyebrow">For local business owners</div>
+        <div class="eyebrow">For Hamptons service businesses</div>
         <h1 class="d">Make more money<span class="g">.</span></h1>
         <div class="tri"><span>More leads.</span><span>More sales.</span><span class="g">More money.</span></div>
-        <p class="lead">I find the practical ways your business can bring in more customers and close more of them. Then I help you put them in place.</p>
+        <p class="lead">I help Hamptons service businesses stop losing calls and get more leads. Every deliverable guaranteed in writing.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
           <button class="btn o" type="button" id="watch" aria-controls="growth-video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l15 9-15 9z"/></svg><span>Watch the video</span></button>
         </div>
-        <p class="small">No hard close. No big contract. Just straight answers.</p>
+        <button class="qlink" type="button" data-quiz>Score your funnel in 2 minutes &rarr;</button>
+        <p class="small">$75/hr or flat-rate. No corporate contracts. No bullshit.</p>
       </div>
       <div class="vidbox">
         <div id="vid">
@@ -270,14 +384,103 @@
     </div>
   </section>
 
-  <section class="pad">
+  <!-- HOW WE WORK TOGETHER: one sequence, leaks first -->
+  <section class="pad offer" id="how">
     <div class="wrap">
-      <div class="eyebrow">What I fix</div>
-      <h2 class="d">Three things<span class="g">.</span></h2>
-      <div class="three">
-        <div><h3>More leads<span class="g">.</span></h3><p>Show up when people search for what you do. Better Google listing, more reviews, ads that pay for themselves.</p></div>
-        <div><h3>More sales<span class="g">.</span></h3><p>Win more of the people who already call. No missed calls, faster quotes, follow-up that doesn't depend on memory.</p></div>
-        <div><h3>More money<span class="g">.</span></h3><p>Keep more of what you make. Smarter pricing and less time lost to busywork.</p></div>
+      <div class="eyebrow">The plan</div>
+      <h2 class="d">How we work together<span class="g">.</span></h2>
+      <p class="sub"><strong>Fix the leaks first.</strong> Pouring more leads into a leaky funnel just wastes money. So we plug the leaks, then we fill it.</p>
+      <ol class="steps">
+        <li class="st0">
+          <div class="sn">0</div>
+          <div class="sb">
+            <h3>Free sales funnel audit<span class="g">.</span></h3>
+            <div class="price">Free &middot; 15 minutes &middot; No pressure</div>
+            <p>We look at how you get leads and where they slip away. You leave with a plan, whether you hire me or not.</p>
+            <button class="btn p sm" type="button" data-book><b></b>Book a free sales funnel audit</button>
+          </div>
+        </li>
+        <li>
+          <div class="sn">1</div>
+          <div class="sb">
+            <h3>Fix the leaks<span class="g">.</span></h3>
+            <div class="price">$500 to start, then $297/mo once it&rsquo;s live</div>
+            <div class="pnote">Cancel anytime.</div>
+            <ul class="ticks">
+              <li>Missed-call text-back. Keeps your current number.</li>
+              <li>One-tap booking.</li>
+              <li>Automatic follow-up on quotes.</li>
+              <li>Review requests after every job.</li>
+            </ul>
+            <div class="when">Live in about 2 weeks.</div>
+          </div>
+        </li>
+        <li>
+          <div class="sn">2</div>
+          <div class="sb">
+            <h3>Fill the funnel<span class="g">.</span></h3>
+            <div class="price">$1,250/mo &middot; 3-month minimum</div>
+            <div class="pnote">Billed at the start of each month. Includes Fix the leaks. After 3 months, keep growing or drop to $297/mo.</div>
+            <ul class="ticks">
+              <li>Google Business Profile optimization.</li>
+              <li>Google sponsored ads, set up and managed.</li>
+              <li>2 new 30-second video ads every month to A/B test, on Facebook, Instagram, YouTube Shorts and TikTok.<span class="tnote">Ad spend extra. Extra ads $300 each.</span></li>
+              <li>Call tracking, so you know where every job came from.</li>
+              <li>A weekly plan, plus a weekly check-in.</li>
+              <li>Everything in Fix the leaks.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+      <div class="guar"><span class="gi" aria-hidden="true">✓</span><p><strong>Guaranteed or you don&rsquo;t pay.</strong> Before we start, we agree in writing on exactly what I&rsquo;ll deliver and how we&rsquo;ll measure it. If I don&rsquo;t deliver it, you don&rsquo;t pay for it.</p></div>
+      <p class="proj">Just need a specific project? $75/hr, sold in 10-hour blocks ($750), with scope agreed up front.</p>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="pad proof" id="results">
+    <div class="wrap">
+      <div class="eyebrow">Proof</div>
+      <h2 class="d">Real results<span class="g">.</span></h2>
+      <article class="case">
+        <div class="ch">
+          <div>
+            <h3>Hamptons Adventure Company</h3>
+            <div class="cmeta">E-bike tours &middot; Montauk</div>
+          </div>
+          <div class="stat"><b>+50%</b><span>more clicks on their Google Ads</span></div>
+        </div>
+        <p class="cint">An AI audit of their Google Business Profile and ads turned up four leaks. All four got fixed.</p>
+        <ul class="fixes">
+          <li><strong>Calls from Google weren&rsquo;t going through.</strong> The wrong phone number was listed. Fixed.</li>
+          <li><strong>Old photos.</strong> Replaced with professional drone photos.</li>
+          <li><strong>Customers went to the wrong place.</strong> The public strip-mall address had people showing up at the shop instead of the Montauk tour meeting spot. Switched to a service-area listing.</li>
+          <li><strong>Google Ads settings fixed.</strong> Daily budget went from $10 to $20, and the ads now point to the right page. Result: 50% more clicks.</li>
+        </ul>
+      </article>
+      <div class="tst">
+        <figure class="q">
+          <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond.</blockquote>
+          <figcaption class="who">Andrew Hewitt<span>Founder, Elua</span></figcaption>
+        </figure>
+        <!-- COMING SOON: Hamptons Adventure Company testimonial (Ryan). Paste Ryan's exact words, check the attribution with him, then uncomment.
+        <figure class="q">
+          <blockquote>[Ryan's quote goes here, word for word]</blockquote>
+          <figcaption class="who">Ryan<span>Hamptons Adventure Company, Montauk</span></figcaption>
+        </figure>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="pad quiz" id="quiz">
+    <div class="wrap">
+      <div class="qcard">
+        <div class="eyebrow">2 minutes &middot; 12 questions</div>
+        <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
+        <p>Get a score out of 100, split into <strong>Leaks</strong> and <strong>Lead flow</strong>, plus a plain list of what to fix first.</p>
+        <button class="btn p" type="button" data-quiz><b></b>Score your funnel in 2 minutes</button>
       </div>
     </div>
   </section>
@@ -286,11 +489,12 @@
     <div class="wrap">
       <div class="final">
         <h2 class="d">Got 15 minutes<span class="g">?</span></h2>
-        <p>Free, no pressure. If you want help after, it&rsquo;s $75 an hour. No big corporate contract.</p>
+        <p>Free sales funnel audit. No pressure. If you want help after, we fix the leaks first. Guaranteed or you don&rsquo;t pay.</p>
         <div class="ctas">
           <button class="btn p" type="button" data-book><b></b>Book a free sales funnel audit</button>
           <a class="btn o" href="tel:+19348990796">Call 934-899-0796</a>
         </div>
+        <button class="qlink2" type="button" data-quiz>Or score your funnel in 2 minutes &rarr;</button>
       </div>
     </div>
   </section>
@@ -301,21 +505,35 @@
 <div class="modal" id="book" hidden role="dialog" aria-modal="true" aria-labelledby="bkT">
   <div class="mc">
     <button class="mx" type="button" id="bkX" aria-label="Close">×</button>
-    <div class="eyebrow">Free · 15 minutes · No pressure</div>
     <div class="d" id="bkT">Book a free sales funnel audit<span class="g">.</span></div>
-    <p>Fastest way: text or call me and we'll pick a time.</p>
     <div class="two">
       <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27d%20like%20a%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text Seth</a>
       <a class="btn o" href="tel:+19348990796">📞 Call Seth</a>
     </div>
     <div class="or">or leave your info and I'll reach out</div>
     <form id="bkF" novalidate>
-      <input class="fld" id="bkN" type="text" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <input class="fld" id="bkB" type="text" autocomplete="organization" placeholder="Business name" aria-label="Business name">
-      <input class="fld" id="bkC" type="text" inputmode="email" autocomplete="email" placeholder="Cell or email" aria-label="Cell or email">
+      <input class="fld" id="bkN" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name">
+      <input class="fld" id="bkC" type="text" inputmode="email" autocomplete="tel" placeholder="Cell or email" aria-label="Cell or email">
       <div class="err" id="bkE"></div>
-      <button class="btn p" id="bkS" type="submit" style="width:100%">Book a free sales funnel audit</button>
+      <button class="btn p" id="bkS" type="submit" style="width:100%">Book my free audit</button>
     </form>
+    <p class="mnote">Free 15-minute call. No pressure.</p>
+  </div>
+</div>
+
+<!-- QUIZ MODAL: one question per screen -->
+<div class="qz" id="qz" hidden role="dialog" aria-modal="true" aria-labelledby="qzT">
+  <div class="qz-in">
+    <div class="qz-top">
+      <div class="qz-bar" aria-hidden="true"><span id="qzBar"></span></div>
+      <div class="qz-count" id="qzCount"></div>
+      <button class="mx qz-x" type="button" id="qzX" aria-label="Close">×</button>
+    </div>
+    <div class="qz-body" id="qzBody" aria-live="polite"></div>
+    <div class="qz-nav" id="qzNav">
+      <button class="btn o qz-back" type="button" id="qzBack">Back</button>
+      <button class="btn p qz-next" type="button" id="qzNext">Next</button>
+    </div>
   </div>
 </div>
 
@@ -384,12 +602,14 @@
   var f=document.getElementById('bkF'),er=document.getElementById('bkE'),s=document.getElementById('bkS');
   f.addEventListener('submit',function(e){
     e.preventDefault();er.textContent='';er.className='err';
-    var n=document.getElementById('bkN').value.trim(),b=document.getElementById('bkB').value.trim(),c=document.getElementById('bkC').value.trim(),dg=c.replace(/[^0-9]/g,'');
-    if(!(c.indexOf('@')>0||dg.length>=10)){er.textContent='Add a cell number or email so I can reach you.';return}
+    var n=document.getElementById('bkN').value.trim(),c=document.getElementById('bkC').value.trim(),dg=c.replace(/[^0-9]/g,'');
+    var isEmail=/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(c),isPhone=/^[0-9+().\-\s]+$/.test(c)&&(dg.length===10||(dg.length===11&&dg[0]==='1'));
+    if(!n){er.textContent='Add your first name.';return}
+    if(!isEmail&&!isPhone){er.textContent='Add a cell number (10 digits) or an email.';return}
     s.disabled=true;s.textContent='Sending…';
-    fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(Object.assign({_subject:'Growth call request: '+(b||n||c),name:n,business:b,contact:c,source:'sethquest.com/make-more-money'},c.indexOf('@')>0?{email:c}:{}))})
+    fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(Object.assign({_subject:'Sales funnel audit request: '+n+' ('+c+')',name:n,contact:c,contact_type:isEmail?'email':'phone',source:'sethquest.com/make-more-money'},isEmail?{email:c}:{phone:c}))})
       .then(function(r){if(!r.ok)throw 0;s.textContent='Sent ✓';er.className='err ok';er.textContent='Got it. I’ll reach out today to set a time.'})
-      .catch(function(){s.disabled=false;s.textContent='Book a free sales funnel audit';er.textContent='That didn’t go through. Text or call 934-899-0796.'});
+      .catch(function(){s.disabled=false;s.textContent='Book my free audit';er.textContent='That didn’t go through. Text or call 934-899-0796.'});
   });
 
   /* ---- scroll story ---- */
@@ -491,6 +711,135 @@
       if(e.isIntersecting&&!running){running=true;last=performance.now();requestAnimationFrame(frame)}
       else if(!e.isIntersecting){running=false}
     })}).observe(story);
+  }
+})();
+</script>
+<script>
+/* ---- v7: Score your sales funnel quiz ---- */
+(function(){
+  var FORM='https://formspree.io/f/meaonlel'; /* same Formspree form as the booking popup */
+  var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
+  var Q=[
+    {id:'trade',type:'select',k:'About you',q:'What&rsquo;s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
+    {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
+    {id:'sources',type:'multi',k:'Lead flow',q:'Where do your leads come from?',h:'Pick all that you use.',opts:[['gbp','Google Business Profile'],['gads','Google Ads / sponsored'],['meta','Facebook / Instagram ads'],['yt','YouTube'],['web','Website'],['ref','Referrals / word of mouth'],['email','Email list'],['mail','Mailers / door hangers'],['wrap','Truck wrap']]},
+    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return calls?',opts:[['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later']]},
+    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:YNN},
+    {id:'quotes',type:'one',k:'Leaks',q:'How fast do your quotes go out?',opts:[['same','Same day'],['few','In 2 to 3 days'],['week','A week or more'],['ns','Not sure']]},
+    {id:'followup',type:'one',k:'Leaks',q:'Do you follow up on quotes that go unanswered?',opts:YNN},
+    {id:'reviewask',type:'one',k:'Leaks',q:'Do you ask for a review after every job?',opts:YNN},
+    {id:'reviews',type:'one',k:'Lead flow',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
+    {id:'ltv',type:'one',k:'Lead flow',q:'Do you know what a customer is worth over time?',h:'Customer lifetime value: everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'cac',type:'one',k:'Lead flow',q:'Do you know what it costs you to get a customer?',h:'Cost to get a customer (CAC): what you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'leads',type:'one',k:'Lead flow',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
+  ];
+  var N=Q.length,A={},i=0,lead=null;
+  var qz=document.getElementById('qz'),body=document.getElementById('qzBody'),bar=document.getElementById('qzBar'),cnt=document.getElementById('qzCount'),nav=document.getElementById('qzNav'),back=document.getElementById('qzBack'),next=document.getElementById('qzNext');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function txt(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent}
+  function label(q,v){for(var j=0;j<q.opts.length;j++){var o=q.opts[j];if((o[0]||o)===v||o===v)return txt(o[1]||o)}return v}
+  function openQ(){qz.hidden=false;document.documentElement.style.overflow='hidden';if(i>N+1)i=0;render();setTimeout(function(){document.getElementById('qzX').focus()},30)}
+  function closeQ(){qz.hidden=true;document.documentElement.style.overflow=''}
+  document.querySelectorAll('[data-quiz]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openQ()})});
+  document.getElementById('qzX').addEventListener('click',closeQ);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!qz.hidden)closeQ()});
+  function answered(q){var v=A[q.id];if(q.type==='multi')return true;if(!v)return false;if(q.other&&v==='Other')return !!(A[q.id+'_other']||'').trim();return true}
+  function progress(){var p=Math.min(i,N)/N;bar.style.width=(p*100)+'%';cnt.textContent=i<N?(i+1)+' / '+N:(i===N?'Last step':'Your score')}
+  function render(){
+    progress();nav.hidden=false;back.disabled=i===0;
+    if(i<N){var q=Q[i],h='<div class="qz-k">'+q.k+'</div><h2 class="qz-q" id="qzT">'+q.q+'</h2>'+(q.h?'<p class="qz-h">'+q.h+'</p>':'<p class="qz-h"></p>');
+      if(q.type==='select'){h+='<select class="qz-sel" id="qzSel" aria-label="'+esc(txt(q.q))+'"><option value="">Choose one</option>'+q.opts.map(function(o){var t=txt(o);return '<option'+(A[q.id]===t?' selected':'')+'>'+o+'</option>'}).join('')+'</select>';
+        if(q.other)h+='<input class="fld qz-txt" id="qzOther" type="text" placeholder="Your town" aria-label="Your town" value="'+esc(A[q.id+'_other']||'')+'"'+(A[q.id]==='Other'?'':' hidden')+'>';}
+      else{var multi=q.type==='multi',cur=A[q.id]||(multi?[]:'');
+        h+='<div class="qz-opts" role="'+(multi?'group':'radiogroup')+'">'+q.opts.map(function(o){var on=multi?cur.indexOf(o[0])>=0:cur===o[0];return '<button type="button" class="qz-o'+(multi?' multi':'')+'" data-v="'+o[0]+'" role="'+(multi?'checkbox':'radio')+'" aria-'+(multi?'checked':'checked')+'="'+on+'"><span class="bx"></span>'+o[1]+'</button>'}).join('')+'</div>';}
+      h+='<div class="qz-err" id="qzErr"></div>';body.innerHTML=h;
+      next.textContent=i===N-1?'See my score':'Next';
+      if(q.type==='select'){var sel=document.getElementById('qzSel'),ot=document.getElementById('qzOther');
+        sel.addEventListener('change',function(){A[q.id]=sel.value;if(ot){ot.hidden=sel.value!=='Other';if(!ot.hidden)ot.focus()}});
+        if(ot)ot.addEventListener('input',function(){A[q.id+'_other']=ot.value});}
+      else body.querySelectorAll('.qz-o').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.v;
+        if(q.type==='multi'){var a=A[q.id]||[];var k=a.indexOf(v);k<0?a.push(v):a.splice(k,1);A[q.id]=a;b.setAttribute('aria-checked',k<0)}
+        else{A[q.id]=v;body.querySelectorAll('.qz-o').forEach(function(x){x.setAttribute('aria-checked',x===b)});setTimeout(function(){if(Q[i]===q)go(1)},260)}})});
+    } else if(i===N){
+      body.innerHTML='<div class="qz-k">Last step</div><h2 class="qz-q" id="qzT">See your score.</h2><p class="qz-h">Your score shows up right after this. I&rsquo;ll get a copy too, so I can walk you through it if you want.</p>'+
+        '<form class="qz-gate" id="qzGate" novalidate><input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="'+esc((lead&&lead.name)||'')+'"><input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc((lead&&lead.business)||'')+'"><input class="fld" id="gP" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone" value="'+esc((lead&&lead.phone)||'')+'">'+
+        '<div class="qz-err" id="qzErr"></div><p class="qz-fine">No spam. No sales pitch you didn&rsquo;t ask for.</p></form>';
+      next.textContent='Show my score';
+      document.getElementById('qzGate').addEventListener('submit',function(e){e.preventDefault();go(1)});
+    } else results();
+  }
+  function err(t){var e=document.getElementById('qzErr');if(e)e.textContent=t}
+  function go(d){
+    if(d>0){
+      if(i<N&&!answered(Q[i])){err(Q[i].type==='select'?'Pick one to keep going.':'Pick an answer to keep going.');return}
+      if(i===N){var n=document.getElementById('gN').value.trim(),b=document.getElementById('gB').value.trim(),p=document.getElementById('gP').value.trim(),pd=p.replace(/[^0-9]/g,'');
+        lead={name:n,business:b,phone:p};
+        if(!n||!b){err('Add your first name and business.');return}
+        if(!/^[0-9+().\-\s]+$/.test(p)||!(pd.length===10||(pd.length===11&&pd[0]==='1'))){err('Add a cell number (10 digits).');return}
+        i++;render();send();body.scrollTop=0;return}
+    }
+    i=Math.max(0,i+d);render();body.scrollTop=0;
+  }
+  back.addEventListener('click',function(){if(i>N){i=N}go(-1)});
+  next.addEventListener('click',function(){go(1)});
+
+  /* scoring: Leaks 50 + Lead flow 50 */
+  function score(){
+    var s=A.sources||[],L=0,F=0,fl=[],ff=[];
+    L+={instant:12,hour:8,day:4,next:0}[A.speed]||0;
+    if(A.speed!=='instant')fl.push(['Call back within 5 minutes.','Most people call the next company on the list if nobody picks up.']);
+    L+={yes:10,ns:3,no:0}[A.textback]||0;
+    if(A.textback!=='yes')fl.push(['Turn on missed-call text-back.','Every missed call gets a text right away with a link to book. Same phone number.']);
+    L+={same:10,few:5,week:0,ns:2}[A.quotes]||0;
+    if(A.quotes!=='same')fl.push(['Send quotes the same day.','The fastest quote usually wins the job.']);
+    L+={yes:10,ns:3,no:0}[A.followup]||0;
+    if(A.followup!=='yes')fl.push(['Follow up on every quote, automatically.','A quick text on day 2, day 5 and day 10 wins back jobs you&rsquo;d lose.']);
+    L+={yes:8,ns:2,no:0}[A.reviewask]||0;
+    if(A.reviewask!=='yes')fl.push(['Ask for a review after every job.','Automatic text with a one-tap link to your Google page.']);
+    var W={gbp:6,gads:4,meta:3,yt:2,web:3,ref:2,email:1,mail:1,wrap:1},sp=0;s.forEach(function(k){sp+=W[k]||0});F+=Math.min(sp,22);
+    if(s.indexOf('gbp')<0)ff.push(['Claim and fix your Google Business Profile.','It&rsquo;s free, and it&rsquo;s where locals look first.']);
+    if(s.indexOf('gads')<0)ff.push(['Run Google sponsored ads for your trade and town.','Show up first when someone nearby searches for what you do.']);
+    if(s.indexOf('meta')<0&&s.indexOf('yt')<0)ff.push(['Turn your real work into video ads.','Short clips from your jobs, running on Facebook, Instagram and YouTube.']);
+    if(s.indexOf('web')<0)ff.push(['Get a simple page that makes it one tap to call or book.','No big website needed.']);
+    F+={'0':0,'11':4,'51':7,'100':10,ns:1}[A.reviews]||0;
+    if(A.reviews!=='100'&&A.reviews!=='51')ff.push(['Get to 50+ Google reviews.','It&rsquo;s the first thing people compare.']);
+    F+={yes:5,no:1,what:0}[A.ltv]||0;
+    if(A.ltv!=='yes')ff.push(['Know what a customer is worth.','Then you know what you can afford to spend to win one.']);
+    F+={yes:5,no:1,what:0}[A.cac]||0;
+    if(A.cac!=='yes')ff.push(['Know what it costs to get a customer.','So you only pay for ads that pay you back.']);
+    F+={'0':1,'11':3,'31':6,'75':8,ns:0}[A.leads]||0;
+    return {total:L+F,leaks:L,flow:F,fl:fl,ff:ff};
+  }
+  var R=null;
+  function verdict(r){
+    if(r.leaks<35)return 'Your funnel is leaking. Start with Step 1: Fix the leaks. More leads won&rsquo;t help until those are plugged.';
+    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s Step 2: Fill the funnel.';
+    return 'Solid funnel. A 15-minute audit will find the next few wins.';
+  }
+  function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
+  function results(){
+    R=score();nav.hidden=true;var d=new Date();
+    body.innerHTML='<div class="qr" id="qrReport"><div class="qr-print-only"><div class="brand" style="font-size:26px">Seth Quest</div><p>Sales funnel score for '+esc(lead.business)+' ('+esc(lead.name)+') &middot; '+d.toLocaleDateString()+'</p></div>'+
+      '<div class="qz-k">Your sales funnel score</div><div class="qr-score"><b id="qrTotal">'+R.total+'</b><span>/ 100</span></div><p class="qr-verdict">'+verdict(R)+'</p>'+
+      '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span>'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
+      '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span>'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
+      '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+
+      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook"><b></b>Book a free sales funnel audit</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
+      '<p class="qr-print-only" style="margin-top:20px">Free 15-minute sales funnel audit: text or call Seth at 934-899-0796 &middot; sethquest.com/make-more-money</p>'+
+      '<p class="qr-sent" id="qrSent"></p></div>';
+    document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
+      var f=function(id,v){var e=document.getElementById(id);if(e&&!e.value)e.value=v||''};f('bkN',lead.name);f('bkC',lead.phone)});
+    document.getElementById('qrPrint').addEventListener('click',function(){document.documentElement.classList.add('printing');window.print()});
+  }
+  window.addEventListener('afterprint',function(){document.documentElement.classList.remove('printing')});
+  function send(){
+    var r=score(),ans={};Q.forEach(function(q){var v=A[q.id];ans[q.id]=q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:v):label(q,v))});
+    var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,
+      score:r.total+'/100',leaks:r.leaks+'/50',lead_flow:r.flow+'/50',source:'sethquest.com/make-more-money quiz'},ans);
+    var el=function(){return document.getElementById('qrSent')};
+    fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(x){if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your score.'})
+      .catch(function(){if(el())el().textContent='Couldn’t send your copy to Seth. Text or call 934-899-0796 and he’ll walk you through it.'});
   }
 })();
 </script>
