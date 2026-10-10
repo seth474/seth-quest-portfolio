@@ -228,7 +228,9 @@
   .tst{display:grid;gap:12px;margin-top:14px}
   .q{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
   .q blockquote{font-size:19px;line-height:1.5;color:#222}
-  .q blockquote::before{content:"\201C";display:block;font-family:"Bebas Neue",sans-serif;font-size:60px;line-height:.6;color:var(--green);margin-bottom:6px}
+  .q blockquote::before{content:"\201C"}
+  .q blockquote::after{content:"\201D"}
+  .tst-h{margin-top:64px}
   .who{margin-top:14px;font-weight:800}
   .who span{display:block;font-weight:500;color:var(--mut);font-size:15px}
   .qcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 22px;text-align:center}
@@ -517,6 +519,7 @@
           <li><strong>50% more clicks to their site.</strong> Optimized their Google Ads budget and keyword settings.</li>
         </ul>
       </article>
+      <h2 class="d tst-h">Testimonials<span class="g">.</span></h2>
       <div class="tst">
         <figure class="q">
           <blockquote>Seth brought much better clarity and flow to our operations, a real win for the team. He works fast and hits deadlines, and his output consistently goes above and beyond.</blockquote>
