@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Lead report · Seth Quest</title>
+<meta name="theme-color" content="#f6f5f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--red:#d9534f;--mut:#6b6b6b;--line:#e3e1db}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,sans-serif}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .d{font-family:"Bebas Neue",Oswald,Impact,sans-serif;font-weight:400;line-height:.9;letter-spacing:.01em;text-transform:uppercase}
+  .g{color:var(--green)}
+  header{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:24px 20px}
+  .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none}
+  .hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;background:none;cursor:pointer;color:var(--ink)}
+  .brand,.hcta{white-space:nowrap}
+  .hero{padding:48px 0 56px}
+  .hgrid{display:grid;gap:32px;align-items:center}
+  .hgrid>*{min-width:0}
+  .eyebrow{font:600 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  h1{font-size:clamp(76px,22vw,150px);margin:8px 0 6px}
+  .tri{font-family:"Bebas Neue",sans-serif;font-size:clamp(28px,7.5vw,42px);line-height:1.05;letter-spacing:.01em}
+  .tri span{display:block}
+  .lead{font-size:19px;max-width:32ch;margin-top:18px;color:#2a2a2a}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:999px;font:800 17px Inter,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .15s}
+  .btn{text-wrap:balance;line-height:1.2}
+  .btn:active{transform:scale(.97)}
+  .btn.p{background:var(--ink);color:#fff}
+  .btn.p b{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gb);margin-right:2px}
+  .btn.o{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  #watch{-webkit-appearance:none;appearance:none;line-height:1.2;white-space:nowrap;box-shadow:none;text-align:center}
+  #watch svg{width:16px;height:16px;flex:none;fill:currentColor}
+  #vid video:fullscreen{width:100%;height:100%;object-fit:contain;background:#000}
+  .small{font-size:14px;color:var(--mut);margin-top:12px}
+  .vidbox{justify-self:center;width:100%;max-width:320px}
+  #vid{position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.18)}
+  #vid video{display:block;width:100%;height:100%;object-fit:contain}
+  .vlabel{text-align:center;font:600 12px Inter,sans-serif;letter-spacing:.14em;color:var(--mut);margin-top:12px;text-transform:uppercase}
+  section.pad{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(46px,11vw,72px);margin:6px 0 22px}
+
+  /* ---------- scroll story: funnel stays pinned, words fade in ---------- */
+  .story{position:relative;height:calc(100svh + 5 * 105svh);height:calc(var(--stageh,100svh) + 5 * 105svh);border-top:1px solid var(--line)}
+  .stage{position:sticky;top:0;height:100svh;height:var(--stageh,100svh);display:grid;grid-template-rows:auto 1fr auto auto;padding:16px 20px calc(16px + env(safe-area-inset-bottom));overflow:hidden}
+  .stage-top{display:flex;justify-content:center;align-items:center;max-width:1080px;width:100%;margin:0 auto}
+  .ftitle{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(40px,11vw,60px);line-height:.9;letter-spacing:.03em;text-transform:uppercase;text-align:center;margin:0}
+  /* horizontal progress above "Keep scrolling": thin rail, fills left to right, 5 step ticks */
+  .hprog{position:relative;justify-self:center;width:min(240px,62vw);height:3px;margin:14px 0 12px;border-radius:2px;background:var(--line);pointer-events:none}
+  .hprog .hf{position:absolute;inset:0;border-radius:2px;background:var(--ink);transform-origin:left;transform:scaleX(0);will-change:transform}
+  .hprog i{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--paper);border:2px solid var(--line);transition:border-color .3s,background .3s}
+  .hprog i.on{border-color:var(--ink)}
+  .hprog i.cur{background:var(--gb);border-color:var(--ink)}
+  .fun{min-height:0;display:flex;align-items:center;justify-content:center}
+  .fun svg{height:100%;max-height:600px;width:auto;max-width:100%;overflow:visible}
+  .copy{position:relative;display:grid;min-height:150px}
+  /* all steps share one grid cell: the block is as tall as the longest step, text cross-fades in place */
+  .cp{grid-area:1/1;align-self:start;opacity:0;transition:opacity .45s ease;pointer-events:none}
+  .cp.on{opacity:1;pointer-events:auto}
+  .cp h3{display:flex;align-items:baseline;gap:.28em;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(44px,12vw,64px);line-height:.9;margin:0 0 8px;text-transform:uppercase}
+  .cp h3 .n{flex:none;color:var(--green);font-size:1.12em}
+  .cp h3 .t{min-width:0;overflow-wrap:anywhere}
+  .cp h3,.cp h3 .t{text-wrap:balance}
+  .cp p{color:#333;max-width:34ch}
+  .scrollhint{text-align:center;font:600 11px Inter,sans-serif;letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
+  /* funnel drawing */
+  .f-body{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+  .f-rim{fill:none;stroke:var(--ink);stroke-width:2.5}
+  .hole{fill:var(--paper);stroke:var(--red);stroke-width:2.5;opacity:0;transition:opacity .5s,fill .5s,stroke .5s}
+  .lk .hole{opacity:1}
+  .fixd .hole{fill:var(--gb);stroke:var(--green)}
+  .src{font:600 15px Inter,sans-serif;fill:var(--mut);transition:fill .5s}
+  .more .src{fill:var(--ink)}
+  .src.add{opacity:0;transition:opacity .6s,fill .5s}
+  .more .src.add{opacity:1;fill:var(--ink)}
+  .hole.keep,.fixd .hole.keep{fill:var(--paper);stroke:#a9a59b}
+  .lbl.keep,.fixd .lbl.keep{fill:#a9a59b}
+  .dot.k{fill:#a9a59b}
+  .lbl{font:600 15px Inter,sans-serif;fill:var(--red);opacity:0;transition:opacity .5s,fill .5s}
+  .lk .lbl{opacity:1}
+  .fixd .lbl{fill:var(--green)}
+  .bin{fill:none;stroke:var(--ink);stroke-width:2.5}
+  #fill{fill:var(--gb);transition:y 1s cubic-bezier(.2,.8,.2,1),height 1s cubic-bezier(.2,.8,.2,1)}
+  .binlbl{font-family:"Bebas Neue",sans-serif;font-size:30px;fill:var(--ink);letter-spacing:.02em}
+  .dot{fill:var(--ink)}
+  .dot.x{fill:var(--red)}
+
+  .three{display:grid;gap:12px}
+  .three div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .three h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95}
+  .three p{color:#444;margin-top:8px}
+  .final{background:var(--ink);color:#fff;border-radius:24px;padding:40px 24px;text-align:center}
+  .final h2{margin:0 0 10px}
+  .final p{color:#ccc;max-width:40ch;margin:0 auto}
+  .final .ctas{justify-content:center}
+  .final .btn.p{background:var(--gb);color:var(--ink)}
+  .final .btn.p b{background:var(--ink)}
+  .final .btn.o{color:#fff;border-color:#fff}
+  /* sticky bottom CTA bar removed (took ~1/5 of the mobile screen) */
+  section.pad.last{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal[hidden]{display:none}
+  .mc{position:relative;width:100%;max-width:440px;background:var(--card);border-radius:20px;padding:28px 22px 22px;box-shadow:0 30px 80px rgba(0,0,0,.3);max-height:calc(100svh - 32px);overflow:auto}
+  .mc .d{font-size:40px;padding-right:28px;margin-bottom:22px}
+  .mc p{color:#444;margin:8px 0 16px}
+  .mx{position:absolute;top:10px;right:12px;background:none;border:0;font-size:26px;color:#888;cursor:pointer;line-height:1}
+  .two{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .two .btn{width:100%;min-height:54px;font-size:17px;padding:0 16px;white-space:nowrap}
+  .mc .mnote{margin:16px 0 0;text-align:center;font-size:13px;color:var(--mut)}
+  .or{display:flex;align-items:center;gap:10px;margin:22px 0 14px;color:#888;font-size:13px;font-weight:600}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .fld{width:100%;min-height:50px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;font:500 16px Inter,sans-serif;margin-bottom:10px;background:#fff}
+  .fld:focus{outline:none;border-color:var(--ink)}
+  .err{font-size:13px;color:#c0392b;min-height:1em;margin:-2px 0 8px}
+  /* v7c: phones, the whole contact popup fits on one screen (incl. iOS larger text) */
+  @media(max-width:859px){
+    .modal{padding:12px}
+    .mc{padding:20px 20px 16px;border-radius:18px;max-height:calc(100svh - 24px)}
+    .mc .d{font-size:32px;line-height:.95;margin-bottom:16px;padding-right:30px}
+    .mx{top:8px;right:10px}
+    .two{gap:8px}
+    .two .btn{min-height:44px;font-size:15px;padding:0 14px}
+    .mc .or{margin:16px 0 10px}
+    .mc .fld{min-height:46px;margin-bottom:8px}
+    .mc .err{margin:0 0 6px}
+    #bkS{min-height:50px}
+    .mc .mnote{margin-top:10px}
+  }
+  .ok{color:var(--green)}
+  @media(min-width:860px){
+    .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 190px)}
+    .three{grid-template-columns:repeat(3,1fr)}
+    .final{padding:56px}
+    .stage{grid-template-rows:auto 1fr auto;padding:24px 20px 28px}
+    .hprog{margin:10px 0 0}
+    .mid{display:grid;grid-template-columns:1fr minmax(0,460px) 1fr;gap:28px;align-items:center;max-width:1180px;width:100%;margin:0 auto;min-height:0}
+    .fun{grid-column:2;grid-row:1;height:100%}
+    .copy{display:contents}
+    .cp{grid-row:1;grid-column:1;align-self:center;justify-self:end;text-align:right;min-height:260px}
+    .cp p{margin-left:auto}
+    .cp h3{display:block}
+    .cp h3 .n{margin-right:.22em}
+    .cp.r h3{display:flex}
+    .cp.r h3 .n{margin-right:0}
+    .cp.r{grid-column:3;justify-self:start;text-align:left}
+    .cp.r p{margin-left:0}
+    .scrollhint{display:none}
+  }
+  @media(max-width:859px){
+    /* phones: hero scaled down so headline, subhead, intro and CTA fit the first screen */
+    header{padding:16px 20px}
+    .hero{padding:18px 0 44px}
+    h1{font-size:clamp(52px,16vw,150px);margin:6px 0 8px}
+    .tri{font-size:clamp(21px,6vw,42px)}
+    .lead{font-size:17px;line-height:1.5;margin-top:14px}
+    .hero .ctas{margin-top:20px}
+    /* phones: the pinned funnel section is a fixed grid
+       title | space | funnel | space | step text | space | progress | keep scrolling
+       - the funnel row grows to the drawing's full-width height and is the only row that shrinks
+         (to 110px min) when height is short; the SVG is filled into it with meet, so the $ bin never leaves it
+       - the step-text row is as tall as the tallest step; JS (below) measures the real rendered text
+         (incl. iOS/Chrome text zoom) and reserves at least that, so the bar can never touch the text
+       - spare height goes to the three spaces: under the title, between funnel and text, and above the bar */
+    .stage{--funh:calc((100vw - 16px) * 572 / 648);display:grid;height:100vh;height:100svh;height:var(--stageh,100svh);grid-template-columns:minmax(0,1fr);
+      grid-template-rows:auto minmax(26px,1fr) minmax(110px,var(--funh)) minmax(24px,.8fr) auto minmax(26px,1.3fr) auto auto;
+      padding:20px 20px calc(18px + env(safe-area-inset-bottom));padding-top:max(20px,calc(env(safe-area-inset-top) + 16px))}
+    .mid{display:contents}
+    .stage-top{grid-row:1}
+    .fun{grid-row:3;position:relative;display:block;margin:0 -12px;height:auto;min-height:0;max-height:var(--funmax,none)}
+    .fun svg{position:absolute;inset:0;display:block;width:100%;height:100%;max-height:none;overflow:hidden}
+    .copy{grid-row:5;align-self:start;min-height:var(--copyh,0px)}
+    .hprog{grid-row:7;align-self:end;margin:0 0 12px}
+    .scrollhint{grid-row:8}
+    .cp,.cp.r{text-align:left}
+    .cp p{font-size:19px;line-height:1.35;font-weight:500}
+    .lbl,.src{font-size:20px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cp,.cp.r{transition:opacity .3s;transform:none}
+    #fill{transition:none}
+  }
+  /* ---------- v7: offer, proof, quiz ---------- */
+  .hero .qlink{display:inline-block;margin-top:16px;font-weight:700;font-size:16px;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:2px;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;color:var(--ink);font-family:Inter,sans-serif}
+  .sub{font-size:19px;color:#2a2a2a;max-width:36ch;margin:-6px 0 28px}
+  .steps{list-style:none;display:grid;gap:14px}
+  .steps>li{display:grid;grid-template-columns:auto 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+  .steps>li.st0{background:transparent;border-style:dashed}
+  .sn{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--gb);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;padding-top:2px}
+  .st0 .sn{background:var(--gb);color:var(--ink)}
+  .sb{min-width:0}
+  .sb h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:36px;line-height:.95;text-transform:uppercase}
+  .price{font-weight:800;font-size:16px;margin:8px 0 12px;color:var(--ink)}
+  .pnote{font-size:15px;color:var(--mut);margin:-6px 0 14px}
+  .tnote{display:block;font-size:14px;color:var(--mut);margin-top:3px}
+  .sb p{color:#444}
+  .btn.sm{min-height:50px;font-size:16px;margin-top:16px;padding:0 18px}
+  .ticks{list-style:none;display:grid;gap:9px;color:#333}
+  .ticks li{position:relative;padding-left:26px}
+  .ticks li::before{content:"";position:absolute;left:2px;top:.42em;width:12px;height:7px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg)}
+  .when{margin-top:14px;font-weight:700;font-size:15px;color:var(--green)}
+  .guar{display:flex;gap:14px;align-items:flex-start;margin-top:22px;background:var(--ink);color:#fff;border-radius:18px;padding:20px}
+  .guar p{color:#ddd}.guar strong{color:#fff}
+  .gi{flex:none;width:34px;height:34px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800}
+  .proj{margin-top:18px;font-size:14px;color:var(--mut);max-width:52ch}
+  .case{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .ch{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-start}
+  .case h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95;text-transform:uppercase}
+  .cmeta{font:600 13px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:6px}
+  .stat{background:var(--paper);border-radius:14px;padding:12px 16px;max-width:190px}
+  .stat b{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:48px;line-height:.9;color:var(--green)}
+  .stat span{font-size:14px;font-weight:600;color:#333}
+  .cint{margin:18px 0 14px;color:#333}
+  .fixes{list-style:none;display:grid;gap:12px;counter-reset:f}
+  .fixes li{position:relative;padding-left:34px;color:#444;counter-increment:f}
+  .fixes li::before{content:counter(f);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font:700 13px/24px Inter,sans-serif;text-align:center}
+  .fixes strong{color:var(--ink)}
+  .tst{display:grid;gap:12px;margin-top:14px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .q blockquote{font-size:19px;line-height:1.5;color:#222}
+  .q blockquote::before{content:"\201C";display:block;font-family:"Bebas Neue",sans-serif;font-size:60px;line-height:.6;color:var(--green);margin-bottom:6px}
+  .who{margin-top:14px;font-weight:800}
+  .who span{display:block;font-weight:500;color:var(--mut);font-size:15px}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 22px;text-align:center}
+  .qcard h2{margin:8px 0 12px}
+  .qcard p{color:#444;max-width:40ch;margin:0 auto 22px}
+  .final .qlink2{display:inline-block;margin-top:18px;color:#fff;font-weight:700;background:none;border:0;border-bottom:2px solid var(--gb);padding:0 0 2px;cursor:pointer;font:700 16px Inter,sans-serif}
+  /* quiz modal */
+  .qz{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;justify-content:center}
+  .qz[hidden]{display:none}
+  .qz-in{width:100%;max-width:560px;height:100%;display:flex;flex-direction:column;padding:16px 20px calc(16px + env(safe-area-inset-bottom))}
+  .qz-top{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:4px 0 8px}
+  .qz-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+  .qz-bar span{display:block;height:100%;width:0;background:var(--ink);transition:width .35s ease}
+  .qz-count{font:600 12px Inter,sans-serif;letter-spacing:.12em;color:var(--mut)}
+  .qz-x{position:static;font-size:30px}
+  .qz-body{flex:1;overflow:auto;padding:28px 0 18px;-webkit-overflow-scrolling:touch}
+  .qz-k{font:600 12px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .qz-q{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(34px,9.5vw,48px);line-height:.95;text-transform:uppercase;margin:10px 0 8px}
+  .qz-h{color:#555;margin-bottom:20px}
+  .qz-opts{display:grid;gap:10px}
+  .qz-o{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:12px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font:600 17px Inter,sans-serif;color:var(--ink);text-align:left;cursor:pointer}
+  .qz-o .bx{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #cfcbc2}
+  .qz-o.multi .bx{border-radius:6px}
+  .qz-o[aria-pressed="true"],.qz-o[aria-checked="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .qz-o[aria-pressed="true"] .bx,.qz-o[aria-checked="true"] .bx{border-color:var(--ink);background:var(--gb);box-shadow:inset 0 0 0 3px #fff}
+  .qz-sel{width:100%;min-height:56px;border:1.5px solid var(--line);border-radius:14px;padding:0 14px;font:600 17px Inter,sans-serif;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+  .qz-txt{margin-top:10px}
+  .qz-nav{display:grid;grid-template-columns:auto 1fr;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .qz-nav[hidden]{display:none}
+  .qz-nav .btn{min-height:54px}
+  .qz-nav .btn:disabled{opacity:.4}
+  .qz-err{font-size:14px;color:#c0392b;min-height:1.2em;margin-top:8px}
+  .qz-gate .fld{margin-bottom:10px}
+  .qz-fine{font-size:13px;color:var(--mut);margin-top:6px}
+  /* results */
+  .qr-score{display:flex;align-items:flex-end;gap:10px;margin:8px 0 18px}
+  .qr-score b{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:96px;line-height:.8}
+  .qr-score span{font:700 18px Inter,sans-serif;color:var(--mut);padding-bottom:6px}
+  .qr-verdict{font-size:19px;font-weight:600;margin-bottom:18px}
+  .qr-parts{display:grid;gap:12px;margin-bottom:22px}
+  .qr-p{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .qr-p .row{display:flex;justify-content:space-between;font-weight:800}
+  .qr-p .meter{height:8px;border-radius:4px;background:var(--line);margin-top:10px;overflow:hidden}
+  .qr-p .meter i{display:block;height:100%;background:var(--gb);border-radius:4px}
+  .qr-p.lo .meter i{background:var(--red)}
+  .qr-h{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:30px;line-height:1;text-transform:uppercase;margin:22px 0 10px}
+  .qr-fix{list-style:none;display:grid;gap:10px}
+  .qr-fix li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:#333}
+  .qr-fix li b{display:block;color:var(--ink);margin-bottom:2px}
+  .qr-ok{color:var(--green);font-weight:700}
+  .qr-ctas{display:grid;gap:10px;margin-top:24px}
+  .qr-ctas .btn{width:100%}
+  .qr-sent{font-size:13px;color:var(--mut);margin-top:12px}
+  .qr-print-only{display:none}
+  @media(min-width:860px){
+    .steps{grid-template-columns:repeat(3,1fr);align-items:stretch}
+    .steps>li{grid-template-columns:1fr;align-content:start}
+    .guar{max-width:760px}
+    .tst{grid-template-columns:1fr 1fr}
+    .case{padding:32px}
+    .qcard{padding:48px}
+    .qz-in{padding-top:28px}
+  }
+  @media print{
+    html.printing body>*:not(.qz){display:none!important}
+    html.printing .qz{position:static;display:block!important;background:#fff}
+    html.printing .qz-top,html.printing .qz-nav,html.printing .qr-ctas,html.printing .qr-sent{display:none!important}
+    html.printing .qz-in{height:auto;max-width:none;padding:0}
+    html.printing .qz-body{overflow:visible;padding:0}
+    html.printing .qr-print-only{display:block}
+    html.printing .qr-p,html.printing .qr-fix li{break-inside:avoid}
+    html.printing .qr-p .meter,html.printing .qr-p .meter i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+<style>
+  .rp{max-width:760px;margin:0 auto;padding:24px 20px 56px}
+  .rp header{padding:0 0 18px;max-width:none}
+  .rp h1.d{font-size:clamp(44px,12vw,72px);margin:6px 0 4px}
+  .rp .meta{color:var(--mut);font-size:14px;margin-bottom:18px}
+  .rc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+  .rc .who{margin-top:0}
+  .rc .who b{display:block;font-size:22px}
+  .rc .who span{display:block;color:#444;margin-top:2px}
+  .rc .who a{color:var(--ink)}
+  .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:14px}
+  .acts .btn{min-height:46px;font-size:15px;width:100%;white-space:nowrap}
+  .ans{width:100%;border-collapse:collapse;font-size:15px}
+  .ans th{text-align:left;font:600 12px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);padding:18px 0 6px}
+  .ans td{padding:10px 0;border-top:1px solid var(--line);vertical-align:top}
+  .ans td:first-child{color:#444;padding-right:14px;width:58%}
+  .ans td:last-child{font-weight:700}
+  .bad{padding:40px 0;color:#444}
+  @media print{.acts,.noprint{display:none!important}}
+</style>
+</head>
+<body>
+<div class="rp">
+  <header><a class="brand" href="https://sethquest.com">Seth Quest</a></header>
+  <div id="out"><p class="bad">Loading report&hellip;</p></div>
+</div>
+<script>
+(function(){
+  var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
+  var Q=[
+    {id:'trade',type:'select',k:'About you',q:'What&rsquo;s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
+    {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
+    {id:'sources',type:'multi',k:'Lead flow',q:'Where do your leads come from?',h:'Pick all that you use.',opts:[['gbp','Google Business Profile'],['gads','Google Ads / sponsored'],['meta','Facebook / Instagram ads'],['yt','YouTube'],['web','Website'],['ref','Referrals / word of mouth'],['email','Email list'],['mail','Mailers / door hangers'],['wrap','Truck wrap']]},
+    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return calls?',opts:[['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later']]},
+    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:YNN},
+    {id:'quotes',type:'one',k:'Leaks',q:'How fast do your quotes go out?',opts:[['same','Same day'],['few','In 2 to 3 days'],['week','A week or more'],['ns','Not sure']]},
+    {id:'followup',type:'one',k:'Leaks',q:'Do you follow up on quotes that go unanswered?',opts:YNN},
+    {id:'reviewask',type:'one',k:'Leaks',q:'Do you ask for a review after every job?',opts:YNN},
+    {id:'reviews',type:'one',k:'Lead flow',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
+    {id:'ltv',type:'one',k:'Lead flow',q:'Do you know what a customer is worth over time?',h:'Customer lifetime value: everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'cac',type:'one',k:'Lead flow',q:'Do you know what it costs you to get a customer?',h:'Cost to get a customer (CAC): what you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'leads',type:'one',k:'Lead flow',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
+  ];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function txt(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent}
+  function label(q,v){for(var j=0;j<q.opts.length;j++){var o=q.opts[j];if((o[0]||o)===v||o===v)return txt(o[1]||o)}return v}
+  var A={},lead={};
+  /* scoring: Leaks 50 + Lead flow 50 */
+  function score(){
+    var s=A.sources||[],L=0,F=0,fl=[],ff=[];
+    L+={instant:12,hour:8,day:4,next:0}[A.speed]||0;
+    if(A.speed!=='instant')fl.push(['Call back within 5 minutes.','Most people call the next company on the list if nobody picks up.']);
+    L+={yes:10,ns:3,no:0}[A.textback]||0;
+    if(A.textback!=='yes')fl.push(['Turn on missed-call text-back.','Every missed call gets a text right away with a link to book. Same phone number.']);
+    L+={same:10,few:5,week:0,ns:2}[A.quotes]||0;
+    if(A.quotes!=='same')fl.push(['Send quotes the same day.','The fastest quote usually wins the job.']);
+    L+={yes:10,ns:3,no:0}[A.followup]||0;
+    if(A.followup!=='yes')fl.push(['Follow up on every quote, automatically.','A quick text on day 2, day 5 and day 10 wins back jobs you&rsquo;d lose.']);
+    L+={yes:8,ns:2,no:0}[A.reviewask]||0;
+    if(A.reviewask!=='yes')fl.push(['Ask for a review after every job.','Automatic text with a one-tap link to your Google page.']);
+    var W={gbp:6,gads:4,meta:3,yt:2,web:3,ref:2,email:1,mail:1,wrap:1},sp=0;s.forEach(function(k){sp+=W[k]||0});F+=Math.min(sp,22);
+    if(s.indexOf('gbp')<0)ff.push(['Claim and fix your Google Business Profile.','It&rsquo;s free, and it&rsquo;s where locals look first.']);
+    if(s.indexOf('gads')<0)ff.push(['Run Google sponsored ads for your trade and town.','Show up first when someone nearby searches for what you do.']);
+    if(s.indexOf('meta')<0&&s.indexOf('yt')<0)ff.push(['Turn your real work into video ads.','Short clips from your jobs, running on Facebook, Instagram and YouTube.']);
+    if(s.indexOf('web')<0)ff.push(['Get a simple page that makes it one tap to call or book.','No big website needed.']);
+    F+={'0':0,'11':4,'51':7,'100':10,ns:1}[A.reviews]||0;
+    if(A.reviews!=='100'&&A.reviews!=='51')ff.push(['Get to 50+ Google reviews.','It&rsquo;s the first thing people compare.']);
+    F+={yes:5,no:1,what:0}[A.ltv]||0;
+    if(A.ltv!=='yes')ff.push(['Know what a customer is worth.','Then you know what you can afford to spend to win one.']);
+    F+={yes:5,no:1,what:0}[A.cac]||0;
+    if(A.cac!=='yes')ff.push(['Know what it costs to get a customer.','So you only pay for ads that pay you back.']);
+    F+={'0':1,'11':3,'31':6,'75':8,ns:0}[A.leads]||0;
+    return {total:L+F,leaks:L,flow:F,fl:fl,ff:ff};
+  }
+  var R=null;
+  function verdict(r){
+    if(r.leaks<35)return 'Your funnel is leaking. Start with Step 1: Fix the leaks. More leads won&rsquo;t help until those are plugged.';
+    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s Step 2: Fill the funnel.';
+    return 'Solid funnel. A 15-minute audit will find the next few wins.';
+  }
+  function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
+  /* ---- report page ---- */
+  function decode(h){try{h=h.replace(/^#/,'').replace(/-/g,'+').replace(/_/g,'/');while(h.length%4)h+='=';return JSON.parse(decodeURIComponent(escape(atob(h))))}catch(e){return null}}
+  function answerOf(q){var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):(v?label(q,v):'(no answer)'))}
+  function render(){
+    var out=document.getElementById('out'),d=decode(location.hash);
+    if(!d||!d.a){out.innerHTML='<p class="bad">This report link is incomplete. Open it straight from the Formspree email.</p>';return}
+    A=d.a;lead={name:(d.c&&d.c.n)||'',business:(d.c&&d.c.b)||'',phone:(d.c&&d.c.p)||'',email:(d.c&&d.c.e)||''};
+    var R=score(),tel=lead.phone.replace(/[^0-9+]/g,''),first=lead.name.split(' ')[0];
+    var sms='sms:'+tel+'?&body='+encodeURIComponent('Hi '+first+', it\u2019s Seth Quest. Thanks for scoring your sales funnel. Got 15 minutes this week to go over it?');
+    var acts=(tel?'<a class="btn p" href="tel:'+esc(tel)+'">📞 Call</a><a class="btn o" href="'+esc(sms)+'">💬 Text</a>':'')+(lead.email?'<a class="btn o" href="mailto:'+esc(lead.email)+'">✉️ Email</a>':'');
+    var rows=[['About','About you'],['Leaks','Leaks'],['Lead flow','Lead flow']].map(function(g){return '<tr><th colspan="2">'+g[0]+'</th></tr>'+Q.filter(function(q){return q.k===g[1]}).map(function(q){return '<tr><td>'+q.q+'</td><td>'+esc(answerOf(q))+'</td></tr>'}).join('')}).join('');
+    document.title='Lead report: '+lead.business+' · Seth Quest';
+    out.innerHTML='<div class="eyebrow">Lead report &middot; private</div><h1 class="d">'+esc(lead.business||'Lead')+'<span class="g">.</span></h1>'+
+      '<div class="meta">Took the quiz '+(d.t?new Date(d.t).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'')+'</div>'+
+      '<div class="rc"><div class="who"><b>'+esc(lead.name)+'</b><span>'+esc(lead.business)+'</span>'+(lead.phone?'<span><a href="tel:'+esc(tel)+'">'+esc(lead.phone)+'</a></span>':'')+(lead.email?'<span><a href="mailto:'+esc(lead.email)+'">'+esc(lead.email)+'</a></span>':'')+'</div><div class="acts">'+acts+'</div></div>'+
+      '<div class="rc"><div class="qz-k">Sales funnel score</div><div class="qr-score"><b id="rpTotal">'+R.total+'</b><span>/ 100</span></div><p class="qr-verdict">'+verdict(R)+'</p>'+
+      '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span id="rpLeaks">'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
+      '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span id="rpFlow">'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
+      '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+'</div>'+
+      '<div class="rc"><h3 class="qr-h" style="margin-top:4px">Their answers<span class="g">.</span></h3><table class="ans">'+rows+'</table></div>'+
+      '<button class="btn o noprint" type="button" onclick="window.print()">Print or save as PDF</button>';
+  }
+  render();window.addEventListener('hashchange',render);
+})();
+</script>
+</body>
+</html>
