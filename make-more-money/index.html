@@ -124,6 +124,20 @@
   .fld{width:100%;min-height:50px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;font:500 16px Inter,sans-serif;margin-bottom:10px;background:#fff}
   .fld:focus{outline:none;border-color:var(--ink)}
   .err{font-size:13px;color:#c0392b;min-height:1em;margin:-2px 0 8px}
+  /* v7c: phones, the whole contact popup fits on one screen (incl. iOS larger text) */
+  @media(max-width:859px){
+    .modal{padding:12px}
+    .mc{padding:20px 20px 16px;border-radius:18px;max-height:calc(100svh - 24px)}
+    .mc .d{font-size:32px;line-height:.95;margin-bottom:16px;padding-right:30px}
+    .mx{top:8px;right:10px}
+    .two{gap:8px}
+    .two .btn{min-height:44px;font-size:15px;padding:0 14px}
+    .mc .or{margin:16px 0 10px}
+    .mc .fld{min-height:46px;margin-bottom:8px}
+    .mc .err{margin:0 0 6px}
+    #bkS{min-height:50px}
+    .mc .mnote{margin-top:10px}
+  }
   .ok{color:var(--green)}
   @media(min-width:860px){
     .hgrid{grid-template-columns:1.3fr .7fr;min-height:calc(100svh - 190px)}
