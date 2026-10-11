@@ -37,6 +37,7 @@
   .hgrid>*{min-width:0}
   .hhead{grid-area:head}
   .hero .eyebrow{margin-bottom:14px}
+  body[data-trade="General"] .hero .eyebrow{letter-spacing:.1em}
   .hero h1.d{font-size:clamp(54px,15.5vw,104px);margin:6px 0 0}
   .hero .when2{grid-area:when;margin-top:26px}
   .vidbox{grid-area:vid;justify-self:center;width:100%;max-width:300px;margin:44px auto 0}
