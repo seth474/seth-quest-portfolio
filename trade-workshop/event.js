@@ -3,7 +3,7 @@
    ZOOM: paste the real Zoom link when it exists. While it's '', pages say the link comes by email.
    Trade names, eyebrows and calendar titles live in trades.js. All three trades share this event. */
 window.WORKSHOP = {
-  START: '2026-10-14T19:00:00-04:00',
+  START: '2026-10-15T19:00:00-04:00',
   MINUTES: 30,
   ZOOM: ''
 };
