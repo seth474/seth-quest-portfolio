@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You&rsquo;re registered — Seth Quest workshop</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/workshop/base.css">
+<script src="/workshop/event.js"></script>
+<style>
+  .top{padding:44px 0 56px}
+  .badge{display:inline-flex;align-items:center;gap:10px;font:700 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .badge i{width:26px;height:26px;border-radius:50%;background:var(--gb);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+  h1.d{font-size:clamp(60px,17vw,112px);margin:18px 0 0;overflow-wrap:anywhere}
+  .top .when2{margin-top:24px}
+  .top .lead{margin-top:18px;color:#333;font-size:18px;max-width:36ch}
+  .calbtns{display:grid;gap:12px;margin-top:30px}
+  .calbtns .btn{width:100%}
+  .calbtns svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2}
+  .zoom{margin-top:18px;font-size:15px;color:var(--mut)}
+  .zoom a{color:var(--ink);font-weight:700}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:18px}
+  .sn{width:44px;height:44px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;padding-top:2px}
+  .step h2.d{font-size:clamp(40px,10.5vw,60px);margin:2px 0 14px}
+  .step p{color:#333;max-width:40ch}
+  .step .btn{margin-top:24px}
+  .fast{background:var(--ink);color:#fff;border-radius:26px;padding:36px 22px 32px}
+  .fast .sn{background:var(--gb)}
+  .fast p{color:#ccc}
+  .fast .two{display:grid;gap:12px;margin-top:26px}
+  .fast .btn.o{color:#fff;border-color:#fff}
+  .fast .mnote{margin-top:16px;font-size:14px;color:#999}
+  .last{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .bye{text-align:center;font-size:13px;color:var(--mut);margin-top:30px}
+  @media(min-width:860px){
+    .top{padding:72px 0 72px}
+    .calbtns{grid-template-columns:auto auto;justify-content:start}
+    .calbtns .btn{width:auto;min-width:240px}
+    section.pad{padding:64px 0}
+    .step .btn{width:auto;min-width:280px}
+    .fast{padding:52px 48px 44px}
+    .fast .two{grid-template-columns:auto auto;justify-content:start}
+    .fast .two .btn{min-width:200px}
+  }
+  @media(max-width:859px){.step{display:block}.step .sn{margin-bottom:18px}.step .btn{width:100%}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="tb-in"><a class="brand" href="https://sethquest.com">Seth Quest</a></div></header>
+
+<main>
+  <section class="top">
+    <div class="wrap narrow">
+      <div class="badge"><i aria-hidden="true">✓</i>Your seat is saved</div>
+      <h1 class="d" id="hi">You&rsquo;re registered<span class="g">.</span></h1>
+      <div class="when2">
+          <div class="wl1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><span data-w="day">Wednesday</span>, <span data-w="date">October 21, 2026</span></span></div>
+          <div class="wl2"><span data-w="time">7:00 PM ET</span> &middot; Live on Zoom &middot; 30 minutes</div>
+        </div>
+      <p class="lead">Put it on your calendar now so it doesn&rsquo;t get buried.</p>
+      <div class="calbtns">
+        <a class="btn p" id="icsBtn" href="#" download="seth-quest-workshop.ics"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to Apple / Outlook</a>
+        <a class="btn o" id="gcalBtn" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+      </div>
+      <!-- PLACEHOLDER: Zoom link. Set ZOOM in /workshop/event.js and this line shows the link instead. -->
+      <p class="zoom" id="zoomLine">I&rsquo;ll email you the Zoom link before the workshop.</p>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="wrap narrow">
+      <div class="step">
+        <div class="sn">1</div>
+        <div>
+          <div class="eyebrow">While you wait</div>
+          <h2 class="d">Score your sales funnel in 2 minutes<span class="g">.</span></h2>
+          <p>12 quick questions. You get a score out of 100 and a plain list of what to fix first. Bring it to the workshop.</p>
+          <a class="btn p" href="/make-more-money#quiz">Score my funnel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad last">
+    <div class="wrap narrow">
+      <div class="fast">
+        <div class="step">
+          <div class="sn">2</div>
+          <div>
+            <div class="eyebrow" style="color:#aaa">Want the fast version?</div>
+            <h2 class="d">Book a free 15&#8209;minute sales funnel audit<span class="g">.</span></h2>
+            <p>We look at your business together, find the biggest leaks, and you leave with a plan, whether you hire me or not.</p>
+          </div>
+        </div>
+        <div class="two">
+          <a class="btn gr" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27m%20signed%20up%20for%20the%20workshop%20and%20I%27d%20like%20a%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text Seth</a>
+          <a class="btn o" href="tel:+19348990796">📞 Call Seth</a>
+        </div>
+        <p class="mnote">934-899-0796 &middot; Free 15-minute call. No pressure.</p>
+      </div>
+      <p class="bye">Seth Quest &middot; East Hampton, NY</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var W=window.WORKSHOP;
+  /* personal greeting from ?n=FirstName (set by the signup form) */
+  var n=(new URLSearchParams(location.search).get('n')||'').trim().slice(0,30);
+  if(n){var h=document.getElementById('hi');h.textContent='You\u2019re registered, '+n;var g=document.createElement('span');g.className='g';g.textContent='.';h.appendChild(g)}
+  if(W.ZOOM){var z=document.getElementById('zoomLine');z.textContent='Zoom link: ';var a=document.createElement('a');a.href=W.ZOOM;a.textContent=W.ZOOM;a.target='_blank';a.rel='noopener';z.appendChild(a)}
+  var desc=W.DETAILS+'\n\nJoin: '+(W.ZOOM||'Zoom link coming by email.')+'\n\nQuestions? Text Seth: 934-899-0796';
+  function esc(s){return s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n')}
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Seth Quest//Workshop//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+    'UID:workshop-'+W.zStart+'@sethquest.com','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''),
+    'DTSTART:'+W.zStart,'DTEND:'+W.zEnd,'SUMMARY:'+esc(W.TITLE),'DESCRIPTION:'+esc(desc),'LOCATION:'+esc(W.where),
+    'URL:https://sethquest.com/workshop','BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:'+esc(W.TITLE),'END:VALARM',
+    'BEGIN:VALARM','TRIGGER:-PT10M','ACTION:DISPLAY','DESCRIPTION:'+esc(W.TITLE),'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('icsBtn').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+  document.getElementById('gcalBtn').href='https://calendar.google.com/calendar/render?action=TEMPLATE'+
+    '&text='+encodeURIComponent(W.TITLE)+'&dates='+W.zStart+'/'+W.zEnd+'&details='+encodeURIComponent(desc)+'&location='+encodeURIComponent(W.where);
+})();
+</script>
+</body>
+</html>
