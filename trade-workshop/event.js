@@ -20,6 +20,8 @@ window.WORKSHOP = {
   W.zStart = z(start); W.zEnd = z(end);
   W.where = W.ZOOM || 'Zoom (link sent by email)';
   W.past = Date.now() > end.getTime();
+  /* Single switch for /make-more-money: on until the workshop end time passes. */
+  window.WORKSHOP_ACTIVE = !W.past;
   function fillText() {
     [].forEach.call(document.querySelectorAll('[data-w]'), function (el) {
       var k = el.getAttribute('data-w');

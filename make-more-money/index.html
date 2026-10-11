@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<script src="/trade-workshop/event.js"></script>
 <style>
   :root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--red:#d9534f;--mut:#6b6b6b;--line:#e3e1db}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -335,6 +336,12 @@
   .topbar .hcta,.fbar .hcta{color:var(--ink);background:#f5f3ee;border-color:#f5f3ee;padding:7px 14px}
   .fbar{position:fixed;left:0;right:0;top:0;z-index:40;background:var(--ink);padding-top:env(safe-area-inset-top);transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 6px 20px rgba(0,0,0,.18)}
   .fbar.on{transform:none}
+  a.announce{display:block;position:static;background:#111;color:#f5f3ee;text-align:center;text-decoration:none;font:600 13px/1 Inter,sans-serif;letter-spacing:.01em;padding:7px 12px;white-space:nowrap;border-bottom:2px solid var(--gb)}
+  a.announce[hidden]{display:none}
+  .fbar .ws-label,.fbar .ws-seat{display:none}
+  .fbar.ws .std{display:none}
+  .fbar.ws .ws-label{display:block;color:#f5f3ee;text-decoration:none;font:600 14px/1.15 Inter,sans-serif;white-space:nowrap;min-width:0}
+  .fbar.ws .ws-seat{display:inline-block;text-decoration:none;text-align:center}
   @media(prefers-reduced-motion:reduce){.fbar{transition:none}}
   .hgrid{grid-template-areas:"head" "vid" "lead" "cta";row-gap:0}
   .hhead{grid-area:head}.hgrid>.lead{grid-area:lead}.hgrid>.ctas{grid-area:cta}.vidbox{grid-area:vid}
@@ -400,6 +407,7 @@
 </style>
 </head>
 <body>
+<a class="announce" id="wsAnnounce" href="/workshop" hidden>Free Zoom workshop Thu 7 PM →</a>
 <header class="topbar" id="top">
   <div class="tb-in">
     <a class="brand" href="https://sethquest.com">Seth Quest</a>
@@ -408,10 +416,37 @@
 </header>
 <div class="fbar" id="fbar" aria-hidden="true">
   <div class="tb-in">
-    <a class="brand" href="#top" tabindex="-1">Make more money<span class="g">.</span></a>
-    <button class="hcta" type="button" data-book tabindex="-1">Contact</button>
+    <a class="brand std" href="https://sethquest.com" tabindex="-1">Seth Quest</a>
+    <a class="ws-label" id="wsFbarLabel" href="/workshop" tabindex="-1">Free workshop · Thu 7 PM</a>
+    <button class="hcta std" type="button" data-book tabindex="-1">Contact</button>
+    <a class="hcta ws-seat" href="/workshop" tabindex="-1">Save my seat</a>
   </div>
 </div>
+<script>
+/* Thin top line scrolls away. After the funnel, the sticky bar is workshop mode while WORKSHOP_ACTIVE. */
+(function(){
+  var W=window.WORKSHOP||{};
+  if(window.WORKSHOP_ACTIVE!==true)return;
+  var day=(W.day||'Thursday').slice(0,3);
+  var clock=String(W.time||'7:00 PM ET').replace(/\s*ET$/,'').replace(':00','');
+  var when=day+' '+clock;
+  var line=document.getElementById('wsAnnounce');
+  line.textContent='Free Zoom workshop '+when+' \u2192';
+  line.hidden=false;
+  var fbar=document.getElementById('fbar'), label=document.getElementById('wsFbarLabel');
+  fbar.classList.add('ws');
+  function fitLabel(){
+    label.textContent='Free workshop \u00b7 '+when;
+    var row=fbar.querySelector('.tb-in'), seat=fbar.querySelector('.ws-seat');
+    var cs=getComputedStyle(row);
+    var room=row.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight)-parseFloat(cs.columnGap||cs.gap||0);
+    if(label.scrollWidth+seat.getBoundingClientRect().width>room+1) label.textContent='Free workshop '+when;
+  }
+  fitLabel();
+  window.addEventListener('resize',fitLabel);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitLabel);
+})();
+</script>
 
 <main>
   <section class="hero">
@@ -766,7 +801,7 @@
   fitOne();window.addEventListener('resize',fitOne);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitOne);window.addEventListener('load',fitOne);
   /* v11: fixed bar shows only once the funnel section is fully scrolled past */
   var fbar=document.getElementById('fbar'),storyEnd=document.getElementById('story');
-  function fbarSet(on){fbar.classList.toggle('on',on);fbar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(fbar.querySelectorAll('a,button'),function(x){x.tabIndex=on?0:-1})}
+  function fbarSet(on){fbar.classList.toggle('on',on);fbar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(fbar.querySelectorAll('a,button'),function(x){x.tabIndex=(on&&getComputedStyle(x).display!=='none')?0:-1})}
   var fbOn=null,fbT=0;function fbarCheck(){fbT=0;var on=storyEnd.getBoundingClientRect().bottom<=0;if(on!==fbOn){fbOn=on;fbarSet(on)}}
   if('IntersectionObserver' in window&&storyEnd){new IntersectionObserver(fbarCheck).observe(storyEnd)}
   /* also on scroll, so a jump (anchor, fast fling) past the funnel is caught */
