@@ -1,6 +1,16 @@
 (function () {
   var info = window.WORKSHOP_APPLY();
   var t = info.trade;
+  var vid = document.getElementById('wsVid'), playBtn = document.getElementById('wsPlay');
+  if (vid && playBtn) {
+    playBtn.addEventListener('click', function () {
+      vid.muted = false;
+      vid.controls = true;
+      playBtn.hidden = true;
+      var pending = vid.play();
+      if (pending && pending.catch) pending.catch(function () { playBtn.hidden = false; vid.controls = false; });
+    });
+  }
   var FORM = 'https://formspree.io/f/meaonlel'; /* same Formspree form as /make-more-money */
   var W = window.WORKSHOP;
   var f = document.getElementById('wsF'), er = document.getElementById('wsErr'), b = document.getElementById('wsBtn');
