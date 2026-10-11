@@ -23,3 +23,10 @@
   .when2 .wl2{margin-top:4px;padding-left:28px;font-weight:600;font-size:16px;color:#444}
   .when2 svg{width:18px;height:18px;flex:none;stroke:var(--green);fill:none;stroke-width:2}
   .dark .when2 .wl2{color:#bbb}
+  /* footer is the last box on the page: no margin after it, no min-height stretch */
+  html,body{height:auto;min-height:0}
+  footer.sitefoot{background:var(--ink);color:#f5f3ee;text-align:center;margin:0;padding:26px 22px 28px}
+  footer.sitefoot p{margin:0}
+  footer.sitefoot .who{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;line-height:1}
+  footer.sitefoot .phone{margin-top:10px;font:700 18px/1.2 Inter,sans-serif}
+  footer.sitefoot .phone a{color:#f5f3ee;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:1px}

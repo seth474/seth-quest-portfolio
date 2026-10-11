@@ -34,8 +34,6 @@
   .fast .two{display:grid;gap:12px;margin-top:26px}
   .fast .btn.o{color:#fff;border-color:#fff}
   .fast .mnote{margin-top:16px;font-size:14px;color:#999}
-  .last{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
-  .bye{text-align:center;font-size:13px;color:var(--mut);margin-top:30px}
   @media(min-width:860px){
     .top{padding:72px 0 72px}
     .calbtns{grid-template-columns:auto auto;justify-content:start}
@@ -85,7 +83,7 @@
     </div>
   </section>
 
-  <section class="pad last">
+  <section class="pad">
     <div class="wrap narrow">
       <div class="fast">
         <div class="step">
@@ -102,10 +100,13 @@
         </div>
         <p class="mnote">934-899-0796 &middot; Free 15-minute call. No pressure.</p>
       </div>
-      <p class="bye">Seth Quest &middot; East Hampton, NY</p>
     </div>
   </section>
 </main>
+<footer class="sitefoot">
+  <p class="who">Seth Quest &middot; East Hampton, NY</p>
+  <p class="phone"><a href="tel:+19348990796">934-899-0796</a></p>
+</footer>
 
 <script>
 (function(){
