@@ -40,6 +40,13 @@
         ul.appendChild(li);
       });
     }
+    var vid = document.getElementById('wsVid');
+    if (vid && t.video) {
+      vid.setAttribute('poster', t.poster);
+      var source = vid.querySelector('source');
+      if (source) source.setAttribute('src', t.video);
+      vid.load();
+    }
     var sms = document.getElementById('smsSeth');
     if (sms) {
       sms.setAttribute('href', 'sms:+19348990796?&body=' + encodeURIComponent(

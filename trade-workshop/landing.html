@@ -32,14 +32,11 @@
         <div class="wl2"><span data-w="time">7:00 PM ET</span> &middot; Live on Zoom &middot; 30 minutes</div>
       </div>
       <div class="vidbox">
-        <!-- PLACEHOLDER: Seth's AI-generated invite video (vertical 9:16).
-             When it's ready: upload a poster and mp4, then replace the inner .vph markup with a video element
-             and delete the .tag / .play / .vt / .vs elements. -->
-        <div class="vph" role="img" aria-label="Video placeholder">
-          <span class="tag">Placeholder</span>
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>
-          <span class="vt">Video coming soon<span class="g">.</span></span>
-          <span class="vs">Seth&rsquo;s 60-second workshop invite goes here.</span>
+        <div class="vph">
+          <video id="wsVid" playsinline preload="metadata" poster="">
+            <source type="video/mp4">
+          </video>
+          <button type="button" class="play" id="wsPlay" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></button>
         </div>
       </div>
       <div class="ctas">
