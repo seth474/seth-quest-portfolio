@@ -1,12 +1,11 @@
 /* ==== WORKSHOP EVENT: change the date, time or Zoom link here, nowhere else ====
    START is Eastern time with its UTC offset: -04:00 until Nov 1 (EDT), -05:00 after (EST).
-   ZOOM: paste the real Zoom link when it exists. While it's '', pages say the link comes by email. */
+   ZOOM: paste the real Zoom link when it exists. While it's '', pages say the link comes by email.
+   Trade names, eyebrows and calendar titles live in trades.js. All three trades share this event. */
 window.WORKSHOP = {
   START: '2026-10-21T19:00:00-04:00',
   MINUTES: 30,
-  ZOOM: '',
-  TITLE: 'Free workshop: how Hamptons HVAC companies stop losing jobs',
-  DETAILS: 'Free 30-minute workshop with Seth Quest for Hamptons HVAC company owners: missed calls, slow quotes, follow-up, your Google Business Profile, and where new leads come from.'
+  ZOOM: ''
 };
 (function (W) {
   var start = new Date(W.START), end = new Date(start.getTime() + W.MINUTES * 60000);
