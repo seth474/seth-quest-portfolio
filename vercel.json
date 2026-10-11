@@ -1,3 +1,19 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/workshop", "destination": "/hvac-workshop", "permanent": true },
+    { "source": "/workshop/", "destination": "/hvac-workshop", "permanent": true },
+    { "source": "/workshop/index.html", "destination": "/hvac-workshop", "permanent": true },
+    { "source": "/workshop/registered", "destination": "/hvac-workshop/registered", "permanent": true },
+    { "source": "/workshop/registered/", "destination": "/hvac-workshop/registered", "permanent": true },
+    { "source": "/workshop/registered.html", "destination": "/hvac-workshop/registered", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/hvac-workshop", "destination": "/trade-workshop/landing.html" },
+    { "source": "/electrician-workshop", "destination": "/trade-workshop/landing.html" },
+    { "source": "/plumbing-workshop", "destination": "/trade-workshop/landing.html" },
+    { "source": "/hvac-workshop/registered", "destination": "/trade-workshop/registered.html" },
+    { "source": "/electrician-workshop/registered", "destination": "/trade-workshop/registered.html" },
+    { "source": "/plumbing-workshop/registered", "destination": "/trade-workshop/registered.html" }
+  ]
 }
