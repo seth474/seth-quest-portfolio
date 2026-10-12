@@ -33,21 +33,26 @@
 
   /* landing */
   .hero{padding:40px 0 60px}
-  .hgrid{display:grid;grid-template-areas:"head" "when" "cta" "vid";align-items:start}
+  .hgrid{display:grid;grid-template-areas:"head" "vid" "when" "form";align-items:start}
   .hgrid>*{min-width:0}
   .hhead{grid-area:head}
   .hero .eyebrow{margin-bottom:14px}
   body[data-trade="General"] .hero .eyebrow{letter-spacing:.1em}
   .hero h1.d{font-size:clamp(54px,15.5vw,104px);margin:6px 0 0}
-  .hero .when2{grid-area:when;margin-top:26px}
-  .vidbox{grid-area:vid;justify-self:center;width:100%;max-width:300px;margin:44px auto 0}
+  .whenline{grid-area:when;margin-top:32px;font-weight:700;font-size:18px;line-height:1.45;color:#222}
+  .vidbox{grid-area:vid;justify-self:center;width:100%;max-width:300px;margin:32px auto 0}
   .vph{position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#111;box-shadow:0 30px 70px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center}
   .vph video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;background:#111}
   .vph .play{position:relative;z-index:2;width:64px;height:64px;border:0;padding:0;border-radius:50%;background:var(--gb);display:flex;align-items:center;justify-content:center;cursor:pointer}
   .vph .play[hidden]{display:none}
   .vph .play svg{width:24px;height:24px;margin-left:4px;fill:var(--ink)}
-  .hero .ctas{grid-area:cta;margin-top:30px}
-  .hero .ctas .btn{width:100%}
+  .heroform{grid-area:form;margin-top:28px}
+  .heroform label.l{display:block;font:600 13px Inter,sans-serif;letter-spacing:.06em;color:#555;margin:0 0 7px}
+  .heroform .fld{border-color:#d5d3cc}
+  .heroform .opt{color:#444}
+  .heroform .opt b{color:var(--ink)}
+  .heroform .err{color:#c0392b}
+  .heroform .snote{color:var(--mut)}
   .learn{list-style:none;display:grid;gap:14px;margin-top:8px}
   .learn li{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px 22px 58px;font-size:18px;line-height:1.45;color:#222}
   .learn li::before{content:"";position:absolute;left:20px;top:24px;width:24px;height:24px;border-radius:50%;background:var(--gb)}
@@ -82,9 +87,10 @@
   .snote{text-align:center;font-size:14px;color:#999;margin-top:14px}
   @media(min-width:860px){
     .hero{padding:64px 0 80px}
-    .hgrid{grid-template-columns:1.25fr .75fr;grid-template-areas:"head vid" "when vid" "cta vid";grid-template-rows:auto auto 1fr;column-gap:56px}
-    .vidbox{margin:0;align-self:center;max-width:320px}
-    .hero .ctas .btn{width:auto;min-width:320px}
+    .hgrid{grid-template-columns:1.15fr .85fr;grid-template-areas:"head vid" "when vid" "form vid";column-gap:56px;align-items:start}
+    .vidbox{margin:0;align-self:center;justify-self:end;max-width:320px}
+    .whenline{margin-top:28px}
+    .heroform{max-width:520px}
     body.page-landing section.pad{padding:72px 0}
     .host{grid-template-columns:1fr 1fr;align-items:start}
     .seat{padding:56px 48px 40px}

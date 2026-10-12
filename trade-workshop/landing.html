@@ -27,10 +27,6 @@
         <div class="eyebrow" id="eyebrow"></div>
         <h1 class="d">Stop losing jobs to missed calls and slow quotes<span class="g">.</span></h1>
       </div>
-      <div class="when2" aria-label="When">
-        <div class="wl1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><span data-w="day"></span>, <span data-w="date"></span></span></div>
-        <div class="wl2"><span data-w="time">7:00 PM ET</span> &middot; Live on Zoom &middot; 30 minutes</div>
-      </div>
       <div class="vidbox">
         <div class="vph">
           <video id="wsVid" playsinline preload="metadata" poster="">
@@ -39,9 +35,24 @@
           <button type="button" class="play" id="wsPlay" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></button>
         </div>
       </div>
-      <div class="ctas">
-        <a class="btn p" href="#seat">Save my seat. It&rsquo;s free.</a>
-      </div>
+      <p class="whenline"><span data-w="day"></span>, <span data-when="md"></span> &middot; <span data-w="time">7:00 PM ET</span> &middot; Live on Zoom &middot; 30 minutes</p>
+      <form class="heroform" id="wsF1" novalidate>
+        <label class="l" for="wsN1">First name</label>
+        <input class="fld" id="wsN1" name="name" type="text" autocomplete="given-name" required>
+        <label class="l" for="wsB1">Business name</label>
+        <input class="fld" id="wsB1" name="business" type="text" autocomplete="organization" required>
+        <label class="l" for="wsP1">Cell</label>
+        <input class="fld" id="wsP1" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+        <label class="l" for="wsE1">Email</label>
+        <input class="fld" id="wsE1" name="email" type="email" inputmode="email" autocomplete="email" required>
+        <label class="opt" for="wsS1">
+          <input id="wsS1" name="sms_consent" type="checkbox" value="yes">
+          <span><b>Text me a reminder (optional)</b><span id="smsTxt1">By checking this box, you agree to receive text messages from Seth Quest about this workshop at the number above. Message frequency varies. Message &amp; data rates may apply. Reply STOP to stop, HELP for help. Consent is not required to register.</span></span>
+        </label>
+        <div class="err" id="wsErr1" role="alert"></div>
+        <button class="btn gr w" id="wsBtn1" type="submit">Save my seat. It&rsquo;s free.</button>
+        <p class="snote">I&rsquo;ll email you the Zoom link. No spam.</p>
+      </form>
     </div>
   </section>
 
@@ -83,21 +94,21 @@
           <div class="wl1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><span data-w="day"></span>, <span data-w="date"></span></span></div>
           <div class="wl2"><span data-w="time">7:00 PM ET</span> &middot; Live on Zoom &middot; 30 minutes</div>
         </div>
-        <form id="wsF" novalidate>
-          <label class="l" for="wsN">First name</label>
-          <input class="fld" id="wsN" name="name" type="text" autocomplete="given-name" required>
-          <label class="l" for="wsB">Business name</label>
-          <input class="fld" id="wsB" name="business" type="text" autocomplete="organization" required>
-          <label class="l" for="wsP">Cell</label>
-          <input class="fld" id="wsP" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
-          <label class="l" for="wsE">Email</label>
-          <input class="fld" id="wsE" name="email" type="email" inputmode="email" autocomplete="email" required>
-          <label class="opt" for="wsS">
-            <input id="wsS" name="sms_consent" type="checkbox" value="yes">
-            <span><b>Text me a reminder (optional)</b><span id="smsTxt">By checking this box, you agree to receive text messages from Seth Quest about this workshop at the number above. Message frequency varies. Message &amp; data rates may apply. Reply STOP to stop, HELP for help. Consent is not required to register.</span></span>
+        <form id="wsF2" novalidate>
+          <label class="l" for="wsN2">First name</label>
+          <input class="fld" id="wsN2" name="name" type="text" autocomplete="given-name" required>
+          <label class="l" for="wsB2">Business name</label>
+          <input class="fld" id="wsB2" name="business" type="text" autocomplete="organization" required>
+          <label class="l" for="wsP2">Cell</label>
+          <input class="fld" id="wsP2" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+          <label class="l" for="wsE2">Email</label>
+          <input class="fld" id="wsE2" name="email" type="email" inputmode="email" autocomplete="email" required>
+          <label class="opt" for="wsS2">
+            <input id="wsS2" name="sms_consent" type="checkbox" value="yes">
+            <span><b>Text me a reminder (optional)</b><span id="smsTxt2">By checking this box, you agree to receive text messages from Seth Quest about this workshop at the number above. Message frequency varies. Message &amp; data rates may apply. Reply STOP to stop, HELP for help. Consent is not required to register.</span></span>
           </label>
-          <div class="err" id="wsErr" role="alert"></div>
-          <button class="btn gr w" id="wsBtn" type="submit">Save my seat. It&rsquo;s free.</button>
+          <div class="err" id="wsErr2" role="alert"></div>
+          <button class="btn gr w" id="wsBtn2" type="submit">Save my seat. It&rsquo;s free.</button>
           <p class="snote">I&rsquo;ll email you the Zoom link. No spam.</p>
         </form>
       </div>
