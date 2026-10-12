@@ -35,8 +35,16 @@
   img{display:block;max-width:100%}
   a{color:inherit}
   :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-  .skip{position:absolute;left:12px;top:-40px;background:#fff;color:var(--ink);padding:8px 12px;z-index:40}
-  .skip:focus{top:8px}
+  .skip{
+    position:absolute;left:12px;top:8px;z-index:40;
+    padding:8px 12px;background:#fff;color:var(--ink);
+    transform:translateY(calc(-100% - 24px));
+    clip-path:inset(100%);
+  }
+  .skip:focus{
+    transform:none;
+    clip-path:none;
+  }
 
   .byline{background:var(--pine);color:#f4f1ea;text-align:center;font-size:13px;line-height:1.3;padding:8px 16px}
   .byline a{color:inherit;font-weight:650}
@@ -258,7 +266,7 @@
   <section class="band">
     <div class="wrap">
       <ul class="trust">
-        <li><strong>Licensed &amp; insured in New York</strong><span>Electrical work in New York.</span></li>
+        <li><strong>Licensed &amp; insured electricians</strong><span>Serving East Hampton.</span></li>
         <li><strong>Locally owned &amp; operated</strong><span>East Hampton, NY</span></li>
         <li><strong>Open Mon–Sat, 7 AM–5 PM</strong><span>Sunday closed. Hours may vary — call to confirm.</span></li>
         <li><strong>Transparent pricing &amp; estimates</strong><span>A clear plan and an estimate before the work.</span></li>
@@ -439,7 +447,7 @@
       </details>
       <details>
         <summary>Are you licensed in New York?</summary>
-        <p>First Light Electric Inc. states that it holds the licenses and insurance required for electrical work in New York.</p>
+        <p>Yes. First Light Electric is licensed and insured for electrical work in New York.</p>
       </details>
       <details>
         <summary>What is your typical turnaround time?</summary>
