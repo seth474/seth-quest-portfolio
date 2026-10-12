@@ -71,18 +71,21 @@
     position:relative;
     min-height:calc(100svh - 92px);
     display:flex;align-items:flex-end;
-    color:#f7f4ee;
     padding:0;
     overflow:hidden;
+    background:#0c1612;
   }
   .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%}
   .hero-shade{
-    position:absolute;inset:0;
-    background:linear-gradient(to top, rgba(8,16,12,.93) 0%, rgba(8,16,12,.72) 16%, rgba(8,16,12,.18) 40%, rgba(8,16,12,0) 58%);
+    position:absolute;left:0;right:0;bottom:0;height:38%;
+    background:linear-gradient(to top, rgba(8,16,12,.58) 0%, rgba(8,16,12,.22) 46%, rgba(8,16,12,0) 100%);
+    pointer-events:none;
   }
-  .hero-copy{position:relative;z-index:1;padding:28px 0 36px}
-  .hero .lead{color:#f3efe6;margin:14px 0 0}
-  .ctas{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+  .hero-actions{position:relative;z-index:1;width:100%;padding:0 0 28px}
+  .intro{background:var(--paper);color:var(--ink);padding:52px 0 12px}
+  .intro h1{max-width:none;font-size:clamp(34px,6vw,60px)}
+  .intro .lead{color:var(--ink);margin-top:12px;max-width:none;font-size:18px;line-height:1.4}
+  .ctas{display:flex;flex-direction:column;gap:10px}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;
     min-height:52px;padding:12px 18px;border-radius:12px;
@@ -171,19 +174,12 @@
 
   form{display:grid;gap:14px;margin-top:18px}
   label{display:grid;gap:6px;font-weight:650;font-size:15px}
-  input,textarea{
+  input,textarea,select{
     font:inherit;color:inherit;width:100%;padding:12px 14px;border-radius:12px;
     border:1.5px solid #c9c1b2;background:#fff;min-height:48px;
   }
-  textarea{min-height:120px;resize:vertical}
-  .emerg{
-    display:grid;grid-template-columns:28px 1fr;gap:8px 12px;align-items:center;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;
-  }
-  .emerg input{width:22px;height:22px;margin:0;accent-color:var(--ember)}
-  .emerg label{font-weight:700}
-  .emerg-note{display:none;grid-column:1 / -1;margin:0;font-size:15px;font-weight:500}
-  .emerg:has(input:checked) .emerg-note{display:block}
+  textarea{min-height:96px;resize:vertical}
+  select{padding-right:36px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 18px) 22px,calc(100% - 12px) 22px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
   .note{margin:0;font-size:15px}
   .note small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
   .err{margin:0;color:var(--ember);font-weight:650;min-height:1.2em}
@@ -244,13 +240,18 @@
     <!-- Photo: Si Nguyen, Unsplash. https://unsplash.com/photos/modern-house-with-outdoor-lights-at-night-7oAneWHzwwE — Unsplash License https://unsplash.com/license -->
     <img class="hero-photo" src="/demo/first-light-electric/img/hero.webp" alt="A house at night, with warm light washing the trees and the walk from fixtures set in the ground.">
     <div class="hero-shade" aria-hidden="true"></div>
-    <div class="wrap hero-copy">
-      <h1>East Hampton electricians</h1>
-      <p class="lead">Installations, repairs, panel upgrades, and lighting for homes and businesses in East Hampton.</p>
+    <div class="wrap hero-actions">
       <div class="ctas">
-        <a class="btn solid" href="tel:+16312670183">Call (631) 267-0183</a>
-        <a class="btn quiet" href="#quote">Request a quote</a>
+        <a class="btn solid" href="tel:+16312670183">Call</a>
+        <a class="btn quiet" href="#quote">Request a Quote</a>
       </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <h1>First Light Electric</h1>
+      <p class="lead">Installations, repairs, panel upgrades and lighting for East Hampton homes and businesses.</p>
     </div>
   </section>
 
@@ -388,25 +389,38 @@
   <section id="quote">
     <div class="wrap" style="max-width:640px">
       <h2>Tell them what you need</h2>
-      <p class="sub">Three details. Or skip the form and call <a href="tel:+16312670183">(631) 267-0183</a>.</p>
+      <p class="sub">Or skip the form and call <a href="tel:+16312670183">(631) 267-0183</a>.</p>
       <p class="note">Missed call? We text you back.<small>The current site does not say this. Confirm it before it goes live.</small></p>
       <form id="quoteForm" novalidate>
-        <label>Name
-          <input id="qName" name="name" autocomplete="name" required>
+        <label>First name
+          <input id="qName" name="name" autocomplete="given-name" required>
         </label>
-        <label>Phone
-          <input id="qPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+        <label>Phone (fast quotes / emergency repair)
+          <input id="qPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
         </label>
-        <label>What do you need
-          <textarea id="qNeed" name="need" required></textarea>
+        <label>Email (standard job quote)
+          <input id="qEmail" name="email" type="email" autocomplete="email" inputmode="email">
         </label>
-        <div class="emerg">
-          <input id="qEmerg" type="checkbox" name="emergency" value="yes">
-          <label for="qEmerg">Is this an emergency?</label>
-          <p class="emerg-note">Call <a href="tel:+16312670183">(631) 267-0183</a> now. For a fire, a downed line, or anyone in danger, call 911. Published hours are Monday–Saturday, 7 AM–5 PM. This page does not add after-hours service.</p>
-        </div>
+        <label>Job type
+          <select id="qJob" name="job" required>
+            <option value="">Select a job type</option>
+            <option>Panel upgrade</option>
+            <option>Repair</option>
+            <option>Lighting &amp; controls</option>
+            <option>EV charger</option>
+            <option>Generator</option>
+            <option>Emergency repair</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Address
+          <input id="qAddress" name="address" autocomplete="street-address" required>
+        </label>
+        <label>Note
+          <textarea id="qNote" name="note"></textarea>
+        </label>
         <p class="err" id="qErr" role="alert"></p>
-        <button class="btn pine" type="submit">Request a quote</button>
+        <button class="btn pine" type="submit">Submit</button>
       </form>
       <div class="thanks" id="qThanks" hidden>
         <p id="qThanksText"></p>
@@ -494,10 +508,16 @@
     e.preventDefault();
     var name = document.getElementById('qName').value.trim();
     var phone = document.getElementById('qPhone').value.trim();
-    var need = document.getElementById('qNeed').value.trim();
+    var email = document.getElementById('qEmail').value.trim();
+    var job = document.getElementById('qJob').value;
+    var address = document.getElementById('qAddress').value.trim();
     var digits = phone.replace(/\D/g, '');
-    if (!name || digits.length < 7 || !need) {
-      err.textContent = 'Add your name, a phone number, and what you need.';
+    var phoneOk = digits.length >= 7;
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !job || !address || (!phone && !email) || (phone && !phoneOk) || (email && !emailOk)) {
+      err.textContent = (!name || !job || !address)
+        ? 'Add your first name, a job type, and an address.'
+        : 'Add a phone number or an email.';
       thanks.hidden = true;
       return;
     }
