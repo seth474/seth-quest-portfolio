@@ -58,21 +58,12 @@
   .learn li::before{content:"";position:absolute;left:20px;top:24px;width:24px;height:24px;border-radius:50%;background:var(--gb)}
   .learn li::after{content:"";position:absolute;left:27px;top:31px;width:10px;height:5px;border-left:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(-45deg)}
   .learn b{color:var(--ink)}
-  .host{display:grid;gap:18px}
   .hostcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px}
   .hn{display:flex;align-items:center;gap:14px}
   .av{flex:none;width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--gb);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:26px;padding-top:2px}
   .hn h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:.95}
   .hn span{display:block;font-size:14px;color:var(--mut);font-weight:600;margin-top:4px}
   .hostcard p{margin-top:16px;color:#333}
-  .case{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px}
-  .case .eyebrow{margin-bottom:8px}
-  .case h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:30px;line-height:.95;text-transform:uppercase}
-  .cmeta{font:600 13px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:6px}
-  .fixes{list-style:none;display:grid;gap:12px;margin-top:16px}
-  .fixes li{position:relative;padding-left:22px;color:#444}
-  .fixes li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--gb)}
-  .fixes strong{color:var(--ink)}
   .seat{background:var(--ink);color:#fff;border-radius:26px;padding:40px 22px 30px}
   .seat h2.d{margin:0 0 12px}
   .seat .when2{margin-bottom:30px}
@@ -92,7 +83,6 @@
     .whenline{margin-top:28px}
     .heroform{max-width:520px}
     body.page-landing section.pad{padding:72px 0}
-    .host{grid-template-columns:1fr 1fr;align-items:start}
     .seat{padding:56px 48px 40px}
     .seat form{max-width:520px}
     .learn{grid-template-columns:1fr 1fr}
