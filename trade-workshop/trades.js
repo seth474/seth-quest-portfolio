@@ -31,7 +31,7 @@
       path: '/electrician-workshop',
       smsName: 'electrical contractor',
       video: '/trade-workshop/video/electrician-v2.mp4',
-      poster: '/trade-workshop/video/electrician-v2-poster.jpg',
+      poster: '/trade-workshop/video/electrician-v2-poster-c.jpg',
       eyebrow: 'Free workshop for electrical contractors',
       pageTitle: 'Free workshop for Hamptons electrical contractors \u2014 Seth Quest',
       description: 'Free 30-minute workshop for Hamptons electrical contractors: stop losing jobs to missed calls and slow quotes.',
