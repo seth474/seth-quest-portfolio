@@ -7,7 +7,7 @@
       path: '/hvac-workshop',
       smsName: 'HVAC',
       video: '/trade-workshop/video/hvac-v2.mp4',
-      poster: '/trade-workshop/video/hvac-v2-poster.jpg',
+      poster: '/trade-workshop/video/hvac-v2-poster-b.jpg',
       eyebrow: 'Free workshop for HVAC owners',
       pageTitle: 'Free workshop for Hamptons HVAC owners \u2014 Seth Quest',
       description: 'Free 30-minute workshop for Hamptons HVAC company owners: stop losing jobs to missed calls and slow quotes.',
