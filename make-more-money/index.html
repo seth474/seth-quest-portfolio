@@ -336,12 +336,16 @@
   .topbar .hcta,.fbar .hcta{color:var(--ink);background:#f5f3ee;border-color:#f5f3ee;padding:7px 14px}
   .fbar{position:fixed;left:0;right:0;top:0;z-index:40;background:var(--ink);padding-top:env(safe-area-inset-top);transform:translateY(-110%);transition:transform .3s ease;box-shadow:0 6px 20px rgba(0,0,0,.18)}
   .fbar.on{transform:none}
-  a.announce{display:block;position:static;background:#111;color:#f5f3ee;text-align:center;text-decoration:none;font:600 13px/1 Inter,sans-serif;letter-spacing:.01em;padding:7px 12px;white-space:nowrap;border-bottom:2px solid var(--gb)}
+  a.announce{display:block;position:static;background:#111;color:#f5f3ee;text-align:center;text-decoration:none;font:600 16px/1.15 Inter,sans-serif;letter-spacing:.01em;padding:9px 12px;white-space:nowrap;border-bottom:2px solid var(--gb)}
+  a.announce b{font-weight:800;letter-spacing:.04em}
   a.announce[hidden]{display:none}
   .fbar .ws-label,.fbar .ws-seat{display:none}
   .fbar.ws .std{display:none}
-  .fbar.ws .ws-label{display:block;color:#f5f3ee;text-decoration:none;font:600 14px/1.15 Inter,sans-serif;white-space:nowrap;min-width:0}
-  .fbar.ws .ws-seat{display:inline-block;text-decoration:none;text-align:center}
+  .fbar.ws .tb-in{height:auto;min-height:56px;padding-top:8px;padding-bottom:8px;gap:14px}
+  .fbar.ws .ws-label{display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0;gap:2px;overflow:hidden;color:#f5f3ee;text-decoration:none}
+  .fbar.ws .ws-label .l1{font:600 15px/1.15 Inter,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fbar.ws .ws-label .l2{font:500 12px/1.2 Inter,sans-serif;color:#c8c6c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fbar.ws .ws-seat{display:inline-block;flex:none;flex-shrink:0;white-space:nowrap;text-decoration:none;text-align:center}
   @media(prefers-reduced-motion:reduce){.fbar{transition:none}}
   .hgrid{grid-template-areas:"head" "vid" "lead" "cta";row-gap:0}
   .hhead{grid-area:head}.hgrid>.lead{grid-area:lead}.hgrid>.ctas{grid-area:cta}.vidbox{grid-area:vid}
@@ -407,7 +411,7 @@
 </style>
 </head>
 <body>
-<a class="announce" id="wsAnnounce" href="/workshop" hidden>Free Zoom workshop Thu 7 PM →</a>
+<a class="announce" id="wsAnnounce" href="/workshop" hidden><span id="wsAnnText">Free workshop on Zoom · Thu 7 PM → </span><b>JOIN</b></a>
 <header class="topbar" id="top">
   <div class="tb-in">
     <a class="brand" href="https://sethquest.com">Seth Quest</a>
@@ -417,7 +421,7 @@
 <div class="fbar" id="fbar" aria-hidden="true">
   <div class="tb-in">
     <a class="brand std" href="https://sethquest.com" tabindex="-1">Seth Quest</a>
-    <a class="ws-label" id="wsFbarLabel" href="/workshop" tabindex="-1">Free workshop · Thu 7 PM</a>
+    <a class="ws-label" id="wsFbarLabel" href="/workshop" tabindex="-1"><span class="l1">Free workshop on Zoom</span><span class="l2">Thursday 7 PM</span></a>
     <button class="hcta std" type="button" data-book tabindex="-1">Contact</button>
     <a class="hcta ws-seat" href="/workshop" tabindex="-1">Save my seat</a>
   </div>
@@ -427,24 +431,23 @@
 (function(){
   var W=window.WORKSHOP||{};
   if(window.WORKSHOP_ACTIVE!==true)return;
-  var day=(W.day||'Thursday').slice(0,3);
+  var dayFull=W.day||'Thursday', dayShort=dayFull.slice(0,3);
   var clock=String(W.time||'7:00 PM ET').replace(/\s*ET$/,'').replace(':00','');
-  var when=day+' '+clock;
-  var line=document.getElementById('wsAnnounce');
-  line.textContent='Free Zoom workshop '+when+' \u2192';
+  var line=document.getElementById('wsAnnounce'), text=document.getElementById('wsAnnText');
+  function fitLine(){
+    line.style.letterSpacing='';
+    text.textContent='Free workshop on Zoom \u00b7 '+dayShort+' '+clock+' \u2192 ';
+    if(line.scrollWidth>line.clientWidth+1) line.style.letterSpacing='-0.015em';
+    if(line.scrollWidth>line.clientWidth+1) text.textContent='Free workshop on Zoom '+dayShort+' '+clock+' \u2192 ';
+  }
+  fitLine();
   line.hidden=false;
   var fbar=document.getElementById('fbar'), label=document.getElementById('wsFbarLabel');
   fbar.classList.add('ws');
-  function fitLabel(){
-    label.textContent='Free workshop \u00b7 '+when;
-    var row=fbar.querySelector('.tb-in'), seat=fbar.querySelector('.ws-seat');
-    var cs=getComputedStyle(row);
-    var room=row.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight)-parseFloat(cs.columnGap||cs.gap||0);
-    if(label.scrollWidth+seat.getBoundingClientRect().width>room+1) label.textContent='Free workshop '+when;
-  }
-  fitLabel();
-  window.addEventListener('resize',fitLabel);
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitLabel);
+  label.querySelector('.l1').textContent='Free workshop on Zoom';
+  label.querySelector('.l2').textContent=dayFull+' '+clock;
+  window.addEventListener('resize',fitLine);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitLine);
 })();
 </script>
 
