@@ -94,6 +94,8 @@
   .intro h1{max-width:none;font-size:clamp(34px,6vw,60px)}
   .intro .lead{color:var(--ink);margin-top:12px;max-width:none;font-size:18px;line-height:1.4}
   .ctas{display:flex;flex-direction:column;gap:10px}
+  .hero .ctas{width:fit-content;max-width:100%;margin-inline:auto;align-items:stretch}
+  .hero .ctas .btn{padding-inline:22px}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;
     min-height:52px;padding:12px 18px;border-radius:12px;
@@ -221,6 +223,7 @@
     .navlinks{display:flex}
     .ctas{flex-direction:row}
     .ctas .btn{min-width:220px}
+    .hero .ctas{width:auto;margin-inline:0}
     .trust{grid-template-columns:1fr 1fr}
     .trust li{padding:18px 22px 18px 0;border-bottom:0}
     .trust li:nth-child(odd){border-right:1px solid var(--line);padding-right:22px}
