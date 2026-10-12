@@ -411,7 +411,7 @@
 </style>
 </head>
 <body>
-<a class="announce" id="wsAnnounce" href="/workshop" hidden><span id="wsAnnText">Free workshop on Zoom · Thu 7 PM → </span><b>JOIN</b></a>
+<a class="announce" id="wsAnnounce" href="/workshop" hidden><span id="wsAnnText">Free workshop · Thursday 7 PM → </span><b>JOIN</b></a>
 <header class="topbar" id="top">
   <div class="tb-in">
     <a class="brand" href="https://sethquest.com">Seth Quest</a>
@@ -421,7 +421,7 @@
 <div class="fbar" id="fbar" aria-hidden="true">
   <div class="tb-in">
     <a class="brand std" href="https://sethquest.com" tabindex="-1">Seth Quest</a>
-    <a class="ws-label" id="wsFbarLabel" href="/workshop" tabindex="-1"><span class="l1">Free workshop on Zoom</span><span class="l2">Thursday 7 PM</span></a>
+    <a class="ws-label" id="wsFbarLabel" href="/workshop" tabindex="-1"><span class="l1">Free workshop</span><span class="l2">Thursday 7 PM</span></a>
     <button class="hcta std" type="button" data-book tabindex="-1">Contact</button>
     <a class="hcta ws-seat" href="/workshop" tabindex="-1">Save my seat</a>
   </div>
@@ -431,20 +431,19 @@
 (function(){
   var W=window.WORKSHOP||{};
   if(window.WORKSHOP_ACTIVE!==true)return;
-  var dayFull=W.day||'Thursday', dayShort=dayFull.slice(0,3);
+  var dayFull=W.day||'Thursday';
   var clock=String(W.time||'7:00 PM ET').replace(/\s*ET$/,'').replace(':00','');
   var line=document.getElementById('wsAnnounce'), text=document.getElementById('wsAnnText');
   function fitLine(){
     line.style.letterSpacing='';
-    text.textContent='Free workshop on Zoom \u00b7 '+dayShort+' '+clock+' \u2192 ';
-    if(line.scrollWidth>line.clientWidth+1) line.style.letterSpacing='-0.015em';
-    if(line.scrollWidth>line.clientWidth+1) text.textContent='Free workshop on Zoom '+dayShort+' '+clock+' \u2192 ';
+    text.textContent='Free workshop \u00b7 '+dayFull+' '+clock+' \u2192 ';
+    if(line.scrollWidth>line.clientWidth+1) line.style.letterSpacing='-0.02em';
   }
   fitLine();
   line.hidden=false;
   var fbar=document.getElementById('fbar'), label=document.getElementById('wsFbarLabel');
   fbar.classList.add('ws');
-  label.querySelector('.l1').textContent='Free workshop on Zoom';
+  label.querySelector('.l1').textContent='Free workshop';
   label.querySelector('.l2').textContent=dayFull+' '+clock;
   window.addEventListener('resize',fitLine);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitLine);
