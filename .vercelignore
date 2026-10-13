@@ -1,0 +1,6 @@
+# Keep non-site files in git, out of the Vercel upload.
+# Archives and app source packages.
+*.zip
+# Docs and scripts (for example VSL_SCRIPT.md), not pages.
+*.md
+**/*.md
