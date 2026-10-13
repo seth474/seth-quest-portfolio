@@ -23,7 +23,7 @@
       b.disabled = true;
       b.textContent = 'Sending\u2026';
       var payload = {
-        _subject: 'ALL IN ON AI (10 DAYS): ' + n + ' (' + bz + ')',
+        _subject: 'COMPLETE AI: ' + n + ' (' + bz + ')',
         type: 'AI Install booking',
         form_position: position,
         source: location.origin + '/ai-install',
@@ -33,8 +33,8 @@
         phone: p,
         email: em,
         revenue: rev,
-        offer: 'All In on AI in 10 Days',
-        price: '$5,000 ($2,500 to start, $2,500 on day 10)',
+        offer: 'COMPLETE AI',
+        price: '$4,800 ($2,400 down, $2,400 on day 10)',
         signed_up_at: new Date().toISOString()
       };
       fetch(FORM, {

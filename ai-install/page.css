@@ -14,6 +14,19 @@ body.page-install .heroform{margin-top:28px;max-width:560px}
 body.page-install .heroform label.l,body.page-install .seat label.l{display:block;font:600 13px Inter,sans-serif;letter-spacing:.06em;margin:0 0 7px}
 body.page-install .heroform label.l{color:#555}
 body.page-install select.fld{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#111 50%),linear-gradient(135deg,#111 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
+body.page-install .employee{background:var(--ink);color:#fff;border-radius:26px;padding:32px 22px}
+body.page-install .employee .eyebrow{color:#bbb}
+body.page-install .employee h2.d{font-size:clamp(44px,10vw,76px)}
+body.page-install .employee p{margin-top:12px;color:#eee;font-size:18px;line-height:1.45;max-width:38em}
+body.page-install .employee .human{font-weight:800;color:var(--gb);font-size:20px}
+body.page-install .stack{list-style:none;display:grid;gap:8px}
+body.page-install .stack li{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+body.page-install .stack li > div{min-width:0}
+body.page-install .stack b{display:block;font-size:17px;line-height:1.25}
+body.page-install .stack li > div span{display:block;margin-top:4px;color:#444;font-size:14px;line-height:1.35}
+body.page-install .stack .amt{flex:0 0 auto;text-align:right}
+body.page-install .stack .amt b{font:400 30px/1 "Bebas Neue",sans-serif;letter-spacing:.02em}
+body.page-install .stack .amt i{display:block;margin-top:2px;font:700 11px/1 Inter,sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#777}
 body.page-install .vals{list-style:none;display:grid;gap:12px}
 body.page-install .vals li{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
 body.page-install .vals b{display:block;font-size:18px;line-height:1.25}
@@ -58,6 +71,7 @@ body.page-install .seat .done p{color:#ddd}
   body.page-install .slots{grid-template-columns:1fr 1fr 1fr}
   body.page-install .valtotal{grid-template-columns:1fr 1fr;padding:26px 28px}
   body.page-install .guarantee{padding:36px 36px}
+  body.page-install .employee{padding:48px 44px}
 }
 @media(max-width:859px){
   body.page-install .steps .step{display:block}
