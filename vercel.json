@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "redirects": [
+    { "source": "/lizzietours-index", "destination": "/real-estate-ai-tours/", "permanent": true },
+    { "source": "/lizzietours-index.html", "destination": "/real-estate-ai-tours/", "permanent": true },
+    { "source": "/more", "destination": "/make-more-money/", "permanent": true },
+    { "source": "/more/", "destination": "/make-more-money/", "permanent": true },
+    { "source": "/more/index.html", "destination": "/make-more-money/", "permanent": true },
     { "source": "/pumamala-social.mp4", "destination": "/pumamala/pumamala-social.mp4", "permanent": true },
     { "source": "/dfb-dashboard", "destination": "/dfb", "permanent": true },
     { "source": "/dfb-dashboard.html", "destination": "/dfb", "permanent": true },
