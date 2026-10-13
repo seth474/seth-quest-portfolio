@@ -1,0 +1,79 @@
+/* AI Install landing. Shares trade-workshop/base.css. */
+body.page-install .hero{padding:36px 0 48px}
+body.page-install .hero .eyebrow{margin-bottom:14px}
+body.page-install .hero h1.d{font-size:clamp(42px,11vw,88px);max-width:18em}
+body.page-install .pricechips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+body.page-install .pricechips span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:700 14px/1.2 Inter,sans-serif}
+body.page-install .pricechips b{font-weight:800}
+body.page-install .vsl{margin:28px auto 0;width:100%;max-width:720px}
+body.page-install .vsl .frame{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#111;box-shadow:0 30px 70px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;color:#f5f3ee;text-align:center;padding:24px}
+body.page-install .vsl .play{width:64px;height:64px;border-radius:50%;background:var(--gb);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+body.page-install .vsl .play svg{width:24px;height:24px;margin-left:4px;fill:var(--ink)}
+body.page-install .vsl p{font:800 16px/1.3 Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+body.page-install .heroform{margin-top:28px;max-width:560px}
+body.page-install .heroform label.l,body.page-install .seat label.l{display:block;font:600 13px Inter,sans-serif;letter-spacing:.06em;margin:0 0 7px}
+body.page-install .heroform label.l{color:#555}
+body.page-install select.fld{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#111 50%),linear-gradient(135deg,#111 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
+body.page-install .employee{background:var(--ink);color:#fff;border-radius:26px;padding:32px 22px}
+body.page-install .employee .eyebrow{color:#bbb}
+body.page-install .employee h2.d{font-size:clamp(44px,10vw,76px)}
+body.page-install .employee p{margin-top:12px;color:#eee;font-size:18px;line-height:1.45;max-width:38em}
+body.page-install .employee .human{font-weight:800;color:var(--gb);font-size:20px}
+body.page-install .stack{list-style:none;display:grid;gap:8px}
+body.page-install .stack li{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+body.page-install .stack li > div{min-width:0}
+body.page-install .stack b{display:block;font-size:17px;line-height:1.25}
+body.page-install .stack li > div span{display:block;margin-top:4px;color:#444;font-size:14px;line-height:1.35}
+body.page-install .stack .amt{flex:0 0 auto;text-align:right}
+body.page-install .stack .amt b{font:400 30px/1 "Bebas Neue",sans-serif;letter-spacing:.02em}
+body.page-install .stack .amt i{display:block;margin-top:2px;font:700 11px/1 Inter,sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#777}
+body.page-install .vals{list-style:none;display:grid;gap:12px}
+body.page-install .vals li{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+body.page-install .vals b{display:block;font-size:18px;line-height:1.25}
+body.page-install .vals span{display:block;margin-top:4px;color:#444;font-size:15px;line-height:1.4}
+body.page-install .vals strong{font:400 32px/1 "Bebas Neue",sans-serif;letter-spacing:.02em;color:var(--ink)}
+body.page-install .valtotal{margin-top:14px;display:grid;gap:10px;background:var(--ink);color:#fff;border-radius:20px;padding:22px 20px}
+body.page-install .valtotal div{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+body.page-install .valtotal span{color:#bbb;font-weight:600}
+body.page-install .valtotal b{font:400 42px/1 "Bebas Neue",sans-serif}
+body.page-install .valtotal .you b{color:var(--gb)}
+body.page-install .payline{margin-top:14px;font-weight:700;color:#333}
+body.page-install .steps{display:grid;gap:14px}
+body.page-install .steps .step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px}
+body.page-install .steps h3.d{font-size:clamp(36px,8vw,48px);margin:2px 0 10px}
+body.page-install .steps .step p{max-width:none}
+body.page-install .guarantee{background:var(--card);border:1px solid var(--line);border-left:8px solid var(--gb);border-radius:22px;padding:28px 22px}
+body.page-install .guarantee h2.d{font-size:clamp(40px,10vw,68px)}
+body.page-install .guarantee p{margin-top:12px;color:#333;max-width:62ch}
+body.page-install .guarantee .upkeep{font-weight:700;color:var(--ink)}
+body.page-install .guarantee .fine{margin-top:14px;font-size:13px;line-height:1.45;color:#555;max-width:68ch}
+body.page-install .slots{display:grid;gap:14px}
+body.page-install .slot{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+body.page-install .slot .ph{aspect-ratio:16/9;background:#161616;color:#f5f3ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+body.page-install .slot .ph i{width:48px;height:48px;border-radius:50%;background:var(--gb);display:flex;align-items:center;justify-content:center;font-style:normal}
+body.page-install .slot .ph i svg{width:16px;height:16px;margin-left:2px;fill:var(--ink)}
+body.page-install .slot .ph b{font:800 13px/1.3 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+body.page-install .slot figcaption{padding:14px 16px 16px;font-weight:700}
+body.page-install .faq{display:grid;gap:10px}
+body.page-install .faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 18px}
+body.page-install .faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none}
+body.page-install .faq summary::-webkit-details-marker{display:none}
+body.page-install .faq summary:focus-visible{outline:3px solid var(--gb);outline-offset:2px}
+body.page-install .faq p{padding:0 0 16px;color:#333}
+body.page-install .done{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;max-width:560px}
+body.page-install .done h2.d{font-size:clamp(42px,10vw,64px);margin:0 0 10px}
+body.page-install .seat .done{background:#141414;border-color:#333}
+body.page-install .seat .done p{color:#ddd}
+@media(min-width:860px){
+  body.page-install .hero{padding:64px 0 72px}
+  body.page-install section.pad{padding:72px 0}
+  body.page-install .steps{grid-template-columns:1fr 1fr;align-items:stretch}
+  body.page-install .slots{grid-template-columns:1fr 1fr 1fr}
+  body.page-install .valtotal{grid-template-columns:1fr 1fr;padding:26px 28px}
+  body.page-install .guarantee{padding:36px 36px}
+  body.page-install .employee{padding:48px 44px}
+}
+@media(max-width:859px){
+  body.page-install .steps .step{display:block}
+  body.page-install .steps .sn{margin-bottom:14px}
+}
