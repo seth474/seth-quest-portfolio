@@ -33,7 +33,7 @@ Every file below was SHA-256 identical to the copy that was kept. Repo search co
 | `pumamala-reel.mp4` | 4,723,513 | Referenced by `pumamala/index.html` and `clientpumamala/index.html`. Kept. |
 | `dfb-funnel.html` | 598,079 | Referenced as `/dfb-funnel` from `deep-fried-bananas/index.html`. Kept. |
 | `trade-workshop/video/general-v1.mp4` | 2,025,389 | Referenced by `trade-workshop/trades.js`. Kept. |
-| `dfb-reel.mp4` | 3,657,716 | **Unreferenced** in html, js, css, json, and `vercel.json`. Kept, not deleted. |
+| `dfb-reel.mp4` | 3,657,716 | Unreferenced. Removed in the follow-up cleanup. |
 
 ## Videos recompressed
 
@@ -82,15 +82,15 @@ Flags: **old** = superseded version still in the repo. **unlisted** = not linked
 | `/dfb-funnel` | Café landing page ("grow your café with AI"). | 2026-06-07 | |
 | `/elua-ux` | Elua case study. Carousel now uses the canonical report, explore, and hero images. | 2026-06-06 | Paths updated in this cleanup. |
 | `/elua` | Elua interactive report app ("Who Will Resist the Wage Floor"). | 2026-06-06 | |
-| `/pumamala` | Puma Mala case study. Embeds `/clientpumamala`. Phone video uses the kept social file. | 2026-06-03 | **broken** poster `/pumamala/pumamala-social-poster.jpg` (missing before this cleanup; video has an error fallback). |
+| `/pumamala` | Puma Mala case study. Embeds `/clientpumamala`. Phone video uses the kept social file. | 2026-06-03 | Poster generated from the social video. |
 | `/clientpumamala` | Puma Mala concept site ("A new model for living well"), iframed by the case study. Uses `pumamala-reel.mp4`. | 2026-05-30 | |
 | `/real-estate-ai-tours` | Current LizzieTours case study, linked from the homepage. | 2026-06-06 | |
-| `/lizzietours-index` | Older LizzieTours case study, same title, not linked from anywhere. | 2026-06-03 | **old**, **unlisted**, **broken** — missing `/real-estate/lizzie-tour.mp4`, `lizzie-tour-poster.jpg`, `lizzie.jpg`, `blake.jpg`, `agent-clone.jpg`, `tour-still.jpg`. |
-| `/oceanis-project` | Oceanis case study. Links to the live app. | 2026-10-06 | **broken** poster `/oceanis/oceanis-social-poster.jpg` (missing before this cleanup; video has an error fallback). |
+| `/lizzietours-index` | Removed. Redirects to `/real-estate-ai-tours/`. | | |
+| `/oceanis-project` | Oceanis case study. Links to the live app. | 2026-10-06 | Poster generated from `oceanisshort.mp4`. |
 | `/oceanis` | Oceanis live app. | 2026-06-06 | |
 | `/make-more-money` | Current "Make More Money" offer page. Workshop registration links here. Video recompressed in place. | 2026-10-11 | |
 | `/make-more-money/report` | Lead report view for that offer. | 2026-10-10 | |
-| `/more` | Earlier "Make More Money" flyer. Same title, not linked from the homepage or the workshop. | 2026-10-09 | **old**, **unlisted** |
+| `/more` | Removed flyer. Exact path redirects to `/make-more-money/`. `/more/dunemere/*` and `/more/make-more-money.mp4` stay. | | |
 | `/trade-workshop/landing` | Workshop signup page (also served by `/workshop` and the trade aliases). | 2026-10-12 | |
 | `/trade-workshop/registered` | Post-signup confirmation. | 2026-10-11 | |
 | `/customer-report` | "What Your Customers Really Think" lead form. Direct URL only. | 2026-10-01 | **unlisted** |
@@ -116,7 +116,7 @@ Related pages that are not old copies of each other: `/elua` is the report app a
 
 | File | Bytes | Note |
 | --- | ---: | --- |
-| `dfb-reel.mp4` | 3,657,716 | Listed above. No references. Kept on purpose. |
+| `dfb-reel.mp4` | 3,657,716 | Removed after the follow-up confirmed it was still unreferenced. |
 | `elua-app.zip` | 72,608 | No references. Still in git. Excluded from the Vercel upload by `.vercelignore`. |
 | `oceanis/oceanis-burn.jpg` | 113,763 | Filename never appears in html, js, css, or json. |
 | `oceanis/oceanis-dashboard.jpg` | 135,183 | Same. |
