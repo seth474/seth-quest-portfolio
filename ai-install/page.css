@@ -15,7 +15,7 @@ body.page-install .heroform label.l,body.page-install .seat label.l{display:bloc
 body.page-install .heroform label.l{color:#555}
 body.page-install select.fld{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#111 50%),linear-gradient(135deg,#111 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
 body.page-install .vals{list-style:none;display:grid;gap:12px}
-body.page-install .vals li{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 18px 20px}
+body.page-install .vals li{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
 body.page-install .vals b{display:block;font-size:18px;line-height:1.25}
 body.page-install .vals span{display:block;margin-top:4px;color:#444;font-size:15px;line-height:1.4}
 body.page-install .vals strong{font:400 32px/1 "Bebas Neue",sans-serif;letter-spacing:.02em;color:var(--ink)}
@@ -53,7 +53,7 @@ body.page-install .seat .done p{color:#ddd}
 @media(min-width:860px){
   body.page-install .hero{padding:64px 0 72px}
   body.page-install section.pad{padding:72px 0}
-  body.page-install .steps{grid-template-columns:1fr 1fr 1fr;align-items:stretch}
+  body.page-install .steps{grid-template-columns:1fr 1fr;align-items:stretch}
   body.page-install .slots{grid-template-columns:1fr 1fr 1fr}
   body.page-install .valtotal{grid-template-columns:1fr 1fr;padding:26px 28px}
   body.page-install .guarantee{padding:36px 36px}

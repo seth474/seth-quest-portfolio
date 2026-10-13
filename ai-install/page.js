@@ -23,7 +23,7 @@
       b.disabled = true;
       b.textContent = 'Sending\u2026';
       var payload = {
-        _subject: 'AI INSTALL: ' + n + ' (' + bz + ')',
+        _subject: 'ALL IN ON AI (10 DAYS): ' + n + ' (' + bz + ')',
         type: 'AI Install booking',
         form_position: position,
         source: location.origin + '/ai-install',
@@ -33,8 +33,8 @@
         phone: p,
         email: em,
         revenue: rev,
-        offer: 'AI Install for Service Businesses',
-        price: '$5,000 ($2,500 deposit, $2,500 in 30 days)',
+        offer: 'All In on AI in 10 Days',
+        price: '$4,800 ($2,400 to kick off, $2,400 on day 10)',
         signed_up_at: new Date().toISOString()
       };
       fetch(FORM, {
