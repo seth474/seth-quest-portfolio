@@ -34,7 +34,7 @@
         email: em,
         revenue: rev,
         offer: 'All In on AI in 10 Days',
-        price: '$4,800 ($2,400 to kick off, $2,400 on day 10)',
+        price: '$5,000 ($2,500 to start, $2,500 on day 10)',
         signed_up_at: new Date().toISOString()
       };
       fetch(FORM, {

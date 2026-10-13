@@ -1,8 +1,8 @@
 # All In on AI in 10 Days — two 30–45 second VSL scripts
 
-Offer on screen and in the words: All In on AI in 10 Days. A done-for-you AI install for busy service business owners (HVAC, electrical, plumbing, fuel, home services). $4,800 total: $2,400 to kick off, $2,400 on day 10. Double-Value Guarantee: if the owner does not believe Seth created at least double what they paid ($9,600+) in value for the business, they get 100% of their money back. Optional upkeep is $300 a month and never renews automatically. Only 4 installs a month. Seth does them personally. Two meetings: kickoff and handoff.
+Offer on screen and in the words: All In on AI in 10 Days. A done-for-you AI install for busy service business owners (HVAC, electrical, plumbing, fuel, home services). $5,000 total: $2,500 to start, $2,500 on day 10. Double-Value Guarantee: we'll create at least $10,000 in value for your business, or you get 100% of your money back. Optional upkeep is $300 a month and never renews automatically. Only 4 installs a month. Seth does them personally. Two meetings: kickoff and handoff.
 
-Say the guarantee in both scripts: "Double your money in value, or every dollar back." Then the refund: if they do not believe he created at least double what they paid, $9,600 or more, in value, they get 100% of their money back.
+Say the guarantee in both scripts: "We'll create at least ten thousand in value for your business, or you get one hundred percent of your money back."
 
 The refund fine print stays on the page and in the FAQ. Do not say it in these spots unless the take runs short: if they take the refund, everything built is removed, including the ads, automations, AI assistant, and custom website.
 
@@ -16,7 +16,7 @@ The sitcom piece uses the garage-and-fence shape of a home-improvement sitcom. D
 
 ## 1. Seth, direct to camera
 
-Aggressive. About 42 seconds. One setup. Eye line into the lens. Brisk, not shouted.
+Aggressive. About 38 seconds. One setup. Eye line into the lens. Brisk, not shouted.
 
 **Seth:** If you're not using AI agents, you're missing the boat. Now is the time.
 
@@ -26,7 +26,7 @@ Text-back, replies, follow-up, reviews, your assistant, morning numbers, Google 
 
 A part-timer is twenty-four thousand a year. Your AI team works twenty-four seven.
 
-Twenty-four hundred now. Twenty-four hundred on day ten. Double your money in value, or every dollar back. If you don't believe I created at least double what you paid, ninety-six hundred plus, in value for your business, you get one hundred percent of your money back.
+Twenty-five hundred to start. Twenty-five hundred on day ten. Double your money in value, or every dollar back. We'll create at least ten thousand in value for your business, or you get one hundred percent of your money back.
 
 Two meetings. Four spots. Book it now.
 
@@ -38,15 +38,15 @@ Two meetings. Four spots. Book it now.
 | 0:06–0:11 | 2. Same frame | He leans in half an inch on "I'll install it." | "Too busy to figure out AI… in ten days." |
 | 0:11–0:16 | 3. Medium | He counts the install on his fingers, one item per beat. No graphics. Optional lower-third on the last item: "Installed in 10 days." | The seven things, in order. |
 | 0:16–0:22 | 4. Back to the close-up | Hands down. The part-timer number, then the AI team. | "Twenty-four thousand a year… twenty-four seven." |
-| 0:22–0:40 | 5. Close-up | Price, then the guarantee, slower. Eyes in the lens on "every dollar back." | "Twenty-four hundred now… one hundred percent of your money back." |
+| 0:22–0:40 | 5. Close-up | Price, then the guarantee, slower. Eyes in the lens on "money back." | "Twenty-five hundred to start… one hundred percent of your money back." |
 | 0:40–0:43 | 6. Close-up | He does not blink on the last line. | "Two meetings. Four spots. Book it now." |
-| 0:43–0:45 | 7. End card | All In on AI in 10 Days. $4,800. Double your money in value, or every dollar back. sethquest.com/ai-install | No new dialogue. |
+| 0:43–0:45 | 7. End card | All In on AI in 10 Days. $5,000. $10,000 in value, or your money back. sethquest.com/ai-install | No new dialogue. |
 
 Wardrobe: the same dark shirt he wears on the workshop videos. No hat brim over the eyes. Lav a mic. Room tone only, no music under the price or the guarantee.
 
 ## 2. Garage and fence, then Seth
 
-About 42 seconds. Funny, then the offer. The joke is the missed calls, not the neighbor.
+About 38 seconds of dialogue, plus the short pauses in the garage. Funny, then the offer. The joke is the missed calls, not the neighbor.
 
 ### Script
 
@@ -60,7 +60,7 @@ About 42 seconds. Funny, then the offer. The joke is the missed calls, not the n
 
 **Neighbor:** And a panel. And two "can you come this week." You missed all four.
 
-**Seth,** to camera: Too busy to figure out AI? I'll install it in ten days. Forty-eight hundred. Twenty-four hundred now, twenty-four hundred on day ten. Double your money in value, or every dollar back. If you don't believe I created at least double what you paid, ninety-six hundred plus, you get one hundred percent of your money back. Four spots. Book it now.
+**Seth,** to camera: Too busy to figure out AI? I'll install it in ten days. Five thousand. Twenty-five hundred to start, twenty-five hundred on day ten. Double your money in value, or every dollar back. We'll create at least ten thousand in value for your business, or you get one hundred percent of your money back. Four spots. Book it now.
 
 ### Shot list
 
@@ -72,7 +72,7 @@ About 42 seconds. Funny, then the offer. The joke is the missed calls, not the n
 | 0:06–0:11 | 4. Back to the neighbor | Same waist-up frame. He shrugs, still friendly, and tips his head toward the house next door. | "She hung up. Called the other guy. He already texted her." |
 | 0:11–0:14 | 5. Medium | The contractor slides out, sits up, and looks at the phone. Grease on his hands, not played for disgust. | "That was a water heater." |
 | 0:14–0:18 | 6. Two-shot | Fence between them. The neighbor counts four beats on his fingers. Keep both faces readable. No closer shot of the shorts. | "And a panel. And two 'can you come this week.' You missed all four." |
-| 0:18–0:42 | 7. Medium close-up | Hard cut to Seth in the driveway, same garage behind him, looking into the lens. The other two are out of frame. | The install, $4,800, both payments, the Double-Value Guarantee, four spots, "Book it now." |
-| 0:42–0:45 | 8. End card | All In on AI in 10 Days. $4,800. Double your money in value, or every dollar back. sethquest.com/ai-install | No new dialogue. |
+| 0:18–0:42 | 7. Medium close-up | Hard cut to Seth in the driveway, same garage behind him, looking into the lens. The other two are out of frame. | The install, $5,000, both payments, the $10,000 guarantee, four spots, "Book it now." |
+| 0:42–0:45 | 8. End card | All In on AI in 10 Days. $5,000. $10,000 in value, or your money back. sethquest.com/ai-install | No new dialogue. |
 
 Casting note: the neighbor is a friend doing a favor, dressed like he walked over from his own yard. The contractor can be anyone who looks at home with a truck. Seth is the only person who says the price or the guarantee.
