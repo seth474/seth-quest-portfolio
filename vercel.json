@@ -1,5 +1,22 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/pumamala-social.mp4", "destination": "/pumamala/pumamala-social.mp4", "permanent": true },
+    { "source": "/dfb-dashboard", "destination": "/dfb", "permanent": true },
+    { "source": "/dfb-dashboard.html", "destination": "/dfb", "permanent": true },
+    { "source": "/elua/elua-1.jpg", "destination": "/elua/elua-report.jpg", "permanent": true },
+    { "source": "/elua/elua-2.jpg", "destination": "/elua/elua-explore.jpg", "permanent": true },
+    { "source": "/elua/elua-3.jpg", "destination": "/elua/elua-hero.jpg", "permanent": true },
+    { "source": "/elua-ux/elua-report.jpg", "destination": "/elua/elua-report.jpg", "permanent": true },
+    { "source": "/elua-ux/elua-explore.jpg", "destination": "/elua/elua-explore.jpg", "permanent": true },
+    { "source": "/elua-ux/elua-hero.jpg", "destination": "/elua/elua-hero.jpg", "permanent": true },
+    { "source": "/elua/elua", "destination": "/elua", "permanent": true },
+    { "source": "/elua/elua/index.html", "destination": "/elua", "permanent": true },
+    { "source": "/elua/elua/elua-1.jpg", "destination": "/elua/elua-report.jpg", "permanent": true },
+    { "source": "/elua/elua/elua-2.jpg", "destination": "/elua/elua-explore.jpg", "permanent": true },
+    { "source": "/elua/elua/elua-3.jpg", "destination": "/elua/elua-hero.jpg", "permanent": true },
+    { "source": "/elua/elua/:path*", "destination": "/elua/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/workshop", "destination": "/trade-workshop/landing" },
     { "source": "/workshop/registered", "destination": "/trade-workshop/registered" },
