@@ -66,6 +66,8 @@ cite{font-style:normal;font-size:.9rem;opacity:.85;font-weight:700}
 .quote-copy p{color:var(--mut);max-width:32em}
 .quote-note{margin-top:16px;font-weight:600;color:var(--ink)}
 .quote-note a{color:var(--blue)}
+.emerg-line{margin:0 0 14px;padding:14px 16px;background:var(--ink);color:#fff;border-radius:6px;font-weight:800;font-size:1.05rem;line-height:1.35}
+.emerg-line a{color:#fff;text-decoration:underline;text-underline-offset:2px}
 .contact-in{display:grid;gap:32px;align-items:start}
 .contact address{margin-top:8px}
 .quick{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
@@ -74,7 +76,7 @@ address{font-style:normal;color:var(--mut)}
 .form-grid{display:grid;gap:14px}
 .form label{display:grid;gap:4px;font-weight:600;font-size:.9rem}
 .form input,.form select,.form textarea{font:inherit;padding:12px;border:1px solid #c9c6bf;border-radius:4px;background:#fff;width:100%}
-.form textarea{resize:vertical;min-height:120px}
+.form textarea{resize:vertical;min-height:0}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .err{min-height:1.2em;margin:0;color:#9b1c1c;font-weight:700;font-size:.9rem}
 .quote .btn{width:100%}

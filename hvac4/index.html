@@ -71,6 +71,8 @@
    <p>Tell us about the job. Fabian replies by call, text, or WhatsApp.</p>
    <p class="quote-note">Rather talk now? Call <a href="tel:+16312768909">(631) 276-8909</a>.</p>
   </div>
+  <div class="quote-panel">
+  <p class="emerg-line">Emergency? <a href="tel:+16312768909">Call</a> or <a href="sms:+16312768909">text</a> <a href="tel:+16312768909">631-276-8909</a> for the fastest response.</p>
   <form class="form" id="quoteForm" novalidate>
    <div class="form-grid">
     <label for="qName">Name<input id="qName" name="name" required autocomplete="name"></label>
@@ -81,14 +83,15 @@
    <label for="qService">Service requested
     <select id="qService" name="service" required>
      <option value="">Choose one</option>
-     <option>Heating</option>
-     <option>Cooling</option>
-     <option>Plumbing and water heaters</option>
-     <option>Emergency</option>
+     <option>AC repair</option>
+     <option>New AC install</option>
+     <option>Heating repair</option>
+     <option>New heating install</option>
+     <option>Water heater</option>
      <option>Other</option>
     </select>
    </label>
-   <label for="qMessage">Message<textarea id="qMessage" name="message" rows="4" placeholder="What’s going on, and when you need someone there."></textarea></label>
+   <label for="qNotes">Notes<textarea id="qNotes" name="notes" rows="2" placeholder="Optional: add any notes here"></textarea></label>
    <fieldset>
     <legend>Preferred reply</legend>
     <label class="r"><input type="radio" name="reply" value="Call" checked> Call</label>
@@ -100,6 +103,7 @@
    <p class="err" id="qErr" role="alert"></p>
   </form>
   <p class="ok" id="qOk" hidden>Thanks. We’ll reply the way you asked.</p>
+  </div>
  </div>
 </section>
 
@@ -252,7 +256,7 @@
     var email = form.email.value.trim();
     var address = form.address.value.trim();
     var service = form.service.value;
-    var message = form.message.value.trim();
+    var notes = form.notes.value.trim();
     var reply = form.reply.value || 'Call';
     if (!name) { err.textContent = 'Add your name.'; return; }
     if (!phone) { err.textContent = 'Add a phone number.'; return; }
@@ -267,7 +271,7 @@
       email: email,
       address: address,
       service: service,
-      message: message,
+      notes: notes,
       reply: reply,
       source: 'sethquest.com/hvac4'
     };
