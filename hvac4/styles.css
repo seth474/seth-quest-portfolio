@@ -87,7 +87,7 @@ fieldset{border:0;padding:0;display:flex;flex-wrap:wrap;gap:16px}legend{font-wei
 .m-only{margin:0 0 10px;display:block}
 @media(min-width:800px){.m-only{display:none}}
 .hero-ph{min-height:34vh;background:linear-gradient(135deg,#1f3a68,#5a6270);border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:24px}
-.hero-ph b{display:block;font-size:1.1rem}.hero-ph small{opacity:.8}
+.hero-ph b{display:block;font-size:.95rem;letter-spacing:.08em}.hero-ph small{display:block;max-width:26em;margin:10px auto 0;font-size:1.05rem;line-height:1.45;opacity:.95}
 .txtlink{align-self:center;color:var(--blue);font-weight:600}
 .strip .big b{color:#fff}.strip a{color:#c3c8d0}blockquote{border-left-color:#8a93a3}.pull{border-left-color:var(--blue)}
 .services,.about,.hero,.quote{background:#fff}.values,.work{background:var(--bg)}.contact{background:#dfe3e8}
