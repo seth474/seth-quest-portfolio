@@ -28,6 +28,14 @@ section{padding:64px 0}
 .cta{display:flex;flex-wrap:wrap;gap:10px}
 .stars{display:inline-block;margin-top:22px;text-decoration:none;font-size:1rem}.stars b{color:#c98a00}
 .hero-img{position:relative;margin:0;order:-1}
+@media(max-width:799px){
+ .hero-in{gap:12px}
+ .hero-copy{display:contents}
+ .hero h1{order:1}
+ .hero .cta{order:2}
+ .hero-img{order:3}
+ .hero .eyebrow,.hero .lede,.hero .stars{order:4}
+}
 .hero-img img{width:100%;height:auto;object-fit:contain;object-position:center;border-radius:6px}
 .ph-note{font-size:.8rem;background:#fff3c4;color:#6b5300;padding:6px 10px;border-radius:4px;margin-top:10px;display:inline-block}
 .strip{background:var(--ink);color:#fff;padding:28px 0 22px}
@@ -41,7 +49,10 @@ blockquote p{font-family:Georgia,serif;font-size:1.02rem;line-height:1.4;margin:
 cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
 .gread{margin-top:6px;font-size:13px;font-weight:700;text-decoration:none}
 .dot:focus-visible,.gread:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.dots{display:flex;justify-content:center;gap:2px;margin-top:4px}
+.slider-ctl{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px}
+.dots{display:flex;justify-content:center;gap:2px}
+.rot{border:1px solid rgba(255,255,255,.75);background:transparent;color:#fff;font:700 13px/1 inherit;padding:6px 10px;border-radius:4px;cursor:pointer}
+.rot:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .dot{width:28px;height:28px;border:0;background:transparent;padding:0;cursor:pointer}
 .dot::before{content:"";display:block;width:10px;height:10px;margin:9px auto;border-radius:50%;background:rgba(255,255,255,.4)}
 .dot[aria-selected="true"]::before{background:#fff}
@@ -58,8 +69,9 @@ cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
 .work figcaption{font-size:.9rem;color:var(--mut);margin-top:8px}
 .about{background:#fff}.about-in{display:grid;gap:28px;margin-bottom:28px}
 .about p{color:var(--mut);margin-bottom:12px;max-width:34em}
-.team-photo{width:100%;height:auto;border-radius:6px;object-fit:contain;object-position:center}
-.vans{border-radius:6px;aspect-ratio:16/7;object-fit:cover;width:100%}
+.owner{max-width:34em}
+.headshot{width:148px;height:148px;border-radius:50%;border:2px dashed #bbb;background:#f3f2ee;color:#888;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;font-size:.85rem;font-weight:700}
+.owner-name{font-family:Georgia,serif;font-size:1.45rem;margin:14px 0 8px}
 .quote{background:#fff;scroll-margin-top:88px}
 .quote-in{display:grid;gap:28px;align-items:start}
 .quote-copy p{color:var(--mut);max-width:32em}
