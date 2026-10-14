@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HVACBusiness","name":"HVAC 4 Service Corp","telephone":"+1-631-276-8909","foundingDate":"2019","address":{"@type":"PostalAddress","streetAddress":"186 Springs Fireplace Rd","addressLocality":"East Hampton","addressRegion":"NY","addressCountry":"US"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"106"}}</script>
 </head><body>
-<div class="demo-bar">Demo preview prepared by MORE. for HVAC 4 Service. Not live.</div>
 <header class="hdr"><div class="wrap hdr-in">
  <a href="#top" class="brand"><img src="img/logo-sm.png" alt="HVAC 4 Service" width="56" height="70"></a>
  <div class="hdr-act">
@@ -26,7 +25,7 @@
   <p class="eyebrow">Heating · Cooling · Plumbing · East Hampton, NY</p>
   <h1>Careful, owner-run HVAC for Hamptons homes.</h1>
   <p class="lede">Fabian answers the phone himself. We repair and install in one visit where we can, protect your floors, and leave the work area clean.</p>
-  <div class="cta"><a class="btn btn-red" href="tel:+16312768909">Call (631) 276-8909</a><a class="btn btn-line" href="sms:+16312768909">Text us</a><a class="txtlink" href="#contact">Or request a free estimate →</a></div>
+  <div class="cta"><a class="btn btn-red" href="tel:+16312768909">Call (631) 276-8909</a><a class="btn btn-line" href="sms:+16312768909">Text us</a><a class="txtlink" href="#quote">Or request a free estimate →</a></div>
   <a class="stars" id="reviews-top" href="https://www.google.com/search?q=HVAC+4+Service+Corp+East+Hampton+reviews" target="_blank" rel="noopener"><b>4.9 ★</b> from 106 Google reviews</a>
  </div>
  <figure class="hero-img hero-ph" role="img" aria-label="Hero photo placeholder"><div><b>Hero: four-green-pump boiler system photo, coming from Fabian</b><small>Wide, well-lit shot of the full mechanical room</small></div></figure>
@@ -40,6 +39,46 @@
   <blockquote><p>“Fabian the owner is 100% customer focused… An excellent communicator.”</p><cite>Simon Marlow</cite></blockquote>
  </div>
 </div></section>
+
+<section id="quote" class="quote">
+ <div class="wrap quote-in">
+  <div class="quote-copy">
+   <p class="eyebrow">Free quote</p>
+   <h2>Request a free quote.</h2>
+   <p>Tell us about the job. Fabian replies by call, text, or WhatsApp.</p>
+   <p class="quote-note">Rather talk now? Call <a href="tel:+16312768909">(631) 276-8909</a>.</p>
+  </div>
+  <form class="form" id="quoteForm" novalidate>
+   <div class="form-grid">
+    <label for="qName">Name<input id="qName" name="name" required autocomplete="name"></label>
+    <label for="qPhone">Phone<input id="qPhone" name="phone" type="tel" required autocomplete="tel"></label>
+    <label for="qEmail">Email<input id="qEmail" name="email" type="email" autocomplete="email"></label>
+    <label for="qAddress">Address<input id="qAddress" name="address" autocomplete="street-address"></label>
+   </div>
+   <label for="qService">Service requested
+    <select id="qService" name="service" required>
+     <option value="">Choose one</option>
+     <option>Heating</option>
+     <option>Cooling</option>
+     <option>Plumbing and water heaters</option>
+     <option>Emergency</option>
+     <option>Other</option>
+    </select>
+   </label>
+   <label for="qMessage">Message<textarea id="qMessage" name="message" rows="4" placeholder="What’s going on, and when you need someone there."></textarea></label>
+   <fieldset>
+    <legend>Preferred reply</legend>
+    <label class="r"><input type="radio" name="reply" value="Call" checked> Call</label>
+    <label class="r"><input type="radio" name="reply" value="Text"> Text</label>
+    <label class="r"><input type="radio" name="reply" value="WhatsApp"> WhatsApp</label>
+   </fieldset>
+   <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <button class="btn btn-red" id="qSend" type="submit">Request a free quote</button>
+   <p class="err" id="qErr" role="alert"></p>
+  </form>
+  <p class="ok" id="qOk" hidden>Thanks. We’ll reply the way you asked.</p>
+ </div>
+</section>
 
 <section class="values"><div class="wrap">
  <p class="tag">Proposal: pending Fabian's choice of “four services” vs “four service values”</p>
@@ -86,29 +125,69 @@
 
 <section id="contact" class="contact"><div class="wrap contact-in">
  <div>
-  <h2>Get a free estimate</h2>
-  <p>Tell us about the job and how you'd like to hear back.</p>
+  <h2>Call, text, or WhatsApp</h2>
+  <p>The fastest way to reach Fabian. For a written quote, use the form above.</p>
   <div class="quick">
    <a class="btn btn-dark" href="tel:+16312768909">Call (631) 276-8909</a>
    <a class="btn btn-line" href="sms:+16312768909">Text us</a>
    <a class="btn btn-wa" title="WhatsApp placement pending Fabian" href="https://wa.me/16312768909?text=Hi%20Fabian%2C%20I%27d%20like%20an%20estimate." target="_blank" rel="noopener">WhatsApp</a>
   </div>
-  <address>186 Springs Fireplace Rd<br>East Hampton, NY<br><a href="https://maps.google.com/?q=186+Springs+Fireplace+Rd+East+Hampton+NY" target="_blank" rel="noopener">Get directions</a></address>
+  <a class="btn btn-red" href="#quote">Request a free quote</a>
  </div>
- <form class="form" onsubmit="event.preventDefault();this.innerHTML='<p class=ok>Thanks. Fabian will get back to you shortly.</p>'">
-  <label>Name<input name="name" required autocomplete="name"></label>
-  <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
-  <label>Email<input name="email" type="email" autocomplete="email"></label>
-  <label>Address<input name="address" autocomplete="street-address"></label>
-  <label>Service<select name="service" required><option value="">Choose one</option><option>Heating / furnace</option><option>Boiler</option><option>AC / central air</option><option>Ductless mini-split</option><option>Water heater</option><option>Plumbing</option><option>Ventilation / air quality</option><option>Maintenance plan</option><option>Emergency repair</option></select></label>
-  <fieldset><legend>Best way to reply</legend>
-   <label class="r"><input type="radio" name="reply" value="call" checked> Call</label>
-   <label class="r"><input type="radio" name="reply" value="text"> Text</label>
-   <label class="r"><input type="radio" name="reply" value="whatsapp"> WhatsApp</label></fieldset>
-  <button class="btn btn-red" type="submit">Send request</button>
-  <p class="ph-note">Demo form: will be wired to email Fabian at launch.</p>
- </form>
+ <address>186 Springs Fireplace Rd<br>East Hampton, NY<br><a href="https://maps.google.com/?q=186+Springs+Fireplace+Rd+East+Hampton+NY" target="_blank" rel="noopener">Get directions</a></address>
 </div></section>
 </main>
 <footer class="ftr"><div class="wrap"><img src="img/logo-sm.png" alt="" width="40" height="50"><p>HVAC 4 Service Corp · 186 Springs Fireplace Rd, East Hampton, NY · <a href="tel:+16312768909">(631) 276-8909</a><br>Hours: to be confirmed · 24/7 emergency service</p></div></footer>
+<script>
+(function () {
+  var FORM = 'https://formspree.io/f/meaonlel';
+  var form = document.getElementById('quoteForm');
+  var err = document.getElementById('qErr');
+  var ok = document.getElementById('qOk');
+  var btn = document.getElementById('qSend');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    if (form._gotcha.value) return;
+    var name = form.name.value.trim();
+    var phone = form.phone.value.trim();
+    var email = form.email.value.trim();
+    var address = form.address.value.trim();
+    var service = form.service.value;
+    var message = form.message.value.trim();
+    var reply = form.reply.value || 'Call';
+    if (!name) { err.textContent = 'Add your name.'; return; }
+    if (!phone) { err.textContent = 'Add a phone number.'; return; }
+    if (!service) { err.textContent = 'Choose a service.'; return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Check the email address.'; return; }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    var payload = {
+      _subject: 'HVAC 4 free quote: ' + name + ' (' + service + ')',
+      name: name,
+      phone: phone,
+      email: email,
+      address: address,
+      service: service,
+      message: message,
+      reply: reply,
+      source: 'sethquest.com/hvac4'
+    };
+    if (email) payload._replyto = email;
+    fetch(FORM, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      if (!r.ok) throw 0;
+      form.hidden = true;
+      ok.hidden = false;
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = 'Request a free quote';
+      err.textContent = 'That didn’t go through. Call (631) 276-8909.';
+    });
+  });
+})();
+</script>
 </body></html>
