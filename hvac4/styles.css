@@ -30,17 +30,18 @@ section{padding:64px 0}
 .hero-img{position:relative;margin:0;order:-1}
 .hero-img img{width:100%;height:auto;object-fit:contain;object-position:center;border-radius:6px}
 .ph-note{font-size:.8rem;background:#fff3c4;color:#6b5300;padding:6px 10px;border-radius:4px;margin-top:10px;display:inline-block}
-.strip{background:var(--ink);color:#fff;padding:40px 0}
+.strip{background:var(--ink);color:#fff;padding:28px 0 22px}
 .strip-hd{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:20px}
 .strip .big{font-size:1.4rem}.strip .big b{color:#f5c04a}.strip a{color:#9cc3ff}
-.slider{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px 10px;align-items:center}
-.slides{min-width:0}
+.slider{display:block}
+.slides{position:relative;height:168px;touch-action:pan-y;cursor:grab;user-select:none}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column}
 .strip blockquote{border:0;padding:0;margin:0}
-blockquote p{font-family:Georgia,serif;font-size:1.05rem;line-height:1.45;margin:0 0 12px;overflow-wrap:anywhere}
-cite{font-style:normal;font-size:.9rem;opacity:.85;font-weight:700}
-.arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:0}
-.arrow:focus-visible,.dot:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.dots{grid-column:1 / -1;display:flex;justify-content:center;gap:2px}
+blockquote p{font-family:Georgia,serif;font-size:1.02rem;line-height:1.4;margin:0 0 8px;overflow-wrap:anywhere}
+cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
+.gread{margin-top:6px;font-size:13px;font-weight:700;text-decoration:none}
+.dot:focus-visible,.gread:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.dots{display:flex;justify-content:center;gap:2px;margin-top:4px}
 .dot{width:28px;height:28px;border:0;background:transparent;padding:0;cursor:pointer}
 .dot::before{content:"";display:block;width:10px;height:10px;margin:9px auto;border-radius:50%;background:rgba(255,255,255,.4)}
 .dot[aria-selected="true"]::before{background:#fff}
@@ -98,3 +99,8 @@ fieldset{border:0;padding:0;display:flex;flex-wrap:wrap;gap:16px}legend{font-wei
 .strip .big b{color:#fff}.strip a{color:#c3c8d0}blockquote{border-left-color:#8a93a3}.pull{border-left-color:var(--blue)}
 .services,.about,.hero,.quote{background:#fff}.values,.work{background:var(--bg)}.contact{background:#dfe3e8}
 .stars b{color:var(--blue)}
+@media(min-width:800px){
+ .strip{padding:40px 0}
+ .slides{height:132px}
+ blockquote p{font-size:1.08rem}
+}
