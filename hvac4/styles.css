@@ -1,10 +1,13 @@
-:root{--ink:#14213d;--blue:#1f3a68;--red:#14213d;--bg:#eef0f3;--line:#d5d9e0;--mut:#5a6270;--g2:#c3c8d0}
+@font-face{font-family:Inter;font-style:normal;font-weight:400 700;font-display:swap;src:url("fonts/inter-latin.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600 700;font-display:swap;src:url("fonts/plus-jakarta-sans-latin.woff2") format("woff2")}
+:root{--ink:#14213d;--blue:#1f3a68;--red:#14213d;--bg:#eef0f3;--line:#d5d9e0;--mut:#5a6270;--g2:#c3c8d0;--logo-red:#D61E2D}
 *{box-sizing:border-box;margin:0}
-body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+body{font:400 16px/1.6 Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
 img{max-width:100%;display:block;height:auto}a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
-h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.01em;line-height:1.15;text-wrap:balance}
-h1{font-size:clamp(1.8rem,6vw,3.4rem)}h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:24px}h3{font-size:1.05rem;margin-bottom:6px;text-wrap:balance}
+h1,h2,h3,.owner-name{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(1.8rem,6vw,3.4rem)}h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:24px}h3{font-size:1.08rem;margin-bottom:6px;letter-spacing:-.015em}
+.mark{color:var(--logo-red)}
 p,li,figcaption,address,.ph-note,.tag,.eyebrow,.owner-name{text-wrap:pretty}
 section{padding:64px 0}
 [hidden]{display:none !important}
@@ -25,7 +28,7 @@ section{padding:64px 0}
 .hero{padding:0 0 48px;background:#fff}
 .hero-in{display:flex;flex-direction:column}
 .hero-copy{padding-top:28px;container-type:inline-size}
-.hero h1{font-size:6.2cqi;line-height:1.12;margin:0 0 16px;text-wrap:wrap;text-align:center}
+.hero h1{font-size:5.35cqi;line-height:1.12;margin:0 0 18px;text-wrap:wrap;text-align:center}
 .hero h1 span{display:block;white-space:nowrap}
 .eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;color:var(--blue);font-weight:700;margin-bottom:12px}
 .lede{font-size:1.15rem;color:var(--mut);margin:18px 0 26px;max-width:34em}
@@ -35,7 +38,7 @@ section{padding:64px 0}
 .hero-img{position:relative;order:-1;width:calc(100% + 40px);margin:0 0 0 -20px;container-type:inline-size}
 .ph-cap{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;margin:0;max-width:calc(100% - 16px);text-align:center;pointer-events:none}
 .ph-kicker{background:#fff;color:#14213d;font-size:11px;font-weight:700;letter-spacing:.14em;line-height:1;padding:6px 9px}
-.ph-line{background:rgba(255,255,255,.94);color:#3e4654;font-weight:500;line-height:1.2;padding:5px 10px;white-space:nowrap;font-size:clamp(10px,2.2cqi,15px)}
+.ph-line{background:rgba(255,255,255,.94);color:#3e4654;font-weight:500;line-height:1.2;padding:5px 8px;white-space:nowrap;font-size:clamp(8px,2.45cqi,15px);max-width:100%}
 .rate{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0;text-decoration:none;font-family:inherit;font-weight:500;font-size:16px;line-height:1.2;color:#3e4654}
 .rate .g{color:#e0a106;letter-spacing:.14em;font-size:18px;line-height:1;white-space:nowrap}
 .rate .t{white-space:nowrap;font-weight:500;font-size:16px}
@@ -49,7 +52,7 @@ section{padding:64px 0}
 .slides{position:relative;height:132px;touch-action:pan-y;cursor:grab;user-select:none}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column}
 .strip blockquote{border:0;padding:0;margin:0}
-blockquote p{font-family:Georgia,serif;font-size:1.02rem;line-height:1.4;margin:0 0 8px;overflow-wrap:anywhere}
+blockquote p{font-size:1.02rem;line-height:1.45;margin:0 0 8px;overflow-wrap:anywhere}
 cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
 .gread{margin-top:6px;font-size:13px;font-weight:700;text-decoration:none}
 .dot:focus-visible,.gread:focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -69,8 +72,8 @@ cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
 .stand summary::-webkit-details-marker{display:none}
 .stand summary::after{content:"▾";position:absolute;right:0;top:22px;font-size:1.15rem;line-height:1}
 .stand[open] summary::after{content:"▴"}
-.stand .n{font-family:Georgia,serif;color:var(--blue);font-size:clamp(2rem,4vw,2.8rem);line-height:1;min-width:1.2ch}
-.stand summary span:nth-child(2){font-family:Georgia,serif;font-size:clamp(1.25rem,2.4vw,1.7rem)}
+.stand .n{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-weight:700;color:var(--blue);font-size:clamp(2rem,4vw,2.6rem);line-height:1;min-width:1.2ch;letter-spacing:-.03em}
+.stand summary span:nth-child(2){font-family:"Plus Jakarta Sans",Inter,sans-serif;font-weight:700;font-size:clamp(1.2rem,2.2vw,1.55rem);letter-spacing:-.02em}
 .stand p{color:var(--mut);max-width:40em;margin:0 0 18px;padding-right:28px}
 .services{background:#fff}
 .svc{display:grid;gap:32px}
@@ -90,7 +93,7 @@ cite{font-style:normal;font-size:.85rem;opacity:.85;font-weight:700}
 .bio-row{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .bio{min-width:0}
 .headshot{width:132px;height:132px;border-radius:50%;border:2px dashed #bbb;background:#f3f2ee;color:#888;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font-size:.75rem;font-weight:700;line-height:1.25;flex:none}
-.owner-name{font-family:Georgia,serif;font-size:1.45rem;margin:0 0 8px}
+.owner-name{font-size:1.45rem;margin:0 0 8px}
 .quote{background:#fff;scroll-margin-top:88px}
 .quote-panel{max-width:720px}
 .emerg-line{margin:-8px 0 18px;font-weight:700}
