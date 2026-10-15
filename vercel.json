@@ -20,7 +20,13 @@
     { "source": "/elua/elua/elua-1.jpg", "destination": "/elua/elua-report.jpg", "permanent": true },
     { "source": "/elua/elua/elua-2.jpg", "destination": "/elua/elua-explore.jpg", "permanent": true },
     { "source": "/elua/elua/elua-3.jpg", "destination": "/elua/elua-hero.jpg", "permanent": true },
-    { "source": "/elua/elua/:path*", "destination": "/elua/:path*", "permanent": true }
+    { "source": "/elua/elua/:path*", "destination": "/elua/:path*", "permanent": true },
+    { "source": "/hvac4", "destination": "/hvac4service", "statusCode": 301 },
+    { "source": "/hvac4/", "destination": "/hvac4service", "statusCode": 301 },
+    { "source": "/hvac4/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
+    { "source": "/4service", "destination": "/hvac4service", "statusCode": 301 },
+    { "source": "/4service/", "destination": "/hvac4service", "statusCode": 301 },
+    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/workshop", "destination": "/trade-workshop/landing" },
