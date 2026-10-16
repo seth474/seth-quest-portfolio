@@ -3,173 +3,194 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Team Workshop — MORE.</title>
+<title>Team Workshop — Seth Quest</title>
 <meta name="description" content="Five mornings with your office team, on your real work. $5,000 per company.">
+<meta name="theme-color" content="#f6f5f1">
 <link rel="canonical" href="https://sethquest.com/team-workshop">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--g:#22e06b;--k:#07080a;--ink:#f4f5f6;--muted:#c8cdd3;--dim:#9aa0a8;--card:#14171b;--line:#ffffff18}
+:root{--ink:#0a0a0a;--paper:#f6f5f1;--card:#fff;--green:#1fbf5a;--gb:#2BE36B;--mut:#6b6b6b;--line:#e3e1db}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--k);color:var(--ink)}
-body{font-family:"Inter Tight",Inter,"Helvetica Neue",Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Inter,system-ui,-apple-system,sans-serif}
 a{color:inherit}
-.band{height:8px;background:linear-gradient(90deg,#07080a,#22e06b)}
-header,main,footer .in{max-width:1040px;margin:0 auto}
-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 28px 8px}
-.mark{text-decoration:none}
-.word{display:block;font-weight:900;font-size:28px;letter-spacing:-.04em;line-height:1}
-.word i{color:var(--g);font-style:normal}
-.tag{display:block;margin-top:3px;font-size:12px;font-weight:600;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:14px 22px;border-radius:999px;background:#fff;color:var(--k);font:800 16px/1 "Inter Tight",Inter,sans-serif;text-decoration:none;border:0;cursor:pointer}
-.btn.gr{background:var(--g);color:#04130a}
-.btn:hover{transform:translateY(-1px)}
-.btn:disabled{opacity:.6;transform:none;cursor:default}
-main{padding:36px 28px 64px}
-.eye{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-h1{font-size:clamp(40px,6vw,76px);font-weight:900;letter-spacing:-.045em;line-height:.96;margin:12px 0 16px;max-width:16ch}
-.lead{font-size:20px;color:var(--muted);max-width:42ch}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-section{margin-top:64px}
-h2{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1;margin:8px 0 18px}
-.prose{font-size:18px;color:var(--muted);max-width:62ch}
-.days{display:grid;gap:10px}
-.day{display:grid;grid-template-columns:92px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
-.day b{font-size:14px;letter-spacing:.04em;text-transform:uppercase}
-.day h3{font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
-.day p{color:var(--muted);margin-top:4px;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.d{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;line-height:.92;letter-spacing:.01em;text-transform:uppercase}
+.g{color:var(--green)}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1080px;margin:0 auto;padding:22px 20px}
+.brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;color:var(--ink);white-space:nowrap}
+.hero{padding:28px 0 48px}
+.eyebrow{font:600 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:clamp(52px,8vw,96px);margin:10px 0 16px;max-width:16ch}
+.lead{font-size:19px;max-width:42ch;color:#2a2a2a}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:999px;font:800 17px Inter,sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn.p{background:var(--ink);color:#fff}
+.btn.o{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn:disabled{opacity:.55;cursor:default}
+section.pad{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(44px,8vw,68px);margin:8px 0 16px}
+.prose{font-size:18px;color:#333;max-width:62ch}
+.steps{list-style:none;display:grid;gap:12px}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.sn{width:44px;height:44px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:26px;line-height:1;padding-top:2px}
+.daytag{font:600 12px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.steps h3{font-size:clamp(26px,3vw,34px);margin:4px 0 6px}
+.steps p{color:#444}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
-.block h3{font-size:18px;margin-bottom:6px}
-.block p,.block li{color:var(--muted);font-size:15px}
-.block ul{list-style:none;display:grid;gap:8px}
-.price{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
-.amt{font-size:clamp(64px,8vw,96px);font-weight:900;letter-spacing:-.06em;line-height:.85}
-.amt span{display:block;margin-top:8px;font-size:16px;font-weight:700;letter-spacing:0;color:var(--muted)}
-form{display:grid;gap:12px;margin-top:8px}
-label{display:grid;gap:6px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
-input,select,textarea{width:100%;border-radius:14px;border:1.5px solid #ffffff22;background:#0c0e11;color:var(--ink);padding:14px;font:600 16px/1.4 "Inter Tight",Inter,sans-serif}
-textarea{min-height:96px;resize:vertical}
-select{color-scheme:dark}
-.err{color:#FF3B30;min-height:1.2em;font-size:14px;font-weight:700}
-.ok{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
-.ok h3{font-size:28px;letter-spacing:-.03em;margin-bottom:6px}
-.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px}
-footer{border-top:1px solid var(--line);color:var(--dim);font-size:14px}
-footer .in{padding:22px 28px 32px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-footer a{color:var(--muted);text-decoration:none}
-a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.block h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:28px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.ticks{list-style:none;display:grid;gap:10px}
+.ticks li{position:relative;padding-left:26px;color:#333}
+.ticks li:before{content:"";position:absolute;left:2px;top:.45em;width:12px;height:7px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg)}
+.plain{list-style:none;display:grid;gap:10px;color:#333}
+.plain li{padding-left:16px;position:relative}
+.plain li:before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:#c8c4ba}
+.pcard{margin-top:8px;background:var(--ink);color:#f5f3ee;border-radius:20px;padding:28px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;border-bottom:6px solid var(--gb)}
+.pcard .eyebrow{color:#c8c6c0}
+.amt{font-size:clamp(72px,10vw,108px);line-height:.85;color:#fff;margin-top:6px}
+.per{color:#c8c6c0;font-weight:600;margin-top:6px}
+.pcard .btn.p{background:var(--gb);color:var(--ink)}
+form{display:grid;gap:12px;max-width:560px;margin-top:8px}
+label{display:grid;gap:6px;font-weight:600;font-size:14px}
+input,select,textarea{width:100%;min-height:50px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:500 16px Inter,sans-serif;background:#fff;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
+.err{color:#c0392b;min-height:1.2em;font-size:14px;font-weight:600}
+.ok{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;max-width:560px}
+.ok h3{font-size:40px;margin-bottom:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.foot{text-align:center;padding:26px 20px 32px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);line-height:1.7}
+.foot .fl1{font-family:"Bebas Neue",sans-serif;font-size:17px;letter-spacing:.12em;color:#555}
+.foot a{color:var(--mut);text-decoration:none}
+a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 @media(max-width:760px){
-  header,main,footer .in{padding-left:18px;padding-right:18px}
-  .grid2,.day{grid-template-columns:1fr}
-  .day b{margin-bottom:-6px}
+  h1{font-size:clamp(44px,12vw,64px)}
+  .grid2{grid-template-columns:1fr}
+  .hcta{font-size:13px;padding:8px 10px}
+  .pcard{padding:24px 20px}
 }
 </style>
 </head>
 <body>
-<div class="band" aria-hidden="true"></div>
 <header>
-  <a class="mark" href="/offers">
-    <span class="word">MORE<i>.</i></span>
-    <span class="tag">make more money</span>
-  </a>
-  <a class="btn" href="tel:+19348990796">Book a free 15-min call</a>
+  <a class="brand" href="https://sethquest.com">Seth Quest</a>
+  <a class="hcta" href="tel:+19348990796">Book a free 15-min call</a>
 </header>
 <main>
-  <p class="eye">Team Workshop · $5,000 per company</p>
-  <h1>Five mornings. Your office team. Your real work.</h1>
-  <p class="lead">Five mornings, two hours a day, live online. The owner and 2 to 6 people from the office, on the tasks you already do.</p>
-  <div class="hero-cta">
-    <a class="btn gr" href="tel:+19348990796">Book a free 15-min call</a>
-    <a class="btn" href="#fit">See if it fits</a>
-  </div>
-
-  <section>
-    <p class="eye">Who it's for</p>
-    <h2>An office team, already in place.</h2>
-    <p class="prose">Established businesses with people in the office. The owner is in the room, along with the people who write the quotes, answer the email, and keep the schedule.</p>
-  </section>
-
-  <section>
-    <p class="eye">Five mornings</p>
-    <h2>Day by day.</h2>
-    <div class="days">
-      <div class="day"><b>Day 1</b><div><h3>Review your workflows and set up accounts.</h3><p>We walk how work moves through the office, then open Claude and Grok on accounts your company owns.</p></div></div>
-      <div class="day"><b>Day 2</b><div><h3>Documents, quotes and estimates.</h3><p>Your real quotes, estimates, and the papers that go with them.</p></div></div>
-      <div class="day"><b>Day 3</b><div><h3>Customer emails, scheduling and follow-up.</h3><p>The inbox, the schedule, and the quotes that went quiet.</p></div></div>
-      <div class="day"><b>Day 4</b><div><h3>Build one workflow specific to your company.</h3><p>We build one path that matches how your office already works.</p></div></div>
-      <div class="day"><b>Day 5</b><div><h3>Team practice, written instructions and handoff.</h3><p>The team runs it. You leave with the written instructions.</p></div></div>
-    </div>
-  </section>
-
-  <section>
-    <p class="eye">Included</p>
-    <h2>What you leave with.</h2>
-    <div class="grid2">
-      <div class="block">
-        <ul>
-          <li>A pre-workshop intake form</li>
-          <li>Reusable templates</li>
-          <li>Written workflow instructions</li>
-          <li>Up to 6 participants</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h3>What this does not include</h3>
-        <ul>
-          <li>No software integrations.</li>
-          <li>Accounts stay in your company name. Claude and Grok are on business-tier plans.</li>
-          <li>No passwords, gate codes, or alarm codes.</li>
-        </ul>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Team Workshop · $5,000 per company</p>
+      <h1 class="d">Five mornings. Your office team. Your real work<span class="g">.</span></h1>
+      <p class="lead">Five mornings, two hours a day, live online. The owner and 2 to 6 people from the office, on the tasks you already do.</p>
+      <div class="ctas">
+        <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
+        <a class="btn o" href="#fit">See if it fits</a>
       </div>
     </div>
   </section>
 
-  <section>
-    <p class="eye">Price</p>
-    <h2>One company. Five mornings.</h2>
-    <div class="price">
-      <p class="amt">$5,000<span>per company</span></p>
-      <a class="btn gr" href="tel:+19348990796">Book a free 15-min call</a>
+  <section class="pad">
+    <div class="wrap">
+      <p class="eyebrow">Who it's for</p>
+      <h2 class="d">An office team, already in place<span class="g">.</span></h2>
+      <p class="prose">Established businesses with people in the office. The owner is in the room, along with the people who write the quotes, answer the email, and keep the schedule.</p>
     </div>
   </section>
 
-  <section id="fit">
-    <p class="eye">Five questions</p>
-    <h2>See if it fits.</h2>
-    <p class="prose">Seth reads this before a call. It takes about a minute.</p>
-    <form id="fitForm">
-      <label>Name<input id="fName" name="name" autocomplete="name" required></label>
-      <label>Company<input id="fCo" name="company" autocomplete="organization" required></label>
-      <label>Email<input id="fEmail" name="email" type="email" inputmode="email" autocomplete="email" required></label>
-      <label>Team size
-        <select id="fTeam" name="team_size" required>
-          <option value="">Select</option>
-          <option>Just the owner</option>
-          <option>2 to 4 in the office</option>
-          <option>5 to 6 in the office</option>
-          <option>More than 6</option>
-        </select>
-      </label>
-      <label>Biggest time drain<textarea id="fDrain" name="time_drain" required placeholder="Quotes, email, scheduling, files"></textarea></label>
-      <p class="err" id="fErr" role="alert"></p>
-      <div class="row">
-        <button class="btn gr" type="submit" id="fSend">Send this to Seth</button>
-        <a class="btn" href="tel:+19348990796">Book a free 15-min call</a>
+  <section class="pad">
+    <div class="wrap">
+      <p class="eyebrow">Five mornings</p>
+      <h2 class="d">Day by day<span class="g">.</span></h2>
+      <ol class="steps">
+        <li><div class="sn">1</div><div><p class="daytag">Day 1</p><h3 class="d">Review your workflows and set up accounts.</h3><p>We walk how work moves through the office, then open Claude and Grok on accounts your company owns.</p></div></li>
+        <li><div class="sn">2</div><div><p class="daytag">Day 2</p><h3 class="d">Documents, quotes and estimates.</h3><p>Your real quotes, estimates, and the papers that go with them.</p></div></li>
+        <li><div class="sn">3</div><div><p class="daytag">Day 3</p><h3 class="d">Customer emails, scheduling and follow-up.</h3><p>The inbox, the schedule, and the quotes that went quiet.</p></div></li>
+        <li><div class="sn">4</div><div><p class="daytag">Day 4</p><h3 class="d">Build one workflow specific to your company.</h3><p>We build one path that matches how your office already works.</p></div></li>
+        <li><div class="sn">5</div><div><p class="daytag">Day 5</p><h3 class="d">Team practice, written instructions and handoff.</h3><p>The team runs it. You leave with the written instructions.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="wrap">
+      <p class="eyebrow">Included</p>
+      <h2 class="d">What you leave with<span class="g">.</span></h2>
+      <div class="grid2">
+        <div class="block">
+          <ul class="ticks">
+            <li>A pre-workshop intake form</li>
+            <li>Reusable templates</li>
+            <li>Written workflow instructions</li>
+            <li>Up to 6 participants</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h3>What this does not include</h3>
+          <ul class="plain">
+            <li>No software integrations.</li>
+            <li>Accounts stay in your company name. Claude and Grok are on business-tier plans.</li>
+            <li>No passwords, gate codes, or alarm codes.</li>
+          </ul>
+        </div>
       </div>
-    </form>
-    <div class="ok" id="fOk" hidden>
-      <h3>Seth has this.</h3>
-      <p class="prose">If it fits, the next step is a 15-minute call.</p>
-      <div class="row"><a class="btn gr" href="tel:+19348990796">Book a free 15-min call</a></div>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="wrap">
+      <p class="eyebrow">Price</p>
+      <h2 class="d">One company. Five mornings<span class="g">.</span></h2>
+      <div class="pcard">
+        <div>
+          <p class="amt d">$5,000</p>
+          <p class="per">per company</p>
+        </div>
+        <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" id="fit">
+    <div class="wrap">
+      <p class="eyebrow">Five questions</p>
+      <h2 class="d">See if it fits<span class="g">.</span></h2>
+      <p class="prose" style="margin-bottom:16px">Seth reads this before a call. It takes about a minute.</p>
+      <form id="fitForm">
+        <label>Name<input id="fName" name="name" autocomplete="name" required></label>
+        <label>Company<input id="fCo" name="company" autocomplete="organization" required></label>
+        <label>Email<input id="fEmail" name="email" type="email" inputmode="email" autocomplete="email" required></label>
+        <label>Team size
+          <select id="fTeam" name="team_size" required>
+            <option value="">Select</option>
+            <option>Just the owner</option>
+            <option>2 to 4 in the office</option>
+            <option>5 to 6 in the office</option>
+            <option>More than 6</option>
+          </select>
+        </label>
+        <label>Biggest time drain<textarea id="fDrain" name="time_drain" required placeholder="Quotes, email, scheduling, files"></textarea></label>
+        <p class="err" id="fErr" role="alert"></p>
+        <div class="row">
+          <button class="btn p" type="submit" id="fSend">Send this to Seth</button>
+          <a class="btn o" href="tel:+19348990796">Book a free 15-min call</a>
+        </div>
+      </form>
+      <div class="ok" id="fOk" hidden>
+        <h3 class="d">Seth has this<span class="g">.</span></h3>
+        <p class="prose">If it fits, the next step is a 15-minute call.</p>
+        <div class="row" style="margin-top:16px"><a class="btn p" href="tel:+19348990796">Book a free 15-min call</a></div>
+      </div>
     </div>
   </section>
 </main>
-<footer>
-  <div class="in">
-    <span>MORE. &nbsp;make more money</span>
-    <span><a href="/offers">Offers</a> · Seth Quest · East Hampton, NY · <a href="tel:+19348990796">934-899-0796</a></span>
-  </div>
+<footer class="foot">
+  <div class="fl1">Seth Quest · East Hampton, NY</div>
+  <div class="fl2"><a href="/offers">Offers</a> · <a href="https://sethquest.com">sethquest.com</a> · <a href="tel:+19348990796">934-899-0796</a></div>
+  <div class="fl3">© 2026 Seth Quest</div>
 </footer>
 <script>
 const FORM='https://formspree.io/f/meaonlel';
