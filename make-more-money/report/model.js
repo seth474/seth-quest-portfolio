@@ -232,11 +232,11 @@ function moneyBlock(key, a, ex) {
   var range = leadPhrase(a.leads);
   var line;
   if (key === 'leads') {
-    line = 'You marked ' + range + '. ' + bestLine(a) + ' If ' + ex.jobs + ' of those leads never become a call because the proof or the channel is thin, that is ' + money(ex.dollars) + ' at $1,500 a job.';
+    line = 'If ' + ex.jobs + ' of the ' + range + ' never become a call, that is ' + money(ex.dollars) + ' at $1,500 a job.';
   } else if (key === 'leaks') {
-    line = speedLine(a.speed).replace(/\.$/, '') + ', and ' + textLine(a.textback).charAt(0).toLowerCase() + textLine(a.textback).slice(1) + ' Across ' + range + ', about ' + ex.jobs + ' can go cold before anyone visits. At $1,500 a job, that is ' + money(ex.dollars) + '.';
+    line = 'About ' + ex.jobs + ' of the ' + range + ' can go cold before a visit. That is ' + money(ex.dollars) + ' at $1,500 a job.';
   } else {
-    line = quoteLine(a.quotes) + ' ' + followLine(a.followup) + ' About ' + ex.jobs + ' of the ' + range + ' can be lost to a slow or quiet quote. At $1,500 a job, that is ' + money(ex.dollars) + '.';
+    line = 'About ' + ex.jobs + ' of the ' + range + ' can be lost after the quote. That is ' + money(ex.dollars) + ' at $1,500 a job.';
   }
   return {
     jobs: ex.jobs,
@@ -350,6 +350,25 @@ function bandNote(n) {
   return '75 and above. Green.';
 }
 
+function snapshotLines(a, weak) {
+  var out = [];
+  function add(s) {
+    if (!s || s === weak.headline || out.indexOf(s) >= 0) return;
+    out.push(s);
+  }
+  if (a.quotes === 'week' || a.quotes === 'few' || a.quotes === 'next') add(quoteLine(a.quotes));
+  if (a.textback !== 'yes') add(textLine(a.textback));
+  if (a.speed === 'next' || a.speed === 'day' || a.speed === 'hour') add(speedLine(a.speed));
+  if (a.followup === 'no' || a.followup === 'some') add(followLine(a.followup));
+  if (a.reviews === '0' || a.reviews === '11') add(reviewCountLine(a.reviews));
+  if (a.script === 'no') add(scriptLine(a.script));
+  add(reviewCountLine(a.reviews));
+  add(crmLine(a.crm));
+  add(bestLine(a));
+  add(speedLine(a.speed));
+  return out.slice(0, 3);
+}
+
 function buildModel(input) {
   var a = input.answers || {};
   var score = input.score || { total: 0, leads: 0, leaks: 0, closing: 0, insights: [] };
@@ -388,6 +407,7 @@ function buildModel(input) {
     leaks: pack('leaks', 'Leaks', score.leaks, foundLeaks(a), leakTiles(a)),
     closing: pack('closing', 'Closing', score.closing, foundClosing(a), closeTiles(a)),
     fixes: fixes,
+    snapshot: snapshotLines(a, weak),
     plan: plan(fixes, a),
     addNote: 'The dollar lines are three views of the same leads. Do not add them together.',
     phone: '934-899-0796',
