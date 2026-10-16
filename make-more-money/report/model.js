@@ -143,11 +143,18 @@ function bestLine(a) {
   return 'The source that brings you the most work is ' + n + '.';
 }
 
+function floorScore(n) {
+  n = Math.round(Number(n) || 0);
+  if (n < 18) n = 18;
+  if (n > 100) n = 100;
+  return n;
+}
+
 function sections(score) {
   return [
-    { key: 'leads', name: 'Leads', n: score.leads },
-    { key: 'leaks', name: 'Leaks', n: score.leaks },
-    { key: 'closing', name: 'Closing', n: score.closing }
+    { key: 'leads', name: 'Lead Score', n: score.leads },
+    { key: 'leaks', name: 'Lost Opportunities', sub: 'leaks', n: score.leaks },
+    { key: 'closing', name: 'Close Rate', n: score.closing }
   ];
 }
 
@@ -247,9 +254,18 @@ function moneyBlock(key, a, ex) {
   };
 }
 
+function sameSec(sec, name) {
+  var map = {
+    'Lead Score': ['Lead Score', 'Leads'],
+    'Lost Opportunities': ['Lost Opportunities', 'Leaks'],
+    'Close Rate': ['Close Rate', 'Closing']
+  };
+  return (map[name] || [name]).indexOf(sec) >= 0;
+}
+
 function fixesFor(insights, sec) {
   return (insights || [])
-    .filter(function (x) { return x.sec === sec && x.lost > 0; })
+    .filter(function (x) { return sameSec(x.sec, sec) && x.lost > 0; })
     .slice()
     .sort(function (a, b) { return b.lost - a.lost; })
     .filter(function (x, i, arr) {
@@ -295,14 +311,21 @@ function foundClosing(a) {
 
 function tile(k, v, d) { return { k: k, v: v, d: d }; }
 
+var SHORT_ON = { gbp: 'Google', gads: 'Google Ads', web: 'Website', ig: 'Instagram', fb: 'Facebook', fads: 'FB ads', iads: 'IG ads', nd: 'Nextdoor', angi: 'Angi' };
+var SHORT_OFF = { ref: 'Referrals', repeat: 'Repeat', yard: 'Yard signs', wrap: 'Truck wrap', door: 'Door hangers', mail: 'Mailers', print: 'Print ads', events: 'Events' };
+function shorts(map, ids) {
+  var out = (ids || []).map(function (id) { return map[id] || id; });
+  return out.length ? out.join(', ') : 'None';
+}
+
 function leadsTiles(a) {
   var on = names(ONLINE, a.online);
   var off = names(OFFLINE, a.offline);
   var ig = has(a.online, 'ig') ? postedLine('Instagram', a.igPost, true).replace(/\.$/, '') : 'Not a source you marked';
   var fb = has(a.online, 'fb') ? postedLine('Facebook', a.fbPost, true).replace(/\.$/, '') : 'Not a source you marked';
   return [
-    tile('Online sources', on.length ? String(on.length) : 'None', on.length ? joinList(on) : 'No online source was marked.'),
-    tile('Offline sources', off.length ? String(off.length) : 'None', off.length ? joinList(off) : 'No offline source was marked.'),
+    tile('Online', shorts(SHORT_ON, a.online), on.length ? joinList(on) : 'No online source was marked.'),
+    tile('Offline', shorts(SHORT_OFF, a.offline), off.length ? joinList(off) : 'No offline source was marked.'),
     tile('Biggest source', (a.best && a.best !== 'ns' && a.best !== 'none') ? nameOf(ONLINE.concat(OFFLINE), a.best) : 'Not named', bestLine(a)),
     tile('Instagram', has(a.online, 'ig') ? (a.igPost === 'week' ? 'This week' : a.igPost === 'month' ? 'This month' : a.igPost === 'mo6' ? '6+ months' : a.igPost === 'yr' ? '1+ year' : 'Not set') : 'Not marked', ig + '.'),
     tile('Facebook', has(a.online, 'fb') ? (a.fbPost === 'week' ? 'This week' : a.fbPost === 'month' ? 'This month' : a.fbPost === 'mo6' ? '6+ months' : a.fbPost === 'yr' ? '1+ year' : 'Not set') : 'Not marked', fb + '.'),
@@ -369,28 +392,118 @@ function snapshotLines(a, weak) {
   return out.slice(0, 3);
 }
 
+function channelChart(a) {
+  var rec = { week: 100, month: 68, mo6: 34, yr: 16 };
+  function row(label, on, pct) {
+    return { label: label, on: !!on, pct: on ? Math.max(18, pct) : 0 };
+  }
+  var on = a.online || [];
+  var off = a.offline || [];
+  return [
+    row('Google profile', has(on, 'gbp'), 100),
+    row('Google Ads', has(on, 'gads'), 100),
+    row('Website', has(on, 'web'), 100),
+    row('Instagram', has(on, 'ig'), rec[a.igPost] || 40),
+    row('Facebook', has(on, 'fb'), rec[a.fbPost] || 40),
+    row('Paid social', has(on, 'fads') || has(on, 'iads'), 100),
+    row('Referrals', has(off, 'ref'), 100),
+    row('Repeat work', has(off, 'repeat'), 100),
+    row('Truck wrap', has(off, 'wrap'), 100),
+    row('Yard signs', has(off, 'yard'), 100)
+  ];
+}
+
+function funnelChart(a) {
+  var speed = { min15: 92, instant: 92, hour: 74, day: 52, next: 34, ns: 58 }[a.speed] || 50;
+  var text = { yes: 90, some: 62, no: 28, ns: 48 }[a.textback] || 40;
+  var form = !has(a.online, 'web') ? 70 : ({ works: 94, miss: 55, none: 30, ns: 50 }[a.webForm] || 50);
+  var answered = Math.round(speed);
+  var recovered = Math.round(speed * text / 100);
+  var reachable = Math.max(18, Math.round(recovered * form / 100));
+  return [
+    { label: 'Leads in', pct: 100 },
+    { label: 'Answered fast', pct: answered },
+    { label: 'Calls recovered', pct: Math.max(18, recovered) },
+    { label: 'Still reachable', pct: reachable }
+  ];
+}
+
+function closeChart(a) {
+  var q = { same: 100, next: 78, few: 48, week: 28, ns: 36 }[a.quotes] || 22;
+  var f = { auto: 100, manual: 72, yes: 72, some: 48, no: 18, ns: 30 }[a.followup] || 18;
+  var s = a.script === 'yes' ? 100 : 18;
+  var c = { jobber: 100, hcp: 100, st: 100, sheet: 70, other: 55, none: 18 }[a.crm] || 18;
+  return [
+    { label: 'Quote speed', pct: q },
+    { label: 'Follow-up', pct: f },
+    { label: 'Close practice', pct: s },
+    { label: 'Tracking', pct: c }
+  ];
+}
+
+function timeCost(leads, leaks, closing) {
+  var gaps = {
+    leads: Math.max(0, 100 - leads),
+    leaks: Math.max(0, 100 - leaks),
+    closing: Math.max(0, 100 - closing)
+  };
+  var sum = gaps.leads + gaps.leaks + gaps.closing || 1;
+  var hours = Math.max(2, Math.min(14, Math.round(sum / 18)));
+  var keys = ['leads', 'leaks', 'closing'];
+  var parts = keys.map(function (k) {
+    var h = Math.round((gaps[k] / sum) * hours * 10) / 10;
+    var year = Math.round(h * 50 * 125);
+    return { key: k, hours: h, year: year, yearLabel: money(year) };
+  });
+  return {
+    hours: hours,
+    year: hours * 50 * 125,
+    yearLabel: money(hours * 50 * 125),
+    rate: 125,
+    note: 'Estimate. A weak funnel is about 10 hours a week, scaled to these scores, at $125 an hour.',
+    parts: parts
+  };
+}
+
 function buildModel(input) {
   var a = input.answers || {};
-  var score = input.score || { total: 0, leads: 0, leaks: 0, closing: 0, insights: [] };
+  var raw = input.score || { total: 0, leads: 0, leaks: 0, closing: 0, insights: [] };
+  var score = {
+    leads: floorScore(raw.leads),
+    leaks: floorScore(raw.leaks),
+    closing: floorScore(raw.closing),
+    insights: raw.insights || []
+  };
+  score.total = Math.round((score.leads + score.leaks + score.closing) / 3);
   var weak = weakCall(score);
   var insights = score.insights || [];
   var fixes = topFixes(insights);
   var exposures = { leads: leadExposure(a), leaks: leakExposure(a), closing: closeExposure(a) };
-  function pack(key, name, num, found, tiles) {
+  var time = timeCost(score.leads, score.leaks, score.closing);
+  function partTime(key) {
+    for (var i = 0; i < time.parts.length; i++) if (time.parts[i].key === key) return time.parts[i];
+    return time.parts[0];
+  }
+  function pack(key, name, num, found, tiles, sub) {
     var mine = fixesFor(insights, name);
-    var isLow = weak.lows.some(function (r) { return r.key === key; }) && weak.lows.length === 1 && score[key] < 75;
+    var clock = partTime(key);
+    var moneyPack = moneyBlock(key, a, exposures[key]);
+    moneyPack.hours = clock.hours;
+    moneyPack.hoursLabel = clock.hours + ' hrs / week';
+    moneyPack.yearLabel = clock.yearLabel + ' / year';
+    moneyPack.timeNote = time.note;
     return {
       key: key,
       name: name,
+      sub: sub || '',
       num: num,
       band: band(num),
       bandNote: bandNote(num),
       found: found,
       tiles: tiles,
-      money: moneyBlock(key, a, exposures[key]),
-      fixes: mine,
-      isWeak: isLow,
-      ribbon: isLow ? name + ' is the weak spot.' : (weak.lows.length === 1 ? weak.lows[0].name + ' is the weak spot. ' + name + ' is not.' : weak.headline)
+      answers: tiles.map(function (t) { return { k: t.k, v: t.v }; }),
+      money: moneyPack,
+      fixes: mine
     };
   }
   return {
@@ -403,13 +516,18 @@ function buildModel(input) {
     total: score.total,
     totalBand: band(score.total),
     weak: weak,
-    leads: pack('leads', 'Leads', score.leads, foundLeads(a), leadsTiles(a)),
-    leaks: pack('leaks', 'Leaks', score.leaks, foundLeaks(a), leakTiles(a)),
-    closing: pack('closing', 'Closing', score.closing, foundClosing(a), closeTiles(a)),
+    time: time,
+    channels: channelChart(a),
+    funnel: funnelChart(a),
+    closeParts: closeChart(a),
+    leads: pack('leads', 'Lead Score', score.leads, foundLeads(a), leadsTiles(a)),
+    leaks: pack('leaks', 'Lost Opportunities', score.leaks, foundLeaks(a), leakTiles(a), 'leaks'),
+    closing: pack('closing', 'Close Rate', score.closing, foundClosing(a), closeTiles(a)),
     fixes: fixes,
     snapshot: snapshotLines(a, weak),
     plan: plan(fixes, a),
-    addNote: 'The dollar lines are three views of the same leads. Do not add them together.',
+    addNote: 'Time and job dollars are estimates. Do not add the three job lines together.',
+    floorNote: 'Scores start at 18, so work you already do still counts.',
     phone: '934-899-0796',
     url: 'sethquest.com/time-is-money',
     cta: 'Book a free 15-min call'
