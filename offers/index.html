@@ -25,9 +25,7 @@ main{max-width:1120px;margin:0 auto;padding:48px 28px 64px}
 h1{font-size:clamp(48px,6vw,76px);font-weight:900;letter-spacing:-.05em;line-height:.95}
 .sub{margin-top:16px;max-width:62ch;color:var(--muted);font-size:18px;line-height:1.5}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px;align-items:stretch}
-article{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 22px 22px;display:flex;flex-direction:column;min-width:0}
-article.start{border:1.5px solid var(--g)}
-.flag{position:absolute;top:-11px;left:20px;background:var(--g);color:#04130a;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+article{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 22px 22px;display:flex;flex-direction:column;min-width:0}
 .name{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .who{margin-top:8px;color:var(--g);font-size:13px;font-weight:700;line-height:1.35}
 .price{margin-top:18px;font-size:clamp(48px,4.4vw,64px);font-weight:900;letter-spacing:-.05em;line-height:.9}
@@ -35,17 +33,12 @@ article.start{border:1.5px solid var(--g)}
 ul{list-style:none;display:grid;gap:10px;margin:18px 0 22px;padding-top:18px;border-top:1px solid var(--line)}
 li{position:relative;padding-left:22px;color:var(--muted);font-size:15px;line-height:1.4}
 li:before{content:"";position:absolute;left:1px;top:.45em;width:10px;height:6px;border-left:2px solid var(--g);border-bottom:2px solid var(--g);transform:rotate(-45deg)}
-.read{margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1.5px solid #ffffff2e;font-weight:800;font-size:15px;text-decoration:none}
+.read{margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1.5px solid #ffffff2e;font-weight:800;font-size:15px;text-decoration:none;color:var(--ink)}
 .read:hover{border-color:#fff}
-article.start .read{background:var(--g);color:#04130a;border-color:transparent}
-article.start .read:hover{filter:brightness(1.05)}
-.book{display:flex;justify-content:flex-start;margin-top:36px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;background:var(--g);color:#04130a;font-weight:800;font-size:16px;text-decoration:none}
-.btn:hover{filter:brightness(1.05)}
 footer{border-top:1px solid var(--line);color:var(--dim);font-size:14px}
 footer .in{max-width:1120px;margin:0 auto;padding:22px 28px 28px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{color:var(--muted);text-decoration:none}
-a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:860px){
   header,main,footer .in{padding-left:18px;padding-right:18px}
   main{padding-top:32px}
@@ -69,8 +62,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
     <p class="sub">Start by fixing your sales funnel, take the next step with a 10-day setup, or bring AI to your whole team with a workshop.</p>
   </div>
   <div class="cards">
-    <article class="start">
-      <p class="flag">Start here</p>
+    <article>
       <h2 class="name">Sales Funnel Fix</h2>
       <p class="who">Solo owners and small teams up to 3</p>
       <p class="price">$750</p>
@@ -81,7 +73,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
         <li>Focus on more leads and closed jobs</li>
         <li>The changes that bring jobs in first</li>
       </ul>
-      <a class="read" href="/make-more-money">Read more</a>
+      <a class="read" href="/make-more-money">Learn more</a>
     </article>
     <article>
       <h2 class="name">10-Day Setup</h2>
@@ -94,7 +86,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
         <li>Focus on the busy work in the week</li>
         <li>Yours to run on day 10</li>
       </ul>
-      <a class="read" href="/time-is-money">Read more</a>
+      <a class="read" href="/time-is-money">Learn more</a>
     </article>
     <article>
       <h2 class="name">Team Workshop</h2>
@@ -107,11 +99,8 @@ a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
         <li>Written instructions and handoff</li>
         <li>Mostly done for the team</li>
       </ul>
-      <a class="read" href="/team-workshop">Read more</a>
+      <a class="read" href="/team-workshop">Learn more</a>
     </article>
-  </div>
-  <div class="book">
-    <a class="btn" href="tel:+19348990796">Book a free 15-min call</a>
   </div>
 </main>
 <footer>
