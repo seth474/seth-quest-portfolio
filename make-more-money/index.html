@@ -231,6 +231,7 @@
   .q blockquote::before{content:"\201C"}
   .q blockquote::after{content:"\201D"}
   .tst-h{margin-top:40px}
+  .tst-hold{display:none} /* hidden until there are three testimonials; remove this rule to restore */
   .who{margin-top:14px;font-weight:800}
   .who span{display:block;font-weight:500;color:var(--mut);font-size:15px}
   .qcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 22px;text-align:center}
@@ -628,6 +629,8 @@
           <li><strong>50% more clicks to their site.</strong> Optimized their Google Ads budget and keyword settings.</li>
         </ul>
       </article>
+      <!-- Testimonials hidden until there are three. Remove class tst-hold (and the .tst-hold CSS rule) to show this again. -->
+      <div class="tst-hold">
       <h2 class="d tst-h">Testimonials<span class="g">.</span></h2>
       <div class="tst">
         <figure class="q">
@@ -640,6 +643,7 @@
           <figcaption class="who">Ryan<span>Hamptons Adventure Company, Montauk</span></figcaption>
         </figure>
         -->
+      </div>
       </div>
     </div>
   </section>
