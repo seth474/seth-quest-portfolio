@@ -286,6 +286,30 @@
   .qr-ctas .btn{width:100%}
   .qr-sent{font-size:13px;color:var(--mut);margin-top:12px}
   .qr-print-only{display:none}
+  .qr-for{font-weight:700;margin:0 0 4px}
+  .qr-big{display:flex;align-items:flex-end;flex-wrap:wrap;gap:6px 10px;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(72px,18vw,108px);line-height:.8;letter-spacing:.01em;margin:6px 0 12px}
+  .qr-big span{font-family:Inter,sans-serif;font-weight:800;font-size:clamp(16px,4vw,22px);letter-spacing:0;line-height:1;padding-bottom:8px}
+  .qr-lo{color:#c62828}
+  .qr-mid{color:#b86e00}
+  .qr-hi{color:#128a3e}
+  .qr-funnel{display:grid;gap:8px;margin:8px 0 18px}
+  .qr-funnel .qr-p:nth-child(2){margin:0 6%}
+  .qr-funnel .qr-p:nth-child(3){margin:0 12%}
+  .qr-funnel .meter i.qr-lo{background:#c62828}
+  .qr-funnel .meter i.qr-mid{background:#e0a106}
+  .qr-funnel .meter i.qr-hi{background:#2BE36B}
+  .qr-sec{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:2px}
+  .qr-d{display:block;font-weight:500;color:#444}
+  .qr-lock{position:relative;margin-top:8px;min-height:108px}
+  .qr-lock .qr-fix{filter:blur(5px);opacity:.72;max-height:148px;overflow:hidden;pointer-events:none;user-select:none}
+  .qr-locktag{position:absolute;left:12px;right:12px;top:42px;text-align:center;font-weight:800;background:rgba(246,245,241,.88);padding:12px 14px;border-radius:12px}
+  .qr-note{font-size:13px;color:var(--mut);margin-top:8px}
+  .qr-mail .fld{margin-bottom:10px}
+  .qz-fol{margin-top:18px}
+  .qz-fol-q{font-weight:800;font-size:15px;margin-bottom:8px}
+  .qz-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .qz-chips button{min-height:48px;padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font:700 15px Inter,sans-serif;color:var(--ink);cursor:pointer}
+  .qz-chips button[aria-checked="true"]{border-color:var(--ink);background:var(--gb);box-shadow:inset 0 0 0 1px var(--ink)}
   @media(min-width:860px){
     .steps{grid-template-columns:repeat(3,1fr);align-items:stretch}
     .steps>li{grid-template-columns:1fr;align-content:start}
@@ -294,16 +318,6 @@
     .case{padding:32px}
     .qcard{padding:48px}
     .qz-in{padding-top:28px}
-  }
-  @media print{
-    html.printing body>*:not(.qz){display:none!important}
-    html.printing .qz{position:static;display:block!important;background:#fff}
-    html.printing .qz-top,html.printing .qz-nav,html.printing .qr-ctas,html.printing .qr-sent{display:none!important}
-    html.printing .qz-in{height:auto;max-width:none;padding:0}
-    html.printing .qz-body{overflow:visible;padding:0}
-    html.printing .qr-print-only{display:block}
-    html.printing .qr-p,html.printing .qr-fix li{break-inside:avoid}
-    html.printing .qr-p .meter,html.printing .qr-p .meter i{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
   /* v9: one hero CTA, short guarantee */
   .hero .eyebrow{white-space:nowrap}
@@ -547,7 +561,7 @@
       <div class="qcard">
         <div class="eyebrow" style="color:var(--green)">Free &middot; 2 minutes &middot; Do it yourself</div>
         <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
-        <p>12 quick questions. Get a score out of 100, split into <strong>Leaks</strong> and <strong>Lead flow</strong>, plus a plain list of what to fix first.</p>
+        <p>14 quick questions. Get a score out of 100 across <strong>Leads</strong>, <strong>Leaks</strong>, and <strong>Closing</strong>, plus a short list of what to fix first.</p>
         <button class="btn p" type="button" data-quiz>Score my funnel</button>
       </div>
     </div>
@@ -928,55 +942,128 @@
 })();
 </script>
 <script>
-/* ---- v7: Score your sales funnel quiz ---- */
+/* ---- v8: funnel quiz. 14 questions. Leads, Leaks, Closing. ---- */
 (function(){
-  var FORM='https://formspree.io/f/meaonlel'; /* same Formspree form as the booking popup */
+  var FORM='https://formspree.io/f/meaonlel';
   var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
+  var POSTED=[['week','This week'],['month','This month'],['mo6','6+ months'],['yr','1+ year']];
   var Q=[
-    {id:'trade',type:'select',k:'About you',q:'What&rsquo;s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
+    {id:'trade',type:'select',k:'About you',q:'What\'s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
     {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
-    {id:'sources',type:'multi',k:'Lead flow',q:'Where do your leads come from?',h:'Pick all that you use.',opts:[['gbp','Google Business Profile'],['gads','Google Ads / sponsored'],['meta','Facebook / Instagram ads'],['yt','YouTube'],['web','Website'],['ref','Referrals / word of mouth'],['email','Email list'],['mail','Mailers / door hangers'],['wrap','Truck wrap']]},
-    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return calls?',opts:[['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later']]},
-    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:YNN},
-    {id:'quotes',type:'one',k:'Leaks',q:'How fast do your quotes go out?',opts:[['same','Same day'],['few','In 2 to 3 days'],['week','A week or more'],['ns','Not sure']]},
-    {id:'followup',type:'one',k:'Leaks',q:'Do you follow up on quotes that go unanswered?',opts:YNN},
+    {id:'online',type:'multi',k:'Leads',q:'Where do your online leads come from?',h:'Pick all that you use.',opts:[['gbp','Google search / Google Business Profile'],['gads','Google Ads / LSA'],['web','Website'],['ig','Instagram (posting)'],['fb','Facebook (posting)'],['fads','Paid Facebook ads'],['iads','Paid Instagram ads'],['nd','Nextdoor'],['angi','Angi / Thumbtack / Yelp']],follow:[
+      {when:'ig',id:'igPost',q:'Instagram, last posted',opts:POSTED},
+      {when:'fb',id:'fbPost',q:'Facebook, last posted',opts:POSTED},
+      {when:'web',id:'webForm',q:'Does the contact or quote form work?',opts:[['works','Works'],['miss','Hit or miss'],['none','No form'],['ns','Not sure']]}
+    ]},
+    {id:'offline',type:'multi',k:'Leads',q:'Where do your offline leads come from?',h:'Pick all that you use.',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
+    {id:'best',type:'one',k:'Leads',q:'Which one brings you the most work?',h:'Pick the single biggest source.'},
+    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
+    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:[['yes','Yes, every missed call'],['some','Sometimes'],['no','No'],['ns','Not sure']]},
+    {id:'quotes',type:'one',k:'Closing',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
+      {always:true,id:'script',q:'Do you use a sales script?',opts:[['yes','Yes'],['no','No']]}
+    ]},
+    {id:'followup',type:'one',k:'Closing',q:'How do you follow up on quotes that go quiet?',opts:[['auto','Automatic follow-up'],['manual','I follow up myself, every time'],['some','Sometimes'],['no','I do not'],['ns','Not sure']],follow:[
+      {always:true,id:'crm',q:'Where do you track jobs and quotes?',opts:[['none','None'],['sheet','Spreadsheet'],['jobber','Jobber'],['hcp','Housecall Pro'],['st','ServiceTitan'],['other','Other']]}
+    ]},
     {id:'reviewask',type:'one',k:'Leaks',q:'Do you ask for a review after every job?',opts:YNN},
-    {id:'reviews',type:'one',k:'Lead flow',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
-    {id:'ltv',type:'one',k:'Lead flow',q:'Do you know what a customer is worth over time?',h:'Customer lifetime value: everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
-    {id:'cac',type:'one',k:'Lead flow',q:'Do you know what it costs you to get a customer?',h:'Cost to get a customer (CAC): what you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
-    {id:'leads',type:'one',k:'Lead flow',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
+    {id:'reviews',type:'one',k:'Leads',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
+    {id:'ltv',type:'one',k:'Leads',q:'Do you know what a customer is worth over time?',h:'Everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
+    {id:'cac',type:'one',k:'Leads',q:'Do you know what it costs you to get a customer?',h:'What you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
+    {id:'leads',type:'one',k:'Leads',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
   ];
-  var N=Q.length,A={},i=0,lead=null;
+  var N=Q.length,A={},i=0,lead=null,sent=false,R=null;
   var qz=document.getElementById('qz'),body=document.getElementById('qzBody'),bar=document.getElementById('qzBar'),cnt=document.getElementById('qzCount'),nav=document.getElementById('qzNav'),back=document.getElementById('qzBack'),next=document.getElementById('qzNext');
-  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function txt(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent}
-  function label(q,v){for(var j=0;j<q.opts.length;j++){var o=q.opts[j];if((o[0]||o)===v||o===v)return txt(o[1]||o)}return v}
+  function qBy(id){for(var j=0;j<Q.length;j++) if(Q[j].id===id) return Q[j]}
+  function has(arr,id){return (arr||[]).indexOf(id)>=0}
+  function bestOpts(){
+    var opts=[],seen={};
+    ['online','offline'].forEach(function(id){
+      var q=qBy(id), sel=A[id]||[];
+      (q&&q.opts||[]).forEach(function(o){ if(sel.indexOf(o[0])>=0 && !seen[o[0]]){ seen[o[0]]=1; opts.push(o); } });
+    });
+    if(!opts.length) opts.push(['none','Nothing steady yet']);
+    opts.push(['ns','Not sure']);
+    return opts;
+  }
+  function hydrate(q){
+    if(q.id==='best'){
+      q.opts=bestOpts();
+      var ok=false;
+      for(var j=0;j<q.opts.length;j++) if(q.opts[j][0]===A.best) ok=true;
+      if(!ok) delete A.best;
+    }
+    return q;
+  }
+  function label(q,v){
+    if(!q) return v||'';
+    hydrate(q);
+    var opts=q.opts||[];
+    for(var j=0;j<opts.length;j++){
+      var o=opts[j];
+      if(Object.prototype.toString.call(o)==='[object Array]'){ if(o[0]===v) return txt(o[1]||''); }
+      else if(o===v) return txt(o);
+    }
+    return v||'';
+  }
+  function findFollow(id){
+    for(var a=0;a<Q.length;a++){ var fs=Q[a].follow||[]; for(var b=0;b<fs.length;b++) if(fs[b].id===id) return fs[b]; }
+    return null;
+  }
+  function folLabel(id,v){ var f=findFollow(id); if(!f||!v) return ''; for(var j=0;j<f.opts.length;j++) if(f.opts[j][0]===v) return f.opts[j][1]; return v; }
+  function followActive(q,f){
+    if(f.always) return true;
+    var v=A[q.id];
+    if(q.type==='multi') return (v||[]).indexOf(f.when)>=0;
+    return v===f.when;
+  }
+  function mapLegacy(){
+    if(A.online || A.offline || !A.sources) return;
+    A.online=[]; A.offline=[];
+    (A.sources||[]).forEach(function(id){
+      if(id==='gbp'||id==='gads'||id==='web') A.online.push(id);
+      else if(id==='meta'){ A.online.push('fb'); A.online.push('fads'); }
+      else if(id==='ref') A.offline.push('ref');
+      else if(id==='mail') A.offline.push('mail');
+      else if(id==='wrap') A.offline.push('wrap');
+    });
+  }
   function openQ(){qz.hidden=false;document.documentElement.style.overflow='hidden';if(i>N+1)i=0;render();setTimeout(function(){document.getElementById('qzX').focus()},30)}
   function closeQ(){qz.hidden=true;document.documentElement.style.overflow=''}
   document.querySelectorAll('[data-quiz]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openQ()})});
   document.getElementById('qzX').addEventListener('click',closeQ);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!qz.hidden)closeQ()});
   function answered(q){var v=A[q.id];if(q.type==='multi')return true;if(!v)return false;if(q.other&&v==='Other')return !!(A[q.id+'_other']||'').trim();return true}
+  function followsOk(q){var fs=q.follow||[];for(var j=0;j<fs.length;j++){if(followActive(q,fs[j])&&!A[fs[j].id])return false}return true}
   function progress(){var p=Math.min(i,N)/N;bar.style.width=(p*100)+'%';cnt.textContent=i<N?(i+1)+' / '+N:(i===N?'Last step':'Your score')}
+  function band(n){return n<50?'lo':n<75?'mid':'hi'}
   function render(){
     progress();nav.hidden=false;back.disabled=i===0;
-    if(i<N){var q=Q[i],h='<div class="qz-k">'+q.k+'</div><h2 class="qz-q" id="qzT">'+q.q+'</h2>'+(q.h?'<p class="qz-h">'+q.h+'</p>':'<p class="qz-h"></p>');
+    if(i<N){var q=hydrate(Q[i]),h='<div class="qz-k">'+q.k+'</div><h2 class="qz-q" id="qzT">'+q.q+'</h2>'+(q.h?'<p class="qz-h">'+q.h+'</p>':'<p class="qz-h"></p>');
       if(q.type==='select'){h+='<select class="qz-sel" id="qzSel" aria-label="'+esc(txt(q.q))+'"><option value="">Choose one</option>'+q.opts.map(function(o){var t=txt(o);return '<option'+(A[q.id]===t?' selected':'')+'>'+o+'</option>'}).join('')+'</select>';
         if(q.other)h+='<input class="fld qz-txt" id="qzOther" type="text" placeholder="Your town" aria-label="Your town" value="'+esc(A[q.id+'_other']||'')+'"'+(A[q.id]==='Other'?'':' hidden')+'>';}
       else{var multi=q.type==='multi',cur=A[q.id]||(multi?[]:'');
-        h+='<div class="qz-opts" role="'+(multi?'group':'radiogroup')+'">'+q.opts.map(function(o){var on=multi?cur.indexOf(o[0])>=0:cur===o[0];return '<button type="button" class="qz-o'+(multi?' multi':'')+'" data-v="'+o[0]+'" role="'+(multi?'checkbox':'radio')+'" aria-'+(multi?'checked':'checked')+'="'+on+'"><span class="bx"></span>'+o[1]+'</button>'}).join('')+'</div>';}
+        h+='<div class="qz-opts" role="'+(multi?'group':'radiogroup')+'">'+q.opts.map(function(o){var on=multi?cur.indexOf(o[0])>=0:cur===o[0];return '<button type="button" class="qz-o'+(multi?' multi':'')+'" data-v="'+o[0]+'" role="'+(multi?'checkbox':'radio')+'" aria-checked="'+(on?'true':'false')+'"><span class="bx"></span>'+o[1]+'</button>'}).join('')+'</div>';
+        (q.follow||[]).forEach(function(f){var show=followActive(q,f);
+          h+='<div class="qz-fol" data-fol="'+f.id+'"'+(show?'':' hidden')+'><div class="qz-fol-q">'+f.q+'</div><div class="qz-chips" role="radiogroup">'+f.opts.map(function(o){var ck=A[f.id]===o[0];return '<button type="button" data-fid="'+f.id+'" data-v="'+o[0]+'" aria-checked="'+(ck?'true':'false')+'">'+o[1]+'</button>'}).join('')+'</div></div>';
+        });
+      }
       h+='<div class="qz-err" id="qzErr"></div>';body.innerHTML=h;
       next.textContent=i===N-1?'See my score':'Next';
       if(q.type==='select'){var sel=document.getElementById('qzSel'),ot=document.getElementById('qzOther');
         sel.addEventListener('change',function(){A[q.id]=sel.value;if(ot){ot.hidden=sel.value!=='Other';if(!ot.hidden)ot.focus()}});
         if(ot)ot.addEventListener('input',function(){A[q.id+'_other']=ot.value});}
       else body.querySelectorAll('.qz-o').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.v;
-        if(q.type==='multi'){var a=A[q.id]||[];var k=a.indexOf(v);k<0?a.push(v):a.splice(k,1);A[q.id]=a;b.setAttribute('aria-checked',k<0)}
-        else{A[q.id]=v;body.querySelectorAll('.qz-o').forEach(function(x){x.setAttribute('aria-checked',x===b)});setTimeout(function(){if(Q[i]===q)go(1)},260)}})});
+        if(q.type==='multi'){var a=A[q.id]||[];var k=a.indexOf(v);k<0?a.push(v):a.splice(k,1);A[q.id]=a;b.setAttribute('aria-checked',k<0?'true':'false');
+          body.querySelectorAll('[data-fol]').forEach(function(el){var f=null;(q.follow||[]).forEach(function(x){if(x.id===el.dataset.fol)f=x});if(f)el.hidden=!followActive(q,f)});}
+        else{A[q.id]=v;body.querySelectorAll('.qz-o').forEach(function(x){x.setAttribute('aria-checked',x===b?'true':'false')});
+          if(!q.follow)setTimeout(function(){if(Q[i]===q)go(1)},260)}})});
+      body.querySelectorAll('.qz-chips button').forEach(function(b){b.addEventListener('click',function(){A[b.dataset.fid]=b.dataset.v;var row=b.parentNode;row.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-checked',x===b?'true':'false')})})});
     } else if(i===N){
-      body.innerHTML='<div class="qz-k">Last step</div><h2 class="qz-q" id="qzT">See your score.</h2><p class="qz-h">Your score shows up right after this. I&rsquo;ll get a copy too, so I can walk you through it if you want.</p>'+
+      body.innerHTML='<div class="qz-k">Last step</div><h2 class="qz-q" id="qzT">See your score.</h2><p class="qz-h">Your score shows up right after this. I get a copy too, so we can go through it on a call if you want.</p>'+
         '<form class="qz-gate" id="qzGate" novalidate><input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="'+esc((lead&&lead.name)||'')+'"><input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc((lead&&lead.business)||'')+'"><input class="fld" id="gP" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone" value="'+esc((lead&&lead.phone)||'')+'"><input class="fld" id="gE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc((lead&&lead.email)||'')+'">'+
-        '<div class="qz-err" id="qzErr"></div><p class="qz-fine">No spam. No sales pitch you didn&rsquo;t ask for.</p></form>';
+        '<div class="qz-err" id="qzErr"></div><p class="qz-fine">No spam. No pitch you did not ask for.</p></form>';
       next.textContent='Show my score';
       document.getElementById('qzGate').addEventListener('submit',function(e){e.preventDefault();go(1)});
     } else results();
@@ -984,7 +1071,8 @@
   function err(t){var e=document.getElementById('qzErr');if(e)e.textContent=t}
   function go(d){
     if(d>0){
-      if(i<N&&!answered(Q[i])){err(Q[i].type==='select'?'Pick one to keep going.':'Pick an answer to keep going.');return}
+      if(i<N){var q=hydrate(Q[i]);if(!answered(q)){err(q.type==='select'?'Pick one to keep going.':'Pick an answer to keep going.');return}
+        if(!followsOk(q)){err('Tap each row under the question to keep going.');return}}
       if(i===N){var n=document.getElementById('gN').value.trim(),b=document.getElementById('gB').value.trim(),p=document.getElementById('gP').value.trim(),pd=p.replace(/[^0-9]/g,''),em=document.getElementById('gE').value.trim();
         lead={name:n,business:b,phone:p,email:em};
         if(!n||!b){err('Add your first name and business.');return}
@@ -994,83 +1082,314 @@
     }
     i=Math.max(0,i+d);render();body.scrollTop=0;
   }
-  back.addEventListener('click',function(){if(i>N){i=N}go(-1)});
+  back.addEventListener('click',function(){if(i>N){i=N;sent=false}go(-1)});
   next.addEventListener('click',function(){go(1)});
 
-  /* scoring: Leaks 50 + Lead flow 50 */
   function score(){
-    var s=A.sources||[],L=0,F=0,fl=[],ff=[];
-    L+={instant:12,hour:8,day:4,next:0}[A.speed]||0;
-    if(A.speed!=='instant')fl.push(['Call back within 5 minutes.','Most people call the next company on the list if nobody picks up.']);
-    L+={yes:10,ns:3,no:0}[A.textback]||0;
-    if(A.textback!=='yes')fl.push(['Turn on missed-call text-back.','Every missed call gets a text right away with a link to book. Same phone number.']);
-    L+={same:10,few:5,week:0,ns:2}[A.quotes]||0;
-    if(A.quotes!=='same')fl.push(['Send quotes the same day.','The fastest quote usually wins the job.']);
-    L+={yes:10,ns:3,no:0}[A.followup]||0;
-    if(A.followup!=='yes')fl.push(['Follow up on every quote, automatically.','A quick text on day 2, day 5 and day 10 wins back jobs you&rsquo;d lose.']);
-    L+={yes:8,ns:2,no:0}[A.reviewask]||0;
-    if(A.reviewask!=='yes')fl.push(['Ask for a review after every job.','Automatic text with a one-tap link to your Google page.']);
-    var W={gbp:6,gads:4,meta:3,yt:2,web:3,ref:2,email:1,mail:1,wrap:1},sp=0;s.forEach(function(k){sp+=W[k]||0});F+=Math.min(sp,22);
-    if(s.indexOf('gbp')<0)ff.push(['Claim and fix your Google Business Profile.','It&rsquo;s free, and it&rsquo;s where locals look first.']);
-    if(s.indexOf('gads')<0)ff.push(['Run Google sponsored ads for your trade and town.','Show up first when someone nearby searches for what you do.']);
-    if(s.indexOf('meta')<0&&s.indexOf('yt')<0)ff.push(['Turn your real work into video ads.','Short clips from your jobs, running on Facebook, Instagram and YouTube.']);
-    if(s.indexOf('web')<0)ff.push(['Get a simple page that makes it one tap to call or book.','No big website needed.']);
-    F+={'0':0,'11':4,'51':7,'100':10,ns:1}[A.reviews]||0;
-    if(A.reviews!=='100'&&A.reviews!=='51')ff.push(['Get to 50+ Google reviews.','It&rsquo;s the first thing people compare.']);
-    F+={yes:5,no:1,what:0}[A.ltv]||0;
-    if(A.ltv!=='yes')ff.push(['Know what a customer is worth.','Then you know what you can afford to spend to win one.']);
-    F+={yes:5,no:1,what:0}[A.cac]||0;
-    if(A.cac!=='yes')ff.push(['Know what it costs to get a customer.','So you only pay for ads that pay you back.']);
-    F+={'0':1,'11':3,'31':6,'75':8,ns:0}[A.leads]||0;
-    return {total:L+F,leaks:L,flow:F,fl:fl,ff:ff};
+    mapLegacy();
+    var on=A.online||[], off=A.offline||[], insights=[];
+    var OW={gbp:8,gads:7,web:6,ig:5,fb:5,fads:5,iads:5,nd:4,angi:4};
+    var FW={ref:4,repeat:4,yard:2,wrap:2,door:2,mail:2,print:2,events:2};
+    var REC={week:8,month:5,mo6:2,yr:0};
+    var leadPts=0, leakPts=0, closePts=0, onSum=0, offSum=0;
+    on.forEach(function(id){onSum+=OW[id]||0});
+    leadPts+=Math.min(36,onSum);
+    if(has(on,'ig')) leadPts+=REC[A.igPost]||0;
+    if(has(on,'fb')) leadPts+=REC[A.fbPost]||0;
+    off.forEach(function(id){offSum+=FW[id]||0});
+    leadPts+=Math.min(16,offSum);
+    var revPts={'0':0,'11':4,'51':8,'100':12,ns:2}[A.reviews]||0; leadPts+=revPts;
+    var ltvPts={yes:6,no:1,what:0}[A.ltv]||0; leadPts+=ltvPts;
+    var cacPts={yes:6,no:1,what:0}[A.cac]||0; leadPts+=cacPts;
+    var volPts={'0':1,'11':3,'31':5,'75':8,ns:0}[A.leads]||0; leadPts+=volPts;
+    function push(sec,lost,t,d){if(lost>0) insights.push({sec:sec,lost:lost,t:t,d:d})}
+    if(!has(on,'gbp')) push('Leads',8,'Claim your Google Business Profile.','Locals search Google first. A finished profile with photos is how they choose a company.');
+    if(!has(on,'gads')) push('Leads',7,'Run Google Ads or Local Services Ads.','Show up when someone nearby searches for your trade.');
+    if(!has(on,'web')) push('Leads',6,'Put up a simple page people can book from.','One page with your town, your work, and a tap to call is enough to start.');
+    if(has(on,'ig')&&A.igPost&&A.igPost!=='week') push('Leads',A.igPost==='month'?3:8,'Post on Instagram this week.','The last post is old, so the profile looks quiet.');
+    if(!has(on,'ig')) push('Leads',5,'Post a job on Instagram.','Homeowners check the latest photos before they call.');
+    if(has(on,'fb')&&A.fbPost&&A.fbPost!=='week') push('Leads',A.fbPost==='month'?3:8,'Post on Facebook this week.','A quiet page reads like a closed business.');
+    if(!has(on,'fb')) push('Leads',5,'Post jobs on your Facebook page.','Neighbors still look there before they ask for a name.');
+    if(!has(on,'fads')&&!has(on,'iads')) push('Leads',5,'Test one paid social ad.','A job photo and a tap-to-call button is a fair first test.');
+    if(revPts<8) push('Leads',12-revPts,'Get to 50 Google reviews.','People compare review counts before they compare prices.');
+    if(A.ltv!=='yes') push('Leads',6-ltvPts,'Write down what a customer is worth.','Then you know what a new lead is worth fighting for.');
+    if(A.cac!=='yes') push('Leads',6-cacPts,'Write down what a new customer costs.','So you only pay for ads that pay you back.');
+    if(Math.min(16,offSum)<8) push('Leads',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
+    var speedPts={min15:40,instant:40,hour:28,day:14,next:0,ns:6}[A.speed]||0; leakPts+=speedPts;
+    if(speedPts<40) push('Leaks',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
+    var tbPts={yes:30,some:14,ns:6,no:0}[A.textback]||0; leakPts+=tbPts;
+    if(A.textback!=='yes') push('Leaks',30-tbPts,'Text back every missed call.','Same number. A short text with a time to book, sent right away.');
+    var formPts=has(on,'web')?({works:18,miss:8,ns:4,none:0}[A.webForm]||0):0; leakPts+=formPts;
+    if(!has(on,'web')||A.webForm!=='works') push('Leaks',18-formPts,'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
+    var askPts={yes:12,ns:4,no:0}[A.reviewask]||0; leakPts+=askPts;
+    if(A.reviewask!=='yes') push('Leaks',12-askPts,'Ask for a review after every job.','A text with a one-tap link to your Google page.');
+    var qPts={same:40,next:30,few:16,week:0,ns:8}[A.quotes]||0; closePts+=qPts;
+    if(qPts<40) push('Closing',40-qPts,'Send the quote the same day.','The first clear quote usually wins the job.');
+    var fuPts={auto:30,manual:22,yes:22,some:10,no:0,ns:4}[A.followup]||0; closePts+=fuPts;
+    if(fuPts<22) push('Closing',30-fuPts,'Follow up on every quiet quote.','A text on day 2, day 5, and day 10 wins back jobs that go cold.');
+    var scriptPts=A.script==='yes'?15:0; closePts+=scriptPts;
+    if(A.script!=='yes') push('Closing',15,'Use a short sales script on the call.','Same questions every time: what they need, when, and the next step.');
+    var crmPts={jobber:15,hcp:15,st:15,sheet:10,other:8,none:0}[A.crm]||0; closePts+=crmPts;
+    if(crmPts<10) push('Closing',15-crmPts,'Track every quote in one place.','A spreadsheet is enough. Jobber, Housecall Pro, or ServiceTitan once the volume is there.');
+    insights.sort(function(a,b){return b.lost-a.lost});
+    var seen={},list=[];
+    insights.forEach(function(x){if(seen[x.t])return;seen[x.t]=1;list.push(x)});
+    [{sec:'Leads',t:'Keep the channels that already bring work.',d:'Do not turn off a source that is producing jobs while you fix the leaks.'},{sec:'Leaks',t:'Speed is the quiet advantage.',d:'The company that answers first often gets the visit.'},{sec:'Closing',t:'A written quote beats a verbal one.',d:'Same day, in writing, with a clear next step.'}].forEach(function(x){x.lost=0;if(!seen[x.t])list.push(x)});
+    leadPts=Math.max(0,Math.min(100,Math.round(leadPts)));
+    leakPts=Math.max(0,Math.min(100,Math.round(leakPts)));
+    closePts=Math.max(0,Math.min(100,Math.round(closePts)));
+    return {total:Math.round((leadPts+leakPts+closePts)/3),leads:leadPts,leaks:leakPts,closing:closePts,insights:list};
   }
-  var R=null;
   function verdict(r){
-    if(r.leaks<35)return 'Your funnel is leaking. Start by fixing the leaks. More leads won&rsquo;t pay off until those are plugged.';
-    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s the Fill the funnel step.';
-    return 'Solid funnel. A 15-minute audit will find the next few wins.';
+    if(r.total<50) return 'The funnel is leaking. Fix response time and quote follow-up before you buy more leads.';
+    if(r.total<75) return 'Parts of this are working. The full report ranks what to fix first.';
+    return 'Strong funnel. A 15-minute call will pick the next few wins.';
   }
-  function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
+  function li(x){return '<li><span class="qr-sec">'+esc(x.sec)+'</span><b>'+esc(x.t)+'</b><span class="qr-d">'+esc(x.d)+'</span></li>'}
+  function part(name,n){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+'</span><b class="qr-'+b+'">'+n+'/100</b></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
   function results(){
-    R=score();nav.hidden=true;var d=new Date();
-    body.innerHTML='<div class="qr" id="qrReport"><div class="qr-print-only"><div class="brand" style="font-size:26px">Seth Quest</div><p>Sales funnel score for '+esc(lead.business)+' ('+esc(lead.name)+') &middot; '+d.toLocaleDateString()+'</p></div>'+
-      '<div class="qz-k">Your sales funnel score</div><div class="qr-score"><b id="qrTotal">'+R.total+'</b><span>/ 100</span></div><p class="qr-verdict">'+verdict(R)+'</p>'+
-      '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span>'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
-      '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span>'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
-      '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+
-      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook">Book a free 15-minute call</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
-      '<p class="qr-print-only" style="margin-top:20px">Free 15-minute sales funnel audit: text or call Seth at 934-899-0796 &middot; sethquest.com/make-more-money</p>'+
-      '<p class="qr-sent" id="qrSent"></p></div>';
+    R=score();nav.hidden=true;
+    var open=R.insights.slice(0,3), locked=R.insights.slice(3,7), b=band(R.total);
+    var have=lead&&lead.email&&lead.business;
+    var mail=have
+      ? '<button class="btn p" type="button" id="qrEmail">Email me my full report</button>'
+      : '<form class="qr-mail" id="qrMail"><input class="fld" id="rB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc(lead&&lead.business||'')+'"><input class="fld" id="rE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc(lead&&lead.email||'')+'"><button class="btn p" type="submit" id="qrEmail">Email me my full report</button></form>';
+    body.innerHTML='<div class="qr" id="qrReport"><div class="qz-k">Your sales funnel score</div>'+
+      (lead&&lead.business?'<p class="qr-for">'+esc(lead.business)+'</p>':'')+
+      '<div class="qr-big qr-'+b+'" id="qrTotal">'+R.total+'<span>/100 pts</span></div>'+
+      '<p class="qr-verdict">'+esc(verdict(R))+'</p>'+
+      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Leads',R.leads)+part('Leaks',R.leaks)+part('Closing',R.closing)+'</div>'+
+      '<h3 class="qr-h">What stands out<span class="g">.</span></h3><ul class="qr-fix">'+open.map(li).join('')+'</ul>'+
+      (locked.length?'<div class="qr-lock" id="qrLock"><ul class="qr-fix">'+locked.map(li).join('')+'</ul><div class="qr-locktag">The rest is in your full report</div></div>':'')+
+      '<div class="qr-ctas">'+mail+'<p class="qr-note" id="qrNote">Your full report downloads to this device.</p><button class="btn o" type="button" id="qrBook">Book a free 15-min call</button></div>'+
+      '<p class="qr-sent" id="qrSent"></p><div class="qz-err" id="qrErr"></div></div>';
     document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
-      var f=function(id,v){var e=document.getElementById(id);if(e&&!e.value)e.value=v||''};f('bkN',lead.name);f('bkC',lead.phone)});
-    document.getElementById('qrPrint').addEventListener('click',function(){document.documentElement.classList.add('printing');window.print()});
+      var f=function(id,v){var e=document.getElementById(id);if(e&&!e.value)e.value=v||''};f('bkN',lead&&lead.name);f('bkC',lead&&lead.phone)});
+    function doReport(e){
+      if(e) e.preventDefault();
+      var bEl=document.getElementById('rB'), eEl=document.getElementById('rE');
+      if(bEl||eEl){
+        var bn=(bEl?bEl.value:'').trim(), em=(eEl?eEl.value:'').trim();
+        if(!bn){var er=document.getElementById('qrErr');if(er)er.textContent='Add the business name.';return}
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){var er2=document.getElementById('qrErr');if(er2)er2.textContent='Add your email.';return}
+        lead.business=bn; lead.email=em;
+        if(!sent) send();
+      }
+      var btn=document.getElementById('qrEmail');
+      if(btn){btn.disabled=true;btn.textContent='Building your report...'}
+      buildPdf(R).then(function(blob){
+        var a=document.createElement('a');
+        a.href=URL.createObjectURL(blob);
+        a.download=fileName();
+        document.body.appendChild(a);a.click();a.remove();
+        if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+        var n=document.getElementById('qrNote');
+        if(n) n.textContent='Report downloaded. Seth has your answers too.';
+      }).catch(function(){
+        if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+        var n=document.getElementById('qrNote');
+        if(n) n.textContent='Could not build the report in this browser. Text 934-899-0796.';
+      });
+    }
+    var mailForm=document.getElementById('qrMail');
+    if(mailForm) mailForm.addEventListener('submit',doReport);
+    else document.getElementById('qrEmail').addEventListener('click',doReport);
   }
-  window.addEventListener('afterprint',function(){document.documentElement.classList.remove('printing')});
-  /* ---- lead report for Seth: plain-text report + a private link that rebuilds the results page ---- */
-  function answerOf(q){var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:v):label(q,v))}
+  function fileName(){var s=String((lead&&lead.business)||'funnel').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'funnel';return 'MORE-funnel-score-'+s+'.pdf'}
+  function answerOf(q){hydrate(q);var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):label(q,v))}
   function reportText(r){
     var L=[],sec=function(t){L.push('',t,new Array(t.length+1).join('-'))};
-    L.push('SALES FUNNEL SCORE: '+r.total+' / 100','Leaks: '+r.leaks+' / 50   |   Lead flow: '+r.flow+' / 50','',txt(verdict(r)));
-    sec('CONTACT');L.push('Name: '+lead.name,'Business: '+lead.business,'Cell: '+lead.phone);
-    [['ABOUT THEM','About you'],['LEAKS','Leaks'],['LEAD FLOW','Lead flow']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
-    sec('RECOMMENDED FIXES');L.push('Fix the leaks:');(r.fl.length?r.fl:[['Nothing big to fix here.','']]).forEach(function(x){L.push('  * '+txt(x[0])+(x[1]?' '+txt(x[1]):''))});
-    L.push('','Fill the funnel:');(r.ff.length?r.ff:[['Nothing big to fix here.','']]).forEach(function(x){L.push('  * '+txt(x[0])+(x[1]?' '+txt(x[1]):''))});
+    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Leads: '+r.leads+' / 100','Leaks: '+r.leaks+' / 100','Closing: '+r.closing+' / 100','',verdict(r));
+    sec('CONTACT');L.push('Name: '+(lead.name||''),'Business: '+(lead.business||''),'Cell: '+(lead.phone||''),'Email: '+(lead.email||''));
+    [['ABOUT YOU','About you'],['LEADS','Leads'],['LEAKS','Leaks'],['CLOSING','Closing']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
+    sec('FOLLOW UPS');
+    L.push('Instagram last posted: '+(folLabel('igPost',A.igPost)||'(not set)'));
+    L.push('Facebook last posted: '+(folLabel('fbPost',A.fbPost)||'(not set)'));
+    L.push('Website form: '+(folLabel('webForm',A.webForm)||'(not set)'));
+    L.push('Sales script: '+(folLabel('script',A.script)||'(not set)'));
+    L.push('Tracking tool: '+(folLabel('crm',A.crm)||'(not set)'));
+    sec('INSIGHTS');
+    r.insights.forEach(function(x){L.push('* ['+x.sec+'] '+x.t+' '+x.d)});
     return L.join('\n');
   }
   function reportLink(){
-    var data={v:1,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone,e:lead.email},a:A};
+    var data={v:2,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone,e:lead.email},a:A};
     var b64=btoa(unescape(encodeURIComponent(JSON.stringify(data)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
     var base=/(^|\.)sethquest\.com$/.test(location.hostname)?'https://sethquest.com/make-more-money/report':location.origin+'/make-more-money/report.html';
     return base+'#'+b64;
   }
   function send(){
+    if(sent||!lead) return;
+    sent=true;
     var r=score(),ans={};Q.forEach(function(q){ans[q.id]=answerOf(q)});
+    ans.instagram_last_posted=folLabel('igPost',A.igPost)||'';
+    ans.facebook_last_posted=folLabel('fbPost',A.fbPost)||'';
+    ans.website_form=folLabel('webForm',A.webForm)||'';
+    ans.sales_script=folLabel('script',A.script)||'';
+    ans.tracking_tool=folLabel('crm',A.crm)||'';
     var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,email:lead.email,
-      score:r.total+'/100',leaks:r.leaks+'/50',lead_flow:r.flow+'/50','View full report':reportLink(),Report:reportText(r),source:'sethquest.com/make-more-money quiz'},ans);
+      score:r.total+'/100',leads:r.leads+'/100',leaks:r.leaks+'/100',closing:r.closing+'/100','View full report':reportLink(),Report:reportText(r),source:'sethquest.com/make-more-money quiz'},ans);
     var el=function(){return document.getElementById('qrSent')};
     fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(x){if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your score.'})
-      .catch(function(){if(el())el().textContent='Couldn’t send your copy to Seth. Text or call 934-899-0796 and he’ll walk you through it.'});
+      .catch(function(){if(el())el().textContent='Could not send your copy to Seth. Text or call 934-899-0796 and he will go through it with you.'});
+  }
+  function pdfSafe(s){return String(s==null?'':s).replace(/[^\x20-\x7E]/g,' ').replace(/\s+/g,' ').trim()}
+  function loadPdf(){
+    if(window.PDFLib) return Promise.resolve(window.PDFLib);
+    return new Promise(function(ok,bad){
+      var s=document.createElement('script');
+      s.src='/make-more-money/pdf-lib.min.js';
+      s.onload=function(){window.PDFLib?ok(window.PDFLib):bad(new Error('pdf'))};
+      s.onerror=function(){bad(new Error('pdf'))};
+      document.head.appendChild(s);
+    });
+  }
+  function buildPdf(r){
+    return loadPdf().then(function(PDFLib){
+      var doc=PDFLib.PDFDocument.create();
+      return doc.then(function(pdf){
+        return Promise.all([pdf.embedFont(PDFLib.StandardFonts.Helvetica), pdf.embedFont(PDFLib.StandardFonts.HelveticaBold)]).then(function(fonts){
+          var font=fonts[0], bold=fonts[1];
+          var GREEN=PDFLib.rgb(43/255,227/255,107/255), INK=PDFLib.rgb(0.04,0.04,0.04), GRAY=PDFLib.rgb(0.42,0.42,0.42), PAPER=PDFLib.rgb(1,1,1);
+          var RED=PDFLib.rgb(0.776,0.157,0.157), AMBER=PDFLib.rgb(0.72,0.43,0), GRNT=PDFLib.rgb(0.07,0.54,0.24);
+          function bandColor(n){return n<50?RED:n<75?AMBER:GRNT}
+          function linesOf(text,f,size,max){
+            var words=pdfSafe(text).split(' '), out=[], cur='';
+            words.forEach(function(w){if(!w)return;var t=cur?cur+' '+w:w;if(f.widthOfTextAtSize(t,size)<=max)cur=t;else{if(cur)out.push(cur);cur=w}});
+            if(cur)out.push(cur);return out;
+          }
+          function drawLines(page,lines,x,y,f,size,color,lead){lines.forEach(function(ln){page.drawText(ln,{x:x,y:y,size:size,font:f,color:color});y-=lead});return y}
+          function page(){var p=pdf.addPage([612,792]);p.drawRectangle({x:0,y:784,width:612,height:8,color:GREEN});return p}
+          function logo(p,x,y,size){p.drawText('MORE',{x:x,y:y,size:size,font:bold,color:INK});var w=bold.widthOfTextAtSize('MORE',size);p.drawText('.',{x:x+w,y:y,size:size,font:bold,color:GREEN});return w+bold.widthOfTextAtSize('.',size)}
+          function kicker(p,text,y){p.drawText(pdfSafe(text),{x:48,y:y,size:11,font:bold,color:GRAY});return y-28}
+          function h1(p,text,y){return drawLines(p,linesOf(text,bold,32,516),48,y,bold,32,INK,36)}
+          var biz=pdfSafe(lead&&lead.business||'Your business');
+          var who=pdfSafe(lead&&lead.name||'');
+          var when=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+          function blurb(kind){
+            if(kind==='leads'){
+              var on=names('online',A.online), off=names('offline',A.offline);
+              var s='Online, you marked '+joinList(on)+'. ';
+              if(has(A.online,'ig')) s+='Instagram last posted: '+(folLabel('igPost',A.igPost)||'not set')+'. ';
+              if(has(A.online,'fb')) s+='Facebook last posted: '+(folLabel('fbPost',A.fbPost)||'not set')+'. ';
+              if(has(A.online,'web')) s+='Website form: '+(folLabel('webForm',A.webForm)||'not set')+'. ';
+              s+='Offline, you marked '+joinList(off)+'. ';
+              if(A.best&&A.best!=='ns'&&A.best!=='none') s+='The source that brings the most work: '+label(qBy('best'),A.best)+'. ';
+              s+='Google reviews: '+label(qBy('reviews'),A.reviews)+'. Customer value: '+label(qBy('ltv'),A.ltv)+'. Cost to get a customer: '+label(qBy('cac'),A.cac)+'. Leads a month: '+label(qBy('leads'),A.leads)+'.';
+              return s;
+            }
+            if(kind==='leaks') return 'Response time: '+label(qBy('speed'),A.speed)+'. Missed-call text back: '+label(qBy('textback'),A.textback)+'. Review ask after a job: '+label(qBy('reviewask'),A.reviewask)+'. '+(has(A.online,'web')?'The website form is marked '+(folLabel('webForm',A.webForm)||'not set')+'. ':'No website was selected, so quote requests from a site are not coming in. ');
+            return 'Quote speed: '+label(qBy('quotes'),A.quotes)+'. Follow-up: '+label(qBy('followup'),A.followup)+'. Sales script: '+(folLabel('script',A.script)||'not set')+'. Tracking: '+(folLabel('crm',A.crm)||'not set')+'.';
+          }
+          function names(qid,ids){var q=qBy(qid), out=[];(ids||[]).forEach(function(id){(q.opts||[]).forEach(function(o){if(o[0]===id)out.push(o[1])})});return out}
+          function joinList(a){if(!a.length)return 'none yet';if(a.length===1)return a[0];return a.slice(0,-1).join(', ')+' and '+a[a.length-1]}
+          function secLine(name,n){if(n>=75)return name+' is in good shape.';if(n>=50)return name+' is mixed. A few fixes move the number.';return name+' is the weak part of the funnel.'}
+          function story(title,k,paras,stats){
+            var p=page(), y=730;
+            logo(p,48,730,18);
+            y=680;
+            y=kicker(p,k,y);
+            y=h1(p,title,y)-8;
+            (stats||[]).forEach(function(st){p.drawText(pdfSafe(st),{x:48,y:y,size:16,font:bold,color:bandColor(parseInt(st,10)||0)});y-=24});
+            y-=8;
+            (paras||[]).forEach(function(para){y=drawLines(p,linesOf(para,font,13,516),48,y,font,13,INK,18)-10});
+            return p;
+          }
+          var cover=page();
+          logo(cover,48,700,48);
+          cover.drawText('make more money',{x:48,y:668,size:14,font:font,color:GRAY});
+          cover.drawText('SALES FUNNEL SCORE',{x:48,y:610,size:12,font:bold,color:GRAY});
+          var yb=drawLines(cover,linesOf(biz,bold,36,516),48,570,bold,36,INK,40);
+          var sub=[label(qBy('trade'),A.trade), A.town==='Other'&&A.town_other?A.town_other:(A.town||'')].filter(Boolean).join('  /  ');
+          if(sub) cover.drawText(pdfSafe(sub),{x:48,y:yb-8,size:13,font:font,color:GRAY});
+          cover.drawText(String(r.total),{x:48,y:400,size:84,font:bold,color:bandColor(r.total)});
+          var nw=bold.widthOfTextAtSize(String(r.total),84);
+          cover.drawText('/100 pts',{x:56+nw,y:418,size:18,font:bold,color:bandColor(r.total)});
+          drawLines(cover,linesOf(verdict(r),font,14,516),48,360,font,14,INK,20);
+          [['Leads',r.leads],['Leaks',r.leaks],['Closing',r.closing]].forEach(function(row,idx){
+            var x=48+idx*170;
+            cover.drawText(row[0].toUpperCase(),{x:x,y:250,size:11,font:bold,color:GRAY});
+            cover.drawText(row[1]+'/100',{x:x,y:220,size:22,font:bold,color:bandColor(row[1])});
+          });
+          cover.drawText(pdfSafe('Prepared for '+(who||biz)+'  /  '+when),{x:48,y:120,size:12,font:font,color:GRAY});
+          story('How to read this score','INTRO',[
+            'This report scores the sales funnel in three parts. Leads: where the work comes from. Leaks: how fast you respond, and whether a request actually gets through. Closing: how quotes go out, and how you follow up.',
+            'Each part is out of 100. The number on the cover is the average of the three. Under 50 is red. 50 to 74 is amber. 75 and above is green.',
+            secLine('Leads',r.leads)+' '+secLine('Leaks',r.leaks)+' '+secLine('Closing',r.closing)
+          ],[r.total+'/100 pts']);
+          story('Funnel snapshot','THE THREE SCORES',[
+            'Leads  '+r.leads+'/100. '+secLine('Leads',r.leads),
+            'Leaks  '+r.leaks+'/100. '+secLine('Leaks',r.leaks),
+            'Closing  '+r.closing+'/100. '+secLine('Closing',r.closing),
+            'Read the next pages for the detail behind each number, then the three moves at the end.'
+          ]);
+          story('Leads','WHERE WORK COMES FROM',[blurb('leads'), secLine('Leads',r.leads)],[r.leads+'/100']);
+          story('What you marked for leads','LEADS DETAIL',[
+            'Online: '+joinList(names('online',A.online))+'.',
+            'Offline: '+joinList(names('offline',A.offline))+'.',
+            'Biggest source: '+(A.best?label(qBy('best'),A.best):'not set')+'.',
+            r.insights.filter(function(x){return x.sec==='Leads'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'The lead channels you marked are in decent shape.'
+          ]);
+          story('Leaks','WHAT SLIPS THROUGH',[blurb('leaks'), secLine('Leaks',r.leaks)],[r.leaks+'/100']);
+          story('Response, missed calls, and the form','LEAKS DETAIL',[
+            r.insights.filter(function(x){return x.sec==='Leaks'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'Response time and follow-through look solid from what you marked.',
+            'A fast answer does not replace a quote. It only keeps the conversation alive long enough to send one.'
+          ]);
+          story('Closing','HOW JOBS GET WON',[blurb('closing'), secLine('Closing',r.closing)],[r.closing+'/100']);
+          story('Quotes, follow-up, script, tracking','CLOSING DETAIL',[
+            'Sales script: '+(folLabel('script',A.script)||'not set')+'. Tracking tool: '+(folLabel('crm',A.crm)||'not set')+'.',
+            r.insights.filter(function(x){return x.sec==='Closing'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'Quote speed and follow-up look solid from what you marked.'
+          ]);
+          story('Summary','THE NUMBER ON THE COVER',[
+            biz+' scored '+r.total+'/100 pts. Leads '+r.leads+'/100. Leaks '+r.leaks+'/100. Closing '+r.closing+'/100.',
+            verdict(r),
+            'The next page is the order to do the work in. Do the first two before you spend more on ads.'
+          ],[r.total+'/100 pts']);
+          var steps=(function(){
+            var gaps=r.insights.filter(function(x){return x.lost>0}).slice(0,2);
+            var out=gaps.map(function(g){return {t:g.t,d:g.d}});
+            while(out.length<2) out.push({t:'Keep what already brings work.',d:'Do not pause a source that is producing jobs.'});
+            out.push({t:'Book a free 15-min call.',d:'Pick the first fix and put it on the calendar. Call or text 934-899-0796.'});
+            return out;
+          })();
+          var plan=page();
+          logo(plan,48,730,18);
+          var yp=kicker(plan,'THREE MOVES',680);
+          yp=h1(plan,'Do these in order',yp)-8;
+          steps.forEach(function(st,idx){
+            plan.drawText('0'+(idx+1),{x:48,y:yp,size:22,font:bold,color:GREEN});
+            yp=drawLines(plan,linesOf(st.t,bold,18,470),100,yp,bold,18,INK,22);
+            yp=drawLines(plan,linesOf(st.d,font,13,470),100,yp-4,font,13,INK,18)-22;
+          });
+          var cta=page();
+          logo(cta,48,700,42);
+          cta.drawText('make more money',{x:48,y:668,size:14,font:font,color:GRAY});
+          var yc=kicker(cta,'NEXT',590);
+          yc=h1(cta,'Get the time back',yc)-6;
+          yc=drawLines(cta,linesOf('15 minutes. We look at where the week goes and what comes off your plate first. Bring this score.',font,16,500),48,yc,font,16,INK,22)-16;
+          cta.drawText('934-899-0796',{x:48,y:yc,size:32,font:bold,color:INK});
+          yc-=36;
+          yc=drawLines(cta,linesOf('Call or text Seth Quest. East Hampton, NY. sethquest.com/make-more-money',font,14,500),48,yc,font,14,GRAY,20);
+          yc-=28;
+          cta.drawRectangle({x:48,y:yc-36,width:240,height:48,color:INK});
+          cta.drawText('Book a free 15-min call',{x:64,y:yc-18,size:13,font:bold,color:PAPER});
+          var pages=pdf.getPages();
+          pages.forEach(function(p,idx){
+            p.drawText('MORE',{x:48,y:32,size:11,font:bold,color:INK});
+            var lw=bold.widthOfTextAtSize('MORE',11);
+            p.drawText('.',{x:48+lw,y:32,size:11,font:bold,color:GREEN});
+            p.drawText('make more money',{x:48+lw+12,y:33,size:9,font:font,color:GRAY});
+            var pn=(idx+1)+' / '+pages.length;
+            p.drawText(pn,{x:564-font.widthOfTextAtSize(pn,9),y:33,size:9,font:font,color:GRAY});
+          });
+          pdf.setTitle('Sales funnel score - '+biz);
+          pdf.setAuthor('MORE.');
+          pdf.setSubject('make more money');
+          return pdf.save().then(function(bytes){return new Blob([bytes],{type:'application/pdf'})});
+        });
+      });
+    });
   }
 })();
 </script>
