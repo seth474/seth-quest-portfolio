@@ -6,7 +6,8 @@ async function toBlob(input) {
   var origin = (typeof location !== 'undefined' && location.origin) ? location.origin : '';
   registerFonts(origin + '/make-more-money/fonts');
   var model = buildModel(input);
-  return pdf(React.createElement(Magazine, { model: model })).toBlob();
+  var theme = (input && input.theme) === 'light' ? 'light' : 'dark';
+  return pdf(React.createElement(Magazine, { model: model, theme: theme })).toBlob();
 }
 
 export { toBlob };

@@ -150,40 +150,66 @@ function floorScore(n) {
   return n;
 }
 
+var LEAK_NAME = 'Sales Funnel Leaks / Lost Opportunities';
+
 function sections(score) {
   return [
     { key: 'leads', name: 'Lead Score', n: score.leads },
-    { key: 'leaks', name: 'Lost Opportunities', sub: 'leaks', n: score.leaks },
+    { key: 'leaks', name: LEAK_NAME, n: score.leaks },
     { key: 'closing', name: 'Close Rate', n: score.closing }
   ];
 }
 
-function weakCall(score) {
-  var rows = sections(score);
-  var min = Math.min(score.leads, score.leaks, score.closing);
-  var lows = rows.filter(function (r) { return r.n === min; });
-  var others = rows.filter(function (r) { return r.n !== min; });
-  var tied = lows.length > 1;
-  var greenLow = min >= 75;
-  var headline, detail, label;
-  if (lows.length === 3) {
-    label = 'Even across the funnel';
-    headline = 'The three scores are even.';
-    detail = 'Leads, Leaks, and Closing all sit at ' + min + ' out of 100. There is no single weak spot. The work is spread across the funnel.';
-  } else if (tied) {
-    label = 'Tied at the bottom';
-    headline = lows.map(function (r) { return r.name; }).join(' and ') + ' are tied at the bottom.';
-    detail = 'Both sit at ' + min + ' out of 100. ' + others.map(function (r) { return r.name + ' is at ' + r.n; }).join('. ') + '.';
-  } else if (greenLow) {
-    label = 'Lowest score';
-    headline = lows[0].name + ' is the lowest score, and it is still in the green.';
-    detail = lows[0].name + ' is ' + min + ' out of 100. ' + others.map(function (r) { return r.name + ' is ' + r.n; }).join('. ') + '.';
+function shortOnline(ids) {
+  var labels = { gbp: 'Google', gads: 'Google Ads', web: 'the website', ig: 'Instagram', fb: 'Facebook', fads: 'Facebook ads', iads: 'Instagram ads', nd: 'Nextdoor', angi: 'Angi' };
+  return (ids || []).map(function (id) { return labels[id]; }).filter(Boolean);
+}
+
+function leadSummary(a) {
+  var on = shortOnline(a.online);
+  var head = on.length
+    ? joinList(on).replace(/^./, function (c) { return c.toUpperCase(); }) + (on.length === 1 ? ' is on' : ' are on')
+    : 'No online source is marked';
+  var bestMap = { ref: 'Referrals', repeat: 'Repeat customers', gbp: 'Google', gads: 'Google Ads', web: 'The website', ig: 'Instagram', fb: 'Facebook', yard: 'Yard signs', wrap: 'The truck wrap' };
+  var best;
+  if (a.best && a.best !== 'ns' && a.best !== 'none') {
+    var label = bestMap[a.best] || nameOf(ONLINE.concat(OFFLINE), a.best);
+    best = (a.best === 'ref' || a.best === 'repeat' ? label + ' bring' : label + ' brings') + ' the most work';
+  } else if (a.best === 'none') {
+    best = 'nothing steady is bringing the work';
   } else {
-    label = 'The weak spot';
-    headline = lows[0].name + ' is the weak spot.';
-    detail = 'It scored ' + min + ' out of 100. ' + others.map(function (r) { return r.name + ' is ' + r.n; }).join('. ') + '.';
+    best = 'the biggest source is not named';
   }
-  return { min: min, lows: lows, others: others, tied: tied, greenLow: greenLow, label: label, headline: headline, detail: detail, rows: rows };
+  var rev = { '0': 'Google reviews are still under 10', '11': 'Google reviews are between 11 and 50', '51': 'Google reviews are between 51 and 100', '100': 'Google reviews are over 100' }[a.reviews] || 'the Google review count is not set';
+  return head + '. ' + best + ', and ' + rev + '.';
+}
+
+function leakSummary(a) {
+  var speed = { min15: 'New leads get an answer within 15 minutes', instant: 'New leads get an answer within 15 minutes', hour: 'New leads get an answer within an hour', day: 'New leads get an answer the same day', next: 'New leads wait until the next day', ns: 'Answer speed is not set' }[a.speed] || 'Answer speed is not set';
+  var text = { yes: 'a missed call gets a text back', some: 'a missed call sometimes gets a text back', no: 'a missed call does not get a text back', ns: 'missed-call texts are not set' }[a.textback] || 'missed-call texts are not set';
+  return speed + ', and ' + text + '.';
+}
+
+function closeSummary(a) {
+  var q = { same: 'Quotes go out the same day', next: 'Quotes go out the next day', few: 'Quotes take 2 to 3 days', week: 'Quotes go out a week or more after the conversation', ns: 'Quote speed is not set' }[a.quotes] || 'Quote speed is not set';
+  var bits = [];
+  if (a.followup === 'no') bits.push('no follow-up');
+  else if (a.followup === 'some') bits.push('follow-up only sometimes');
+  else if (a.followup === 'auto') bits.push('automatic follow-up');
+  else if (a.followup === 'manual' || a.followup === 'yes') bits.push('a manual follow-up');
+  if (a.script === 'no') bits.push('no script');
+  else if (a.script === 'yes') bits.push('a script on the call');
+  if (!bits.length) return q + '.';
+  if (bits.length === 1) return q + ', with ' + bits[0] + '.';
+  return q + ', with ' + bits[0] + ' and ' + bits[1] + '.';
+}
+
+function combinedInsight(a, score) {
+  var on = (a.online || []).length;
+  var lead = on >= 3 && score.leads >= 75 ? 'the lead channels are in place' : on >= 3 && score.leads >= 50 ? 'the lead channels are partly built' : on === 0 ? 'no online lead source is marked' : 'the lead channels are thin';
+  var leak = (a.textback === 'no' || a.speed === 'next' || a.speed === 'day' || (a.speed === 'hour' && a.textback !== 'yes')) ? 'calls still slip before a visit' : (a.speed === 'min15' || a.speed === 'instant') ? 'new leads get a fast answer' : 'call handling is still uneven';
+  var close = a.quotes === 'week' ? 'quotes wait a week to go out' : a.quotes === 'few' ? 'quotes take a few days to go out' : a.quotes === 'same' ? 'quotes go out the same day' : a.quotes === 'next' ? 'quotes go out the next day' : 'quote timing is not pinned down';
+  return 'At ' + score.total + ' overall, ' + lead + ', ' + leak + ', and ' + close + '.';
 }
 
 function jobsFrom(rate, hi) {
@@ -257,7 +283,7 @@ function moneyBlock(key, a, ex) {
 function sameSec(sec, name) {
   var map = {
     'Lead Score': ['Lead Score', 'Leads'],
-    'Lost Opportunities': ['Lost Opportunities', 'Leaks'],
+    'Sales Funnel Leaks / Lost Opportunities': ['Lost Opportunities', 'Leaks', 'Sales Funnel Leaks / Lost Opportunities'],
     'Close Rate': ['Close Rate', 'Closing']
   };
   return (map[name] || [name]).indexOf(sec) >= 0;
@@ -373,10 +399,10 @@ function bandNote(n) {
   return '75 and above. Green.';
 }
 
-function snapshotLines(a, weak) {
+function snapshotLines(a) {
   var out = [];
   function add(s) {
-    if (!s || s === weak.headline || out.indexOf(s) >= 0) return;
+    if (!s || out.indexOf(s) >= 0) return;
     out.push(s);
   }
   if (a.quotes === 'week' || a.quotes === 'few' || a.quotes === 'next') add(quoteLine(a.quotes));
@@ -460,7 +486,7 @@ function timeCost(leads, leaks, closing) {
     year: hours * 50 * 125,
     yearLabel: money(hours * 50 * 125),
     rate: 125,
-    note: 'Estimate. A weak funnel is about 10 hours a week, scaled to these scores, at $125 an hour.',
+    note: 'Estimate. About 10 hours a week, scaled to these scores, at $125 an hour.',
     parts: parts
   };
 }
@@ -475,7 +501,14 @@ function buildModel(input) {
     insights: raw.insights || []
   };
   score.total = Math.round((score.leads + score.leaks + score.closing) / 3);
-  var weak = weakCall(score);
+  var rows = sections(score);
+  var summaries = {
+    leads: leadSummary(a),
+    leaks: leakSummary(a),
+    closing: closeSummary(a)
+  };
+  rows.forEach(function (row) { row.line = summaries[row.key]; });
+  var insight = combinedInsight(a, score);
   var insights = score.insights || [];
   var fixes = topFixes(insights);
   var exposures = { leads: leadExposure(a), leaks: leakExposure(a), closing: closeExposure(a) };
@@ -496,6 +529,7 @@ function buildModel(input) {
       key: key,
       name: name,
       sub: sub || '',
+      line: summaries[key] || '',
       num: num,
       band: band(num),
       bandNote: bandNote(num),
@@ -515,16 +549,18 @@ function buildModel(input) {
     dateLabel: input.dateLabel || '',
     total: score.total,
     totalBand: band(score.total),
-    weak: weak,
+    rows: rows,
+    insight: insight,
+    summaries: summaries,
     time: time,
     channels: channelChart(a),
     funnel: funnelChart(a),
     closeParts: closeChart(a),
     leads: pack('leads', 'Lead Score', score.leads, foundLeads(a), leadsTiles(a)),
-    leaks: pack('leaks', 'Lost Opportunities', score.leaks, foundLeaks(a), leakTiles(a), 'leaks'),
+    leaks: pack('leaks', LEAK_NAME, score.leaks, foundLeaks(a), leakTiles(a)),
     closing: pack('closing', 'Close Rate', score.closing, foundClosing(a), closeTiles(a)),
     fixes: fixes,
-    snapshot: snapshotLines(a, weak),
+    snapshot: snapshotLines(a),
     plan: plan(fixes, a),
     addNote: 'Time and job dollars are estimates. Do not add the three job lines together.',
     floorNote: 'Scores start at 18, so work you already do still counts.',

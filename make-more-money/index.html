@@ -305,6 +305,8 @@
   .qr-lock .qr-fix{filter:blur(5px);opacity:.72;max-height:148px;overflow:hidden;pointer-events:none;user-select:none}
   .qr-locktag{position:absolute;left:12px;right:12px;top:42px;text-align:center;font-weight:800;background:rgba(246,245,241,.88);padding:12px 14px;border-radius:12px}
   .qr-note{font-size:13px;color:var(--mut);margin-top:8px}
+  .qr-print{justify-self:start;background:none;border:0;padding:0;margin:-2px 0 0;font:600 13px Inter,sans-serif;color:var(--mut);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .qr-print:disabled{opacity:.5;cursor:default}
   .qr-mail .fld{margin-bottom:10px}
   .qz-fol{margin-top:18px}
   .qz-fol-q{font-weight:800;font-size:15px;margin-bottom:8px}
@@ -1148,7 +1150,8 @@
     if(r.total<75) return 'Parts of this are working. The full report ranks what to fix first.';
     return 'Strong funnel. A 15-minute call will pick the next few wins.';
   }
-  function li(x){return '<li><span class="qr-sec">'+esc(x.sec)+'</span><b>'+esc(x.t)+'</b><span class="qr-d">'+esc(x.d)+'</span></li>'}
+  function secLabel(sec){return sec==='Lost Opportunities'?'Sales Funnel Leaks / Lost Opportunities':sec}
+  function li(x){return '<li><span class="qr-sec">'+esc(secLabel(x.sec))+'</span><b>'+esc(x.t)+'</b><span class="qr-d">'+esc(x.d)+'</span></li>'}
   function part(name,n,sub){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+(sub?'<span class="qr-sub">'+sub+'</span>':'')+'</span><b class="qr-'+b+'">'+n+'/100</b></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
   function results(){
     R=score();nav.hidden=true;
@@ -1161,15 +1164,16 @@
       (lead&&lead.business?'<p class="qr-for">'+esc(lead.business)+'</p>':'')+
       '<div class="qr-big qr-'+b+'" id="qrTotal">'+R.total+'<span>/100 pts</span></div>'+
       '<p class="qr-verdict">'+esc(verdict(R))+'</p>'+
-      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Lead Score',R.leads)+part('Lost Opportunities',R.leaks,'leaks')+part('Close Rate',R.closing)+'</div>'+
+      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Lead Score',R.leads)+part('Sales Funnel Leaks / Lost Opportunities',R.leaks)+part('Close Rate',R.closing)+'</div>'+
       '<h3 class="qr-h">What stands out<span class="g">.</span></h3><ul class="qr-fix">'+open.map(li).join('')+'</ul>'+
       (locked.length?'<div class="qr-lock" id="qrLock"><ul class="qr-fix">'+locked.map(li).join('')+'</ul><div class="qr-locktag">The rest is in your full report</div></div>':'')+
-      '<div class="qr-ctas">'+mail+'<p class="qr-note" id="qrNote">Your full report downloads to this device.</p><button class="btn o" type="button" id="qrBook">Book a free 15-min call</button></div>'+
+      '<div class="qr-ctas">'+mail+'<button class="qr-print" type="button" id="qrPrint">Printer-friendly version</button><p class="qr-note" id="qrNote">Your full report downloads to this device.</p><button class="btn o" type="button" id="qrBook">Book a free 15-min call</button></div>'+
       '<p class="qr-sent" id="qrSent"></p><div class="qz-err" id="qrErr"></div></div>';
     document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
       var f=function(id,v){var e=document.getElementById(id);if(e&&!e.value)e.value=v||''};f('bkN',lead&&lead.name);f('bkC',lead&&lead.phone)});
-    function doReport(e){
+    function doReport(e, theme){
       if(e) e.preventDefault();
+      var print=theme==='light';
       var bEl=document.getElementById('rB'), eEl=document.getElementById('rE');
       if(bEl||eEl){
         var bn=(bEl?bEl.value:'').trim(), em=(eEl?eEl.value:'').trim();
@@ -1179,30 +1183,35 @@
         if(!sent) send();
       }
       var btn=document.getElementById('qrEmail');
-      if(btn){btn.disabled=true;btn.textContent='Building your report...'}
-      buildPdf(R).then(function(blob){
+      var link=document.getElementById('qrPrint');
+      if(print){ if(link){link.disabled=true;link.textContent='Building the printer-friendly version...'} }
+      else if(btn){btn.disabled=true;btn.textContent='Building your report...'}
+      buildPdf(R, print?'light':'dark').then(function(blob){
         var a=document.createElement('a');
         a.href=URL.createObjectURL(blob);
-        a.download=fileName();
+        a.download=fileName(print);
         document.body.appendChild(a);a.click();a.remove();
         if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+        if(link){link.disabled=false;link.textContent='Printer-friendly version'}
         var n=document.getElementById('qrNote');
-        if(n) n.textContent='Report downloaded. Seth has your answers too.';
+        if(n) n.textContent=print?'Printer-friendly report downloaded.':'Report downloaded. Seth has your answers too.';
       }).catch(function(){
         if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+        if(link){link.disabled=false;link.textContent='Printer-friendly version'}
         var n=document.getElementById('qrNote');
         if(n) n.textContent='Could not build the report in this browser. Text 934-899-0796.';
       });
     }
     var mailForm=document.getElementById('qrMail');
     if(mailForm) mailForm.addEventListener('submit',doReport);
-    else document.getElementById('qrEmail').addEventListener('click',doReport);
+    else document.getElementById('qrEmail').addEventListener('click',function(e){doReport(e,'dark')});
+    document.getElementById('qrPrint').addEventListener('click',function(e){doReport(e,'light')});
   }
-  function fileName(){var s=String((lead&&lead.business)||'funnel').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'funnel';return 'MORE-funnel-score-'+s+'.pdf'}
+  function fileName(print){var s=String((lead&&lead.business)||'funnel').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'funnel';return 'MORE-funnel-score-'+s+(print?'-print':'')+'.pdf'}
   function answerOf(q){hydrate(q);var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):label(q,v))}
   function reportText(r){
     var L=[],sec=function(t){L.push('',t,new Array(t.length+1).join('-'))};
-    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Lead Score: '+r.leads+' / 100','Lost Opportunities: '+r.leaks+' / 100','Close Rate: '+r.closing+' / 100','',verdict(r));
+    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Lead Score: '+r.leads+' / 100','Sales Funnel Leaks / Lost Opportunities: '+r.leaks+' / 100','Close Rate: '+r.closing+' / 100','',verdict(r));
     sec('CONTACT');L.push('Name: '+(lead.name||''),'Business: '+(lead.business||''),'Cell: '+(lead.phone||''),'Email: '+(lead.email||''));
     [['ABOUT YOU','About you'],['LEAD SCORE','Lead Score'],['LOST OPPORTUNITIES','Lost Opportunities'],['CLOSE RATE','Close Rate']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
     sec('FOLLOW UPS');
@@ -1212,7 +1221,7 @@
     L.push('Sales script: '+(folLabel('script',A.script)||'(not set)'));
     L.push('Tracking tool: '+(folLabel('crm',A.crm)||'(not set)'));
     sec('INSIGHTS');
-    r.insights.forEach(function(x){L.push('* ['+x.sec+'] '+x.t+' '+x.d)});
+    r.insights.forEach(function(x){L.push('* ['+secLabel(x.sec)+'] '+x.t+' '+x.d)});
     return L.join('\n');
   }
   function reportLink(){
@@ -1247,7 +1256,7 @@
       document.head.appendChild(s);
     });
   }
-  function buildPdf(r){
+  function buildPdf(r, theme){
     return loadReport().then(function(api){
       var town=A.town==='Other'&&A.town_other?A.town_other:(A.town||'');
       return api.toBlob({
@@ -1257,7 +1266,8 @@
         town:town,
         dateLabel:new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
         answers:A,
-        score:r
+        score:r,
+        theme:theme||'dark'
       });
     });
   }
