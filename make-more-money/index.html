@@ -289,14 +289,15 @@
   .qr-for{font-weight:700;margin:0 0 4px}
   .qr-big{display:flex;align-items:flex-end;flex-wrap:wrap;gap:6px 10px;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(72px,18vw,108px);line-height:.8;letter-spacing:.01em;margin:6px 0 12px}
   .qr-big span{font-family:Inter,sans-serif;font-weight:800;font-size:clamp(16px,4vw,22px);letter-spacing:0;line-height:1;padding-bottom:8px}
-  .qr-lo{color:#c62828}
-  .qr-mid{color:#b86e00}
-  .qr-hi{color:#128a3e}
+  .qr-lo{color:#FF2D2D}
+  .qr-mid{color:#FF9F1A}
+  .qr-hi{color:#2BE36B}
+  .qr-sub{display:block;font-style:normal;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:lowercase;color:var(--mut);margin-top:2px}
   .qr-funnel{display:grid;gap:8px;margin:8px 0 18px}
   .qr-funnel .qr-p:nth-child(2){margin:0 6%}
   .qr-funnel .qr-p:nth-child(3){margin:0 12%}
-  .qr-funnel .meter i.qr-lo{background:#c62828}
-  .qr-funnel .meter i.qr-mid{background:#e0a106}
+  .qr-funnel .meter i.qr-lo{background:#FF2D2D}
+  .qr-funnel .meter i.qr-mid{background:#FF9F1A}
   .qr-funnel .meter i.qr-hi{background:#2BE36B}
   .qr-sec{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:2px}
   .qr-d{display:block;font-weight:500;color:#444}
@@ -561,7 +562,7 @@
       <div class="qcard">
         <div class="eyebrow" style="color:var(--green)">Free &middot; 2 minutes &middot; Do it yourself</div>
         <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
-        <p>14 quick questions. Get a score out of 100 across <strong>Leads</strong>, <strong>Leaks</strong>, and <strong>Closing</strong>, plus a short list of what to fix first.</p>
+        <p>14 quick questions. Get a score out of 100 across <strong>Lead Score</strong>, <strong>Lost Opportunities</strong>, and <strong>Close Rate</strong>, plus a short list of what to fix first.</p>
         <button class="btn p" type="button" data-quiz>Score my funnel</button>
       </div>
     </div>
@@ -950,26 +951,26 @@
   var Q=[
     {id:'trade',type:'select',k:'About you',q:'What\'s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
     {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
-    {id:'online',type:'multi',k:'Leads',q:'Where do your online leads come from?',h:'Pick all that you use.',opts:[['gbp','Google search / Google Business Profile'],['gads','Google Ads / LSA'],['web','Website'],['ig','Instagram (posting)'],['fb','Facebook (posting)'],['fads','Paid Facebook ads'],['iads','Paid Instagram ads'],['nd','Nextdoor'],['angi','Angi / Thumbtack / Yelp']],follow:[
+    {id:'online',type:'multi',k:'Lead Score',q:'Where do your online leads come from?',h:'Pick all that you use.',opts:[['gbp','Google search / Google Business Profile'],['gads','Google Ads / LSA'],['web','Website'],['ig','Instagram (posting)'],['fb','Facebook (posting)'],['fads','Paid Facebook ads'],['iads','Paid Instagram ads'],['nd','Nextdoor'],['angi','Angi / Thumbtack / Yelp']],follow:[
       {when:'ig',id:'igPost',q:'Instagram, last posted',opts:POSTED},
       {when:'fb',id:'fbPost',q:'Facebook, last posted',opts:POSTED},
       {when:'web',id:'webForm',q:'Does the contact or quote form work?',opts:[['works','Works'],['miss','Hit or miss'],['none','No form'],['ns','Not sure']]}
     ]},
-    {id:'offline',type:'multi',k:'Leads',q:'Where do your offline leads come from?',h:'Pick all that you use.',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
-    {id:'best',type:'one',k:'Leads',q:'Which one brings you the most work?',h:'Pick the single biggest source.'},
-    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
-    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:[['yes','Yes, every missed call'],['some','Sometimes'],['no','No'],['ns','Not sure']]},
-    {id:'quotes',type:'one',k:'Closing',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
+    {id:'offline',type:'multi',k:'Lead Score',q:'Where do your offline leads come from?',h:'Pick all that you use.',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
+    {id:'best',type:'one',k:'Lead Score',q:'Which one brings you the most work?',h:'Pick the single biggest source.'},
+    {id:'speed',type:'one',k:'Lost Opportunities',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
+    {id:'textback',type:'one',k:'Lost Opportunities',q:'Do missed calls get an automatic text back?',opts:[['yes','Yes, every missed call'],['some','Sometimes'],['no','No'],['ns','Not sure']]},
+    {id:'quotes',type:'one',k:'Close Rate',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
       {always:true,id:'script',q:'Do you use a sales script?',opts:[['yes','Yes'],['no','No']]}
     ]},
-    {id:'followup',type:'one',k:'Closing',q:'How do you follow up on quotes that go quiet?',opts:[['auto','Automatic follow-up'],['manual','I follow up myself, every time'],['some','Sometimes'],['no','I do not'],['ns','Not sure']],follow:[
+    {id:'followup',type:'one',k:'Close Rate',q:'How do you follow up on quotes that go quiet?',opts:[['auto','Automatic follow-up'],['manual','I follow up myself, every time'],['some','Sometimes'],['no','I do not'],['ns','Not sure']],follow:[
       {always:true,id:'crm',q:'Where do you track jobs and quotes?',opts:[['none','None'],['sheet','Spreadsheet'],['jobber','Jobber'],['hcp','Housecall Pro'],['st','ServiceTitan'],['other','Other']]}
     ]},
-    {id:'reviewask',type:'one',k:'Leaks',q:'Do you ask for a review after every job?',opts:YNN},
-    {id:'reviews',type:'one',k:'Leads',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
-    {id:'ltv',type:'one',k:'Leads',q:'Do you know what a customer is worth over time?',h:'Everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
-    {id:'cac',type:'one',k:'Leads',q:'Do you know what it costs you to get a customer?',h:'What you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
-    {id:'leads',type:'one',k:'Leads',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
+    {id:'reviewask',type:'one',k:'Lost Opportunities',q:'Do you ask for a review after every job?',opts:YNN},
+    {id:'reviews',type:'one',k:'Lead Score',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
+    {id:'ltv',type:'one',k:'Lead Score',q:'Do you know what a customer is worth over time?',h:'Everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
+    {id:'cac',type:'one',k:'Lead Score',q:'Do you know what it costs you to get a customer?',h:'What you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
+    {id:'leads',type:'one',k:'Lead Score',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
   ];
   var N=Q.length,A={},i=0,lead=null,sent=false,R=null;
   var qz=document.getElementById('qz'),body=document.getElementById('qzBody'),bar=document.getElementById('qzBar'),cnt=document.getElementById('qzCount'),nav=document.getElementById('qzNav'),back=document.getElementById('qzBack'),next=document.getElementById('qzNext');
@@ -1098,46 +1099,48 @@
     if(has(on,'fb')) leadPts+=REC[A.fbPost]||0;
     off.forEach(function(id){offSum+=FW[id]||0});
     leadPts+=Math.min(16,offSum);
-    var revPts={'0':0,'11':4,'51':8,'100':12,ns:2}[A.reviews]||0; leadPts+=revPts;
+    var revPts={'0':2,'11':4,'51':8,'100':12,ns:3}[A.reviews]||2; leadPts+=revPts;
     var ltvPts={yes:6,no:1,what:0}[A.ltv]||0; leadPts+=ltvPts;
     var cacPts={yes:6,no:1,what:0}[A.cac]||0; leadPts+=cacPts;
     var volPts={'0':1,'11':3,'31':5,'75':8,ns:0}[A.leads]||0; leadPts+=volPts;
     function push(sec,lost,t,d){if(lost>0) insights.push({sec:sec,lost:lost,t:t,d:d})}
-    if(!has(on,'gbp')) push('Leads',8,'Claim your Google Business Profile.','Locals search Google first. A finished profile with photos is how they choose a company.');
-    if(!has(on,'gads')) push('Leads',7,'Run Google Ads or Local Services Ads.','Show up when someone nearby searches for your trade.');
-    if(!has(on,'web')) push('Leads',6,'Put up a simple page people can book from.','One page with your town, your work, and a tap to call is enough to start.');
-    if(has(on,'ig')&&A.igPost&&A.igPost!=='week') push('Leads',A.igPost==='month'?3:8,'Post on Instagram this week.','The last post is old, so the profile looks quiet.');
-    if(!has(on,'ig')) push('Leads',5,'Post a job on Instagram.','Homeowners check the latest photos before they call.');
-    if(has(on,'fb')&&A.fbPost&&A.fbPost!=='week') push('Leads',A.fbPost==='month'?3:8,'Post on Facebook this week.','A quiet page reads like a closed business.');
-    if(!has(on,'fb')) push('Leads',5,'Post jobs on your Facebook page.','Neighbors still look there before they ask for a name.');
-    if(!has(on,'fads')&&!has(on,'iads')) push('Leads',5,'Test one paid social ad.','A job photo and a tap-to-call button is a fair first test.');
-    if(revPts<8) push('Leads',12-revPts,'Get to 50 Google reviews.','People compare review counts before they compare prices.');
-    if(A.ltv!=='yes') push('Leads',6-ltvPts,'Write down what a customer is worth.','Then you know what a new lead is worth fighting for.');
-    if(A.cac!=='yes') push('Leads',6-cacPts,'Write down what a new customer costs.','So you only pay for ads that pay you back.');
-    if(Math.min(16,offSum)<8) push('Leads',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
-    var speedPts={min15:40,instant:40,hour:28,day:14,next:0,ns:6}[A.speed]||0; leakPts+=speedPts;
-    if(speedPts<40) push('Leaks',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
-    var tbPts={yes:30,some:14,ns:6,no:0}[A.textback]||0; leakPts+=tbPts;
-    if(A.textback!=='yes') push('Leaks',30-tbPts,'Text back every missed call.','Same number. A short text with a time to book, sent right away.');
-    var formPts=has(on,'web')?({works:18,miss:8,ns:4,none:0}[A.webForm]||0):0; leakPts+=formPts;
-    if(!has(on,'web')||A.webForm!=='works') push('Leaks',18-formPts,'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
-    var askPts={yes:12,ns:4,no:0}[A.reviewask]||0; leakPts+=askPts;
-    if(A.reviewask!=='yes') push('Leaks',12-askPts,'Ask for a review after every job.','A text with a one-tap link to your Google page.');
-    var qPts={same:40,next:30,few:16,week:0,ns:8}[A.quotes]||0; closePts+=qPts;
-    if(qPts<40) push('Closing',40-qPts,'Send the quote the same day.','The first clear quote usually wins the job.');
-    var fuPts={auto:30,manual:22,yes:22,some:10,no:0,ns:4}[A.followup]||0; closePts+=fuPts;
-    if(fuPts<22) push('Closing',30-fuPts,'Follow up on every quiet quote.','A text on day 2, day 5, and day 10 wins back jobs that go cold.');
+    if(!has(on,'gbp')) push('Lead Score',8,'Claim your Google Business Profile.','Locals search Google first. A finished profile with photos is how they choose a company.');
+    if(!has(on,'gads')) push('Lead Score',7,'Run Google Ads or Local Services Ads.','Show up when someone nearby searches for your trade.');
+    if(!has(on,'web')) push('Lead Score',6,'Put up a simple page people can book from.','One page with your town, your work, and a tap to call is enough to start.');
+    if(has(on,'ig')&&A.igPost&&A.igPost!=='week') push('Lead Score',A.igPost==='month'?3:8,'Post on Instagram this week.','The last post is old, so the profile looks quiet.');
+    if(!has(on,'ig')) push('Lead Score',5,'Post a job on Instagram.','Homeowners check the latest photos before they call.');
+    if(has(on,'fb')&&A.fbPost&&A.fbPost!=='week') push('Lead Score',A.fbPost==='month'?3:8,'Post on Facebook this week.','A quiet page reads like a closed business.');
+    if(!has(on,'fb')) push('Lead Score',5,'Post jobs on your Facebook page.','Neighbors still look there before they ask for a name.');
+    if(!has(on,'fads')&&!has(on,'iads')) push('Lead Score',5,'Test one paid social ad.','A job photo and a tap-to-call button is a fair first test.');
+    if(revPts<8) push('Lead Score',12-revPts,'Get to 50 Google reviews.','People compare review counts before they compare prices.');
+    if(A.ltv!=='yes') push('Lead Score',6-ltvPts,'Write down what a customer is worth.','Then you know what a new lead is worth fighting for.');
+    if(A.cac!=='yes') push('Lead Score',6-cacPts,'Write down what a new customer costs.','So you only pay for ads that pay you back.');
+    if(Math.min(16,offSum)<8) push('Lead Score',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
+    var speedPts={min15:40,instant:40,hour:28,day:16,next:8,ns:10}[A.speed]||8; leakPts+=speedPts;
+    if(speedPts<40) push('Lost Opportunities',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
+    var tbPts={yes:30,some:16,ns:8,no:0}[A.textback]||0; leakPts+=tbPts;
+    if(A.textback!=='yes') push('Lost Opportunities',30-tbPts,'Text back every missed call.','Same number. A short text with a time to book, sent right away.');
+    var formPts=has(on,'web')?({works:18,miss:10,ns:6,none:4}[A.webForm]||4):8; leakPts+=formPts;
+    if(!has(on,'web')||A.webForm!=='works') push('Lost Opportunities',Math.max(4,18-formPts),'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
+    var askPts={yes:12,ns:5,no:0}[A.reviewask]||0; leakPts+=askPts;
+    if(A.reviewask!=='yes') push('Lost Opportunities',12-askPts,'Ask for a review after every job.','A text with a one-tap link to your Google page.');
+    var qPts={same:40,next:30,few:18,week:12,ns:10}[A.quotes]||8; closePts+=qPts;
+    if(qPts<40) push('Close Rate',40-qPts,'Send the quote the same day.','The first clear quote usually wins the job.');
+    var fuPts={auto:30,manual:22,yes:22,some:16,no:0,ns:6}[A.followup]||0; closePts+=fuPts;
+    if(A.followup==='some'||A.followup==='manual'||A.followup==='yes') push('Close Rate',A.followup==='some'?14:8,'Make the follow-up you already send close the job.','You already follow up. Set day 2, day 5, and day 10, and ask them to book.');
+    else if(fuPts<22) push('Close Rate',30-fuPts,'Follow up on every quiet quote.','A text on day 2, day 5, and day 10 wins back jobs that go cold.');
     var scriptPts=A.script==='yes'?15:0; closePts+=scriptPts;
-    if(A.script!=='yes') push('Closing',15,'Use a short sales script on the call.','Same questions every time: what they need, when, and the next step.');
-    var crmPts={jobber:15,hcp:15,st:15,sheet:10,other:8,none:0}[A.crm]||0; closePts+=crmPts;
-    if(crmPts<10) push('Closing',15-crmPts,'Track every quote in one place.','A spreadsheet is enough. Jobber, Housecall Pro, or ServiceTitan once the volume is there.');
+    if(A.script!=='yes') push('Close Rate',15,'Put an objection sheet by the phone.','Five common nos, and the line to say next. Practice that close once this week with whoever quotes.');
+    var crmPts={jobber:15,hcp:15,st:15,sheet:10,other:8,none:4}[A.crm]||4; closePts+=crmPts;
+    if(crmPts<10) push('Close Rate',15-crmPts,'Track every quote in one place.','A spreadsheet is enough. Jobber, Housecall Pro, or ServiceTitan once the volume is there.');
+    if(closePts<70) closePts+=6;
     insights.sort(function(a,b){return b.lost-a.lost});
     var seen={},list=[];
     insights.forEach(function(x){if(seen[x.t])return;seen[x.t]=1;list.push(x)});
-    [{sec:'Leads',t:'Keep the channels that already bring work.',d:'Do not turn off a source that is producing jobs while you fix the leaks.'},{sec:'Leaks',t:'Speed is the quiet advantage.',d:'The company that answers first often gets the visit.'},{sec:'Closing',t:'A written quote beats a verbal one.',d:'Same day, in writing, with a clear next step.'}].forEach(function(x){x.lost=0;if(!seen[x.t])list.push(x)});
-    leadPts=Math.max(0,Math.min(100,Math.round(leadPts)));
-    leakPts=Math.max(0,Math.min(100,Math.round(leakPts)));
-    closePts=Math.max(0,Math.min(100,Math.round(closePts)));
+    [{sec:'Lead Score',t:'Keep the channels that already bring work.',d:'Do not turn off a source that is producing jobs while you tighten the rest.'},{sec:'Lost Opportunities',t:'Speed is the quiet advantage.',d:'The company that answers first often gets the visit.'},{sec:'Close Rate',t:'A written quote beats a verbal one.',d:'Same day, in writing, with a clear next step.'}].forEach(function(x){x.lost=0;if(!seen[x.t])list.push(x)});
+    leadPts=Math.max(18,Math.min(100,Math.round(leadPts)));
+    leakPts=Math.max(18,Math.min(100,Math.round(leakPts)));
+    closePts=Math.max(18,Math.min(100,Math.round(closePts)));
     return {total:Math.round((leadPts+leakPts+closePts)/3),leads:leadPts,leaks:leakPts,closing:closePts,insights:list};
   }
   function verdict(r){
@@ -1146,7 +1149,7 @@
     return 'Strong funnel. A 15-minute call will pick the next few wins.';
   }
   function li(x){return '<li><span class="qr-sec">'+esc(x.sec)+'</span><b>'+esc(x.t)+'</b><span class="qr-d">'+esc(x.d)+'</span></li>'}
-  function part(name,n){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+'</span><b class="qr-'+b+'">'+n+'/100</b></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
+  function part(name,n,sub){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+(sub?'<span class="qr-sub">'+sub+'</span>':'')+'</span><b class="qr-'+b+'">'+n+'/100</b></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
   function results(){
     R=score();nav.hidden=true;
     var open=R.insights.slice(0,3), locked=R.insights.slice(3,7), b=band(R.total);
@@ -1158,7 +1161,7 @@
       (lead&&lead.business?'<p class="qr-for">'+esc(lead.business)+'</p>':'')+
       '<div class="qr-big qr-'+b+'" id="qrTotal">'+R.total+'<span>/100 pts</span></div>'+
       '<p class="qr-verdict">'+esc(verdict(R))+'</p>'+
-      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Leads',R.leads)+part('Leaks',R.leaks)+part('Closing',R.closing)+'</div>'+
+      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Lead Score',R.leads)+part('Lost Opportunities',R.leaks,'leaks')+part('Close Rate',R.closing)+'</div>'+
       '<h3 class="qr-h">What stands out<span class="g">.</span></h3><ul class="qr-fix">'+open.map(li).join('')+'</ul>'+
       (locked.length?'<div class="qr-lock" id="qrLock"><ul class="qr-fix">'+locked.map(li).join('')+'</ul><div class="qr-locktag">The rest is in your full report</div></div>':'')+
       '<div class="qr-ctas">'+mail+'<p class="qr-note" id="qrNote">Your full report downloads to this device.</p><button class="btn o" type="button" id="qrBook">Book a free 15-min call</button></div>'+
@@ -1199,9 +1202,9 @@
   function answerOf(q){hydrate(q);var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):label(q,v))}
   function reportText(r){
     var L=[],sec=function(t){L.push('',t,new Array(t.length+1).join('-'))};
-    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Leads: '+r.leads+' / 100','Leaks: '+r.leaks+' / 100','Closing: '+r.closing+' / 100','',verdict(r));
+    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Lead Score: '+r.leads+' / 100','Lost Opportunities: '+r.leaks+' / 100','Close Rate: '+r.closing+' / 100','',verdict(r));
     sec('CONTACT');L.push('Name: '+(lead.name||''),'Business: '+(lead.business||''),'Cell: '+(lead.phone||''),'Email: '+(lead.email||''));
-    [['ABOUT YOU','About you'],['LEADS','Leads'],['LEAKS','Leaks'],['CLOSING','Closing']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
+    [['ABOUT YOU','About you'],['LEAD SCORE','Lead Score'],['LOST OPPORTUNITIES','Lost Opportunities'],['CLOSE RATE','Close Rate']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
     sec('FOLLOW UPS');
     L.push('Instagram last posted: '+(folLabel('igPost',A.igPost)||'(not set)'));
     L.push('Facebook last posted: '+(folLabel('fbPost',A.fbPost)||'(not set)'));
