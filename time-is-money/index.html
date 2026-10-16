@@ -1,0 +1,369 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Time is money — MORE. 10-Day Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#22e06b;--gd:#12b552;--k:#07080a;--k2:#111316;--k3:#1b1e22;--m:#71767e;--l:#f3f4f5;--line:#e7e8ea}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}body{font-family:"Inter Tight",Inter,"Helvetica Neue",Arial,sans-serif;color:var(--k);background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.w{max-width:1200px;margin:0 auto;padding:0 32px}
+.g{color:var(--g)}.mut{color:var(--m)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gd)}
+.dark .eyebrow{color:var(--g)}
+h1,h2,h3{letter-spacing:-.035em;line-height:.98;font-weight:900}
+h2{font-size:clamp(40px,5.6vw,76px)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:999px;font-weight:700;font-size:17px;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.bk{background:var(--k);color:#fff}.dark .bk,.bw{background:#fff;color:var(--k)}
+.gr{background:var(--g);color:#04130a;box-shadow:0 10px 30px -10px #22e06b99}
+.btn .ar{transition:transform .2s}.btn:hover .ar{transform:translateX(4px)}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,backdrop-filter .3s}
+nav.s{background:#07080acc;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff14}
+nav .w{display:flex;justify-content:space-between;align-items:center;height:72px}
+.logo{font-weight:900;font-size:26px;letter-spacing:-.04em;color:#fff}.logo span{color:var(--g)}
+nav .btn{padding:11px 20px;font-size:15px}
+/* hero */
+.dark{background:var(--k);color:#fff}
+.hero{position:relative;overflow:hidden;padding:150px 0 90px}
+.hero:before{content:"";position:absolute;inset:-20% -10% auto auto;width:900px;height:900px;background:radial-gradient(closest-side,#22e06b33,transparent 70%);filter:blur(20px);animation:float 12s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-80px,60px)}}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center;position:relative}
+.hero h1{font-size:clamp(46px,6vw,88px);margin:18px 0 26px}
+.hero h1 .ticker{color:var(--g);font-variant-numeric:tabular-nums}
+.hero p.sub{font-size:21px;color:#b7bcc3;max-width:560px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid #ffffff24;border-radius:999px;padding:7px 14px;font-size:14px;color:#cfd3d8}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 0 0 #22e06b;animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px #22e06b00}}
+.video{aspect-ratio:9/12;border-radius:28px;background:linear-gradient(160deg,#1c2024,#0b0c0e);border:1px solid #ffffff18;position:relative;overflow:hidden;box-shadow:0 40px 80px -30px #000}
+.video .play{position:absolute;inset:0;margin:auto;width:92px;height:92px;border-radius:50%;background:var(--g);display:grid;place-items:center;box-shadow:0 0 0 14px #22e06b22}
+.video .play:after{content:"";border-left:28px solid #04130a;border-top:17px solid transparent;border-bottom:17px solid transparent;margin-left:7px}
+.video .cap{position:absolute;left:22px;bottom:22px;right:22px;display:flex;justify-content:space-between;font-size:14px;color:#aab}
+.video .tag{position:absolute;top:20px;left:20px;background:#ffffff14;border-radius:999px;padding:6px 12px;font-size:13px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #ffffff18;margin-top:80px}
+.stats div{padding:28px 24px 0 0}
+.stats b{display:block;font-size:46px;font-weight:900;letter-spacing:-.04em}
+.stats span{color:#9aa0a8;font-size:15px}
+/* sections */
+section{padding:130px 0}
+.head{max-width:960px;margin-bottom:60px}.head h2{margin:14px 0 20px}.head p{font-size:20px;color:var(--m)}
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -50px #0005}
+.calc .in{padding:48px;background:#fff}
+.calc .out{padding:48px;background:var(--k);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.tabs{display:inline-flex;background:var(--l);border-radius:999px;padding:5px;margin-bottom:36px}
+.tabs button{border:0;background:none;font:inherit;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;color:var(--m)}
+.tabs button.on{background:var(--k);color:#fff}
+.field{margin-bottom:34px}
+.field .lab{display:flex;justify-content:space-between;font-weight:700;margin-bottom:14px}
+.field .lab b{font-size:28px;letter-spacing:-.03em}
+input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--g) var(--p,50%),#e6e7e9 var(--p,50%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:7px solid var(--k);cursor:pointer;box-shadow:0 4px 10px #0003}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.chips button:hover{border-color:var(--k)}
+.out .big{font-size:clamp(64px,7vw,104px);font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--g);font-variant-numeric:tabular-nums}
+.out .rows{border-top:1px solid #ffffff1c;margin-top:30px}
+.out .rows div{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid #ffffff1c;font-size:17px}
+.out .rows b{font-variant-numeric:tabular-nums}
+.out .note{font-size:13px;color:#8a9098;margin-top:22px}
+/* breakdown */
+.bd{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.bd div{background:var(--l);border-radius:22px;padding:26px 22px;position:relative;overflow:hidden}
+.bd b{font-size:40px;font-weight:900;letter-spacing:-.04em;display:block}
+.bd small{color:var(--m);font-weight:600}
+.bd h4{font-size:18px;margin:26px 0 6px;letter-spacing:-.02em}
+.bd p{font-size:15px;color:var(--m)}
+.bar{height:6px;border-radius:6px;background:#dfe1e3;margin-top:18px;overflow:hidden}.bar i{display:block;height:100%;background:var(--k);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.in-view .bar i{width:var(--w)}
+.total{margin-top:18px;display:flex;justify-content:space-between;align-items:center;background:var(--k);color:#fff;border-radius:22px;padding:26px 30px;font-size:20px;font-weight:700}
+.total b{font-size:34px;font-weight:900;color:var(--g);letter-spacing:-.03em}
+/* product */
+.prod{background:var(--k);color:#fff}
+.prod .head p{color:#9aa0a8}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:60px 0;border-top:1px solid #ffffff14}
+.feat:nth-child(even) .mock{order:-1}
+.feat h3{font-size:clamp(34px,4vw,54px);margin:14px 0 18px}
+.feat p{font-size:19px;color:#a6acb4;max-width:460px}
+.feat ul{list-style:none;margin-top:24px}.feat li{padding:9px 0;color:#d8dbdf;display:flex;gap:12px}.feat li:before{content:"";flex:none;width:20px;height:20px;border-radius:50%;background:var(--g) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' stroke='%2304130a' stroke-width='2.4' fill='none'/%3E%3C/svg%3E");margin-top:3px}
+.mock{position:relative;display:flex;justify-content:center;padding:30px;border-radius:32px;background:radial-gradient(circle at 50% 30%,#1d2a22,#0d0f11 70%);border:1px solid #ffffff12;min-height:560px;align-items:center}
+.phone{width:300px;border-radius:44px;background:#000;padding:12px;box-shadow:0 50px 90px -30px #000,inset 0 0 0 1.5px #333}
+.scr{border-radius:34px;background:#fff;color:var(--k);overflow:hidden;min-height:520px;font-size:14px}
+.sb{display:flex;justify-content:space-between;padding:14px 22px 8px;font-weight:700;font-size:13px}
+.ap{padding:4px 18px 18px}
+.ap h5{font-size:20px;letter-spacing:-.02em;margin:6px 0 12px}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.photos i{aspect-ratio:1;border-radius:12px;display:block;background:linear-gradient(135deg,#4fb3d9,#1b6f9a)}
+.photos i:nth-child(2){background:linear-gradient(135deg,#9aa3ab,#5c646b)}.photos i:nth-child(3){background:linear-gradient(135deg,#7bc4a0,#3c7a5a)}.photos i:nth-child(4){background:linear-gradient(135deg,#d8c9a8,#a38f66)}
+.photos i{position:relative}.photos i:after{content:"";position:absolute;left:10%;right:10%;top:55%;border-top:2px dashed #fff9}
+.note2{background:var(--l);border-radius:12px;padding:10px 12px;color:#444;font-size:13px}
+.prog{margin-top:12px;font-size:12px;color:var(--m);display:flex;align-items:center;gap:8px}
+.prog i{flex:1;height:5px;border-radius:5px;background:#eee;overflow:hidden;position:relative}.prog i:after{content:"";position:absolute;inset:0;width:40%;background:var(--g);animation:load 2.2s ease-in-out infinite}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+.est{position:absolute;right:-30px;bottom:40px;width:280px;background:#fff;color:var(--k);border-radius:20px;padding:20px;box-shadow:0 40px 80px -20px #000c;transform:rotate(2deg)}
+.est .t{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.est .t b{font-size:16px;letter-spacing:-.02em}
+.badge{background:#e7fbef;color:#0d7a3a;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px}
+.est .r{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:13px}
+.est .tot{font-weight:900;font-size:18px;border:0}
+.est .ok{background:var(--g);text-align:center;padding:11px;border-radius:12px;font-weight:800;margin-top:8px}
+.thread{padding:6px 14px 14px;display:flex;flex-direction:column;gap:8px}
+.who{text-align:center;padding:6px 0 10px;border-bottom:1px solid #eee;margin-bottom:6px}.who b{display:block}.who small{color:var(--m)}
+.av{width:42px;height:42px;border-radius:50%;background:var(--k);color:#fff;display:grid;place-items:center;font-weight:900;margin:0 auto 4px}
+.msg{max-width:80%;padding:10px 13px;border-radius:18px;line-height:1.35;font-size:13.5px}
+.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:5px}
+.them{align-self:flex-start;background:#e9e9eb;border-bottom-left-radius:5px}
+.sys{align-self:center;font-size:11px;color:var(--m);font-weight:600}
+.typing{align-self:flex-start;background:#e9e9eb;border-radius:18px;padding:12px 14px;display:flex;gap:4px}.typing i{width:7px;height:7px;border-radius:50%;background:#999;animation:b 1.2s infinite}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes b{50%{transform:translateY(-4px);opacity:.5}}
+.inbox{padding:0 0 12px}
+.mail{padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;gap:10px}
+.mail .c{width:34px;height:34px;flex:none;border-radius:50%;background:#e5e7ea;display:grid;place-items:center;font-weight:800;font-size:12px}
+.mail b{display:block;font-size:13.5px}.mail p{font-size:12.5px;color:var(--m);line-height:1.3}
+.rd{display:inline-block;margin-top:5px;background:#e7fbef;color:#0d7a3a;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
+.draft{margin:12px;border:1.5px solid var(--g);border-radius:16px;padding:12px;font-size:12.5px;line-height:1.45;color:#333}
+.draft .sendr{display:flex;justify-content:flex-end;margin-top:8px}.draft .sendr span{background:var(--k);color:#fff;border-radius:999px;padding:6px 14px;font-weight:700;font-size:12px}
+.float{position:absolute;background:#fff;color:var(--k);border-radius:16px;padding:12px 16px;box-shadow:0 20px 50px -10px #000a;font-size:13px;font-weight:700;display:flex;gap:10px;align-items:center}
+.float .ic{width:30px;height:30px;border-radius:10px;background:var(--g);display:grid;place-items:center;font-weight:900}
+/* more outcomes */
+.oc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.oc div{border:1px solid var(--line);border-radius:24px;padding:30px;transition:transform .3s,box-shadow .3s}
+.oc div:hover{transform:translateY(-4px);box-shadow:0 30px 60px -40px #0006}
+.oc .n{font-size:13px;font-weight:800;color:var(--m)}.oc h4{font-size:24px;letter-spacing:-.03em;margin:40px 0 8px;line-height:1.1}.oc p{color:var(--m)}
+.trades{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px}.trades span{background:var(--l);border-radius:999px;padding:10px 18px;font-weight:700}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:20px}
+.tl:before{content:"";position:absolute;top:22px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--k),var(--g))}
+.tl div{padding-right:22px;position:relative}
+.tl .d{width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid var(--k);display:grid;place-items:center;font-weight:900;position:relative}
+.tl div:last-child .d{background:var(--g);border-color:var(--g)}
+.tl h4{font-size:15px;color:var(--m);margin:22px 0 4px;letter-spacing:0;font-weight:700}
+.tl h5{font-size:21px;letter-spacing:-.025em;line-height:1.15;margin-bottom:8px}
+.tl p{font-size:15px;color:var(--m)}
+/* pricing */
+.price{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);border-radius:36px;overflow:hidden;background:var(--k);color:#fff}
+.price .l{padding:60px}.price .r{padding:60px;background:var(--k3);display:flex;flex-direction:column;justify-content:center}
+.price .amt{font-size:clamp(80px,10vw,140px);font-weight:900;letter-spacing:-.06em;line-height:.9;margin:18px 0 10px}
+.price .amt span{color:var(--g)}
+.price ul{list-style:none;margin:30px 0}.price li{padding:12px 0;border-bottom:1px solid #ffffff16;display:flex;justify-content:space-between;gap:20px}
+.price li b{white-space:nowrap}
+.pay{border-radius:22px;background:#ffffff0a;border:1px solid #ffffff18;padding:26px;margin-bottom:14px}
+.pay .tp{display:flex;justify-content:space-between;align-items:baseline}.pay .tp b{font-size:40px;font-weight:900;letter-spacing:-.04em}
+.pay small{color:#9aa0a8}.pay p{color:#c9cdd2;margin-top:8px;font-size:15px}
+.pay.k{border-color:var(--g);background:#22e06b10}
+/* worth */
+.worth{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.worth div{border-radius:26px;padding:36px;background:var(--l)}
+.worth div:last-child{background:var(--g)}
+.worth b{display:block;font-size:52px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.worth p{margin-top:12px;color:#444}
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+details{border-bottom:1px solid var(--line);padding:24px 0}
+summary{list-style:none;font-weight:800;font-size:20px;letter-spacing:-.02em;cursor:pointer;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}summary:after{content:"+";font-weight:400;font-size:28px;line-height:.8;transition:transform .2s}
+details[open] summary:after{transform:rotate(45deg)}
+details p{color:var(--m);margin-top:10px;font-size:17px;max-width:620px}
+/* final */
+.final{text-align:center;padding:150px 0;position:relative;overflow:hidden}
+.final:before{content:"";position:absolute;left:50%;top:60%;width:1000px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,#22e06b2e,transparent)}
+.final h2{font-size:clamp(52px,8vw,120px);position:relative}
+.final p{font-size:21px;color:#a6acb4;margin:24px auto 40px;max-width:560px;position:relative}
+.final .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+footer{background:var(--k);color:#6f757d;border-top:1px solid #ffffff12;padding:34px 0;font-size:14px}
+footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in-view{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+@media(max-width:900px){
+.w{padding:0 20px}section{padding:90px 0}
+.hero{padding:120px 0 60px}.hero .grid,.calc,.feat,.price,.faq{grid-template-columns:1fr}
+.video{aspect-ratio:16/10}.stats{grid-template-columns:1fr 1fr}.stats b{font-size:34px}
+.calc .in,.calc .out,.price .l,.price .r{padding:30px}
+.bd{grid-template-columns:1fr 1fr}.bd div:last-child{grid-column:span 2}
+.feat{gap:30px}.feat:nth-child(even) .mock{order:0}.mock{min-height:0;padding:30px 10px 120px}
+.est{right:6px;bottom:-20px;width:230px}
+.oc,.worth{grid-template-columns:1fr}
+.tl{grid-template-columns:1fr;gap:26px}.tl:before{left:22px;top:0;bottom:0;width:2px;height:auto;right:auto;background:linear-gradient(var(--k),var(--g))}
+.tl div{display:grid;grid-template-columns:46px 1fr;column-gap:18px}.tl div>*:not(.d){grid-column:2}.tl .d{grid-row:span 3}.tl h4{margin-top:0}
+.total{flex-direction:column;align-items:flex-start;gap:6px}
+nav .btn{display:none}
+}
+</style></head><body>
+
+<nav id="nav"><div class="w"><a href="#" class="logo">MORE<span>.</span></a><a class="btn gr" href="#book">Book a free 15-min call</a></div></nav>
+
+<header class="dark hero"><div class="w">
+<div class="grid">
+<div>
+<span class="pill rv"><i class="dot"></i> 10-Day Setup · East Hampton service businesses</span>
+<h1 class="rv d1">You're paying <span class="ticker" id="heroNum">$1,350</span> a week to do paperwork.</h1>
+<p class="sub rv d2">Time is money. Ten hours a week on emails, estimates and follow-ups is ten hours you don't bill. In 10 days, I take that work off your plate.</p>
+<div class="cta rv d3"><a class="btn bw" href="#book">Book a free 15-min call <span class="ar">→</span></a><a class="btn gr" href="#math">Run your numbers</a></div>
+</div>
+<div class="video rv d2"><span class="tag">● Watch · 75 sec</span><div class="play"></div><div class="cap"><span>Seth Quest, Founder</span><span>MORE.</span></div></div>
+</div>
+<div class="stats">
+<div class="rv"><b>10+ hrs</b><span>a week on paperwork, minimum</span></div>
+<div class="rv d1"><b>$70K</b><span>a year in unbilled time at $135/hr</span></div>
+<div class="rv d2"><b>Same day</b><span>estimates from your phone photos</span></div>
+<div class="rv d3"><b>10 days</b><span>from kickoff to handoff</span></div>
+</div>
+</div></header>
+
+<section id="math"><div class="w">
+<div class="head rv"><span class="eyebrow">The math</span><h2>Time is <span class="g">money.</span></h2><p>Move the sliders. This is what the office work is costing you right now.</p></div>
+<div class="calc rv">
+<div class="in">
+<div class="tabs"><button class="on" data-m="bill">My billable rate</button><button data-m="staff">An assistant's wage</button></div>
+<div class="field"><div class="lab"><span id="rateLab">Your billable rate</span><b id="rateV">$135/hr</b></div>
+<input type="range" id="rate" min="15" max="250" step="5" value="135">
+<div class="chips" id="rateChips"><button data-v="75">$75</button><button data-v="100">$100</button><button data-v="135">$135</button><button data-v="175">$175</button></div></div>
+<div class="field"><div class="lab"><span>Hours a week on paperwork</span><b id="hrsV">10 hrs</b></div>
+<input type="range" id="hrs" min="2" max="30" step="1" value="10"></div>
+<p class="mut" style="font-size:15px">Most owners we talk to spend at least 10. That's about an hour a day on email alone, plus estimates, follow-ups, scheduling and reviews.</p>
+</div>
+<div class="out">
+<div><span class="eyebrow" id="outLab">Unbilled every year</span><div class="big" id="yr">$70,200</div></div>
+<div class="rows"><div><span>Every week</span><b id="wk">$1,350</b></div><div><span>Every month</span><b id="mo">$5,850</b></div><div><span>The 10-Day Setup</span><b>$2,400 once</b></div><div><span>Paid back in</span><b id="pb" class="g">under 2 weeks</b></div></div>
+<p class="note">Estimates, not promises. Your numbers depend on your rate and your volume.</p>
+</div>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+<div class="head rv"><span class="eyebrow">Where the 10 hours go</span><h2>The minimum. Every week.</h2></div>
+<div class="bd">
+<div class="rv"><b>5 hrs</b><small>~1 hr a day</small><h4>Emails</h4><p>Questions, scheduling, "any update?"</p><div class="bar"><i style="--w:100%"></i></div></div>
+<div class="rv d1"><b>2 hrs</b><small>at night</small><h4>Estimates</h4><p>Typing up numbers from the site visit.</p><div class="bar"><i style="--w:40%"></i></div></div>
+<div class="rv d2"><b>1.5 hrs</b><small>if you remember</small><h4>Follow-ups</h4><p>Chasing quotes that went quiet.</p><div class="bar"><i style="--w:30%"></i></div></div>
+<div class="rv d3"><b>1 hr</b><small>back and forth</small><h4>Scheduling</h4><p>Moving jobs, confirming times.</p><div class="bar"><i style="--w:20%"></i></div></div>
+<div class="rv d4"><b>0.5 hr</b><small>usually skipped</small><h4>Reviews</h4><p>Asking happy customers for a review.</p><div class="bar"><i style="--w:10%"></i></div></div>
+</div>
+<div class="total rv"><span>10 hours a week × $135/hr</span><b>$1,350 a week not billed</b></div>
+</div></section>
+
+<section class="prod" id="get"><div class="w">
+<div class="head rv"><span class="eyebrow">What changes</span><h2>The office runs. <span class="g">You work.</span></h2><p>Set up on your real work, your phone and your number. Here's what it looks like.</p></div>
+
+<div class="feat">
+<div class="rv"><span class="eyebrow">01 · Estimates</span><h3>Estimates out the same day.</h3><p>Snap photos and jot rough measurements on site. A clean estimate with your logo goes to the customer that afternoon.</p><ul><li>From your phone photos and notes</li><li>Your prices, your line items</li><li>You approve before it goes out</li></ul></div>
+<div class="mock rv d1"><div class="phone"><div class="scr"><div class="sb"><span>2:41</span><span>●●● 5G</span></div><div class="ap"><small class="mut">New estimate</small><h5>Hendricks · Pool equipment</h5><div class="photos"><i></i><i></i><i></i><i></i></div><div class="note2">"Pump is shot. 1.5hp. Cover 18×36, safety mesh. Filter ok."</div><div class="prog">Writing estimate <i></i></div></div></div></div>
+<div class="est"><div class="t"><b>Shoreline Pool Co.</b><span class="badge">READY</span></div><small class="mut">Estimate #1042 · Oct 16</small>
+<div class="r"><span>Safety cover, 18×36</span><span>$2,150</span></div><div class="r"><span>Variable-speed pump</span><span>$1,480</span></div><div class="r"><span>Labor, 5 hrs</span><span>$600</span></div><div class="r tot"><span>Total</span><span>$4,230</span></div><div class="ok">Approve estimate</div></div></div>
+</div>
+
+<div class="feat">
+<div class="rv"><span class="eyebrow">02 · Missed calls + follow-up</span><h3>Every quote gets followed up.</h3><p>Missed calls get a text back in seconds. Open quotes get a friendly nudge on day 2, 5 and 10. Nobody goes quiet and books the other guy.</p><ul><li>Works on your current number</li><li>Written in your voice</li><li>Stops the moment they reply</li></ul></div>
+<div class="mock rv d1"><div class="phone"><div class="scr"><div class="sb"><span>9:14</span><span>●●● 5G</span></div><div class="thread"><div class="who"><div class="av">S</div><b>Shoreline Pool Co.</b><small>Text message</small></div>
+<span class="sys">Missed call · 9:02 AM</span>
+<div class="msg me">Hi, it's Mike at Shoreline. Sorry I missed you, I'm on a job. Book a time here or reply and I'll call right back.</div>
+<div class="msg them">Need my pool closed before the 1st</div>
+<div class="msg me">You got it. Tuesday 9am or Thursday 2pm?</div>
+<div class="msg them">Tuesday works 👍</div>
+<span class="sys">Quote follow-up · Day 2</span>
+<div class="msg me">Hi Karen, just checking you got the estimate for the new pump. Happy to walk through it.</div>
+<div class="typing"><i></i><i></i><i></i></div></div></div></div>
+<div class="float" style="left:20px;top:40px"><span class="ic">✓</span>Booked · Tue 9:00</div></div>
+</div>
+
+<div class="feat">
+<div class="rv"><span class="eyebrow">03 · Your inbox</span><h3>Your emails get answered.</h3><p>Every new email gets a reply drafted in your voice, with the right price, the right date, the right next step. You read it, tap send.</p><ul><li>An hour a day back</li><li>Nothing sends without you</li><li>Customers hear back in minutes, not days</li></ul></div>
+<div class="mock rv d1"><div class="phone"><div class="scr"><div class="sb"><span>6:58</span><span>●●● 5G</span></div>
+<div class="ap" style="padding-bottom:6px"><h5>Inbox</h5></div><div class="inbox">
+<div class="mail"><span class="c">JR</span><div><b>Jen R. · Opening date?</b><p>Can you open the pool the week of May 4…</p><span class="rd">Reply ready</span></div></div>
+<div class="mail"><span class="c">DM</span><div><b>Dan M. · Invoice question</b><p>Was the filter included in the last…</p><span class="rd">Reply ready</span></div></div>
+<div class="mail"><span class="c">LK</span><div><b>Lisa K. · New customer</b><p>Saw your truck on Main St, do you…</p><span class="rd">Reply ready</span></div></div>
+</div>
+<div class="draft"><b>Reply to Jen R.</b><br>Hi Jen, May 4th week works. I have Tuesday the 5th open at 8am. Opening is $425 as usual. Want me to lock it in?<div class="sendr"><span>Send</span></div></div>
+</div></div></div>
+</div>
+
+</div></section>
+
+<section><div class="w">
+<div class="head rv"><span class="eyebrow">Plus</span><h2>The rest of the office.</h2></div>
+<div class="oc">
+<div class="rv"><span class="n">04</span><h4>Reviews come in after every job.</h4><p>A short note with your Google link, sent when the job wraps.</p></div>
+<div class="rv d1"><span class="n">05</span><h4>Past customers hear from you every season.</h4><p>Openings, closings, tune-ups, cleanups. Written, approved, sent.</p></div>
+<div class="rv d2"><span class="n">06</span><h4>Your customer list, in one place.</h4><p>Every name and number from your phone and invoices, cleaned up.</p></div>
+</div>
+<div class="trades rv"><span>Pool</span><span>HVAC</span><span>Plumbing</span><span>Electric</span><span>Lawn &amp; landscape</span><span>Contractors</span></div>
+</div></section>
+
+<section style="background:var(--l)"><div class="w">
+<div class="head rv"><span class="eyebrow">How it works</span><h2>Ten days. Then it's yours.</h2><p>I sit with you at your table and set it up on your real work. Fixed start. Fixed finish.</p></div>
+<div class="tl">
+<div class="rv"><span class="d">1</span><h4>Day 1</h4><h5>Kickoff at your table</h5><p>Two hours. Missed calls get a text back the same day.</p></div>
+<div class="rv d1"><span class="d">4</span><h4>Days 2–4</h4><h5>Quotes + reviews</h5><p>Every open quote gets followed up. Review requests go live.</p></div>
+<div class="rv d2"><span class="d">5</span><h4>Day 5</h4><h5>Estimates</h5><p>Same-day estimates from your phone photos, tested on real jobs.</p></div>
+<div class="rv d3"><span class="d">9</span><h4>Days 6–9</h4><h5>Inbox + customer list</h5><p>Reply drafts in your voice. First seasonal email sent.</p></div>
+<div class="rv d4"><span class="d">10</span><h4>Day 10</h4><h5>Handoff</h5><p>You run every piece while I watch. 30 days of text support.</p></div>
+</div>
+</div></section>
+
+<section id="book"><div class="w">
+<div class="head rv"><span class="eyebrow">Pricing</span><h2>One price. Ten days.</h2></div>
+<div class="price rv">
+<div class="l"><span class="eyebrow">MORE. 10-Day Setup</span><div class="amt">$2,400<span>.</span></div><p style="color:#a6acb4;font-size:18px">Everything set up on your real work, handed off on day 10.</p>
+<ul><li><span>Same-day estimates from photos</span><b>✓</b></li><li><span>Every quote followed up</span><b>✓</b></li><li><span>Missed calls get a text back</span><b>✓</b></li><li><span>Your emails get answered</span><b>✓</b></li><li><span>Reviews + seasonal emails</span><b>✓</b></li><li><span>30 days of text support</span><b>✓</b></li></ul>
+<a class="btn gr" href="tel:+19348990796">Book a free 15-min call <span class="ar">→</span></a></div>
+<div class="r">
+<div class="pay k"><div class="tp"><b>$1,000</b><small>Day 1 · to kick off</small></div><p>About 7 hours of your billable time at $135/hr. Less than one week of paperwork. Non-refundable.</p></div>
+<div class="pay"><div class="tp"><b>$1,400</b><small>Day 10 · handoff</small></div><p>Due on the fixed handoff date, when everything is running.</p></div>
+<p style="color:#8a9098;font-size:14px;margin-top:10px">No contract. No monthly fee to me. Any tools are in your name, usually $20–50/month.</p>
+</div></div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+<div class="head rv"><span class="eyebrow">What it's worth</span><h2>Do the math once.</h2></div>
+<div class="worth">
+<div class="rv"><b>$10K</b><p>a year for an assistant to do 10 hrs/week at $20/hr. That's $200 a week, about $800 a month.</p></div>
+<div class="rv d1"><b>$70K</b><p>a year of your own time at $135/hr, if those 10 hours went to billable work instead.</p></div>
+<div class="rv d2"><b>$2,400</b><p>once, for the 10-Day Setup. Just getting your email replies drafted can save more than that in a year.</p></div>
+</div>
+<p class="mut rv" style="margin-top:18px;font-size:14px">Estimates, not promises. Your numbers depend on your rate and your volume.</p>
+</div></section>
+
+<section style="padding-top:0"><div class="w faq">
+<div class="rv"><span class="eyebrow">Questions</span><h2 style="margin-top:14px">Straight answers.</h2></div>
+<div class="rv d1">
+<details open><summary>Do I need to be good with computers?</summary><p>No. If you can text a photo, you can run it.</p></details>
+<details><summary>Do I keep my number?</summary><p>Yes. Your customers just get faster replies.</p></details>
+<details><summary>Will emails go out that I didn't approve?</summary><p>No. Everything is in your voice and you approve it first.</p></details>
+<details><summary>How much of my time does it take?</summary><p>About 3–4 hours over the 10 days, mostly the day 1 kickoff and the day 10 handoff.</p></details>
+<details><summary>What does it cost after day 10?</summary><p>Nothing to me. Any tools are in your name, usually $20–50/month.</p></details>
+<details><summary>Why is the kickoff non-refundable?</summary><p>Day 1 is two hours at your table plus the setup work that starts that afternoon. It covers real time spent on your business.</p></details>
+<details><summary>Is there a contract?</summary><p>No. $1,000 to kick off, $1,400 on day 10. That's it.</p></details>
+</div>
+</div></section>
+
+<section class="dark final"><div class="w">
+<h2 class="rv">Time is <span class="g">money.</span><br>Get yours back.</h2>
+<p class="rv d1">15 minutes. We'll look at where your week goes and what comes off your plate first.</p>
+<div class="cta rv d2"><a class="btn bw" href="tel:+19348990796">Book a free 15-min call <span class="ar">→</span></a><a class="btn gr" href="https://sethquest.com/make-more-money/">Score your sales funnel</a></div>
+</div></section>
+<footer><div class="w"><span><b style="color:#fff">MORE<span class="g">.</span></b> &nbsp;make more money</span><span>Seth Quest · East Hampton, NY · 934-899-0796</span></div></footer>
+
+<script>
+const $=s=>document.querySelector(s),fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+let mode='bill';const rate=$('#rate'),hrs=$('#hrs');
+function paint(el){const p=(el.value-el.min)/(el.max-el.min)*100;el.style.setProperty('--p',p+'%')}
+function calc(){const r=+rate.value,h=+hrs.value,wk=r*h,yr=wk*52;
+$('#rateV').textContent=fmt(r)+'/hr';$('#hrsV').textContent=h+' hrs';
+$('#wk').textContent=fmt(wk);$('#mo').textContent=fmt(yr/12);$('#yr').textContent=fmt(yr);
+const w=2400/wk;$('#pb').textContent=w<1?'under a week':w<=8?'about '+Math.ceil(w)+' weeks':'about '+Math.ceil(w/4.3)+' months';
+paint(rate);paint(hrs);if(mode==='bill')$('#heroNum').textContent=fmt(wk)}
+rate.oninput=hrs.oninput=calc;
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');mode=b.dataset.m;
+if(mode==='staff'){$('#rateLab').textContent="Assistant's hourly wage";rate.value=20;$('#outLab').textContent='Staff cost every year';$('#rateChips').innerHTML='<button data-v="18">$18</button><button data-v="20">$20</button><button data-v="25">$25</button><button data-v="30">$30</button>'}
+else{$('#rateLab').textContent='Your billable rate';rate.value=135;$('#outLab').textContent='Unbilled every year';$('#rateChips').innerHTML='<button data-v="75">$75</button><button data-v="100">$100</button><button data-v="135">$135</button><button data-v="175">$175</button>'}
+chips();calc()});
+function chips(){document.querySelectorAll('#rateChips button').forEach(b=>b.onclick=()=>{rate.value=b.dataset.v;calc()})}chips();calc();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv,.bd').forEach(el=>io.observe(el));
+addEventListener('scroll',()=>$('#nav').classList.toggle('s',scrollY>40),{passive:true});
+</script>
+</body></html>
