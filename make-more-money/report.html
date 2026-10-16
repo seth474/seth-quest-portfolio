@@ -321,6 +321,10 @@
   .ans td:first-child{color:#444;padding-right:14px;width:58%}
   .ans td:last-child{font-weight:700}
   .bad{padding:40px 0;color:#444}
+  .qr-lo{color:#c62828}.qr-mid{color:#b86e00}.qr-hi{color:#128a3e}
+  .qr-p .meter i.qr-lo{background:#c62828}
+  .qr-p .meter i.qr-mid{background:#e0a106}
+  .qr-p .meter i.qr-hi{background:#2BE36B}
   @media print{.acts,.noprint{display:none!important}}
 </style>
 </head>
@@ -332,77 +336,162 @@
 <script>
 (function(){
   var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
+  var POSTED=[['week','This week'],['month','This month'],['mo6','6+ months'],['yr','1+ year']];
   var Q=[
     {id:'trade',type:'select',k:'About you',q:'What&rsquo;s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
     {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
-    {id:'sources',type:'multi',k:'Lead flow',q:'Where do your leads come from?',h:'Pick all that you use.',opts:[['gbp','Google Business Profile'],['gads','Google Ads / sponsored'],['meta','Facebook / Instagram ads'],['yt','YouTube'],['web','Website'],['ref','Referrals / word of mouth'],['email','Email list'],['mail','Mailers / door hangers'],['wrap','Truck wrap']]},
-    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return calls?',opts:[['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later']]},
-    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:YNN},
-    {id:'quotes',type:'one',k:'Leaks',q:'How fast do your quotes go out?',opts:[['same','Same day'],['few','In 2 to 3 days'],['week','A week or more'],['ns','Not sure']]},
-    {id:'followup',type:'one',k:'Leaks',q:'Do you follow up on quotes that go unanswered?',opts:YNN},
+    {id:'online',type:'multi',k:'Leads',q:'Where do your online leads come from?',opts:[['gbp','Google search / Google Business Profile'],['gads','Google Ads / LSA'],['web','Website'],['ig','Instagram (posting)'],['fb','Facebook (posting)'],['fads','Paid Facebook ads'],['iads','Paid Instagram ads'],['nd','Nextdoor'],['angi','Angi / Thumbtack / Yelp']],follow:[
+      {when:'ig',id:'igPost',q:'Instagram, last posted',opts:POSTED},
+      {when:'fb',id:'fbPost',q:'Facebook, last posted',opts:POSTED},
+      {when:'web',id:'webForm',q:'Does the contact or quote form work?',opts:[['works','Works'],['miss','Hit or miss'],['none','No form'],['ns','Not sure']]}
+    ]},
+    {id:'offline',type:'multi',k:'Leads',q:'Where do your offline leads come from?',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
+    {id:'best',type:'one',k:'Leads',q:'Which one brings you the most work?'},
+    {id:'speed',type:'one',k:'Leaks',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
+    {id:'textback',type:'one',k:'Leaks',q:'Do missed calls get an automatic text back?',opts:[['yes','Yes, every missed call'],['some','Sometimes'],['no','No'],['ns','Not sure']]},
+    {id:'quotes',type:'one',k:'Closing',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
+      {always:true,id:'script',q:'Do you use a sales script?',opts:[['yes','Yes'],['no','No']]}
+    ]},
+    {id:'followup',type:'one',k:'Closing',q:'How do you follow up on quotes that go quiet?',opts:[['auto','Automatic follow-up'],['manual','I follow up myself, every time'],['yes','Yes'],['some','Sometimes'],['no','I do not'],['ns','Not sure']],follow:[
+      {always:true,id:'crm',q:'Where do you track jobs and quotes?',opts:[['none','None'],['sheet','Spreadsheet'],['jobber','Jobber'],['hcp','Housecall Pro'],['st','ServiceTitan'],['other','Other']]}
+    ]},
     {id:'reviewask',type:'one',k:'Leaks',q:'Do you ask for a review after every job?',opts:YNN},
-    {id:'reviews',type:'one',k:'Lead flow',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
-    {id:'ltv',type:'one',k:'Lead flow',q:'Do you know what a customer is worth over time?',h:'Customer lifetime value: everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
-    {id:'cac',type:'one',k:'Lead flow',q:'Do you know what it costs you to get a customer?',h:'Cost to get a customer (CAC): what you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
-    {id:'leads',type:'one',k:'Lead flow',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
+    {id:'reviews',type:'one',k:'Leads',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
+    {id:'ltv',type:'one',k:'Leads',q:'Do you know what a customer is worth over time?',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'cac',type:'one',k:'Leads',q:'Do you know what it costs you to get a customer?',opts:[['yes','Yes'],['no','No'],['what','What&rsquo;s that?']]},
+    {id:'leads',type:'one',k:'Leads',q:'Roughly how many leads a month?',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
   ];
-  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function txt(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent}
-  function label(q,v){for(var j=0;j<q.opts.length;j++){var o=q.opts[j];if((o[0]||o)===v||o===v)return txt(o[1]||o)}return v}
-  var A={},lead={};
-  /* scoring: Leaks 50 + Lead flow 50 */
+  function qBy(id){for(var j=0;j<Q.length;j++) if(Q[j].id===id) return Q[j]}
+  function has(arr,id){return (arr||[]).indexOf(id)>=0}
+  function bestOpts(){
+    var opts=[],seen={};
+    ['online','offline'].forEach(function(id){
+      var q=qBy(id), sel=A[id]||[];
+      (q&&q.opts||[]).forEach(function(o){ if(sel.indexOf(o[0])>=0 && !seen[o[0]]){ seen[o[0]]=1; opts.push(o); } });
+    });
+    if(!opts.length) opts.push(['none','Nothing steady yet']);
+    opts.push(['ns','Not sure']);
+    return opts;
+  }
+  function hydrate(q){
+    if(q&&q.id==='best') q.opts=bestOpts();
+    return q;
+  }
+  function label(q,v){
+    if(!q) return v||'';
+    hydrate(q);
+    var opts=q.opts||[];
+    for(var j=0;j<opts.length;j++){
+      var o=opts[j];
+      if(Object.prototype.toString.call(o)==='[object Array]'){ if(o[0]===v) return txt(o[1]||''); }
+      else if(o===v) return txt(o);
+    }
+    return v||'';
+  }
+  function findFollow(id){
+    for(var a=0;a<Q.length;a++){ var fs=Q[a].follow||[]; for(var b=0;b<fs.length;b++) if(fs[b].id===id) return fs[b]; }
+    return null;
+  }
+  function folLabel(id,v){ var f=findFollow(id); if(!f||!v) return ''; for(var j=0;j<f.opts.length;j++) if(f.opts[j][0]===v) return f.opts[j][1]; return v; }
+  var A={},lead={},legacy=false;
+  function mapLegacy(){
+    if(A.online || A.offline || !A.sources) return;
+    legacy=true;
+    A.online=[]; A.offline=[];
+    (A.sources||[]).forEach(function(id){
+      if(id==='gbp'||id==='gads'||id==='web') A.online.push(id);
+      else if(id==='meta'){ A.online.push('fb'); A.online.push('fads'); }
+      else if(id==='ref') A.offline.push('ref');
+      else if(id==='mail') A.offline.push('mail');
+      else if(id==='wrap') A.offline.push('wrap');
+    });
+  }
   function score(){
-    var s=A.sources||[],L=0,F=0,fl=[],ff=[];
-    L+={instant:12,hour:8,day:4,next:0}[A.speed]||0;
-    if(A.speed!=='instant')fl.push(['Call back within 5 minutes.','Most people call the next company on the list if nobody picks up.']);
-    L+={yes:10,ns:3,no:0}[A.textback]||0;
-    if(A.textback!=='yes')fl.push(['Turn on missed-call text-back.','Every missed call gets a text right away with a link to book. Same phone number.']);
-    L+={same:10,few:5,week:0,ns:2}[A.quotes]||0;
-    if(A.quotes!=='same')fl.push(['Send quotes the same day.','The fastest quote usually wins the job.']);
-    L+={yes:10,ns:3,no:0}[A.followup]||0;
-    if(A.followup!=='yes')fl.push(['Follow up on every quote, automatically.','A quick text on day 2, day 5 and day 10 wins back jobs you&rsquo;d lose.']);
-    L+={yes:8,ns:2,no:0}[A.reviewask]||0;
-    if(A.reviewask!=='yes')fl.push(['Ask for a review after every job.','Automatic text with a one-tap link to your Google page.']);
-    var W={gbp:6,gads:4,meta:3,yt:2,web:3,ref:2,email:1,mail:1,wrap:1},sp=0;s.forEach(function(k){sp+=W[k]||0});F+=Math.min(sp,22);
-    if(s.indexOf('gbp')<0)ff.push(['Claim and fix your Google Business Profile.','It&rsquo;s free, and it&rsquo;s where locals look first.']);
-    if(s.indexOf('gads')<0)ff.push(['Run Google sponsored ads for your trade and town.','Show up first when someone nearby searches for what you do.']);
-    if(s.indexOf('meta')<0&&s.indexOf('yt')<0)ff.push(['Turn your real work into video ads.','Short clips from your jobs, running on Facebook, Instagram and YouTube.']);
-    if(s.indexOf('web')<0)ff.push(['Get a simple page that makes it one tap to call or book.','No big website needed.']);
-    F+={'0':0,'11':4,'51':7,'100':10,ns:1}[A.reviews]||0;
-    if(A.reviews!=='100'&&A.reviews!=='51')ff.push(['Get to 50+ Google reviews.','It&rsquo;s the first thing people compare.']);
-    F+={yes:5,no:1,what:0}[A.ltv]||0;
-    if(A.ltv!=='yes')ff.push(['Know what a customer is worth.','Then you know what you can afford to spend to win one.']);
-    F+={yes:5,no:1,what:0}[A.cac]||0;
-    if(A.cac!=='yes')ff.push(['Know what it costs to get a customer.','So you only pay for ads that pay you back.']);
-    F+={'0':1,'11':3,'31':6,'75':8,ns:0}[A.leads]||0;
-    return {total:L+F,leaks:L,flow:F,fl:fl,ff:ff};
+    mapLegacy();
+    var on=A.online||[], off=A.offline||[], insights=[];
+    var OW={gbp:8,gads:7,web:6,ig:5,fb:5,fads:5,iads:5,nd:4,angi:4};
+    var FW={ref:4,repeat:4,yard:2,wrap:2,door:2,mail:2,print:2,events:2};
+    var REC={week:8,month:5,mo6:2,yr:0};
+    var leadPts=0, leakPts=0, closePts=0, onSum=0, offSum=0;
+    on.forEach(function(id){onSum+=OW[id]||0});
+    leadPts+=Math.min(36,onSum);
+    if(has(on,'ig')) leadPts+=REC[A.igPost]||0;
+    if(has(on,'fb')) leadPts+=REC[A.fbPost]||0;
+    off.forEach(function(id){offSum+=FW[id]||0});
+    leadPts+=Math.min(16,offSum);
+    var revPts={'0':0,'11':4,'51':8,'100':12,ns:2}[A.reviews]||0; leadPts+=revPts;
+    var ltvPts={yes:6,no:1,what:0}[A.ltv]||0; leadPts+=ltvPts;
+    var cacPts={yes:6,no:1,what:0}[A.cac]||0; leadPts+=cacPts;
+    var volPts={'0':1,'11':3,'31':5,'75':8,ns:0}[A.leads]||0; leadPts+=volPts;
+    function push(sec,lost,t,d){if(lost>0) insights.push({sec:sec,lost:lost,t:t,d:d})}
+    if(!has(on,'gbp')) push('Leads',8,'Claim your Google Business Profile.','Locals search Google first. A finished profile with photos is how they choose a company.');
+    if(!has(on,'gads')) push('Leads',7,'Run Google Ads or Local Services Ads.','Show up when someone nearby searches for your trade.');
+    if(!has(on,'web')) push('Leads',6,'Put up a simple page people can book from.','One page with your town, your work, and a tap to call is enough to start.');
+    if(has(on,'ig')&&A.igPost&&A.igPost!=='week') push('Leads',A.igPost==='month'?3:8,'Post on Instagram this week.','The last post is old, so the profile looks quiet.');
+    if(!has(on,'ig')) push('Leads',5,'Post a job on Instagram.','Homeowners check the latest photos before they call.');
+    if(has(on,'fb')&&A.fbPost&&A.fbPost!=='week') push('Leads',A.fbPost==='month'?3:8,'Post on Facebook this week.','A quiet page reads like a closed business.');
+    if(!has(on,'fb')) push('Leads',5,'Post jobs on your Facebook page.','Neighbors still look there before they ask for a name.');
+    if(!has(on,'fads')&&!has(on,'iads')) push('Leads',5,'Test one paid social ad.','A job photo and a tap-to-call button is a fair first test.');
+    if(revPts<8) push('Leads',12-revPts,'Get to 50 Google reviews.','People compare review counts before they compare prices.');
+    if(A.ltv!=='yes') push('Leads',6-ltvPts,'Write down what a customer is worth.','Then you know what a new lead is worth fighting for.');
+    if(A.cac!=='yes') push('Leads',6-cacPts,'Write down what a new customer costs.','So you only pay for ads that pay you back.');
+    if(Math.min(16,offSum)<8) push('Leads',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
+    var speedPts={min15:40,instant:40,hour:28,day:14,next:0,ns:6}[A.speed]||0; leakPts+=speedPts;
+    if(speedPts<40) push('Leaks',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
+    var tbPts={yes:30,some:14,ns:6,no:0}[A.textback]||0; leakPts+=tbPts;
+    if(A.textback!=='yes') push('Leaks',30-tbPts,'Text back every missed call.','Same number. A short text with a time to book, sent right away.');
+    var formPts=has(on,'web')?({works:18,miss:8,ns:4,none:0}[A.webForm]||0):0; leakPts+=formPts;
+    if(!has(on,'web')||A.webForm!=='works') push('Leaks',18-formPts,'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
+    var askPts={yes:12,ns:4,no:0}[A.reviewask]||0; leakPts+=askPts;
+    if(A.reviewask!=='yes') push('Leaks',12-askPts,'Ask for a review after every job.','A text with a one-tap link to your Google page.');
+    var qPts={same:40,next:30,few:16,week:0,ns:8}[A.quotes]||0; closePts+=qPts;
+    if(qPts<40) push('Closing',40-qPts,'Send the quote the same day.','The first clear quote usually wins the job.');
+    var fuPts={auto:30,manual:22,yes:22,some:10,no:0,ns:4}[A.followup]||0; closePts+=fuPts;
+    if(fuPts<22) push('Closing',30-fuPts,'Follow up on every quiet quote.','A text on day 2, day 5, and day 10 wins back jobs that go cold.');
+    var scriptPts=A.script==='yes'?15:0; closePts+=scriptPts;
+    if(A.script!=='yes') push('Closing',15,'Use a short sales script on the call.','Same questions every time: what they need, when, and the next step.');
+    var crmPts={jobber:15,hcp:15,st:15,sheet:10,other:8,none:0}[A.crm]||0; closePts+=crmPts;
+    if(crmPts<10) push('Closing',15-crmPts,'Track every quote in one place.','A spreadsheet is enough. Jobber, Housecall Pro, or ServiceTitan once the volume is there.');
+    insights.sort(function(a,b){return b.lost-a.lost});
+    var seen={},list=[];
+    insights.forEach(function(x){if(seen[x.t])return;seen[x.t]=1;list.push(x)});
+    leadPts=Math.max(0,Math.min(100,Math.round(leadPts)));
+    leakPts=Math.max(0,Math.min(100,Math.round(leakPts)));
+    closePts=Math.max(0,Math.min(100,Math.round(closePts)));
+    return {total:Math.round((leadPts+leakPts+closePts)/3),leads:leadPts,leaks:leakPts,closing:closePts,insights:list.filter(function(x){return x.lost>0})};
   }
-  var R=null;
   function verdict(r){
-    if(r.leaks<35)return 'Your funnel is leaking. Start by fixing the leaks. More leads won&rsquo;t help until those are plugged.';
-    if(r.flow<30)return 'Your funnel holds water. Now it needs more going in. That&rsquo;s the Fill the funnel step.';
-    return 'Solid funnel. A 15-minute audit will find the next few wins.';
+    if(r.total<50) return 'The funnel is leaking. Fix response time and quote follow-up before you buy more leads.';
+    if(r.total<75) return 'Parts of this are working. The gaps below are the ones to fix first.';
+    return 'Strong funnel. A 15-minute call will pick the next few wins.';
   }
-  function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+x[0]+'</b>'+x[1]+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
+  function list(a){return a.length?'<ul class="qr-fix">'+a.map(function(x){return '<li><b>'+esc(x.t)+'</b>'+esc(x.d)+'</li>'}).join('')+'</ul>':'<p class="qr-ok">Nothing big to fix here. Nice.</p>'}
+  function band(n){return n<50?'lo':n<75?'mid':'hi'}
+  function part(name,n){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+'</span><span class="qr-'+b+'">'+n+' / 100</span></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
   /* ---- report page ---- */
   function decode(h){try{h=h.replace(/^#/,'').replace(/-/g,'+').replace(/_/g,'/');while(h.length%4)h+='=';return JSON.parse(decodeURIComponent(escape(atob(h))))}catch(e){return null}}
-  function answerOf(q){var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):(v?label(q,v):'(no answer)'))}
+  function answerOf(q){hydrate(q);var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):(v?label(q,v):'(no answer)'))}
   function render(){
     var out=document.getElementById('out'),d=decode(location.hash);
     if(!d||!d.a){out.innerHTML='<p class="bad">This report link is incomplete. Open it straight from the Formspree email.</p>';return}
-    A=d.a;lead={name:(d.c&&d.c.n)||'',business:(d.c&&d.c.b)||'',phone:(d.c&&d.c.p)||'',email:(d.c&&d.c.e)||''};
-    var R=score(),tel=lead.phone.replace(/[^0-9+]/g,''),first=lead.name.split(' ')[0];
+    A=d.a;legacy=false;lead={name:(d.c&&d.c.n)||'',business:(d.c&&d.c.b)||'',phone:(d.c&&d.c.p)||'',email:(d.c&&d.c.e)||''};
+    var R=score(),tel=lead.phone.replace(/[^0-9+]/g,''),first=lead.name.split(' ')[0],b=band(R.total);
     var sms='sms:'+tel+'?&body='+encodeURIComponent('Hi '+first+', it\u2019s Seth Quest. Thanks for scoring your sales funnel. Got 15 minutes this week to go over it?');
     var acts=(tel?'<a class="btn p" href="tel:'+esc(tel)+'">📞 Call</a><a class="btn o" href="'+esc(sms)+'">💬 Text</a>':'')+(lead.email?'<a class="btn o" href="mailto:'+esc(lead.email)+'">✉️ Email</a>':'');
-    var rows=[['About','About you'],['Leaks','Leaks'],['Lead flow','Lead flow']].map(function(g){return '<tr><th colspan="2">'+g[0]+'</th></tr>'+Q.filter(function(q){return q.k===g[1]}).map(function(q){return '<tr><td>'+q.q+'</td><td>'+esc(answerOf(q))+'</td></tr>'}).join('')}).join('');
+    var rows=[['About','About you'],['Leads','Leads'],['Leaks','Leaks'],['Closing','Closing']].map(function(g){return '<tr><th colspan="2">'+g[0]+'</th></tr>'+Q.filter(function(q){return q.k===g[1]}).map(function(q){return '<tr><td>'+q.q+'</td><td>'+esc(answerOf(q))+'</td></tr>'}).join('')}).join('');
+    var follows=[['Instagram, last posted',folLabel('igPost',A.igPost)],['Facebook, last posted',folLabel('fbPost',A.fbPost)],['Website form',folLabel('webForm',A.webForm)],['Sales script',folLabel('script',A.script)],['Tracking tool',folLabel('crm',A.crm)]];
+    rows+='<tr><th colspan="2">Follow-ups</th></tr>'+follows.map(function(f){return '<tr><td>'+f[0]+'</td><td>'+esc(f[1]||'(not set)')+'</td></tr>'}).join('');
+    if(legacy&&A.sources) rows+='<tr><td>Older quiz lead sources</td><td>'+esc((A.sources||[]).join(', ')||'None')+'</td></tr>';
+    var by=function(sec){return R.insights.filter(function(x){return x.sec===sec})};
     document.title='Lead report: '+lead.business+' · Seth Quest';
     out.innerHTML='<div class="eyebrow">Lead report &middot; private</div><h1 class="d">'+esc(lead.business||'Lead')+'<span class="g">.</span></h1>'+
-      '<div class="meta">Took the quiz '+(d.t?new Date(d.t).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'')+'</div>'+
+      '<div class="meta">Took the quiz '+(d.t?new Date(d.t).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'')+(legacy?' &middot; older quiz, rescored':'')+'</div>'+
       '<div class="rc"><div class="who"><b>'+esc(lead.name)+'</b><span>'+esc(lead.business)+'</span>'+(lead.phone?'<span><a href="tel:'+esc(tel)+'">'+esc(lead.phone)+'</a></span>':'')+(lead.email?'<span><a href="mailto:'+esc(lead.email)+'">'+esc(lead.email)+'</a></span>':'')+'</div><div class="acts">'+acts+'</div></div>'+
-      '<div class="rc"><div class="qz-k">Sales funnel score</div><div class="qr-score"><b id="rpTotal">'+R.total+'</b><span>/ 100</span></div><p class="qr-verdict">'+verdict(R)+'</p>'+
-      '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span id="rpLeaks">'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
-      '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span id="rpFlow">'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
-      '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+'</div>'+
+      '<div class="rc"><div class="qz-k">Sales funnel score</div><div class="qr-score"><b id="rpTotal" class="qr-'+b+'">'+R.total+'</b><span>/ 100 pts</span></div><p class="qr-verdict">'+esc(verdict(R))+'</p>'+
+      '<div class="qr-parts">'+part('Leads',R.leads)+part('Leaks',R.leaks)+part('Closing',R.closing)+'</div>'+
+      '<h3 class="qr-h">Leads<span class="g">.</span></h3>'+list(by('Leads'))+'<h3 class="qr-h">Leaks<span class="g">.</span></h3>'+list(by('Leaks'))+'<h3 class="qr-h">Closing<span class="g">.</span></h3>'+list(by('Closing'))+'</div>'+
       '<div class="rc"><h3 class="qr-h" style="margin-top:4px">Their answers<span class="g">.</span></h3><table class="ans">'+rows+'</table></div>'+
       '<button class="btn o noprint" type="button" onclick="window.print()">Print or save as PDF</button>';
   }
