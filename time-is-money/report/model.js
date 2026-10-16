@@ -1,4 +1,4 @@
-/* Time-cost copy for the 10-Day Setup snapshot. Customer text stays plain. */
+/* Time-cost copy for the One-Week AI Setup snapshot. Customer text stays plain. */
 
 var RATE_BILL = { r75: 75, r100: 100, r135: 135, r175: 175, r200: 200 };
 var RATE_WAGE = { w18: 18, w20: 20, w25: 25, w30: 30 };
@@ -86,7 +86,7 @@ function tasksFor(a, h) {
   var list = [
     { key: 'email', hrs: h.email + bump.email, t: 'Email replies drafted in your voice.', d: 'You read each one and tap send. Nothing goes out until you say so.' },
     { key: 'quotes', hrs: h.quotes + bump.quotes, t: 'Same-day estimates from the photos you already take.', d: 'Your prices, your line items, your logo. You approve it before it goes to the customer.' },
-    { key: 'follow', hrs: (h.quotes * 0.4) + bump.follow, t: 'A follow-up on every quiet quote.', d: 'A short note on day 2, day 5, and day 10. It stops when they reply.' },
+    { key: 'follow', hrs: (h.quotes * 0.4) + bump.follow, t: 'A follow-up on every quiet quote.', d: 'A short note on day 2 and day 5. It stops when they reply.' },
     { key: 'sched', hrs: (h.paper * 0.45) + bump.sched, t: 'Missed calls get a text back with times to book.', d: 'Same number. A short text while you are on a job.' },
     { key: 'paper', hrs: h.paper + bump.paper, t: 'Job photos and notes stay with the job.', d: 'Not a camera roll you scroll at night.' },
     { key: 'list', hrs: 1, t: 'Your customer list, in one place.', d: 'Names and numbers from your phone, cleaned up.' }
@@ -158,7 +158,7 @@ function buildModel(input) {
       ],
       quotes: [
         { t: 'Same-day estimates from phone photos.', d: 'Your prices and your line items. You approve before it goes out.' },
-        { t: 'A follow-up on day 2, day 5, and day 10.', d: 'A short note. It stops when they reply.' },
+        { t: 'A follow-up on day 2 and day 5.', d: 'A short note. It stops when they reply.' },
         { t: 'Missed calls get a text back.', d: 'Same number, with times to book, while you are on a job.' }
       ],
       paper: [
@@ -168,11 +168,11 @@ function buildModel(input) {
       ]
     },
     plan: [
-      { day: 'Day 1', t: 'Kickoff at your table', d: 'Two hours. Missed calls get a text back the same day. $1,000 to kick off. Non-refundable.' },
-      { day: 'Days 2–4', t: 'Quotes and reviews', d: 'Every open quote gets followed up. Review requests go live.' },
-      { day: 'Day 5', t: 'Estimates', d: 'Same-day estimates from your phone photos, tested on real jobs.' },
-      { day: 'Days 6–9', t: 'Inbox and customer list', d: 'Reply drafts in your voice. The customer list is cleaned up. The first seasonal note goes out.' },
-      { day: 'Day 10', t: 'Handoff', d: 'You run every piece while I watch. $1,400 due. 30 days of text support after that.' }
+      { day: 'Day 1', t: 'Kickoff', d: 'Two hours at your table. $1,000 to kick off. Non-refundable. AI and automation start on your real work.' },
+      { day: 'Day 2', t: 'Email replies', d: 'AI drafts replies in your voice. You read each one and tap send.' },
+      { day: 'Day 3', t: 'Quotes from photos', d: 'Quotes from field-note photos, tested on real jobs.' },
+      { day: 'Day 4', t: 'Paperwork and files', d: 'Photos, notes, and files stay with the job.' },
+      { day: 'Day 5', t: 'Handoff', d: 'You run every piece while I watch. $1,400 due. 30 days of text support after that.' }
     ],
     price: '$2,400',
     kickoff: '$1,000',
