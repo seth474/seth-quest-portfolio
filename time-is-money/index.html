@@ -191,6 +191,52 @@ footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .total{flex-direction:column;align-items:flex-start;gap:6px}
 nav .btn{display:none}
 }
+button.btn{font-family:inherit;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid #ffffff55}
+.btn.ghost:hover{border-color:#fff}
+.tq{position:fixed;inset:0;z-index:80;background:#07080a;color:#fff;display:flex;justify-content:center}
+.tq[hidden]{display:none}
+.tq-in{width:100%;max-width:640px;height:100%;display:flex;flex-direction:column;padding:18px 22px calc(18px + env(safe-area-inset-bottom))}
+.tq-top{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px}
+.tq-bar{height:4px;border-radius:2px;background:#ffffff18;overflow:hidden}
+.tq-bar span{display:block;height:100%;width:0;background:#fff;transition:width .3s ease}
+.tq-count{font-size:12px;font-weight:700;letter-spacing:.12em;color:#9aa0a8}
+.tq-x{background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer;padding:0 4px}
+.tq-body{flex:1;overflow:auto;padding:28px 0 16px}
+.tq-k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
+.tq-q{font-size:clamp(32px,6vw,46px);font-weight:900;letter-spacing:-.04em;line-height:1;margin:12px 0 18px}
+.tq-opts{display:grid;gap:10px}
+.tq-o{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:14px 16px;border-radius:16px;border:1.5px solid #ffffff18;background:#14171b;color:#fff;font:700 17px/1.3 "Inter Tight",Inter,sans-serif;text-align:left;cursor:pointer}
+.tq-o .bx{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #ffffff40}
+.tq-o[aria-checked="true"]{border-color:#fff}
+.tq-o[aria-checked="true"] .bx{background:var(--g);border-color:var(--g);box-shadow:inset 0 0 0 3px #14171b}
+.tq-nav{display:grid;grid-template-columns:auto 1fr;gap:10px;padding-top:12px;border-top:1px solid #ffffff14}
+.tq-nav[hidden]{display:none}
+.tq-back{background:transparent;color:#fff;border:1.5px solid #ffffff30}
+.tq-next{background:#fff;color:#07080a}
+.tq-err{color:#FF3B30;min-height:1.2em;margin-top:10px;font-size:14px}
+.tq-hours{display:flex;align-items:flex-end;gap:10px;font-weight:900;font-size:clamp(72px,16vw,108px);letter-spacing:-.05em;line-height:.85;margin:8px 0 6px}
+.tq-hours span{font-size:18px;font-weight:700;letter-spacing:0;color:#9aa0a8;padding-bottom:10px}
+.tq-hot{color:#FF3B30}
+.tq-year{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:-.04em}
+.tq-year span{display:block;margin-top:4px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9aa0a8}
+.tq-insight{color:#c9cdd2;margin:14px 0 8px;font-size:17px}
+.tq-h{font-size:22px;margin:18px 0 10px}
+.tq-task{list-style:none;display:grid;gap:8px}
+.tq-task li{background:#14171b;border:1px solid #ffffff14;border-radius:14px;padding:12px 14px}
+.tq-task b{display:block}
+.tq-task span{display:block;color:#b7bcc3;font-weight:500;font-size:14px;margin-top:2px}
+.tq-lock{position:relative;margin-top:8px;min-height:108px}
+.tq-lock .tq-task{filter:blur(8px);opacity:.4;max-height:132px;overflow:hidden;pointer-events:none;user-select:none}
+.tq-locktag{position:absolute;left:8px;right:8px;top:36px;text-align:center;font-weight:800;background:#07080aee;border:1px solid #ffffff18;padding:12px 14px;border-radius:12px}
+.tq-form{display:grid;gap:8px;margin-top:18px}
+.tq-form input{width:100%;min-height:52px;border-radius:14px;border:1.5px solid #ffffff22;background:#14171b;color:#fff;padding:0 14px;font:600 16px "Inter Tight",Inter,sans-serif}
+.tq-form input::placeholder{color:#8a9098}
+.tq-ctas{display:grid;gap:10px;margin-top:14px}
+.tq-ctas .btn{justify-content:center;width:100%}
+.tq-print{justify-self:start;background:none;border:0;padding:0;color:#9aa0a8;font:600 13px "Inter Tight",Inter,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.tq-print:disabled{opacity:.5}
+.tq-note{color:#9aa0a8;font-size:13px;margin-top:4px}
 </style></head><body>
 
 <nav id="nav"><div class="w"><a href="#" class="logo">MORE<span>.</span></a><a class="btn gr" href="#book">Book a free 15-min call</a></div></nav>
@@ -201,7 +247,7 @@ nav .btn{display:none}
 <span class="pill rv"><i class="dot"></i> 10-Day Setup · East Hampton service businesses</span>
 <h1 class="rv d1">You're paying <span class="ticker" id="heroNum">$1,350</span> a week on paperwork, email and busy work.</h1>
 <p class="sub rv d2">Time is money. Ten hours a week on emails, estimates and follow-ups is ten hours you don't bill. In 10 days, I take that work off your plate.</p>
-<div class="cta rv d3"><a class="btn bw" href="#book">Book a free 15-min call <span class="ar">→</span></a><a class="btn gr" href="#math">Run your numbers</a></div>
+<div class="cta rv d3"><button class="btn gr" type="button" data-quiz>See what busy work costs <span class="ar">→</span></button><a class="btn bw" href="#book">Book a free 15-min call <span class="ar">→</span></a><a class="btn ghost" href="#math">Run your numbers</a></div>
 </div>
 <div class="video rv d2"><span class="tag">● Watch · 75 sec</span><div class="play"></div><div class="cap"><span>Seth Quest, Founder</span><span>MORE.</span></div></div>
 </div>
@@ -347,6 +393,14 @@ nav .btn{display:none}
 </div></section>
 <footer><div class="w"><span><b style="color:#fff">MORE<span class="g">.</span></b> &nbsp;make more money</span><span>Seth Quest · East Hampton, NY · 934-899-0796</span></div></footer>
 
+<div class="tq" id="tq" hidden role="dialog" aria-modal="true" aria-labelledby="tqTitle">
+<div class="tq-in">
+<div class="tq-top"><div class="tq-bar" aria-hidden="true"><span id="tqBar"></span></div><span class="tq-count" id="tqCount"></span><button class="tq-x" type="button" id="tqX" aria-label="Close">×</button></div>
+<div class="tq-body" id="tqBody"></div>
+<div class="tq-nav" id="tqNav"><button class="btn tq-back" type="button" id="tqBack">Back</button><button class="btn tq-next" type="button" id="tqNext">Next</button></div>
+</div>
+</div>
+
 <script>
 const $=s=>document.querySelector(s),fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
 let mode='bill';const rate=$('#rate'),hrs=$('#hrs');
@@ -365,5 +419,191 @@ function chips(){document.querySelectorAll('#rateChips button').forEach(b=>b.onc
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv,.bd').forEach(el=>io.observe(el));
 addEventListener('scroll',()=>$('#nav').classList.toggle('s',scrollY>40),{passive:true});
+
+const FORM='https://formspree.io/f/meaonlel';
+const QQ=[
+  {id:'trade',q:'What\'s your trade?',opts:[['pool','Pool'],['hvac','HVAC'],['plumb','Plumbing'],['elec','Electric'],['lawn','Lawn & landscape'],['other','Other']]},
+  {id:'team',q:'How big is the crew?',opts:[['solo','Just me'],['small','2 to 4'],['mid','5 to 10'],['big','More than 10']]},
+  {id:'emails',q:'How many emails a day?',opts:[['u10','Under 10'],['d25','10 to 25'],['d50','25 to 50'],['more','More than 50']]},
+  {id:'who',q:'Who answers them?',opts:[['me','I do'],['split','I split them'],['else','Someone else'],['sit','They sit']]},
+  {id:'qhow',q:'How do quotes and estimates get made?',opts:[['notes','Typed up from notes'],['sheet','A spreadsheet'],['tool','Jobber, Housecall Pro, or ServiceTitan'],['else','Someone else writes them']]},
+  {id:'qtime',q:'How long does each one take?',opts:[['m15','Under 15 minutes'],['m30','15 to 30 minutes'],['m60','30 to 60 minutes'],['over','Over an hour']]},
+  {id:'follow',q:'What happens when a quote goes quiet?',opts:[['every','We follow up every time'],['some','Sometimes'],['rare','Rarely'],['never','We don\'t']]},
+  {id:'sched',q:'How does scheduling work?',opts:[['texts','I juggle the texts'],['cal','A shared calendar'],['else','Someone else books it'],['mess','Calls and texts, mixed']]},
+  {id:'admin',q:'Hours a week on other paperwork?',opts:[['u2','Under 2'],['h5','2 to 5'],['h10','5 to 10'],['more','More than 10']]},
+  {id:'files',q:'Where do job photos and files live?',opts:[['roll','Camera roll and texts'],['one','One folder on a computer'],['job','A folder per job'],['drive','A shared drive the crew uses']]},
+  {id:'rate',q:'Which number should we use?',rate:true},
+  {id:'sink',q:'Where does the most time go?',opts:[['email','Email'],['quotes','Writing quotes'],['follow','Following up'],['sched','Scheduling'],['paper','Paperwork and files']]}
+];
+const NQ=QQ.length;
+let qi=0, QA={}, lead=null, sent=false, TR=null;
+const tq=$('#tq'), tqBody=$('#tqBody'), tqBar=$('#tqBar'), tqCount=$('#tqCount'), tqNav=$('#tqNav'), tqBack=$('#tqBack'), tqNext=$('#tqNext');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function openQuiz(){tq.hidden=false;document.documentElement.style.overflow='hidden';if(qi>NQ)qi=0;drawQ();setTimeout(()=>$('#tqX').focus(),30)}
+function closeQuiz(){tq.hidden=true;document.documentElement.style.overflow=''}
+document.querySelectorAll('[data-quiz]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openQuiz()}));
+$('#tqX').addEventListener('click',closeQuiz);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!tq.hidden)closeQuiz()});
+function rateOk(){return QA.rateKind&&QA.rate}
+function stepOk(){const q=QQ[qi];if(!q)return true;if(q.rate)return rateOk();return !!QA[q.id]}
+function drawQ(){
+  tqNav.hidden=false;
+  tqNext.hidden=qi>=NQ;
+  tqBack.disabled=qi===0;
+  const p=Math.min(qi,NQ)/NQ;
+  tqBar.style.width=(p*100)+'%';
+  tqCount.textContent=qi<NQ?(qi+1)+' / '+NQ:'Your week';
+  if(qi>=NQ){drawResults();return}
+  const q=QQ[qi];
+  let h='<div class="tq-k" id="tqTitle">How much time is busy work costing you?</div><h2 class="tq-q">'+q.q+'</h2>';
+  if(q.rate){
+    const bill=QA.rateKind==='bill', wage=QA.rateKind==='wage';
+    const chips=bill?[['r75','$75'],['r100','$100'],['r135','$135'],['r175','$175'],['r200','$200']]:wage?[['w18','$18'],['w20','$20'],['w25','$25'],['w30','$30']]:[];
+    h+='<div class="tq-opts" role="radiogroup">'+[['bill','My billable rate'],['wage','An assistant\'s wage']].map(o=>'<button type="button" class="tq-o" data-k="rateKind" data-v="'+o[0]+'" role="radio" aria-checked="'+(QA.rateKind===o[0]?'true':'false')+'"><span class="bx"></span>'+o[1]+'</button>').join('')+'</div>';
+    if(chips.length)h+='<div class="tq-opts" role="radiogroup" style="margin-top:14px">'+chips.map(o=>'<button type="button" class="tq-o" data-k="rate" data-v="'+o[0]+'" role="radio" aria-checked="'+(QA.rate===o[0]?'true':'false')+'"><span class="bx"></span>'+o[1]+'</button>').join('')+'</div>';
+  }else{
+    h+='<div class="tq-opts" role="radiogroup">'+q.opts.map(o=>'<button type="button" class="tq-o" data-v="'+o[0]+'" role="radio" aria-checked="'+(QA[q.id]===o[0]?'true':'false')+'"><span class="bx"></span>'+o[1]+'</button>').join('')+'</div>';
+  }
+  h+='<div class="tq-err" id="tqErr"></div>';
+  tqBody.innerHTML=h;
+  tqNext.textContent=qi===NQ-1?'See my week':'Next';
+  tqBody.querySelectorAll('.tq-o').forEach(b=>b.addEventListener('click',()=>{
+    if(q.rate){
+      const k=b.dataset.k;
+      if(k==='rateKind'&&QA.rateKind!==b.dataset.v)QA.rate='';
+      QA[k]=b.dataset.v;
+      drawQ();
+      if(rateOk())setTimeout(()=>{if(QQ[qi]&&QQ[qi].rate)goQ(1)},240);
+      return;
+    }
+    QA[q.id]=b.dataset.v;
+    tqBody.querySelectorAll('.tq-o').forEach(x=>x.setAttribute('aria-checked',x===b?'true':'false'));
+    setTimeout(()=>{if(QQ[qi]===q)goQ(1)},220);
+  }));
+}
+function goQ(d){
+  if(d>0&&qi<NQ&&!stepOk()){const e=$('#tqErr');if(e)e.textContent='Tap an answer to keep going.';return}
+  qi=Math.max(0,qi+d);
+  drawQ();
+  tqBody.scrollTop=0;
+}
+tqBack.addEventListener('click',()=>goQ(-1));
+tqNext.addEventListener('click',()=>goQ(1));
+function hoursModel(a){
+  const emailBase={u10:2,d25:5,d50:8,more:11}[a.emails]||5;
+  const who={me:1,split:.65,else:.4,sit:1}[a.who]||1;
+  const perWeek={solo:5,small:8,mid:14,big:20}[a.team]||8;
+  const each={m15:.25,m30:.45,m60:.8,over:1.35}[a.qtime]||.5;
+  const how={notes:1.1,sheet:1,tool:.7,else:.4}[a.qhow]||1;
+  const follow={every:Math.max(1.2,perWeek*.12),some:Math.max(.8,perWeek*.07),rare:.5,never:.3}[a.follow]||.8;
+  const sched={texts:2.5,cal:1,else:.5,mess:3.2}[a.sched]||2;
+  const files={roll:1.8,one:1,job:.4,drive:.3}[a.files]||1;
+  const other={u2:.5,h5:1.5,h10:3,more:5}[a.admin]||2;
+  const whole=n=>Math.max(1,Math.round(n));
+  const email=whole(emailBase*who), quotes=whole(perWeek*each*how+follow), paper=whole(sched+files+other);
+  const rate=a.rateKind==='wage'?({w18:18,w20:20,w25:25,w30:30}[a.rate]||20):({r75:75,r100:100,r135:135,r175:175,r200:200}[a.rate]||135);
+  const total=email+quotes+paper;
+  return {email,quotes,paper,total,rate,year:Math.round(total*rate*52),high:total>=8};
+}
+function moneyTxt(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function taskList(a,h){
+  const bump={email:0,quotes:0,follow:0,sched:0,paper:0};
+  if(bump[a.sink]!=null)bump[a.sink]=3;
+  return [
+    {hrs:h.email+bump.email,t:'Email replies drafted in your voice.',d:'You read each one and tap send. Nothing goes out until you say so.'},
+    {hrs:h.quotes+bump.quotes,t:'Same-day estimates from the photos you already take.',d:'Your prices, your line items, your logo. You approve it before it goes to the customer.'},
+    {hrs:h.quotes*.4+bump.follow,t:'A follow-up on every quiet quote.',d:'A short note on day 2, day 5, and day 10. It stops when they reply.'},
+    {hrs:h.paper*.45+bump.sched,t:'Missed calls get a text back with times to book.',d:'Same number. A short text while you are on a job.'},
+    {hrs:h.paper+bump.paper,t:'Job photos and notes stay with the job.',d:'Not a camera roll you scroll at night.'},
+    {hrs:1,t:'Your customer list, in one place.',d:'Names and numbers from your phone, cleaned up.'}
+  ].sort((x,y)=>y.hrs-x.hrs);
+}
+function liTask(x){return '<li><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></li>'}
+function drawResults(){
+  TR=hoursModel(QA);
+  const tasks=taskList(QA,TR), open=tasks.slice(0,3), locked=tasks.slice(3);
+  const have=lead&&lead.email&&lead.business&&lead.name;
+  const mail=have
+    ? '<button class="btn gr" type="button" id="tqEmail">Email me my full report</button>'
+    : '<form class="tq-form" id="tqMail"><input id="tN" autocomplete="name" placeholder="Name" aria-label="Name" value="'+esc(lead&&lead.name||'')+'"><input id="tB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc(lead&&lead.business||'')+'"><input id="tE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc(lead&&lead.email||'')+'"><button class="btn gr" type="submit" id="tqEmail">Email me my full report</button></form>';
+  tqBody.innerHTML='<div class="tq-k" id="tqTitle">How much time is busy work costing you?</div>'+
+    '<div class="tq-hours'+(TR.high?' tq-hot':'')+'">'+TR.total+'<span>hrs / week</span></div>'+
+    '<div class="tq-year">'+moneyTxt(TR.year)+'<span>per year · estimate</span></div>'+
+    '<p class="tq-insight">About '+TR.total+' hours a week goes to email, quotes, and paperwork. At '+moneyTxt(TR.rate)+' an hour, that is about '+moneyTxt(TR.year)+' a year.</p>'+
+    '<h3 class="tq-h">Off your plate.</h3><ul class="tq-task">'+open.map(liTask).join('')+'</ul>'+
+    '<div class="tq-lock"><ul class="tq-task">'+locked.map(liTask).join('')+'</ul><div class="tq-locktag">The rest is in your full report</div></div>'+
+    '<div class="tq-ctas">'+mail+'<button class="tq-print" type="button" id="tqPrint">Printer-friendly version</button><p class="tq-note" id="tqNote">Your full report downloads to this device.</p><a class="btn bw" href="tel:+19348990796">Book a free 15-min call <span class="ar">→</span></a></div>'+
+    '<div class="tq-err" id="tqErr"></div><p class="tq-note" id="tqSent"></p>';
+  const form=$('#tqMail');
+  if(form)form.addEventListener('submit',e=>doReport(e,'dark'));
+  else $('#tqEmail').addEventListener('click',e=>doReport(e,'dark'));
+  $('#tqPrint').addEventListener('click',e=>doReport(e,'light'));
+}
+function fileName(print){const s=String((lead&&lead.business)||'time').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'time';return 'MORE-time-snapshot-'+s+(print?'-print':'')+'.pdf'}
+function answerLabel(id){const q=QQ.find(x=>x.id===id);if(!q||!q.opts)return QA[id]||'';const hit=q.opts.find(o=>o[0]===QA[id]);return hit?hit[1]:(QA[id]||'')}
+function doReport(e, theme){
+  if(e)e.preventDefault();
+  const print=theme==='light';
+  const nEl=$('#tN'), bEl=$('#tB'), eEl=$('#tE');
+  if(nEl||bEl||eEl){
+    const n=(nEl?nEl.value:'').trim(), b=(bEl?bEl.value:'').trim(), em=(eEl?eEl.value:'').trim();
+    const er=$('#tqErr');
+    if(!n||!b){if(er)er.textContent='Add your name and business.';return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){if(er)er.textContent='Add your email.';return}
+    lead={name:n,business:b,email:em};
+  }
+  const btn=$('#tqEmail'), link=$('#tqPrint');
+  if(print){if(link){link.disabled=true;link.textContent='Building the printer-friendly version...'}}
+  else if(btn){btn.disabled=true;btn.textContent='Building your report...'}
+  if(!sent)sendLead();
+  buildPdf(print?'light':'dark').then(blob=>{
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=fileName(print);
+    document.body.appendChild(a);a.click();a.remove();
+    if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+    if(link){link.disabled=false;link.textContent='Printer-friendly version'}
+    const note=$('#tqNote');
+    if(note)note.textContent=print?'Printer-friendly report downloaded.':'Report downloaded. Seth has your answers too.';
+  }).catch(()=>{
+    if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
+    if(link){link.disabled=false;link.textContent='Printer-friendly version'}
+    const note=$('#tqNote');
+    if(note)note.textContent='Could not build the report in this browser. Text 934-899-0796.';
+  });
+}
+function sendLead(){
+  if(sent||!lead)return;
+  sent=true;
+  const r=TR||hoursModel(QA);
+  const payload={_subject:'Time snapshot '+r.total+' hrs: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,email:lead.email,
+    hours:r.total+' hrs/week',year:moneyTxt(r.year)+'/year estimate',rate:moneyTxt(r.rate)+'/hr',
+    trade:answerLabel('trade'),team:answerLabel('team'),emails:answerLabel('emails'),who_answers:answerLabel('who'),
+    quotes:answerLabel('qhow'),quote_time:answerLabel('qtime'),followup:answerLabel('follow'),scheduling:answerLabel('sched'),
+    paperwork:answerLabel('admin'),files:answerLabel('files'),biggest_sink:answerLabel('sink'),source:'sethquest.com/time-is-money quiz'};
+  const el=()=>$('#tqSent');
+  fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(x=>{if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your answers.'})
+    .catch(()=>{if(el())el().textContent='Could not send your copy to Seth. Text or call 934-899-0796.'});
+}
+function loadReport(){
+  if(window.MORETime)return Promise.resolve(window.MORETime);
+  return new Promise((ok,bad)=>{
+    const s=document.createElement('script');
+    s.src='/time-is-money/report-pdf.js';
+    s.onload=()=>window.MORETime?ok(window.MORETime):bad(new Error('pdf'));
+    s.onerror=()=>bad(new Error('pdf'));
+    document.head.appendChild(s);
+  });
+}
+function buildPdf(theme){
+  return loadReport().then(api=>api.toBlob({
+    business:(lead&&lead.business)||'Your business',
+    name:(lead&&lead.name)||'',
+    dateLabel:new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
+    answers:QA,
+    theme:theme||'dark'
+  }));
+}
 </script>
 </body></html>
