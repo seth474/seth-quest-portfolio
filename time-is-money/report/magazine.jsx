@@ -217,7 +217,7 @@ function SectionPage({ m, row, page, theme, fixes }) {
         <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 3 }}>{row.hours} hours × {m.rateLabel} × 52 weeks. Estimate.</Text>
       </View>
       <View style={{ marginTop: 12 }}>
-        <Label theme={theme}>What the One-Week AI Setup handles</Label>
+        <Label theme={theme}>What one AI agent can take on</Label>
         {fixes.map(function (fix) {
           return <Check key={fix.t} title={fix.t} detail={fix.d} theme={theme} />;
         })}
@@ -229,14 +229,14 @@ function SectionPage({ m, row, page, theme, fixes }) {
 function Summary({ m, theme }) {
   return (
     <Sheet theme={theme} page={5}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: theme.ink }}>One week. Then it is yours.</Text>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Done for you. One AI agent built into your workflow in one week.</Text>
       <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
       <View style={{ marginTop: 10, backgroundColor: theme.block, padding: 12 }}>
         <Label theme={theme}>The one-week plan</Label>
         {m.plan.map(function (step) {
           return (
             <View key={step.day} style={{ flexDirection: 'row', marginBottom: 7 }}>
-              <Text style={{ width: 70, fontFamily: 'Inter', fontWeight: 800, fontSize: 9, color: theme.ink }}>{step.day}</Text>
+              <Text style={{ width: 78, fontFamily: 'Inter', fontWeight: 800, fontSize: 9, color: theme.ink }}>{step.day}</Text>
               <View style={{ flex: 1 }}>
                 <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 10, color: theme.ink }}>{step.t}</Text>
                 <Text style={{ fontFamily: 'Inter', fontSize: 8, lineHeight: 1.3, color: theme.muted, marginTop: 1 }}>{step.d}</Text>
@@ -252,11 +252,11 @@ function Summary({ m, theme }) {
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.kickoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Day 1 · to kick off · non-refundable</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>To kick off · non-refundable</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.handoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Day 5 · handoff</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Handoff · end of the week</Text>
         </View>
       </View>
       <View style={{ marginTop: 12, paddingTop: 8 }}>

@@ -154,7 +154,7 @@ function buildModel(input) {
       email: [
         { t: 'Reply drafts in your voice.', d: 'The right price, the right date, the right next step. You tap send.' },
         { t: 'Nothing goes out without you.', d: 'You read it first. Customers hear back the same day.' },
-        { t: 'An hour a day back.', d: 'The inbox stops being the night shift.' }
+        { t: 'Reply drafts waiting in the inbox.', d: 'You read each one and tap send.' }
       ],
       quotes: [
         { t: 'Same-day estimates from phone photos.', d: 'Your prices and your line items. You approve before it goes out.' },
@@ -168,11 +168,9 @@ function buildModel(input) {
       ]
     },
     plan: [
-      { day: 'Day 1', t: 'Kickoff', d: 'Two hours at your table. $1,000 to kick off. Non-refundable. AI and automation start on your real work.' },
-      { day: 'Day 2', t: 'Email replies', d: 'AI drafts replies in your voice. You read each one and tap send.' },
-      { day: 'Day 3', t: 'Quotes from photos', d: 'Quotes from field-note photos, tested on real jobs.' },
-      { day: 'Day 4', t: 'Paperwork and files', d: 'Photos, notes, and files stay with the job.' },
-      { day: 'Day 5', t: 'Handoff', d: 'You run every piece while I watch. $1,400 due. 30 days of text support after that.' }
+      { day: 'Kickoff', t: 'Choose what to set up', d: 'A kickoff call. $1,000 to kick off. Non-refundable.' },
+      { day: 'The week', t: 'One AI agent', d: 'I build one AI agent into your workflow during the week.' },
+      { day: 'Handoff', t: 'End of the week', d: 'Handoff at the end of the week, and it is done. $1,400 due.' }
     ],
     price: '$2,400',
     kickoff: '$1,000',
