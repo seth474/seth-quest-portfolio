@@ -45,6 +45,36 @@
     if (n === null || !Number.isFinite(n)) return '\u2014';
     return (Math.round(n * 10) / 10).toFixed(1) + ' : 1';
   }
+  var UNIT_DEFAULT = {
+    minutesPerDelivery: 'minutes',
+    quoteMake: 'minutes',
+    quoteReach: 'days',
+    responsePhone: 'minutes',
+    responseVoicemail: 'minutes',
+    responseEmail: 'hours',
+    responseWeb: 'minutes'
+  };
+  function hoursOf(v, id) {
+    var n = num(v[id]);
+    if (n === null) return null;
+    var unit = v[id + 'Unit'] || UNIT_DEFAULT[id] || 'minutes';
+    if (unit === 'days') return n * 24;
+    if (unit === 'hours') return n;
+    return n / 60;
+  }
+  function amountLabel(n, unit) {
+    if (n === null || !Number.isFinite(n)) return '\u2014';
+    var rounded = Math.round(n * 10) / 10;
+    var text = rounded % 1 === 0 ? String(rounded) : rounded.toFixed(1);
+    var word = unit === 'days' ? 'day' : unit === 'hours' ? 'hour' : 'minute';
+    return text + ' ' + word + (rounded === 1 ? '' : 's');
+  }
+  function hoursLabel(n) {
+    if (n === null || !Number.isFinite(n)) return '\u2014';
+    var rounded = Math.round(n * 10) / 10;
+    var text = rounded % 1 === 0 ? String(rounded) : rounded.toFixed(1);
+    return text + (rounded === 1 ? ' hour' : ' hours');
+  }
 
   window.SNAPSHOT = {
     storageKey: 'sq-snapshot-east-end-fuel',
@@ -107,17 +137,32 @@
         id: 'trip',
         kicker: '4 \u00b7 Cost per trip',
         title: 'What a delivery really costs',
-        lede: 'Driver time includes the drive. Truck cost is fuel and the rest of the mile.',
+        lede: 'Driver time includes the drive. Pick minutes, hours, or days. Truck cost is fuel and the rest of the mile.',
         fields: [
           { id: 'driverWage', label: 'Driver hourly wage', type: 'number', min: 0, step: 0.01 },
-          { id: 'minutesPerDelivery', label: 'Minutes per delivery, including the drive', type: 'number', min: 0, step: 1 },
+          { id: 'minutesPerDelivery', label: 'Time per delivery, including the drive', type: 'duration', unit: 'minutes', legacyUnit: 'minutes', goalHours: 0.5, goalLabel: '30 minutes', weekly: 'deliveries' },
           { id: 'costPerMile', label: 'Truck cost per mile', type: 'number', min: 0, step: 0.01 },
           { id: 'milesPerTrip', label: 'Miles per trip', type: 'number', min: 0, step: 0.1 }
         ]
       },
       {
+        id: 'time',
+        kicker: '5 \u00b7 Time',
+        title: 'How long things take',
+        lede: 'A number and a unit. The snapshot turns minutes, hours, and days into hours.',
+        fields: [
+          { id: 'quoteMake', label: 'How long does it take to make a quote?', type: 'duration', unit: 'minutes', goalHours: 0.5, goalLabel: '30 minutes', weekly: 'newCustomers' },
+          { id: 'quoteReach', label: 'How long until the quote reaches the customer?', type: 'duration', unit: 'days', goalHours: 24, goalLabel: 'Same day', weekly: 'newCustomers' },
+          { id: 'responsePhone', label: 'Response time to a phone call', type: 'duration', unit: 'minutes', goalHours: 0.25, goalLabel: '15 minutes', weekly: 'inquiries' },
+          { id: 'responseVoicemail', label: 'Response time to a voicemail', type: 'duration', unit: 'minutes', goalHours: 1, goalLabel: '1 hour', weekly: 'inquiries' },
+          { id: 'responseEmail', label: 'Response time to an email', type: 'duration', unit: 'hours', goalHours: 24, goalLabel: 'Same day', weekly: 'inquiries' },
+          { id: 'responseWeb', label: 'Response time to a web form', type: 'duration', unit: 'minutes', goalHours: 1, goalLabel: '1 hour', weekly: 'inquiries' },
+          { id: 'inquiriesPerWeek', label: 'Customer inquiries a week', type: 'number', min: 0, step: 1 }
+        ]
+      },
+      {
         id: 'marketing',
-        kicker: '5 \u00b7 Marketing',
+        kicker: '6 \u00b7 Marketing',
         title: 'Spend and where customers come from',
         lede: 'Monthly numbers. A channel with spend and no new customers has no CAC yet.',
         fields: [
@@ -134,7 +179,7 @@
       },
       {
         id: 'lifetime',
-        kicker: '6 \u00b7 Lifetime',
+        kicker: '7 \u00b7 Lifetime',
         title: 'How long a customer stays',
         lede: 'Lifetime value is true profit per delivery, times deliveries a year, times years.',
         fields: [
@@ -153,7 +198,7 @@
       var price = num(v.pricePerGallon);
       var cost = num(v.costPerGallon);
       var wage = num(v.driverWage);
-      var minutes = num(v.minutesPerDelivery);
+      var deliveryHours = hoursOf(v, 'minutesPerDelivery');
       var perMile = num(v.costPerMile);
       var miles = num(v.milesPerTrip);
       var years = num(v.yearsStay);
@@ -161,7 +206,7 @@
 
       var marginGal = ready([price, cost]) ? price - cost : null;
       var grossDelivery = ready([marginGal, gallons]) ? marginGal * gallons : null;
-      var labor = ready([wage, minutes]) ? wage * (minutes / 60) : null;
+      var labor = ready([wage, deliveryHours]) ? wage * deliveryHours : null;
       var truck = ready([perMile, miles]) ? perMile * miles : null;
       var tripCost = ready([labor, truck]) ? labor + truck : null;
       var profitDel = ready([grossDelivery, tripCost]) ? grossDelivery - tripCost : null;
@@ -284,6 +329,44 @@
       var scenarioCac = expect ? scenarioSpend / expect : null;
       var scenarioRatio = (ltv !== null && scenarioCac) ? ltv / scenarioCac : null;
 
+      var deliveriesPerWeek = ready([activeNow, deliveries]) ? (activeNow * deliveries) / 52 : null;
+      var quotesPerWeek = newPerYear === null ? null : newPerYear / 52;
+      var inquiries = num(v.inquiriesPerWeek);
+      var durationFields = [];
+      this.sections.forEach(function (section) {
+        section.fields.forEach(function (field) {
+          if (field.type === 'duration') durationFields.push(field);
+        });
+      });
+      var responseFilled = durationFields.filter(function (field) {
+        return field.weekly === 'inquiries' && hoursOf(v, field.id) !== null;
+      }).length;
+      var inquiryShare = (inquiries !== null && responseFilled > 0) ? inquiries / responseFilled : null;
+      var timeRows = [];
+      var savedSum = 0;
+      var savedAny = false;
+      durationFields.forEach(function (field) {
+        var amount = num(v[field.id]);
+        var unit = v[field.id + 'Unit'] || UNIT_DEFAULT[field.id] || 'minutes';
+        var current = hoursOf(v, field.id);
+        var perWeek = null;
+        if (field.weekly === 'deliveries') perWeek = deliveriesPerWeek;
+        else if (field.weekly === 'newCustomers') perWeek = quotesPerWeek;
+        else if (field.weekly === 'inquiries') perWeek = inquiryShare;
+        var saved = null;
+        if (current !== null && perWeek !== null) {
+          saved = Math.max(0, current - field.goalHours) * perWeek;
+          savedSum += saved;
+          savedAny = true;
+        }
+        timeRows.push({
+          label: field.label,
+          now: amountLabel(amount, unit),
+          goal: field.goalLabel,
+          saved: saved === null ? '\u2014' : hoursLabel(saved)
+        });
+      });
+
       var maxBar = Math.max(active3 || 0, active1 || 0, activeNow || 0, 1);
       var bars = [
         { label: '3 years ago', value: active3, height: active3 === null ? 0 : Math.max(4, (active3 / maxBar) * 100) },
@@ -295,6 +378,11 @@
         ratioState: ratioState,
         channels: channelRows,
         bars: bars,
+        time: {
+          rows: timeRows,
+          total: savedAny ? hoursLabel(savedSum) : '\u2014',
+          note: 'Delivery time uses the route, spread across 52 weeks. Quote time uses new customers a year. Response time splits the weekly inquiries across the channels you filled in. A time already at its goal saves nothing.'
+        },
         text: {
           growthLine: growthLine,
           threeLine: threeLine,
