@@ -229,7 +229,7 @@ function SectionPage({ m, row, page, theme, fixes }) {
 function Summary({ m, theme }) {
   return (
     <Sheet theme={theme} page={5}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Done for you. One AI agent built into your workflow in one week.</Text>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Done with you, one on one with the founder.</Text>
       <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
       <View style={{ marginTop: 10, backgroundColor: theme.block, padding: 12 }}>
         <Label theme={theme}>The one-week plan</Label>
@@ -252,11 +252,11 @@ function Summary({ m, theme }) {
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.kickoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>To kick off · non-refundable</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>$1,000 kickoff · non-refundable</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.handoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Handoff · end of the week</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>$1,400 at handoff</Text>
         </View>
       </View>
       <View style={{ marginTop: 12, paddingTop: 8 }}>
