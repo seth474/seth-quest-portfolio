@@ -241,6 +241,12 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 .tq-print{justify-self:start;background:none;border:0;padding:0;color:#9aa0a8;font:600 13px "Inter Tight",Inter,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .tq-print:disabled{opacity:.5}
 .tq-note{color:#9aa0a8;font-size:13px;margin-top:4px}
+.beats{list-style:none;display:grid;margin:8px 0 56px;border-top:1px solid #ffffff18}
+.beats li{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:22px 0;border-bottom:1px solid #ffffff18}
+.beats b{font-size:28px;font-weight:900;color:var(--g);letter-spacing:-.04em}
+.beats h3{font-size:clamp(26px,3vw,34px);margin-bottom:6px}
+.beats p{color:#b7bcc3;font-size:17px;max-width:68ch}
+.howprice{margin-top:48px}
 </style></head><body>
 
 <nav id="nav"><div class="w"><a href="#" class="logo">MORE<span>.</span></a><a class="btn gr" href="tel:+19348990796">Book a free 15-min call</a></div></nav>
@@ -268,11 +274,16 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 </div>
 </header>
 
-<section class="dark" id="problem" style="padding-top:20px"><div class="w">
-<div class="head rv"><span class="eyebrow">The problem</span><h2>The week disappears into the office.</h2><p style="color:#b7bcc3">Quotes typed up at night. Email waiting until you get home. Photos stuck in a camera roll. Scheduling as a string of texts. That work is real, and it comes out of hours you could bill. One agent takes one of those jobs. It does not take all of them.</p></div>
-</div></section>
-
-<section id="math"><div class="w">
+<section class="dark" id="story" style="padding-top:20px"><div class="w">
+<div class="head rv"><span class="eyebrow">The week</span><h2>The week disappears into the office.</h2><p style="color:#b7bcc3">Quotes typed up at night. Email waiting until you get home. Photos stuck in a camera roll. Scheduling as a string of texts. One agent takes one of those jobs. It does not take all of them.</p></div>
+<ol class="beats rv">
+<li><b>1</b><div><h3>Email waits.</h3><p>It sits until you get home.</p></div></li>
+<li><b>2</b><div><h3>Quotes get typed at night.</h3><p>Photos and notes from the job, then an estimate you still have to write.</p></div></li>
+<li><b>3</b><div><h3>Files are scattered.</h3><p>A camera roll, a text thread, a folder on one computer.</p></div></li>
+<li><b>4</b><div><h3>One agent takes one job.</h3><p>The audit picks the workflow that costs the most time.</p></div></li>
+<li><b>5</b><div><h3>The rest stays.</h3><p>A second agent is additional work.</p></div></li>
+</ol>
+<div id="math">
 <div class="head rv"><span class="eyebrow">Your numbers</span><h2>Put in your own rate.</h2><p>Move the sliders. The dollars are an estimate from the rate and the hours you enter. They are not a promise.</p></div>
 <div class="calc rv">
 <div class="in">
@@ -288,6 +299,7 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 <div><span class="eyebrow" id="outLab">Estimate for a year</span><div class="big" id="yr">$70,200</div></div>
 <div class="rows"><div><span>Every week</span><b id="wk">$1,350</b></div><div><span>Every month</span><b id="mo">$5,850</b></div><div><span>One-Week AI Setup</span><b>$2,400 once</b></div></div>
 <p class="note">Estimates, not promises. Hours times your rate, times 52 weeks.</p>
+</div>
 </div>
 </div>
 </div></section>
@@ -308,6 +320,15 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 <div class="rv d1"><span class="d">2</span><h4>The week</h4><h5>One AI agent</h5><p>We build that one agent into the workflow with you. Email, quotes from photos, or paperwork. One of them.</p></div>
 <div class="rv d2"><span class="d">3</span><h4>Handoff</h4><h5>End of the week</h5><p>I hand it over and show you how it works. $1,400 then.</p></div>
 </div>
+<div class="price rv howprice" id="book">
+<div class="l"><span class="eyebrow">One-Week AI Setup</span><div class="amt">$2,400<span>.</span></div><p style="color:#a6acb4;font-size:18px">An audit of your workflow, then one AI agent in the place you lose the most time. One on one, in one week.</p>
+<ul><li><span>Audit of your company workflow</span><b>✓</b></li><li><span>Finds where you lose the most time</span><b>✓</b></li><li><span>One AI agent in that workflow</span><b>✓</b></li></ul>
+<a class="btn gr" href="tel:+19348990796">Book a free 15-min call <span class="ar">→</span></a></div>
+<div class="r">
+<div class="pay k"><div class="tp"><b>$1,000</b><small>Kickoff</small></div><p>Non-refundable. It starts the audit.</p></div>
+<div class="pay"><div class="tp"><b>$1,400</b><small>At handoff</small></div><p>Due when I hand it over and show you how it works.</p></div>
+<p style="color:#8a9098;font-size:14px;margin-top:10px">No long-term contract. No monthly fee to me. Any tools are in your name.</p>
+</div></div>
 </div></section>
 
 <section class="prod" id="get"><div class="w">
@@ -335,17 +356,8 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 <div class="trades rv"><span>Pool</span><span>HVAC</span><span>Plumbing</span><span>Electric</span><span>Lawn &amp; landscape</span><span>Contractors</span></div>
 </div></section>
 
-<section id="book"><div class="w">
-<div class="head rv"><span class="eyebrow">Pricing</span><h2>One price. One week.</h2></div>
-<div class="price rv">
-<div class="l"><span class="eyebrow">One-Week AI Setup</span><div class="amt">$2,400<span>.</span></div><p style="color:#a6acb4;font-size:18px">An audit of your workflow, then one AI agent in the place you lose the most time. One on one, in one week.</p>
-<ul><li><span>Audit of your company workflow</span><b>✓</b></li><li><span>Finds where you lose the most time</span><b>✓</b></li><li><span>One AI agent in that workflow</span><b>✓</b></li></ul>
-<a class="btn gr" href="tel:+19348990796">Book a free 15-min call <span class="ar">→</span></a></div>
-<div class="r">
-<div class="pay k"><div class="tp"><b>$1,000</b><small>Kickoff</small></div><p>Non-refundable. It starts the audit.</p></div>
-<div class="pay"><div class="tp"><b>$1,400</b><small>At handoff</small></div><p>Due when I hand it over and show you how it works.</p></div>
-<p style="color:#8a9098;font-size:14px;margin-top:10px">No long-term contract. No monthly fee to me. Any tools are in your name.</p>
-</div></div>
+<section class="dark" id="proof"><div class="w">
+<div class="head rv"><span class="eyebrow">Proof</span><h2>You approve what goes out.</h2><p style="color:#b7bcc3">The agent drafts the email, the estimate, or the paperwork. You send it. One workflow, in your accounts. That is the handoff.</p></div>
 </div></section>
 
 <section style="padding-top:0"><div class="w faq">
