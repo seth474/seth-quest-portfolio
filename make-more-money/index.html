@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Make More Money. — Seth Quest</title>
-<meta name="description" content="I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales. Book a free sales funnel audit.">
+<meta name="description" content="I work with Hamptons service businesses to get more jobs: fix the leaks, get more leads, close more sales. Book a free 15-minute call.">
 <meta property="og:title" content="MAKE MORE MONEY. — Seth Quest">
-<meta property="og:description" content="Get more jobs: fix the leaks, get more leads, close more sales. Book a free sales funnel audit.">
+<meta property="og:description" content="Get more jobs: fix the leaks, get more leads, close more sales. Book a free 15-minute call.">
 <meta property="og:url" content="https://sethquest.com/make-more-money">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -419,6 +419,8 @@
   @media(min-width:760px){.hgridc{grid-template-columns:repeat(3,minmax(0,1fr))}}
   .pcard{margin-top:40px;background:var(--ink);color:#f5f3ee;border-radius:20px;padding:28px 24px;display:grid;gap:20px;border-bottom:6px solid var(--gb)}
   .pcard .eyebrow{color:var(--gb)}
+  .pc-lbl{display:block;margin:0 0 14px}
+  .pc-rate{margin-top:0}
   .pc-rate{font-size:96px;line-height:.85;color:#fff}
   .pc-rate span{font-size:.4em;color:#c8c6c0}
   .pc-min{font-weight:700;font-size:18px;margin-top:6px}
@@ -427,6 +429,9 @@
   .pc-list li b{color:#fff}
   .pc-list li::before{content:"";position:absolute;left:3px;top:.38em;width:13px;height:7px;border-left:3px solid var(--gb);border-bottom:3px solid var(--gb);transform:rotate(-45deg)}
   @media(min-width:760px){.pcard{grid-template-columns:1fr 1.3fr;align-items:center;padding:40px}}
+  .bk2{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+  .bk2-s{font-size:13px;font-weight:500;opacity:.85;margin-top:3px}
+  .selflink{display:block;margin-top:12px;color:var(--green);font-weight:700;font-size:16px;text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -452,7 +457,8 @@
       </div>
       <p class="lead">I work with service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
       <div class="ctas">
-        <button class="btn p" type="button" data-book>Book a free sales funnel audit</button>
+        <button class="btn p bk2" type="button" data-book><span class="bk2-t">Book a free 15-minute call</span><span class="bk2-s">to audit your sales funnel</span></button>
+        <a class="selflink" href="#quiz" data-quiz>Or score your sales funnel yourself in 2 minutes</a>
       </div>
       <div class="vidbox">
         <div id="vid">
@@ -553,7 +559,7 @@
           <p>Starting with what brings in money fastest.</p></div></li>
       </ol>
       <div class="pcard">
-        <div class="pc-top"><div class="eyebrow">Simple pricing</div>
+        <div class="pc-top"><div class="eyebrow pc-lbl">Straightforward pricing</div>
           <div class="pc-rate d">$75<span>/hr</span></div>
           <div class="pc-min">10-hour minimum ($750)</div></div>
         <ul class="pc-list">
@@ -589,8 +595,8 @@
       <div class="guar">
         <span class="gi" aria-hidden="true">✓</span>
         <div>
-          <h2 class="d">Guaranteed to improve your sales funnel, or you don&rsquo;t pay<span class="g">.</span></h2>
-          <p>We agree on the target in writing before we start.</p>
+          <h2 class="d">100% money-back guarantee<span class="g">.</span></h2>
+          <p>If you don&rsquo;t feel you got $750 of value, you get 100% of your money back.</p>
         </div>
       </div>
     </div>
@@ -671,7 +677,7 @@
 <div class="modal" id="book" hidden role="dialog" aria-modal="true" aria-labelledby="bkT">
   <div class="mc">
     <button class="mx" type="button" id="bkX" aria-label="Close">×</button>
-    <div class="d" id="bkT">Book a free sales funnel audit<span class="g">.</span></div>
+    <div class="d" id="bkT">Book a free 15-minute call<span class="g">.</span></div>
     <div class="two">
       <a class="btn p" href="sms:+19348990796?&amp;body=Hey%20Seth%2C%20I%27d%20like%20a%20free%20sales%20funnel%20audit.%20My%20business%20is%3A%20">💬 Text Seth</a>
       <a class="btn o" href="tel:+19348990796">📞 Call Seth</a>
@@ -959,7 +965,7 @@
         else{A[q.id]=v;body.querySelectorAll('.qz-o').forEach(function(x){x.setAttribute('aria-checked',x===b)});setTimeout(function(){if(Q[i]===q)go(1)},260)}})});
     } else if(i===N){
       body.innerHTML='<div class="qz-k">Last step</div><h2 class="qz-q" id="qzT">See your score.</h2><p class="qz-h">Your score shows up right after this. I&rsquo;ll get a copy too, so I can walk you through it if you want.</p>'+
-        '<form class="qz-gate" id="qzGate" novalidate><input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="'+esc((lead&&lead.name)||'')+'"><input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc((lead&&lead.business)||'')+'"><input class="fld" id="gP" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone" value="'+esc((lead&&lead.phone)||'')+'">'+
+        '<form class="qz-gate" id="qzGate" novalidate><input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="'+esc((lead&&lead.name)||'')+'"><input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc((lead&&lead.business)||'')+'"><input class="fld" id="gP" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone" value="'+esc((lead&&lead.phone)||'')+'"><input class="fld" id="gE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc((lead&&lead.email)||'')+'">'+
         '<div class="qz-err" id="qzErr"></div><p class="qz-fine">No spam. No sales pitch you didn&rsquo;t ask for.</p></form>';
       next.textContent='Show my score';
       document.getElementById('qzGate').addEventListener('submit',function(e){e.preventDefault();go(1)});
@@ -969,10 +975,11 @@
   function go(d){
     if(d>0){
       if(i<N&&!answered(Q[i])){err(Q[i].type==='select'?'Pick one to keep going.':'Pick an answer to keep going.');return}
-      if(i===N){var n=document.getElementById('gN').value.trim(),b=document.getElementById('gB').value.trim(),p=document.getElementById('gP').value.trim(),pd=p.replace(/[^0-9]/g,'');
-        lead={name:n,business:b,phone:p};
+      if(i===N){var n=document.getElementById('gN').value.trim(),b=document.getElementById('gB').value.trim(),p=document.getElementById('gP').value.trim(),pd=p.replace(/[^0-9]/g,''),em=document.getElementById('gE').value.trim();
+        lead={name:n,business:b,phone:p,email:em};
         if(!n||!b){err('Add your first name and business.');return}
         if(!/^[0-9+().\-\s]+$/.test(p)||!(pd.length===10||(pd.length===11&&pd[0]==='1'))){err('Add a cell number (10 digits).');return}
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){err('Add your email.');return}
         i++;render();send();body.scrollTop=0;return}
     }
     i=Math.max(0,i+d);render();body.scrollTop=0;
@@ -1021,7 +1028,7 @@
       '<div class="qr-parts"><div class="qr-p'+(R.leaks<35?' lo':'')+'"><div class="row"><span>Leaks</span><span>'+R.leaks+' / 50</span></div><div class="meter"><i style="width:'+(R.leaks*2)+'%"></i></div></div>'+
       '<div class="qr-p'+(R.flow<25?' lo':'')+'"><div class="row"><span>Lead flow</span><span>'+R.flow+' / 50</span></div><div class="meter"><i style="width:'+(R.flow*2)+'%"></i></div></div></div>'+
       '<h3 class="qr-h">Fix the leaks<span class="g">.</span></h3>'+list(R.fl)+'<h3 class="qr-h">Fill the funnel<span class="g">.</span></h3>'+list(R.ff)+
-      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook">Book a free sales funnel audit</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
+      '<div class="qr-ctas"><button class="btn p" type="button" id="qrBook">Book a free 15-minute call</button><button class="btn o" type="button" id="qrPrint">Download or print my report</button></div>'+
       '<p class="qr-print-only" style="margin-top:20px">Free 15-minute sales funnel audit: text or call Seth at 934-899-0796 &middot; sethquest.com/make-more-money</p>'+
       '<p class="qr-sent" id="qrSent"></p></div>';
     document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
@@ -1041,14 +1048,14 @@
     return L.join('\n');
   }
   function reportLink(){
-    var data={v:1,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone},a:A};
+    var data={v:1,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone,e:lead.email},a:A};
     var b64=btoa(unescape(encodeURIComponent(JSON.stringify(data)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
     var base=/(^|\.)sethquest\.com$/.test(location.hostname)?'https://sethquest.com/make-more-money/report':location.origin+'/make-more-money/report.html';
     return base+'#'+b64;
   }
   function send(){
     var r=score(),ans={};Q.forEach(function(q){ans[q.id]=answerOf(q)});
-    var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,
+    var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,email:lead.email,
       score:r.total+'/100',leaks:r.leaks+'/50',lead_flow:r.flow+'/50','View full report':reportLink(),Report:reportText(r),source:'sethquest.com/make-more-money quiz'},ans);
     var el=function(){return document.getElementById('qrSent')};
     fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
