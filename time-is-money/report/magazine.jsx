@@ -229,10 +229,10 @@ function SectionPage({ m, row, page, theme, fixes }) {
 function Summary({ m, theme }) {
   return (
     <Sheet theme={theme} page={5}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Done with you, one on one with the founder.</Text>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Done with you in 5 days. One on one with the founder.</Text>
       <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
       <View style={{ marginTop: 10, backgroundColor: theme.block, padding: 12 }}>
-        <Label theme={theme}>The one-week plan</Label>
+        <Label theme={theme}>The 5-day plan</Label>
         {m.plan.map(function (step) {
           return (
             <View key={step.day} style={{ flexDirection: 'row', marginBottom: 7 }}>
