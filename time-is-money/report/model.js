@@ -87,7 +87,7 @@ function tasksFor(a, h) {
     { key: 'email', hrs: h.email + bump.email, t: 'Email replies drafted in your voice.', d: 'You read each one and tap send. Nothing goes out until you say so.' },
     { key: 'quotes', hrs: h.quotes + bump.quotes, t: 'Same-day estimates from the photos you already take.', d: 'Your prices, your line items, your logo. You approve it before it goes to the customer.' },
     { key: 'follow', hrs: (h.quotes * 0.4) + bump.follow, t: 'A follow-up on every quiet quote.', d: 'A short note on day 2 and day 5. It stops when they reply.' },
-    { key: 'sched', hrs: (h.paper * 0.45) + bump.sched, t: 'Missed calls get a text back with times to book.', d: 'Same number. A short text while you are on a job.' },
+    { key: 'sched', hrs: (h.paper * 0.45) + bump.sched, t: 'Scheduling replies with real times.', d: 'Less back and forth to put a job on the board.' },
     { key: 'paper', hrs: h.paper + bump.paper, t: 'Job photos and notes stay with the job.', d: 'Not a camera roll you scroll at night.' },
     { key: 'list', hrs: 1, t: 'Your customer list, in one place.', d: 'Names and numbers from your phone, cleaned up.' }
   ];
@@ -159,7 +159,7 @@ function buildModel(input) {
       quotes: [
         { t: 'Same-day estimates from phone photos.', d: 'Your prices and your line items. You approve before it goes out.' },
         { t: 'A follow-up on day 2 and day 5.', d: 'A short note. It stops when they reply.' },
-        { t: 'Missed calls get a text back.', d: 'Same number, with times to book, while you are on a job.' }
+        { t: 'Scheduling replies with real times.', d: 'Less back and forth to put a job on the board.' }
       ],
       paper: [
         { t: 'Photos and notes stay with the job.', d: 'The estimate is built from what you already captured on site.' },

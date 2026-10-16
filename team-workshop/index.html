@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Team Workshop — Seth Quest</title>
-<meta name="description" content="Done with you in 5 days. An audit of your team's workflows, then 2–3 ways to put AI to work, set up and the team trained. Teams of 2–5. $4,800 per company.">
+<title>Team Workshop — Put AI to work across your team</title>
+<meta name="description" content="We audit your team's workflows, set up the 2–3 highest-leverage AI workflows, and train 2–5 people in three 2-hour sessions, Monday, Wednesday and Friday. $4,800 per company.">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="canonical" href="https://sethquest.com/team-workshop">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,25 +22,37 @@ a{color:inherit}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1080px;margin:0 auto;padding:22px 20px}
 .brand{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
 .hcta{font:600 14px Inter,sans-serif;text-decoration:none;border:1.5px solid var(--ink);padding:8px 12px;border-radius:999px;color:var(--ink);white-space:nowrap}
-.hero{padding:28px 0 48px}
+.hero{padding:12px 0 56px}
 .eyebrow{font:600 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-h1{font-size:clamp(52px,8vw,96px);margin:10px 0 16px;max-width:16ch}
-.lead{font-size:19px;max-width:42ch;color:#2a2a2a}
+h1{font-size:clamp(46px,6vw,78px);margin:10px 0 16px;max-width:18ch}
+.lead{font-size:19px;max-width:46ch;color:#2a2a2a}
+.fine{margin-top:12px;font-size:15px;font-weight:600;color:#5c5c5c;max-width:46ch}
 .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:999px;font:800 17px Inter,sans-serif;text-decoration:none;border:0;cursor:pointer}
 .btn.p{background:var(--ink);color:#fff}
 .btn.o{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 .btn:disabled{opacity:.55;cursor:default}
-section.pad{padding:48px 0;border-top:1px solid var(--line)}
-h2{font-size:clamp(44px,8vw,68px);margin:8px 0 16px}
-.prose{font-size:18px;color:#333;max-width:62ch}
+.hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:start}
+.agenda{display:grid;gap:12px}
+.aday{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:start}
+.aday b{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:.04em;line-height:1}
+.aday strong{display:block;font-size:16px;margin-bottom:4px}
+.aday span{color:#444;font-size:15px;font-weight:500}
+section.pad{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(42px,6vw,64px);margin:8px 0 14px}
+.prose{font-size:18px;color:#333;max-width:66ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card .n{font-family:"Bebas Neue",sans-serif;font-size:28px;color:var(--green)}
+.card h3{font-size:18px;margin:8px 0 6px}
+.card p{color:#444;font-size:15px}
 .steps{list-style:none;display:grid;gap:12px}
 .steps li{display:grid;grid-template-columns:auto 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
 .sn{width:44px;height:44px;border-radius:50%;background:var(--gb);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:26px;line-height:1;padding-top:2px}
 .daytag{font:600 12px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .steps h3{font-size:clamp(26px,3vw,34px);margin:4px 0 6px}
 .steps p{color:#444}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
 .block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
 .block h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:28px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
 .ticks{list-style:none;display:grid;gap:10px}
@@ -49,11 +61,14 @@ h2{font-size:clamp(44px,8vw,68px);margin:8px 0 16px}
 .plain{list-style:none;display:grid;gap:10px;color:#333}
 .plain li{padding-left:16px;position:relative}
 .plain li:before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:#c8c4ba}
-.pcard{margin-top:8px;background:var(--ink);color:#f5f3ee;border-radius:20px;padding:28px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;border-bottom:6px solid var(--gb)}
+.pcard{margin-top:8px;background:var(--ink);color:#f5f3ee;border-radius:20px;padding:28px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;border-bottom:6px solid var(--gb)}
 .pcard .eyebrow{color:#c8c6c0}
 .amt{font-size:clamp(72px,10vw,108px);line-height:.85;color:#fff;margin-top:6px}
 .per{color:#c8c6c0;font-weight:600;margin-top:6px}
 .pcard .btn.p{background:var(--gb);color:var(--ink)}
+.pcard ul{list-style:none;display:grid;gap:8px;max-width:420px;color:#f5f3ee}
+.pcard li{padding-left:18px;position:relative}
+.pcard li:before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--gb)}
 form{display:grid;gap:12px;max-width:560px;margin-top:8px}
 label{display:grid;gap:6px;font-weight:600;font-size:14px}
 input,select,textarea{width:100%;min-height:50px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:500 16px Inter,sans-serif;background:#fff;color:var(--ink)}
@@ -63,14 +78,23 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 .ok{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;max-width:560px}
 .ok h3{font-size:40px;margin-bottom:8px}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.faqs details{border-bottom:1px solid var(--line);padding:16px 0}
+.faqs summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faqs summary::-webkit-details-marker{display:none}
+.faqs summary:after{content:"+";font-weight:400;font-size:24px;line-height:1}
+.faqs details[open] summary:after{content:"–"}
+.faqs p{margin-top:8px;color:#444;max-width:68ch}
+.final{text-align:center}
+.final .prose{margin:0 auto 8px}
 .foot{text-align:center;padding:26px 20px 32px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);line-height:1.7}
 .foot .fl1{font-family:"Bebas Neue",sans-serif;font-size:17px;letter-spacing:.12em;color:#555}
 .foot a{color:var(--mut);text-decoration:none}
-a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+a:focus-visible,.btn:focus-visible,.hcta:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 @media(max-width:760px){
-  h1{font-size:clamp(44px,12vw,64px)}
-  .grid2{grid-template-columns:1fr}
+  h1{font-size:clamp(40px,11vw,58px)}
+  .hgrid,.cards,.grid2{grid-template-columns:1fr}
   .hcta{font-size:13px;padding:8px 10px}
+  .aday{grid-template-columns:1fr;gap:4px}
   .pcard{padding:24px 20px}
 }
 </style>
@@ -82,53 +106,70 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--i
 </header>
 <main>
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Team Workshop · $4,800 per company</p>
-      <h1 class="d">Done with you in 5 days<span class="g">.</span></h1>
-      <p class="lead">An audit of your team's workflows finds the inefficiencies across the organization. We choose 2–3 ways to put AI to work, set them up, and train the team in 5 days. Teams of 2–5. Founder optional.</p>
-      <div class="ctas">
-        <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
-        <a class="btn o" href="#fit">See if it fits</a>
+    <div class="wrap hgrid">
+      <div>
+        <p class="eyebrow">Team Workshop · $4,800 per company</p>
+        <h1 class="d">Put AI to work across your whole team in one week<span class="g">.</span></h1>
+        <p class="lead">We audit your team's workflows, find the biggest inefficiencies, set up the 2–3 highest-leverage AI workflows, and train 2–5 of your people in three 2-hour sessions, Monday, Wednesday and Friday.</p>
+        <p class="fine">Founder optional. Setup work happens between the sessions. One company, not a bundle of the other offers.</p>
+        <div class="ctas">
+          <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
+          <a class="btn o" href="#fit">See if it fits</a>
+        </div>
+      </div>
+      <div class="agenda" aria-label="Three sessions">
+        <article class="aday"><b>MON</b><div><strong>Audit the workflows.</strong><span>Two hours. Where the team loses time, across the company.</span></div></article>
+        <article class="aday"><b>WED</b><div><strong>Set up 2–3 workflows.</strong><span>Two hours. The highest-leverage ones. Not every job in the business.</span></div></article>
+        <article class="aday"><b>FRI</b><div><strong>Train and hand off.</strong><span>Two hours. 2–5 people practice, then leave with written steps.</span></div></article>
       </div>
     </div>
   </section>
 
-  <section class="pad">
+  <section class="pad" id="problem">
     <div class="wrap">
-      <p class="eyebrow">Who it's for</p>
-      <h2 class="d">2–5 people<span class="g">.</span></h2>
-      <p class="prose">For teams of 2–5 people. Founder optional. The audit looks across the organization, then we set up 2–3 ways to put AI to work and train the team. Three 2-hour sessions, Monday, Wednesday and Friday, plus setup work between.</p>
+      <p class="eyebrow">The problem</p>
+      <h2 class="d">The same work, five different ways<span class="g">.</span></h2>
+      <p class="prose">Email, quotes, files, and scheduling get done differently by every person on the crew. The week goes to the work around the work. An audit finds the biggest inefficiencies. Then we set up two or three AI workflows and train the people who will use them. Not a new system for everything.</p>
+      <div class="cards">
+        <article class="card"><div class="n">01</div><h3>Quotes and email pile up.</h3><p>Someone types them at night. Someone else never sees them. The audit shows which of those jobs is actually costing the week.</p></article>
+        <article class="card"><div class="n">02</div><h3>Files live in five places.</h3><p>Camera rolls, texts, a laptop folder, a shared drive nobody opens. The team spends time hunting, not working.</p></article>
+        <article class="card"><div class="n">03</div><h3>Two or three, then stop.</h3><p>We set up the highest-leverage workflows and train 2–5 people on those. The rest of the company stays as it is.</p></article>
+      </div>
     </div>
   </section>
 
-  <section class="pad">
+  <section class="pad" id="how">
     <div class="wrap">
-      <p class="eyebrow">5 days</p>
-      <h2 class="d">Day by day<span class="g">.</span></h2>
+      <p class="eyebrow">How it works</p>
+      <h2 class="d">Three sessions. One week<span class="g">.</span></h2>
+      <p class="prose" style="margin-bottom:18px">Monday, Wednesday, and Friday. Two hours each. Setup work continues between the sessions.</p>
       <ol class="steps">
-        <li><div class="sn">1</div><div><p class="daytag">Monday</p><h3 class="d">Audit the team's workflows.</h3><p>Two hours live. We find the inefficiencies across the organization. Setup work continues after the session.</p></div></li>
-        <li><div class="sn">2</div><div><p class="daytag">Wednesday</p><h3 class="d">Choose the 2–3 ways and set them up.</h3><p>Two hours live. The highest-leverage ways to put AI to work. Setup continues between sessions.</p></div></li>
-        <li><div class="sn">3</div><div><p class="daytag">Friday</p><h3 class="d">Train the team and hand off.</h3><p>Two hours live. The team practices the 2–3 ways, then leaves with written instructions.</p></div></li>
+        <li><div class="sn">1</div><div><p class="daytag">Monday · 2 hours</p><h3 class="d">Audit the team's workflows.</h3><p>We sit with the people who do the work and find the biggest inefficiencies. That decides the 2–3 workflows. Setup starts after the session.</p></div></li>
+        <li><div class="sn">2</div><div><p class="daytag">Wednesday · 2 hours</p><h3 class="d">Set the 2–3 workflows up.</h3><p>The highest-leverage AI workflows, built with the way your team already works. Setup continues between Wednesday and Friday.</p></div></li>
+        <li><div class="sn">3</div><div><p class="daytag">Friday · 2 hours</p><h3 class="d">Train the team and hand off.</h3><p>2–5 people practice the workflows, then leave with written instructions. Founder optional.</p></div></li>
       </ol>
     </div>
   </section>
 
-  <section class="pad">
+  <section class="pad" id="get">
     <div class="wrap">
-      <p class="eyebrow">Included</p>
-      <h2 class="d">What you leave with<span class="g">.</span></h2>
+      <p class="eyebrow">What you get</p>
+      <h2 class="d">2–3 workflows, and a trained team<span class="g">.</span></h2>
       <div class="grid2">
         <div class="block">
+          <h3>Included</h3>
           <ul class="ticks">
-            <li>A pre-workshop intake form</li>
-            <li>Reusable templates</li>
-            <li>Written workflow instructions</li>
-            <li>2 to 5 people, founder optional</li>
+            <li>An audit of the team's workflows</li>
+            <li>The 2–3 highest-leverage AI workflows, set up</li>
+            <li>Training for 2 to 5 people, founder optional</li>
+            <li>A short intake before Monday</li>
+            <li>Written steps and reusable templates</li>
           </ul>
         </div>
         <div class="block">
-          <h3>What this does not include</h3>
+          <h3>Not included</h3>
           <ul class="plain">
+            <li>Not every workflow in the company. Two or three.</li>
             <li>No software integrations.</li>
             <li>Accounts stay in your company name. Claude and Grok are on business-tier plans.</li>
             <li>No passwords, gate codes, or alarm codes.</li>
@@ -138,15 +179,21 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--i
     </div>
   </section>
 
-  <section class="pad">
+  <section class="pad" id="price">
     <div class="wrap">
-      <p class="eyebrow">Price</p>
-      <h2 class="d">Done with you in 5 days<span class="g">.</span></h2>
+      <p class="eyebrow">Pricing</p>
+      <h2 class="d">$4,800 for the company<span class="g">.</span></h2>
       <div class="pcard">
         <div>
+          <p class="eyebrow">Team Workshop</p>
           <p class="amt d">$4,800</p>
-          <p class="per">per company</p>
+          <p class="per">per company · one week</p>
         </div>
+        <ul>
+          <li>Audit, then 2–3 AI workflows</li>
+          <li>Three 2-hour sessions, Mon / Wed / Fri</li>
+          <li>2–5 people trained</li>
+        </ul>
         <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
       </div>
     </div>
@@ -154,8 +201,8 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--i
 
   <section class="pad" id="fit">
     <div class="wrap">
-      <p class="eyebrow">Five questions</p>
-      <h2 class="d">See if it fits<span class="g">.</span></h2>
+      <p class="eyebrow">See if it fits</p>
+      <h2 class="d">Five questions<span class="g">.</span></h2>
       <p class="prose" style="margin-bottom:16px">Seth reads this before a call. It takes about a minute.</p>
       <form id="fitForm">
         <label>Name<input id="fName" name="name" autocomplete="name" required></label>
@@ -181,6 +228,32 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible{outline:2px solid var(--i
         <h3 class="d">Seth has this<span class="g">.</span></h3>
         <p class="prose">If it fits, the next step is a 15-minute call.</p>
         <div class="row" style="margin-top:16px"><a class="btn p" href="tel:+19348990796">Book a free 15-min call</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="d">Questions<span class="g">.</span></h2>
+      <div class="faqs">
+        <details open><summary>Who is in the room?</summary><p>2 to 5 people. The founder can join or skip it. The sessions are for the people who will use the workflows.</p></details>
+        <details><summary>What are the three sessions?</summary><p>Monday, Wednesday, and Friday. Two hours each. Monday is the audit. Wednesday sets up the 2–3 workflows. Friday is training and handoff. Setup work happens between the sessions.</p></details>
+        <details><summary>Which workflows get set up?</summary><p>The audit picks them. Typical ones are email drafts, quotes, and how files or scheduling get handled. Two or three. Not every job in the company.</p></details>
+        <details><summary>Is this the one-person setup plus the funnel fix?</summary><p>No. This is its own offer. An audit of the team's workflows, then 2–3 AI workflows and training for 2–5 people.</p></details>
+        <details><summary>What happens on the free call?</summary><p>Fifteen minutes. We look at the team, the time drain, and whether three sessions are the right shape. You can take the call whether you hire me or not.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="wrap final">
+      <p class="eyebrow">Next</p>
+      <h2 class="d">One week. Your team<span class="g">.</span></h2>
+      <p class="prose">Fifteen minutes. We look at the workflows and whether 2–5 people and three sessions fit.</p>
+      <div class="ctas" style="justify-content:center">
+        <a class="btn p" href="tel:+19348990796">Book a free 15-min call</a>
+        <a class="btn o" href="#fit">See if it fits</a>
       </div>
     </div>
   </section>

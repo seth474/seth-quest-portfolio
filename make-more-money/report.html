@@ -349,7 +349,7 @@
     {id:'offline',type:'multi',k:'Lead Score',q:'Where do your offline leads come from?',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
     {id:'best',type:'one',k:'Lead Score',q:'Which one brings you the most work?'},
     {id:'speed',type:'one',k:'Lost Opportunities',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['instant','Instantly'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
-    {id:'textback',type:'one',k:'Lost Opportunities',q:'Do missed calls get an automatic text back?',opts:[['yes','Yes, every missed call'],['some','Sometimes'],['no','No'],['ns','Not sure']]},
+    {id:'site',type:'one',k:'Lost Opportunities',q:'How does your website look to a new customer?',opts:[['strong','Clear, current, easy to contact'],['old','There, but thin or out of date'],['none','No real website'],['ns','Not sure']]},
     {id:'quotes',type:'one',k:'Close Rate',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
       {always:true,id:'script',q:'Do you use a sales script?',opts:[['yes','Yes'],['no','No']]}
     ]},
@@ -441,8 +441,9 @@
     if(Math.min(16,offSum)<8) push('Lead Score',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
     var speedPts={min15:40,instant:40,hour:28,day:16,next:8,ns:10}[A.speed]||8; leakPts+=speedPts;
     if(speedPts<40) push('Lost Opportunities',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
-    var tbPts={yes:30,some:16,ns:8,no:0}[A.textback]||0; leakPts+=tbPts;
-    if(A.textback!=='yes') push('Lost Opportunities',30-tbPts,'Text back every missed call.','Same number. A short text with a time to book, sent right away.');
+    var siteKey=A.site||A.textback;
+    var sitePts={strong:30,yes:30,old:16,some:16,ns:8,none:0,no:0}[siteKey]||0; leakPts+=sitePts;
+    if(siteKey!=='strong'&&siteKey!=='yes') push('Lost Opportunities',30-sitePts,'Make the website clear and easy to contact.','A current page with your work, your town, and a way to reach you. That is most of the 10 hours.');
     var formPts=has(on,'web')?({works:18,miss:10,ns:6,none:4}[A.webForm]||4):8; leakPts+=formPts;
     if(!has(on,'web')||A.webForm!=='works') push('Lost Opportunities',Math.max(4,18-formPts),'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
     var askPts={yes:12,ns:5,no:0}[A.reviewask]||0; leakPts+=askPts;

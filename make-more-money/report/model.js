@@ -75,11 +75,15 @@ function speedLine(v) {
   if (v === 'next') return 'New leads wait until the next day or later for a reply.';
   return 'You were not sure how fast new leads get an answer.';
 }
-function textLine(v) {
-  if (v === 'yes') return 'Every missed call gets an automatic text back.';
-  if (v === 'some') return 'Missed calls sometimes get a text back.';
-  if (v === 'no') return 'Missed calls do not get an automatic text back.';
-  return 'You were not sure whether missed calls get a text back.';
+function siteVal(a) {
+  if (!a) return '';
+  return a.site || a.textback || '';
+}
+function siteLine(v) {
+  if (v === 'strong' || v === 'yes') return 'The website is clear, current, and easy to contact.';
+  if (v === 'old' || v === 'some') return 'The website is there, but thin or out of date.';
+  if (v === 'none' || v === 'no') return 'There is no real website.';
+  return 'You were not sure how the website looks to a new customer.';
 }
 function formLine(a) {
   if (!has(a.online, 'web')) return 'A website is not one of the online sources you marked.';
@@ -186,7 +190,8 @@ function leadSummary(a) {
 
 function leakSummary(a) {
   var speed = { min15: 'New leads get an answer within 15 minutes', instant: 'New leads get an answer within 15 minutes', hour: 'New leads get an answer within an hour', day: 'New leads get an answer the same day', next: 'New leads wait until the next day', ns: 'Answer speed is not set' }[a.speed] || 'Answer speed is not set';
-  var text = { yes: 'a missed call gets a text back', some: 'a missed call sometimes gets a text back', no: 'a missed call does not get a text back', ns: 'missed-call texts are not set' }[a.textback] || 'missed-call texts are not set';
+  var siteMap = { strong: 'the website is clear and current', yes: 'the website is clear and current', old: 'the website is thin or out of date', some: 'the website is thin or out of date', none: 'there is no real website', no: 'there is no real website', ns: 'the website was not described' };
+  var text = siteMap[siteVal(a)] || 'the website was not described';
   return speed + ', and ' + text + '.';
 }
 
@@ -207,7 +212,9 @@ function closeSummary(a) {
 function combinedInsight(a, score) {
   var on = (a.online || []).length;
   var lead = on >= 3 && score.leads >= 75 ? 'the lead channels are in place' : on >= 3 && score.leads >= 50 ? 'the lead channels are partly built' : on === 0 ? 'no online lead source is marked' : 'the lead channels are thin';
-  var leak = (a.textback === 'no' || a.speed === 'next' || a.speed === 'day' || (a.speed === 'hour' && a.textback !== 'yes')) ? 'calls still slip before a visit' : (a.speed === 'min15' || a.speed === 'instant') ? 'new leads get a fast answer' : 'call handling is still uneven';
+  var sk = siteVal(a);
+  var weakSite = sk === 'none' || sk === 'no' || sk === 'old' || sk === 'some';
+  var leak = (weakSite || a.speed === 'next' || a.speed === 'day' || (a.speed === 'hour' && sk !== 'strong' && sk !== 'yes')) ? 'the website and reply speed still lose people' : (a.speed === 'min15' || a.speed === 'instant') ? 'new leads get a fast answer' : 'reply speed is still uneven';
   var close = a.quotes === 'week' ? 'quotes wait a week to go out' : a.quotes === 'few' ? 'quotes take a few days to go out' : a.quotes === 'same' ? 'quotes go out the same day' : a.quotes === 'next' ? 'quotes go out the next day' : 'quote timing is not pinned down';
   return 'At ' + score.total + ' overall, ' + lead + ', ' + leak + ', and ' + close + '.';
 }
@@ -236,9 +243,10 @@ function leakExposure(a) {
   else if (a.speed === 'day') rate += 0.25;
   else if (a.speed === 'hour') rate += 0.12;
   else if (a.speed === 'ns') rate += 0.15;
-  if (a.textback === 'no') rate += 0.2;
-  else if (a.textback === 'some') rate += 0.1;
-  else if (a.textback === 'ns') rate += 0.08;
+  var sk = siteVal(a);
+  if (sk === 'none' || sk === 'no') rate += 0.2;
+  else if (sk === 'old' || sk === 'some') rate += 0.1;
+  else if (sk === 'ns' || !sk) rate += 0.08;
   if (has(a.online, 'web') && (a.webForm === 'none' || a.webForm === 'miss')) rate += 0.12;
   return jobsFrom(rate, hiLeads(a.leads));
 }
@@ -329,7 +337,7 @@ function foundLeads(a) {
   return lines.slice(0, 5);
 }
 function foundLeaks(a) {
-  return [speedLine(a.speed), textLine(a.textback), formLine(a), askLine(a.reviewask)];
+  return [speedLine(a.speed), siteLine(siteVal(a)), formLine(a), askLine(a.reviewask)];
 }
 function foundClosing(a) {
   return [quoteLine(a.quotes), followLine(a.followup), scriptLine(a.script), crmLine(a.crm)];
@@ -361,7 +369,7 @@ function leadsTiles(a) {
 function leakTiles(a) {
   return [
     tile('Answer speed', ({ min15: '15 min', instant: '15 min', hour: 'An hour', day: 'Same day', next: 'Next day', ns: 'Not sure' }[a.speed] || 'Not set'), speedLine(a.speed)),
-    tile('Missed calls', ({ yes: 'Text back', some: 'Sometimes', no: 'No text', ns: 'Not sure' }[a.textback] || 'Not set'), textLine(a.textback)),
+    tile('Website', ({ strong: 'Clear', yes: 'Clear', old: 'Thin', some: 'Thin', none: 'None', no: 'None', ns: 'Not sure' }[siteVal(a)] || 'Not set'), siteLine(siteVal(a))),
     tile('Website form', !has(a.online, 'web') ? 'No website' : ({ works: 'Works', miss: 'Hit or miss', none: 'No form', ns: 'Not sure' }[a.webForm] || 'Not set'), formLine(a)),
     tile('Review ask', ({ yes: 'Every job', no: 'Not asked', ns: 'Not sure' }[a.reviewask] || 'Not set'), askLine(a.reviewask))
   ];
@@ -406,7 +414,8 @@ function snapshotLines(a) {
     out.push(s);
   }
   if (a.quotes === 'week' || a.quotes === 'few' || a.quotes === 'next') add(quoteLine(a.quotes));
-  if (a.textback !== 'yes') add(textLine(a.textback));
+  var sk = siteVal(a);
+  if (sk !== 'strong' && sk !== 'yes') add(siteLine(sk));
   if (a.speed === 'next' || a.speed === 'day' || a.speed === 'hour') add(speedLine(a.speed));
   if (a.followup === 'no' || a.followup === 'some') add(followLine(a.followup));
   if (a.reviews === '0' || a.reviews === '11') add(reviewCountLine(a.reviews));
@@ -441,15 +450,15 @@ function channelChart(a) {
 
 function funnelChart(a) {
   var speed = { min15: 92, instant: 92, hour: 74, day: 52, next: 34, ns: 58 }[a.speed] || 50;
-  var text = { yes: 90, some: 62, no: 28, ns: 48 }[a.textback] || 40;
+  var siteScore = { strong: 90, yes: 90, old: 62, some: 62, none: 28, no: 28, ns: 48 }[siteVal(a)] || 40;
   var form = !has(a.online, 'web') ? 70 : ({ works: 94, miss: 55, none: 30, ns: 50 }[a.webForm] || 50);
   var answered = Math.round(speed);
-  var recovered = Math.round(speed * text / 100);
+  var recovered = Math.round(speed * siteScore / 100);
   var reachable = Math.max(18, Math.round(recovered * form / 100));
   return [
     { label: 'Leads in', pct: 100 },
     { label: 'Answered fast', pct: answered },
-    { label: 'Calls recovered', pct: Math.max(18, recovered) },
+    { label: 'Site is clear', pct: Math.max(18, Math.round(siteScore)) },
     { label: 'Still reachable', pct: reachable }
   ];
 }
@@ -486,7 +495,7 @@ function timeCost(leads, leaks, closing) {
     year: hours * 50 * 125,
     yearLabel: money(hours * 50 * 125),
     rate: 125,
-    note: 'Estimate. About 10 hours a week, scaled to these scores, at $125 an hour.',
+    note: 'Estimate. Hours are scaled to these scores, at $125 an hour.',
     parts: parts
   };
 }
