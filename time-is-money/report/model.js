@@ -168,8 +168,8 @@ function buildModel(input) {
       ]
     },
     plan: [
-      { day: 'Kickoff', t: 'Choose what to set up', d: 'A kickoff call. $1,000 kickoff. Non-refundable.' },
-      { day: 'The 5 days', t: 'One AI agent', d: 'I build one AI agent into your workflow during the 5 days.' },
+      { day: 'Audit', t: 'Where the time goes', d: 'An audit of your company workflow. It finds where you are losing the most time, then picks the best solution. $1,000 kickoff. Non-refundable.' },
+      { day: '5 days', t: 'One AI agent', d: 'One AI agent is built into that workflow with you.' },
       { day: 'Handoff', t: 'End of the 5 days', d: 'I hand it over and show you how it works. $1,400 at handoff.' }
     ],
     price: '$2,400',
