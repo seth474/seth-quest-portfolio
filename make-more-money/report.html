@@ -493,8 +493,8 @@
       '<div class="meta">Took the quiz '+(d.t?new Date(d.t).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'')+(legacy?' &middot; older quiz, rescored':'')+'</div>'+
       '<div class="rc"><div class="who"><b>'+esc(lead.name)+'</b><span>'+esc(lead.business)+'</span>'+(lead.phone?'<span><a href="tel:'+esc(tel)+'">'+esc(lead.phone)+'</a></span>':'')+(lead.email?'<span><a href="mailto:'+esc(lead.email)+'">'+esc(lead.email)+'</a></span>':'')+'</div><div class="acts">'+acts+'</div></div>'+
       '<div class="rc"><div class="qz-k">Sales funnel score</div><div class="qr-score"><b id="rpTotal" class="qr-'+b+'">'+R.total+'</b><span>/ 100 pts</span></div><p class="qr-verdict">'+esc(verdict(R))+'</p>'+
-      '<div class="qr-parts">'+part('Lead Score',R.leads)+part('Lost Opportunities',R.leaks,'leaks')+part('Close Rate',R.closing)+'</div>'+
-      '<h3 class="qr-h">Lead Score<span class="g">.</span></h3>'+list(by('Lead Score'))+'<h3 class="qr-h">Lost Opportunities<span class="g">.</span></h3>'+list(by('Lost Opportunities'))+'<h3 class="qr-h">Close Rate<span class="g">.</span></h3>'+list(by('Close Rate'))+'</div>'+
+      '<div class="qr-parts">'+part('Lead Score',R.leads)+part('Sales Funnel Leaks / Lost Opportunities',R.leaks)+part('Close Rate',R.closing)+'</div>'+
+      '<h3 class="qr-h">Lead Score<span class="g">.</span></h3>'+list(by('Lead Score'))+'<h3 class="qr-h">Sales Funnel Leaks / Lost Opportunities<span class="g">.</span></h3>'+list(by('Lost Opportunities'))+'<h3 class="qr-h">Close Rate<span class="g">.</span></h3>'+list(by('Close Rate'))+'</div>'+
       '<div class="rc"><h3 class="qr-h" style="margin-top:4px">Their answers<span class="g">.</span></h3><table class="ans">'+rows+'</table></div>'+
       '<button class="btn o noprint" type="button" onclick="window.print()">Print or save as PDF</button>';
   }

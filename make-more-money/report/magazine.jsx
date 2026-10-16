@@ -1,16 +1,33 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, Font, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Font, Svg, Path, Defs, LinearGradient, Stop, Rect } from '@react-pdf/renderer';
 import { buildModel } from './model.js';
 
-const INK = '#111111';
-const WHITE = '#ffffff';
-const GRAY = '#5E5E5E';
-const LINE = '#E4E4E4';
-const TRACK = '#ECECEC';
-const GREEN = '#2BE36B';
-const RED = '#FF2D2D';
-const AMBER = '#FF9F1A';
-const WASH = '#F3FFF7';
+const BLACK = '#07080a';
+const GREEN = '#22e06b';
+const RED = '#FF3B30';
+
+const THEMES = {
+  light: {
+    id: 'light',
+    page: '#ffffff',
+    ink: '#141414',
+    muted: '#5E646C',
+    block: '#F2F2F2',
+    track: '#E4E4E4',
+    bar: '#3A3F45',
+    header: 'slim'
+  },
+  dark: {
+    id: 'dark',
+    page: BLACK,
+    ink: '#F4F5F6',
+    muted: '#C8CDD3',
+    block: '#1C1F24',
+    track: '#2A2E34',
+    bar: '#D5D8DC',
+    header: 'band'
+  }
+};
 
 let fontsReady = false;
 function registerFonts(base) {
@@ -29,10 +46,8 @@ function registerFonts(base) {
   Font.registerHyphenationCallback(function (word) { return [word]; });
 }
 
-function numColor(band) {
-  if (band === 'red') return RED;
-  if (band === 'amber') return AMBER;
-  return GREEN;
+function digitColor(n, ink) {
+  return n < 50 ? RED : ink;
 }
 
 function polar(cx, cy, r, deg) {
@@ -51,110 +66,136 @@ function arcPath(cx, cy, r, a0, a1) {
   return 'M ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2) + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2);
 }
 
-const s = StyleSheet.create({
-  page: { backgroundColor: WHITE, fontFamily: 'Inter', color: INK, paddingTop: 22, paddingHorizontal: 30, paddingBottom: 36 },
-  label: { fontFamily: 'Inter', fontWeight: 600, fontSize: 8, letterSpacing: 1.1, color: GREEN, textTransform: 'uppercase' },
-  body: { fontFamily: 'Inter', fontSize: 10, lineHeight: 1.35, color: INK }
-});
+function themeOf(name) {
+  return THEMES[name] || THEMES.dark;
+}
 
-function Header({ page, section }) {
+function Band({ id, height }) {
   return (
-    <View style={{ marginBottom: 10 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <View style={{ width: 150 }}>
-          <Text style={{ fontFamily: 'Bebas', fontSize: 18, color: GREEN, letterSpacing: 0.8 }}>MORE.</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: -1 }}>make more money</Text>
+    <Svg width="612" height={height} viewBox={'0 0 612 ' + height}>
+      <Defs>
+        <LinearGradient id={id} x1="0" y1="0" x2="1" y2="0">
+          <Stop offset="0%" stopColor={BLACK} />
+          <Stop offset="100%" stopColor={GREEN} />
+        </LinearGradient>
+      </Defs>
+      <Rect x="0" y="0" width="612" height={height} fill={'url(#' + id + ')'} />
+    </Svg>
+  );
+}
+
+function Wordmark({ color }) {
+  return (
+    <Text style={{ fontFamily: 'Bebas', fontSize: 20, letterSpacing: 0.6, color: color }}>
+      MORE<Text style={{ color: GREEN }}>.</Text>
+    </Text>
+  );
+}
+
+function ReportHeader({ theme, page }) {
+  const gid = 'band' + theme.id + page;
+  if (theme.header === 'band') {
+    return (
+      <View>
+        <Band id={gid} height="46" />
+        <View style={{ position: 'absolute', top: 12, left: 32 }}>
+          <Wordmark color="#ffffff" />
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: '#F4F5F6', marginTop: 1 }}>make more money</Text>
         </View>
-        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, letterSpacing: 1.2, color: GREEN, textTransform: 'uppercase', marginTop: 8 }}>{section || 'Snapshot'}</Text>
-        <Text style={{ width: 36, textAlign: 'right', fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: GRAY, marginTop: 6 }}>{String(page).padStart(2, '0')}</Text>
       </View>
-      <View style={{ marginTop: 6, height: 6, backgroundColor: GREEN }} />
-    </View>
-  );
-}
-
-function Footer({ page }) {
+    );
+  }
   return (
-    <View style={{ position: 'absolute', bottom: 14, left: 30, right: 30, flexDirection: 'row', justifyContent: 'space-between' }}>
-      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY }}>sethquest.com/time-is-money</Text>
-      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY }}>{String(page).padStart(2, '0')} / 05</Text>
-    </View>
-  );
-}
-
-function ScoreMark({ value, band, size, suffix }) {
-  const suf = size >= 48 ? 12 : size >= 22 ? 10 : 8;
-  const lift = Math.round((size - suf) * 0.18);
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: size, color: numColor(band), lineHeight: 1 }}>{String(value)}</Text>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 400, fontSize: suf, color: GRAY, marginLeft: 4, marginBottom: lift }}>{suffix || '/100 pts'}</Text>
-    </View>
-  );
-}
-
-function Bar({ label, value, band }) {
-  const w = Math.max(0, Math.min(100, value));
-  return (
-    <View style={{ marginBottom: 12 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 3 }}>
-        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 10, color: INK }}>{label}</Text>
-        <ScoreMark value={value} band={band} size={12} suffix="/100" />
+    <View>
+      <View style={{ paddingTop: 16, paddingHorizontal: 32, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <View>
+          <Wordmark color={theme.ink} />
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 1 }}>make more money</Text>
+        </View>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: theme.muted }}>{String(page).padStart(2, '0')}</Text>
       </View>
-      <View style={{ height: 14, backgroundColor: TRACK }}>
-        <View style={{ width: w + '%', height: 14, backgroundColor: numColor(band) }} />
+      <View style={{ marginTop: 8 }}>
+        <Band id={gid} height="7" />
       </View>
     </View>
   );
 }
 
-function Gauge({ value, band }) {
+function Footer({ theme, page }) {
+  return (
+    <View style={{ position: 'absolute', bottom: 14, left: 32, right: 32, flexDirection: 'row', justifyContent: 'space-between' }}>
+      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted }}>sethquest.com/time-is-money</Text>
+      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted }}>{String(page).padStart(2, '0')} / 05</Text>
+    </View>
+  );
+}
+
+function Sheet({ theme, page, children }) {
+  return (
+    <Page size="LETTER" style={{ backgroundColor: theme.page, fontFamily: 'Inter', color: theme.ink, paddingBottom: 36 }}>
+      <ReportHeader theme={theme} page={page} />
+      <View style={{ paddingHorizontal: 32, paddingTop: theme.header === 'band' ? 16 : 14, paddingBottom: 28, flexGrow: 1 }}>
+        {children}
+      </View>
+      <Footer theme={theme} page={page} />
+    </Page>
+  );
+}
+
+function Gauge({ value, theme }) {
   const start = 150;
   const sweep = 240;
   const end = start + sweep * (Math.max(0, Math.min(100, value)) / 100);
-  const color = numColor(band);
   return (
-    <View style={{ width: 168, height: 132 }}>
-      <Svg width="168" height="120" viewBox="0 0 168 120">
-        <Path d={arcPath(84, 78, 52, start, start + sweep)} stroke={TRACK} strokeWidth="12" fill="none" />
-        <Path d={arcPath(84, 78, 52, start, end)} stroke={color} strokeWidth="12" fill="none" />
+    <View style={{ width: 158, height: 118 }}>
+      <Svg width="158" height="110" viewBox="0 0 158 110">
+        <Path d={arcPath(79, 70, 46, start, start + sweep)} stroke={theme.track} strokeWidth="11" fill="none" />
+        <Path d={arcPath(79, 70, 46, start, end)} stroke={theme.bar} strokeWidth="11" fill="none" />
       </Svg>
-      <View style={{ position: 'absolute', top: 58, left: 0, right: 0, alignItems: 'center' }}>
-        <ScoreMark value={value} band={band} size={26} />
+      <View style={{ position: 'absolute', top: 48, left: 0, right: 0, alignItems: 'center' }}>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 26, color: digitColor(value, theme.ink) }}>{String(value)}</Text>
+        <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 1 }}>/100 pts</Text>
       </View>
     </View>
   );
 }
 
-function Donut({ value, band }) {
-  const color = numColor(band);
-  const pct = Math.max(0, Math.min(100, value));
+function ScoreLine({ row, theme }) {
+  const w = Math.max(0, Math.min(100, row.n));
   return (
-    <View style={{ width: 120, height: 120 }}>
-      <Svg width="120" height="120" viewBox="0 0 120 120">
-        <Path d={arcPath(60, 60, 42, 0, 359.9)} stroke={TRACK} strokeWidth="14" fill="none" />
-        <Path d={arcPath(60, 60, 42, 0, 360 * (pct / 100))} stroke={color} strokeWidth="14" fill="none" />
-      </Svg>
-      <View style={{ position: 'absolute', top: 46, left: 0, right: 0, alignItems: 'center' }}>
-        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: color }}>{String(value)}</Text>
+    <View style={{ backgroundColor: theme.block, padding: 10, marginBottom: 8 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 10, color: theme.ink, width: 400 }}>{row.name}</Text>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: digitColor(row.n, theme.ink) }}>{String(row.n)}</Text>
+      </View>
+      <Text style={{ fontFamily: 'Inter', fontSize: 9, lineHeight: 1.35, color: theme.muted, marginTop: 3, marginBottom: 7 }}>{row.line}</Text>
+      <View style={{ height: 7, backgroundColor: theme.track }}>
+        <View style={{ width: w + '%', height: 7, backgroundColor: theme.bar }} />
       </View>
     </View>
   );
 }
 
-function MiniBars({ rows, color }) {
+function Label({ theme, children }) {
+  return (
+    <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, letterSpacing: 0.8, color: theme.muted, textTransform: 'uppercase', marginBottom: 6 }}>{children}</Text>
+  );
+}
+
+function MiniBars({ rows, theme }) {
   return (
     <View>
       {rows.map(function (row) {
         const w = Math.max(0, Math.min(100, row.pct));
+        const off = row.on === false;
         return (
-          <View key={row.label} style={{ marginBottom: 11 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
-              <Text style={{ fontFamily: 'Inter', fontSize: 9, color: INK }}>{row.label}</Text>
-              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: row.on === false ? GRAY : INK }}>{row.on === false ? 'Off' : w}</Text>
+          <View key={row.label} style={{ marginBottom: 9 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+              <Text style={{ fontFamily: 'Inter', fontSize: 9, color: theme.ink }}>{row.label}</Text>
+              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: off ? theme.muted : theme.ink }}>{off ? 'Off' : String(w)}</Text>
             </View>
-            <View style={{ height: 10, backgroundColor: TRACK }}>
-              <View style={{ width: (row.on === false ? 0 : w) + '%', height: 10, backgroundColor: color || GREEN }} />
+            <View style={{ height: 8, backgroundColor: theme.track }}>
+              <View style={{ width: (off ? 0 : w) + '%', height: 8, backgroundColor: theme.bar }} />
             </View>
           </View>
         );
@@ -163,21 +204,19 @@ function MiniBars({ rows, color }) {
   );
 }
 
-function Funnel({ rows }) {
+function Funnel({ rows, theme }) {
   return (
     <View>
       {rows.map(function (row) {
-        const w = Math.max(18, Math.min(100, row.pct));
-        const dropped = 100 - w;
+        const w = Math.max(8, Math.min(100, row.pct));
         return (
-          <View key={row.label} style={{ marginBottom: 11 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
-              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: INK }}>{row.label}</Text>
-              <Text style={{ fontFamily: 'Inter', fontSize: 9, color: GRAY }}>{row.pct}% still in</Text>
+          <View key={row.label} style={{ marginBottom: 10 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: theme.ink }}>{row.label}</Text>
+              <Text style={{ fontFamily: 'Inter', fontSize: 8.5, color: theme.muted }}>{row.pct}% still in</Text>
             </View>
-            <View style={{ height: 20, backgroundColor: '#FFE1E1', flexDirection: 'row' }}>
-              <View style={{ width: w + '%', height: 20, backgroundColor: GREEN }} />
-              <View style={{ width: dropped + '%', height: 20, backgroundColor: RED }} />
+            <View style={{ height: 18, backgroundColor: theme.track }}>
+              <View style={{ width: w + '%', height: 18, backgroundColor: theme.bar }} />
             </View>
           </View>
         );
@@ -186,19 +225,22 @@ function Funnel({ rows }) {
   );
 }
 
-function Check({ title, detail }) {
+function Donut({ value, theme }) {
+  const pct = Math.max(0, Math.min(100, value));
   return (
-    <View style={{ flexDirection: 'row', marginBottom: 11 }}>
-      <View style={{ width: 11, height: 11, borderWidth: 1.5, borderColor: GREEN, marginTop: 1, marginRight: 8 }} />
-      <View style={{ flex: 1 }}>
-        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 10, color: INK }}>{title}</Text>
-        {detail ? <Text style={{ fontFamily: 'Inter', fontSize: 8.5, lineHeight: 1.3, color: GRAY, marginTop: 1 }}>{detail}</Text> : null}
+    <View style={{ width: 108, height: 108 }}>
+      <Svg width="108" height="108" viewBox="0 0 108 108">
+        <Path d={arcPath(54, 54, 36, 0, 359.9)} stroke={theme.track} strokeWidth="12" fill="none" />
+        <Path d={arcPath(54, 54, 36, 0, Math.max(2, 360 * (pct / 100)))} stroke={theme.bar} strokeWidth="12" fill="none" />
+      </Svg>
+      <View style={{ position: 'absolute', top: 40, left: 0, right: 0, alignItems: 'center' }}>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: digitColor(value, theme.ink) }}>{String(value)}</Text>
       </View>
     </View>
   );
 }
 
-function Answers({ rows }) {
+function Answers({ rows, theme }) {
   const left = rows.filter(function (_, i) { return i % 2 === 0; });
   const right = rows.filter(function (_, i) { return i % 2 === 1; });
   function col(list) {
@@ -207,8 +249,8 @@ function Answers({ rows }) {
         {list.map(function (row) {
           return (
             <View key={row.k} style={{ marginBottom: 5 }}>
-              <Text style={{ fontFamily: 'Inter', fontSize: 7.5, letterSpacing: 0.6, color: GRAY, textTransform: 'uppercase' }}>{row.k}</Text>
-              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: INK }}>{row.v}</Text>
+              <Text style={{ fontFamily: 'Inter', fontSize: 7, letterSpacing: 0.5, color: theme.muted, textTransform: 'uppercase' }}>{row.k}</Text>
+              <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 9, color: theme.ink }}>{row.v}</Text>
             </View>
           );
         })}
@@ -216,8 +258,8 @@ function Answers({ rows }) {
     );
   }
   return (
-    <View style={{ borderWidth: 1, borderColor: LINE, borderLeftWidth: 4, borderLeftColor: GREEN, backgroundColor: WASH, padding: 8, paddingLeft: 10 }}>
-      <Text style={[s.label, { marginBottom: 6 }]}>Your answers</Text>
+    <View style={{ backgroundColor: theme.block, padding: 12 }}>
+      <Label theme={theme}>Your answers</Label>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         {col(left)}
         {col(right)}
@@ -226,180 +268,168 @@ function Answers({ rows }) {
   );
 }
 
-function Cost({ money }) {
+function Cost({ money, theme }) {
   return (
-    <View style={{ borderTopWidth: 1, borderTopColor: LINE, paddingTop: 6 }}>
-      <Text style={[s.label, { marginBottom: 6 }]}>What it costs</Text>
+    <View style={{ backgroundColor: theme.block, padding: 12, marginTop: 10 }}>
+      <Label theme={theme}>What it costs</Label>
       <View style={{ flexDirection: 'row' }}>
-        <View style={{ width: '48%', paddingRight: 8 }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: INK }}>{money.hoursLabel}</Text>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 13, color: GREEN, marginTop: 2 }}>{money.yearLabel}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 3 }}>Owner time, estimate, at $125 an hour.</Text>
+        <View style={{ width: '46%', paddingRight: 8 }}>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 14, color: theme.ink }}>{money.hoursLabel}</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 12, color: theme.ink, marginTop: 2 }}>{money.yearLabel}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 3 }}>Owner time, estimate, at $125 an hour.</Text>
         </View>
-        <View style={{ width: '52%' }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: INK }}>{money.dollars}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 2 }}>{money.equation}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 9, lineHeight: 1.3, color: INK, marginTop: 3 }}>{money.line}</Text>
+        <View style={{ width: '54%' }}>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 14, color: theme.ink }}>{money.dollars}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>{money.equation}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8.5, lineHeight: 1.3, color: theme.ink, marginTop: 3 }}>{money.line}</Text>
         </View>
       </View>
     </View>
   );
 }
 
-function bandOf(n) {
-  return n < 50 ? 'red' : n < 75 ? 'amber' : 'green';
+function Check({ title, detail, theme }) {
+  return (
+    <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+      <View style={{ width: 10, height: 10, borderWidth: 1.25, borderColor: theme.muted, marginTop: 1, marginRight: 8 }} />
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 10, color: theme.ink }}>{title}</Text>
+        {detail ? <Text style={{ fontFamily: 'Inter', fontSize: 8, lineHeight: 1.3, color: theme.muted, marginTop: 1 }}>{detail}</Text> : null}
+      </View>
+    </View>
+  );
 }
 
-function Snapshot({ m }) {
-  const nameSize = m.business.length > 26 ? 13 : 16;
+function Snapshot({ m, theme }) {
+  const nameSize = m.business.length > 28 ? 13 : 16;
   return (
-    <Page size="LETTER" style={s.page}>
-      <Header page={1} section="Snapshot" />
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: nameSize, color: INK }}>
-        <Text style={{ fontFamily: 'Bebas', fontSize: nameSize + 4, color: GREEN }}>MORE. </Text>
-        Snapshot: {m.business}
+    <Sheet theme={theme} page={1}>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: nameSize, color: theme.ink }}>
+        <Text style={{ fontFamily: 'Bebas', fontSize: nameSize + 2, color: theme.ink }}>MORE</Text>
+        <Text style={{ fontFamily: 'Bebas', fontSize: nameSize + 2, color: GREEN }}>.</Text>
+        <Text> Snapshot: {m.business}</Text>
       </Text>
-      <Text style={{ fontFamily: 'Inter', fontSize: 9, color: GRAY, marginTop: 3 }}>
+      <Text style={{ fontFamily: 'Inter', fontSize: 9, color: theme.muted, marginTop: 3 }}>
         {m.place ? m.place + '    ·    ' : ''}{m.dateLabel}
       </Text>
-      <View style={{ marginTop: 8, flexDirection: 'row', alignItems: 'center' }}>
-        <Gauge value={m.total} band={m.totalBand} />
-        <View style={{ flex: 1, marginLeft: 8, backgroundColor: WASH, borderLeftWidth: 4, borderLeftColor: GREEN, padding: 10 }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 28, color: INK, lineHeight: 1 }}>{m.time.hours}</Text>
-          <Text style={s.label}>Hours lost per week</Text>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 14, color: GREEN, marginTop: 6 }}>{m.time.yearLabel} / year</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 3 }}>{m.time.note}</Text>
+      <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center' }}>
+        <Gauge value={m.total} theme={theme} />
+        <View style={{ flex: 1, marginLeft: 8, backgroundColor: theme.block, padding: 12 }}>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 26, color: theme.ink, lineHeight: 1 }}>{m.time.hours}</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, letterSpacing: 0.6, color: theme.muted, marginTop: 3 }}>HOURS LOST PER WEEK</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 13, color: theme.ink, marginTop: 8 }}>{m.time.yearLabel} / year</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 3 }}>{m.time.note}</Text>
         </View>
       </View>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 11, color: INK, marginTop: 4 }}>{m.weak.headline}</Text>
-      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 2, marginBottom: 6 }}>{m.floorNote}</Text>
-      {m.weak.rows.map(function (row) {
-        return <Bar key={row.key} label={row.name} value={row.n} band={bandOf(row.n)} />;
+      <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 12, marginBottom: 10 }}>{m.insight}</Text>
+      {m.rows.map(function (row) {
+        return <ScoreLine key={row.key} row={row} theme={theme} />;
       })}
-      <View style={{ flexGrow: 1, marginTop: 10, backgroundColor: WASH, borderLeftWidth: 4, borderLeftColor: GREEN, padding: 14, justifyContent: 'center' }}>
-        <Text style={[s.label, { marginBottom: 8 }]}>Key findings</Text>
-        {m.snapshot.map(function (line, i) {
-          return (
-            <View key={line} style={{ flexDirection: 'row', marginBottom: 10 }}>
-              <Text style={{ width: 26, fontFamily: 'Inter', fontWeight: 800, fontSize: 14, color: GREEN }}>0{i + 1}</Text>
-              <Text style={{ flex: 1, fontFamily: 'Inter', fontSize: 11, lineHeight: 1.35, color: INK }}>{line}</Text>
-            </View>
-          );
-        })}
-      </View>
-      <Footer page={1} />
-    </Page>
+    </Sheet>
   );
 }
 
-function SectionPage({ block, page, chart }) {
+function SectionPage({ block, page, theme, chart }) {
   const fixes = block.fixes.length ? block.fixes : [{ t: 'Keep the source that already brings work.', d: 'Leave a channel alone when it is already producing jobs.' }];
+  const titleSize = block.name.length > 24 ? 13 : 18;
   return (
-    <Page size="LETTER" style={s.page}>
-      <Header page={page} section={block.name} />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <View>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: INK }}>{block.name}</Text>
-          {block.sub ? <Text style={{ fontFamily: 'Inter', fontSize: 9, color: GRAY, marginTop: 1 }}>{block.sub}</Text> : <View style={{ marginTop: 3, width: 36, height: 3, backgroundColor: GREEN }} />}
-        </View>
-        <ScoreMark value={block.num} band={block.band} size={26} />
+    <Sheet theme={theme} page={page}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: titleSize, color: theme.ink, width: 430 }}>{block.name}</Text>
+        <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 22, color: digitColor(block.num, theme.ink) }}>{String(block.num)}</Text>
       </View>
-      <View style={{ marginTop: 8 }}>{chart}</View>
-      <View style={{ marginTop: 8 }}>
-        <Answers rows={block.answers} />
+      <Text style={{ fontFamily: 'Inter', fontSize: 9.5, lineHeight: 1.35, color: theme.muted, marginTop: 4 }}>{block.line}</Text>
+      <View style={{ marginTop: 12 }}>{chart}</View>
+      <View style={{ marginTop: 10 }}>
+        <Answers rows={block.answers} theme={theme} />
       </View>
-      <View style={{ marginTop: 8 }}>
-        <Cost money={block.money} />
-      </View>
-      <View style={{ flexGrow: 1, marginTop: 10, backgroundColor: WASH, borderLeftWidth: 4, borderLeftColor: GREEN, padding: 10, justifyContent: 'space-between' }}>
-        <Text style={s.label}>The fix</Text>
+      <Cost money={block.money} theme={theme} />
+      <View style={{ marginTop: 12 }}>
+        <Label theme={theme}>This week</Label>
         {fixes.slice(0, 3).map(function (fix) {
-          return <Check key={fix.t} title={fix.t} detail={fix.d} />;
+          return <Check key={fix.t} title={fix.t} detail={fix.d} theme={theme} />;
         })}
       </View>
-      <Footer page={page} />
-    </Page>
+    </Sheet>
   );
 }
 
-function Summary({ m }) {
-  const items = m.fixes.length ? m.fixes : [{ t: 'Keep the source that already brings work.', d: m.weak.detail }];
+function Summary({ m, theme }) {
+  const items = m.fixes.length ? m.fixes : [{ t: 'Keep the source that already brings work.', d: 'Leave a channel alone when it is already producing jobs.' }];
   const maxYear = Math.max.apply(null, m.time.parts.map(function (p) { return p.year; })) || 1;
   return (
-    <Page size="LETTER" style={s.page}>
-      <Header page={5} section="Your plan" />
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: INK }}>Your Plan This Week</Text>
-      <View style={{ marginTop: 3, width: 42, height: 3, backgroundColor: GREEN }} />
-      <Text style={[s.body, { marginTop: 6 }]}>{m.weak.headline} {m.addNote}</Text>
-      <View style={{ marginTop: 8, flexDirection: 'row', backgroundColor: WASH, borderLeftWidth: 4, borderLeftColor: GREEN, padding: 8 }}>
-        <View style={{ width: '40%' }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 22, color: INK }}>{m.time.hours} hrs</Text>
-          <Text style={s.label}>per week</Text>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 14, color: GREEN, marginTop: 6 }}>{m.time.yearLabel}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 2 }}>per year, estimate</Text>
+    <Sheet theme={theme} page={5}>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: theme.ink }}>Your Plan This Week</Text>
+      <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
+      <View style={{ marginTop: 10, flexDirection: 'row', backgroundColor: theme.block, padding: 10 }}>
+        <View style={{ width: '38%' }}>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 20, color: theme.ink }}>{m.time.hours} hrs</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, letterSpacing: 0.6, color: theme.muted, marginTop: 2 }}>PER WEEK</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 13, color: theme.ink, marginTop: 8 }}>{m.time.yearLabel}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>per year, estimate</Text>
         </View>
-        <View style={{ width: '60%', justifyContent: 'center' }}>
-          {m.weak.rows.map(function (row, i) {
+        <View style={{ width: '62%', justifyContent: 'center' }}>
+          {m.rows.map(function (row, i) {
             const part = m.time.parts[i];
             const w = Math.max(8, Math.round((part.year / maxYear) * 100));
             return (
               <View key={row.key} style={{ marginBottom: 6 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontFamily: 'Inter', fontSize: 8, color: INK }}>{row.name}</Text>
-                  <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, color: INK }}>{part.hours} hrs · {part.yearLabel}</Text>
+                  <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.ink, width: 210 }}>{row.name}</Text>
+                  <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 8, color: theme.ink }}>{part.hours} hrs</Text>
                 </View>
-                <View style={{ height: 16, backgroundColor: TRACK, marginTop: 3 }}>
-                  <View style={{ width: w + '%', height: 16, backgroundColor: numColor(bandOf(row.n)) }} />
+                <View style={{ height: 8, backgroundColor: theme.track, marginTop: 2 }}>
+                  <View style={{ width: w + '%', height: 8, backgroundColor: theme.bar }} />
                 </View>
               </View>
             );
           })}
         </View>
       </View>
-      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginTop: 6 }}>{m.time.note}</Text>
-      <View style={{ flexDirection: 'row', marginTop: 12 }}>
-        {m.weak.rows.map(function (row) {
+      <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 6 }}>{m.time.note} {m.addNote}</Text>
+      <View style={{ flexDirection: 'row', marginTop: 14 }}>
+        {m.rows.map(function (row) {
           return (
-            <View key={row.key} style={{ width: '33%' }}>
-              <Text style={{ fontFamily: 'Inter', fontSize: 8, color: GRAY, marginBottom: 2 }}>{row.name}</Text>
-              <ScoreMark value={row.n} band={bandOf(row.n)} size={20} suffix="/100" />
+            <View key={row.key} style={{ width: '33%', paddingRight: 8 }}>
+              <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginBottom: 2 }}>{row.name}</Text>
+              <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 18, color: digitColor(row.n, theme.ink) }}>{String(row.n)}</Text>
+              <Text style={{ fontFamily: 'Inter', fontSize: 8, lineHeight: 1.3, color: theme.muted, marginTop: 3 }}>{row.line}</Text>
             </View>
           );
         })}
       </View>
-      <View style={{ flexGrow: 1, marginTop: 12, backgroundColor: WASH, borderLeftWidth: 4, borderLeftColor: GREEN, padding: 12, justifyContent: 'space-between' }}>
-        <View>
-          <Text style={[s.label, { marginBottom: 8 }]}>Do these first</Text>
-          {items.slice(0, 3).map(function (fix) {
-            return <Check key={fix.t} title={fix.t} detail={fix.d} />;
-          })}
-        </View>
-        <View style={{ paddingTop: 8, borderTopWidth: 1, borderTopColor: LINE }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 11, color: INK }}>{m.cta}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 10, color: GRAY, marginTop: 2 }}>{m.phone}    ·    {m.url}</Text>
+      <View style={{ marginTop: 'auto', backgroundColor: theme.block, padding: 12 }}>
+        <Label theme={theme}>Do these first</Label>
+        {items.slice(0, 3).map(function (fix) {
+          return <Check key={fix.t} title={fix.t} detail={fix.d} theme={theme} />;
+        })}
+        <View style={{ marginTop: 4, paddingTop: 8, borderTopWidth: 1, borderTopColor: theme.track }}>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: 11, color: theme.ink }}>{m.cta}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 10, color: theme.muted, marginTop: 2 }}>{m.phone}    ·    {m.url}</Text>
         </View>
       </View>
-      <Footer page={5} />
-    </Page>
+    </Sheet>
   );
 }
 
-function Magazine({ model }) {
+function Magazine({ model, theme }) {
   const m = model;
+  const t = themeOf(theme);
   const left = m.channels.slice(0, 5);
   const right = m.channels.slice(5);
   return (
     <Document title={'MORE. Snapshot - ' + m.business} author="MORE." subject="make more money">
-      <Snapshot m={m} />
+      <Snapshot m={m} theme={t} />
       <SectionPage
         block={m.leads}
         page={2}
+        theme={t}
         chart={
           <View>
-            <Text style={[s.label, { marginBottom: 6 }]}>Channels you use</Text>
+            <Label theme={t}>Channels you use</Label>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <View style={{ width: '48%' }}><MiniBars rows={left} /></View>
-              <View style={{ width: '48%' }}><MiniBars rows={right} /></View>
+              <View style={{ width: '48%' }}><MiniBars rows={left} theme={t} /></View>
+              <View style={{ width: '48%' }}><MiniBars rows={right} theme={t} /></View>
             </View>
           </View>
         }
@@ -407,27 +437,29 @@ function Magazine({ model }) {
       <SectionPage
         block={m.leaks}
         page={3}
+        theme={t}
         chart={
           <View>
-            <Text style={[s.label, { marginBottom: 6 }]}>Where leads drop off</Text>
-            <Funnel rows={m.funnel} />
+            <Label theme={t}>Where leads drop off</Label>
+            <Funnel rows={m.funnel} theme={t} />
           </View>
         }
       />
       <SectionPage
         block={m.closing}
         page={4}
+        theme={t}
         chart={
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Donut value={m.closing.num} band={m.closing.band} />
-            <View style={{ flex: 1, marginLeft: 8 }}>
-              <Text style={[s.label, { marginBottom: 6 }]}>What the close is made of</Text>
-              <MiniBars rows={m.closeParts} color={numColor(m.closing.band)} />
+            <Donut value={m.closing.num} theme={t} />
+            <View style={{ flex: 1, marginLeft: 12 }}>
+              <Label theme={t}>What the close is made of</Label>
+              <MiniBars rows={m.closeParts} theme={t} />
             </View>
           </View>
         }
       />
-      <Summary m={m} />
+      <Summary m={m} theme={t} />
     </Document>
   );
 }
