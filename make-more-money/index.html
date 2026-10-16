@@ -1234,160 +1234,27 @@
       .then(function(x){if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your score.'})
       .catch(function(){if(el())el().textContent='Could not send your copy to Seth. Text or call 934-899-0796 and he will go through it with you.'});
   }
-  function pdfSafe(s){return String(s==null?'':s).replace(/[^\x20-\x7E]/g,' ').replace(/\s+/g,' ').trim()}
-  function loadPdf(){
-    if(window.PDFLib) return Promise.resolve(window.PDFLib);
+  function loadReport(){
+    if(window.MOREReport) return Promise.resolve(window.MOREReport);
     return new Promise(function(ok,bad){
       var s=document.createElement('script');
-      s.src='/make-more-money/pdf-lib.min.js';
-      s.onload=function(){window.PDFLib?ok(window.PDFLib):bad(new Error('pdf'))};
+      s.src='/make-more-money/report-pdf.js';
+      s.onload=function(){window.MOREReport?ok(window.MOREReport):bad(new Error('pdf'))};
       s.onerror=function(){bad(new Error('pdf'))};
       document.head.appendChild(s);
     });
   }
   function buildPdf(r){
-    return loadPdf().then(function(PDFLib){
-      var doc=PDFLib.PDFDocument.create();
-      return doc.then(function(pdf){
-        return Promise.all([pdf.embedFont(PDFLib.StandardFonts.Helvetica), pdf.embedFont(PDFLib.StandardFonts.HelveticaBold)]).then(function(fonts){
-          var font=fonts[0], bold=fonts[1];
-          var GREEN=PDFLib.rgb(43/255,227/255,107/255), INK=PDFLib.rgb(0.04,0.04,0.04), GRAY=PDFLib.rgb(0.42,0.42,0.42), PAPER=PDFLib.rgb(1,1,1);
-          var RED=PDFLib.rgb(0.776,0.157,0.157), AMBER=PDFLib.rgb(0.72,0.43,0), GRNT=PDFLib.rgb(0.07,0.54,0.24);
-          function bandColor(n){return n<50?RED:n<75?AMBER:GRNT}
-          function linesOf(text,f,size,max){
-            var words=pdfSafe(text).split(' '), out=[], cur='';
-            words.forEach(function(w){if(!w)return;var t=cur?cur+' '+w:w;if(f.widthOfTextAtSize(t,size)<=max)cur=t;else{if(cur)out.push(cur);cur=w}});
-            if(cur)out.push(cur);return out;
-          }
-          function drawLines(page,lines,x,y,f,size,color,lead){lines.forEach(function(ln){page.drawText(ln,{x:x,y:y,size:size,font:f,color:color});y-=lead});return y}
-          function page(){var p=pdf.addPage([612,792]);p.drawRectangle({x:0,y:784,width:612,height:8,color:GREEN});return p}
-          function logo(p,x,y,size){p.drawText('MORE',{x:x,y:y,size:size,font:bold,color:INK});var w=bold.widthOfTextAtSize('MORE',size);p.drawText('.',{x:x+w,y:y,size:size,font:bold,color:GREEN});return w+bold.widthOfTextAtSize('.',size)}
-          function kicker(p,text,y){p.drawText(pdfSafe(text),{x:48,y:y,size:11,font:bold,color:GRAY});return y-28}
-          function h1(p,text,y){return drawLines(p,linesOf(text,bold,32,516),48,y,bold,32,INK,36)}
-          var biz=pdfSafe(lead&&lead.business||'Your business');
-          var who=pdfSafe(lead&&lead.name||'');
-          var when=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-          function blurb(kind){
-            if(kind==='leads'){
-              var on=names('online',A.online), off=names('offline',A.offline);
-              var s='Online, you marked '+joinList(on)+'. ';
-              if(has(A.online,'ig')) s+='Instagram last posted: '+(folLabel('igPost',A.igPost)||'not set')+'. ';
-              if(has(A.online,'fb')) s+='Facebook last posted: '+(folLabel('fbPost',A.fbPost)||'not set')+'. ';
-              if(has(A.online,'web')) s+='Website form: '+(folLabel('webForm',A.webForm)||'not set')+'. ';
-              s+='Offline, you marked '+joinList(off)+'. ';
-              if(A.best&&A.best!=='ns'&&A.best!=='none') s+='The source that brings the most work: '+label(qBy('best'),A.best)+'. ';
-              s+='Google reviews: '+label(qBy('reviews'),A.reviews)+'. Customer value: '+label(qBy('ltv'),A.ltv)+'. Cost to get a customer: '+label(qBy('cac'),A.cac)+'. Leads a month: '+label(qBy('leads'),A.leads)+'.';
-              return s;
-            }
-            if(kind==='leaks') return 'Response time: '+label(qBy('speed'),A.speed)+'. Missed-call text back: '+label(qBy('textback'),A.textback)+'. Review ask after a job: '+label(qBy('reviewask'),A.reviewask)+'. '+(has(A.online,'web')?'The website form is marked '+(folLabel('webForm',A.webForm)||'not set')+'. ':'No website was selected, so quote requests from a site are not coming in. ');
-            return 'Quote speed: '+label(qBy('quotes'),A.quotes)+'. Follow-up: '+label(qBy('followup'),A.followup)+'. Sales script: '+(folLabel('script',A.script)||'not set')+'. Tracking: '+(folLabel('crm',A.crm)||'not set')+'.';
-          }
-          function names(qid,ids){var q=qBy(qid), out=[];(ids||[]).forEach(function(id){(q.opts||[]).forEach(function(o){if(o[0]===id)out.push(o[1])})});return out}
-          function joinList(a){if(!a.length)return 'none yet';if(a.length===1)return a[0];return a.slice(0,-1).join(', ')+' and '+a[a.length-1]}
-          function secLine(name,n){if(n>=75)return name+' is in good shape.';if(n>=50)return name+' is mixed. A few fixes move the number.';return name+' is the weak part of the funnel.'}
-          function story(title,k,paras,stats){
-            var p=page(), y=730;
-            logo(p,48,730,18);
-            y=680;
-            y=kicker(p,k,y);
-            y=h1(p,title,y)-8;
-            (stats||[]).forEach(function(st){p.drawText(pdfSafe(st),{x:48,y:y,size:16,font:bold,color:bandColor(parseInt(st,10)||0)});y-=24});
-            y-=8;
-            (paras||[]).forEach(function(para){y=drawLines(p,linesOf(para,font,13,516),48,y,font,13,INK,18)-10});
-            return p;
-          }
-          var cover=page();
-          logo(cover,48,700,48);
-          cover.drawText('make more money',{x:48,y:668,size:14,font:font,color:GRAY});
-          cover.drawText('SALES FUNNEL SCORE',{x:48,y:610,size:12,font:bold,color:GRAY});
-          var yb=drawLines(cover,linesOf(biz,bold,36,516),48,570,bold,36,INK,40);
-          var sub=[label(qBy('trade'),A.trade), A.town==='Other'&&A.town_other?A.town_other:(A.town||'')].filter(Boolean).join('  /  ');
-          if(sub) cover.drawText(pdfSafe(sub),{x:48,y:yb-8,size:13,font:font,color:GRAY});
-          cover.drawText(String(r.total),{x:48,y:400,size:84,font:bold,color:bandColor(r.total)});
-          var nw=bold.widthOfTextAtSize(String(r.total),84);
-          cover.drawText('/100 pts',{x:56+nw,y:418,size:18,font:bold,color:bandColor(r.total)});
-          drawLines(cover,linesOf(verdict(r),font,14,516),48,360,font,14,INK,20);
-          [['Leads',r.leads],['Leaks',r.leaks],['Closing',r.closing]].forEach(function(row,idx){
-            var x=48+idx*170;
-            cover.drawText(row[0].toUpperCase(),{x:x,y:250,size:11,font:bold,color:GRAY});
-            cover.drawText(row[1]+'/100',{x:x,y:220,size:22,font:bold,color:bandColor(row[1])});
-          });
-          cover.drawText(pdfSafe('Prepared for '+(who||biz)+'  /  '+when),{x:48,y:120,size:12,font:font,color:GRAY});
-          story('How to read this score','INTRO',[
-            'This report scores the sales funnel in three parts. Leads: where the work comes from. Leaks: how fast you respond, and whether a request actually gets through. Closing: how quotes go out, and how you follow up.',
-            'Each part is out of 100. The number on the cover is the average of the three. Under 50 is red. 50 to 74 is amber. 75 and above is green.',
-            secLine('Leads',r.leads)+' '+secLine('Leaks',r.leaks)+' '+secLine('Closing',r.closing)
-          ],[r.total+'/100 pts']);
-          story('Funnel snapshot','THE THREE SCORES',[
-            'Leads  '+r.leads+'/100. '+secLine('Leads',r.leads),
-            'Leaks  '+r.leaks+'/100. '+secLine('Leaks',r.leaks),
-            'Closing  '+r.closing+'/100. '+secLine('Closing',r.closing),
-            'Read the next pages for the detail behind each number, then the three moves at the end.'
-          ]);
-          story('Leads','WHERE WORK COMES FROM',[blurb('leads'), secLine('Leads',r.leads)],[r.leads+'/100']);
-          story('What you marked for leads','LEADS DETAIL',[
-            'Online: '+joinList(names('online',A.online))+'.',
-            'Offline: '+joinList(names('offline',A.offline))+'.',
-            'Biggest source: '+(A.best?label(qBy('best'),A.best):'not set')+'.',
-            r.insights.filter(function(x){return x.sec==='Leads'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'The lead channels you marked are in decent shape.'
-          ]);
-          story('Leaks','WHAT SLIPS THROUGH',[blurb('leaks'), secLine('Leaks',r.leaks)],[r.leaks+'/100']);
-          story('Response, missed calls, and the form','LEAKS DETAIL',[
-            r.insights.filter(function(x){return x.sec==='Leaks'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'Response time and follow-through look solid from what you marked.',
-            'A fast answer does not replace a quote. It only keeps the conversation alive long enough to send one.'
-          ]);
-          story('Closing','HOW JOBS GET WON',[blurb('closing'), secLine('Closing',r.closing)],[r.closing+'/100']);
-          story('Quotes, follow-up, script, tracking','CLOSING DETAIL',[
-            'Sales script: '+(folLabel('script',A.script)||'not set')+'. Tracking tool: '+(folLabel('crm',A.crm)||'not set')+'.',
-            r.insights.filter(function(x){return x.sec==='Closing'&&x.lost>0}).slice(0,4).map(function(x){return x.t+' '+x.d}).join(' ')||'Quote speed and follow-up look solid from what you marked.'
-          ]);
-          story('Summary','THE NUMBER ON THE COVER',[
-            biz+' scored '+r.total+'/100 pts. Leads '+r.leads+'/100. Leaks '+r.leaks+'/100. Closing '+r.closing+'/100.',
-            verdict(r),
-            'The next page is the order to do the work in. Do the first two before you spend more on ads.'
-          ],[r.total+'/100 pts']);
-          var steps=(function(){
-            var gaps=r.insights.filter(function(x){return x.lost>0}).slice(0,2);
-            var out=gaps.map(function(g){return {t:g.t,d:g.d}});
-            while(out.length<2) out.push({t:'Keep what already brings work.',d:'Do not pause a source that is producing jobs.'});
-            out.push({t:'Book a free 15-min call.',d:'Pick the first fix and put it on the calendar. Call or text 934-899-0796.'});
-            return out;
-          })();
-          var plan=page();
-          logo(plan,48,730,18);
-          var yp=kicker(plan,'THREE MOVES',680);
-          yp=h1(plan,'Do these in order',yp)-8;
-          steps.forEach(function(st,idx){
-            plan.drawText('0'+(idx+1),{x:48,y:yp,size:22,font:bold,color:GREEN});
-            yp=drawLines(plan,linesOf(st.t,bold,18,470),100,yp,bold,18,INK,22);
-            yp=drawLines(plan,linesOf(st.d,font,13,470),100,yp-4,font,13,INK,18)-22;
-          });
-          var cta=page();
-          logo(cta,48,700,42);
-          cta.drawText('make more money',{x:48,y:668,size:14,font:font,color:GRAY});
-          var yc=kicker(cta,'NEXT',590);
-          yc=h1(cta,'Get the time back',yc)-6;
-          yc=drawLines(cta,linesOf('15 minutes. We look at where the week goes and what comes off your plate first. Bring this score.',font,16,500),48,yc,font,16,INK,22)-16;
-          cta.drawText('934-899-0796',{x:48,y:yc,size:32,font:bold,color:INK});
-          yc-=36;
-          yc=drawLines(cta,linesOf('Call or text Seth Quest. East Hampton, NY. sethquest.com/make-more-money',font,14,500),48,yc,font,14,GRAY,20);
-          yc-=28;
-          cta.drawRectangle({x:48,y:yc-36,width:240,height:48,color:INK});
-          cta.drawText('Book a free 15-min call',{x:64,y:yc-18,size:13,font:bold,color:PAPER});
-          var pages=pdf.getPages();
-          pages.forEach(function(p,idx){
-            p.drawText('MORE',{x:48,y:32,size:11,font:bold,color:INK});
-            var lw=bold.widthOfTextAtSize('MORE',11);
-            p.drawText('.',{x:48+lw,y:32,size:11,font:bold,color:GREEN});
-            p.drawText('make more money',{x:48+lw+12,y:33,size:9,font:font,color:GRAY});
-            var pn=(idx+1)+' / '+pages.length;
-            p.drawText(pn,{x:564-font.widthOfTextAtSize(pn,9),y:33,size:9,font:font,color:GRAY});
-          });
-          pdf.setTitle('Sales funnel score - '+biz);
-          pdf.setAuthor('MORE.');
-          pdf.setSubject('make more money');
-          return pdf.save().then(function(bytes){return new Blob([bytes],{type:'application/pdf'})});
-        });
+    return loadReport().then(function(api){
+      var town=A.town==='Other'&&A.town_other?A.town_other:(A.town||'');
+      return api.toBlob({
+        business:(lead&&lead.business)||'Your business',
+        name:(lead&&lead.name)||'',
+        trade:label(qBy('trade'),A.trade)||'',
+        town:town,
+        dateLabel:new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
+        answers:A,
+        score:r
       });
     });
   }
