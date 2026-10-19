@@ -463,15 +463,17 @@
   .ptiers{margin-top:40px;display:grid;gap:14px}
   .ptier{background:var(--ink);color:#f5f3ee;border-radius:20px;padding:24px 20px 22px;border-bottom:6px solid var(--gb);display:flex;flex-direction:column;gap:14px;min-width:0}
   .ptier .eyebrow{color:var(--gb)}
-  .ptier .pc-rate{font-size:clamp(64px,8vw,80px)}
+  .ptier .pc-rate{font-size:clamp(72px,16vw,96px);white-space:nowrap}
   .ptier .pc-list{flex:1}
-  .ptier p{color:#d8d6d0;font-size:16px;margin:0}
   .ptier .pc-min{color:#fff}
-  .pt-title{font-size:clamp(28px,3vw,34px);line-height:.95;color:#fff;margin:0}
   .ptier .btn{width:100%;background:#fff;color:var(--ink)}
   .ptier-acts{display:grid;gap:12px;margin-top:auto;justify-items:center}
-  .ptier-more{color:#fff;font-weight:700;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:1px}
-  @media(min-width:960px){.ptiers{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}}
+  .ptier-more{color:#fff;font-weight:700;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:1px;line-height:1.2}
+  .ptier-spacer{visibility:hidden}
+  @media(min-width:960px){
+    .ptier .pc-rate{font-size:clamp(56px,5vw,72px)}
+    .ptiers{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+  }
   .qz.wide .qz-in{max-width:720px}
   /* hero: two equal CTAs, stacked at every width. Booking on top, quiz below. */
   .hero .ctas{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:32ch;margin-right:auto;align-items:stretch;justify-items:stretch;font-size:19px}
@@ -617,29 +619,34 @@
             <li><b>One on one</b> with Seth, done in 48 hours</li>
             <li><b>100% money-back guarantee</b> if you don&rsquo;t feel you got $750 of value</li>
           </ul>
-          <button class="btn p" type="button" data-book>Book a free call</button>
+          <div class="ptier-acts">
+            <button class="btn p" type="button" data-book>Book a free call</button>
+            <span class="ptier-more ptier-spacer" aria-hidden="true">Learn more</span>
+          </div>
         </article>
         <article class="ptier">
-          <h3 class="pt-title d">Three-Week Setup &middot; $2,400</h3>
-          <p class="pc-min">One on one with the founder.</p>
-          <p>One change a week, for three weeks. We pick the biggest leak, fix it, see it work, then take on the next one.</p>
-          <p>Week 1: $800 to start. Week 2: $800. Week 3: $800 at handoff.</p>
+          <div class="pc-top"><div class="eyebrow pc-lbl">One change a week</div>
+            <div class="pc-rate d">$2,400</div>
+            <div class="pc-min">Three-Week Setup. One on one. Three weeks.</div></div>
+          <ul class="pc-list">
+            <li><b>One change a week:</b> we pick the biggest leak, fix it, see it work</li>
+            <li><b>One on one</b> with Seth</li>
+            <li><b>Pay as you go:</b> $800 to start, $800 week 2, $800 at handoff</li>
+          </ul>
           <div class="ptier-acts">
             <button class="btn p" type="button" data-book>Book a free call</button>
             <a class="ptier-more" href="/time-is-money">Learn more</a>
           </div>
         </article>
         <article class="ptier">
-          <h3 class="pt-title d">Team Workshop &middot; $4,800 per company</h3>
-          <p class="pc-min">2 to 5 people. Founder optional.</p>
-          <p>One change a week, for three weeks. We pick the biggest leak, fix it, see it work, then take on the next one.</p>
+          <div class="pc-top"><div class="eyebrow pc-lbl">For your team</div>
+            <div class="pc-rate d">$4,800</div>
+            <div class="pc-min">Team Workshop. 2 to 5 people. Three weeks.</div></div>
           <ul class="pc-list">
-            <li>A 2-hour team session each week, with setup work between sessions</li>
-            <li>Week 1: audit and the first change</li>
-            <li>Week 2: the second change</li>
-            <li>Week 3: the third change, training, and handoff</li>
+            <li><b>2 to 5 people:</b> founder optional</li>
+            <li><b>A 2-hour team session</b> each week, setup between sessions</li>
+            <li><b>Pay as you go:</b> $1,600 to start, $1,600 week 2, $1,600 at handoff</li>
           </ul>
-          <p>Week 1: $1,600 to start. Week 2: $1,600. Week 3: $1,600 at handoff.</p>
           <div class="ptier-acts">
             <button class="btn p" type="button" data-book>Book a free call</button>
             <a class="ptier-more" href="/team-workshop">Learn more</a>
