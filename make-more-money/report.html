@@ -334,6 +334,7 @@
   <header><a class="brand" href="https://sethquest.com">Seth Quest</a></header>
   <div id="out"><p class="bad">Loading report&hellip;</p></div>
 </div>
+<script src="/make-more-money/audit.js"></script>
 <script>
 (function(){
   var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
@@ -476,6 +477,27 @@
   function render(){
     var out=document.getElementById('out'),d=decode(location.hash);
     if(!d||!d.a){out.innerHTML='<p class="bad">This report link is incomplete. Open it straight from the Formspree email.</p>';return}
+    if(d.v===3 && window.MOREAudit){
+      lead={name:(d.c&&d.c.n)||'',business:(d.c&&d.c.b)||'',phone:(d.c&&d.c.p)||'',email:(d.c&&d.c.e)||''};
+      if(!document.getElementById('moreAuditCss')){var st=document.createElement('style');st.id='moreAuditCss';st.textContent=MOREAudit.css;document.head.appendChild(st)}
+      document.title='Lead report: '+(lead.business||'Lead')+' · Seth Quest';
+      var who=(lead.name||'')+(lead.business?(lead.name?' · ':'')+lead.business:'');
+      out.innerHTML='<div class="eyebrow">Lead report &middot; private</div>'+MOREAudit.resultsInner(d.a, who);
+      var book=document.getElementById('qrBook');
+      if(book) book.addEventListener('click',function(){location.href='tel:+19348990796'});
+      var em=document.getElementById('qrEmail');
+      if(em) em.addEventListener('click',function(){
+        var blob=new Blob([MOREAudit.reportDocument(lead,d.a)],{type:'text/html'});
+        var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MORE-funnel-audit.html';document.body.appendChild(a);a.click();a.remove();
+      });
+      var pr=document.getElementById('qrPrint');
+      if(pr) pr.addEventListener('click',function(){
+        var w=window.open('','moreprint'); if(!w) return;
+        w.document.open(); w.document.write(MOREAudit.reportDocument(lead,d.a)); w.document.close();
+        setTimeout(function(){w.focus();w.print()},300);
+      });
+      return;
+    }
     A=d.a;legacy=false;lead={name:(d.c&&d.c.n)||'',business:(d.c&&d.c.b)||'',phone:(d.c&&d.c.p)||'',email:(d.c&&d.c.e)||''};
     var R=score(),tel=lead.phone.replace(/[^0-9+]/g,''),first=lead.name.split(' ')[0],b=band(R.total);
     var sms='sms:'+tel+'?&body='+encodeURIComponent('Hi '+first+', it\u2019s Seth Quest. Thanks for scoring your sales funnel. Got 15 minutes this week to go over it?');

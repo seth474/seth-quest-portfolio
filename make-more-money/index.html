@@ -460,6 +460,19 @@
   .pc-list li b{color:#fff}
   .pc-list li::before{content:"";position:absolute;left:3px;top:.38em;width:13px;height:7px;border-left:3px solid var(--gb);border-bottom:3px solid var(--gb);transform:rotate(-45deg)}
   @media(min-width:760px){.pcard{grid-template-columns:1fr 1.3fr;align-items:center;padding:40px}}
+  .ptiers{margin-top:40px;display:grid;gap:14px}
+  .ptier{background:var(--ink);color:#f5f3ee;border-radius:20px;padding:24px 20px 22px;border-bottom:6px solid var(--gb);display:flex;flex-direction:column;gap:14px;min-width:0}
+  .ptier .eyebrow{color:var(--gb)}
+  .ptier .pc-rate{font-size:clamp(64px,8vw,80px)}
+  .ptier .pc-list{flex:1}
+  .ptier p{color:#d8d6d0;font-size:16px;margin:0}
+  .ptier .pc-min{color:#fff}
+  .pt-title{font-size:clamp(28px,3vw,34px);line-height:.95;color:#fff;margin:0}
+  .ptier .btn{width:100%;background:#fff;color:var(--ink)}
+  .ptier-acts{display:grid;gap:12px;margin-top:auto;justify-items:center}
+  .ptier-more{color:#fff;font-weight:700;text-decoration:none;border-bottom:2px solid var(--gb);padding-bottom:1px}
+  @media(min-width:960px){.ptiers{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}}
+  .qz.wide .qz-in{max-width:720px}
   /* hero: two equal CTAs, stacked at every width. Booking on top, quiz below. */
   .hero .ctas{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:32ch;margin-right:auto;align-items:stretch;justify-items:stretch;font-size:19px}
   @media(max-width:859px){.hero .ctas{font-size:17px}}
@@ -495,7 +508,7 @@
       <p class="lead">I work with service businesses to get more jobs: fix the leaks, get more leads, close more sales.</p>
       <div class="ctas">
         <button class="btn hero-pair hero-book" type="button" data-book><span class="hp-t">Book a free 15-min call</span></button>
-        <a class="btn hero-pair hero-quiz" href="#quiz" data-quiz><span class="hp-t">Score your sales funnel</span><span class="hp-s">2-minute quiz</span></a>
+        <a class="btn hero-pair hero-quiz" href="#quiz" data-quiz><span class="hp-t">Take the 3-minute quiz</span></a>
       </div>
       <div class="vidbox">
         <div id="vid">
@@ -575,10 +588,9 @@
   <section class="pad quiz" id="quiz">
     <div class="wrap">
       <div class="qcard">
-        <div class="eyebrow" style="color:var(--green)">Free &middot; 2 minutes &middot; Do it yourself</div>
-        <h2 class="d">Score your sales funnel<span class="g">.</span></h2>
-        <p>13 quick questions. Get a score out of 100 across <strong>Lead Score</strong>, <strong>Lost Opportunities</strong>, and <strong>Close Rate</strong>, plus a short list of what to fix first.</p>
-        <button class="btn p" type="button" data-quiz>Score my funnel</button>
+        <h2 class="d">Take the 3-minute quiz<span class="g">.</span></h2>
+        <p>Get a free, personalized look at where your business is leaving money on the table.</p>
+        <button class="btn p" type="button" data-quiz>Take the quiz</button>
       </div>
     </div>
   </section>
@@ -589,21 +601,50 @@
       <h2 class="d">How it works<span class="g">.</span></h2>
       <ol class="hsteps">
         <li><div class="sn">1</div><div class="sb"><h3>I evaluate your whole sales funnel<span class="g">.</span></h3>
-          <ul class="hgridc"><li><span class="hk" aria-hidden="true"></span>Google Business Profile</li><li><span class="hk" aria-hidden="true"></span>Google reviews</li><li><span class="hk" aria-hidden="true"></span>Website</li><li><span class="hk" aria-hidden="true"></span>Ads &amp; lead sources</li><li><span class="hk" aria-hidden="true"></span>Call answer speed</li><li><span class="hk" aria-hidden="true"></span>Quote speed</li><li><span class="hk" aria-hidden="true"></span>Quote follow-up</li><li><span class="hk" aria-hidden="true"></span>Review requests</li><li><span class="hk" aria-hidden="true"></span>Social media &amp; email</li><li><span class="hk" aria-hidden="true"></span>Customer value</li><li><span class="hk" aria-hidden="true"></span>Cost per customer</li></ul></div></li>
+          <ul class="hgridc"><li><span class="hk" aria-hidden="true"></span>Google Business Profile</li><li><span class="hk" aria-hidden="true"></span>Google reviews</li><li><span class="hk" aria-hidden="true"></span>Website</li><li><span class="hk" aria-hidden="true"></span>Website on phones</li><li><span class="hk" aria-hidden="true"></span>Clear next step</li><li><span class="hk" aria-hidden="true"></span>Ballpark pricing</li><li><span class="hk" aria-hidden="true"></span>Ads &amp; lead sources</li><li><span class="hk" aria-hidden="true"></span>Call answer speed</li><li><span class="hk" aria-hidden="true"></span>Quote speed</li><li><span class="hk" aria-hidden="true"></span>Quote follow-up</li><li><span class="hk" aria-hidden="true"></span>Past-customer follow-up</li><li><span class="hk" aria-hidden="true"></span>Review requests</li><li><span class="hk" aria-hidden="true"></span>Social media &amp; email</li><li><span class="hk" aria-hidden="true"></span>Customer value</li><li><span class="hk" aria-hidden="true"></span>Cost per customer</li></ul></div></li>
         <li><div class="sn">2</div><div class="sb"><h3>We pick the top priorities<span class="g">.</span></h3>
           <p>We choose the top areas to focus on together, based on your knowledge of your business and the highest potential return.</p></div></li>
         <li><div class="sn">3</div><div class="sb"><h3>I make the changes<span class="g">.</span></h3>
           <p>Starting with what brings in money fastest.</p></div></li>
       </ol>
-      <div class="pcard">
-        <div class="pc-top"><div class="eyebrow pc-lbl">Straightforward pricing</div>
-          <div class="pc-rate d">$750</div>
-          <div class="pc-min">One fix. One on one. 48 hours.</div></div>
-        <ul class="pc-list">
-          <li><b>One fix:</b> your website, your Google profile, or your Google Ads</li>
-          <li><b>One on one</b> with Seth, done in 48 hours</li>
-          <li><b>100% money-back guarantee</b> if you don&rsquo;t feel you got $750 of value</li>
-        </ul>
+      <div class="ptiers">
+        <article class="ptier">
+          <div class="pc-top"><div class="eyebrow pc-lbl">Straightforward pricing</div>
+            <div class="pc-rate d">$750</div>
+            <div class="pc-min">One fix. One on one. 48 hours.</div></div>
+          <ul class="pc-list">
+            <li><b>One fix:</b> your website, your Google profile, or your Google Ads</li>
+            <li><b>One on one</b> with Seth, done in 48 hours</li>
+            <li><b>100% money-back guarantee</b> if you don&rsquo;t feel you got $750 of value</li>
+          </ul>
+          <button class="btn p" type="button" data-book>Book a free call</button>
+        </article>
+        <article class="ptier">
+          <h3 class="pt-title d">Three-Week Setup &middot; $2,400</h3>
+          <p class="pc-min">One on one with the founder.</p>
+          <p>One change a week, for three weeks. We pick the biggest leak, fix it, see it work, then take on the next one.</p>
+          <p>Week 1: $800 to start. Week 2: $800. Week 3: $800 at handoff.</p>
+          <div class="ptier-acts">
+            <button class="btn p" type="button" data-book>Book a free call</button>
+            <a class="ptier-more" href="/time-is-money">Learn more</a>
+          </div>
+        </article>
+        <article class="ptier">
+          <h3 class="pt-title d">Team Workshop &middot; $4,800 per company</h3>
+          <p class="pc-min">2 to 5 people. Founder optional.</p>
+          <p>One change a week, for three weeks. We pick the biggest leak, fix it, see it work, then take on the next one.</p>
+          <ul class="pc-list">
+            <li>A 2-hour team session each week, with setup work between sessions</li>
+            <li>Week 1: audit and the first change</li>
+            <li>Week 2: the second change</li>
+            <li>Week 3: the third change, training, and handoff</li>
+          </ul>
+          <p>Week 1: $1,600 to start. Week 2: $1,600. Week 3: $1,600 at handoff.</p>
+          <div class="ptier-acts">
+            <button class="btn p" type="button" data-book>Book a free call</button>
+            <a class="ptier-more" href="/team-workshop">Learn more</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -677,12 +718,11 @@
   <section class="pad last">
     <div class="wrap">
       <div class="final">
-        <h2 class="d">Got 2 minutes<span class="g">?</span></h2>
-        <p>See exactly where your funnel is leaking.</p>
+        <h2 class="d">Take the 3-minute quiz<span class="g">.</span></h2>
+        <p>Get a free, personalized look at where your business is leaving money on the table.</p>
         <div class="ctas">
-          <button class="btn p" type="button" data-quiz>Score your sales funnel</button>
+          <button class="btn p" type="button" data-quiz>Take the quiz</button>
         </div>
-        <p class="fnote">Free. Takes 2 minutes.</p>
         <p class="fcall">Or call/text <a href="tel:+19348990796">934-899-0796</a></p>
       </div>
     </div>
@@ -939,370 +979,8 @@
   }
 })();
 </script>
-<script>
-/* ---- v8: funnel quiz. 13 questions. Leads, Leaks, Closing. ---- */
-(function(){
-  var FORM='https://formspree.io/f/meaonlel';
-  var YNN=[['yes','Yes'],['no','No'],['ns','Not sure']];
-  var POSTED=[['week','This week'],['month','This month'],['mo6','6+ months'],['yr','1+ year']];
-  var Q=[
-    {id:'trade',type:'select',k:'About you',q:'What\'s your trade?',opts:['Landscaping','Pool &amp; spa','HVAC','Plumbing','Electrical','Roofing','Painting','Cleaning','Builder / contractor','Handyman','Tree service','Pest control','Auto / detailing','Tours &amp; rentals','Other']},
-    {id:'town',type:'select',k:'About you',q:'Where are you based?',other:true,opts:['Montauk','Amagansett','East Hampton','Sag Harbor','Bridgehampton','Sagaponack','Water Mill','Southampton','Hampton Bays','Westhampton','Shelter Island','North Fork','Other']},
-    {id:'online',type:'multi',k:'Lead Score',q:'Where do your online leads come from?',h:'Pick all that you use.',opts:[['gbp','Google search / Google Business Profile'],['gads','Google Ads / LSA'],['web','Website'],['ig','Instagram (posting)'],['fb','Facebook (posting)'],['fads','Paid Facebook ads'],['iads','Paid Instagram ads'],['nd','Nextdoor'],['angi','Angi / Thumbtack / Yelp']],follow:[
-      {when:'ig',id:'igPost',q:'Instagram, last posted',opts:POSTED},
-      {when:'fb',id:'fbPost',q:'Facebook, last posted',opts:POSTED},
-      {when:'web',id:'webForm',q:'Does the contact or quote form work?',opts:[['works','Works'],['miss','Hit or miss'],['none','No form'],['ns','Not sure']]}
-    ]},
-    {id:'offline',type:'multi',k:'Lead Score',q:'Where do your offline leads come from?',h:'Pick all that you use.',opts:[['ref','Referrals / word of mouth'],['repeat','Repeat customers'],['yard','Yard signs'],['wrap','Vehicle / truck wrap'],['door','Door hangers'],['mail','Physical mailers / postcards'],['print','Local print ads'],['events','Events / sponsorships']]},
-    {id:'best',type:'one',k:'Lead Score',q:'Which one brings you the most work?',h:'Pick the single biggest source.'},
-    {id:'speed',type:'one',k:'Lost Opportunities',q:'How fast do you answer or return new leads?',opts:[['min15','Within 15 minutes'],['hour','Within an hour'],['day','Same day'],['next','Next day or later'],['ns','Not sure']]},
-    {id:'quotes',type:'one',k:'Close Rate',q:'How fast do quotes go out?',opts:[['same','Same day'],['next','Next day'],['few','2 to 3 days'],['week','A week or more'],['ns','Not sure']],follow:[
-      {always:true,id:'script',q:'Do you use a sales script?',opts:[['yes','Yes'],['no','No']]}
-    ]},
-    {id:'followup',type:'one',k:'Close Rate',q:'How do you follow up on quotes that go quiet?',opts:[['auto','Automatic follow-up'],['manual','I follow up myself, every time'],['some','Sometimes'],['no','I do not'],['ns','Not sure']],follow:[
-      {always:true,id:'crm',q:'Where do you track jobs and quotes?',opts:[['none','None'],['sheet','Spreadsheet'],['jobber','Jobber'],['hcp','Housecall Pro'],['st','ServiceTitan'],['other','Other']]}
-    ]},
-    {id:'reviewask',type:'one',k:'Lost Opportunities',q:'Do you ask for a review after every job?',opts:YNN},
-    {id:'reviews',type:'one',k:'Lead Score',q:'How many Google reviews do you have?',opts:[['0','0 to 10'],['11','11 to 50'],['51','51 to 100'],['100','100+'],['ns','Not sure']]},
-    {id:'ltv',type:'one',k:'Lead Score',q:'Do you know what a customer is worth over time?',h:'Everything one customer spends with you over the years.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
-    {id:'cac',type:'one',k:'Lead Score',q:'Do you know what it costs you to get a customer?',h:'What you spend on ads and marketing for each new customer.',opts:[['yes','Yes'],['no','No'],['what','What\'s that?']]},
-    {id:'leads',type:'one',k:'Lead Score',q:'Roughly how many leads a month?',h:'Calls, texts, forms and DMs from new people.',opts:[['0','0 to 10'],['11','11 to 30'],['31','31 to 75'],['75','75+'],['ns','Not sure']]}
-  ];
-  var N=Q.length,A={},i=0,lead=null,sent=false,R=null;
-  var qz=document.getElementById('qz'),body=document.getElementById('qzBody'),bar=document.getElementById('qzBar'),cnt=document.getElementById('qzCount'),nav=document.getElementById('qzNav'),back=document.getElementById('qzBack'),next=document.getElementById('qzNext');
-  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-  function txt(h){var d=document.createElement('div');d.innerHTML=h;return d.textContent}
-  function qBy(id){for(var j=0;j<Q.length;j++) if(Q[j].id===id) return Q[j]}
-  function has(arr,id){return (arr||[]).indexOf(id)>=0}
-  function bestOpts(){
-    var opts=[],seen={};
-    ['online','offline'].forEach(function(id){
-      var q=qBy(id), sel=A[id]||[];
-      (q&&q.opts||[]).forEach(function(o){ if(sel.indexOf(o[0])>=0 && !seen[o[0]]){ seen[o[0]]=1; opts.push(o); } });
-    });
-    if(!opts.length) opts.push(['none','Nothing steady yet']);
-    opts.push(['ns','Not sure']);
-    return opts;
-  }
-  function hydrate(q){
-    if(q.id==='best'){
-      q.opts=bestOpts();
-      var ok=false;
-      for(var j=0;j<q.opts.length;j++) if(q.opts[j][0]===A.best) ok=true;
-      if(!ok) delete A.best;
-    }
-    return q;
-  }
-  function label(q,v){
-    if(!q) return v||'';
-    hydrate(q);
-    var opts=q.opts||[];
-    for(var j=0;j<opts.length;j++){
-      var o=opts[j];
-      if(Object.prototype.toString.call(o)==='[object Array]'){ if(o[0]===v) return txt(o[1]||''); }
-      else if(o===v) return txt(o);
-    }
-    return v||'';
-  }
-  function findFollow(id){
-    for(var a=0;a<Q.length;a++){ var fs=Q[a].follow||[]; for(var b=0;b<fs.length;b++) if(fs[b].id===id) return fs[b]; }
-    return null;
-  }
-  function folLabel(id,v){ var f=findFollow(id); if(!f||!v) return ''; for(var j=0;j<f.opts.length;j++) if(f.opts[j][0]===v) return f.opts[j][1]; return v; }
-  function followActive(q,f){
-    if(f.always) return true;
-    var v=A[q.id];
-    if(q.type==='multi') return (v||[]).indexOf(f.when)>=0;
-    return v===f.when;
-  }
-  function mapLegacy(){
-    if(A.online || A.offline || !A.sources) return;
-    A.online=[]; A.offline=[];
-    (A.sources||[]).forEach(function(id){
-      if(id==='gbp'||id==='gads'||id==='web') A.online.push(id);
-      else if(id==='meta'){ A.online.push('fb'); A.online.push('fads'); }
-      else if(id==='ref') A.offline.push('ref');
-      else if(id==='mail') A.offline.push('mail');
-      else if(id==='wrap') A.offline.push('wrap');
-    });
-  }
-  function openQ(){qz.hidden=false;document.documentElement.style.overflow='hidden';if(i>N+1)i=0;render();setTimeout(function(){document.getElementById('qzX').focus()},30)}
-  function closeQ(){qz.hidden=true;document.documentElement.style.overflow=''}
-  document.querySelectorAll('[data-quiz]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openQ()})});
-  document.getElementById('qzX').addEventListener('click',closeQ);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!qz.hidden)closeQ()});
-  function answered(q){var v=A[q.id];if(q.type==='multi')return true;if(!v)return false;if(q.other&&v==='Other')return !!(A[q.id+'_other']||'').trim();return true}
-  function followsOk(q){var fs=q.follow||[];for(var j=0;j<fs.length;j++){if(followActive(q,fs[j])&&!A[fs[j].id])return false}return true}
-  function progress(){var p=Math.min(i,N)/N;bar.style.width=(p*100)+'%';cnt.textContent=i<N?(i+1)+' / '+N:(i===N?'Last step':'Your score')}
-  function band(n){return n<50?'lo':n<75?'mid':'hi'}
-  function render(){
-    progress();nav.hidden=false;back.disabled=i===0;
-    if(i<N){var q=hydrate(Q[i]),h='<div class="qz-k">'+q.k+'</div><h2 class="qz-q" id="qzT">'+q.q+'</h2>'+(q.h?'<p class="qz-h">'+q.h+'</p>':'<p class="qz-h"></p>');
-      if(q.type==='select'){h+='<select class="qz-sel" id="qzSel" aria-label="'+esc(txt(q.q))+'"><option value="">Choose one</option>'+q.opts.map(function(o){var t=txt(o);return '<option'+(A[q.id]===t?' selected':'')+'>'+o+'</option>'}).join('')+'</select>';
-        if(q.other)h+='<input class="fld qz-txt" id="qzOther" type="text" placeholder="Your town" aria-label="Your town" value="'+esc(A[q.id+'_other']||'')+'"'+(A[q.id]==='Other'?'':' hidden')+'>';}
-      else{var multi=q.type==='multi',cur=A[q.id]||(multi?[]:'');
-        h+='<div class="qz-opts" role="'+(multi?'group':'radiogroup')+'">'+q.opts.map(function(o){var on=multi?cur.indexOf(o[0])>=0:cur===o[0];return '<button type="button" class="qz-o'+(multi?' multi':'')+'" data-v="'+o[0]+'" role="'+(multi?'checkbox':'radio')+'" aria-checked="'+(on?'true':'false')+'"><span class="bx"></span>'+o[1]+'</button>'}).join('')+'</div>';
-        (q.follow||[]).forEach(function(f){var show=followActive(q,f);
-          h+='<div class="qz-fol" data-fol="'+f.id+'"'+(show?'':' hidden')+'><div class="qz-fol-q">'+f.q+'</div><div class="qz-chips" role="radiogroup">'+f.opts.map(function(o){var ck=A[f.id]===o[0];return '<button type="button" data-fid="'+f.id+'" data-v="'+o[0]+'" aria-checked="'+(ck?'true':'false')+'">'+o[1]+'</button>'}).join('')+'</div></div>';
-        });
-      }
-      h+='<div class="qz-err" id="qzErr"></div>';body.innerHTML=h;
-      next.textContent=i===N-1?'See my score':'Next';
-      if(q.type==='select'){var sel=document.getElementById('qzSel'),ot=document.getElementById('qzOther');
-        sel.addEventListener('change',function(){A[q.id]=sel.value;if(ot){ot.hidden=sel.value!=='Other';if(!ot.hidden)ot.focus()}});
-        if(ot)ot.addEventListener('input',function(){A[q.id+'_other']=ot.value});}
-      else body.querySelectorAll('.qz-o').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.v;
-        if(q.type==='multi'){var a=A[q.id]||[];var k=a.indexOf(v);k<0?a.push(v):a.splice(k,1);A[q.id]=a;b.setAttribute('aria-checked',k<0?'true':'false');
-          body.querySelectorAll('[data-fol]').forEach(function(el){var f=null;(q.follow||[]).forEach(function(x){if(x.id===el.dataset.fol)f=x});if(f)el.hidden=!followActive(q,f)});}
-        else{A[q.id]=v;body.querySelectorAll('.qz-o').forEach(function(x){x.setAttribute('aria-checked',x===b?'true':'false')});
-          if(!q.follow)setTimeout(function(){if(Q[i]===q)go(1)},260)}})});
-      body.querySelectorAll('.qz-chips button').forEach(function(b){b.addEventListener('click',function(){A[b.dataset.fid]=b.dataset.v;var row=b.parentNode;row.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-checked',x===b?'true':'false')})})});
-    } else if(i===N){
-      body.innerHTML='<div class="qz-k">Last step</div><h2 class="qz-q" id="qzT">See your score.</h2><p class="qz-h">Your score shows up right after this. I get a copy too, so we can go through it on a call if you want.</p>'+
-        '<form class="qz-gate" id="qzGate" novalidate><input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="'+esc((lead&&lead.name)||'')+'"><input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc((lead&&lead.business)||'')+'"><input class="fld" id="gP" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone" value="'+esc((lead&&lead.phone)||'')+'"><input class="fld" id="gE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc((lead&&lead.email)||'')+'">'+
-        '<div class="qz-err" id="qzErr"></div><p class="qz-fine">No spam. No pitch you did not ask for.</p></form>';
-      next.textContent='Show my score';
-      document.getElementById('qzGate').addEventListener('submit',function(e){e.preventDefault();go(1)});
-    } else results();
-  }
-  function err(t){var e=document.getElementById('qzErr');if(e)e.textContent=t}
-  function go(d){
-    if(d>0){
-      if(i<N){var q=hydrate(Q[i]);if(!answered(q)){err(q.type==='select'?'Pick one to keep going.':'Pick an answer to keep going.');return}
-        if(!followsOk(q)){err('Tap each row under the question to keep going.');return}}
-      if(i===N){var n=document.getElementById('gN').value.trim(),b=document.getElementById('gB').value.trim(),p=document.getElementById('gP').value.trim(),pd=p.replace(/[^0-9]/g,''),em=document.getElementById('gE').value.trim();
-        lead={name:n,business:b,phone:p,email:em};
-        if(!n||!b){err('Add your first name and business.');return}
-        if(!/^[0-9+().\-\s]+$/.test(p)||!(pd.length===10||(pd.length===11&&pd[0]==='1'))){err('Add a cell number (10 digits).');return}
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){err('Add your email.');return}
-        i++;render();send();body.scrollTop=0;return}
-    }
-    i=Math.max(0,i+d);render();body.scrollTop=0;
-  }
-  back.addEventListener('click',function(){if(i>N){i=N;sent=false}go(-1)});
-  next.addEventListener('click',function(){go(1)});
+<script src="/make-more-money/audit.js"></script>
+<script src="/make-more-money/quiz.js"></script>
 
-  function score(){
-    mapLegacy();
-    var on=A.online||[], off=A.offline||[], insights=[];
-    var OW={gbp:8,gads:7,web:6,ig:5,fb:5,fads:5,iads:5,nd:4,angi:4};
-    var FW={ref:4,repeat:4,yard:2,wrap:2,door:2,mail:2,print:2,events:2};
-    var REC={week:8,month:5,mo6:2,yr:0};
-    var leadPts=0, leakPts=0, closePts=0, onSum=0, offSum=0;
-    on.forEach(function(id){onSum+=OW[id]||0});
-    leadPts+=Math.min(36,onSum);
-    if(has(on,'ig')) leadPts+=REC[A.igPost]||0;
-    if(has(on,'fb')) leadPts+=REC[A.fbPost]||0;
-    off.forEach(function(id){offSum+=FW[id]||0});
-    leadPts+=Math.min(16,offSum);
-    var revPts={'0':2,'11':4,'51':8,'100':12,ns:3}[A.reviews]||2; leadPts+=revPts;
-    var ltvPts={yes:6,no:1,what:0}[A.ltv]||0; leadPts+=ltvPts;
-    var cacPts={yes:6,no:1,what:0}[A.cac]||0; leadPts+=cacPts;
-    var volPts={'0':1,'11':3,'31':5,'75':8,ns:0}[A.leads]||0; leadPts+=volPts;
-    function push(sec,lost,t,d){if(lost>0) insights.push({sec:sec,lost:lost,t:t,d:d})}
-    if(!has(on,'gbp')) push('Lead Score',8,'Claim your Google Business Profile.','Locals search Google first. A finished profile with photos is how they choose a company.');
-    if(!has(on,'gads')) push('Lead Score',7,'Run Google Ads or Local Services Ads.','Show up when someone nearby searches for your trade.');
-    if(!has(on,'web')) push('Lead Score',6,'Put up a simple page people can book from.','One page with your town, your work, and a tap to call is enough to start.');
-    if(has(on,'ig')&&A.igPost&&A.igPost!=='week') push('Lead Score',A.igPost==='month'?3:8,'Post on Instagram this week.','The last post is old, so the profile looks quiet.');
-    if(!has(on,'ig')) push('Lead Score',5,'Post a job on Instagram.','Homeowners check the latest photos before they call.');
-    if(has(on,'fb')&&A.fbPost&&A.fbPost!=='week') push('Lead Score',A.fbPost==='month'?3:8,'Post on Facebook this week.','A quiet page reads like a closed business.');
-    if(!has(on,'fb')) push('Lead Score',5,'Post jobs on your Facebook page.','Neighbors still look there before they ask for a name.');
-    if(!has(on,'fads')&&!has(on,'iads')) push('Lead Score',5,'Test one paid social ad.','A job photo and a tap-to-call button is a fair first test.');
-    if(revPts<8) push('Lead Score',12-revPts,'Get to 50 Google reviews.','People compare review counts before they compare prices.');
-    if(A.ltv!=='yes') push('Lead Score',6-ltvPts,'Write down what a customer is worth.','Then you know what a new lead is worth fighting for.');
-    if(A.cac!=='yes') push('Lead Score',6-cacPts,'Write down what a new customer costs.','So you only pay for ads that pay you back.');
-    if(Math.min(16,offSum)<8) push('Lead Score',8,'Ask every happy customer for one referral.','Referrals and repeat work are the cheapest leads you can get.');
-    var speedPts={min15:40,instant:40,hour:28,day:16,next:8,ns:10}[A.speed]||8; leakPts+=speedPts;
-    if(speedPts<40) push('Lost Opportunities',40-speedPts,'Answer new leads within 15 minutes.','Most people call the next company if nobody answers.');
-    var formPts=has(on,'web')?({works:18,miss:10,ns:6,none:4}[A.webForm]||4):8; leakPts+=formPts;
-    if(!has(on,'web')||A.webForm!=='works') push('Lost Opportunities',Math.max(4,18-formPts),'Make the contact form actually deliver.','A form that fails is a lead you already paid for and then lost.');
-    var askPts={yes:12,ns:5,no:0}[A.reviewask]||0; leakPts+=askPts;
-    if(A.reviewask!=='yes') push('Lost Opportunities',12-askPts,'Ask for a review after every job.','A text with a one-tap link to your Google page.');
-    var qPts={same:40,next:30,few:18,week:12,ns:10}[A.quotes]||8; closePts+=qPts;
-    if(qPts<40) push('Close Rate',40-qPts,'Send the quote the same day.','The first clear quote usually wins the job.');
-    var fuPts={auto:30,manual:22,yes:22,some:16,no:0,ns:6}[A.followup]||0; closePts+=fuPts;
-    if(A.followup==='some'||A.followup==='manual'||A.followup==='yes') push('Close Rate',A.followup==='some'?14:8,'Make the follow-up you already send close the job.','You already follow up. Set day 2, day 5, and day 10, and ask them to book.');
-    else if(fuPts<22) push('Close Rate',30-fuPts,'Follow up on every quiet quote.','A text on day 2, day 5, and day 10 wins back jobs that go cold.');
-    var scriptPts=A.script==='yes'?15:0; closePts+=scriptPts;
-    if(A.script!=='yes') push('Close Rate',15,'Put an objection sheet by the phone.','Five common nos, and the line to say next. Practice that close once this week with whoever quotes.');
-    var crmPts={jobber:15,hcp:15,st:15,sheet:10,other:8,none:4}[A.crm]||4; closePts+=crmPts;
-    if(crmPts<10) push('Close Rate',15-crmPts,'Track every quote in one place.','A spreadsheet is enough. Jobber, Housecall Pro, or ServiceTitan once the volume is there.');
-    if(closePts<70) closePts+=6;
-    insights.sort(function(a,b){return b.lost-a.lost});
-    var seen={},list=[];
-    insights.forEach(function(x){if(seen[x.t])return;seen[x.t]=1;list.push(x)});
-    [{sec:'Lead Score',t:'Keep the channels that already bring work.',d:'Do not turn off a source that is producing jobs while you tighten the rest.'},{sec:'Lost Opportunities',t:'Speed is the quiet advantage.',d:'The company that answers first often gets the visit.'},{sec:'Close Rate',t:'A written quote beats a verbal one.',d:'Same day, in writing, with a clear next step.'}].forEach(function(x){x.lost=0;if(!seen[x.t])list.push(x)});
-    leadPts=Math.max(18,Math.min(100,Math.round(leadPts)));
-    leakPts=Math.max(18,Math.min(100,Math.round(leakPts)));
-    closePts=Math.max(18,Math.min(100,Math.round(closePts)));
-    function scoredRow(id,q,answer,got,max){
-      var g=Math.max(0,Math.min(max,got));
-      return {id:id,q:q,answer:answer||'(not set)',pct:max?Math.round(g/max*100):0,impact:max,gap:Math.round((max-g)*10)/10,scored:true,top:false};
-    }
-    function plainRow(id,q,answer){
-      return {id:id,q:q,answer:answer||'(not set)',pct:null,impact:0,gap:0,scored:false,top:false};
-    }
-    var areas=[],tradeQ=qBy('trade'),townQ=qBy('town');
-    areas.push(plainRow('trade',txt(tradeQ.q),answerOf(tradeQ)));
-    areas.push(plainRow('town',txt(townQ.q),answerOf(townQ)));
-    areas.push(scoredRow('online',txt(qBy('online').q),answerOf(qBy('online')),Math.min(36,onSum),36));
-    if(has(on,'ig')) areas.push(scoredRow('igPost','Instagram, last posted',folLabel('igPost',A.igPost),REC[A.igPost]||0,8));
-    if(has(on,'fb')) areas.push(scoredRow('fbPost','Facebook, last posted',folLabel('fbPost',A.fbPost),REC[A.fbPost]||0,8));
-    if(has(on,'web')) areas.push(scoredRow('webForm','Does the contact or quote form work?',folLabel('webForm',A.webForm),formPts,18));
-    areas.push(scoredRow('offline',txt(qBy('offline').q),answerOf(qBy('offline')),Math.min(16,offSum),16));
-    areas.push(scoredRow('best',txt(qBy('best').q),answerOf(qBy('best')),(A.best&&A.best!=='ns'&&A.best!=='none')?4:(A.best==='ns'?2:1),4));
-    areas.push(scoredRow('speed',txt(qBy('speed').q),answerOf(qBy('speed')),speedPts,40));
-    areas.push(scoredRow('quotes',txt(qBy('quotes').q),answerOf(qBy('quotes')),qPts,40));
-    areas.push(scoredRow('script','Do you use a sales script?',folLabel('script',A.script),scriptPts,15));
-    areas.push(scoredRow('followup',txt(qBy('followup').q),answerOf(qBy('followup')),fuPts,30));
-    areas.push(scoredRow('crm','Where do you track jobs and quotes?',folLabel('crm',A.crm),crmPts,15));
-    areas.push(scoredRow('reviewask',txt(qBy('reviewask').q),answerOf(qBy('reviewask')),askPts,12));
-    areas.push(scoredRow('reviews',txt(qBy('reviews').q),answerOf(qBy('reviews')),revPts,12));
-    areas.push(scoredRow('ltv',txt(qBy('ltv').q),answerOf(qBy('ltv')),ltvPts,6));
-    areas.push(scoredRow('cac',txt(qBy('cac').q),answerOf(qBy('cac')),cacPts,6));
-    areas.push(scoredRow('leads',txt(qBy('leads').q),answerOf(qBy('leads')),volPts,8));
-    var topIds={},top=[];
-    areas.filter(function(a){return a.scored&&a.gap>0}).sort(function(a,b){if(b.gap!==a.gap)return b.gap-a.gap;return b.impact-a.impact}).slice(0,3).forEach(function(a){topIds[a.id]=1});
-    areas.forEach(function(a){if(topIds[a.id]){a.top=true;top.push(a)}});
-    return {total:Math.round((leadPts+leakPts+closePts)/3),leads:leadPts,leaks:leakPts,closing:closePts,insights:list,areas:areas,top:top};
-  }
-  function verdict(r){
-    if(r.total<50) return 'The funnel is leaking. Fix response time and quote follow-up before you buy more leads.';
-    if(r.total<75) return 'Parts of this are working. The full report ranks what to fix first.';
-    return 'Strong funnel. A 15-minute call will pick the next few wins.';
-  }
-  function secLabel(sec){return sec==='Lost Opportunities'?'Sales Funnel Leaks / Lost Opportunities':sec}
-  function li(x){return '<li><span class="qr-sec">'+esc(secLabel(x.sec))+'</span><b>'+esc(x.t)+'</b><span class="qr-d">'+esc(x.d)+'</span></li>'}
-  function part(name,n,sub){var b=band(n);return '<div class="qr-p"><div class="row"><span>'+name+(sub?'<span class="qr-sub">'+sub+'</span>':'')+'</span><b class="qr-'+b+'">'+n+'/100</b></div><div class="meter"><i class="qr-'+b+'" style="width:'+n+'%"></i></div></div>'}
-  function results(){
-    R=score();nav.hidden=true;
-    var b=band(R.total);
-    var have=lead&&lead.email&&lead.business;
-    var mail=have
-      ? '<button class="btn o" type="button" id="qrEmail">Email me my full report</button>'
-      : '<form class="qr-mail" id="qrMail"><input class="fld" id="rB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="'+esc(lead&&lead.business||'')+'"><input class="fld" id="rE" type="email" inputmode="email" autocomplete="email" placeholder="Email" aria-label="Email" value="'+esc(lead&&lead.email||'')+'"><button class="btn o" type="submit" id="qrEmail">Email me my full report</button></form>';
-    function areaRow(a){
-      var scale=a.scored?(a.pct===0?'<div class="qr-scale zero"><i></i></div>':'<div class="qr-scale" style="--p:'+a.pct+'%"><i></i></div>'):'';
-      return '<div class="qr-area'+(a.top?' top':'')+'"><div class="qr-arow"><span class="qr-aq">'+esc(a.q)+'</span>'+(a.scored?'<b>'+a.pct+'%</b>':'')+'</div><div class="qr-aans">'+esc(a.answer)+'</div>'+scale+'</div>';
-    }
-    body.innerHTML='<div class="qr" id="qrReport"><div class="qz-k">Your sales funnel score</div>'+
-      (lead&&lead.business?'<p class="qr-for">'+esc(lead.business)+'</p>':'')+
-      '<div class="qr-big qr-'+b+'" id="qrTotal">'+R.total+'<span>/100 pts</span></div>'+
-      '<div class="qz-k">Funnel snapshot</div><div class="qr-funnel">'+part('Lead Score',R.leads)+part('Sales Funnel Leaks / Lost Opportunities',R.leaks)+part('Close Rate',R.closing)+'</div>'+
-      '<div class="qz-k">Your answers</div><div class="qr-areas">'+R.areas.map(areaRow).join('')+'</div>'+
-      '<p class="qr-together">Let\u2019s pick what to work on together.</p>'+
-      '<button class="btn p" type="button" id="qrBook">Book a free 15-minute call</button>'+
-      '<div class="qr-ctas">'+mail+'<button class="qr-print" type="button" id="qrPrint">Printer-friendly version</button><p class="qr-note" id="qrNote">Your full report downloads to this device.</p></div>'+
-      '<p class="qr-sent" id="qrSent"></p><div class="qz-err" id="qrErr"></div></div>';
-    document.getElementById('qrBook').addEventListener('click',function(){closeQ();var h=document.querySelector('.hcta');if(h)h.click();
-      var f=function(id,v){var e=document.getElementById(id);if(e&&!e.value)e.value=v||''};f('bkN',lead&&lead.name);f('bkC',lead&&lead.phone)});
-    function doReport(e, theme){
-      if(e) e.preventDefault();
-      var print=theme==='light';
-      var bEl=document.getElementById('rB'), eEl=document.getElementById('rE');
-      if(bEl||eEl){
-        var bn=(bEl?bEl.value:'').trim(), em=(eEl?eEl.value:'').trim();
-        if(!bn){var er=document.getElementById('qrErr');if(er)er.textContent='Add the business name.';return}
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){var er2=document.getElementById('qrErr');if(er2)er2.textContent='Add your email.';return}
-        lead.business=bn; lead.email=em;
-        if(!sent) send();
-      }
-      var btn=document.getElementById('qrEmail');
-      var link=document.getElementById('qrPrint');
-      if(print){ if(link){link.disabled=true;link.textContent='Building the printer-friendly version...'} }
-      else if(btn){btn.disabled=true;btn.textContent='Building your report...'}
-      buildPdf(R, print?'light':'dark').then(function(blob){
-        var a=document.createElement('a');
-        a.href=URL.createObjectURL(blob);
-        a.download=fileName(print);
-        document.body.appendChild(a);a.click();a.remove();
-        if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
-        if(link){link.disabled=false;link.textContent='Printer-friendly version'}
-        var n=document.getElementById('qrNote');
-        if(n) n.textContent=print?'Printer-friendly report downloaded.':'Report downloaded. Seth has your answers too.';
-      }).catch(function(){
-        if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
-        if(link){link.disabled=false;link.textContent='Printer-friendly version'}
-        var n=document.getElementById('qrNote');
-        if(n) n.textContent='Could not build the report in this browser. Text 934-899-0796.';
-      });
-    }
-    var mailForm=document.getElementById('qrMail');
-    if(mailForm) mailForm.addEventListener('submit',doReport);
-    else document.getElementById('qrEmail').addEventListener('click',function(e){doReport(e,'dark')});
-    document.getElementById('qrPrint').addEventListener('click',function(e){doReport(e,'light')});
-  }
-  function fileName(print){var s=String((lead&&lead.business)||'funnel').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'funnel';return 'MORE-funnel-score-'+s+(print?'-print':'')+'.pdf'}
-  function answerOf(q){hydrate(q);var v=A[q.id];return q.type==='multi'?(v||[]).map(function(x){return label(q,x)}).join(', ')||'None':(q.type==='select'?(v==='Other'&&A[q.id+'_other']?'Other: '+A[q.id+'_other']:(v||'')):label(q,v))}
-  function reportText(r){
-    var L=[],sec=function(t){L.push('',t,new Array(t.length+1).join('-'))};
-    L.push('SALES FUNNEL SCORE: '+r.total+' / 100 pts','Lead Score: '+r.leads+' / 100','Sales Funnel Leaks / Lost Opportunities: '+r.leaks+' / 100','Close Rate: '+r.closing+' / 100','',verdict(r));
-    sec('CONTACT');L.push('Name: '+(lead.name||''),'Business: '+(lead.business||''),'Cell: '+(lead.phone||''),'Email: '+(lead.email||''));
-    [['ABOUT YOU','About you'],['LEAD SCORE','Lead Score'],['LOST OPPORTUNITIES','Lost Opportunities'],['CLOSE RATE','Close Rate']].forEach(function(g){sec(g[0]);Q.forEach(function(q){if(q.k===g[1])L.push('- '+txt(q.q)+'  '+answerOf(q))})});
-    sec('FOLLOW UPS');
-    L.push('Instagram last posted: '+(folLabel('igPost',A.igPost)||'(not set)'));
-    L.push('Facebook last posted: '+(folLabel('fbPost',A.fbPost)||'(not set)'));
-    L.push('Website form: '+(folLabel('webForm',A.webForm)||'(not set)'));
-    L.push('Sales script: '+(folLabel('script',A.script)||'(not set)'));
-    L.push('Tracking tool: '+(folLabel('crm',A.crm)||'(not set)'));
-    sec('EACH QUESTION');
-    (r.areas||[]).forEach(function(a){L.push('- '+a.q+'  '+a.answer+(a.scored?'  '+a.pct+'%':''))});
-    sec('LOOK AT THESE TOGETHER');
-    (r.top||[]).forEach(function(a){L.push('- '+a.q+'  '+a.answer+'  '+a.pct+'%')});
-    sec('INSIGHTS');
-    r.insights.forEach(function(x){L.push('* ['+secLabel(x.sec)+'] '+x.t+' '+x.d)});
-    return L.join('\n');
-  }
-  function reportLink(){
-    var data={v:2,t:Date.now(),c:{n:lead.name,b:lead.business,p:lead.phone,e:lead.email},a:A};
-    var b64=btoa(unescape(encodeURIComponent(JSON.stringify(data)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-    var base=/(^|\.)sethquest\.com$/.test(location.hostname)?'https://sethquest.com/make-more-money/report':location.origin+'/make-more-money/report.html';
-    return base+'#'+b64;
-  }
-  function send(){
-    if(sent||!lead) return;
-    sent=true;
-    var r=score(),ans={};Q.forEach(function(q){ans[q.id]=answerOf(q)});
-    ans.instagram_last_posted=folLabel('igPost',A.igPost)||'';
-    ans.facebook_last_posted=folLabel('fbPost',A.fbPost)||'';
-    ans.website_form=folLabel('webForm',A.webForm)||'';
-    ans.sales_script=folLabel('script',A.script)||'';
-    ans.tracking_tool=folLabel('crm',A.crm)||'';
-    var payload=Object.assign({_subject:'Funnel score '+r.total+'/100: '+lead.business+' ('+lead.name+')',name:lead.name,business:lead.business,phone:lead.phone,email:lead.email,
-      score:r.total+'/100',leads:r.leads+'/100',leaks:r.leaks+'/100',closing:r.closing+'/100',
-      look_at_together:(r.top||[]).map(function(a){return a.q+': '+a.answer+' ('+a.pct+'%)'}).join(' | '),
-      'View full report':reportLink(),Report:reportText(r),source:'sethquest.com/make-more-money quiz'},ans);
-    var el=function(){return document.getElementById('qrSent')};
-    fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
-      .then(function(x){if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your score.'})
-      .catch(function(){if(el())el().textContent='Could not send your copy to Seth. Text or call 934-899-0796 and he will go through it with you.'});
-  }
-  function loadReport(){
-    if(window.MOREReport) return Promise.resolve(window.MOREReport);
-    return new Promise(function(ok,bad){
-      var s=document.createElement('script');
-      s.src='/make-more-money/report-pdf.js';
-      s.onload=function(){window.MOREReport?ok(window.MOREReport):bad(new Error('pdf'))};
-      s.onerror=function(){bad(new Error('pdf'))};
-      document.head.appendChild(s);
-    });
-  }
-  function buildPdf(r, theme){
-    return loadReport().then(function(api){
-      var town=A.town==='Other'&&A.town_other?A.town_other:(A.town||'');
-      return api.toBlob({
-        business:(lead&&lead.business)||'Your business',
-        name:(lead&&lead.name)||'',
-        trade:label(qBy('trade'),A.trade)||'',
-        town:town,
-        dateLabel:new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
-        answers:A,
-        score:r,
-        theme:theme||'dark'
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>
