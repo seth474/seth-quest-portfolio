@@ -242,7 +242,7 @@
   .qz{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;justify-content:center}
   .qz[hidden]{display:none}
   .qz-in{width:100%;max-width:560px;height:100%;display:flex;flex-direction:column;padding:16px 20px calc(16px + env(safe-area-inset-bottom))}
-  .qz-top{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:4px 0 8px}
+  .qz-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;padding:4px 0 8px}
   .qz-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
   .qz-bar span{display:block;height:100%;width:0;background:var(--ink);transition:width .35s ease}
   .qz-count{font:600 12px Inter,sans-serif;letter-spacing:.12em;color:var(--mut)}
@@ -760,7 +760,6 @@
   <div class="qz-in">
     <div class="qz-top">
       <div class="qz-bar" aria-hidden="true"><span id="qzBar"></span></div>
-      <div class="qz-count" id="qzCount"></div>
       <button class="mx qz-x" type="button" id="qzX" aria-label="Close">×</button>
     </div>
     <div class="qz-body" id="qzBody" aria-live="polite"></div>

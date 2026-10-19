@@ -11,7 +11,6 @@
   var qz = document.getElementById('qz');
   var body = document.getElementById('qzBody');
   var bar = document.getElementById('qzBar');
-  var cnt = document.getElementById('qzCount');
   var nav = document.getElementById('qzNav');
   var back = document.getElementById('qzBack');
   var next = document.getElementById('qzNext');
@@ -49,7 +48,6 @@
     var n = Math.max(questions().length, 1);
     var p = phase === 'q' ? qi / n : 1;
     bar.style.width = (p * 100) + '%';
-    cnt.textContent = phase === 'q' ? ((qi + 1) + ' / ' + questions().length) : (phase === 'gate' ? 'Last step' : 'Your results');
   }
   function render() {
     progress();
