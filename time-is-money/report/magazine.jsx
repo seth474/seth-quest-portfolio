@@ -229,10 +229,10 @@ function SectionPage({ m, row, page, theme, fixes }) {
 function Summary({ m, theme }) {
   return (
     <Sheet theme={theme} page={5}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>One AI agent, in one week.</Text>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>One change a week, for three weeks.</Text>
       <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
       <View style={{ marginTop: 10, backgroundColor: theme.block, padding: 12 }}>
-        <Label theme={theme}>The 5-day plan</Label>
+        <Label theme={theme}>The three-week plan</Label>
         {m.plan.map(function (step) {
           return (
             <View key={step.day} style={{ flexDirection: 'row', marginBottom: 7 }}>
@@ -248,15 +248,15 @@ function Summary({ m, theme }) {
       <View style={{ marginTop: 10, flexDirection: 'row' }}>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 20, color: theme.ink }}>{m.price}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>once, for the One-Week AI Setup</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>once, for the Three-Week Setup</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.kickoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>$1,000 kickoff · non-refundable</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 1: $800 to start</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.handoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>$1,400 at handoff</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 2: $800. Week 3: $800 at handoff.</Text>
         </View>
       </View>
       <View style={{ marginTop: 12, paddingTop: 8 }}>

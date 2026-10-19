@@ -1,4 +1,4 @@
-/* Time-cost copy for the One-Week AI Setup snapshot. Customer text stays plain. */
+/* Time-cost copy for the Three-Week Setup snapshot. Customer text stays plain. */
 
 var RATE_BILL = { r75: 75, r100: 100, r135: 135, r175: 175, r200: 200 };
 var RATE_WAGE = { w18: 18, w20: 20, w25: 25, w30: 30 };
@@ -168,13 +168,13 @@ function buildModel(input) {
       ]
     },
     plan: [
-      { day: 'Audit', t: 'Where the time goes', d: 'An audit of your company workflow. It finds where you are losing the most time, then picks the best solution. $1,000 kickoff. Non-refundable.' },
-      { day: '5 days', t: 'One AI agent', d: 'One AI agent is built into that workflow with you.' },
-      { day: 'Handoff', t: 'End of the 5 days', d: 'I hand it over and show you how it works. $1,400 at handoff.' }
+      { day: 'Week 1', t: 'Audit and the first change', d: 'We go through the workflow, pick the biggest leak, and make the first change. That change can be an AI agent for email or quotes. $800 to start. The first $800 starts the work.' },
+      { day: 'Week 2', t: 'The second change', d: 'We see the first change work, then take on the next one. $800.' },
+      { day: 'Week 3', t: 'Third change and handoff', d: 'The third change, then I hand it over and show you how it works. $800 at handoff.' }
     ],
     price: '$2,400',
-    kickoff: '$1,000',
-    handoff: '$1,400',
+    kickoff: '$800',
+    handoff: '$800',
     phone: '934-899-0796',
     url: 'sethquest.com/time-is-money',
     cta: 'Book a free 15-min call'
