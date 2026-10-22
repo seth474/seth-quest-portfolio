@@ -410,8 +410,14 @@
     .phone-frame::before{height:9px;}
   }
 
-  /* alternate the phone to the left on every other project for rhythm */
-  .modules article.module:nth-of-type(even) .module-devices{flex-direction:row-reverse;}
+  /* alternate the phone to the left on every other project for rhythm.
+     Make More Money is the first article, so odd/even is counted from there
+     and the original projects keep the same side they had before. */
+  .modules article.module:nth-of-type(odd) .module-devices{flex-direction:row-reverse;}
+  .modules article.module.module--more .module-devices{flex-direction:row;}
+  .module--more .imac-screen{background:#071018;}
+  .module--more .imac-screen img{object-fit:cover; object-position:center 30%;}
+  .module--more .entry-video{object-fit:cover;}
 
   /* featured project gets more presence */
   .module--featured{border-color:var(--amber); box-shadow:0 0 0 1px rgba(176,108,40,0.25);}
@@ -614,6 +620,7 @@
   nav.top .links{flex:0 0 auto;}
   nav.top .nav-projects{display:flex; gap:4px; align-items:center; justify-content:center; flex:1 1 auto; overflow-x:auto; margin:0 16px; scrollbar-width:none;}
   nav.top .nav-projects::-webkit-scrollbar{display:none;}
+  @media (max-width:1000px){ nav.top .nav-projects{justify-content:flex-start;} }
   @media (max-width:720px){ nav.top .nav-projects{justify-content:flex-start; margin:0 8px; gap:3px;} }
   @media (max-width:720px){ .pr-item{font-size:9px; padding:5px 9px;} }
   /* Preserve the full portrait campaign artwork inside the existing device frames. */
@@ -631,13 +638,14 @@
 <nav class="top">
   <a href="#" class="mark">Seth Quest</a>
   <div class="nav-projects" id="navProjects">
-    <button class="pr-item" data-i="0" type="button">Island Glow</button>
-    <button class="pr-item" data-i="1" type="button">Do or Don't</button>
-    <button class="pr-item" data-i="2" type="button">Deep Fried Bananas</button>
-    <button class="pr-item" data-i="3" type="button">Elua</button>
-    <button class="pr-item" data-i="4" type="button">Puma Mala</button>
-    <button class="pr-item" data-i="5" type="button">LizzieTours</button>
-    <button class="pr-item" data-i="6" type="button">Oceanis</button>
+    <button class="pr-item" data-i="0" type="button">Make More Money</button>
+    <button class="pr-item" data-i="1" type="button">Island Glow</button>
+    <button class="pr-item" data-i="2" type="button">Do or Don't</button>
+    <button class="pr-item" data-i="3" type="button">Deep Fried Bananas</button>
+    <button class="pr-item" data-i="4" type="button">Elua</button>
+    <button class="pr-item" data-i="5" type="button">Puma Mala</button>
+    <button class="pr-item" data-i="6" type="button">LizzieTours</button>
+    <button class="pr-item" data-i="7" type="button">Oceanis</button>
   </div>
 </nav>
 
@@ -682,6 +690,37 @@
     </div>
 
     <div class="modules">
+
+      <article class="module module--more reveal" id="make-more-money">
+        <div class="module-grid">
+          <div class="module-head">
+            <h3>Make More<br>Money</h3>
+            <div class="head-rule"></div>
+            <span class="m-cat"><span>Consulting</span><span>MORE.</span></span>
+            <div class="head-rule"></div>
+            <p class="m-desc">Getting service businesses more booked jobs.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/more">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
+                  <img src="/more/make-more-money-poster.jpg" alt="Make More Money" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ Make More Money ]</span>
+                </div><div class="imac-chin"></div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
+              </div>
+            </a>
+            <div class="asset asset-phone"><a class="phone-link" href="/more">
+              <div class="phone-frame"><div class="phone-screen">
+              <video class="entry-video" src="/more/make-more-money.mp4" poster="/more/make-more-money-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Make More Money" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <span class="asset-label">[ Make More Money ]</span>
+            </div></div>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
+          </div>
+        </div>
+        <a class="module-cta" href="/more">View project</a>
+      </article>
 
       <article class="module module--island-glow reveal" id="island-glow">
         <div class="module-grid">
@@ -1164,7 +1203,7 @@
   // Speaker icon per phone video — unmute + restart from 0:00, only one sounds at a time
   (function(){
     var btns = document.querySelectorAll('.sound-btn');
-    function allVids(){ return document.querySelectorAll('.phone-video'); }
+    function allVids(){ return document.querySelectorAll('.phone-video, .entry-video'); }
     var activeVid = null, activeEnded = null;
     function restoreActive(){
       if(activeVid){
@@ -1176,7 +1215,7 @@
     window.__soundReset = restoreActive;
     btns.forEach(function(btn){
       var wrap = btn.closest('.asset-phone');
-      var vid = wrap ? wrap.querySelector('.phone-video') : null;
+      var vid = wrap ? wrap.querySelector('.phone-video, .entry-video') : null;
       if(!vid){ btn.style.display='none'; return; }
       btn.addEventListener('click', function(e){
         e.preventDefault(); e.stopPropagation();
@@ -1216,6 +1255,12 @@
   var defaultLabel='60-Second Highlight Reel <span class="play">&#9654;</span>';
 
   function getVids(){ return [].slice.call(document.querySelectorAll('.modules .phone-video')); }
+  function activeIndexFor(v){
+    var mods=[].slice.call(document.querySelectorAll('.modules article.module'));
+    var m=v && v.closest ? v.closest('article.module') : null;
+    var n=m ? mods.indexOf(m) : -1;
+    return n>=0 ? n : 0;
+  }
 
   function absTop(el){ var y=0,n=el; while(n){ y+=n.offsetTop; n=n.offsetParent; } return y; }
   function scrollToEl(el, cb){
@@ -1238,7 +1283,7 @@
   function playAt(i){
     clearTimers();
     if(i>=vids.length){ endTour(true); return; }
-    idx=i; var v=vids[i]; current=v; if(window.__projSetActive) window.__projSetActive(i);
+    idx=i; var v=vids[i]; current=v; if(window.__projSetActive) window.__projSetActive(activeIndexFor(v));
     var target=v.closest('.module')||v;
     scrollToEl(target, function(){
       if(!touring || current!==v) return;
@@ -1258,7 +1303,7 @@
        "Bless" all of them right now (muted) so each can be unmuted when the tour reaches it. */
     vids.forEach(function(v){ try{ v.muted=true; var p=v.play(); if(p&&p.then){ p.then(function(){}).catch(function(){}); } }catch(e){} });
     playAt(0); }
-  function endTour(loopBack){ touring=false; window.__reelTouring=false; restore(current); current=null; clearTimers(); document.querySelectorAll('.sound-btn').forEach(function(b){ b.setAttribute('data-on','false'); }); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(0); } }
+  function endTour(loopBack){ touring=false; window.__reelTouring=false; restore(current); current=null; clearTimers(); document.querySelectorAll('.sound-btn').forEach(function(b){ b.setAttribute('data-on','false'); }); btn.innerHTML=defaultLabel; if(loopBack && vids.length){ var f=vids[0].closest('.module')||vids[0]; scrollToEl(f, function(){}); if(window.__projSetActive) window.__projSetActive(activeIndexFor(vids[0])); } }
   btn.addEventListener('click', function(e){ e.preventDefault(); if(touring) endTour(false); else startTour(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && touring) endTour(false); });
 })();
