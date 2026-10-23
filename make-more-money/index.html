@@ -486,6 +486,12 @@
     .ptiers{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
   }
   .qz.wide .qz-in{max-width:720px}
+  /* Results: the fixed shell is the scrollport, so wheel and touch work on the
+     empty side gutters too. Questions keep the inner .qz-body scroller. */
+  .qz.wide{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;align-items:flex-start}
+  .qz.wide .qz-in{height:auto;min-height:100%;padding-top:0}
+  .qz.wide .qz-body{overflow:visible;flex:none}
+  .qz.wide .qz-top{position:sticky;top:0;z-index:2;background:var(--paper);padding-top:20px}
   /* hero: two equal CTAs, stacked at every width. Booking on top, quiz below. */
   .hero .ctas{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:32ch;margin-right:auto;align-items:stretch;justify-items:stretch;font-size:19px}
   @media(max-width:859px){.hero .ctas{font-size:17px}}

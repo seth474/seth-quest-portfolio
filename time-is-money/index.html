@@ -207,6 +207,12 @@ button.btn{font-family:inherit;border:0;cursor:pointer}
 .tq-count{font-size:12px;font-weight:700;letter-spacing:.12em;color:#9aa0a8}
 .tq-x{background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer;padding:0 4px}
 .tq-body{flex:1;overflow:auto;padding:28px 0 16px}
+/* Results: the fixed shell is the scrollport, so wheel and touch work on the empty side gutters. Questions keep the inner .tq-body scroller. */
+.tq.results{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;align-items:flex-start}
+.tq.results .tq-in{height:auto;min-height:100%;padding-top:0;padding-bottom:0}
+.tq.results .tq-body{overflow:visible;flex:none}
+.tq.results .tq-top{position:sticky;top:0;z-index:2;background:#07080a;padding-top:18px;margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}
+.tq.results .tq-nav{position:sticky;bottom:0;z-index:2;background:#07080a;margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
 .tq-k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
 .tq-q{font-size:clamp(32px,6vw,46px);font-weight:900;letter-spacing:-.04em;line-height:1;margin:12px 0 18px}
 .tq-opts{display:grid;gap:10px}
@@ -427,13 +433,15 @@ let qi=0, QA={}, lead=null, sent=false, TR=null;
 const tq=$('#tq'), tqBody=$('#tqBody'), tqBar=$('#tqBar'), tqCount=$('#tqCount'), tqNav=$('#tqNav'), tqBack=$('#tqBack'), tqNext=$('#tqNext');
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function openQuiz(){tq.hidden=false;document.documentElement.style.overflow='hidden';if(qi>NQ)qi=0;drawQ();setTimeout(()=>$('#tqX').focus(),30)}
-function closeQuiz(){tq.hidden=true;document.documentElement.style.overflow=''}
+function closeQuiz(){tq.hidden=true;tq.classList.remove('results');tq.scrollTop=0;document.documentElement.style.overflow=''}
 document.querySelectorAll('[data-quiz]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openQuiz()}));
 $('#tqX').addEventListener('click',closeQuiz);
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!tq.hidden)closeQuiz()});
 function rateOk(){return QA.rateKind&&QA.rate}
 function stepOk(){const q=QQ[qi];if(!q)return true;if(q.rate)return rateOk();return !!QA[q.id]}
 function drawQ(){
+  tq.classList.toggle('results', qi>=NQ);
+  if(qi<NQ) tq.scrollTop=0;
   tqNav.hidden=false;
   tqNext.hidden=qi>=NQ;
   tqBack.disabled=qi===0;
@@ -473,6 +481,7 @@ function goQ(d){
   qi=Math.max(0,qi+d);
   drawQ();
   tqBody.scrollTop=0;
+  tq.scrollTop=0;
 }
 tqBack.addEventListener('click',()=>goQ(-1));
 tqNext.addEventListener('click',()=>goQ(1));
@@ -525,6 +534,7 @@ function drawResults(){
   if(form)form.addEventListener('submit',e=>doReport(e,'dark'));
   else $('#tqEmail').addEventListener('click',e=>doReport(e,'dark'));
   $('#tqPrint').addEventListener('click',e=>doReport(e,'light'));
+  tq.scrollTop=0;
 }
 function fileName(print){const s=String((lead&&lead.business)||'time').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40)||'time';return 'MORE-time-snapshot-'+s+(print?'-print':'')+'.pdf'}
 function answerLabel(id){const q=QQ.find(x=>x.id===id);if(!q||!q.opts)return QA[id]||'';const hit=q.opts.find(o=>o[0]===QA[id]);return hit?hit[1]:(QA[id]||'')}
