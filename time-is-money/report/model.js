@@ -170,7 +170,7 @@ function buildModel(input) {
     plan: [
       { day: 'Week 1', t: 'Audit and the first change', d: 'We go through the workflow, pick the biggest leak, and make the first change. That change can be an AI agent for email or quotes. $800 to start. The first $800 starts the work.' },
       { day: 'Week 2', t: 'The second change', d: 'We see the first change work, then take on the next one. $800.' },
-      { day: 'Week 3', t: 'Third change and handoff', d: 'The third change, then I hand it over and show you how it works. $800 at handoff.' }
+      { day: 'Week 3', t: 'Third fix and completion', d: 'The third sales funnel fix, then the work is done. $800 on completion.' }
     ],
     price: '$2,400',
     kickoff: '$800',
