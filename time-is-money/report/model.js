@@ -11,7 +11,7 @@ function label(map, key) {
   return (map && map[key]) || '';
 }
 
-var TRADE = { pool: 'Pool', hvac: 'HVAC', plumb: 'Plumbing', elec: 'Electric', lawn: 'Lawn and landscape', other: 'Other' };
+var TRADE = { pool: 'Pool', hvac: 'HVAC', plumb: 'Plumbing', elec: 'Electric', fence: 'Fence', lawn: 'Lawn and landscape', other: 'Other' };
 var TEAM = { solo: 'Just you', small: '2 to 4 people', mid: '5 to 10 people', big: 'More than 10' };
 var EMAILS = { u10: 'Under 10 emails a day', d25: '10 to 25 emails a day', d50: '25 to 50 emails a day', more: 'More than 50 emails a day' };
 var WHO = { me: 'You answer them', split: 'You split them with someone', else: 'Someone else answers them', sit: 'They sit' };
