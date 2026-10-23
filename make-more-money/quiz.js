@@ -54,6 +54,7 @@
     nav.hidden = phase === 'results';
     back.disabled = phase === 'q' && qi === 0;
     qz.classList.toggle('wide', phase === 'results');
+    if (phase !== 'results') qz.scrollTop = 0;
     if (phase === 'q') renderQ();
     else if (phase === 'gate') renderGate();
     else renderResults();
@@ -155,6 +156,7 @@
     var pr = document.getElementById('qrPrint');
     if (pr) pr.addEventListener('click', printReport);
     body.scrollTop = 0;
+    qz.scrollTop = 0;
   }
   function err(t) { var e = document.getElementById('qzErr'); if (e) e.textContent = t; }
   function answered(q) {
