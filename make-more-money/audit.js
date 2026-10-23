@@ -78,7 +78,7 @@
     'less busy work': ['Slow quotes', 'No follow-up', 'Past customers']
   };
   var Q = [
-    { id: 'trade', q: "What's your trade?", type: 'select', opts: ['Landscaping', 'Pool & spa', 'HVAC', 'Plumbing', 'Electrical', 'Roofing', 'Painting', 'Cleaning', 'Builder / contractor', 'Handyman', 'Tree service', 'Pest control', 'Auto / detailing', 'Tours & rentals', 'Other'] },
+    { id: 'trade', q: "What's your trade?", type: 'select', opts: ['Landscaping', 'Pool & spa', 'HVAC', 'Plumbing', 'Electrical', 'Fence', 'Roofing', 'Painting', 'Cleaning', 'Builder / contractor', 'Handyman', 'Tree service', 'Pest control', 'Auto / detailing', 'Tours & rentals', 'Other'] },
     { id: 'sources', q: 'Where do your leads come from?', h: 'Tap all that apply.', type: 'multi', opts: [['Google', 'Google'], ['Website', 'Website'], ['Social media', 'Social media'], ['Angi/Thumbtack', 'Angi/Thumbtack'], ['Referrals', 'Referrals'], ['Repeat customers', 'Repeat customers'], ['Trucks and signs', 'Trucks and signs']] },
     { id: 'top', q: 'Which one brings the most work?', type: 'one', from: 'sources' },
     { id: 'leads', q: 'About how many leads in a typical busy-season month (all sources)?', type: 'one', opts: [['under 10', 'Under 10'], ['10 to 30', '10 to 30'], ['30+', '30+']] },
