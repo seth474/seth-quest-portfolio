@@ -256,7 +256,7 @@ function Summary({ m, theme }) {
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.handoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 2: $800. Week 3: $800 at handoff.</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 2: $800. Week 3: $800 on completion.</Text>
         </View>
       </View>
       <View style={{ marginTop: 12, paddingTop: 8 }}>
