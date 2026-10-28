@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#07080a">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>MORE. Pipeline</title>
+<meta name="description" content="Private MORE. pipeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/dashboard/app.css">
+</head>
+<body>
+<div class="band" aria-hidden="true"></div>
+
+<div id="lock">
+  <div class="lock-card">
+    <p class="brand">MORE<i>.</i></p>
+    <div id="lock-wait">
+      <span class="pulse" aria-hidden="true"></span>
+      <p>Opening the board</p>
+    </div>
+    <form id="lock-form" hidden>
+      <h1>Pipeline</h1>
+      <p class="lock-lead">Private. For the daily round.</p>
+      <label for="pass">Passphrase</label>
+      <div class="pass-row">
+        <input id="pass" name="k" type="password" autocomplete="current-password" enterkeyhint="go" spellcheck="false" required>
+        <button type="button" id="toggle-secret" class="ghost">Show</button>
+      </div>
+      <p id="lock-err" class="err" role="alert" hidden></p>
+      <button type="submit" class="go" id="lock-go">Open</button>
+    </form>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header class="head">
+    <div class="head-top">
+      <div>
+        <p class="brand">MORE<i>.</i></p>
+        <p class="brand-sub">Pipeline</p>
+      </div>
+      <div class="head-meta">
+        <p class="asof" id="asof"></p>
+        <button type="button" id="logout" class="ghost">Lock</button>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="work">
+    <section class="next-sec" aria-labelledby="next-title">
+      <div class="sec-head">
+        <div>
+          <h2 id="next-title">Do this next</h2>
+          <p class="sec-note">High closes, then Medium, then cold visits today.</p>
+        </div>
+        <button type="button" id="clear-done" class="ghost slim">Clear checks</button>
+      </div>
+      <div id="queue"></div>
+    </section>
+
+    <section class="pipe-sec" aria-labelledby="pipe-title">
+      <div class="sec-head">
+        <div>
+          <h2 id="pipe-title">Pipeline</h2>
+          <p class="sec-note" id="pipe-meta"></p>
+        </div>
+      </div>
+      <div id="filters" role="group" aria-label="Filter by priority"></div>
+      <label class="search">
+        <span class="sr">Search the pipeline</span>
+        <input id="search" type="search" placeholder="Search name, trade, or next step" autocomplete="off" enterkeyhint="search">
+      </label>
+      <div id="pipe"></div>
+    </section>
+
+    <section class="hunt-sec" aria-labelledby="hunt-title">
+      <div class="sec-head">
+        <div>
+          <h2 id="hunt-title">Where to hunt</h2>
+          <p class="sec-note">Cold trades. Biggest pools first.</p>
+        </div>
+      </div>
+      <div id="hunt"></div>
+      <p class="rules" id="rules"></p>
+      <p class="edit-note">Refresh the board by editing <span>dashboard/data.json</span>, then redeploy.</p>
+    </section>
+  </div>
+</div>
+
+<noscript><p class="noscript">This board needs JavaScript.</p></noscript>
+<script src="/dashboard/model.js"></script>
+<script src="/dashboard/app.js"></script>
+</body>
+</html>

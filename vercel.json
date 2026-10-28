@@ -26,7 +26,31 @@
     { "source": "/hvac4/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
     { "source": "/4service", "destination": "/hvac4service", "statusCode": 301 },
     { "source": "/4service/", "destination": "/hvac4service", "statusCode": 301 },
-    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 }
+    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
+    { "source": "/dashboard/data.json", "destination": "/api/crm", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/dashboard",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/dashboard/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/api/crm",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Cache-Control", "value": "private, no-store" }
+      ]
+    }
   ],
   "rewrites": [
     { "source": "/workshop", "destination": "/trade-workshop/landing" },
