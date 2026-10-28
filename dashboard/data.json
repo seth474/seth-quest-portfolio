@@ -1,0 +1,167 @@
+{
+  "asOf": "2026-10-28",
+  "faceConversations": 13,
+  "faceTarget": 100,
+  "meetings": 2,
+  "closes": 0,
+  "leads": [
+    {
+      "name": "East Hampton Fence & Gate",
+      "trade": "Fencing",
+      "contact": "Kelly",
+      "priority": "High",
+      "stage": "Active conversation",
+      "next": "In-person close $2,400 \u2014 do not email deck ahead",
+      "phone": "631-324-5941"
+    },
+    {
+      "name": "Steve's East End Fuel",
+      "trade": "Heating Oil",
+      "contact": "Kailey / Steve",
+      "priority": "High",
+      "stage": "Active conversation",
+      "next": "Nudge reply on $2,400 Three-Week",
+      "phone": "631-329-9344"
+    },
+    {
+      "name": "Sparkling Pools",
+      "trade": "Pool & hot tub",
+      "contact": "Joe",
+      "priority": "High",
+      "stage": "Active conversation",
+      "next": "Midweek close visit \u2014 phone AI $2,400 remote",
+      "phone": ""
+    },
+    {
+      "name": "Hoyt Property Care",
+      "trade": "Landscaping",
+      "contact": "John Banker",
+      "priority": "Medium",
+      "stage": "Warm follow-up",
+      "next": "Follow-up call on funnel / website vans",
+      "phone": "631-384-3499"
+    },
+    {
+      "name": "White's Lumber & Millwork",
+      "trade": "Building materials",
+      "contact": "Andres",
+      "priority": "Medium",
+      "stage": "Warm follow-up",
+      "next": "15-min owner meeting via Andres",
+      "phone": "631-726-7026"
+    },
+    {
+      "name": "HVAC 4 Service",
+      "trade": "HVAC",
+      "contact": "Fabian",
+      "priority": "Medium",
+      "stage": "In progress",
+      "next": "Finish site/domain; collect $750",
+      "phone": "631-276-8909"
+    },
+    {
+      "name": "First Light Electric",
+      "trade": "Electrical",
+      "contact": "Marc / Gina",
+      "priority": "Low",
+      "stage": "On hold",
+      "next": "Warm intro via Steve after ~3\u20134 weeks with EEF",
+      "phone": "631-267-0183"
+    },
+    {
+      "name": "Gateway Pools",
+      "trade": "Pools",
+      "contact": "\u2014",
+      "priority": "Low",
+      "stage": "Card drop",
+      "next": "Return visit managers \u2014 card already dropped",
+      "phone": "631-324-5073"
+    },
+    {
+      "name": "Hamptons Vinyl Wrap",
+      "trade": "Vehicle wraps",
+      "contact": "Darius",
+      "priority": "Low",
+      "stage": "Card drop",
+      "next": "Try Darius again",
+      "phone": ""
+    },
+    {
+      "name": "Peace of Mind / Forst",
+      "trade": "Home maintenance",
+      "contact": "Michael Forst",
+      "priority": "Low",
+      "stage": "Card drop",
+      "next": "Follow up later; ask for Michael",
+      "phone": "631-329-3737"
+    },
+    {
+      "name": "Pool Details",
+      "trade": "Pools",
+      "contact": "Charles Kulesa",
+      "priority": "Low",
+      "stage": "Card drop",
+      "next": "Email Charles Kulesa",
+      "phone": "631-324-0441"
+    },
+    {
+      "name": "PH Pools",
+      "trade": "Pools",
+      "contact": "Sam",
+      "priority": "Low",
+      "stage": "Card drop",
+      "next": "Follow up after card drop",
+      "phone": "631-329-3808"
+    }
+  ],
+  "visitToday": [
+    {
+      "name": "Humble Abode",
+      "trade": "Property management",
+      "action": "Wed ~10 AM door \u2014 $4,800 fit"
+    },
+    {
+      "name": "Treewise \u2014 The Organic Experts",
+      "trade": "Tree care",
+      "action": "Wainscott Unit 2 \u2014 GBP + reviews"
+    },
+    {
+      "name": "SoundSense LLC",
+      "trade": "Acoustical",
+      "action": "Wainscott Unit 6 \u2014 review volume"
+    }
+  ],
+  "gaps": [
+    {
+      "trade": "Property management",
+      "cold": 18,
+      "pct": 0
+    },
+    {
+      "trade": "Tree care",
+      "cold": 14,
+      "pct": 0
+    },
+    {
+      "trade": "Security & smart home",
+      "cold": 12,
+      "pct": 0
+    },
+    {
+      "trade": "Remodeling",
+      "cold": 11,
+      "pct": 0
+    },
+    {
+      "trade": "House cleaning",
+      "cold": 20,
+      "pct": 5
+    },
+    {
+      "trade": "Painting",
+      "cold": 17,
+      "pct": 6
+    }
+  ],
+  "priorityRules": "Low/Medium/High only. Exactly 3 High: EH Fence, East End Fuel, Sparkling. Medium: Hoyt, White's. HVAC=In progress. Rest Low."
+}
