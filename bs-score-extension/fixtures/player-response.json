@@ -1,0 +1,74 @@
+{
+  "videoDetails": {
+    "videoId": "eduabstract1",
+    "title": "How to read a peer-reviewed abstract in 10 minutes",
+    "lengthSeconds": "754",
+    "author": "Dr. Lena Ortiz",
+    "viewCount": "18420",
+    "shortDescription": "A method for screening a paper before you commit to the full text.\n\n0:00 Why the abstract is enough\n1:23 Write down the comparison\n\nCourse notes: https://stan.store/example/abstracts\nShortcut: https://bit.ly/abstract-method\nMic I use: https://www.youtube.com/redirect?q=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB0EXAMPLE%3Ftag%3Dexample-20\nPaper: https://doi.org/10.1000/example"
+  },
+  "microformat": {
+    "playerMicroformatRenderer": {
+      "publishDate": "2024-03-12T15:00:00-07:00",
+      "lengthSeconds": "754",
+      "viewCount": "18420",
+      "ownerChannelName": "Dr. Lena Ortiz",
+      "title": { "simpleText": "How to read a peer-reviewed abstract in 10 minutes" }
+    }
+  },
+  "captions": {
+    "playerCaptionsTracklistRenderer": {
+      "captionTracks": [
+        {
+          "baseUrl": "https://www.youtube.com/api/timedtext?v=eduabstract1&lang=en&kind=asr",
+          "languageCode": "en",
+          "kind": "asr",
+          "name": { "simpleText": "English (auto-generated)" }
+        },
+        {
+          "baseUrl": "https://www.youtube.com/api/timedtext?v=eduabstract1&lang=en",
+          "languageCode": "en",
+          "name": { "simpleText": "English" }
+        },
+        {
+          "baseUrl": "//www.youtube.com/api/timedtext?v=eduabstract1&lang=de",
+          "languageCode": "de",
+          "name": { "simpleText": "Deutsch" }
+        }
+      ]
+    }
+  },
+  "playerOverlays": {
+    "playerOverlayRenderer": {
+      "decoratedPlayerBarRenderer": {
+        "decoratedPlayerBarRenderer": {
+          "playerBar": {
+            "multiMarkersPlayerBarRenderer": {
+              "markersMap": [
+                {
+                  "key": "DESCRIPTION_CHAPTERS",
+                  "value": {
+                    "chapters": [
+                      {
+                        "chapterRenderer": {
+                          "title": { "simpleText": "Why the abstract is enough" },
+                          "timeRangeStartMillis": 0
+                        }
+                      },
+                      {
+                        "chapterRenderer": {
+                          "title": { "simpleText": "Write down the comparison" },
+                          "timeRangeStartMillis": 83000
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
