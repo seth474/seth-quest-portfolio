@@ -8,7 +8,8 @@
   var lockGo = document.getElementById('lock-go');
   var passInput = document.getElementById('pass');
   var app = document.getElementById('app');
-  var state = { data: null, filter: 'All', q: '', done: {} };
+  var state = { data: null, done: {} };
+  var NS = 'http://www.w3.org/2000/svg';
 
   function el(tag, cls, text) {
     var node = document.createElement(tag);
@@ -47,23 +48,49 @@
     return 'tel:' + digits;
   }
 
-  function filterFromHash() {
-    var hash = (location.hash || '').replace('#', '').toLowerCase();
-    if (hash === 'high') return 'High';
-    if (hash === 'medium') return 'Medium';
-    if (hash === 'low') return 'Low';
-    return 'All';
+  function keyName(name) {
+    return String(name || '').toLowerCase().replace(/[\u2019\u2018']/g, '');
+  }
+
+  function shortBusiness(name) {
+    var key = keyName(name);
+    if (key.indexOf('east hampton fence') === 0) return 'Fence';
+    if (key.indexOf('steves east end') === 0) return 'Fuel';
+    if (key.indexOf('sparkling') === 0) return 'Pools';
+    if (key.indexOf('hoyt') === 0) return 'Hoyt';
+    if (key.indexOf('whites') === 0) return "White's";
+    if (key.indexOf('hvac') === 0) return 'HVAC';
+    if (key.indexOf('treewise') === 0) return 'Treewise';
+    if (key.indexOf('soundsense') === 0) return 'SoundSense';
+    if (key.indexOf('humble') === 0) return 'Humble Abode';
+    return name;
+  }
+
+  function pickContact(lead) {
+    var parts = String(lead.contact || '').split(/[\/,&]/).map(function (part) { return part.trim(); }).filter(Boolean);
+    var key = keyName(lead.name);
+    var i;
+    for (i = 0; i < parts.length; i += 1) {
+      if (key.indexOf(keyName(parts[i])) !== -1) return parts[i].split(' ')[0];
+    }
+    return parts.length ? parts[0].split(' ')[0] : '';
+  }
+
+  function chipLabel(lead) {
+    var business = shortBusiness(lead.name);
+    if (lead.priority !== 'High') return business;
+    var who = pickContact(lead);
+    return who ? who + ' · ' + business : business;
+  }
+
+  function whoLine(item) {
+    var who = pickContact(item);
+    return [who, item.action].filter(Boolean).join(' · ');
   }
 
   function replaceUrl(url) {
     try { history.replaceState(null, '', url.pathname + url.search + url.hash); }
     catch (err) { /* file previews */ }
-  }
-
-  function writeHash(filter) {
-    var url = new URL(location.href);
-    url.hash = filter === 'All' ? '' : filter.toLowerCase();
-    replaceUrl(url);
   }
 
   function stripKey() {
@@ -112,7 +139,6 @@
         stripKey();
         state.data = data;
         state.done = readDone(data.asOf);
-        state.filter = filterFromHash();
         lock.hidden = true;
         app.hidden = false;
         render();
@@ -123,66 +149,120 @@
     });
   }
 
-  function pill(priority) {
-    return el('span', 'pill ' + priority, priority);
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) { node.setAttribute(key, attrs[key]); });
+    return node;
   }
 
-  function renderStats() {
-    var counts = state.data.counts;
-    var stats = document.getElementById('stats');
-    clear(stats);
-    document.getElementById('asof').textContent = state.data.asOfLabel || '';
-
-    var face = el('div', 'stat face');
-    var row = el('div', 'face-row');
-    row.appendChild(el('b', 'num', String(counts.face)));
-    row.appendChild(el('span', 'denom', '/ ' + counts.faceTarget));
-    face.appendChild(row);
-    face.appendChild(el('span', 'lbl', 'Face conversations'));
-    var scale = el('div', 'scale');
-    scale.appendChild(el('span', '', '0'));
-    var track = el('div', 'track');
-    track.setAttribute('role', 'progressbar');
-    track.setAttribute('aria-valuemin', '0');
-    track.setAttribute('aria-valuemax', String(counts.faceTarget));
-    track.setAttribute('aria-valuenow', String(counts.face));
-    track.setAttribute('aria-label', 'Face conversations, 0 to ' + counts.faceTarget);
-    var fill = el('span', 'fill');
-    track.appendChild(fill);
-    scale.appendChild(track);
-    scale.appendChild(el('span', '', String(counts.faceTarget)));
-    face.appendChild(scale);
-    stats.appendChild(face);
-
-    stats.appendChild(statButton(counts.high, 'High', 'to close', 'high' + (state.filter === 'High' ? ' on' : ''), 'High'));
-    stats.appendChild(statBlock(counts.meetings, 'Meetings', ''));
-    stats.appendChild(statBlock(counts.closes, 'Closes', counts.closes === 0 ? 'zero' : ''));
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        fill.style.width = Math.max(0, Math.min(100, counts.facePct)) + '%';
+  function dial(spec) {
+    var r = 36;
+    var c = 2 * Math.PI * r;
+    var full = c * 0.75;
+    var pct = spec.max ? Math.max(0, Math.min(1, spec.value / spec.max)) : 0;
+    var svg = svgEl('svg', { viewBox: '0 0 100 100', class: 'gauge ' + (spec.tone || ''), role: 'img' });
+    svg.setAttribute('aria-label', spec.label);
+    function ring(cls, dash, offset) {
+      var circle = svgEl('circle', {
+        cx: '50', cy: '50', r: String(r), class: cls, fill: 'none',
+        'stroke-width': spec.face ? '5' : '4', 'stroke-linecap': 'round',
+        'stroke-dasharray': dash, transform: 'rotate(135 50 50)'
       });
+      if (offset) circle.setAttribute('stroke-dashoffset', offset);
+      return circle;
+    }
+    svg.appendChild(ring('track', full + ' ' + c));
+    if (spec.face) {
+      var zone = full * 0.18;
+      svg.appendChild(ring('zone', zone + ' ' + c, String(-(full - zone))));
+      var i;
+      for (i = 0; i <= 10; i += 1) {
+        var theta = (225 + 270 * (i / 10)) * Math.PI / 180;
+        var inner = 31;
+        var outer = 34.5;
+        svg.appendChild(svgEl('line', {
+          x1: String(50 + Math.sin(theta) * inner),
+          y1: String(50 - Math.cos(theta) * inner),
+          x2: String(50 + Math.sin(theta) * outer),
+          y2: String(50 - Math.cos(theta) * outer),
+          class: 'tick' + (i >= 8 ? ' hot' : '')
+        }));
+      }
+      var needleAt = (225 + 270 * pct) * Math.PI / 180;
+      svg.appendChild(svgEl('line', {
+        x1: '50', y1: '50',
+        x2: String(50 + Math.sin(needleAt) * 26),
+        y2: String(50 - Math.cos(needleAt) * 26),
+        class: 'needle'
+      }));
+    }
+    svg.appendChild(svgEl('circle', { cx: '50', cy: '50', r: '24', class: 'glass' }));
+    var value = ring('value', '0 ' + c);
+    svg.appendChild(value);
+
+    var wrap = el('div', 'dial' + (spec.face ? ' face' : '') + (spec.value === 0 ? ' zero' : ''));
+    wrap.appendChild(svg);
+    var readout = el('div', 'readout');
+    readout.appendChild(el('b', '', spec.read));
+    if (spec.sub) readout.appendChild(el('span', '', spec.sub));
+    wrap.appendChild(readout);
+    wrap.appendChild(el('p', 'dial-lbl', spec.caption));
+    requestAnimationFrame(function () {
+      var lit = spec.max ? pct : (spec.value > 0 ? 0.42 : 0);
+      value.setAttribute('stroke-dasharray', (full * lit) + ' ' + c);
     });
+    return wrap;
   }
 
-  function statBlock(value, label, extra) {
-    var node = el('div', 'stat' + (extra ? ' ' + extra : ''));
-    node.appendChild(el('b', 'num', String(value)));
-    node.appendChild(el('span', 'lbl', label));
-    return node;
+  function renderDials() {
+    var counts = state.data.counts;
+    var root = document.getElementById('dials');
+    clear(root);
+    document.getElementById('asof').textContent = state.data.asOfLabel || '';
+    root.appendChild(dial({
+      face: true,
+      tone: '',
+      value: counts.face,
+      max: counts.faceTarget,
+      read: String(counts.face),
+      sub: '/ ' + counts.faceTarget,
+      caption: 'Face',
+      label: counts.face + ' of ' + counts.faceTarget + ' face conversations'
+    }));
+    root.appendChild(dial({
+      tone: '',
+      value: counts.meetings,
+      max: 0,
+      read: String(counts.meetings),
+      caption: 'Meetings',
+      label: counts.meetings + ' meetings'
+    }));
+    root.appendChild(dial({
+      tone: 'red',
+      value: counts.closes,
+      max: 0,
+      read: String(counts.closes),
+      caption: 'Closes',
+      label: counts.closes + ' closes'
+    }));
   }
 
-  function statButton(value, label, sub, extra, filter) {
-    var node = el('button', 'stat ' + extra);
-    node.type = 'button';
-    node.dataset.act = 'filter';
-    node.dataset.filter = filter;
-    node.appendChild(el('b', 'num', String(value)));
-    node.appendChild(el('span', 'lbl', label));
-    if (sub) node.appendChild(el('span', 'lbl sublbl', sub));
-    node.setAttribute('aria-pressed', state.filter === filter ? 'true' : 'false');
-    node.setAttribute('aria-label', 'Show ' + label + ' leads');
-    return node;
+  function renderChips() {
+    var root = document.getElementById('chips');
+    clear(root);
+    ['High', 'Medium'].forEach(function (priority) {
+      var row = el('div', 'chip-row');
+      row.appendChild(el('span', 'chip-tag ' + (priority === 'High' ? 'high' : 'med'), priority === 'High' ? 'HIGH' : 'MED'));
+      state.data.leads.filter(function (lead) { return lead.priority === priority; }).forEach(function (lead) {
+        var button = el('button', 'chip' + (priority === 'Medium' ? ' med' : ''), chipLabel(lead));
+        button.type = 'button';
+        button.dataset.act = 'flash';
+        button.dataset.id = lead.id;
+        button.title = lead.name + (lead.contact ? ' · ' + lead.contact : '');
+        row.appendChild(button);
+      });
+      root.appendChild(row);
+    });
   }
 
   function renderQueue() {
@@ -193,126 +273,33 @@
     queue.forEach(function (item) {
       if (!nowId && !state.done[item.id]) nowId = item.id;
     });
-    queue.forEach(function (item, index) {
+    queue.forEach(function (item) {
       var done = !!state.done[item.id];
-      var card = el('article', 'q-card' + (item.id === nowId ? ' now' : '') + (done ? ' done' : ''));
-      var check = el('button', 'check' + (done ? ' on' : ''));
-      check.type = 'button';
-      check.dataset.act = 'done';
-      check.dataset.id = item.id;
-      check.setAttribute('aria-pressed', done ? 'true' : 'false');
-      check.setAttribute('aria-label', (done ? 'Uncheck ' : 'Check off ') + item.name);
-      card.appendChild(check);
-
-      var body = el('div', '');
-      var top = el('div', 'q-top');
-      var idx = el('span', 'idx', String(index + 1));
-      if (item.id === nowId) idx.appendChild(el('span', 'now-pill', 'Now'));
-      top.appendChild(idx);
-      top.appendChild(pill(item.priority));
-      body.appendChild(top);
-
-      if (item.kind === 'lead') {
-        var name = el('button', 'co', item.name);
-        name.type = 'button';
-        name.dataset.act = 'show';
-        name.dataset.id = item.id;
-        body.appendChild(name);
-      } else {
-        body.appendChild(el('h3', 'co', item.name));
-      }
-
-      var who = [item.contact, item.trade].filter(Boolean).join(' · ');
-      if (who) body.appendChild(el('p', 'who', who));
-      if (item.action) body.appendChild(el('p', 'action', item.action));
+      var row = el('li', 'row ' + item.priority + (item.id === nowId ? ' now' : '') + (done ? ' done' : ''));
+      row.id = 'row-' + item.id;
+      var tick = el('button', 'tick' + (done ? ' on' : ''));
+      tick.type = 'button';
+      tick.dataset.act = 'done';
+      tick.dataset.id = item.id;
+      tick.setAttribute('aria-pressed', done ? 'true' : 'false');
+      tick.setAttribute('aria-label', (done ? 'Uncheck ' : 'Check off ') + item.name);
+      row.appendChild(tick);
+      var name = el('div', 'row-name');
+      if (item.id === nowId) name.appendChild(el('span', 'now-tag', 'NOW'));
+      name.appendChild(document.createTextNode(item.name));
+      row.appendChild(name);
+      row.appendChild(el('div', 'row-meta', whoLine(item)));
       var href = telHref(item.phone);
       if (href) {
-        var call = el('a', 'call', item.phone);
+        var call = el('a', 'call', 'Call');
         call.href = href;
-        body.appendChild(call);
+        row.appendChild(call);
       } else if (item.kind === 'lead') {
-        body.appendChild(el('p', 'no-num', 'No number yet'));
+        row.appendChild(el('span', 'call none', 'No #'));
       }
-      card.appendChild(body);
-      root.appendChild(card);
+      root.appendChild(row);
     });
     document.getElementById('clear-done').hidden = !Object.keys(state.done).length;
-  }
-
-  function matches(lead) {
-    if (state.filter !== 'All' && lead.priority !== state.filter) return false;
-    var q = state.q.trim().toLowerCase();
-    if (!q) return true;
-    return [lead.name, lead.trade, lead.contact, lead.stage, lead.action, lead.priority]
-      .join(' ')
-      .toLowerCase()
-      .indexOf(q) !== -1;
-  }
-
-  function renderFilters() {
-    var counts = state.data.counts;
-    var filters = [
-      ['All', counts.total],
-      ['High', counts.high],
-      ['Medium', counts.medium],
-      ['Low', counts.low]
-    ];
-    var root = document.getElementById('filters');
-    clear(root);
-    filters.forEach(function (pair) {
-      var button = el('button', 'chip', pair[0] + ' ' + pair[1]);
-      button.type = 'button';
-      button.dataset.act = 'filter';
-      button.dataset.filter = pair[0];
-      button.setAttribute('aria-pressed', state.filter === pair[0] ? 'true' : 'false');
-      root.appendChild(button);
-    });
-  }
-
-  function renderPipe() {
-    var leads = state.data.leads.filter(matches);
-    var root = document.getElementById('pipe');
-    var meta = document.getElementById('pipe-meta');
-    clear(root);
-    var noun = state.filter === 'All' ? 'leads' : state.filter;
-    meta.textContent = leads.length + ' ' + noun + (state.q.trim() ? ' match' : '');
-
-    if (!leads.length) {
-      root.appendChild(el('p', 'empty', 'Nothing in this cut.'));
-      return;
-    }
-
-    var groups = state.filter === 'All' ? ['High', 'Medium', 'Low'] : [state.filter];
-    groups.forEach(function (priority) {
-      var group = leads.filter(function (lead) { return lead.priority === priority; });
-      if (!group.length) return;
-      if (state.filter === 'All') {
-        root.appendChild(el('h3', 'group-label ' + priority, priority + ' · ' + group.length));
-      }
-      group.forEach(function (lead) { root.appendChild(leadCard(lead)); });
-    });
-  }
-
-  function leadCard(lead) {
-    var card = el('article', 'lead ' + lead.priority);
-    card.id = 'lead-' + lead.id;
-    var top = el('div', 'card-top');
-    top.appendChild(el('p', 'trade', lead.trade || 'Lead'));
-    top.appendChild(pill(lead.priority));
-    card.appendChild(top);
-    card.appendChild(el('h3', '', lead.name));
-    if (lead.contact) card.appendChild(el('p', 'who', lead.contact));
-    if (lead.stage) card.appendChild(el('p', 'stage', lead.stage));
-    if (lead.action) card.appendChild(el('p', 'action', lead.action));
-    var href = telHref(lead.phone);
-    if (href) {
-      var call = el('a', 'call', lead.phone);
-      call.href = href;
-      card.appendChild(call);
-    } else {
-      card.appendChild(el('p', 'no-num', 'No number yet'));
-    }
-    return card;
   }
 
   function renderHunt() {
@@ -322,15 +309,11 @@
     var maxCold = 1;
     hunt.forEach(function (gap) { if (gap.cold > maxCold) maxCold = gap.cold; });
     hunt.forEach(function (gap) {
-      var card = el('article', 'hunt');
-      var top = el('div', 'hunt-top');
-      top.appendChild(el('h3', '', gap.trade));
-      top.appendChild(el('b', 'cold', String(gap.cold)));
-      card.appendChild(top);
-      card.appendChild(el('p', '', gap.cold + ' cold · ' + gap.pct + '% in motion'));
+      var card = el('div', 'gap');
+      card.appendChild(el('b', '', String(gap.cold)));
+      card.appendChild(el('span', '', gap.trade));
       var bar = el('div', 'hbar');
-      bar.setAttribute('aria-hidden', 'true');
-      var fill = el('span', '');
+      var fill = el('i', '');
       bar.appendChild(fill);
       card.appendChild(bar);
       root.appendChild(card);
@@ -338,68 +321,34 @@
         fill.style.width = Math.round((gap.cold / maxCold) * 100) + '%';
       });
     });
-    document.getElementById('rules').textContent = state.data.priorityRules || '';
   }
 
   function render() {
-    renderStats();
+    renderDials();
+    renderChips();
     renderQueue();
-    renderFilters();
-    renderPipe();
     renderHunt();
   }
 
-  function markHighStat() {
-    var high = document.querySelector('.stat.high');
-    if (!high) return;
-    var on = state.filter === 'High';
-    high.classList.toggle('on', on);
-    high.setAttribute('aria-pressed', on ? 'true' : 'false');
+  function flashRow(id) {
+    var row = document.getElementById('row-' + id);
+    if (!row) return;
+    row.classList.remove('lit');
+    void row.offsetWidth;
+    row.classList.add('lit');
   }
 
-  function setFilter(filter) {
-    state.filter = filter;
-    writeHash(filter);
-    markHighStat();
-    renderFilters();
-    renderPipe();
-  }
-
-  function showLead(id) {
-    state.filter = 'All';
-    state.q = '';
-    document.getElementById('search').value = '';
-    writeHash('All');
-    markHighStat();
-    renderFilters();
-    renderPipe();
-    var card = document.getElementById('lead-' + id);
-    if (!card) return;
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    card.classList.remove('flash');
-    void card.offsetWidth;
-    card.classList.add('flash');
-  }
-
-  document.getElementById('app').addEventListener('click', function (event) {
+  app.addEventListener('click', function (event) {
     var target = event.target.closest('[data-act]');
     if (!target || !state.data) return;
-    var act = target.dataset.act;
-    if (act === 'filter') setFilter(target.dataset.filter);
-    if (act === 'done') {
+    if (target.dataset.act === 'done') {
       var id = target.dataset.id;
       if (state.done[id]) delete state.done[id];
       else state.done[id] = 1;
       writeDone();
       renderQueue();
     }
-    if (act === 'show') showLead(target.dataset.id);
-  });
-
-  document.getElementById('search').addEventListener('input', function (event) {
-    state.q = event.target.value || '';
-    renderPipe();
+    if (target.dataset.act === 'flash') flashRow(target.dataset.id);
   });
 
   document.getElementById('clear-done').addEventListener('click', function () {
