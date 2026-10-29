@@ -80,7 +80,7 @@
           (!query || [c.name,c.contact,c.town,c.trade,c.stage].join(' ').toLowerCase().indexOf(query) >= 0);
       });
       count.textContent = found.length + ' available ' + (found.length === 1 ? 'company' : 'companies');
-      if (!found.length) list.appendChild(el('p', 'empty-state', 'No matching records in the available snapshot. Connect the private CRM directory to browse this category.'));
+      if (!found.length) list.appendChild(el('p', 'empty-state', board.directoryComplete ? 'No matching companies in this category.' : 'No matching records in the available snapshot. Connect the private CRM directory to browse this category.'));
       found.sort(function(a,b){return a.name.localeCompare(b.name);}).forEach(function (c) {
         var b = button('', function () { openLead(c.id); });
         b.appendChild(el('strong','',c.name));

@@ -26,8 +26,7 @@
     { "source": "/hvac4/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
     { "source": "/4service", "destination": "/hvac4service", "statusCode": 301 },
     { "source": "/4service/", "destination": "/hvac4service", "statusCode": 301 },
-    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
-    { "source": "/dashboard/data.json", "destination": "/api/crm", "permanent": false }
+    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 }
   ],
   "headers": [
     {
@@ -53,6 +52,11 @@
     }
   ],
   "rewrites": [
+    { "source": "/dashboard", "has": [{ "type": "query", "key": "k" }], "destination": "/api/unlock" },
+    { "source": "/dashboard/", "has": [{ "type": "query", "key": "k" }], "destination": "/api/unlock" },
+    { "source": "/dashboard/index.html", "has": [{ "type": "query", "key": "k" }], "destination": "/api/unlock" },
+    { "source": "/dashboard", "has": [{ "type": "query", "key": "key" }], "destination": "/api/unlock" },
+    { "source": "/dashboard/", "has": [{ "type": "query", "key": "key" }], "destination": "/api/unlock" },
     { "source": "/workshop", "destination": "/trade-workshop/landing" },
     { "source": "/workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/hvac-workshop", "destination": "/trade-workshop/landing" },

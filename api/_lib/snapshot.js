@@ -1,4 +1,9 @@
-{
+/**
+ * Server-only fallback snapshot (the previous 15-record board).
+ * Vercel does not serve api/_lib as a static file or a route.
+ * Live boards should use the Google Sheet instead of this file.
+ */
+module.exports = {
   "asOf": "2026-10-28",
   "centerLabel": "Cold door knocks",
   "faceConversations": 13,
@@ -256,4 +261,4 @@
     }
   ],
   "priorityRules": "Low/Medium/High only. Exactly 3 High: EH Fence, East End Fuel, Sparkling. Medium: Hoyt, White's, HVAC. Rest Low."
-}
+};

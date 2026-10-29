@@ -1,7 +1,7 @@
 /* Priority and board shape for the MORE. pipeline.
    Low / Medium / High only. "Hot" (and anything else) is ignored and
    remapped with the name rules. A real Low, Medium, or High on a lead
-   is kept, so editing dashboard/data.json is how the board changes. */
+   is kept. Records come from the authenticated /api/crm response. */
 (function (factory) {
   var api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
