@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BS Score · A free read on YouTube clickbait</title>
+<meta name="description" content="BS Score is a free, open Chrome extension that scores a YouTube video for clickbait, hidden funnels, and low substance, then shows the verdict in a side panel." />
+<link rel="canonical" href="https://sethquest.com/bs-score" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sethquest.com/bs-score" />
+<meta property="og:title" content="BS Score · A free read on YouTube clickbait" />
+<meta property="og:description" content="A free, open Chrome extension. Score the video, see the red flags, and skip to the part that matters." />
+<meta property="og:image" content="https://sethquest.com/bs-score/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="BS Score · A free read on YouTube clickbait" />
+<meta name="twitter:description" content="A free, open Chrome extension. Score the video, see the red flags, and skip to the part that matters." />
+<meta name="twitter:image" content="https://sethquest.com/bs-score/og.png" />
+<meta name="theme-color" content="#F4F0E6" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#F4F0E6;
+    --ink-2:#EDE7D8;
+    --bone:#1A1814;
+    --bone-dim:rgba(26,24,20,0.62);
+    --line:rgba(26,24,20,0.10);
+    --line-strong:rgba(26,24,20,0.25);
+    --amber:#B06C28;
+    --amber-bright:#DE832A;
+    --card:#100e0b;
+    --card-fg:#f4f0e6;
+    --card-muted:#c8c1b3;
+    --card-line:#343026;
+    --high:#f06a4f;
+    --mixed:#e2b657;
+    --gold:#5cc98a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--ink);color:var(--bone);}
+  body{
+    font-family:"Inter Tight",-apple-system,sans-serif;
+    font-weight:400;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  ::selection{background:var(--amber);color:var(--ink);}
+  a{color:inherit;}
+  button,input{font:inherit;color:inherit;}
+  h1,h2,h3{text-wrap:balance;}
+  p{text-wrap:pretty;}
+
+  .nav{
+    position:sticky;top:0;z-index:5;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:13px 26px;
+    background:rgba(244,240,230,0.86);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(12px);
+  }
+  .mark{font-weight:600;font-size:17px;letter-spacing:-0.02em;text-decoration:none;}
+  .mark .dot{color:var(--amber);}
+  .nav-links{display:flex;gap:10px;align-items:center;}
+  .nav-links a{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.1em;
+    text-transform:uppercase;text-decoration:none;color:var(--bone-dim);
+    padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;
+  }
+  .nav-links a.solid{background:var(--amber);color:#fff;border-color:var(--amber);}
+  .nav-links a:hover{color:var(--ink);background:var(--bone);border-color:var(--bone);}
+  .nav-links a.solid:hover{background:var(--amber-bright);border-color:var(--amber-bright);color:#fff;}
+
+  .wrap{width:min(1120px, calc(100% - 40px));margin:0 auto;}
+  .hero{padding:72px 0 28px;}
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--bone-dim);margin:0 0 18px;
+  }
+  .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--amber);
+    box-shadow:0 0 0 0 rgba(176,108,40,0.55);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    70%{box-shadow:0 0 0 12px rgba(176,108,40,0);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pulse{animation:none;}
+  }
+  h1{
+    font-family:"Space Grotesk",sans-serif;font-weight:500;
+    font-size:clamp(46px, 8vw, 92px);line-height:0.92;letter-spacing:-0.035em;
+    margin:0;max-width:12ch;
+  }
+  h1 em{font-style:normal;color:var(--amber);}
+  .lede{max-width:46ch;font-size:clamp(18px, 2vw, 22px);line-height:1.45;color:var(--bone-dim);margin:28px 0 0;}
+  .lede strong{color:var(--bone);font-weight:500;}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:32px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+    padding:12px 20px;border-radius:999px;text-decoration:none;border:1px solid transparent;
+    font-weight:500;cursor:pointer;
+  }
+  .btn.primary{background:var(--amber);color:#fff;border-color:var(--amber);}
+  .btn.primary:hover{background:var(--amber-bright);border-color:var(--amber-bright);}
+  .btn.ghost{background:transparent;color:var(--bone);border-color:var(--line-strong);}
+  .btn.ghost:hover{border-color:var(--bone);}
+  .btn.is-disabled,.btn[aria-disabled="true"]{
+    opacity:0.55;cursor:not-allowed;pointer-events:none;
+  }
+  .fine{margin:8px 0 0;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);}
+  .tip-link{color:var(--amber);font-weight:500;}
+
+  .section{padding:56px 0;}
+  .kicker{
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--amber);margin:0 0 12px;
+  }
+  h2{
+    font-family:"Space Grotesk",sans-serif;font-weight:500;
+    font-size:clamp(32px, 5vw, 56px);line-height:1;letter-spacing:-0.03em;margin:0;
+  }
+  .steps{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px;margin-top:32px;padding:0;list-style:none;}
+  .steps li{border-top:1px solid var(--line-strong);padding-top:18px;}
+  .steps .num{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.14em;color:var(--amber);}
+  .steps h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:24px;letter-spacing:-0.02em;margin:10px 0 8px;}
+  .steps p{margin:0;color:var(--bone-dim);}
+
+  .layout{display:grid;grid-template-columns:minmax(0, 0.9fr) minmax(280px, 420px);gap:36px;align-items:start;}
+  .copy p{color:var(--bone-dim);font-size:17px;}
+  .open-list{margin:18px 0 0;padding:0;list-style:none;}
+  .open-list li{padding:12px 0;border-top:1px solid var(--line);color:var(--bone);}
+  .open-list li span{display:block;color:var(--bone-dim);margin-top:4px;}
+  .source{color:var(--amber);}
+
+  .caption{margin:14px 0 0;color:var(--bone-dim);font-size:14px;}
+
+  .bss-card{
+    background:var(--card);color:var(--card-fg);border-radius:18px;
+    box-shadow:0 24px 60px rgba(26,24,20,0.16);
+  }
+  .bss-card .card{padding:22px 20px 28px;font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;line-height:1.45;}
+  .bss-card button,.bss-card .note,.bss-card .dim-note,.bss-card h2,.bss-card .mark,.bss-card .verdict,.bss-card .dial-num{
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  .bss-card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .bss-card .hero-row{display:flex;align-items:center;gap:14px;}
+  .bss-card .mark{margin:0;letter-spacing:0.18em;text-transform:uppercase;color:#e2b657;font-size:11px;}
+  .bss-card .verdict{font-size:17px;font-weight:600;margin:4px 0 0;color:var(--high);}
+  .bss-card .dial{position:relative;width:86px;height:86px;flex:none;}
+  .bss-card .track{stroke:#343026;}
+  .bss-card .meter{stroke:var(--high);}
+  .bss-card .dial-num{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-size:26px;font-weight:600;color:var(--card-fg);
+  }
+  .bss-card .flags{margin-top:16px;padding:12px 14px;border:1px solid var(--card-line);border-radius:12px;}
+  .bss-card h2{
+    margin:0 0 8px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;
+    font-weight:600;color:var(--card-fg);font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  .bss-card .section-h{margin:22px 0 8px;}
+  .bss-card .flag-list,.bss-card .dims{list-style:none;margin:8px 0 0;padding:0;}
+  .bss-card .flag-list li+li{border-top:1px solid var(--card-line);margin-top:8px;padding-top:8px;}
+  .bss-card .flag-label{font-size:13px;font-weight:600;}
+  .bss-card .dim-note,.bss-card .note,.bss-card .clear{margin:8px 0 0;color:var(--card-muted);font-size:13px;}
+  .bss-card .kicker{margin:16px 0 0;color:#e2b657;letter-spacing:0.14em;text-transform:uppercase;font-size:11px;font-family:"Segoe UI",Helvetica,Arial,sans-serif;}
+  .bss-card .real{margin:4px 0 0;font-size:26px;line-height:1.15;font-weight:600;}
+  .bss-card .alert{margin:12px 0 0;padding:10px 12px;border:1px solid #8a5a32;background:#2a2118;color:#f0d3b0;border-radius:12px;font-size:14px;}
+  .bss-card .alert .kicker{margin:0 0 4px;display:block;}
+  .bss-card .stamps{display:flex;flex-direction:column;gap:8px;}
+  .bss-card .seek{
+    text-align:left;padding:8px 12px;border-radius:12px;font-size:13px;
+    border:1px solid #3a3428;background:transparent;color:var(--card-fg);
+  }
+  .bss-card .dims li{padding:10px 0;border-top:1px solid #2c2822;}
+  .bss-card .dim-top{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-family:"Segoe UI",Helvetica,Arial,sans-serif;}
+  .bss-card .bar{height:4px;margin-top:6px;background:#2c2822;border-radius:999px;overflow:hidden;}
+  .bss-card .bar span{display:block;height:100%;background:#e2b657;}
+  .bss-card .badge{margin:16px 0 0;color:#e2b657;letter-spacing:0.16em;text-transform:uppercase;font-size:11px;font-family:"Segoe UI",Helvetica,Arial,sans-serif;}
+
+  .signup{background:var(--ink-2);border-radius:18px;padding:28px 24px;margin-top:8px;}
+  .signup h2{font-size:clamp(32px, 4vw, 48px);}
+  form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-top:18px;align-items:center;}
+  label.email{
+    grid-column:1 / -1;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--bone-dim);
+  }
+  input[type="email"]{
+    width:100%;min-height:48px;border-radius:999px;border:1px solid var(--line-strong);
+    background:#fff;padding:12px 16px;
+  }
+  input:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+  .hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+  #early-status{min-height:1.4em;margin:12px 0 0;color:var(--bone);}
+  .signup .reassure{margin:8px 0 0;color:var(--bone-dim);font-size:14px;}
+
+  footer{
+    border-top:1px solid var(--line);padding:28px 0 48px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.06em;
+    color:var(--bone-dim);
+  }
+  footer a{color:var(--bone);}
+
+  @media (max-width:800px){
+    .nav{padding:11px 16px;}
+    .wrap{width:min(1120px, calc(100% - 32px));}
+    .hero{padding-top:36px;}
+    .steps,.layout{grid-template-columns:1fr;}
+    .actions,.btn{width:100%;}
+    .actions{flex-direction:column;align-items:stretch;}
+    form{grid-template-columns:1fr;}
+    .btn.primary,.btn.ghost{width:100%;}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="mark" href="/">Seth Quest<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a class="solid" href="mailto:seth@sethquest.com">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <header class="hero wrap">
+    <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Free Chrome extension</p>
+    <h1>See the <em>BS</em> before you watch it.</h1>
+    <p class="lede">BS Score reads the YouTube video you already have open and grades clickbait, hidden funnels, and thin substance. The score, the red flags, and a way to skip ahead sit in a side panel.</p>
+    <div class="actions">
+      <a class="btn primary" href="#early">Join the early list</a>
+      <a class="btn ghost is-disabled" id="chrome" role="link" aria-disabled="true">Add to Chrome</a>
+    </div>
+    <p class="fine" id="chrome-note">Coming soon to the Chrome Web Store.</p>
+    <p class="fine" id="tip-row" hidden><a class="tip-link" id="tip" href="">Leave a tip</a></p>
+  </header>
+
+  <section class="section wrap" aria-labelledby="how">
+    <p class="kicker">01 — How it works</p>
+    <h2 id="how">Three steps on the watch page.</h2>
+    <ol class="steps">
+      <li>
+        <div class="num">01</div>
+        <h3>Open the video</h3>
+        <p>Stay on the YouTube page you were already going to watch. Desktop youtube.com.</p>
+      </li>
+      <li>
+        <div class="num">02</div>
+        <h3>Check BS Score</h3>
+        <p>The button sits under the title. It sends the title, description, captions, and visible comments to the scorer.</p>
+      </li>
+      <li>
+        <div class="num">03</div>
+        <h3>Read it, or skip ahead</h3>
+        <p>A meter, a verdict, red flags, and skip-to-the-meat chapters. The score is on screen either way.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section wrap" aria-labelledby="example">
+    <div class="layout">
+      <div class="copy">
+        <p class="kicker">02 — The panel</p>
+        <h2 id="example">The card the extension shows.</h2>
+        <p>Same meter, verdict, red flags, and chapter jumps as the side panel. This sample is the open fixture, scored by the heuristic that runs when no AI key is set.</p>
+        <p class="caption">Example only. It is not a rating of a live channel, and it is not a promise about every video.</p>
+      </div>
+      <figure class="bss-card" aria-label="Example BS Score card">
+        <article class="card">
+          <header class="head">
+            <div class="hero-row">
+              <div class="dial" role="img" aria-label="BS Score 2.9 out of 10">
+                <svg viewBox="0 0 80 80" width="86" height="86" aria-hidden="true">
+                  <circle class="track" cx="40" cy="40" r="34" fill="none" stroke-width="7"></circle>
+                  <circle class="meter" cx="40" cy="40" r="34" fill="none" stroke-width="7" stroke-linecap="round" stroke-dasharray="62.0 213.6" transform="rotate(-90 40 40)"></circle>
+                </svg>
+                <span class="dial-num">2.9</span>
+              </div>
+              <div>
+                <p class="mark">BS Score</p>
+                <p class="verdict">⚠️🐂💩 High BS</p>
+              </div>
+            </div>
+          </header>
+          <section class="flags">
+            <h2>Top red flags</h2>
+            <ol class="flag-list">
+              <li>
+                <div class="flag-label">🚩 Hidden funnel</div>
+                <p class="dim-note">The description includes an Amazon affiliate tag, a short link, and a creator-store or course link with no affiliate or paid-placement disclosure.</p>
+              </li>
+              <li>
+                <div class="flag-label">🚩 Engagement vs Value · 0.9</div>
+                <p class="dim-note">Most of the runtime is hook, sponsor, or sign-off, under a bait title.</p>
+              </li>
+              <li>
+                <div class="flag-label">🚩 Credibility / Expertise · 2.0</div>
+                <p class="dim-note">The video makes a strong money or miracle claim without a source.</p>
+              </li>
+            </ol>
+          </section>
+          <p class="badge">Heuristic</p>
+          <p class="note">The scoring server has no API key, so this is the heuristic score.</p>
+          <p class="kicker">Real title</p>
+          <h3 class="real">Open ChatGPT and type make me money</h3>
+          <p class="alert"><span class="kicker">Hidden funnel</span> The description includes an Amazon affiliate tag, a short link, and a creator-store or course link with no affiliate or paid-placement disclosure.</p>
+          <h2 class="section-h">Skip to the meat</h2>
+          <div class="stamps">
+            <button type="button" class="seek" tabindex="-1">1:11 Open ChatGPT and type make me money</button>
+            <button type="button" class="seek" tabindex="-1">2:28 I won't show the Stripe dashboard</button>
+          </div>
+          <h2 class="section-h">Breakdown</h2>
+          <ul class="dims">
+            <li><div class="dim-top"><span>Actionability / Practical Value</span><span>3.2</span></div><div class="bar" aria-hidden="true"><span style="width:32%"></span></div></li>
+            <li><div class="dim-top"><span>Transparency / Monetization</span><span>2.4</span></div><div class="bar" aria-hidden="true"><span style="width:24%"></span></div></li>
+            <li><div class="dim-top"><span>Intent / Clickbait</span><span>2.9</span></div><div class="bar" aria-hidden="true"><span style="width:29%"></span></div></li>
+            <li><div class="dim-top"><span>Headline Accuracy</span><span>2.9</span></div><div class="bar" aria-hidden="true"><span style="width:29%"></span></div></li>
+            <li><div class="dim-top"><span>Credibility / Expertise</span><span>2.0</span></div><div class="bar" aria-hidden="true"><span style="width:20%"></span></div></li>
+            <li><div class="dim-top"><span>Depth / Completeness</span><span>3.7</span></div><div class="bar" aria-hidden="true"><span style="width:37%"></span></div></li>
+            <li><div class="dim-top"><span>Clarity</span><span>6.8</span></div><div class="bar" aria-hidden="true"><span style="width:68%"></span></div></li>
+            <li><div class="dim-top"><span>Originality</span><span>2.5</span></div><div class="bar" aria-hidden="true"><span style="width:25%"></span></div></li>
+            <li><div class="dim-top"><span>Engagement vs Value</span><span>0.9</span></div><div class="bar" aria-hidden="true"><span style="width:9%"></span></div></li>
+            <li><div class="dim-top"><span>Comment Authenticity</span><span>2.9</span></div><div class="bar" aria-hidden="true"><span style="width:29%"></span></div></li>
+          </ul>
+        </article>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="open">
+    <p class="kicker">03 — Free and open</p>
+    <h2 id="open">No paywall. No account required to see a score.</h2>
+    <ul class="open-list">
+      <li>Free to use. <span>The score shows up without a subscription or a payment.</span></li>
+      <li>Open source. <span>The extension files are public. <a class="source" href="/bs-score-extension/manifest.json">Read the manifest</a>.</span></li>
+      <li>Heuristic by default. <span>With no AI key on the server, the grade is a fixed rubric. An optional key can ask Grok instead. Neither path invents a Chrome store listing or a user count.</span></li>
+    </ul>
+  </section>
+
+  <section class="section wrap" id="early" aria-labelledby="list">
+    <div class="signup">
+      <p class="kicker">Early list</p>
+      <h2 id="list">Join the early list</h2>
+      <p class="reassure">A note when Add to Chrome is live in the Chrome Web Store. No payment.</p>
+      <form id="early-form" action="/api/bs-score/interest" method="post">
+        <div class="hp" aria-hidden="true">
+          <label for="company_website">Company website</label>
+          <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <label class="email" for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-label="Email" />
+        <button class="btn primary" type="submit">Join the early list</button>
+      </form>
+      <p id="early-status" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>BS Score · sethquest.com</span>
+  <a href="mailto:seth@sethquest.com">seth@sethquest.com</a>
+</footer>
+
+<script>
+(function () {
+  var chromeLink = document.getElementById("chrome");
+  var chromeNote = document.getElementById("chrome-note");
+  var tip = document.getElementById("tip");
+  chromeLink.addEventListener("click", function (event) {
+    if (chromeLink.getAttribute("aria-disabled") === "true") event.preventDefault();
+  });
+
+  fetch("/api/bs-score/config", { headers: { accept: "application/json" } })
+    .then(function (response) { return response.ok ? response.json() : null; })
+    .then(function (config) {
+      if (!config) return;
+      if (config.chromeStoreUrl) {
+        chromeLink.href = config.chromeStoreUrl;
+        chromeLink.target = "_blank";
+        chromeLink.rel = "noopener noreferrer";
+        chromeLink.classList.remove("is-disabled");
+        chromeLink.removeAttribute("aria-disabled");
+        chromeNote.textContent = "Opens the Chrome Web Store.";
+      }
+      if (config.tipUrl) {
+        var host = "";
+        try { host = new URL(config.tipUrl).hostname; } catch (err) { host = ""; }
+        document.getElementById("tip-row").hidden = false;
+        tip.href = config.tipUrl;
+        tip.target = "_blank";
+        tip.rel = "noopener noreferrer";
+        tip.textContent = host.indexOf("buymeacoffee.com") !== -1 ? "Buy me a coffee" : "Leave a tip";
+      }
+    })
+    .catch(function () {});
+
+  var form = document.getElementById("early-form");
+  var status = document.getElementById("early-status");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    status.textContent = "Saving…";
+    var body = {
+      email: form.email.value,
+      company_website: form.company_website.value,
+      source: "landing",
+      page: "/bs-score"
+    };
+    fetch("/api/bs-score/interest", {
+      method: "POST",
+      headers: { "content-type": "application/json", accept: "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (response) {
+      return response.json().then(function (payload) {
+        return { ok: response.ok, payload: payload };
+      }).catch(function () {
+        return { ok: response.ok, payload: null };
+      });
+    }).then(function (result) {
+      var message = result.payload && result.payload.message;
+      status.textContent = message || (result.ok ? "You're on the early list." : "This email was not saved.");
+      if (result.ok && result.payload && result.payload.persistent) form.email.value = "";
+    }).catch(function () {
+      status.textContent = "Could not reach the early list. This email was not saved.";
+    });
+  });
+})();
+</script>
+</body>
+</html>

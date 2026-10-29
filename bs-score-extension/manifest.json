@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "BS Score",
+  "version": "0.2.0",
+  "description": "Score the YouTube video you are watching for clickbait, hidden funnels, and low substance.",
+  "action": {
+    "default_title": "BS Score",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "sidePanel"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "host_permissions": [
+    "https://sethquest.com/*",
+    "https://www.sethquest.com/*",
+    "http://127.0.0.1:4721/*",
+    "https://www.youtube.com/*",
+    "https://youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
+      "js": [
+        "lib/extract.js",
+        "lib/payload.js",
+        "lib/seek.js",
+        "lib/interest.js",
+        "lib/card.css.js",
+        "config.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "contents": {
+    "twoColumnWatchNextResults": {
+      "results": {
+        "results": {
+          "contents": [
+            {
+              "videoPrimaryInfoRenderer": {
+                "viewCount": {
+                  "videoViewCountRenderer": {
+                    "viewCount": { "simpleText": "18,420 views" }
+                  }
+                },
+                "dateText": { "simpleText": "Mar 12, 2024" }
+              }
+            },
+            {
+              "videoSecondaryInfoRenderer": {
+                "attributedDescription": {
+                  "content": "Expanded description from the watch page body. This copy is the one readers see after Show more, and it is intentionally longer than the player short description so the extractor keeps this text.\n\nThe checklist lives at https://gumroad.com/l/abstract-checklist and repeats the method from the collapsed preview. Read the population, the comparison, the outcome, and the sample size before you trust the abstract's last sentence.\n\n0:00 Why the abstract is enough\n1:23 Write down the comparison"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "engagementPanels": [
+    {
+      "engagementPanelSectionListRenderer": {
+        "content": {
+          "sectionListRenderer": {
+            "contents": [
+              {
+                "itemSectionRenderer": {
+                  "contents": [
+                    {
+                      "commentThreadRenderer": {
+                        "comment": {
+                          "commentRenderer": {
+                            "contentText": {
+                              "runs": [{ "text": "The effect-size step is the one I skip." }]
+                            },
+                            "voteCount": { "simpleText": "24" }
+                          }
+                        },
+                        "replies": {
+                          "commentRepliesRenderer": {
+                            "contents": [
+                              {
+                                "commentRenderer": {
+                                  "contentText": { "simpleText": "This reply should stay out of the top comments." },
+                                  "voteCount": { "simpleText": "2" }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "commentThreadRenderer": {
+                        "comment": {
+                          "commentRenderer": {
+                            "contentText": { "simpleText": "Does this work for composite outcomes?" },
+                            "voteCount": { "simpleText": "1.2K" }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "commentThreadRenderer": {
+                        "comment": {
+                          "commentRenderer": {
+                            "contentText": { "runs": [{ "text": "No like count on this one." }] }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
