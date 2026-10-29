@@ -13,22 +13,14 @@
 <meta name="description" content="Private MORE. board.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/dashboard/app.css">
 </head>
 <body>
 <div id="lock">
   <div class="lock-card">
-    <svg class="lock-ring" viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="36" class="ring-track"></circle>
-      <circle cx="50" cy="50" r="36" class="ring-hot"></circle>
-      <circle cx="50" cy="50" r="28" class="ring-cyan"></circle>
-    </svg>
     <p class="brand">MORE<i>.</i></p>
-    <div id="lock-wait">
-      <span class="pulse" aria-hidden="true"></span>
-      <p>Arming</p>
-    </div>
+    <div id="lock-wait"><span class="pulse" aria-hidden="true"></span><p>Arming</p></div>
     <form id="lock-form" hidden>
       <h1>Pipeline</h1>
       <p class="lock-lead">Private board</p>
@@ -46,22 +38,16 @@
 <div id="app" hidden>
   <header class="top">
     <p class="brand">MORE<i>.</i></p>
-    <p class="asof" id="asof"></p>
-    <button type="button" id="logout">Lock</button>
+    <button type="button" id="logout" aria-label="Lock">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      Lock
+    </button>
   </header>
   <section class="cluster" id="dials" aria-label="Scoreboard"></section>
-  <section class="chips" id="chips" aria-label="High and Medium leads"></section>
-  <section class="next" aria-labelledby="next-title">
-    <div class="sec">
-      <h2 id="next-title">Do this next</h2>
-      <button type="button" id="clear-done" hidden>Reset</button>
-    </div>
-    <ol id="queue"></ol>
-  </section>
-  <section class="hunt-sec" aria-labelledby="hunt-title">
-    <h2 id="hunt-title">Where to hunt</h2>
-    <div id="hunt"></div>
-  </section>
+  <section id="high-block"></section>
+  <section id="med-block"></section>
+  <section id="next-block"></section>
+  <section id="hunt-block"></section>
 </div>
 <noscript><p class="noscript">This board needs JavaScript.</p></noscript>
 <script src="/dashboard/model.js"></script>
