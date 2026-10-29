@@ -5,14 +5,15 @@
  * /dashboard/data.json redirects here so the seed file is not a public URL.
  *
  * Passphrase: set DASHBOARD_PASSPHRASE on the Vercel project, or change
- * the default below. Bookmark /dashboard?k=YOUR_PASSPHRASE — the page
- * drops the query after unlock and keeps an HttpOnly cookie.
+ * the default below. Exact match, case-sensitive. Bookmark
+ * /dashboard?k=YOUR_PASSPHRASE — the page drops the query after unlock
+ * and keeps an HttpOnly cookie for 30 days.
  */
 var crypto = require('crypto');
 var present = require('../dashboard/model.js').present;
 var raw = require('../dashboard/data.json');
 
-var PASSPHRASE = String(process.env.DASHBOARD_PASSPHRASE || '').trim() || 'more-daily';
+var PASSPHRASE = String(process.env.DASHBOARD_PASSPHRASE || '').trim() || 'QUEST';
 var COOKIE = 'sq_dash';
 
 function same(a, b) {
