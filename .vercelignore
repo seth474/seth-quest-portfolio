@@ -4,3 +4,4 @@
 # Docs and scripts (for example VSL_SCRIPT.md), not pages.
 *.md
 **/*.md
+tests/

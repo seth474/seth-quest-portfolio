@@ -10,6 +10,7 @@
  * and keeps an HttpOnly cookie for 30 days.
  */
 var crypto = require('crypto');
+var zlib = require('zlib');
 var present = require('../dashboard/model.js').present;
 var raw = require('../dashboard/data.json');
 
@@ -107,7 +108,12 @@ module.exports = function handler(req, res) {
 
   var board;
   try {
-    board = present(raw);
+    // Optional private server-side dataset; never commit additional CRM records.
+    var source = raw;
+    if (process.env.DASHBOARD_CRM_SNAPSHOT_B64) {
+      source = JSON.parse(zlib.gunzipSync(Buffer.from(process.env.DASHBOARD_CRM_SNAPSHOT_B64, 'base64'), { maxOutputLength: 2 * 1024 * 1024 }).toString('utf8'));
+    } else if (process.env.DASHBOARD_DATA_JSON) source = JSON.parse(process.env.DASHBOARD_DATA_JSON);
+    board = present(source);
   } catch (err) {
     send(res, 500, { error: 'unavailable' });
     return;

@@ -175,6 +175,7 @@ input:focus { outline: none; border-color: var(--amber); }
 .act.map { border-color: rgba(63, 214, 255, 0.5); color: var(--cyan); }
 
 .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.hunt-note { margin: 0 0 7px; color: var(--muted); font-size: 11px; }
 .pill {
   display: inline-flex; align-items: center; gap: 5px;
   height: 26px; padding: 0 9px; border-radius: 999px;
@@ -435,3 +436,47 @@ input:focus { outline: none; border-color: var(--amber); }
   color: var(--cyan);
 }
 .script p { margin: 0; font-size: 15px; line-height: 1.4; color: var(--ink); }
+
+/* Daily workflow additions preserve the instrument-panel palette. */
+#app { overflow-y: auto; overscroll-behavior-y: contain; }
+#app > section, #app > p { flex-shrink: 0; }
+#daily-goal { border: 1px solid #28282b; border-radius: 16px; padding: 12px; background: #101114; }
+.goal-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.goal-label { color: var(--amber); font-size: 12px; font-weight: 700; }
+.departure { color: var(--cyan); font-size: 11px; text-align: right; }
+.revenue-open { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; padding: 10px 0; min-height: 60px; }
+.revenue-open strong { font-size: 18px; letter-spacing: -0.03em; }
+.revenue-open span, .goal-foot { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.goal-foot { margin: 0; }
+#daily-goal progress { width: 100%; height: 7px; accent-color: var(--red); }
+.dial-button { display: flex; justify-content: center; align-items: center; width: 100%; border-radius: 16px; min-width: 0; }
+.dial-button:hover { background: rgba(255,255,255,.035); }
+.dial-button .face-col { width: 100%; }
+.card-next span { white-space: normal; line-height: 1.2; }
+.categories { grid-column: 1 / -1; border-color: #6b5740; }
+.cold-open { border: 1px solid #3a414c; border-radius: 12px; width: 100%; min-height: 44px; color: var(--cyan); text-align: left; padding: 10px 12px; font-size: 13px; }
+.source-note { color: var(--muted); font-size: 11px; line-height: 1.5; margin: 8px 2px 16px; }
+.pill { min-height: 36px; height: auto; padding: 8px 10px; }
+.sheet { position: fixed; inset: 0; width: min(100%, 430px); height: 100dvh; margin: auto; }
+.daily-sheet { z-index: 10; }
+.daily-body { padding: 8px 16px 28px; }
+.detail-heading { margin: 18px 0 8px; font-size: 18px; }
+.detail-note, .empty-state { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.empty-state { padding: 14px; border: 1px solid #51452d; border-radius: 12px; }
+.browse-row { display: flex; flex-direction: column; gap: 6px; width: 100%; text-align: left; padding: 14px 0; border-bottom: 1px solid #292b2f; line-height: 1.4; min-height: 48px; }
+.browse-row strong { font-size: 16px; }
+.browse-row > span { font-size: 13px; }
+.history-card { border: 1px solid #292b2f; border-radius: 12px; padding: 14px; margin: 10px 0; }
+.history-card h3 { font-size: 17px; margin: 0 0 8px; }
+.history-card p { font-size: 14px; line-height: 1.5; margin: 6px 0; white-space: pre-wrap; }
+.history-card .history-meta, .history-meta { color: var(--muted); font-size: 12px; }
+.source-link, .inline-button { color: var(--cyan); text-decoration: underline; min-height: 32px; font-size: 12px; }
+.coverage { flex: none; margin: 0; padding: 8px 12px; font-size: 11px; line-height: 1.4; color: var(--muted); background: #111217; }
+.search-label { display: block; color: var(--muted); font-size: 12px; margin-top: 16px; }
+.company-search { width: 100%; min-height: 44px; padding: 10px; margin-top: 6px; background: #13151b; border: 1px solid #414651; border-radius: 10px; font-size: 16px; color: var(--ink); }
+.lead-actions { flex-wrap: wrap; }
+.text-action { width: 100%; display: block; color: var(--cyan); padding: 12px 0; text-align: center; }
+.lead-actions button:disabled { opacity: .5; }
+.facts dd { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (min-width: 760px) { .sheet { height: min(844px, 100dvh); border: 1px solid #1c1d21; border-radius: 36px; overflow: hidden; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

@@ -54,9 +54,6 @@
     var parts = String((lead && lead.contact) || '').split(/[\/,&]/).map(function (part) { return part.trim(); }).filter(Boolean);
     var key = keyName(lead && lead.name);
     var i;
-    for (i = 0; i < parts.length; i += 1) {
-      if (key.indexOf(keyName(parts[i])) !== -1) return parts[i].split(' ')[0];
-    }
     return parts.length ? parts[0].split(' ')[0] : '';
   }
 
@@ -69,7 +66,9 @@
 
   function verb(text) {
     var t = String(text || '').toLowerCase();
-    if (/collect|finish site/.test(t)) return 'Collect';
+    if (/^call/.test(t)) return 'Call';
+    if (/set next meeting/.test(t)) return 'Set meeting';
+    if (/collect|finish site/.test(t)) return 'Complete';
     if (/nudge|reply/.test(t)) return 'Nudge';
     if (/meet/.test(t)) return 'Meet';
     if (/close/.test(t)) return 'Close';
@@ -86,7 +85,7 @@
   }
 
   function findItem(id) {
-    var lists = [state.data.leads || [], state.data.stops || []];
+    var lists = [state.data.companies || state.data.leads || [], state.data.stops || []];
     var i, j;
     for (i = 0; i < lists.length; i += 1) {
       for (j = 0; j < lists[i].length; j += 1) {
@@ -361,7 +360,6 @@
     node.setAttribute('data-lead', lead.id);
     var top = el('div', 'card-top');
     top.appendChild(el('b', '', chipLabel(lead)));
-    top.appendChild(el('span', 'chev', '\u203a'));
     node.appendChild(top);
     var next = el('div', 'card-next');
     next.appendChild(el('i', 'dot'));
@@ -391,15 +389,18 @@
     var counts = state.data.counts;
     var root = document.getElementById('dials');
     clear(root);
-    root.appendChild(sideDial(counts.meetings, 'Meetings'));
-    root.appendChild(faceDial(counts));
-    root.appendChild(sideDial(counts.closes, 'Closes'));
+    [[sideDial(counts.meetings, 'Meetings'), 'Meetings: ' + counts.meetings + ' reported. Open history', DailyBoard.meetings],
+      [faceDial(counts), 'Door knocks: ' + counts.face + ' reported. Open visit history', DailyBoard.visits],
+      [sideDial(counts.closes, 'Closes'), 'Closes: ' + counts.closes + ' reported. Open revenue details', DailyBoard.revenue]].forEach(function (item) {
+        var button = el('button', 'dial-button'); button.type = 'button'; button.setAttribute('aria-label', item[1]);
+        button.appendChild(item[0]); button.addEventListener('click', item[2]); root.appendChild(button);
+      });
   }
 
   function renderHigh() {
     var root = document.getElementById('high-block');
     clear(root);
-    root.appendChild(kicker('red', 'High'));
+    root.appendChild(kicker('red', 'Hot'));
     var row = el('div', 'high-row');
     state.data.leads.filter(function (lead) { return lead.priority === 'High'; }).forEach(function (lead) {
       row.appendChild(chip(lead, 'hcard'));
@@ -410,7 +411,7 @@
   function renderMedium() {
     var root = document.getElementById('med-block');
     clear(root);
-    root.appendChild(kicker('amber', 'Medium'));
+    root.appendChild(kicker('amber', 'Warm'));
     var row = el('div', 'med-row');
     state.data.leads.filter(function (lead) { return lead.priority === 'Medium'; }).forEach(function (lead) {
       row.appendChild(chip(lead, 'mcard'));
@@ -422,10 +423,13 @@
     var root = document.getElementById('hunt-block');
     clear(root);
     root.appendChild(kicker('amber', 'Where to hunt'));
+    root.appendChild(el('p', 'hunt-note', 'Reported counts · tap for available records'));
     var wrap = el('div', 'pills');
     state.data.hunt.forEach(function (gap) {
-      var pill = el('div', 'pill');
-      pill.title = gap.cold + ' cold \u00b7 ' + gap.trade;
+      var pill = el('button', 'pill');
+      pill.type = 'button';
+      pill.addEventListener('click', function () { DailyBoard.directory(gap.trade); });
+      pill.title = gap.cold + ' previously reported cold \u00b7 ' + gap.trade + '; open available records';
       pill.appendChild(huntIcon(gap.trade));
       pill.appendChild(el('b', '', String(gap.cold)));
       pill.appendChild(el('span', '', huntLabel(gap.trade)));
@@ -471,8 +475,8 @@
       btn.type = 'button';
       btn.setAttribute('data-sort', col[0]);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      var arrow = on ? (ui.sortDir === 1 ? ' \u2191' : ' \u2193') : ' \u2195';
-      btn.textContent = col[1] + arrow;
+      btn.textContent = col[1] + (on && ui.sortDir === -1 ? ' (reverse)' : '');
+      btn.title = 'Sort by ' + col[1].toLowerCase() + (on ? '; tap again to reverse' : '');
       bar.appendChild(btn);
     });
   }
@@ -486,7 +490,7 @@
       var row = el('button', 'prow');
       row.type = 'button';
       row.setAttribute('data-lead', lead.id);
-      row.appendChild(el('span', 'tag ' + lead.priority, lead.priority));
+      row.appendChild(el('span', 'tag ' + lead.priority, DailyModel.temperature(lead.priority)));
       row.appendChild(el('span', 'who', lead.name));
       var meta = [lead.trade, lead.stage].filter(Boolean).join(' \u00b7 ');
       if (lead.contact) meta = (meta ? meta + ' \u00b7 ' : '') + lead.contact;
@@ -524,7 +528,7 @@
       return;
     }
     sheet.hidden = false;
-    document.getElementById('lead-pri').textContent = lead.priority;
+    document.getElementById('lead-pri').textContent = DailyModel.temperature(lead.priority);
     document.getElementById('lead-pri').className = 'sheet-meta tag ' + lead.priority;
     var body = document.getElementById('lead-body');
     clear(body);
@@ -536,6 +540,8 @@
     var dl = el('dl', 'facts');
     fact(dl, 'Stage', lead.stage);
     fact(dl, 'Next step', lead.nextStep || lead.action);
+    fact(dl, 'Follow-up date', lead.nextDate || 'Not scheduled');
+    fact(dl, 'History', lead.notes || 'Detailed history is not linked in this snapshot.');
     fact(dl, 'Phone', lead.phone, telHref(lead.phone));
     fact(dl, 'Email', lead.email, lead.email ? mailHref(lead) : '');
     if (lead.address) {
@@ -556,9 +562,14 @@
       dead.title = 'No phone on file';
       actions.appendChild(dead);
     }
-    var mail = el('a', 'mail', 'Email');
-    mail.href = mailHref(lead);
-    actions.appendChild(mail);
+    if (lead.email) {
+      var mail = el('a', 'mail', 'Email'); mail.href = mailHref(lead); actions.appendChild(mail);
+    } else {
+      var noMail = el('button', 'mail', 'No email on file'); noMail.type = 'button'; noMail.disabled = true; actions.appendChild(noMail);
+    }
+    if (callHref && /if no answer/i.test(lead.nextStep || '')) {
+      var sms = el('a', 'text-action', 'Text to arrange meeting'); sms.href = callHref.replace('tel:', 'sms:'); actions.appendChild(sms);
+    }
     card.appendChild(actions);
 
     var script = el('div', 'script');
@@ -605,18 +616,16 @@
       row.appendChild(btn);
     });
     var note = document.getElementById('unpinned');
-    var missing = (state.data.leads || []).concat(state.data.stops || []).filter(function (item) {
-      return item.lat == null || item.lng == null;
-    });
+    var missing = state.data.mapMissing || [];
     if (!missing.length) {
       note.hidden = true;
       note.textContent = '';
       return;
     }
     note.hidden = false;
-    note.textContent = 'Not pinned: ' + missing.map(function (item) {
+    note.textContent = 'Not pinned: ' + missing.slice(0, 3).map(function (item) {
       return item.name + (isMailingBox(item.address) ? ' (mailing box only)' : ' (no street pin)');
-    }).join(', ') + '.';
+    }).join(', ') + (missing.length > 3 ? ' and ' + (missing.length - 3) + ' more. Open missing coordinates above.' : '.');
   }
 
   function showVisit(index) {
@@ -770,6 +779,7 @@
     ui.map = false;
     ui.cluster = -1;
     syncSheets();
+    document.querySelector('#sheet-pipe .sheet-x').focus();
   }
 
   function openMap() {
@@ -778,11 +788,13 @@
     ui.cluster = -1;
     document.getElementById('visit-panel').hidden = true;
     syncSheets();
+    document.querySelector('#sheet-map .sheet-x').focus();
   }
 
   function openLead(id) {
     ui.leadId = id;
     renderLead();
+    document.querySelector('#sheet-lead .sheet-x').focus();
   }
 
   function closeSheet(which) {
@@ -794,6 +806,8 @@
       document.getElementById('visit-panel').hidden = true;
     }
     syncSheets();
+    var parent = document.querySelector('#sheet-daily:not([hidden]) .sheet-x') || document.querySelector('#sheet-pipe:not([hidden]) .sheet-x') || document.querySelector('#sheet-map:not([hidden]) .sheet-x') || document.getElementById('open-pipeline');
+    parent.focus();
   }
 
   function toggleSort(key) {
@@ -806,6 +820,7 @@
   }
 
   function render() {
+    DailyBoard.init(state.data, openLead);
     renderDials();
     renderHigh();
     renderMedium();
@@ -831,6 +846,7 @@
     }
     if (event.target.closest('#open-pipeline')) { openPipe(); return; }
     if (event.target.closest('#open-map')) { openMap(); return; }
+    if (event.target.closest('#open-categories')) { DailyBoard.categories(); return; }
     var leadBtn = event.target.closest('[data-lead]');
     if (leadBtn) openLead(leadBtn.getAttribute('data-lead'));
   });
@@ -845,6 +861,7 @@
   document.getElementById('logout').addEventListener('click', function () {
     fetch('/api/crm?logout=1', { credentials: 'same-origin', cache: 'no-store' }).catch(function () {}).then(function () {
       state.data = null;
+      DailyBoard.destroy();
       ui.pipe = false;
       ui.map = false;
       ui.leadId = '';

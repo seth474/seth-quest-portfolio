@@ -132,7 +132,7 @@ function clusterPlaces(places, withinKm) {
     var seen = {};
     var leads = (data.leads || []).map(function (lead, i) {
       var priority = canonPriority(lead);
-      var base = slug(lead && lead.name) || ('lead-' + i);
+      var base = text(lead && lead.companyId) || slug(lead && lead.name) || ('lead-' + i);
       var id = base;
       if (seen[id]) id = base + '-' + i;
       seen[id] = 1;
@@ -168,7 +168,7 @@ function clusterPlaces(places, withinKm) {
 
     var stops = [];
     (data.visitToday || []).forEach(function (visit, i) {
-      var base = 'visit-' + (slug(visit && visit.name) || String(i));
+      var base = text(visit && visit.companyId) || 'visit-' + (slug(visit && visit.name) || String(i));
       var id = base;
       if (seen[id]) id = base + '-' + i;
       seen[id] = 1;
@@ -176,6 +176,7 @@ function clusterPlaces(places, withinKm) {
       var geo = geoOf(visit);
       var stop = {
         id: id,
+        companyId: text(visit && visit.companyId),
         kind: 'visit',
         order: 1000 + i,
         priority: 'Visit',
@@ -229,7 +230,7 @@ function clusterPlaces(places, withinKm) {
       };
     });
 
-    return {
+    var board = {
       asOf: data.asOf || '',
       asOfLabel: formatAsOf(data.asOf),
       centerLabel: text(data.centerLabel) || 'Cold door knocks',
@@ -252,6 +253,8 @@ function clusterPlaces(places, withinKm) {
       places: places,
       hunt: hunt
     };
+    var daily = typeof module === 'object' && module.exports ? require('./daily-model.js') : window.DailyModel;
+    return daily.enhance(board, data);
   }
 
   return { present: present, canonPriority: canonPriority, clusterPlaces: clusterPlaces };

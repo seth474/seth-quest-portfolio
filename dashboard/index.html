@@ -10,6 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>MORE. Board</title>
+<meta name="dashboard-release" content="daily-workflow-2026-10-29">
 <meta name="description" content="Private MORE. board.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,14 +45,18 @@
       Lock
     </button>
   </header>
+  <section id="daily-goal" aria-label="Revenue goal and departure target"></section>
   <section class="cluster" id="dials" aria-label="Scoreboard"></section>
   <section id="high-block"></section>
   <section id="med-block"></section>
   <section class="board-actions" aria-label="Board views">
     <button type="button" id="open-pipeline" class="act">Pipeline</button>
     <button type="button" id="open-map" class="act map">Map</button>
+    <button type="button" id="open-categories" class="act categories">Categories</button>
   </section>
+  <section id="cold-block"></section>
   <section id="hunt-block"></section>
+  <p id="source-note" class="source-note"></p>
 
   <div id="sheet-pipe" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="pipe-title">
     <header class="sheet-bar">
@@ -69,6 +74,7 @@
       <h2 id="map-title">Map</h2>
       <span class="sheet-meta">Hamptons</span>
     </header>
+    <p id="map-coverage" class="coverage"></p>
     <div id="cluster-row" class="cluster-row"></div>
     <div id="map"></div>
     <p id="map-fallback" class="map-fallback" hidden>Map tiles did not load. The clusters below still open Google Maps.</p>
@@ -87,7 +93,9 @@
 </div>
 <noscript><p class="noscript">This board needs JavaScript.</p></noscript>
 <script src="/dashboard/vendor/leaflet.js"></script>
+<script src="/dashboard/daily-model.js"></script>
 <script src="/dashboard/model.js"></script>
+<script src="/dashboard/daily.js"></script>
 <script src="/dashboard/app.js"></script>
 </body>
 </html>
