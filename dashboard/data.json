@@ -1,5 +1,6 @@
 {
   "asOf": "2026-10-28",
+  "centerLabel": "Cold door knocks",
   "faceConversations": 13,
   "faceTarget": 100,
   "meetings": 2,
@@ -11,8 +12,14 @@
       "contact": "Kelly",
       "priority": "High",
       "stage": "Active conversation",
-      "next": "In-person close $2,400 \u2014 do not email deck ahead",
-      "phone": "631-324-5941"
+      "next": "In-person close $2,400 — do not email deck ahead",
+      "nextStep": "In-person close $2,400 — do not email deck ahead",
+      "phone": "631-324-5941",
+      "email": "ehfence@gmail.com",
+      "address": "8 Hardscrabble Court, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.963712,
+      "lng": -72.21031
     },
     {
       "name": "Steve's East End Fuel",
@@ -21,7 +28,13 @@
       "priority": "High",
       "stage": "Active conversation",
       "next": "Nudge reply on $2,400 Three-Week",
-      "phone": "631-329-9344"
+      "nextStep": "Nudge reply on $2,400 Three-Week",
+      "phone": "631-329-9344",
+      "email": "eastendfuel@gmail.com",
+      "address": "165 Springs Fireplace Road, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.98271,
+      "lng": -72.174189
     },
     {
       "name": "Sparkling Pools",
@@ -29,8 +42,14 @@
       "contact": "Joe",
       "priority": "High",
       "stage": "Active conversation",
-      "next": "Midweek close visit \u2014 phone AI $2,400 remote",
-      "phone": ""
+      "next": "Midweek close visit — phone AI $2,400 remote",
+      "nextStep": "Midweek close visit — phone AI $2,400 remote",
+      "phone": "631-725-3983",
+      "email": "info@sparklingpools.com",
+      "address": "5 Toilsome Lane, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.963673,
+      "lng": -72.199874
     },
     {
       "name": "Hoyt Property Care",
@@ -39,7 +58,11 @@
       "priority": "Medium",
       "stage": "Warm follow-up",
       "next": "Follow-up call on funnel / website vans",
-      "phone": "631-384-3499"
+      "nextStep": "Follow-up call on funnel / website vans",
+      "phone": "631-384-3499",
+      "email": "",
+      "address": "P.O. Box 2181, Amagansett, NY 11930",
+      "town": "Amagansett"
     },
     {
       "name": "White's Lumber & Millwork",
@@ -48,7 +71,13 @@
       "priority": "Medium",
       "stage": "Warm follow-up",
       "next": "15-min owner meeting via Andres",
-      "phone": "631-726-7026"
+      "nextStep": "15-min owner meeting via Andres",
+      "phone": "631-726-7026",
+      "email": "sales@whiteslmk.com",
+      "address": "328 Montauk Highway, Wainscott, NY 11975",
+      "town": "Wainscott",
+      "lat": 40.949994,
+      "lng": -72.240896
     },
     {
       "name": "HVAC 4 Service",
@@ -57,7 +86,13 @@
       "priority": "Medium",
       "stage": "In progress",
       "next": "Finish site/domain; collect $750",
-      "phone": "631-276-8909"
+      "nextStep": "Finish site/domain; collect $750",
+      "phone": "631-276-8909",
+      "email": "",
+      "address": "186 Springs Fireplace Road, Unit 2, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.983492,
+      "lng": -72.173591
     },
     {
       "name": "First Light Electric",
@@ -65,17 +100,29 @@
       "contact": "Marc / Gina",
       "priority": "Low",
       "stage": "On hold",
-      "next": "Warm intro via Steve after ~3\u20134 weeks with EEF",
-      "phone": "631-267-0183"
+      "next": "Warm intro via Steve after ~3–4 weeks with EEF",
+      "nextStep": "Warm intro via Steve after ~3–4 weeks with EEF",
+      "phone": "631-267-0183",
+      "email": "firstlight3@optonline.net",
+      "address": "163 Springs Fireplace Road, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.982434,
+      "lng": -72.174472
     },
     {
       "name": "Gateway Pools",
       "trade": "Pools",
-      "contact": "\u2014",
+      "contact": "",
       "priority": "Low",
       "stage": "Card drop",
-      "next": "Return visit managers \u2014 card already dropped",
-      "phone": "631-324-5073"
+      "next": "Return visit managers — card already dropped",
+      "nextStep": "Return visit managers — card already dropped",
+      "phone": "631-324-5073",
+      "email": "Service@GatewayPools.com",
+      "address": "214 Springs Fireplace Road, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.985081,
+      "lng": -72.172555
     },
     {
       "name": "Hamptons Vinyl Wrap",
@@ -84,7 +131,13 @@
       "priority": "Low",
       "stage": "Card drop",
       "next": "Try Darius again",
-      "phone": ""
+      "nextStep": "Try Darius again",
+      "phone": "631-405-8520",
+      "email": "hamptonsvinylwrap@gmail.com",
+      "address": "3 Railroad Avenue, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.964079,
+      "lng": -72.192576
     },
     {
       "name": "Peace of Mind / Forst",
@@ -93,7 +146,13 @@
       "priority": "Low",
       "stage": "Card drop",
       "next": "Follow up later; ask for Michael",
-      "phone": "631-329-3737"
+      "nextStep": "Follow up later; ask for Michael",
+      "phone": "631-329-3737",
+      "email": "contact@peaceofmindhm.com",
+      "address": "26 Gingerbread Lane, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.963606,
+      "lng": -72.197438
     },
     {
       "name": "Pool Details",
@@ -102,7 +161,13 @@
       "priority": "Low",
       "stage": "Card drop",
       "next": "Email Charles Kulesa",
-      "phone": "631-324-0441"
+      "nextStep": "Email Charles Kulesa",
+      "phone": "631-324-0441",
+      "email": "service@pooldetailseh.com",
+      "address": "103 Montauk Highway, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.96115,
+      "lng": -72.188078
     },
     {
       "name": "PH Pools",
@@ -111,24 +176,51 @@
       "priority": "Low",
       "stage": "Card drop",
       "next": "Follow up after card drop",
-      "phone": "631-329-3808"
+      "nextStep": "Follow up after card drop",
+      "phone": "631-329-3808",
+      "email": "info@properphpools.com",
+      "address": "164 Springs Fireplace Road, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.982058,
+      "lng": -72.174121
     }
   ],
   "visitToday": [
     {
       "name": "Humble Abode",
       "trade": "Property management",
-      "action": "Wed ~10 AM door \u2014 $4,800 fit"
+      "action": "Wed ~10 AM door — $4,800 fit",
+      "nextStep": "Wed ~10 AM door — $4,800 fit",
+      "phone": "631-329-1339",
+      "email": "info@humbleabodehamptons.com",
+      "address": "141 Springs Fireplace Road, East Hampton, NY 11937",
+      "town": "East Hampton",
+      "lat": 40.981195,
+      "lng": -72.175191
     },
     {
-      "name": "Treewise \u2014 The Organic Experts",
+      "name": "Treewise — The Organic Experts",
       "trade": "Tree care",
-      "action": "Wainscott Unit 2 \u2014 GBP + reviews"
+      "action": "Wainscott Unit 2 — GBP + reviews",
+      "nextStep": "Wainscott Unit 2 — GBP + reviews",
+      "phone": "631-324-4239",
+      "email": "treewise@optonline.net",
+      "address": "39 Industrial Road, Unit 2, Wainscott, NY 11975",
+      "town": "Wainscott",
+      "lat": 40.956215,
+      "lng": -72.247978
     },
     {
       "name": "SoundSense LLC",
       "trade": "Acoustical",
-      "action": "Wainscott Unit 6 \u2014 review volume"
+      "action": "Wainscott Unit 6 — review volume",
+      "nextStep": "Wainscott Unit 6 — review volume",
+      "phone": "631-537-4220",
+      "email": "info@soundsense.com",
+      "address": "39 Industrial Road, Unit 6, Wainscott, NY 11975",
+      "town": "Wainscott",
+      "lat": 40.956335,
+      "lng": -72.247978
     }
   ],
   "gaps": [
@@ -163,5 +255,5 @@
       "pct": 6
     }
   ],
-  "priorityRules": "Low/Medium/High only. Exactly 3 High: EH Fence, East End Fuel, Sparkling. Medium: Hoyt, White's. HVAC=In progress. Rest Low."
+  "priorityRules": "Low/Medium/High only. Exactly 3 High: EH Fence, East End Fuel, Sparkling. Medium: Hoyt, White's, HVAC. Rest Low."
 }

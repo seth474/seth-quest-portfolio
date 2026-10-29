@@ -60,11 +60,72 @@
     return MONTHS[Number(m[2]) - 1] + ' ' + Number(m[3]) + ', ' + m[1];
   }
 
-  function cleanContact(c) {
-    var t = String(c || '').trim();
-    if (!t || t === '-' || t === '\u2014' || t === '\u2013') return '';
-    return t;
-  }
+function cleanContact(c) {
+  var t = String(c || '').trim();
+  if (!t || t === '-' || t === '\u2014' || t === '\u2013') return '';
+  return t;
+}
+
+function text(v) {
+  return String(v || '').trim();
+}
+
+function geoOf(item) {
+  var lat = item && item.lat;
+  var lng = item && item.lng;
+  var latN = Number(lat);
+  var lngN = Number(lng);
+  var ok = lat != null && lng != null && String(lat) !== '' && String(lng) !== '' && isFinite(latN) && isFinite(lngN);
+  return {
+    email: text(item && item.email),
+    address: text(item && item.address),
+    town: text(item && item.town),
+    lat: ok ? latN : null,
+    lng: ok ? lngN : null
+  };
+}
+
+function kmBetween(a, b) {
+  var r = 6371;
+  var dLat = (b.lat - a.lat) * Math.PI / 180;
+  var dLng = (b.lng - a.lng) * Math.PI / 180;
+  var lat1 = a.lat * Math.PI / 180;
+  var lat2 = b.lat * Math.PI / 180;
+  var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  return 2 * r * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+function clusterPlaces(places, withinKm) {
+  var limit = withinKm == null ? 1 : withinKm;
+  var groups = [];
+  var used = {};
+  (places || []).forEach(function (place) {
+    if (!place || used[place.id] || place.lat == null || place.lng == null) return;
+    var group = [place];
+    used[place.id] = 1;
+    var grew = true;
+    while (grew) {
+      grew = false;
+      (places || []).forEach(function (other) {
+        if (!other || used[other.id] || other.lat == null || other.lng == null) return;
+        var near = false;
+        var i;
+        for (i = 0; i < group.length; i += 1) {
+          if (kmBetween(group[i], other) <= limit) { near = true; break; }
+        }
+        if (near) {
+          group.push(other);
+          used[other.id] = 1;
+          grew = true;
+        }
+      });
+    }
+    groups.push(group);
+  });
+  groups.sort(function (a, b) { return b.length - a.length; });
+  return groups;
+}
 
   function present(data) {
     data = data || {};
@@ -75,6 +136,8 @@
       var id = base;
       if (seen[id]) id = base + '-' + i;
       seen[id] = 1;
+      var step = text(lead && (lead.nextStep || lead.next));
+      var geo = geoOf(lead);
       return {
         id: id,
         kind: 'lead',
@@ -84,8 +147,14 @@
         trade: (lead && lead.trade) || '',
         contact: cleanContact(lead && lead.contact),
         stage: (lead && lead.stage) || '',
-        action: (lead && lead.next) || '',
-        phone: String((lead && lead.phone) || '').trim()
+        action: step,
+        nextStep: step,
+        phone: text(lead && lead.phone),
+        email: geo.email,
+        address: geo.address,
+        town: geo.town,
+        lat: geo.lat,
+        lng: geo.lng
       };
     });
 
@@ -97,23 +166,34 @@
       return lead.priority === 'High' || lead.priority === 'Medium';
     });
 
+    var stops = [];
     (data.visitToday || []).forEach(function (visit, i) {
       var base = 'visit-' + (slug(visit && visit.name) || String(i));
       var id = base;
       if (seen[id]) id = base + '-' + i;
       seen[id] = 1;
-      queue.push({
+      var step = text(visit && (visit.nextStep || visit.action));
+      var geo = geoOf(visit);
+      var stop = {
         id: id,
         kind: 'visit',
         order: 1000 + i,
         priority: 'Visit',
         name: (visit && visit.name) || 'Visit',
         trade: (visit && visit.trade) || '',
-        contact: '',
+        contact: cleanContact(visit && visit.contact),
         stage: 'Cold visit today',
-        action: (visit && visit.action) || '',
-        phone: ''
-      });
+        action: step,
+        nextStep: step,
+        phone: text(visit && visit.phone),
+        email: geo.email,
+        address: geo.address,
+        town: geo.town,
+        lat: geo.lat,
+        lng: geo.lng
+      };
+      stops.push(stop);
+      queue.push(stop);
     });
 
     var face = num(data.faceConversations);
@@ -134,14 +214,31 @@
       return n;
     }
 
+    var places = ordered.concat(stops).filter(function (item) {
+      return item.lat != null && item.lng != null;
+    }).map(function (item) {
+      return {
+        id: item.id,
+        name: item.name,
+        priority: item.priority,
+        kind: item.kind,
+        address: item.address,
+        town: item.town,
+        lat: item.lat,
+        lng: item.lng
+      };
+    });
+
     return {
       asOf: data.asOf || '',
       asOfLabel: formatAsOf(data.asOf),
+      centerLabel: text(data.centerLabel) || 'Cold door knocks',
       priorityRules: data.priorityRules || 'Low, Medium, and High only.',
       counts: {
         face: face,
         faceTarget: faceTarget,
         facePct: faceTarget ? Math.round((face / faceTarget) * 100) : 0,
+        label: text(data.centerLabel) || 'Cold door knocks',
         meetings: num(data.meetings),
         closes: num(data.closes),
         high: count('High'),
@@ -150,10 +247,12 @@
         total: leads.length
       },
       leads: ordered,
+      stops: stops,
       queue: queue,
+      places: places,
       hunt: hunt
     };
   }
 
-  return { present: present, canonPriority: canonPriority };
+  return { present: present, canonPriority: canonPriority, clusterPlaces: clusterPlaces };
 });
