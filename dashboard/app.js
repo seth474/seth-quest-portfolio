@@ -890,11 +890,17 @@
   });
 
   var params = new URLSearchParams(location.search);
+  var denied = params.get('denied') === '1';
+  if (denied) {
+    var clean = new URL(location.href);
+    clean.searchParams.delete('denied');
+    replaceUrl(clean);
+  }
   var key = params.get('k') || params.get('key') || '';
   if (!window.CRMModel) {
     showLock(false);
     showError('The board did not load. Try again.');
   } else {
-    openBoard(key, !!key);
+    openBoard(key, denied || !!key);
   }
 })();
