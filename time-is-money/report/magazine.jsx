@@ -229,10 +229,10 @@ function SectionPage({ m, row, page, theme, fixes }) {
 function Summary({ m, theme }) {
   return (
     <Sheet theme={theme} page={5}>
-      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>One change a week, for three weeks.</Text>
+      <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>Two weeks. One working session each week.</Text>
       <Text style={{ fontFamily: 'Inter', fontSize: 11, lineHeight: 1.4, color: theme.ink, marginTop: 8 }}>{m.insight}</Text>
       <View style={{ marginTop: 10, backgroundColor: theme.block, padding: 12 }}>
-        <Label theme={theme}>The three-week plan</Label>
+        <Label theme={theme}>The two-week plan</Label>
         {m.plan.map(function (step) {
           return (
             <View key={step.day} style={{ flexDirection: 'row', marginBottom: 7 }}>
@@ -248,15 +248,15 @@ function Summary({ m, theme }) {
       <View style={{ marginTop: 10, flexDirection: 'row' }}>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
           <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 20, color: theme.ink }}>{m.price}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>once, for the Three-Week Setup</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>once, for the two-week setup</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12, marginRight: 8 }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.kickoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 1: $800 to start</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.week1}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Working session</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: theme.block, padding: 12 }}>
-          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.handoff}</Text>
-          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Week 2: $800. Week 3: $800 on completion.</Text>
+          <Text style={{ fontFamily: 'Inter', fontWeight: 800, fontSize: 16, color: theme.ink }}>{m.week2}</Text>
+          <Text style={{ fontFamily: 'Inter', fontSize: 8, color: theme.muted, marginTop: 2 }}>Working session and written how-tos</Text>
         </View>
       </View>
       <View style={{ marginTop: 12, paddingTop: 8 }}>
