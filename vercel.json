@@ -26,7 +26,9 @@
     { "source": "/hvac4/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
     { "source": "/4service", "destination": "/hvac4service", "statusCode": 301 },
     { "source": "/4service/", "destination": "/hvac4service", "statusCode": 301 },
-    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 }
+    { "source": "/4service/:path*", "destination": "/hvac4service/:path*", "statusCode": 301 },
+    { "source": "/credit-climb/static", "destination": "/credit-climb", "statusCode": 307 },
+    { "source": "/credit-climb/static/:path*", "destination": "/credit-climb", "statusCode": 307 }
   ],
   "headers": [
     {
@@ -49,6 +51,35 @@
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
         { "key": "Cache-Control", "value": "private, no-store" }
       ]
+    },
+    {
+      "source": "/credit-climb",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/credit-climb/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/credit-climb.txt",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/api/credit-climb",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Cache-Control", "value": "private, no-store" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
     }
   ],
   "rewrites": [
@@ -64,6 +95,15 @@
     { "source": "/plumbing-workshop", "destination": "/trade-workshop/landing" },
     { "source": "/hvac-workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/electrician-workshop/registered", "destination": "/trade-workshop/registered" },
-    { "source": "/plumbing-workshop/registered", "destination": "/trade-workshop/registered" }
-  ]
+    { "source": "/plumbing-workshop/registered", "destination": "/trade-workshop/registered" },
+    { "source": "/credit-climb", "destination": "/api/credit-climb" },
+    { "source": "/credit-climb/", "destination": "/api/credit-climb" },
+    { "source": "/credit-climb.txt", "destination": "/api/credit-climb?file=index.txt" },
+    { "source": "/credit-climb/:path*", "destination": "/api/credit-climb?file=:path*" }
+  ],
+  "functions": {
+    "api/credit-climb.js": {
+      "includeFiles": "credit-climb/static/**"
+    }
+  }
 }

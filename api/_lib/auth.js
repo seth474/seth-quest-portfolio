@@ -130,10 +130,15 @@ function clearCookie(req) {
 
 function authorize(req) {
   if (!armed()) return { ok: true, gate: 'open', cookie: '' };
+  return authorizePass(req, passphrase());
+}
+
+function authorizePass(req, pass) {
   var provided = qget(queryOf(req), 'k') || qget(queryOf(req), 'key');
   var cookie = readCookie(req.headers && req.headers.cookie, COOKIE);
-  var key = signingKey();
-  var passOk = provided.length > 0 && same(provided, passphrase());
+  var secret = sessionSecret();
+  var key = secret || crypto.createHash('sha256').update('sq-dash-v1|' + pass).digest('hex');
+  var passOk = provided.length > 0 && same(provided, pass);
   var cookieOk = verifyToken(cookie, key);
   if (!passOk && !cookieOk) return { ok: false, gate: 'armed', cookie: '' };
   return {
@@ -162,6 +167,7 @@ module.exports = {
   MAX_AGE: MAX_AGE,
   armed: armed,
   authorize: authorize,
+  authorizePass: authorizePass,
   clearCookie: clearCookie,
   cookieHeader: cookieHeader,
   dashboardLocation: dashboardLocation,
