@@ -1,4 +1,4 @@
-/* Time-cost copy for the Three-Week Setup snapshot. Customer text stays plain. */
+/* Time-cost copy for the two-week setup snapshot. Customer text stays plain. */
 
 var RATE_BILL = { r75: 75, r100: 100, r135: 135, r175: 175, r200: 200 };
 var RATE_WAGE = { w18: 18, w20: 20, w25: 25, w30: 30 };
@@ -168,13 +168,12 @@ function buildModel(input) {
       ]
     },
     plan: [
-      { day: 'Week 1', t: 'Audit and the first change', d: 'We go through the workflow, pick the biggest leak, and make the first change. That change can be an AI agent for email or quotes. $800 to start. The first $800 starts the work.' },
-      { day: 'Week 2', t: 'The second change', d: 'We see the first change work, then take on the next one. $800.' },
-      { day: 'Week 3', t: 'Third fix and completion', d: 'The third sales funnel fix, then the work is done. $800 on completion.' }
+      { day: 'Week 1', t: 'Google profile, reviews, and the first workflow', d: 'Everything in the $750 offer: Google profile cleanup, a review-request email and follow-up, a call script, and a look at where website traffic comes from. Then the first admin workflow for email or quotes.' },
+      { day: 'Week 2', t: 'Email setup and written how-tos', d: 'Customer email setup and the next admin workflow. One working session each week, with written how-tos. Accounts stay in your name.' }
     ],
     price: '$2,400',
-    kickoff: '$800',
-    handoff: '$800',
+    week1: 'Week 1',
+    week2: 'Week 2',
     phone: '934-899-0796',
     url: 'sethquest.com/time-is-money',
     cta: 'Book a free 15-min call'

@@ -63,14 +63,14 @@
     'Past customers': 'When did your past customers last hear from you?'
   };
   var FIX = {
-    'Missed calls': '$750 Fix or Three-Week Setup',
-    'Slow response': 'Three-Week Setup or Team Workshop',
-    Website: '$750 Fix',
-    'Google profile and reviews': '$750 Fix',
-    'Slow quotes': 'Three-Week Setup',
-    'No follow-up': 'Three-Week Setup',
-    'Low close rate': 'Team Workshop',
-    'Past customers': 'Three-Week Setup'
+    'Missed calls': '$750 week or two-week setup',
+    'Slow response': 'Two-week setup or four-week team setup',
+    Website: '$750 week',
+    'Google profile and reviews': '$750 week',
+    'Slow quotes': 'Two-week setup',
+    'No follow-up': 'Two-week setup',
+    'Low close rate': 'Four-week team setup',
+    'Past customers': 'Two-week setup'
   };
   var GOAL = {
     'more leads': ['Missed calls', 'Google profile and reviews', 'Website', 'Slow response'],
@@ -225,7 +225,7 @@
       return '<div class="gbox"><div class="gk">' + esc(k) + '</div><div class="gd">' + money(v.dollars) + '<span>/busy month</span></div><div class="gw">' + esc(v.why) + '</div><div class="gs">' + esc(STARTERS[k]) + '</div><div class="gf">Option that fits: ' + esc(FIX[k]) + '</div></div>';
     }).join('');
     if (!r.top.length) {
-      html += '<div class="gbox"><div class="gk">Every new lead</div><div class="gd">' + money(r.perLead) + '<span>each</span></div><div class="gw">You win ' + Math.round(r.close * 100) + '% of quotes at about ' + money(r.job) + ' a job, so each extra lead is worth about ' + money(r.perLead) + '.</div><div class="gs">Your funnel holds water. What would 10 more leads a month be worth?</div><div class="gf">Option that fits: $750 Fix</div></div>';
+      html += '<div class="gbox"><div class="gk">Every new lead</div><div class="gd">' + money(r.perLead) + '<span>each</span></div><div class="gw">You win ' + Math.round(r.close * 100) + '% of quotes at about ' + money(r.job) + ' a job, so each extra lead is worth about ' + money(r.perLead) + '.</div><div class="gs">Your funnel holds water. What would 10 more leads a month be worth?</div><div class="gf">Option that fits: $750 week</div></div>';
       html += '<div class="gbox"><div class="gk">Time back</div><div class="gd">~' + r.hours + ' hrs<span>/busy month</span></div><div class="gw">About ' + r.leads + ' leads a month of emails, quotes and follow-ups. One AI agent can draft about half of that.</div><div class="gs">What would you do with an extra ' + r.hours + ' hours a month?</div><div class="gf">Option that fits: Team Workshop</div></div>';
     }
     return html;
@@ -240,10 +240,10 @@
     }).join('');
   }
   function offersHTML() {
-    return '<div class="cta"><h3>Three ways to work together</h3><p>Options to talk through on a free call.</p><div class="opts">' +
-      '<div class="opt"><div class="op">$750</div><div class="on">One fix. One on one. 48 hours.</div><div class="od">One fix: your website, your Google profile, or your Google Ads. One on one with Seth, done in 48 hours. Fix one leak in your sales funnel for $750. Save thousands in lost business opportunities.</div></div>' +
-      '<div class="opt"><div class="on">Three-Week Setup \u00b7 $2,400</div><div class="od">One high-ROI sales funnel fix per week \u00b7 3 weeks</div><div class="od">One Zoom with Seth each week \u00b7 the work gets done between meetings</div><div class="od">Pay: $800 to start \u00b7 $800 week 2 \u00b7 $800 on completion</div><a class="ol" href="/time-is-money">Learn more</a></div>' +
-      '<div class="opt"><div class="on">Team Workshop \u00b7 $4,800 per company</div><div class="od">One change a week, for three weeks, with the team. 2 to 5 people. Founder optional. A 2-hour team session each week, with setup work between sessions. Week 1: audit and the first change. Week 2: the second change. Week 3: the third change, training, and handoff.</div><div class="od">Week 1: $1,600 to start. Week 2: $1,600. Week 3: $1,600 at handoff.</div><a class="ol" href="/team-workshop">Learn more</a></div>' +
+    return '<div class="cta"><h3>Three ways to work together</h3><p>More calls, more effective advertising, and a more efficient operation.</p><div class="opts">' +
+      '<div class="opt"><div class="op">$750</div><div class="on">One week. Google profile + reviews</div><div class="od">Google Business Profile cleanup, a review-request email and follow-up, a call script for your team, and a look at where website traffic comes from.</div></div>' +
+      '<div class="opt"><div class="on">Two-week setup \u00b7 $2,400</div><div class="od">Everything in the $750 offer, plus a Google profile system, review templates, customer email, website path-to-call fixes, tracked Google and Meta ad tests, a tracking Sheet, and one working session each week with written how-tos.</div><a class="ol" href="/time-is-money">Learn more</a></div>' +
+      '<div class="opt"><div class="on">Four-week team setup \u00b7 $4,800</div><div class="od">Everything in the $2,400 setup, plus one 2-hour team session each week for four weeks (2\u20135 people), new ad creative, budget changes tracked to paying customers, one AI-assisted office workflow, and training with written how-tos.</div><a class="ol" href="/team-workshop">Learn more</a></div>' +
       '</div><button class="btn p" type="button" id="qrBook">Book a free call</button></div>';
   }
   function fine(r) {
@@ -258,7 +258,7 @@
       '<p class="fine">Time on emails, quotes and follow-ups: about ' + r.hours + ' hours a month you could get back.</p>' +
       '<h2 class="d ah">Your answers<span class="g">.</span></h2>' + rowsHTML(A) +
       '<h2 class="d ah">Where the money goes<span class="g">.</span></h2><table class="lt">' + tableHTML(r) + '</table>' +
-      '<p class="note">Estimates based on your answers, not a guarantee.</p>' +
+      '<p class="note">Estimates based on your answers.</p>' +
       '<p class="fine">' + fine(r) + '</p>' +
       '<p class="together">Let\u2019s pick what to work on together.</p>' +
       offersHTML() +
@@ -293,14 +293,14 @@
     r.top.forEach(function (k) { lines.push('- ' + k + '  ' + money(r.leaks[k].dollars) + '  ' + STARTERS[k] + '  Option that fits: ' + FIX[k]); });
     if (!r.top.length) lines.push('Tight funnel. Every new lead is worth about ' + money(r.perLead) + '. Time back about ' + r.hours + ' hours.');
     lines.push('');
-    lines.push('Estimates based on your answers, not a guarantee.');
+    lines.push('Estimates based on your answers.');
     return lines.join('\n');
   }
   var css = '.audit{color:#0a0a0a}.audit .big{font-family:"Bebas Neue",sans-serif;font-size:clamp(64px,16vw,96px);line-height:.85;color:#FF2D2D;margin:8px 0 2px}.audit .big span{font:800 16px Inter,sans-serif;color:#0a0a0a;margin-left:6px}.audit .share{font-weight:800;font-size:18px;color:#FF2D2D;margin:0 0 8px}.audit .sub{color:#333;margin:0 0 8px}.audit .ah{font-size:clamp(32px,8vw,40px);margin:26px 0 12px}.audit .gbox{background:#e9fbef;border:2px solid #2BE36B;border-radius:16px;padding:14px 16px;margin:0 0 10px}.audit .gk{font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;text-transform:uppercase}.audit .gd{font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:1;color:#1fbf5a;margin-top:4px}.audit .gd span{font:800 14px Inter,sans-serif;color:#0a0a0a;margin-left:4px}.audit .gw{color:#333;font-size:14px;margin-top:4px}.audit .gs{font-weight:700;margin-top:8px}.audit .gf{font-weight:600;font-size:13px;color:#178a3e;margin-top:8px;border-top:1px solid #c8f2d6;padding-top:7px}.audit .qrow{display:flex;gap:10px;background:#fff;border:1px solid #e3e1db;border-radius:14px;padding:12px;margin:0 0 8px}.audit .qn{flex:none;width:26px;height:26px;border-radius:50%;background:#0a0a0a;color:#fff;font:800 12px/26px Inter,sans-serif;text-align:center}.audit .qb{flex:1;min-width:0}.audit .qq{font-weight:700;font-size:15px;line-height:1.3}.audit .qa{color:#333;font-size:15px}.audit .meter{height:9px;border-radius:5px;background:#e3e1db;margin-top:8px;overflow:hidden}.audit .meter i{display:block;height:100%;border-radius:5px}.audit .pct{font:800 12px Inter,sans-serif;color:#6b6b6b;margin-top:3px}.audit .nobar{font:600 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#6b6b6b;margin-top:4px}.audit table.lt{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:14px}.audit table.lt td{padding:9px 10px;border-bottom:1px solid #e3e1db;vertical-align:top}.audit table.lt td:nth-child(2){font-weight:800;white-space:nowrap}.audit tr.t td{background:#e9fbef}.audit .fine{font-size:13px;color:#6b6b6b;margin-top:10px}.audit .note{font-weight:700;margin-top:14px}.audit .cta{background:#0a0a0a;color:#fff;border-radius:22px;padding:22px 16px;margin-top:22px}.audit .cta h3{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:36px;line-height:.95;text-transform:uppercase;text-align:center}.audit .cta p{color:#ccc;text-align:center;margin:8px 0 14px}.audit .opts{display:grid;gap:10px}.audit .opt{border:1.5px solid #333;border-radius:16px;padding:12px 14px}.audit .op{font-family:"Bebas Neue",sans-serif;font-size:36px;line-height:1;color:#2BE36B}.audit .on{font-family:"Bebas Neue",sans-serif;font-size:24px;line-height:1;text-transform:uppercase}.audit .od{color:#ccc;font-size:14px;margin-top:4px}.audit #qrBook{width:100%;margin-top:12px;background:#2BE36B;color:#0a0a0a}.audit .together{font-weight:700;font-size:18px;line-height:1.35;margin:22px 0 0}.audit .ol{color:#2BE36B;font-weight:700;display:inline-block;margin-top:8px}';
   function reportDocument(lead, A) {
     var r = compute(A);
     var title = esc((lead && lead.business) || 'Sales funnel audit');
-    return '<!doctype html><html><head><meta charset="utf-8"><title>' + title + '</title><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;background:#f6f5f1;font:400 16px/1.5 Inter,sans-serif}' + css + '.w{max-width:680px;margin:0 auto;padding:28px 18px 48px}</style></head><body><div class="w"><div style="font-family:Bebas Neue,sans-serif;font-size:28px;letter-spacing:.06em">MORE.</div><div class="audit"><p style="font-weight:700">' + esc((lead && lead.name) || '') + (lead && lead.business ? ' · ' + esc(lead.business) : '') + '</p>' + headHTML(r) + '<h2 class="ah">Biggest opportunities</h2>' + boxesHTML(r).replace('id="qrBook"', '') + '<p class="fine">Time on emails, quotes and follow-ups: about ' + r.hours + ' hours a month you could get back.</p><h2 class="ah">Your answers</h2>' + rowsHTML(A) + '<h2 class="ah">Where the money goes</h2><table class="lt">' + tableHTML(r) + '</table><p class="note">Estimates based on your answers, not a guarantee.</p><p class="fine">' + fine(r) + '</p>' + offersHTML().replace('id="qrBook"', 'onclick="location.href=\'tel:+19348990796\'"') + '</div></div></body></html>';
+    return '<!doctype html><html><head><meta charset="utf-8"><title>' + title + '</title><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;background:#f6f5f1;font:400 16px/1.5 Inter,sans-serif}' + css + '.w{max-width:680px;margin:0 auto;padding:28px 18px 48px}</style></head><body><div class="w"><div style="font-family:Bebas Neue,sans-serif;font-size:28px;letter-spacing:.06em">MORE.</div><div class="audit"><p style="font-weight:700">' + esc((lead && lead.name) || '') + (lead && lead.business ? ' · ' + esc(lead.business) : '') + '</p>' + headHTML(r) + '<h2 class="ah">Biggest opportunities</h2>' + boxesHTML(r).replace('id="qrBook"', '') + '<p class="fine">Time on emails, quotes and follow-ups: about ' + r.hours + ' hours a month you could get back.</p><h2 class="ah">Your answers</h2>' + rowsHTML(A) + '<h2 class="ah">Where the money goes</h2><table class="lt">' + tableHTML(r) + '</table><p class="note">Estimates based on your answers.</p><p class="fine">' + fine(r) + '</p>' + offersHTML().replace('id="qrBook"', 'onclick="location.href=\'tel:+19348990796\'"') + '</div></div></body></html>';
   }
   root.MOREAudit = { Q: Q, active: active, compute: compute, resultsInner: resultsInner, reportText: reportText, reportDocument: reportDocument, labelOf: labelOf, css: css };
   if (typeof module !== 'undefined' && module.exports) module.exports = root.MOREAudit;
