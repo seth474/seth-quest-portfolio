@@ -88,6 +88,8 @@
     { "source": "/dashboard/index.html", "has": [{ "type": "query", "key": "k" }], "destination": "/api/unlock" },
     { "source": "/dashboard", "has": [{ "type": "query", "key": "key" }], "destination": "/api/unlock" },
     { "source": "/dashboard/", "has": [{ "type": "query", "key": "key" }], "destination": "/api/unlock" },
+    { "source": "/built", "destination": "/portfolio" },
+    { "source": "/built/", "destination": "/portfolio" },
     { "source": "/workshop", "destination": "/trade-workshop/landing" },
     { "source": "/workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/hvac-workshop", "destination": "/trade-workshop/landing" },
