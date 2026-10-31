@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design portfolio · Seth Quest</title>
+<meta name="description" content="Seth Quest design portfolio: lighting, furniture, office and retail interiors, products, and architecture." />
+<link rel="canonical" href="https://sethquest.com/portfolio" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sethquest.com/portfolio" />
+<meta property="og:title" content="Design portfolio · Seth Quest" />
+<meta property="og:description" content="Lighting, furniture, interiors, products, and architecture." />
+<meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Design portfolio · Seth Quest" />
+<meta name="twitter:description" content="Lighting, furniture, interiors, products, and architecture." />
+<meta name="twitter:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="/portfolio/img/hero-seth-800.webp" imagesrcset="/portfolio/img/hero-seth-800.webp 800w, /portfolio/img/hero-seth.webp 1119w" imagesizes="(max-width: 759px) 92vw, 40vw" />
+<style>
+  :root{
+    --ink:#F4F0E6;
+    --ink-2:#EDE7D8;
+    --bone:#1A1814;
+    --bone-dim:rgba(26,24,20,0.62);
+    --line:rgba(26,24,20,0.10);
+    --line-strong:rgba(26,24,20,0.22);
+    --amber:#B06C28;
+    --amber-bright:#DE832A;
+    --shadow:0 18px 50px -28px rgba(26,24,20,0.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:"Inter Tight",-apple-system,sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(820px 420px at 0% -10%, rgba(176,108,40,0.16), transparent 62%),
+      radial-gradient(640px 380px at 100% 0%, rgba(222,131,42,0.08), transparent 55%);
+  }
+  img{max-width:100%; display:block}
+  button,a{font:inherit; color:inherit}
+  button{background:none; border:0; padding:0; cursor:pointer}
+  a{text-decoration:none}
+  ::selection{background:var(--amber); color:var(--ink)}
+  h1,h2,h3{text-wrap:balance}
+  .wrap{width:min(1180px, calc(100% - 32px)); margin:0 auto}
+  .page{position:relative; z-index:1}
+
+  nav.top{
+    position:sticky; top:0; z-index:30;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px 16px;
+    background:rgba(244,240,230,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .mark{font-weight:600; letter-spacing:-0.03em; font-size:16px}
+  .mark em{font-style:normal; color:var(--amber)}
+  .nav-links{display:flex; align-items:center; gap:8px}
+  .nav-links a{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--bone-dim);
+    padding:9px 14px; border-radius:999px; border:1px solid var(--line-strong);
+  }
+  .nav-links a.here,.nav-links a:hover{color:var(--ink); background:var(--bone); border-color:var(--bone)}
+  .nav-links a.mail{background:var(--amber); color:#fff; border-color:var(--amber)}
+  .nav-links a.mail:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff}
+
+  .hero{padding:28px 0 8px}
+  .hero-grid{display:grid; gap:22px}
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow i{width:7px; height:7px; border-radius:50%; background:var(--amber); display:block}
+  h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:500;
+    font-size:clamp(52px, 14vw, 108px);
+    line-height:0.88; letter-spacing:-0.045em;
+    margin:10px 0 0;
+  }
+  h1 em{font-style:normal; color:var(--amber)}
+  .lede{margin:16px 0 0; font-size:clamp(18px, 2.4vw, 22px); color:var(--bone-dim); max-width:38ch}
+  .hero-photo{
+    margin:0; border-radius:18px; overflow:hidden;
+    aspect-ratio:4/5; background:var(--ink-2);
+    box-shadow:var(--shadow);
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 20%}
+
+  .about{padding:28px 0 8px}
+  .about p{margin:0 0 14px; color:var(--bone-dim); font-size:16.5px; max-width:68ch}
+  .about p strong{color:var(--bone); font-weight:600}
+
+  .tools{
+    position:sticky; top:57px; z-index:20;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    padding:12px 0; margin:8px 0 4px;
+    background:linear-gradient(var(--ink) 78%, rgba(244,240,230,0));
+  }
+  .chip{
+    flex:none;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:10px 14px; border-radius:999px;
+    border:1px solid var(--line-strong); color:var(--bone-dim);
+  }
+  .chip[aria-pressed="true"]{background:var(--amber); color:#fff; border-color:var(--amber); font-weight:600}
+  .count{
+    flex:none;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone-dim);
+    padding-left:4px;
+  }
+  @media (min-width:760px){
+    .count{margin-left:auto}
+  }
+
+  .grid{
+    display:grid; grid-template-columns:1fr; gap:16px;
+    padding-bottom:28px;
+  }
+  .card{
+    display:flex; flex-direction:column; text-align:left; width:100%;
+    border-radius:18px; overflow:hidden;
+    background:rgba(255,255,255,0.35);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1), border-color .3s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--line-strong)}
+  .card.reveal.in:hover{transform:translateY(-3px)}
+  .card .frame{display:block; aspect-ratio:4/5; overflow:hidden; background:#ddd6c8}
+  .card.wide .frame{aspect-ratio:16/10}
+  .card img{
+    width:100%; height:118%; object-fit:cover; object-position:center top;
+    transform:translateY(-9%);
+    transition:transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover img{transform:translateY(-9%) scale(1.035)}
+  .card .meta{display:flex; flex-direction:column; gap:4px; padding:14px 14px 16px}
+  .cat{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber);
+  }
+  .name{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em; line-height:1.05}
+  .line{color:var(--bone-dim); font-size:15px}
+  .card.reveal{opacity:0; transform:translateY(18px)}
+  .card.reveal.in{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
+
+  footer.foot{
+    border-top:1px solid var(--line);
+    padding:48px 0 36px;
+  }
+  footer.foot h2{
+    font-family:"Space Grotesk",sans-serif; font-weight:500;
+    font-size:clamp(36px, 7vw, 64px); letter-spacing:-0.04em; line-height:0.95; margin:0;
+  }
+  footer.foot h2 em{font-style:normal; color:var(--amber)}
+  .mailbig{
+    display:inline-block; margin-top:16px;
+    font-family:"JetBrains Mono",monospace;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--amber); font-size:14px;
+  }
+  .foot-row{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:28px; color:var(--bone-dim); font-size:14px}
+  .foot-row a{border-bottom:1px solid transparent}
+  .foot-row a:hover{color:var(--bone); border-color:var(--amber)}
+
+  dialog{
+    width:min(1080px, calc(100% - 20px));
+    max-height:min(92vh, 880px);
+    margin:auto; padding:0; border:0; border-radius:20px;
+    background:var(--ink); color:var(--bone);
+    box-shadow:0 30px 80px -24px rgba(0,0,0,.5);
+  }
+  dialog::backdrop{background:rgba(26,24,20,.66); backdrop-filter:blur(5px)}
+  dialog.lb{width:min(1100px, calc(100% - 16px)); max-height:96vh; background:transparent; box-shadow:none}
+  .sheet{display:grid; grid-template-rows:auto auto; max-height:min(92vh, 880px); overflow:auto}
+  .stage{position:relative; background:#161410; min-height:220px; height:100%}
+  .stage img{width:100%; max-height:58vh; object-fit:contain; background:#161410; margin:0 auto}
+  .x,.navb{
+    position:absolute; z-index:2;
+    width:42px; height:42px; border-radius:50%;
+    background:#fff; color:var(--bone);
+    display:grid; place-items:center;
+    font-size:22px; line-height:1;
+  }
+  [hidden]{display:none !important}
+  .x{top:12px; right:12px}
+  .navb.prev{left:12px; top:50%; transform:translateY(-50%)}
+  .navb.next{right:12px; top:50%; transform:translateY(-50%)}
+  .x:hover,.navb:hover{background:var(--amber); color:#fff}
+  .copy{padding:18px 18px 20px}
+  .copy h2{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:clamp(32px, 5vw, 48px); letter-spacing:-0.04em; margin:6px 0 8px; line-height:1}
+  .copy .line{font-size:17px; max-width:46ch}
+  .thumbs{display:flex; gap:8px; overflow-x:auto; margin-top:16px; padding-bottom:4px}
+  .thumbs button{flex:none; width:84px; height:64px; border-radius:8px; overflow:hidden; border:2px solid transparent}
+  .thumbs button[aria-current="true"]{border-color:var(--amber)}
+  .thumbs img{width:100%; height:100%; object-fit:cover}
+  .openfull{
+    margin-top:14px;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--bone); border:1px solid var(--line-strong); border-radius:999px; padding:10px 14px;
+  }
+  .openfull:hover{background:var(--bone); color:var(--ink)}
+  .lb-stage{position:relative}
+  .lb-stage img{width:100%; max-height:86vh; object-fit:contain; border-radius:12px; background:#111}
+  .lb .x{background:#fff}
+  .empty{display:none; padding:28px 0 60px; color:var(--bone-dim)}
+  .empty.show{display:block}
+
+  @media (min-width:760px){
+    .wrap{width:min(1180px, calc(100% - 56px))}
+    nav.top{padding:14px 28px}
+    .hero{padding-top:42px}
+    .hero-grid{grid-template-columns:1.15fr .85fr; gap:40px; align-items:end}
+    .hero-photo{aspect-ratio:4/5}
+    .grid{grid-template-columns:1fr 1fr; gap:18px}
+    .sheet{grid-template-columns:1.25fr .85fr; grid-template-rows:1fr; height:min(88vh, 820px)}
+    .stage{min-height:100%}
+    .stage img{height:100%; max-height:none; position:absolute; inset:0; object-fit:cover}
+    .copy{overflow:auto}
+  }
+  @media (min-width:1080px){
+    .grid{grid-template-columns:1fr 1fr 1fr}
+    .card.wide{grid-column:span 2}
+  }
+  @media (max-width:759px){
+    .card.wide{grid-column:auto}
+    .card.wide .frame{aspect-ratio:4/5}
+    .nav-links a.quiet{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .card,.card img,.card.reveal{transition:none}
+    .card.reveal{opacity:1; transform:none}
+    .card:hover,.card.reveal.in:hover{transform:none}
+    .card:hover img{transform:translateY(-9%)}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="top">
+    <a class="mark" href="/">Seth <em>Quest</em></a>
+    <div class="nav-links">
+      <a class="here" href="/portfolio" aria-current="page">Design</a>
+      <a class="quiet" href="/#work">Selected work</a>
+      <a class="mail" href="mailto:seth@sethquest.com">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow"><i></i> Design portfolio</p>
+        <h1>Selected<br><em>design</em></h1>
+        <p class="lede">A limited portfolio of my work in lighting, furniture, interiors, products, and architecture.</p>
+      </div>
+      <figure class="hero-photo">
+        <img src="/portfolio/img/hero-seth-800.webp" srcset="/portfolio/img/hero-seth-800.webp 800w, /portfolio/img/hero-seth.webp 1119w" sizes="(max-width: 759px) 92vw, 40vw" width="1119" height="1600" alt="Seth Quest standing inside a timber-arched structure" />
+      </figure>
+    </div>
+  </header>
+
+  <section class="about wrap">
+    <p>I started my career with lighting and furniture design in San Francisco. During this time I founded an office design consultancy to provide ergonomic furniture and innovative interiors to startups.</p>
+    <p>I used rapid prototyping to develop products, became an inventor, and was on the founding team of Factory, an innovation consultancy that worked with Fortune 500 companies. After being burnt out from tech, I founded Waterhouse, building a community of 1000+ members with spa focused events.</p>
+    <p>My degree is in product design, so I’ve included some of the notable products I’ve developed over the years. In this chapter of my life I’ve focused my attention on architecture. I’m currently utilizing all of my skills as an industrial designer to bring beautiful, carbon neutral homes to the marketplace. My mission is to create affordable contemporary homes for the millennial generation.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="tools" role="toolbar" aria-label="Filter projects">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-filter="furniture" aria-pressed="false">Furniture</button>
+      <button class="chip" type="button" data-filter="office" aria-pressed="false">Office</button>
+      <button class="chip" type="button" data-filter="interiors" aria-pressed="false">Interiors</button>
+      <button class="chip" type="button" data-filter="product" aria-pressed="false">Product</button>
+      <button class="chip" type="button" data-filter="architecture" aria-pressed="false">Architecture</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty">Nothing in this filter.</p>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <h2>Building something<br><em>ambitious?</em></h2>
+      <a class="mailbig" href="mailto:seth@sethquest.com">seth@sethquest.com</a>
+      <div class="foot-row">
+        <a href="/">Back to sethquest.com</a>
+        <a href="https://www.linkedin.com/in/sethquest/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<dialog id="project" aria-labelledby="dlg-title">
+  <div class="sheet">
+    <div class="stage">
+      <button class="x" type="button" data-close aria-label="Close">×</button>
+      <button class="navb prev" type="button" data-prev aria-label="Previous image">‹</button>
+      <button class="navb next" type="button" data-next aria-label="Next image">›</button>
+      <img id="dlg-img" alt="" />
+    </div>
+    <div class="copy">
+      <div class="cat" id="dlg-cat"></div>
+      <h2 id="dlg-title"></h2>
+      <p class="line" id="dlg-line"></p>
+      <div class="thumbs" id="dlg-thumbs"></div>
+      <button class="openfull" type="button" id="open-lb">Open image</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="lightbox" class="lb" aria-label="Image">
+  <div class="lb-stage">
+    <button class="x" type="button" data-close-lb aria-label="Close image">×</button>
+    <button class="navb prev" type="button" data-lb-prev aria-label="Previous image">‹</button>
+    <button class="navb next" type="button" data-lb-next aria-label="Next image">›</button>
+    <img id="lb-img" alt="" />
+  </div>
+</dialog>
+
+<script>
+const PROJECTS = [
+  {
+    id: "knot-light",
+    title: "Knot Light",
+    cat: "Furniture + Lighting",
+    filters: ["furniture"],
+    line: "Commissioned by the W, and Levi’s flagship store.",
+    wide: true,
+    images: [
+      ["/portfolio/img/knot-light.webp", "Knot Light, a chandelier of knotted black rope", 1600, 995],
+      ["/portfolio/img/knot-b.webp", "Knot Light installed over a long communal table", 1600, 1487],
+      ["/portfolio/img/knot-c.webp", "Knot Light hanging in a bar", 1600, 1055]
+    ]
+  },
+  {
+    id: "google",
+    title: "Google",
+    cat: "Office furniture",
+    filters: ["office"],
+    line: "Modular wall system.",
+    images: [
+      ["/portfolio/img/google-a.webp", "Modular office wall system for Google, cyan patterned screens", 1600, 998],
+      ["/portfolio/img/google-b.webp", "Modular office wall system for Google, lime patterned screen around a table", 1600, 1077]
+    ]
+  },
+  {
+    id: "riot-games",
+    title: "Riot Games",
+    cat: "Office furniture",
+    filters: ["office"],
+    line: "Developer desk.",
+    images: [
+      ["/portfolio/img/riot-a.webp", "Riot Games developer desk, finished unit with dual monitors", 1600, 1066],
+      ["/portfolio/img/riot-b.webp", "Riot Games developer desks in a floor layout", 1600, 980],
+      ["/portfolio/img/riot-c.webp", "Riot Games developer desk, side view", 1600, 1066]
+    ]
+  },
+  {
+    id: "factory",
+    title: "Factory",
+    cat: "Office interiors",
+    filters: ["office", "interiors"],
+    line: "Innovation consultancy in San Francisco. Founding team; the consultancy worked with Fortune 500 companies.",
+    images: [
+      ["/portfolio/img/factory-a.webp", "Factory cafe, espresso machine on a stone counter", 1168, 1600],
+      ["/portfolio/img/factory-b.webp", "Factory grand hall with columns and chandeliers", 1600, 1061],
+      ["/portfolio/img/factory-c.webp", "Factory, detail of the weeping willow chandelier", 1600, 1066],
+      ["/portfolio/img/factory-d.webp", "Factory Zen Den", 1066, 1600]
+    ]
+  },
+  {
+    id: "waterhouse",
+    title: "Waterhouse",
+    cat: "Retail interiors",
+    filters: ["interiors"],
+    line: "Spa and social club in San Francisco. A community of 1000+ members with spa focused events.",
+    images: [
+      ["/portfolio/img/waterhouse-a.webp", "Waterhouse garden in daylight", 1600, 804],
+      ["/portfolio/img/waterhouse-b.webp", "Waterhouse garden at night", 1600, 804],
+      ["/portfolio/img/waterhouse-c.webp", "Waterhouse interior in daylight", 1600, 804],
+      ["/portfolio/img/waterhouse-d.webp", "Waterhouse interior at night", 1600, 882]
+    ]
+  },
+  {
+    id: "juniper",
+    title: "Juniper",
+    cat: "Retail interiors",
+    filters: ["interiors"],
+    line: "Meditation center in San Francisco.",
+    images: [
+      ["/portfolio/img/juniper-a.webp", "Juniper meditation center after the redesign", 1600, 1066],
+      ["/portfolio/img/juniper-b.webp", "Juniper meditation center altar", 1600, 1066],
+      ["/portfolio/img/juniper-c.webp", "Juniper meditation center, detail of a seated statue", 1600, 1066]
+    ]
+  },
+  {
+    id: "kit-tea",
+    title: "Kit Tea",
+    cat: "Retail interiors",
+    filters: ["interiors"],
+    line: "Tea house in San Francisco.",
+    images: [
+      ["/portfolio/img/kit-tea-a.webp", "Kit Tea cafe seating", 1600, 1361],
+      ["/portfolio/img/kit-tea-b.webp", "Kit Tea running wheel in the window", 1600, 1189],
+      ["/portfolio/img/kit-tea-c.webp", "Kit Tea, a cat on a person’s shoulder", 1091, 1600],
+      ["/portfolio/img/kit-tea-d.webp", "Kit Tea entry and counter", 1600, 988]
+    ]
+  },
+  {
+    id: "dom-vetro",
+    title: "Dom Vetro",
+    cat: "Retail interiors",
+    filters: ["interiors"],
+    line: "Eyewear trade show booth.",
+    images: [
+      ["/portfolio/img/dom-vetro.webp", "Hand-drawn plan for the Dom Vetro eyewear booth", 1600, 1200],
+      ["/portfolio/img/dom-vetro-b.webp", "Dom Vetro wordmark", 1600, 310]
+    ]
+  },
+  {
+    id: "fusb",
+    title: "FUSB",
+    cat: "Product",
+    filters: ["product"],
+    line: "Front USB for iMac. Accessory sold to Blue Lounge.",
+    images: [
+      ["/portfolio/img/fusb-a.webp", "FUSB, a front USB accessory being plugged in at the stand of an iMac", 1600, 1463],
+      ["/portfolio/img/fusb-b.webp", "FUSB attached behind an iMac, with a cable running to a tablet", 986, 1463]
+    ]
+  },
+  {
+    id: "mola",
+    title: "Mola",
+    cat: "Product",
+    filters: ["product"],
+    line: "Sustainable toothbrush with replaceable bristles.",
+    wide: true,
+    images: [
+      ["/portfolio/img/mola.webp", "Mola toothbrushes with replaceable heads", 1600, 668],
+      ["/portfolio/img/mola-b.webp", "Mola toothbrush sleeves", 1600, 1200],
+      ["/portfolio/img/mola-c.webp", "Mola sleeve pattern, detail", 1600, 1200]
+    ]
+  },
+  {
+    id: "panda-overland",
+    title: "Panda Overland Systems",
+    cat: "Product",
+    filters: ["product"],
+    line: "Prototype of an interior kit for Alu-Cab.",
+    images: [
+      ["/portfolio/img/panda-a.webp", "Panda Overland Systems set up at night under an awning", 1600, 1200],
+      ["/portfolio/img/panda-b.webp", "Panda Overland interior kit, drawers and a slat wall", 1600, 1200],
+      ["/portfolio/img/panda-c.webp", "Panda Overland interior kit, lit slat wall", 1600, 1200],
+      ["/portfolio/img/panda-d.webp", "Panda Overland interior kit with the tailgate open", 1600, 1200]
+    ]
+  },
+  {
+    id: "spyglass",
+    title: "Spyglass",
+    cat: "Architecture",
+    filters: ["architecture"],
+    line: "Treehouse for a Texas development.",
+    images: [
+      ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
+      ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
+      ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
+    ]
+  },
+  {
+    id: "waterhouse-villa",
+    title: "Waterhouse Villa",
+    cat: "Architecture",
+    filters: ["architecture"],
+    line: "Design for a retreat center.",
+    images: [
+      ["/portfolio/img/villa-a.webp", "Waterhouse Villa living room render", 1600, 900],
+      ["/portfolio/img/villa-b.webp", "Waterhouse Villa shower", 1600, 900],
+      ["/portfolio/img/villa-c.webp", "Waterhouse Villa kitchen", 1600, 900],
+      ["/portfolio/img/villa-d.webp", "Waterhouse Villa bathroom", 1600, 900]
+    ]
+  },
+  {
+    id: "carbon-cabins",
+    title: "Carbon Cabins",
+    cat: "Architecture",
+    filters: ["architecture"],
+    line: "Design for a Tennessee development.",
+    wide: true,
+    images: [
+      ["/portfolio/img/carbon-cabins.webp", "Carbon Cabins, a raised glass-and-timber cabin", 1600, 893],
+      ["/portfolio/img/carbon-b.webp", "Carbon Cabins, wood-clad cabin with a deck", 1600, 900],
+      ["/portfolio/img/carbon-c.webp", "Carbon Cabins module with a dark roof", 1281, 1600],
+      ["/portfolio/img/carbon-d.webp", "Carbon Cabin 240, front view", 1600, 795]
+    ]
+  }
+];
+
+const grid = document.getElementById("grid");
+const countEl = document.getElementById("count");
+const emptyEl = document.getElementById("empty");
+const dlg = document.getElementById("project");
+const lb = document.getElementById("lightbox");
+let current = null;
+let imgIndex = 0;
+let lastFocus = null;
+
+function cardHTML(p){
+  const img = p.images[0];
+  const full = img[0];
+  const card = full.replace(/\.webp$/, "-800.webp");
+  return `<button class="card reveal${p.wide ? " wide" : ""}" type="button" data-id="${p.id}" data-filters="${p.filters.join(" ")}">
+    <span class="frame"><img src="${card}" srcset="${card} 800w, ${full} 1600w" sizes="(max-width:759px) 92vw, (max-width:1079px) 46vw, 30vw" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async"></span>
+    <span class="meta"><span class="cat">${p.cat}</span><span class="name">${p.title}</span><span class="line">${p.line}</span></span>
+  </button>`;
+}
+grid.innerHTML = PROJECTS.map(cardHTML).join("");
+
+const cards = [...grid.querySelectorAll(".card")];
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+}, {threshold: 0.12});
+cards.forEach((c)=> io.observe(c));
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) cards.forEach((c)=> c.classList.add("in"));
+
+function applyFilter(key){
+  let n = 0;
+  cards.forEach((c)=>{
+    const ok = key === "all" || c.dataset.filters.split(" ").includes(key);
+    c.hidden = !ok;
+    if (ok) n++;
+  });
+  countEl.textContent = n + (n === 1 ? " project" : " projects");
+  emptyEl.classList.toggle("show", n === 0);
+  document.querySelectorAll(".chip").forEach((b)=> b.setAttribute("aria-pressed", b.dataset.filter === key ? "true" : "false"));
+}
+document.querySelectorAll(".chip").forEach((b)=>{
+  b.addEventListener("click", ()=> applyFilter(b.dataset.filter));
+});
+applyFilter("all");
+
+function projectById(id){ return PROJECTS.find((p)=> p.id === id); }
+
+function renderImage(){
+  const img = current.images[imgIndex];
+  const el = document.getElementById("dlg-img");
+  el.src = img[0]; el.alt = img[1];
+  document.querySelectorAll("#dlg-thumbs button").forEach((b,i)=> b.setAttribute("aria-current", i === imgIndex ? "true" : "false"));
+  const multi = current.images.length > 1;
+  dlg.querySelector("[data-prev]").hidden = !multi;
+  dlg.querySelector("[data-next]").hidden = !multi;
+}
+function openProject(id){
+  const p = projectById(id);
+  if (!p) return;
+  current = p; imgIndex = 0;
+  document.getElementById("dlg-cat").textContent = p.cat;
+  document.getElementById("dlg-title").textContent = p.title;
+  document.getElementById("dlg-line").textContent = p.line;
+  const thumbs = document.getElementById("dlg-thumbs");
+  thumbs.hidden = p.images.length < 2;
+  thumbs.innerHTML = p.images.map((img,i)=> `<button type="button" data-i="${i}" aria-label="Image ${i+1}"><img src="${img[0]}" alt=""></button>`).join("");
+  thumbs.querySelectorAll("button").forEach((b)=> b.addEventListener("click", ()=>{ imgIndex = +b.dataset.i; renderImage(); }));
+  renderImage();
+  lastFocus = document.activeElement;
+  if (!dlg.open) dlg.showModal();
+  if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+}
+function step(d){
+  if (!current) return;
+  imgIndex = (imgIndex + d + current.images.length) % current.images.length;
+  renderImage();
+  if (lb.open){
+    const img = current.images[imgIndex];
+    const el = document.getElementById("lb-img");
+    el.src = img[0]; el.alt = img[1];
+  }
+}
+grid.addEventListener("click", (e)=>{
+  const card = e.target.closest(".card");
+  if (card) openProject(card.dataset.id);
+});
+dlg.querySelector("[data-close]").addEventListener("click", ()=> dlg.close());
+dlg.querySelector("[data-prev]").addEventListener("click", ()=> step(-1));
+dlg.querySelector("[data-next]").addEventListener("click", ()=> step(1));
+dlg.addEventListener("click", (e)=>{ if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("close", ()=>{
+  if (location.hash) history.replaceState(null, "", location.pathname);
+  if (lastFocus) lastFocus.focus();
+});
+document.getElementById("open-lb").addEventListener("click", ()=>{
+  const img = current.images[imgIndex];
+  const el = document.getElementById("lb-img");
+  el.src = img[0]; el.alt = img[1];
+  const multi = current.images.length > 1;
+  lb.querySelector("[data-lb-prev]").hidden = !multi;
+  lb.querySelector("[data-lb-next]").hidden = !multi;
+  lb.showModal();
+});
+lb.querySelector("[data-close-lb]").addEventListener("click", ()=> lb.close());
+lb.querySelector("[data-lb-prev]").addEventListener("click", ()=> step(-1));
+lb.querySelector("[data-lb-next]").addEventListener("click", ()=> step(1));
+lb.addEventListener("click", (e)=>{ if (e.target === lb) lb.close(); });
+document.addEventListener("keydown", (e)=>{
+  if (!dlg.open) return;
+  if (e.key === "ArrowRight") step(1);
+  if (e.key === "ArrowLeft") step(-1);
+});
+function fromHash(){
+  const id = location.hash.replace("#","");
+  if (projectById(id)) openProject(id);
+}
+window.addEventListener("hashchange", fromHash);
+fromHash();
+</script>
+</body>
+</html>
