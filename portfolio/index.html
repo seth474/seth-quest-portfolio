@@ -101,7 +101,7 @@
     aspect-ratio:4/5; background:var(--ink-2);
     box-shadow:var(--shadow);
   }
-  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 20%}
+  .hero-photo img{width:100%; height:100%; object-fit:contain; object-position:center; background:#e6e0d2}
 
   .about{padding:28px 0 8px}
   .about p{margin:0 0 14px; color:var(--bone-dim); font-size:16.5px; max-width:68ch}
@@ -145,14 +145,15 @@
   }
   .card:hover{transform:translateY(-3px); border-color:var(--line-strong)}
   .card.reveal.in:hover{transform:translateY(-3px)}
-  .card .frame{display:block; aspect-ratio:4/5; overflow:hidden; background:#ddd6c8}
+  .card .frame{
+    display:flex; align-items:center; justify-content:center;
+    aspect-ratio:4/5; overflow:hidden; background:#e6e0d2;
+  }
   .card.wide .frame{aspect-ratio:16/10}
   .card img{
-    width:100%; height:118%; object-fit:cover; object-position:center top;
-    transform:translateY(-9%);
-    transition:transform .7s cubic-bezier(.2,.7,.2,1);
+    width:100%; height:100%; object-fit:contain; object-position:center;
+    background:#e6e0d2;
   }
-  .card:hover img{transform:translateY(-9%) scale(1.035)}
   .card .meta{display:flex; flex-direction:column; gap:4px; padding:14px 14px 16px}
   .cat{
     font-family:"JetBrains Mono",monospace;
@@ -181,46 +182,52 @@
   .foot-row a{border-bottom:1px solid transparent}
   .foot-row a:hover{color:var(--bone); border-color:var(--amber)}
 
-  dialog{
-    width:min(1080px, calc(100% - 20px));
-    max-height:min(92vh, 880px);
-    margin:auto; padding:0; border:0; border-radius:20px;
-    background:var(--ink); color:var(--bone);
-    box-shadow:0 30px 80px -24px rgba(0,0,0,.5);
+  dialog#project{
+    position:fixed; inset:0; width:100vw; height:100dvh;
+    max-width:100vw; max-height:100dvh;
+    margin:0; padding:0; border:0; border-radius:0;
+    background:#0c0b0a; color:#f4f0e6;
   }
-  dialog::backdrop{background:rgba(26,24,20,.66); backdrop-filter:blur(5px)}
-  dialog.lb{width:min(1100px, calc(100% - 16px)); max-height:96vh; background:transparent; box-shadow:none}
-  .sheet{display:grid; grid-template-rows:auto auto; max-height:min(92vh, 880px); overflow:auto}
-  .stage{position:relative; background:#161410; min-height:220px; height:100%}
-  .stage img{width:100%; max-height:58vh; object-fit:contain; background:#161410; margin:0 auto}
+  dialog#project::backdrop{background:#0c0b0a}
+  .viewer{
+    position:relative; width:100vw; height:100dvh;
+    display:flex; align-items:center; justify-content:center;
+    touch-action:pan-y;
+  }
+  #dlg-img{
+    max-width:100vw; max-height:100dvh;
+    width:auto; height:auto;
+    object-fit:contain; background:transparent;
+  }
   .x,.navb{
     position:absolute; z-index:2;
-    width:42px; height:42px; border-radius:50%;
+    width:48px; height:48px; border-radius:50%;
     background:#fff; color:var(--bone);
     display:grid; place-items:center;
-    font-size:22px; line-height:1;
+    font-size:26px; line-height:1;
   }
   [hidden]{display:none !important}
-  .x{top:12px; right:12px}
+  .x{top:16px; right:16px}
   .navb.prev{left:12px; top:50%; transform:translateY(-50%)}
   .navb.next{right:12px; top:50%; transform:translateY(-50%)}
   .x:hover,.navb:hover{background:var(--amber); color:#fff}
-  .copy{padding:18px 18px 20px}
-  .copy h2{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:clamp(32px, 5vw, 48px); letter-spacing:-0.04em; margin:6px 0 8px; line-height:1}
-  .copy .line{font-size:17px; max-width:46ch}
-  .thumbs{display:flex; gap:8px; overflow-x:auto; margin-top:16px; padding-bottom:4px}
-  .thumbs button{flex:none; width:84px; height:64px; border-radius:8px; overflow:hidden; border:2px solid transparent}
-  .thumbs button[aria-current="true"]{border-color:var(--amber)}
-  .thumbs img{width:100%; height:100%; object-fit:cover}
-  .openfull{
-    margin-top:14px;
-    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--bone); border:1px solid var(--line-strong); border-radius:999px; padding:10px 14px;
+  .viewer-bar{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    display:flex; justify-content:space-between; gap:16px; align-items:flex-end;
+    padding:28px 20px 18px;
+    background:linear-gradient(transparent, rgba(12,11,10,0.82));
+    pointer-events:none;
   }
-  .openfull:hover{background:var(--bone); color:var(--ink)}
-  .lb-stage{position:relative}
-  .lb-stage img{width:100%; max-height:86vh; object-fit:contain; border-radius:12px; background:#111}
-  .lb .x{background:#fff}
+  .viewer-bar h2{
+    font-family:"Space Grotesk",sans-serif; font-weight:500;
+    font-size:clamp(22px, 3vw, 32px); letter-spacing:-0.03em; margin:2px 0 0; line-height:1;
+  }
+  .viewer-bar .line{margin:4px 0 0; color:rgba(244,240,230,0.78); font-size:14px; max-width:46ch}
+  .viewer-bar .cat{color:#e0a15a}
+  .viewer-count{
+    font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:0.08em;
+    color:rgba(244,240,230,0.8); white-space:nowrap;
+  }
   .empty{display:none; padding:28px 0 60px; color:var(--bone-dim)}
   .empty.show{display:block}
 
@@ -231,10 +238,6 @@
     .hero-grid{grid-template-columns:1.15fr .85fr; gap:40px; align-items:end}
     .hero-photo{aspect-ratio:4/5}
     .grid{grid-template-columns:1fr 1fr; gap:18px}
-    .sheet{grid-template-columns:1.25fr .85fr; grid-template-rows:1fr; height:min(88vh, 820px)}
-    .stage{min-height:100%}
-    .stage img{height:100%; max-height:none; position:absolute; inset:0; object-fit:cover}
-    .copy{overflow:auto}
   }
   @media (min-width:1080px){
     .grid{grid-template-columns:1fr 1fr 1fr}
@@ -250,7 +253,6 @@
     .card,.card img,.card.reveal{transition:none}
     .card.reveal{opacity:1; transform:none}
     .card:hover,.card.reveal.in:hover{transform:none}
-    .card:hover img{transform:translateY(-9%)}
   }
 </style>
 </head>
@@ -311,29 +313,19 @@
 </div>
 
 <dialog id="project" aria-labelledby="dlg-title">
-  <div class="sheet">
-    <div class="stage">
-      <button class="x" type="button" data-close aria-label="Close">×</button>
-      <button class="navb prev" type="button" data-prev aria-label="Previous image">‹</button>
-      <button class="navb next" type="button" data-next aria-label="Next image">›</button>
-      <img id="dlg-img" alt="" />
+  <div class="viewer" id="viewer">
+    <button class="x" type="button" data-close aria-label="Close">×</button>
+    <button class="navb prev" type="button" data-prev aria-label="Previous photo">‹</button>
+    <button class="navb next" type="button" data-next aria-label="Next photo">›</button>
+    <img id="dlg-img" alt="" />
+    <div class="viewer-bar">
+      <div>
+        <div class="cat" id="dlg-cat"></div>
+        <h2 id="dlg-title"></h2>
+        <p class="line" id="dlg-line"></p>
+      </div>
+      <div class="viewer-count" id="dlg-count"></div>
     </div>
-    <div class="copy">
-      <div class="cat" id="dlg-cat"></div>
-      <h2 id="dlg-title"></h2>
-      <p class="line" id="dlg-line"></p>
-      <div class="thumbs" id="dlg-thumbs"></div>
-      <button class="openfull" type="button" id="open-lb">Open image</button>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="lightbox" class="lb" aria-label="Image">
-  <div class="lb-stage">
-    <button class="x" type="button" data-close-lb aria-label="Close image">×</button>
-    <button class="navb prev" type="button" data-lb-prev aria-label="Previous image">‹</button>
-    <button class="navb next" type="button" data-lb-next aria-label="Next image">›</button>
-    <img id="lb-img" alt="" />
   </div>
 </dialog>
 
@@ -519,7 +511,6 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 const emptyEl = document.getElementById("empty");
 const dlg = document.getElementById("project");
-const lb = document.getElementById("lightbox");
 let current = null;
 let imgIndex = 0;
 let lastFocus = null;
@@ -564,7 +555,7 @@ function renderImage(){
   const img = current.images[imgIndex];
   const el = document.getElementById("dlg-img");
   el.src = img[0]; el.alt = img[1];
-  document.querySelectorAll("#dlg-thumbs button").forEach((b,i)=> b.setAttribute("aria-current", i === imgIndex ? "true" : "false"));
+  document.getElementById("dlg-count").textContent = (imgIndex + 1) + " / " + current.images.length;
   const multi = current.images.length > 1;
   dlg.querySelector("[data-prev]").hidden = !multi;
   dlg.querySelector("[data-next]").hidden = !multi;
@@ -576,24 +567,15 @@ function openProject(id){
   document.getElementById("dlg-cat").textContent = p.cat;
   document.getElementById("dlg-title").textContent = p.title;
   document.getElementById("dlg-line").textContent = p.line;
-  const thumbs = document.getElementById("dlg-thumbs");
-  thumbs.hidden = p.images.length < 2;
-  thumbs.innerHTML = p.images.map((img,i)=> `<button type="button" data-i="${i}" aria-label="Image ${i+1}"><img src="${img[0]}" alt=""></button>`).join("");
-  thumbs.querySelectorAll("button").forEach((b)=> b.addEventListener("click", ()=>{ imgIndex = +b.dataset.i; renderImage(); }));
   renderImage();
   lastFocus = document.activeElement;
   if (!dlg.open) dlg.showModal();
   if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
 }
 function step(d){
-  if (!current) return;
+  if (!current || current.images.length < 2) return;
   imgIndex = (imgIndex + d + current.images.length) % current.images.length;
   renderImage();
-  if (lb.open){
-    const img = current.images[imgIndex];
-    const el = document.getElementById("lb-img");
-    el.src = img[0]; el.alt = img[1];
-  }
 }
 grid.addEventListener("click", (e)=>{
   const card = e.target.closest(".card");
@@ -602,29 +584,26 @@ grid.addEventListener("click", (e)=>{
 dlg.querySelector("[data-close]").addEventListener("click", ()=> dlg.close());
 dlg.querySelector("[data-prev]").addEventListener("click", ()=> step(-1));
 dlg.querySelector("[data-next]").addEventListener("click", ()=> step(1));
-dlg.addEventListener("click", (e)=>{ if (e.target === dlg) dlg.close(); });
 dlg.addEventListener("close", ()=>{
   if (location.hash) history.replaceState(null, "", location.pathname);
   if (lastFocus) lastFocus.focus();
 });
-document.getElementById("open-lb").addEventListener("click", ()=>{
-  const img = current.images[imgIndex];
-  const el = document.getElementById("lb-img");
-  el.src = img[0]; el.alt = img[1];
-  const multi = current.images.length > 1;
-  lb.querySelector("[data-lb-prev]").hidden = !multi;
-  lb.querySelector("[data-lb-next]").hidden = !multi;
-  lb.showModal();
-});
-lb.querySelector("[data-close-lb]").addEventListener("click", ()=> lb.close());
-lb.querySelector("[data-lb-prev]").addEventListener("click", ()=> step(-1));
-lb.querySelector("[data-lb-next]").addEventListener("click", ()=> step(1));
-lb.addEventListener("click", (e)=>{ if (e.target === lb) lb.close(); });
 document.addEventListener("keydown", (e)=>{
   if (!dlg.open) return;
   if (e.key === "ArrowRight") step(1);
   if (e.key === "ArrowLeft") step(-1);
 });
+(function(){
+  const viewer = document.getElementById("viewer");
+  let startX = null;
+  viewer.addEventListener("touchstart", (e)=>{ startX = e.changedTouches[0].clientX; }, {passive:true});
+  viewer.addEventListener("touchend", (e)=>{
+    if (startX == null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 48) step(dx < 0 ? 1 : -1);
+    startX = null;
+  }, {passive:true});
+})();
 function fromHash(){
   const id = location.hash.replace("#","");
   if (projectById(id)) openProject(id);
