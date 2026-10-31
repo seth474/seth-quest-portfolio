@@ -80,13 +80,45 @@
   nav.top .links a:hover{color:var(--ink); background:var(--bone); border-color:var(--bone);}
   nav.top .links a.contact-link{background:var(--amber); color:#fff; border-color:var(--amber);}
   nav.top .links a.contact-link:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
-  nav.top .nav-portfolio{
-    flex:none; margin-left:10px;
-    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#fff; background:var(--amber); border:1px solid var(--amber);
-    padding:9px 14px; border-radius:999px; white-space:nowrap;
+  .menu-btn{
+    width:42px; height:42px; margin-left:10px; flex:none;
+    border:1px solid var(--line-strong); border-radius:10px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px;
   }
-  nav.top .nav-portfolio:hover{background:var(--amber-bright); border-color:var(--amber-bright); color:#fff;}
+  .menu-btn span{display:block; width:16px; height:1.5px; background:var(--bone);}
+  .menu-btn[aria-expanded="true"]{background:var(--bone);}
+  .menu-btn[aria-expanded="true"] span{background:var(--ink);}
+  .site-menu{
+    position:fixed; top:62px; right:16px; z-index:80;
+    width:min(320px, calc(100vw - 32px));
+    background:rgba(244,240,230,0.98); border:1px solid var(--line-strong); border-radius:16px;
+    padding:12px; box-shadow:0 20px 50px rgba(26,24,20,0.16);
+  }
+  .site-menu[hidden]{display:none !important}
+  .site-menu a{display:block; padding:9px 8px; border-radius:8px;}
+  .site-menu a:hover{background:rgba(26,24,20,0.06)}
+  .site-menu a.menu-top{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--amber); padding:10px 8px 4px;
+  }
+  .site-menu a.menu-sub{padding:8px 8px 8px 22px; color:var(--bone);}
+  .built-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:8px}
+  .built-card{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,0.35)}
+  .built-frame{display:flex; align-items:center; justify-content:center; aspect-ratio:4/3; background:#e6e0d2}
+  .built-frame img{width:100%; height:100%; object-fit:contain; background:#e6e0d2}
+  .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
+  .built-meta b{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; letter-spacing:-0.03em}
+  .built-meta span{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber)}
+  .ai-extra{display:flex; flex-direction:column; margin-top:8px}
+  .ai-extra a{display:block; padding:16px 0; border-top:1px solid var(--line)}
+  .ai-extra strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em}
+  .ai-extra span{display:block; margin-top:4px; color:var(--bone-dim)}
+  @media (min-width:760px){
+    .built-grid{grid-template-columns:1fr 1fr; gap:18px}
+  }
+  @media (min-width:1080px){
+    .built-grid{grid-template-columns:1fr 1fr 1fr}
+  }
   @media (max-width:720px){
     nav.top{padding:11px 22px;}
     nav.top .links a:not(.contact-link){display:none;}
@@ -599,8 +631,6 @@
   .ainative .ai-lead.second{margin-top:64px; font-size:clamp(46px,7vw,80px); line-height:1.1; max-width:20ch;}
   .ainative .ai-body{margin:0 0 6px; font-family:'Inter Tight',sans-serif; font-size:clamp(16.5px,1.8vw,20px); line-height:1.62; color:var(--bone-dim); max-width:62ch; text-wrap:pretty;}
   .work-intro{margin:30px 0 0; font-family:'Inter Tight',sans-serif; font-size:clamp(18px,2vw,24px); line-height:1.5; color:var(--bone-dim); max-width:60ch; text-wrap:balance;}
-  .design-portfolio-link{display:inline-flex; margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); border-bottom:1px solid var(--amber);}
-  .design-portfolio-link:hover{color:var(--amber-bright); border-color:var(--amber-bright);}
   /* ===== 60-SECOND SNAPSHOT ===== */
   .snap-trigger{margin-top:0; display:inline-flex; align-items:center; gap:14px; white-space:nowrap; background:var(--ink); color:var(--bone); border:1px solid var(--amber); font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase; padding:9px 11px 9px 26px; border-radius:40px; cursor:pointer; transition:all .2s ease; animation:ctaPulse 2.4s infinite;}
   @media (max-width:600px){ .snap-trigger{font-size:11px; letter-spacing:0.04em; padding:8px 9px 8px 20px; gap:11px;} .snap-trigger .play{width:28px; height:28px; font-size:11px;} }
@@ -704,7 +734,17 @@
     <button class="pr-item" data-i="6" type="button">LizzieTours</button>
     <button class="pr-item" data-i="7" type="button">Oceanis</button>
   </div>
-  <a class="nav-portfolio" href="/portfolio">Design</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="site-menu" id="site-menu" hidden>
+    <a class="menu-top" href="/#built">Built</a>
+    <a class="menu-sub" href="/portfolio#furniture">Furniture Design</a>
+    <a class="menu-sub" href="/portfolio#office">Office Design</a>
+    <a class="menu-sub" href="/portfolio#interior">Interior Design</a>
+    <a class="menu-sub" href="/portfolio#product">Product Design</a>
+    <a class="menu-sub" href="/portfolio#architecture">Architecture</a>
+    <a class="menu-top" href="/#ai">AI</a>
+    <a class="menu-top" href="/#contact">Contact</a>
+  </div>
 </nav>
 
 <div class="content">
@@ -740,12 +780,17 @@
 
 
   <!-- WORK -->
-  <section id="work" class="section wrap">
+  <div id="work">
+  <section id="built" class="section wrap">
     <div class="section-title reveal">
-      <span class="num">Portfolio</span>
-      <h2>Selected <em>Projects</em></h2>
+      <h2>Built</h2>
+    </div>
+    <div class="built-grid" id="builtGrid"></div>
+  </section>
+  <section id="ai" class="section wrap">
+    <div class="section-title reveal">
+      <h2>AI</h2>
       <p class="work-intro">Every project here was taken from concept to launch: design, rapid prototyping, iteration, and continuous shipping and testing.</p>
-      <a class="design-portfolio-link" href="/portfolio">Design portfolio &rarr;</a>
     </div>
 
     <div class="modules">
@@ -1039,7 +1084,9 @@
 
 
     </div>
+    <div class="ai-extra" id="aiExtra"></div>
   </section>
+  </div>
 
   <!-- CONTACT -->
 
@@ -1543,6 +1590,37 @@
     else if(open && sawFs && !closing) close();
   });
   player.addEventListener('webkitendfullscreen', function(){ if(open) close(); });
+})();
+</script>
+<script src="/portfolio/work.js"></script>
+<script>
+(function(){
+  var cats = {};
+  SITE_WORK.categories.forEach(function(c){ cats[c.id] = c.label; });
+  var grid = document.getElementById("builtGrid");
+  grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length; }).map(function(p){
+    var img = p.images[0];
+    var full = img[0];
+    var card = full.replace(/\.webp$/, "-800.webp");
+    return '<a class="built-card" href="/portfolio#'+p.id+'"><span class="built-frame"><img src="'+card+'" alt="'+img[1]+'" loading="lazy"></span><span class="built-meta"><span>'+cats[p.category]+'</span><b>'+p.title+'</b></span></a>';
+  }).join("");
+  var extra = document.getElementById("aiExtra");
+  extra.innerHTML = SITE_WORK.ai.filter(function(item){
+    return item.title === "BS Score" || item.title === "Credit Climb";
+  }).map(function(item){
+    return '<a href="'+item.href+'"><strong>'+item.title+'</strong><span>'+item.line+'</span></a>';
+  }).join("");
+  var btn = document.querySelector(".menu-btn");
+  var menu = document.getElementById("site-menu");
+  function shut(){ menu.setAttribute("hidden",""); btn.setAttribute("aria-expanded","false"); }
+  btn.addEventListener("click", function(e){
+    e.stopPropagation();
+    var open = menu.hasAttribute("hidden");
+    if (open) { menu.removeAttribute("hidden"); btn.setAttribute("aria-expanded","true"); }
+    else shut();
+  });
+  menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", shut); });
+  document.addEventListener("click", function(e){ if (!menu.contains(e.target)) shut(); });
 })();
 </script>
 </body>
