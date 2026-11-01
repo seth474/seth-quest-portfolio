@@ -1,6 +1,6 @@
 /* MORE. sales-page template
    Change the offer by editing index.html.
-   BOOKING_URL  — href for every "Book a Conversation" control.
+   BOOKING_URL  — href for every call button.
    VSL_EMBED    — "" keeps the poster. Set a video file (.mp4, .webm, .ogg)
                   or an embed URL (YouTube, Vimeo, Loom, or an iframe src).
                   Autoplay is forced off. File videos load VSL_CAPTIONS. */
@@ -24,6 +24,8 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
   var src = resolveEmbed(VSL_EMBED);
   if (slot && poster && src) mountVideo(slot, poster, src);
 
+  revealOnScroll();
+
   var dock = document.querySelector('.dock');
   var anchors = [document.querySelector('.hero .cta'), document.getElementById('book')].filter(Boolean);
   if (dock && anchors.length && 'IntersectionObserver' in window) {
@@ -42,6 +44,28 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
     anchors.forEach(function (el) { watcher.observe(el); });
   }
 })();
+
+function revealOnScroll() {
+  var nodes = document.querySelectorAll('[data-reveal]');
+  var reduce = document.documentElement.classList.contains('reduce');
+  if (reduce || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < nodes.length; i++) nodes[i].classList.add('is-in');
+    return;
+  }
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      watcher.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px 8% 0px' });
+  for (var n = 0; n < nodes.length; n++) {
+    var el = nodes[n];
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) el.classList.add('is-in');
+    else watcher.observe(el);
+  }
+}
 
 function resolveEmbed(raw) {
   var value = String(raw || '').trim();
@@ -95,7 +119,7 @@ function mountVideo(slot, poster, src) {
     video.preload = 'metadata';
     video.playsInline = true;
     video.setAttribute('playsinline', '');
-    video.setAttribute('aria-label', 'Team AI Implementation video');
+    video.setAttribute('aria-label', 'Seth on camera');
     var source = document.createElement('source');
     source.src = src;
     source.type = /\.webm(\?|#|$)/i.test(src) ? 'video/webm' : /\.ogg(\?|#|$)/i.test(src) ? 'video/ogg' : 'video/mp4';
@@ -111,7 +135,7 @@ function mountVideo(slot, poster, src) {
   }
   var frame = document.createElement('iframe');
   frame.src = src;
-  frame.title = 'Team AI Implementation video';
+  frame.title = 'Seth on camera';
   frame.allowFullscreen = true;
   frame.setAttribute('allow', 'fullscreen; picture-in-picture');
   frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
