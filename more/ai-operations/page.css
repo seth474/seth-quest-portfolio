@@ -7,8 +7,11 @@
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.16);
   --cyan: #5ce1ff;
+  --blue: #3b7dff;
   --cyan-deep: #041018;
   --violet: #b7a6ff;
+  --accent: linear-gradient(100deg, #5ce1ff 0%, #3b7dff 100%);
+  --accent-hover: linear-gradient(100deg, #74e7ff 0%, #5a93ff 100%);
   --green: #1fbf5a;
   --glass: rgba(14, 20, 36, 0.78);
   --max: 1120px;
@@ -52,7 +55,7 @@ h1, h2 { text-wrap: balance; }
   left: 12px;
   top: -48px;
   z-index: 80;
-  background: var(--cyan);
+  background: var(--accent);
   color: var(--cyan-deep);
   padding: 8px 12px;
   border-radius: 8px;
@@ -119,7 +122,7 @@ h1, h2 { text-wrap: balance; }
   min-height: 40px;
   padding: 0 14px;
   border-radius: 999px;
-  background: var(--cyan);
+  background: var(--accent);
   color: var(--cyan-deep);
   font-size: 13.5px;
   font-weight: 750;
@@ -127,7 +130,7 @@ h1, h2 { text-wrap: balance; }
   text-decoration: none;
   white-space: nowrap;
 }
-.hcta:hover { background: #c9f7ff; }
+.hcta:hover { background: var(--accent-hover); }
 
 .sec { padding: 72px 0; }
 .hero { padding: 36px 0 28px; }
@@ -140,6 +143,14 @@ h1, h2 { text-wrap: balance; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .eyebrow {
+    background: var(--accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
 
 h1 {
   margin: 0;
@@ -149,10 +160,10 @@ h1 {
   letter-spacing: -0.052em;
   line-height: 0.94;
 }
-h1 em { font-style: normal; color: #dffaff; }
+h1 em { font-style: normal; color: var(--cyan); }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   h1 em {
-    background: linear-gradient(100deg, #f4fdff 0%, #5ce1ff 42%, #c4b5fd 100%);
+    background: var(--accent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -208,7 +219,7 @@ h3 {
   min-height: 52px;
   padding: 0 22px;
   border-radius: 999px;
-  background: var(--cyan);
+  background: var(--accent);
   color: var(--cyan-deep);
   font-weight: 750;
   font-size: 16px;
@@ -216,7 +227,7 @@ h3 {
   text-decoration: none;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.btn:hover { background: #c9f7ff; }
+.btn:hover { background: var(--accent-hover); }
 .btn:active { transform: translateY(1px); }
 
 .textlink {
@@ -336,6 +347,7 @@ h3 {
 }
 
 .pain {
+  position: relative;
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
   gap: 12px;
@@ -397,11 +409,11 @@ h3 {
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 0.96;
-  color: #e9fbff;
+  color: var(--cyan);
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .loud {
-    background: linear-gradient(100deg, #f4fdff 8%, #5ce1ff 46%, #c4b5fd 92%);
+    background: var(--accent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -474,10 +486,26 @@ h3 {
   margin-top: 8px;
 }
 .steps li {
+  position: relative;
   padding: 22px 20px 20px;
   border-radius: 22px;
   background: var(--glass);
   border: 1px solid var(--line);
+}
+.pain::after, .steps li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
 }
 .step-n {
   display: block;
@@ -523,6 +551,15 @@ h3 {
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 0.88;
+  color: var(--cyan);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .invest strong {
+    background: var(--accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 .invest-d {
   display: block;
@@ -661,8 +698,8 @@ h3 {
   .pain, .steps li, .soft, .offer-main { transition: transform 0.25s ease, border-color 0.25s ease, opacity 0.7s ease; }
   .pain:hover, .steps li:hover {
     transform: translateY(-4px);
-    border-color: rgba(92, 225, 255, 0.45);
   }
+  .pain:hover::after, .steps li:hover::after { opacity: 1; }
   .js .pain.is-in:hover, .js .steps li.is-in:hover { transform: translateY(-4px); }
 }
 
