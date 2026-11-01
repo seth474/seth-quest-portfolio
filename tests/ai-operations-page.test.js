@@ -116,6 +116,16 @@ describe('ai operations page', () => {
     assert.equal(home.includes('/less-admin'), false);
   });
 
+  test('brands this page as Get More Done', () => {
+    assert.equal((html.match(/Get <span class="accent">More<\/span> Done/g) || []).length, 2);
+    assert.equal((html.match(/class="dot"/g) || []).length, 2);
+    assert.match(css, /\.dot, \.branch \.accent \{[^}]*var\(--accent\)/);
+    assert.equal(css.includes('--green'), false);
+    assert.equal(css.includes('#1fbf5a'), false);
+    const money = fs.readFileSync(path.join(root, 'make-more-money/index.html'), 'utf8');
+    assert.equal(money.includes('Get More Done'), false);
+  });
+
   test('does not add forbidden sales claims', () => {
     const blob = (html + '\n' + js + '\n' + css).toLowerCase();
     ['handoff', 'one on one', 'one-on-one', 'testimonial', 'exclusive', 'three times', 'hamptons adventure'].forEach(function (word) {
