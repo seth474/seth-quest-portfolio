@@ -165,6 +165,10 @@
     width:100%; height:100%; object-fit:contain; object-position:center;
     background:#e6e0d2;
   }
+  .card img.soft{
+    width:auto; height:auto;
+    max-width:100%; max-height:100%;
+  }
   .card .meta{display:flex; flex-direction:column; gap:4px; padding:14px 14px 16px}
   .cat{
     font-family:"JetBrains Mono",monospace;
@@ -205,10 +209,17 @@
     display:flex; align-items:center; justify-content:center;
     touch-action:pan-y;
   }
-  #dlg-img{
+  #dlg-img, #dlg-video{
     max-width:100vw; max-height:100dvh;
     width:auto; height:auto;
     object-fit:contain; background:transparent;
+  }
+  .dlg-play{
+    position:absolute; z-index:3;
+    width:76px; height:76px; border-radius:50%;
+    background:#fff; color:var(--bone);
+    font-size:30px; line-height:1;
+    display:grid; place-items:center;
   }
   .x,.navb{
     position:absolute; z-index:2;
@@ -332,6 +343,8 @@
     <button class="navb prev" type="button" data-prev aria-label="Previous photo">‹</button>
     <button class="navb next" type="button" data-next aria-label="Next photo">›</button>
     <img id="dlg-img" alt="" />
+    <video id="dlg-video" hidden muted loop playsinline></video>
+    <button class="dlg-play" id="dlg-play" type="button" hidden aria-label="Play">&#9654;</button>
     <div class="viewer-bar">
       <div>
         <div class="cat" id="dlg-cat"></div>
@@ -373,8 +386,11 @@ function cardHTML(p){
   const full = img[0];
   const card = full.replace(/\.webp$/, "-800.webp");
   const label = catName[p.category] || "";
+  const picture = p.soft
+    ? `<img class="soft" src="${full}" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`
+    : `<img src="${card}" srcset="${card} 800w, ${full} ${img[2]}w" sizes="(max-width:759px) 92vw, (max-width:1079px) 46vw, 30vw" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`;
   return `<button class="card reveal${p.wide ? " wide" : ""}" type="button" data-id="${p.id}" data-filters="${p.category}">
-    <span class="frame"><img src="${card}" srcset="${card} 800w, ${full} 1600w" sizes="(max-width:759px) 92vw, (max-width:1079px) 46vw, 30vw" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async"></span>
+    <span class="frame">${picture}</span>
     <span class="meta"><span class="cat">${label}</span><span class="name">${p.title}</span><span class="line">${p.line}</span></span>
   </button>`;
 }
@@ -409,14 +425,43 @@ applyFilter("all");
 
 function projectById(id){ return PROJECTS.find((p)=> p.id === id); }
 
+function hideVideo(){
+  const v = document.getElementById("dlg-video");
+  const play = document.getElementById("dlg-play");
+  v.pause();
+  v.hidden = true;
+  play.hidden = true;
+  v.removeAttribute("src");
+  v.load();
+}
 function renderImage(){
-  const img = current.images[imgIndex];
-  const el = document.getElementById("dlg-img");
-  el.src = img[0]; el.alt = img[1];
-  document.getElementById("dlg-count").textContent = (imgIndex + 1) + " / " + current.images.length;
-  const multi = current.images.length > 1;
+  const imgEl = document.getElementById("dlg-img");
+  const multi = !current.video && current.images.length > 1;
   dlg.querySelector("[data-prev]").hidden = !multi;
   dlg.querySelector("[data-next]").hidden = !multi;
+  if (current.video) {
+    const v = document.getElementById("dlg-video");
+    const play = document.getElementById("dlg-play");
+    imgEl.hidden = true;
+    imgEl.removeAttribute("src");
+    v.hidden = false;
+    v.poster = current.images[0][0];
+    v.setAttribute("aria-label", current.title + " walkthrough");
+    v.src = current.video;
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    document.getElementById("dlg-count").textContent = "";
+    play.hidden = true;
+    const attempt = v.play();
+    if (attempt && attempt.catch) attempt.catch(function(){ play.hidden = false; });
+    return;
+  }
+  hideVideo();
+  const img = current.images[imgIndex];
+  imgEl.hidden = false;
+  imgEl.src = img[0]; imgEl.alt = img[1];
+  document.getElementById("dlg-count").textContent = (imgIndex + 1) + " / " + current.images.length;
 }
 function openProject(id){
   const p = projectById(id);
@@ -431,7 +476,7 @@ function openProject(id){
   if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
 }
 function step(d){
-  if (!current || current.images.length < 2) return;
+  if (!current || current.video || current.images.length < 2) return;
   imgIndex = (imgIndex + d + current.images.length) % current.images.length;
   renderImage();
 }
@@ -443,10 +488,22 @@ dlg.querySelector("[data-close]").addEventListener("click", ()=> dlg.close());
 dlg.querySelector("[data-prev]").addEventListener("click", ()=> step(-1));
 dlg.querySelector("[data-next]").addEventListener("click", ()=> step(1));
 dlg.addEventListener("close", ()=>{
+  hideVideo();
   const id = location.hash.replace("#","");
   if (projectById(id)) history.replaceState(null, "", location.pathname);
   if (lastFocus) lastFocus.focus();
 });
+(function(){
+  const v = document.getElementById("dlg-video");
+  const play = document.getElementById("dlg-play");
+  v.addEventListener("playing", function(){ play.hidden = true; });
+  v.addEventListener("pause", function(){ if (!v.hidden && dlg.open) play.hidden = false; });
+  play.addEventListener("click", function(){ v.play(); });
+  v.addEventListener("click", function(){
+    if (v.paused) v.play();
+    else v.pause();
+  });
+})();
 document.addEventListener("keydown", (e)=>{
   if (!dlg.open) return;
   if (e.key === "ArrowRight") step(1);

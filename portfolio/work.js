@@ -1,8 +1,8 @@
 // Built and AI work shown on the site.
 // To add a Built project, append an object to `built` with a `category` id
-// from `categories` and a non-empty `images` array. Cards render only when
-// images exist, so leave Supermodel, MU, and Monarch Treehouse out until
-// their files are in the repo.
+// from `categories` and a non-empty `images` array. A `video` path opens
+// that file in the viewer instead of paging the stills. `soft` keeps a
+// low-resolution still at its natural size on the card.
 window.SITE_WORK = {
   categories: [
     { id: "furniture", label: "Furniture Design" },
@@ -22,6 +22,27 @@ window.SITE_WORK = {
         ["/portfolio/img/knot-light.webp", "Knot Light, a chandelier of knotted black rope", 1600, 995],
         ["/portfolio/img/knot-b.webp", "Knot Light installed over a long communal table", 1600, 1487],
         ["/portfolio/img/knot-c.webp", "Knot Light hanging in a bar", 1600, 1055]
+      ]
+    },
+    {
+      id: "supermodel",
+      title: "Supermodel",
+      category: "furniture",
+      line: "Table Seth designed.",
+      soft: true,
+      images: [
+        ["/portfolio/img/supermodel-a.webp", "Supermodel table, a folded sheet with a charcoal side and a pale green side", 2000, 1246],
+        ["/portfolio/img/supermodel-b.webp", "Supermodel table with a person seated inside the fold", 2000, 1246]
+      ]
+    },
+    {
+      id: "mu",
+      title: "MU",
+      category: "furniture",
+      line: "Stools and a side table.",
+      images: [
+        ["/portfolio/img/mu-stools.webp", "MU stools in gray and bright green", 2000, 1418],
+        ["/portfolio/img/mu-side-table.webp", "MU side table, a dark folded sheet", 1860, 2000]
       ]
     },
     {
@@ -105,6 +126,16 @@ window.SITE_WORK = {
       ]
     },
     {
+      id: "dom-vetro",
+      title: "Dom Vetro",
+      category: "interior",
+      line: "Eyewear trade show booth.",
+      video: "/portfolio/media/dom-vetro-walkthrough.mp4",
+      images: [
+        ["/portfolio/img/dom-vetro-poster.webp", "Dom Vetro eyewear booth concept", 1600, 900]
+      ]
+    },
+    {
       id: "mola",
       title: "Mola",
       category: "product",
@@ -160,6 +191,16 @@ window.SITE_WORK = {
         ["/portfolio/img/carbon-b.webp", "Carbon Cabins, wood-clad cabin with a deck", 1600, 900],
         ["/portfolio/img/carbon-c.webp", "Carbon Cabins module with a dark roof", 1281, 1600],
         ["/portfolio/img/carbon-d.webp", "Carbon Cabin 240, front view", 1600, 795]
+      ]
+    },
+    {
+      id: "monarch-treehouse",
+      title: "Monarch Treehouse",
+      category: "architecture",
+      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
+      images: [
+        ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
+        ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
       ]
     }
   ],

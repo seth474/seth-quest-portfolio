@@ -105,8 +105,9 @@
   .built-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:8px}
   .built-card{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,0.35)}
   .built-card{min-width:0}
-  .built-frame{position:relative; aspect-ratio:4/3; background:#e6e0d2; overflow:hidden}
+  .built-frame{position:relative; display:grid; place-items:center; aspect-ratio:4/3; background:#e6e0d2; overflow:hidden}
   .built-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#e6e0d2}
+  .built-frame img.soft{position:relative; inset:auto; width:auto; height:auto; max-width:100%; max-height:100%}
   .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
   .built-meta b{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; letter-spacing:-0.03em}
   .built-meta span{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber)}
@@ -1683,8 +1684,9 @@
   grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length; }).map(function(p){
     var img = p.images[0];
     var full = img[0];
-    var card = full.replace(/\.webp$/, "-800.webp");
-    return '<a class="built-card" href="/portfolio#'+p.id+'"><span class="built-frame"><img src="'+card+'" alt="'+img[1]+'" loading="lazy"></span><span class="built-meta"><span>'+cats[p.category]+'</span><b>'+p.title+'</b></span></a>';
+    var card = p.soft ? full : full.replace(/\.webp$/, "-800.webp");
+    var cls = p.soft ? ' class="soft"' : "";
+    return '<a class="built-card" href="/portfolio#'+p.id+'"><span class="built-frame"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+img[1]+'" loading="lazy"></span><span class="built-meta"><span>'+cats[p.category]+'</span><b>'+p.title+'</b></span></a>';
   }).join("");
   var extra = document.getElementById("aiExtra");
   extra.innerHTML = SITE_WORK.ai.filter(function(item){
