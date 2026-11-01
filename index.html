@@ -104,8 +104,9 @@
   .site-menu a.menu-sub{padding:8px 8px 8px 22px; color:var(--bone);}
   .built-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:8px}
   .built-card{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,0.35)}
-  .built-frame{display:flex; align-items:center; justify-content:center; aspect-ratio:4/3; background:#e6e0d2}
-  .built-frame img{width:100%; height:100%; object-fit:contain; background:#e6e0d2}
+  .built-card{min-width:0}
+  .built-frame{position:relative; aspect-ratio:4/3; background:#e6e0d2; overflow:hidden}
+  .built-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#e6e0d2}
   .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
   .built-meta b{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; letter-spacing:-0.03em}
   .built-meta span{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber)}
@@ -122,6 +123,66 @@
   @media (max-width:720px){
     nav.top{padding:11px 22px;}
     nav.top .links a:not(.contact-link){display:none;}
+  }
+
+  /* ============ CHOICE HERO ============ */
+  .choice{
+    height:100svh; max-height:100svh;
+    display:flex; flex-direction:column;
+    padding:78px 16px 14px;
+    box-sizing:border-box;
+  }
+  .choice-q{
+    margin:0 0 12px; text-align:center;
+    font-family:'Inter Tight',sans-serif; font-weight:500;
+    font-size:15px; letter-spacing:-0.01em; color:var(--bone-dim);
+  }
+  .choice-grid{
+    flex:1 1 auto; min-height:0;
+    display:grid; grid-template-columns:1fr; grid-template-rows:1fr 1fr; gap:10px;
+  }
+  .choice-card{
+    position:relative; display:flex; align-items:flex-end; min-height:0;
+    border-radius:18px; overflow:hidden;
+    border:1px solid rgba(26,24,20,0.18);
+    isolation:isolate;
+  }
+  .choice-card:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+  .choice-card img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    transform:scale(1.01);
+    transition:transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .choice-card[href="#ai"] img{object-position:62% 32%;}
+  .choice-card::after{
+    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(to top, rgba(8,7,6,0.96) 0%, rgba(8,7,6,0.96) 14%, rgba(8,7,6,0.45) 32%, rgba(8,7,6,0) 54%);
+  }
+  .choice-label{
+    position:relative; z-index:2;
+    padding:18px 16px 16px;
+    color:#F4F0E6;
+    font-family:'Space Grotesk',sans-serif; font-weight:500;
+    font-size:clamp(28px, 8vw, 40px); letter-spacing:-0.035em; line-height:0.95;
+    text-shadow:0 2px 18px rgba(0,0,0,0.35);
+  }
+  @media (max-width:859px){
+    .choice-card::after{
+      background:linear-gradient(to top, rgba(8,7,6,0.96) 0%, rgba(8,7,6,0.96) 24%, rgba(8,7,6,0.4) 44%, rgba(8,7,6,0) 64%);
+    }
+  }
+  @media (min-width:860px){
+    .choice{padding:96px 28px 22px;}
+    .choice-q{font-size:17px; margin-bottom:16px;}
+    .choice-grid{grid-template-columns:1fr 1fr; grid-template-rows:1fr; gap:16px;}
+    .choice-label{font-size:clamp(40px, 3.6vw, 64px); padding:28px 26px 24px;}
+  }
+  @media (hover:hover){
+    .choice-card:hover img{transform:scale(1.045);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .choice-card img{transition:none;}
   }
 
   /* ============ HERO ============ */
@@ -748,6 +809,20 @@
 </nav>
 
 <div class="content">
+
+  <section class="choice" aria-label="What do you want to see?">
+    <p class="choice-q">What do you want to see?</p>
+    <div class="choice-grid">
+      <a class="choice-card" href="#ai">
+        <img src="/oceanis/oceanis-dashboard.png" alt="" />
+        <span class="choice-label">Built with AI</span>
+      </a>
+      <a class="choice-card" href="#built">
+        <img src="/portfolio/img/carbon-cabins.webp" alt="" />
+        <span class="choice-label">Built in the real world</span>
+      </a>
+    </div>
+  </section>
 
   <!-- HERO -->
   <div class="first-screen">
@@ -1621,6 +1696,19 @@
   });
   menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", shut); });
   document.addEventListener("click", function(e){ if (!menu.contains(e.target)) shut(); });
+})();
+(function(){
+  document.querySelectorAll(".choice-card").forEach(function(card){
+    card.addEventListener("click", function(e){
+      var el = document.querySelector(card.getAttribute("href"));
+      if (!el) return;
+      e.preventDefault();
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (window.__lenis && !reduce) window.__lenis.scrollTo(el, { offset: -88, duration: 1.15 });
+      else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      history.pushState(null, "", card.getAttribute("href"));
+    });
+  });
 })();
 </script>
 </body>
