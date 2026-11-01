@@ -98,6 +98,8 @@
     { "source": "/hvac-workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/electrician-workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/plumbing-workshop/registered", "destination": "/trade-workshop/registered" },
+    { "source": "/less-admin", "destination": "/more/ai-operations" },
+    { "source": "/less-admin/", "destination": "/more/ai-operations" },
     { "source": "/credit-climb", "destination": "/api/credit-climb" },
     { "source": "/credit-climb/", "destination": "/api/credit-climb" },
     { "source": "/credit-climb.txt", "destination": "/api/credit-climb?file=index.txt" },
