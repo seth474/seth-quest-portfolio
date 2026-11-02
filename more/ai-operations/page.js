@@ -1,17 +1,22 @@
 /* MORE. sales-page template
    Change the offer by editing index.html.
-   BOOKING_URL  — href for every call button.
+   BOOKING_URL     — Zoom or calendar link. "" keeps #book.
+   SIGNUP_URL      — endpoint for the weekly-video form. "" keeps the placeholder.
+   BUY_COURSE_URL  — checkout link for the $480 course. "" keeps #course.
    VSL_EMBED    — "" keeps the poster. Set a video file (.mp4, .webm, .ogg)
                   or an embed URL (YouTube, Vimeo, Loom, or an iframe src).
                   Autoplay is forced off. File videos load VSL_CAPTIONS. */
 
-const BOOKING_URL = 'tel:+19348990796';
+const BOOKING_URL = '';
+const SIGNUP_URL = '';
+const BUY_COURSE_URL = '';
 const VSL_EMBED = '';
 const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
 
 (function () {
   var links = document.querySelectorAll('[data-booking]');
   for (var i = 0; i < links.length; i++) {
+    if (!BOOKING_URL) continue;
     links[i].href = BOOKING_URL;
     if (/^https?:/i.test(BOOKING_URL)) {
       links[i].target = '_blank';
@@ -19,30 +24,46 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
     }
   }
 
+  var buy = document.querySelector('[data-buy]');
+  if (buy && BUY_COURSE_URL) {
+    buy.href = BUY_COURSE_URL;
+    if (/^https?:/i.test(BUY_COURSE_URL)) {
+      buy.target = '_blank';
+      buy.rel = 'noopener noreferrer';
+    }
+  }
+
+  var form = document.querySelector('[data-signup]');
+  if (form) {
+    form.addEventListener('submit', function (event) {
+      var note = form.querySelector('[data-signup-note]');
+      if (!SIGNUP_URL) {
+        event.preventDefault();
+        if (note) note.hidden = false;
+        return;
+      }
+      form.action = SIGNUP_URL;
+    });
+  }
+
   var slot = document.getElementById('vsl');
   var poster = slot && slot.querySelector('.poster');
   var src = resolveEmbed(VSL_EMBED);
   if (slot && poster && src) mountVideo(slot, poster, src);
 
-  revealOnScroll();
-
-  var dock = document.querySelector('.dock');
-  var anchors = [document.querySelector('.hero .cta'), document.getElementById('book')].filter(Boolean);
-  if (dock && anchors.length && 'IntersectionObserver' in window) {
-    var visible = new Set();
-    var watcher = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) visible.add(entry.target);
-        else visible.delete(entry.target);
-      });
-      var hide = visible.size > 0;
-      dock.classList.toggle('is-hidden', hide);
-      dock.setAttribute('aria-hidden', hide ? 'true' : 'false');
-      var link = dock.querySelector('a');
-      if (link) link.tabIndex = hide ? -1 : 0;
-    }, { threshold: 0.15 });
-    anchors.forEach(function (el) { watcher.observe(el); });
+  var watches = document.querySelectorAll('[data-watch]');
+  for (var w = 0; w < watches.length; w++) {
+    watches[w].addEventListener('click', function (event) {
+      var film = document.getElementById('vsl');
+      var video = film && film.querySelector('video');
+      if (!film || !video) return;
+      event.preventDefault();
+      film.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      video.play();
+    });
   }
+
+  revealOnScroll();
 })();
 
 function revealOnScroll() {
