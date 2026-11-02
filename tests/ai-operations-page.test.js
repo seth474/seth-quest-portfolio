@@ -13,40 +13,42 @@ const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const phrases = [
   'Make AI Your Coworker for the Busywork',
   'For owner-operated local service businesses with 3–30 employees.',
+  'Watch the video',
   'Video placeholder',
   '16:9',
+  'Seth on camera',
   "Your team isn't slow. The busywork is.",
   'The morning inbox is already full.',
   'Estimates take too long.',
+  'Chatting with AI can answer your questions.',
+  'AI agents can do the work for you.',
   'Hours go to hunting for files.',
   'Files are scattered across the company.',
   "Photos aren't organized or titled.",
   'Spreadsheets get rebuilt by hand.',
-  'Chatting with AI can answer your questions.',
-  'AI agents can do the work for you.',
   'How it works',
   'We find the busywork.',
   'We build it in your tools.',
   'Your team runs it.',
-  'Seth on camera',
+  'Who I am',
+  'What happens on the Zoom',
+  'Get the weekly video',
+  '$480',
+  'Three-Week Setup',
+  '$2,400',
+  '$800 a week for three weeks',
   'Team AI Implementation',
   '$4,800',
-  '$1,200 per week',
-  'for 2–5 people on your team.',
-  '$20–$50 per month',
-  'Week 1:',
-  'Week 4:',
-  'Each week includes one 2-hour working session with your team, with implementation work done between sessions.',
-  "What's included",
-  'Four 2-hour working sessions with your team (one per week)',
-  "Everything set up in your accounts, in your name. On completion, it's yours.",
+  'Six weeks at $800 a week',
+  '2 to 5 people',
+  'On completion, you own the tools.',
   'Questions owners ask',
-  'Is this going to replace my staff?',
+  'Who owns the tools on completion?',
   'Do you guarantee a certain number of hours saved?',
   "What if we're not a fit?",
-  "Then we'll tell you on the call.",
-  'See if an AI coworker fits your shop.',
-  'For service businesses with 3–30 employees. No long-term contract. Tools and accounts stay in your name.'
+  "Then we'll say so on the Zoom.",
+  'Booking placeholder',
+  'Book a free 15-minute Zoom'
 ];
 
 describe('ai operations page', () => {
@@ -60,16 +62,24 @@ describe('ai operations page', () => {
     });
   });
 
-  test('uses one booking constant and one video constant', () => {
+  test('uses placeholder links instead of click-to-call', () => {
     assert.equal((js.match(/const BOOKING_URL\s*=/g) || []).length, 1);
-    assert.match(js, /const BOOKING_URL = 'tel:\+19348990796'/);
+    assert.match(js, /const BOOKING_URL = ''/);
+    assert.match(js, /const SIGNUP_URL = ''/);
+    assert.match(js, /const BUY_COURSE_URL = ''/);
     assert.equal((js.match(/const VSL_EMBED\s*=/g) || []).length, 1);
     assert.match(js, /const VSL_EMBED = ''/);
-    assert.equal((html.match(/tel:\+19348990796/g) || []).length, 0);
+    const blob = html + '\n' + js;
+    assert.equal(/tel:/i.test(blob), false);
+    assert.equal((html.match(/899-0796/g) || []).length, 1);
+    assert.equal((html.match(/data-booking/g) || []).length, 4);
+    assert.equal((html.match(/data-watch/g) || []).length, 2);
+    assert.match(html, /data-signup/);
+    assert.match(html, /data-buy/);
     assert.equal((html.match(/mailto:/g) || []).length, 1);
     assert.match(html, /href="mailto:seth@sethquest.com"/);
-    assert.ok(html.includes('data-booking'));
-    assert.equal((html.match(/data-booking/g) || []).length, 6);
+    assert.equal(html.includes('class="dock"'), false);
+    assert.equal(html.includes('Call ('), false);
   });
 
   test('video slots are 16:9, captions-ready, and do not autoplay', () => {
@@ -80,17 +90,20 @@ describe('ai operations page', () => {
     assert.match(js, /kind = 'captions'/);
     assert.match(js, /captions\.vtt/);
     assert.equal(fs.existsSync(path.join(root, 'more/ai-operations/captions.vtt')), true);
-    assert.equal((html.match(/class="slate-kicker"/g) || []).length, 8);
-    assert.equal((html.match(/Video placeholder/g) || []).length, 16);
+    assert.equal((html.match(/class="frame( |")/g) || []).length, 7);
+    assert.equal((html.match(/frame-meta">Video placeholder/g) || []).length, 7);
     assert.match(html, /id="vsl"/);
-    assert.match(html, /class="poster slate/);
+    assert.match(html, /class="poster"/);
+    assert.match(html, /class="hero"[\s\S]*id="vsl"/);
   });
 
-  test('pain menu has six separate placeholder videos', () => {
-    assert.equal((html.match(/class="pain"/g) || []).length, 6);
+  test('pain videos are separate scenes, not one stacked menu', () => {
     ['Morning inbox', 'Estimates', 'Hunting for files', 'Scattered files', 'Untitled photos', 'Rebuilt spreadsheets'].forEach(function (label) {
       assert.ok(html.includes(label), label);
     });
+    assert.match(html, /chapter flip/);
+    assert.match(html, /class="frame frame-wide"/);
+    assert.match(html, /class="bento"/);
   });
 
   test('has no sliding-dot timeline', () => {
@@ -102,6 +115,7 @@ describe('ai operations page', () => {
     assert.equal(html.includes('One email. One instruction. One review.'), false);
     assert.equal((html.match(/class="steps"/g) || []).length, 1);
     assert.equal((html.match(/class="step-n"/g) || []).length, 3);
+    assert.match(html, /class="tier tier-mid"/);
   });
 
   test('is reachable at both paths and stays off the homepage', () => {
