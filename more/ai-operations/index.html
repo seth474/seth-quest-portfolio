@@ -374,16 +374,17 @@ try {
         </article>
         <article class="tier tier-free" id="weekly">
           <div>
-            <p class="tier-k">Free</p>
-            <h3>Get the weekly video</h3>
-            <p>One short AI-for-your-business video each week.</p>
+            <p class="tier-k">The one-question survey</p>
+            <h3>One question. That's the whole survey.</h3>
+            <p>Tell me your most annoying office task. Each week I pick one submission and show how an AI agent solves it, free in your inbox.</p>
           </div>
           <form class="signup" data-signup action="#weekly" method="post">
             <p class="slot-flag">Signup placeholder</p>
-            <label>Name <input name="name" type="text" autocomplete="name" required></label>
+            <label>Your most annoying office task <textarea name="task" rows="3" required></textarea></label>
             <label>Email <input name="email" type="email" autocomplete="email" required></label>
-            <button class="btn" type="submit">Get the weekly video</button>
-            <p class="fine" data-signup-note hidden>The list isn't connected yet. Your name and email stayed on this page.</p>
+            <button class="btn" type="submit">Send it</button>
+            <p class="thanks" data-signup-thanks hidden>Got it. Watch your inbox for this week's solve.</p>
+            <p class="fine" data-signup-note hidden>The list isn't connected yet, so your answer stayed on this page.</p>
           </form>
         </article>
       </div>

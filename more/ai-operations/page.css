@@ -499,14 +499,30 @@ h3 {
   font-size: 13px;
   font-weight: 650;
 }
-.signup input {
+.signup input,
+.signup textarea {
+  width: 100%;
   min-height: 48px;
-  padding: 0 14px;
+  padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid var(--line-strong);
   background: rgba(7, 11, 22, 0.65);
+  resize: vertical;
 }
+.signup textarea { min-height: 96px; line-height: 1.45; }
 .signup .btn { width: 100%; }
+.signup .thanks {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+.signup.is-sent label,
+.signup.is-sent .btn,
+.signup.is-sent .slot-flag { display: none; }
+.later .tier-free { grid-template-columns: 1fr; }
 
 .faqs { margin-top: 8px; }
 .faqs details { border-top: 1px solid var(--line); }

@@ -53,7 +53,9 @@ const phrases = [
   'Booking placeholder',
   'Book a free 15-minute Zoom',
   '$480',
-  'Get the weekly video'
+  'The one-question survey',
+  "One question. That's the whole survey.",
+  'Your most annoying office task'
 ];
 
 describe('ai operations page', () => {
