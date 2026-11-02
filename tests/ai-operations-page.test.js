@@ -14,7 +14,6 @@ const phrases = [
   'An AI coworker for the busywork',
   'For East End service businesses',
   'Watch the 30-second video',
-  'Captions are included with the video.',
   'The morning inbox is already full.',
   'Estimates take too long.',
   'Hours go to hunting for files.',
@@ -90,6 +89,10 @@ describe('ai operations page', () => {
 
   test('video slots are 16:9, captions-ready, and do not autoplay', () => {
     assert.match(css, /aspect-ratio:\s*16\s*\/\s*9/);
+    assert.match(css, /aspect-ratio:\s*9\s*\/\s*16/);
+    assert.equal(html.includes('Captions are included'), false);
+    assert.equal(html.includes('nobody knows which file is the latest.'), true);
+    assert.equal(html.includes('no place the team trusts'), false);
     assert.match(js, /video\.autoplay = false/);
     assert.match(js, /autoplay', '0'/);
     assert.doesNotMatch(html, /autoplay/i);
