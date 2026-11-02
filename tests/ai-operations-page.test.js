@@ -11,44 +11,50 @@ const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 
 const phrases = [
-  'Make AI Your Coworker for the Busywork',
-  'For owner-operated local service businesses with 3–30 employees.',
-  'Watch the video',
-  'Video placeholder',
-  '16:9',
-  'Seth on camera',
-  "Your team isn't slow. The busywork is.",
+  'An AI coworker for the busywork',
+  'For East End service businesses',
+  'Watch the 30-second video',
+  'Captions are included with the video.',
   'The morning inbox is already full.',
   'Estimates take too long.',
+  'Hours go to hunting for files.',
+  "Photos aren't organized or titled.",
   'Chatting with AI can answer your questions.',
   'AI agents can do the work for you.',
-  'Hours go to hunting for files.',
-  'Files are scattered across the company.',
-  "Photos aren't organized or titled.",
-  'Spreadsheets get rebuilt by hand.',
+  'AI is a toy.',
+  'The price is usually the easy part.',
+  'Estimates just take time.',
+  'The file is somewhere. Finding it is the work.',
+  'Our files are too messy.',
+  'A job photo with no name is just a scroll.',
+  'Nobody names photos.',
+  'The next sheet can start from the one you have.',
+  'Spreadsheets need an expert.',
   'How it works',
+  'Three steps. Then your team runs it.',
   'We find the busywork.',
   'We build it in your tools.',
   'Your team runs it.',
-  'Who I am',
-  'What happens on the Zoom',
-  'Get the weekly video',
-  '$480',
+  "I'm Seth. I help East Hampton service businesses put AI to work.",
+  'Now we can connect on a free 15-minute Zoom',
   'Three-Week Setup',
   '$2,400',
-  '$800 a week for three weeks',
+  '$800 a week. One improvement each week.',
   'Team AI Implementation',
   '$4,800',
   'Six weeks at $800 a week',
   '2 to 5 people',
   'On completion, you own the tools.',
-  'Questions owners ask',
-  'Who owns the tools on completion?',
-  'Do you guarantee a certain number of hours saved?',
-  "What if we're not a fit?",
-  "Then we'll say so on the Zoom.",
+  'You pay weekly.',
+  'You see each improvement before the next one starts.',
+  "My team won't use it.",
+  'Is my data safe?',
+  "I don't have time.",
+  'Do I need new software?',
   'Booking placeholder',
-  'Book a free 15-minute Zoom'
+  'Book a free 15-minute Zoom',
+  '$480',
+  'Get the weekly video'
 ];
 
 describe('ai operations page', () => {
@@ -72,7 +78,7 @@ describe('ai operations page', () => {
     const blob = html + '\n' + js;
     assert.equal(/tel:/i.test(blob), false);
     assert.equal((html.match(/899-0796/g) || []).length, 1);
-    assert.equal((html.match(/data-booking/g) || []).length, 5);
+    assert.equal((html.match(/data-booking/g) || []).length, 10);
     assert.equal((html.match(/data-watch/g) || []).length, 2);
     assert.match(html, /data-signup/);
     assert.match(html, /data-buy/);
@@ -90,20 +96,22 @@ describe('ai operations page', () => {
     assert.match(js, /kind = 'captions'/);
     assert.match(js, /captions\.vtt/);
     assert.equal(fs.existsSync(path.join(root, 'more/ai-operations/captions.vtt')), true);
-    assert.equal((html.match(/class="frame( |")/g) || []).length, 7);
-    assert.equal((html.match(/frame-meta">Video placeholder/g) || []).length, 7);
+    assert.equal((html.match(/class="frame( |")/g) || []).length, 6);
+    assert.equal((html.match(/frame-meta">Video placeholder/g) || []).length, 6);
     assert.match(html, /id="vsl"/);
     assert.match(html, /class="poster"/);
     assert.match(html, /class="hero"[\s\S]*id="vsl"/);
   });
 
   test('pain videos are separate scenes, not one stacked menu', () => {
-    ['Morning inbox', 'Estimates', 'Hunting for files', 'Scattered files', 'Untitled photos', 'Rebuilt spreadsheets'].forEach(function (label) {
+    ['Inbox', 'Estimates', 'Files and desktop', 'Photos', 'Google Sheet'].forEach(function (label) {
       assert.ok(html.includes(label), label);
     });
     assert.match(html, /chapter flip/);
     assert.match(html, /class="frame frame-wide"/);
-    assert.match(html, /class="bento"/);
+    assert.match(html, /class="break"/);
+    assert.equal(html.includes('>How it works<'), true);
+    assert.equal((html.match(/>How it works</g) || []).length, 2);
   });
 
   test('has no sliding-dot timeline', () => {
@@ -115,7 +123,8 @@ describe('ai operations page', () => {
     assert.equal(html.includes('One email. One instruction. One review.'), false);
     assert.equal((html.match(/class="steps"/g) || []).length, 1);
     assert.equal((html.match(/class="step-n"/g) || []).length, 3);
-    assert.match(html, /class="tier tier-mid"/);
+    assert.match(html, /class="tier tier-mid offer-hero"/);
+    assert.equal(html.toLowerCase().includes('stop after'), false);
   });
 
   test('is reachable at both paths and stays off the homepage', () => {
@@ -145,7 +154,7 @@ describe('ai operations page', () => {
     ['handoff', 'one on one', 'one-on-one', 'testimonial', 'exclusive', 'three times', 'hamptons adventure'].forEach(function (word) {
       assert.equal(blob.includes(word), false, word);
     });
-    assert.equal((html.match(/guarantee/gi) || []).length, 1);
+    assert.equal((html.match(/guarantee/gi) || []).length, 0);
     assert.equal(blob.includes('roi'), false);
   });
 });

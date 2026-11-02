@@ -215,6 +215,8 @@ h3 {
   letter-spacing: -0.03em;
 }
 .cta { margin-top: 28px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+.capnote { margin: 10px 2px 0; color: var(--muted); font-size: 13px; }
 .fine { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; max-width: 42rem; }
 
 .hero { padding: 28px 0 20px; }
@@ -322,6 +324,28 @@ h3 {
 .chapter-copy p:last-child, .tile p, .modes p, .meet p { margin: 0; color: var(--body); }
 .chapter h3, .tile h3 { margin-top: 0; }
 
+.break { padding: 28px 0 0; }
+.break h2 { margin-bottom: 0; max-width: 14em; }
+.belief .quiet { display: inline-block; margin-top: 18px; }
+.doubt, .truth-k {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.doubt { color: var(--muted); }
+.truth-k { color: var(--cyan); margin-top: 18px; }
+.jobs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; }
+.jobs li { padding: 18px 0; border-top: 1px solid var(--line); }
+.jobs li:last-child { border-bottom: 1px solid var(--line); }
+.jobs h3 { margin: 0 0 6px; }
+.jobs p { margin: 0; color: var(--body); }
+.weeks-mini, .facts { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+.weeks-mini li, .facts li { color: var(--body); }
+.facts li { padding-top: 14px; border-top: 1px solid var(--line); font-size: 18px; color: var(--ink); }
+.offer-pair, .later, .sheet-layout { display: grid; gap: 14px; margin-top: 8px; }
+.sheet-layout { gap: 28px; align-items: center; }
 .statement { padding-top: 40px; }
 .quiet-line {
   display: block;
@@ -540,6 +564,11 @@ h3 {
   .tile-lg { grid-row: span 2; }
   .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
   .who-grid { grid-template-columns: 0.72fr 1.28fr; gap: 64px; }
+  .jobs { grid-template-columns: 1fr 1fr; column-gap: 36px; }
+  .sheet-layout { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 48px; align-items: center; }
+  .belief-even { grid-template-columns: 1fr 1fr; }
+  .offer-pair { grid-template-columns: 1.2fr 0.8fr; align-items: stretch; }
+  .later { grid-template-columns: 0.85fr 1.15fr; align-items: stretch; }
   .tier-free { grid-template-columns: 1fr 1fr; align-items: end; padding: 32px; }
   .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
   .tier { display: flex; flex-direction: column; }
