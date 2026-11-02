@@ -72,7 +72,7 @@ describe('ai operations page', () => {
     const blob = html + '\n' + js;
     assert.equal(/tel:/i.test(blob), false);
     assert.equal((html.match(/899-0796/g) || []).length, 1);
-    assert.equal((html.match(/data-booking/g) || []).length, 4);
+    assert.equal((html.match(/data-booking/g) || []).length, 5);
     assert.equal((html.match(/data-watch/g) || []).length, 2);
     assert.match(html, /data-signup/);
     assert.match(html, /data-buy/);
