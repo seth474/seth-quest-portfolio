@@ -523,6 +523,39 @@ h3 {
 .signup.is-sent .btn,
 .signup.is-sent .slot-flag { display: none; }
 .later .tier-free { grid-template-columns: 1fr; }
+#weekly .tier-k {
+  display: block;
+  margin: 0 0 10px;
+  color: var(--cyan);
+  font-size: clamp(22px, 5.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-transform: none;
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  #weekly .tier-k {
+    background: var(--accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+#weekly h3 {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+#weekly .task-label {
+  color: var(--ink);
+  font-size: clamp(28px, 7vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
 
 .faqs { margin-top: 8px; }
 .faqs details { border-top: 1px solid var(--line); }
@@ -619,29 +652,9 @@ h3 {
     background: transparent;
     border: 0;
   }
-  #weekly .tier-k {
-    display: block;
-    margin: 0 0 14px;
-    color: var(--ink);
-    font-size: clamp(34px, 3.4vw, 52px);
-    font-weight: 800;
-    letter-spacing: -0.045em;
-    line-height: 0.98;
-    text-transform: none;
-  }
-  #weekly h3 {
-    max-width: 11em;
-    margin: 0 0 16px;
-    font-size: clamp(40px, 4vw, 60px);
-    letter-spacing: -0.045em;
-    line-height: 0.98;
-  }
-  #weekly .task-label {
-    color: var(--ink);
-    font-size: 26px;
-    font-weight: 750;
-    letter-spacing: -0.03em;
-  }
+  #weekly .tier-k { font-size: clamp(30px, 2.8vw, 40px); }
+  #weekly h3 { max-width: 28em; font-size: 18px; }
+  #weekly .task-label { font-size: clamp(40px, 3.6vw, 52px); }
   #weekly .signup {
     padding: 28px;
     border-radius: 24px;
