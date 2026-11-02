@@ -52,10 +52,27 @@ const phrases = [
   'Do I need new software?',
   'Booking placeholder',
   'Book a free 15-minute Zoom',
-  '$480',
   'The one-question survey',
   "One question. That's the whole survey.",
-  'Your most annoying office task'
+  'Your most annoying office task',
+  'The AI Coworker Course',
+  '12 short videos. Set up AI to handle the busywork in your service business, at your own pace.',
+  'AI chat vs. AI agents',
+  'Setting up your AI coworker the right way',
+  'Clearing the morning inbox in minutes',
+  'Email templates that write themselves',
+  'Turning notes and handwritten sheets into estimates',
+  'Faster quotes your customers can say yes to',
+  'One place for every file your team needs',
+  'Naming and sorting job photos automatically',
+  'Spreadsheets and reports that build themselves',
+  'Scheduling, reminders and follow-ups',
+  'Getting your team to actually use it',
+  'Your 30-day AI rollout plan',
+  "What you'll walk away with",
+  "What's included: 12 videos, watch on any device, lifetime access to these lessons.",
+  '$480',
+  'Get the course'
 ];
 
 describe('ai operations page', () => {
@@ -79,7 +96,7 @@ describe('ai operations page', () => {
     const blob = html + '\n' + js;
     assert.equal(/tel:/i.test(blob), false);
     assert.equal((html.match(/899-0796/g) || []).length, 1);
-    assert.equal((html.match(/data-booking/g) || []).length, 10);
+    assert.equal((html.match(/data-booking/g) || []).length, 11);
     assert.equal((html.match(/data-watch/g) || []).length, 2);
     assert.match(html, /data-signup/);
     assert.match(html, /data-buy/);

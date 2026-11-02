@@ -523,6 +523,169 @@ h3 {
 .signup.is-sent .btn,
 .signup.is-sent .slot-flag { display: none; }
 .later .tier-free { grid-template-columns: 1fr; }
+.course {
+  margin-top: 36px;
+  padding: 22px 16px 18px;
+  border-radius: 28px;
+  background:
+    radial-gradient(90% 42% at 100% 0%, rgba(59, 125, 255, 0.18), transparent 52%),
+    radial-gradient(70% 36% at 0% 100%, rgba(92, 225, 255, 0.1), transparent 48%),
+    #0c1424;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+.course h3 {
+  margin: 0 0 12px;
+  max-width: 11em;
+  font-size: clamp(36px, 8vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.046em;
+  line-height: 0.96;
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .course h3 {
+    background: var(--accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+.course-lead {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--body);
+  font-size: 18px;
+  line-height: 1.5;
+}
+.lessons {
+  list-style: none;
+  margin: 28px 0 8px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.lessons li {
+  padding: 10px 10px 16px;
+  border-radius: 18px;
+  background: rgba(7, 11, 22, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lessons .thumb {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background:
+    radial-gradient(80% 90% at 12% 0%, rgba(92, 225, 255, 0.2), transparent 52%),
+    radial-gradient(80% 90% at 100% 100%, rgba(59, 125, 255, 0.28), transparent 48%),
+    #0b1222;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.lessons .play { width: 36px; height: 36px; }
+.lessons .play::before { border-width: 5px 0 5px 8px; margin-left: 2px; }
+.lnum {
+  display: block;
+  margin: 0 4px;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+}
+.lessons h4,
+.course-foot h4 {
+  margin: 4px 4px 6px;
+  font-size: 16px;
+  font-weight: 720;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.course-foot h4 { margin: 0 0 12px; font-size: 20px; }
+.lessons p {
+  margin: 0 4px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.course-foot {
+  display: grid;
+  gap: 22px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.takeaways {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.takeaways li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: var(--body);
+}
+.takeaways li::before {
+  content: "";
+  width: 7px;
+  height: 12px;
+  margin-top: 3px;
+  margin-left: 4px;
+  border-right: 2px solid var(--cyan);
+  border-bottom: 2px solid var(--blue);
+  transform: rotate(40deg);
+}
+.included {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.course-buy {
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  background:
+    linear-gradient(#10182c, #10182c) padding-box,
+    var(--accent) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 18px 50px rgba(59, 125, 255, 0.12);
+}
+.course-buy .price { margin: 0; }
+.one-time {
+  margin: 6px 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.course-buy .btn { width: 100%; }
+.course-buy .fine { margin-top: 10px; }
+.alt {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--cyan);
+  font-size: 14px;
+  line-height: 1.45;
+}
+@media (min-width: 640px) {
+  .lessons { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 800px) {
+  .course { margin-top: 20px; padding: 36px 28px 28px; }
+  .course-foot {
+    grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+    align-items: end;
+    gap: 40px;
+  }
+}
+@media (min-width: 980px) {
+  .lessons { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+}
 #weekly .tier-k {
   display: block;
   margin: 0 0 10px;
@@ -661,7 +824,6 @@ h3 {
     border: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.03);
   }
-  #course { max-width: 440px; }
   .tier-free { grid-template-columns: 1fr 1fr; align-items: end; padding: 32px; }
   .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
   .tier { display: flex; flex-direction: column; }
