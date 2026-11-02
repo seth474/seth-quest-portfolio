@@ -36,13 +36,29 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
   var form = document.querySelector('[data-signup]');
   if (form) {
     form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var thanks = form.querySelector('[data-signup-thanks]');
       var note = form.querySelector('[data-signup-note]');
+      function showThanks() {
+        form.classList.add('is-sent');
+        if (thanks) thanks.hidden = false;
+      }
       if (!SIGNUP_URL) {
-        event.preventDefault();
         if (note) note.hidden = false;
+        showThanks();
         return;
       }
-      form.action = SIGNUP_URL;
+      fetch(SIGNUP_URL, { method: 'POST', body: new FormData(form) })
+        .then(function (res) {
+          if (!res.ok) throw new Error('signup failed');
+          showThanks();
+        })
+        .catch(function () {
+          if (note) {
+            note.hidden = false;
+            note.textContent = "That didn't send. Try again in a moment.";
+          }
+        });
     });
   }
 

@@ -64,14 +64,13 @@ try {
         </div>
       </div>
       <div class="hero-visual">
-        <div class="frame player" id="vsl">
-          <div class="poster" role="img" aria-label="Video placeholder, 16:9, 30 seconds. Seth on camera. Captions are included when the video is added.">
+        <div class="frame player phone" id="vsl">
+          <div class="poster" role="img" aria-label="Video placeholder, 9:16. A punchy 30-second video.">
             <span class="play" aria-hidden="true"></span>
-            <span class="frame-meta">Video placeholder · 16:9</span>
-            <span class="frame-name">30 seconds</span>
+            <span class="frame-meta">Video placeholder · 9:16</span>
+            <span class="frame-name">30-second cut</span>
           </div>
         </div>
-        <p class="capnote">Captions are included with the video.</p>
       </div>
     </div>
   </section>
@@ -91,7 +90,7 @@ try {
         </li>
         <li>
           <h3>Hours go to hunting for files.</h3>
-          <p>Google Drive. A desktop. Dropbox. More than one copy, and no place the team trusts.</p>
+          <p>Google Drive. A desktop. Dropbox. More than one copy, and nobody knows which file is the latest.</p>
         </li>
         <li>
           <h3>Photos aren't organized or titled.</h3>
@@ -365,27 +364,122 @@ try {
       <p class="eyebrow">Not ready yet?</p>
       <h2 id="later-title">Watch and learn on your own first.</h2>
       <div class="later">
-        <article class="tier" id="course">
-          <p class="tier-k">Do it yourself</p>
-          <h3>Video course</h3>
-          <p class="price">$480</p>
-          <p>Pre-recorded. Do it yourself, at your own pace.</p>
-          <p class="fine">Buy placeholder. The button stays here until a checkout link is added.</p>
-          <a class="btn btn-ghost" data-buy href="#course">Buy the course</a>
-        </article>
         <article class="tier tier-free" id="weekly">
           <div>
-            <p class="tier-k">Free</p>
-            <h3>Get the weekly video</h3>
-            <p>One short AI-for-your-business video each week.</p>
+            <p class="tier-k">The one-question survey</p>
+            <h3>One question. That's the whole survey.</h3>
+            <p>Tell me your most annoying office task. Each week I pick one submission and show how an AI agent solves it, free in your inbox.</p>
           </div>
           <form class="signup" data-signup action="#weekly" method="post">
             <p class="slot-flag">Signup placeholder</p>
-            <label>Name <input name="name" type="text" autocomplete="name" required></label>
+            <label class="task-label">Your most annoying office task <textarea name="task" rows="3" required></textarea></label>
             <label>Email <input name="email" type="email" autocomplete="email" required></label>
-            <button class="btn" type="submit">Get the weekly video</button>
-            <p class="fine" data-signup-note hidden>The list isn't connected yet. Your name and email stayed on this page.</p>
+            <button class="btn" type="submit">Send it</button>
+            <p class="thanks" data-signup-thanks hidden>Got it. Watch your inbox for this week's solve.</p>
+            <p class="fine" data-signup-note hidden>The list isn't connected yet, so your answer stayed on this page.</p>
           </form>
+        </article>
+
+        <article class="course" id="course">
+          <div class="course-head">
+            <p class="eyebrow">Do it yourself</p>
+            <h3>The AI Coworker Course</h3>
+            <p class="course-lead">12 short videos. Set up AI to handle the busywork in your service business, at your own pace.</p>
+          </div>
+          <ol class="lessons">
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">01</span>
+              <h4>AI chat vs. AI agents</h4>
+              <p>What actually does the work, and what still waits for a person.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">02</span>
+              <h4>Setting up your AI coworker the right way</h4>
+              <p>What it can see, and where a person still reviews.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">03</span>
+              <h4>Clearing the morning inbox in minutes</h4>
+              <p>Sort the overnight requests before the crew heads out.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">04</span>
+              <h4>Email templates that write themselves</h4>
+              <p>Drafts based on the way you already write to customers.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">05</span>
+              <h4>Turning notes and handwritten sheets into estimates</h4>
+              <p>Move a note or a handwritten sheet into an estimate draft.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">06</span>
+              <h4>Faster quotes your customers can say yes to</h4>
+              <p>The price, the last visit, and the template in one quote draft.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">07</span>
+              <h4>One place for every file your team needs</h4>
+              <p>Drive, the desktop, and Dropbox, named so the team can find them.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">08</span>
+              <h4>Naming and sorting job photos automatically</h4>
+              <p>A name and a place for each job photo, ready for a person to correct.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">09</span>
+              <h4>Spreadsheets and reports that build themselves</h4>
+              <p>The next sheet, built from the Google Sheet you already keep.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">10</span>
+              <h4>Scheduling, reminders and follow-ups</h4>
+              <p>The reminder and the follow-up, drafted for a person to send.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">11</span>
+              <h4>Getting your team to actually use it</h4>
+              <p>Written steps for tasks the team already does.</p>
+            </li>
+            <li>
+              <span class="thumb" aria-hidden="true"><span class="play"></span></span>
+              <span class="lnum">12</span>
+              <h4>Your 30-day AI rollout plan</h4>
+              <p>A simple first-month sequence the team can follow.</p>
+            </li>
+          </ol>
+          <div class="course-foot">
+            <div>
+              <h4>What you'll walk away with</h4>
+              <ul class="takeaways">
+                <li>A cleaner inbox routine</li>
+                <li>Reusable email and estimate templates</li>
+                <li>An organized file and photo system</li>
+                <li>A weekly report that builds itself</li>
+                <li>A rollout plan for your team</li>
+              </ul>
+              <p class="included">What's included: 12 videos, watch on any device, lifetime access to these lessons.</p>
+            </div>
+            <div class="course-buy">
+              <p class="price">$480</p>
+              <p class="one-time">One-time</p>
+              <a class="btn" data-buy href="#course">Get the course</a>
+              <p class="fine">Checkout placeholder. The button stays here until a link is added.</p>
+              <a class="alt" data-booking href="#book">Want it done for you instead? Book a free 15-minute Zoom.</a>
+            </div>
+          </div>
         </article>
       </div>
     </div>
