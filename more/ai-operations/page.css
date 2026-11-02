@@ -607,7 +607,48 @@ h3 {
   .sheet-layout { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 48px; align-items: center; }
   .belief-even { grid-template-columns: 1fr 1fr; }
   .offer-pair { grid-template-columns: 1.2fr 0.8fr; align-items: stretch; }
-  .later { grid-template-columns: 0.85fr 1.15fr; align-items: stretch; }
+  .later { grid-template-columns: 1fr; }
+  #weekly { order: -1; }
+  #weekly.tier-free {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+    align-items: center;
+    gap: 64px;
+    margin: 0 0 36px;
+    padding: 8px 0;
+    background: transparent;
+    border: 0;
+  }
+  #weekly .tier-k {
+    display: block;
+    margin: 0 0 14px;
+    color: var(--ink);
+    font-size: clamp(34px, 3.4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    text-transform: none;
+  }
+  #weekly h3 {
+    max-width: 11em;
+    margin: 0 0 16px;
+    font-size: clamp(40px, 4vw, 60px);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  #weekly .task-label {
+    color: var(--ink);
+    font-size: 26px;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+  }
+  #weekly .signup {
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  #course { max-width: 440px; }
   .tier-free { grid-template-columns: 1fr 1fr; align-items: end; padding: 32px; }
   .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
   .tier { display: flex; flex-direction: column; }
