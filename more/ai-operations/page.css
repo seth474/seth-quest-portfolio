@@ -235,6 +235,7 @@ h3 {
 }
 .hero .phone .frame-name { bottom: 34px; }
 .hero .phone .frame-meta { bottom: 14px; max-width: calc(100% - 36px); }
+.hero .phone video { object-fit: cover; background: #070b16; }
 .fine { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; max-width: 42rem; }
 
 .hero { padding: 28px 0 20px; }
