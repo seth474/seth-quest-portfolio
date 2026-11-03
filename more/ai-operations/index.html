@@ -113,7 +113,7 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
   </section>
 
   <section class="band belief" aria-labelledby="toy-title">
-    <div class="wrap chapter">
+    <div class="wrap chapter demo-row">
       <div class="belief-copy">
         <p class="doubt">The doubt</p>
         <h2 id="toy-title">AI is a toy.</h2>
@@ -121,10 +121,13 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
         <p>Chat stops when the answer arrives. An agent can work in the inbox you already use, draft the next step, and wait for a person to review it.</p>
         <a class="quiet" data-booking href="#book">Book a free 15-minute Zoom</a>
       </div>
-      <div class="frame" role="img" aria-label="Video placeholder, 16:9. Inbox demo.">
-        <span class="play" aria-hidden="true"></span>
-        <span class="frame-meta">Video placeholder · 16:9</span>
-        <span class="frame-name">Inbox</span>
+      <div class="frame player phone demo-phone" data-demo="inbox">
+        <video playsinline controls preload="metadata" hidden aria-label="Inbox demo, 60 seconds"></video>
+        <div class="poster" role="img" aria-label="Video placeholder, 9:16, 60 seconds. Inbox demo.">
+          <span class="play" aria-hidden="true"></span>
+          <span class="frame-meta">Video placeholder · 9:16 · 60s</span>
+          <span class="frame-name">Inbox</span>
+        </div>
       </div>
     </div>
   </section>
@@ -137,18 +140,21 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
   </section>
 
   <section class="band band-shift belief">
-    <div class="wrap chapter flip">
-      <div class="frame" role="img" aria-label="Video placeholder, 16:9. Estimates demo.">
-        <span class="play" aria-hidden="true"></span>
-        <span class="frame-meta">Video placeholder · 16:9</span>
-        <span class="frame-name">Estimates</span>
-      </div>
+    <div class="wrap chapter demo-row flip">
       <div class="belief-copy">
         <p class="doubt">The doubt</p>
         <h2>Estimates just take time.</h2>
         <p class="truth-k">What's true</p>
         <p>A lot of that time is spent finding the last visit, the price, and the template. The demo pulls those pieces into one draft. A person still checks it.</p>
         <a class="quiet" data-booking href="#book">Book a free 15-minute Zoom</a>
+      </div>
+      <div class="frame player phone demo-phone" data-demo="estimates">
+        <video playsinline controls preload="metadata" hidden aria-label="Estimates demo, 60 seconds"></video>
+        <div class="poster" role="img" aria-label="Video placeholder, 9:16, 60 seconds. Estimates demo.">
+          <span class="play" aria-hidden="true"></span>
+          <span class="frame-meta">Video placeholder · 9:16 · 60s</span>
+          <span class="frame-name">Estimates</span>
+        </div>
       </div>
     </div>
   </section>
@@ -160,21 +166,28 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
     </div>
   </section>
 
-  <section class="band belief belief-wide" aria-labelledby="mess-title">
-    <div class="wrap bleed-copy">
-      <p class="doubt">The doubt</p>
-      <h2 id="mess-title">Our files are too messy.</h2>
-      <p class="truth-k">What's true</p>
-      <p>Google Drive, a desktop, and Dropbox can all hold the same job. The demo is a cleanup of one pile. A person checks what got moved and what got named.</p>
-      <a class="quiet" data-booking href="#book">Book a free 15-minute Zoom</a>
-    </div>
-    <div class="frame frame-wide" role="img" aria-label="Video placeholder, 16:9. Scattered files and desktop cleanup.">
-      <span class="play" aria-hidden="true"></span>
-      <span class="frame-meta">Video placeholder · 16:9</span>
-      <span class="frame-name">Files and desktop</span>
+  <section class="band belief" aria-labelledby="mess-title">
+    <div class="wrap chapter demo-row">
+      <div class="belief-copy">
+        <p class="doubt">The doubt</p>
+        <h2 id="mess-title">Our files are too messy.</h2>
+        <p class="truth-k">What's true</p>
+        <p>Google Drive, a desktop, and Dropbox can all hold the same job. The demo is a cleanup of one pile. A person checks what got moved and what got named.</p>
+        <a class="quiet" data-booking href="#book">Book a free 15-minute Zoom</a>
+      </div>
+      <div class="frame player phone demo-phone" data-demo="files">
+        <video playsinline controls preload="metadata" hidden aria-label="Files demo, 60 seconds"></video>
+        <div class="poster" role="img" aria-label="Video placeholder, 9:16, 60 seconds. Files demo.">
+          <span class="play" aria-hidden="true"></span>
+          <span class="frame-meta">Video placeholder · 9:16 · 60s</span>
+          <span class="frame-name">Files and desktop</span>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Photos and The sheet stay in the page. Set SHOW_FUTURE_DEMOS = true in page.js to show them. -->
+  <div data-future-demos hidden>
   <section class="break" aria-labelledby="break-photos">
     <div class="wrap">
       <p class="eyebrow">Photos</p>
@@ -222,6 +235,7 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
       </div>
     </div>
   </section>
+  </div>
 
   <section class="band" id="how" aria-labelledby="how-title">
     <div class="wrap">

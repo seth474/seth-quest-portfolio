@@ -12,6 +12,26 @@ const SIGNUP_URL = '';
 const BUY_COURSE_URL = '';
 const VSL_EMBED = '';
 const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
+const SHOW_FUTURE_DEMOS = false;
+/* 60-second vertical demos. Leave src empty until the file is ready.
+   inbox: { src: '/more/ai-operations/inbox.mp4', poster: '/more/ai-operations/inbox.jpg' } */
+const DEMO_VIDEOS = {
+  inbox: { src: '', poster: '' },
+  estimates: { src: '', poster: '' },
+  files: { src: '', poster: '' }
+};
+
+function stayAtTop() {
+  try { history.scrollRestoration = 'manual'; } catch (err) {}
+  var root = document.documentElement;
+  var prior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  root.style.scrollBehavior = prior;
+}
+stayAtTop();
+window.addEventListener('pageshow', stayAtTop);
+window.addEventListener('load', stayAtTop);
 
 function stayAtTop() {
   try { history.scrollRestoration = 'manual'; } catch (err) {}
@@ -99,6 +119,24 @@ window.addEventListener('load', stayAtTop);
 
   var heroVideo = document.querySelector('#vsl video');
   if (heroVideo) trackHeroVideo(heroVideo);
+
+  if (SHOW_FUTURE_DEMOS) {
+    var future = document.querySelectorAll('[data-future-demos]');
+    for (var f = 0; f < future.length; f++) future[f].hidden = false;
+  }
+  var demos = document.querySelectorAll('[data-demo]');
+  for (var d = 0; d < demos.length; d++) {
+    var key = demos[d].getAttribute('data-demo');
+    var clip = DEMO_VIDEOS[key];
+    if (!clip || !clip.src) continue;
+    var demoVideo = demos[d].querySelector('video');
+    var demoPoster = demos[d].querySelector('.poster');
+    if (!demoVideo) continue;
+    if (clip.poster) demoVideo.poster = clip.poster;
+    demoVideo.src = clip.src;
+    demoVideo.hidden = false;
+    if (demoPoster) demoPoster.hidden = true;
+  }
 
   revealOnScroll();
 })();

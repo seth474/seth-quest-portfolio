@@ -155,8 +155,11 @@ describe('ai operations page', () => {
     ['Inbox', 'Estimates', 'Files and desktop', 'Photos', 'Google Sheet'].forEach(function (label) {
       assert.ok(html.includes(label), label);
     });
-    assert.match(html, /chapter flip/);
-    assert.match(html, /class="frame frame-wide"/);
+    assert.match(html, /demo-row flip/);
+    assert.match(html, /data-future-demos hidden/);
+    assert.match(js, /SHOW_FUTURE_DEMOS = false/);
+    assert.equal((html.match(/data-demo="(inbox|estimates|files)"/g) || []).length, 3);
+    assert.equal((html.match(/Video placeholder · 9:16 · 60s/g) || []).length, 3);
     assert.match(html, /class="break"/);
     assert.equal(html.includes('>How it works<'), true);
     assert.equal((html.match(/>How it works</g) || []).length, 2);
