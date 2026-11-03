@@ -718,11 +718,11 @@
 
   function home() {
     var cats = [
-      ["ATV", "chip.atv", "brute.jpg"],
-      ["Motorcycle", "chip.moto", "klx.jpg"],
-      ["Side-by-Side", "chip.sxs", "ranger.jpg"],
-      ["Golf Cart", "chip.golf", "golf.jpg"],
-      ["PWC", "chip.pwc", "seadoo.jpg"]
+      ["ATV", "chip.atv", "cat-atv.jpg"],
+      ["Motorcycle", "chip.moto", "cat-moto.jpg"],
+      ["Side-by-Side", "chip.sxs", "cat-sxs.jpg"],
+      ["Golf Cart", "chip.golf", "cat-golf.jpg"],
+      ["PWC", "chip.pwc", "cat-pwc.jpg"]
     ].filter(function (c) { return countOf("category", c[0]) > 0; });
     document.getElementById("cats").innerHTML = cats.map(function (c) {
       var n = countOf("category", c[0]);

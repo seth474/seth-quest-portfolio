@@ -35,7 +35,7 @@
     "lic": "CC BY-SA 4.0"
   },
   "outlander": {
-    "title": "File:Dutch marine ATV Can-Am Outlander 6\u00d76 Joint Mountain Training 2023 in Norway.jpg",
+    "title": "File:Dutch marine ATV Can-Am Outlander 6×6 Joint Mountain Training 2023 in Norway.jpg",
     "url": "https://commons.wikimedia.org/wiki/File:Dutch_marine_ATV_Can-Am_Outlander_6%C3%976_Joint_Mountain_Training_2023_in_Norway.jpg",
     "lic": "CC BY-SA 4.0"
   },
@@ -55,7 +55,7 @@
     "lic": "CC BY-SA 4.0"
   },
   "boat": {
-    "title": "File:Gol\u00e9ron II-Sauvetage de Gen\u00e8ve-01.jpg",
+    "title": "File:Goléron II-Sauvetage de Genève-01.jpg",
     "url": "https://commons.wikimedia.org/wiki/File:Gol%C3%A9ron_II-Sauvetage_de_Gen%C3%A8ve-01.jpg",
     "lic": "CC BY-SA 4.0"
   },
@@ -144,5 +144,105 @@
     "title": "File:Golf-cart fairway.jpg",
     "url": "https://commons.wikimedia.org/wiki/File:Golf-cart_fairway.jpg",
     "lic": "CC0"
+  },
+  "unit-outlander-2": {
+    "title": "File:Can-Am Outlander 6x6 T3 Kokonaisturvallisuus 2015 03.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Can-Am_Outlander_6x6_T3_Kokonaisturvallisuus_2015_03.JPG",
+    "lic": "Public domain"
+  },
+  "unit-defender-2": {
+    "title": "File:Rideau Canal - BRP Can-Am Defender vehicle 1972.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Rideau_Canal_-_BRP_Can-Am_Defender_vehicle_1972.jpg",
+    "lic": "CC0"
+  },
+  "unit-maverick-2": {
+    "title": "File:Can-Am Maverick Seite.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Can-Am_Maverick_Seite.JPG",
+    "lic": "CC BY 3.0"
+  },
+  "unit-zx10r-2": {
+    "title": "File:Kawasaki ZX-10R.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_ZX-10R.jpg",
+    "lic": "Public domain"
+  },
+  "unit-klx-2": {
+    "title": "File:Reconnaissance motorbike Kawasaki KLX.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Reconnaissance_motorbike_Kawasaki_KLX.JPG",
+    "lic": "CC BY-SA 3.0"
+  },
+  "unit-brute-2": {
+    "title": "File:Kawasaki Brute Force 750 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Brute_Force_750_2025.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "unit-fatboy-2": {
+    "title": "File:Harley Davidson Fat Boy 2018 FLFBS.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Harley_Davidson_Fat_Boy_2018_FLFBS.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "unit-rzr-2": {
+    "title": "File:Polaris RZR ATV.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_RZR_ATV.JPG",
+    "lic": "CC BY-SA 4.0"
+  },
+  "unit-ranger-2": {
+    "title": "File:Innsbruck-Track system Polaris XP1000 Ranger-02ASD.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Innsbruck-Track_system_Polaris_XP1000_Ranger-02ASD.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "unit-mt09-2": {
+    "title": "File:Yamaha MT-09.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_MT-09.jpg",
+    "lic": "CC BY 3.0"
+  },
+  "unit-waverunner-2": {
+    "title": "File:Yamaha Waverunner VX - Perissa - Santorini - Greece - 01.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_Waverunner_VX_-_Perissa_-_Santorini_-_Greece_-_01.jpg",
+    "lic": "CC BY-SA 3.0"
+  },
+  "unit-seadoo-2": {
+    "title": "File:Yamaha EX beside Sea-Doo RXTX 300.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_EX_beside_Sea-Doo_RXTX_300.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "unit-golf-2": {
+    "title": "File:Emilio driving golf cart.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Emilio_driving_golf_cart.jpg",
+    "lic": "CC BY 2.0"
+  },
+  "tile-new": {
+    "title": "File:Motorcycle showroom in Teville Road - geograph.org.uk - 1779463.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Motorcycle_showroom_in_Teville_Road_-_geograph.org.uk_-_1779463.jpg",
+    "lic": "CC BY-SA 2.0"
+  },
+  "tile-used": {
+    "title": "File:Vintage motorcycle, Cricklade Show 2010 - geograph.org.uk - 2041675.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Vintage_motorcycle,_Cricklade_Show_2010_-_geograph.org.uk_-_2041675.jpg",
+    "lic": "CC BY-SA 2.0"
+  },
+  "cat-atv": {
+    "title": "File:Schwarzenberg-Boedele-ATV red Quad 1000-camso track system-03ASD.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Schwarzenberg-Boedele-ATV_red_Quad_1000-camso_track_system-03ASD.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "cat-moto": {
+    "title": "File:Vintage Yamaha sportbike and Vespa scooter.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Vintage_Yamaha_sportbike_and_Vespa_scooter.jpg",
+    "lic": "CC BY 2.0"
+  },
+  "cat-golf": {
+    "title": "File:Golf cart on Red Course - East Potomac Park Golf Course - East Potomac Park - 2013-08-25.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Golf_cart_on_Red_Course_-_East_Potomac_Park_Golf_Course_-_East_Potomac_Park_-_2013-08-25.jpg",
+    "lic": "CC BY-SA 2.0"
+  },
+  "cat-pwc": {
+    "title": "File:Jetboot Jetski DM 2007 Krautsand 2.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Jetboot_Jetski_DM_2007_Krautsand_2.jpg",
+    "lic": "CC BY-SA 3.0"
+  },
+  "cat-sxs": {
+    "title": "File:2021 Can-Am Commander XT 1000R.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2021_Can-Am_Commander_XT_1000R.jpg",
+    "lic": "CC BY-SA 4.0"
   }
 }

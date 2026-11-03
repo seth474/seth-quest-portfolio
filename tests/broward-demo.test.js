@@ -52,3 +52,9 @@ test('broward demo uses direct WhatsApp and text links plus an EN/ES toggle', ()
   assert.equal(/elfsight|getbutton|whatsapp\.com\/widget/i.test(js), false);
   assert.match(html, /<div class="hero-media">/);
 });
+
+test('broward units do not share photos', () => {
+  const { execFileSync } = require('node:child_process');
+  const out = execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts/broward-photo-audit.js')], { encoding: 'utf8' });
+  assert.match(out, /OK: every unit has its own photo/);
+});
