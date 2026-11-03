@@ -72,15 +72,15 @@ body.sub .top { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10
   overflow: hidden;
   background: #000;
 }
-.hero-media, .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
-.hero-media img, .hero-media video { filter: saturate(.95) brightness(1.08); }
-.hero-media video:not([src]),
+.hero-media, .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+.hero-media img, .hero-media video { filter: saturate(1.06) brightness(1.04); }
+.hero-media video:not([src]):not(:has(source)),
 .sound video:not([src]) { display: none; }
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.08) 32%, rgba(0,0,0,.45) 62%, rgba(10,10,10,.96));
+  background: linear-gradient(180deg, rgba(28,12,0,.52) 0%, rgba(120,55,0,.05) 28%, rgba(48,20,0,.16) 52%, rgba(10,8,6,.95));
 }
 .hin { position: relative; z-index: 2; padding: 88px 0 48px; }
 .eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8c8c8; }
@@ -276,6 +276,7 @@ body.sub .top { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10
   .hero h1 { font-size: 36px; }
   .hero h1 .line { display: block; }
   .hero { min-height: 100svh; }
+  .hero-media, .hero-media img, .hero-media video { object-position: center center; }
 }
 @media (min-width: 901px) {
   .hero h1 { font-size: clamp(48px, 4.7vw, 68px); }
