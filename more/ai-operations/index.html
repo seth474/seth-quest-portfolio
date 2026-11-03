@@ -383,7 +383,6 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
           </li>
         </ol>
         <a class="btn" data-booking href="#book">Book a free 15-minute Zoom</a>
-        <p class="fine">This button stays on this section until a Zoom or calendar link is added.</p>
       </div>
     </div>
   </section>
@@ -529,5 +528,22 @@ try { history.scrollRestoration = 'manual'; } catch (err) {}
   </div>
 </footer>
 <script src="/more/ai-operations/page.js"></script>
+<div class="book-modal" id="book-modal" hidden>
+  <div class="book-backdrop" data-book-close></div>
+  <div class="book-sheet" role="dialog" aria-modal="true" aria-labelledby="book-modal-title">
+    <button class="book-x" type="button" data-book-close aria-label="Close">×</button>
+    <h2 id="book-modal-title" tabindex="-1">Book a free 15-minute Zoom</h2>
+    <form class="book-step" data-book-step="1">
+      <label>Name <input name="name" type="text" autocomplete="name" required></label>
+      <label>Email <input name="email" type="email" autocomplete="email" required></label>
+      <p class="book-error" data-book-error hidden role="alert">Enter your name and a valid email.</p>
+      <button class="btn" type="submit">Pick a time</button>
+    </form>
+    <div class="book-step" data-book-step="2" hidden>
+      <p class="book-thanks" data-book-thanks hidden>Thanks, Seth will email you to set a time.</p>
+      <div class="book-calendly" data-calendly hidden></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
