@@ -143,6 +143,11 @@ describe('ai operations page', () => {
     assert.match(js, /webkitExitFullscreen/);
     assert.match(js, /exitFullscreen/);
     assert.match(js, /\(pointer:\s*coarse\)\s*and\s*\(max-width:\s*768px\)/);
+    assert.match(js, /scrollRestoration = 'manual'/);
+    assert.match(html, /scrollRestoration = 'manual'/);
+    assert.match(js, /scrollTo\(0, 0\)/);
+    assert.match(js, /endedAfterUserPlay/);
+    assert.equal(/autofocus/i.test(html), false);
     assert.match(css, /\.vsl-progress > span[\s\S]*var\(--accent\)/);
   });
 

@@ -13,6 +13,18 @@ const BUY_COURSE_URL = '';
 const VSL_EMBED = '';
 const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
 
+function stayAtTop() {
+  try { history.scrollRestoration = 'manual'; } catch (err) {}
+  var root = document.documentElement;
+  var prior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  root.style.scrollBehavior = prior;
+}
+stayAtTop();
+window.addEventListener('pageshow', stayAtTop);
+window.addEventListener('load', stayAtTop);
+
 (function () {
   var links = document.querySelectorAll('[data-booking]');
   for (var i = 0; i < links.length; i++) {
@@ -156,14 +168,25 @@ function trackHeroVideo(video) {
   var resumeInline = false;
   var inlineUntil = 0;
   var scrolledForEnd = false;
+  var userPlayed = false;
+  var endedAfterUserPlay = false;
 
-  function atEnd() {
-    if (video.ended) return true;
-    var dur = video.duration;
-    return !!(dur && isFinite(dur) && video.currentTime >= dur - 0.35);
+  function scrollWhenInline() {
+    function onLeave() {
+      if (videoInFullscreen(video)) return;
+      document.removeEventListener('fullscreenchange', onLeave);
+      video.removeEventListener('webkitendfullscreen', onLeave);
+      scrollEndedIntoView();
+    }
+    if (videoInFullscreen(video)) {
+      document.addEventListener('fullscreenchange', onLeave);
+      video.addEventListener('webkitendfullscreen', onLeave);
+      return;
+    }
+    scrollEndedIntoView();
   }
   function scrollEndedIntoView() {
-    if (scrolledForEnd || !atEnd() || !wantsMobileFullscreen()) return;
+    if (!endedAfterUserPlay || scrolledForEnd || !wantsMobileFullscreen()) return;
     scrolledForEnd = true;
     var film = document.getElementById('vsl');
     if (!film) return;
@@ -193,12 +216,7 @@ function trackHeroVideo(video) {
   }
   function onFullscreenExit() {
     heroFullscreenEntering = false;
-    if (atEnd()) {
-      requestAnimationFrame(function () {
-        requestAnimationFrame(scrollEndedIntoView);
-      });
-      return;
-    }
+    if (!userPlayed || endedAfterUserPlay) return;
     inlineUntil = Date.now() + 800;
     if (!video.paused) return;
     resumeInline = true;
@@ -248,23 +266,21 @@ function trackHeroVideo(video) {
       resumeInline = false;
       return;
     }
+    userPlayed = true;
     enterMobileFullscreen(video);
   });
   video.addEventListener('pause', stopLoop);
   video.addEventListener('seeked', paint);
   video.addEventListener('ended', function () {
     stopLoop();
+    if (!userPlayed) return;
+    endedAfterUserPlay = true;
     fill.style.transform = 'scaleX(1)';
     bar.classList.remove('is-on');
     bar.classList.add('is-done');
     revealBook();
-    if (exitMobileFullscreen(video)) {
-      requestAnimationFrame(function () {
-        requestAnimationFrame(scrollEndedIntoView);
-      });
-      return;
-    }
-    scrollEndedIntoView();
+    exitMobileFullscreen(video);
+    scrollWhenInline();
   });
   document.addEventListener('fullscreenchange', function () {
     if (document.fullscreenElement) {
