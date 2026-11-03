@@ -236,6 +236,41 @@ h3 {
 .hero .phone .frame-name { bottom: 34px; }
 .hero .phone .frame-meta { bottom: 14px; max-width: calc(100% - 36px); }
 .hero .phone video { object-fit: cover; background: #070b16; }
+.vsl-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.vsl-progress {
+  height: 4px;
+  margin: 12px 0 0;
+  border-radius: 999px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.45s ease, height 0.45s ease, margin-top 0.45s ease;
+}
+.vsl-progress.is-on { opacity: 1; }
+.vsl-progress.is-done { opacity: 0; height: 0; margin-top: 0; }
+.vsl-progress > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.vsl-book {
+  align-self: center;
+  margin-top: 14px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.vsl-book.is-in { opacity: 1; transform: none; }
 .fine { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; max-width: 42rem; }
 
 .hero { padding: 28px 0 20px; }
@@ -787,10 +822,12 @@ h3 {
   .narrow { width: min(760px, calc(100% - 80px)); }
   .hero { padding: 48px 0 24px; }
   .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); gap: 56px; }
+  .vsl-stack { width: min(100%, calc(min(68vh, 620px) * 9 / 16)); }
   .hero .phone {
-    width: auto;
-    height: min(68vh, 620px);
+    width: 100%;
+    height: auto;
     max-width: 100%;
+    max-height: min(68vh, 620px);
   }
   .band { padding: 120px 0; }
   .chapter { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; }
@@ -847,8 +884,8 @@ h3 {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js [data-reveal], .btn, .plus::after, .frame { transition: none !important; }
-  .frame:hover { transform: none; }
+  .js [data-reveal], .btn, .plus::after, .frame, .vsl-progress, .vsl-book { transition: none !important; }
+  .frame:hover, .vsl-book { transform: none; }
 }
 @media print {
   .top .hcta, .glow { display: none !important; }

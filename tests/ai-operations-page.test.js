@@ -130,6 +130,15 @@ describe('ai operations page', () => {
     assert.match(html, /playsinline/);
     assert.match(html, /preload="metadata"/);
     assert.match(html, /\scontrols[\s>]/);
+    const heroActions = html.match(/<div class="cta hero-actions">[\s\S]*?<\/div>/);
+    assert.ok(heroActions);
+    assert.equal(heroActions[0].includes('data-booking'), false);
+    assert.match(heroActions[0], /Watch the 30-second video/);
+    assert.match(html, /data-vsl-progress/);
+    assert.match(html, /data-vsl-book[\s\S]*Book a free 15-minute Zoom/);
+    assert.match(js, /timeupdate/);
+    assert.match(js, /requestAnimationFrame/);
+    assert.match(css, /\.vsl-progress > span[\s\S]*var\(--accent\)/);
   });
 
   test('pain videos are separate scenes, not one stacked menu', () => {
