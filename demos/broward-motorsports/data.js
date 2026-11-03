@@ -42,15 +42,16 @@ window.BROWARD = {
     { id: "PWC", label: "chip.pwc", img: "cat-pwc.jpg" }
   ],
   brands: [
-    { slug: "kawasaki", name: "Kawasaki", img: "brand-kawasaki.jpg" },
-    { slug: "yamaha", name: "Yamaha", img: "brand-yamaha.jpg" },
-    { slug: "polaris", name: "Polaris", img: "brand-polaris.jpg" },
-    { slug: "can-am", name: "Can-Am", img: "brand-canam.jpg" },
-    { slug: "harley-davidson", name: "Harley-Davidson", img: "brand-harley.jpg" },
-    { slug: "slingshot", name: "Slingshot", img: "brand-slingshot.jpg" },
-    { slug: "sea-doo", name: "Sea-Doo", img: "brand-seadoo.jpg" },
-    { slug: "indian", name: "Indian", img: "brand-indian.jpg" },
-    { slug: "italica", name: "Italica", img: "brand-italica.jpg" }
+    { slug: "kawasaki", name: "Kawasaki", img: "brand-kawasaki.jpg", model: "Ninja ZX-10R" },
+    { slug: "yamaha", name: "Yamaha", img: "brand-yamaha.jpg", model: "2026 YZF-R9" },
+    { slug: "polaris", name: "Polaris", img: "brand-polaris.jpg", model: "2027 RZR Pro R Boost" },
+    { slug: "can-am", name: "Can-Am", img: "brand-canam.jpg", model: "2027 Maverick R X rc" },
+    { slug: "cfmoto", name: "CFMoto", img: "brand-cfmoto.jpg", model: "2027 ZFORCE Z10" },
+    { slug: "harley-davidson", name: "Harley-Davidson", img: "brand-harley.jpg", model: "2026 Street Glide" },
+    { slug: "slingshot", name: "Slingshot", img: "brand-slingshot.jpg", model: "2026 Slingshot S" },
+    { slug: "sea-doo", name: "Sea-Doo", img: "brand-seadoo.jpg", model: "2027 RXP-X" },
+    { slug: "indian", name: "Indian", img: "brand-indian.jpg", model: "2026 Challenger Dark Horse" },
+    { slug: "italica", name: "Italica", img: "brand-italica.jpg", model: "Diablo 50" }
   ],
   styles: [
     { id: "Cruiser", img: "style-cruiser.jpg", en: "Cruiser", es: "Crucero" },

@@ -602,15 +602,8 @@
       return '<a class="tile" href="' + inv({ category: c.id }) + '"><img src="' + img(c.img) + '" alt=""><div><b>' + t(c.label) + "</b><small>" + n + " " + t("inSample") + "</small></div></a>";
     }).join("");
 
-    var brands = {};
-    UNITS.forEach(function (u) {
-      brands[u.brandSlug] = brands[u.brandSlug] || { name: u.brand, n: 0 };
-      brands[u.brandSlug].n += 1;
-    });
-    var order = window.BROWARD.brands.map(function (b) { return b.slug; });
-    document.getElementById("brands").innerHTML = order.filter(function (s) { return brands[s]; }).map(function (s) {
-      var thumb = BRAND_IMG[s] ? '<img src="' + img(BRAND_IMG[s]) + '" alt="">' : "";
-      return '<a class="brand" href="' + BASE + "/brands/" + s + '"><span>' + brands[s].name + "</span>" + thumb + "</a>";
+    document.getElementById("brands").innerHTML = window.BROWARD.brands.map(function (b) {
+      return '<a class="brand" href="' + BASE + "/brands/" + b.slug + '"><span>' + b.name + '</span><img src="' + img(b.img) + '" alt=""></a>';
     }).join("");
 
     var styles = window.BROWARD.styles.filter(function (s) { return countOf("style", s.id) > 0; });
@@ -677,10 +670,20 @@
 
   function brandPage() {
     var key = routeKey("brands", "brand");
+    var configured = window.BROWARD.brands.filter(function (b) { return b.slug === key; })[0];
     var sample = byBrand(key)[0];
     var root = document.getElementById("main");
-    if (!sample) {
+    if (!sample && !configured) {
       root.innerHTML = '<p class="w">' + t("missingBrand") + "</p>";
+      return;
+    }
+    if (!sample) {
+      document.title = configured.name + " · " + DEALER.name;
+      root.innerHTML =
+        '<section class="brand-hero"><img src="' + img(configured.img) + '" alt="">' +
+        '<div class="w"><div class="crumbs-wrap">' + crumbs([{ label: configured.name }]) + "</div>" +
+        '<p class="eyebrow">' + configured.name + "</p><h1>" + configured.name + " " + t("inCity").replace("{city}", place().name) + "</h1>" +
+        "<p>0 " + t("inSample") + ".</p></div></section>";
       return;
     }
     var models = modelsOf(key);

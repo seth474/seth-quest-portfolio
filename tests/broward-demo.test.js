@@ -27,7 +27,10 @@ test('broward demo is a noindex concept with the approved headline', () => {
   assert.equal(credits.includes('Aamir Somewhere'), false);
   assert.equal(html.includes('386 new and 37 pre-owned on the lot.'), false);
   assert.equal(html.includes('Ride after dark'), false);
-  assert.equal(data.includes('CFMoto'), false);
+  const canAm = data.indexOf('slug: "can-am"');
+  const cfmoto = data.indexOf('slug: "cfmoto"');
+  const harley = data.indexOf('slug: "harley-davidson"');
+  assert.ok(canAm !== -1 && cfmoto > canAm && harley > cfmoto);
   assert.match(js, /model-wrap/);
   assert.match(js, /\/brands\//);
   assert.match(data, /Inventory/);

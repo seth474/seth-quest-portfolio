@@ -1,7 +1,20 @@
 # Keep non-site files in git, out of the Vercel upload.
 # Archives and app source packages.
 *.zip
-# Docs and scripts (for example VSL_SCRIPT.md), not pages.
+# Docs, not pages.
 *.md
 **/*.md
+# Tests, build scripts, and local QA captures.
 tests/
+scripts/
+qa/
+screenshots/
+*screenshot*
+# Chrome extension source, not a site route.
+bs-score-extension/
+# Install trees and raw/source media that pages do not serve.
+node_modules/
+*.psd
+*.ai
+*.mov
+*.raw
