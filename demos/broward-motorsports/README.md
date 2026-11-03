@@ -42,7 +42,7 @@ Review at 375px and 390×844, in English and Spanish, and again at 1440×900:
 - Header is the logo and menu only on a phone. EN/ES and Get pre-approved stay in the menu.
 - Hero copy sits in the bottom third. The top of the video stays clear.
 - WhatsApp and Text stay hidden until the third section (hero counts as one), then sit at the bottom-right. They hide again above that section. Motion respects `prefers-reduced-motion`.
-- Brand names and counts are readable. Thumbnails do not cover the type.
+- Brand names sit above square photos, with no count and no card border.
 - Style cards are a swipe row: photo, label, no counts. The next card peeks.
 - No horizontal page scroll, no one-word columns, tap targets at least 44px.
 - Inventory, brand, model, unit, the note form, and the footer still fit.

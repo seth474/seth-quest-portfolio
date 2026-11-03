@@ -8,10 +8,23 @@ window.BROWARD = {
     address: "4101 Davie Road Ext., Hollywood, FL 33024",
     city: "Hollywood, FL",
     langKey: "broward-lang",
+    locationKey: "broward-location",
     creditUrl: "https://sethquest.com",
     creditName: "Seth Quest",
     colors: { bg: "#0a0a0a", card: "#151515", line: "#2a2a2a", mut: "#b4b4b4", red: "#e0261d", wa: "#25D366" }
   },
+  /* Powersports stores listed on browardmotorsports.com. Hours match the
+     Hollywood and Fort Lauderdale sales desks (Mon–Sat 9–7). */
+  locations: [
+    { id: "hollywood", name: "Hollywood", address: "4101 Davie Road Ext., Hollywood, FL 33024", city: "Hollywood, FL", phone: "9544369905", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "fort-lauderdale", name: "Fort Lauderdale", address: "2100 W Sunrise Blvd, Ste 161, Fort Lauderdale, FL 33311", city: "Fort Lauderdale, FL", phone: "9544670990", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "miami", name: "Miami", address: "6400 W 20th Ave, Hialeah, FL 33016", city: "Hialeah, FL", phone: "3055571311", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "palm-beach", name: "West Palm Beach", address: "2300 Okeechobee Blvd, West Palm Beach, FL 33409", city: "West Palm Beach, FL", phone: "5612969696", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "jupiter", name: "Jupiter", address: "152 Bridge Road, Tequesta, FL 33469", city: "Tequesta, FL", phone: "5617489424", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "treasure-coast", name: "Treasure Coast", address: "8401 SE Federal Hwy, Hobe Sound, FL 33455", city: "Hobe Sound, FL", phone: "7722525000", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "port-richey", name: "Port Richey", address: "9825 US Highway 19, Port Richey, FL 34668", city: "Port Richey, FL", phone: "7278426624", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
+    { id: "west-orlando", name: "West Orlando", address: "16333 W Colonial Dr, Oakland, FL 34787", city: "Oakland, FL", phone: "4078776051", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } }
+  ],
   media: {
     heroPoster: "hero-dusk.jpg",
     heroVideo: "hero-dusk.mp4",
@@ -73,11 +86,12 @@ window.BROWARD = {
         send: "Send",
         thanks: "Thanks. This stayed on the page. A person at the desk would take it from here."
       },
+      shoppingAt: "Shopping at",
+      shopNew: "Shop new",
+      shopUsed: "Shop pre-owned",
+      inCity: "in {city}",
       hero: {
-        eyebrow: "Hollywood, Florida · 4101 Davie Road Ext.",
-        lead: 'ATVs, motorcycles and <span class="keep">side-by-sides</span>',
-        line: "in Hollywood, FL.",
-        sub: "386 new and 37 pre-owned on the lot.",
+        statement: "The largest selection of motorcycles and ATVs in Florida.",
         ph: "Ninja, RZR, Outlander…",
         aria: "Search the lot",
         alt: "A green side-by-side driving across the sand at dusk"
@@ -197,11 +211,12 @@ window.BROWARD = {
         send: "Enviar",
         thanks: "Gracias. Esto se quedó en la página. Alguien en el mostrador lo toma desde aquí."
       },
+      shoppingAt: "Comprando en",
+      shopNew: "Ver nuevos",
+      shopUsed: "Ver usados",
+      inCity: "en {city}",
       hero: {
-        eyebrow: "Hollywood, Florida · 4101 Davie Road Ext.",
-        lead: 'ATV, motos y <span class="keep">side-by-sides</span>',
-        line: "en Hollywood, FL.",
-        sub: "386 nuevos y 37 usados en el lote.",
+        statement: "La mayor selección de motos y ATVs en Florida.",
         ph: "Ninja, RZR, Outlander…",
         aria: "Buscar en el lote",
         alt: "Un side-by-side verde cruzando la arena al atardecer"
