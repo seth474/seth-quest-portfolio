@@ -50,7 +50,7 @@ window.BROWARD = {
     { slug: "harley-davidson", name: "Harley-Davidson", img: "brand-harley.jpg", model: "2026 Street Glide" },
     { slug: "slingshot", name: "Slingshot", img: "brand-slingshot.jpg", model: "2026 Slingshot S" },
     { slug: "sea-doo", name: "Sea-Doo", img: "brand-seadoo.jpg", model: "2027 RXP-X" },
-    { slug: "indian", name: "Indian", img: "brand-indian.jpg", model: "2026 Challenger Dark Horse" },
+    { slug: "indian", name: "Indian", img: "brand-indian.jpg", model: "2026 Challenger Limited" },
     { slug: "italica", name: "Italica", img: "brand-italica.jpg", model: "Diablo 50" }
   ],
   styles: [
