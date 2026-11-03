@@ -33,6 +33,9 @@
   function slug(s) {
     return String(s || "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   }
+  function keepModel(s) {
+    return String(s == null ? "" : s).replace(/-/g, "\u2011");
+  }
   function money(n) { return "$" + Number(n).toLocaleString("en-US"); }
   function img(file) { return BASE + "/img/" + file; }
   function inv(params) {
@@ -114,7 +117,7 @@
   }
   function header() {
     return '<header class="top"><div class="w hd">' +
-      '<a class="logo" href="' + BASE + '/">' + DEALER.logo[0] + " <b>" + DEALER.logo[1] + "</b></a>" +
+      '<a class="logo" href="' + BASE + '/"><span>' + DEALER.logo[0] + "</span><b>" + DEALER.logo[1] + "</b></a>" +
       '<button class="menu" type="button" aria-expanded="false" aria-label="' + t("menu") + '">' + t("menu") + "</button>" +
       '<nav class="nav">' + navLinks() + '</nav><div class="sp"></div>' +
       '<div class="hd-tools">' + langToggle() +
@@ -152,9 +155,9 @@
     return '<article class="card"><a href="' + BASE + "/inventory/" + u.id + '">' +
       '<div class="ph"><img src="' + img(u.img) + '" alt=""><span class="tag">' + t("opt." + u.condition) + "</span></div>" +
       '<div class="pr">' + money(u.price) + "</div>" +
-      '<div class="nm">' + u.year + " " + u.brand + " " + u.model + "</div>" +
+      '<div class="nm">' + u.year + " " + u.brand + " " + keepModel(u.model) + "</div>" +
       '<div class="meta">' + t("opt." + u.category) + " · " + t("opt." + u.style) + "</div></a>" +
-      '<a class="model-link" href="' + BASE + "/models/" + u.modelSlug + '">' + t("viewModel").replace("{model}", u.model) + "</a></article>";
+      '<a class="model-link" href="' + BASE + "/models/" + u.modelSlug + '">' + t("viewModel").replace("{model}", keepModel(u.model)) + "</a></article>";
   }
 
   function matches(u, f) {
@@ -177,9 +180,10 @@
   function crumbs(parts) {
     var html = '<nav class="crumbs" aria-label="' + t("crumbs") + '"><a href="' + BASE + '/inventory">' + t("inv.h") + "</a>";
     parts.forEach(function (p, i) {
-      html += ' <span aria-hidden="true">/</span> ';
-      if (p.href && i < parts.length - 1) html += '<a href="' + p.href + '">' + p.label + "</a>";
-      else html += "<span>" + p.label + "</span>";
+      var last = i === parts.length - 1;
+      html += '<span class="sep" aria-hidden="true">/</span>';
+      if (!last && p.href) html += '<a href="' + p.href + '">' + keepModel(p.label) + "</a>";
+      else html += '<span class="here">' + keepModel(p.label) + "</span>";
     });
     return html + "</nav>";
   }
@@ -311,6 +315,19 @@
       next.addEventListener("click", function () { sliderStep(1); });
       row.addEventListener("scroll", syncSlider);
     }
+    var filterOpen = document.getElementById("filter-open");
+    var filterClose = document.getElementById("filter-close");
+    var filterBack = document.getElementById("filter-backdrop");
+    function setFilterSheet(open) {
+      var form = document.getElementById("filters");
+      if (!form) return;
+      form.classList.toggle("is-open", open);
+      document.body.classList.toggle("filters-open", open);
+      if (filterOpen) filterOpen.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (filterOpen) filterOpen.addEventListener("click", function () { setFilterSheet(true); });
+    if (filterClose) filterClose.addEventListener("click", function () { setFilterSheet(false); });
+    if (filterBack) filterBack.addEventListener("click", function () { setFilterSheet(false); });
     var filters = document.getElementById("filters");
     if (filters) {
       filters.addEventListener("change", function (event) {
@@ -387,7 +404,7 @@
       document.querySelectorAll(".chips .chip").forEach(function (chip, i) {
         if (chipKeys[i]) chip.textContent = t(chipKeys[i]);
       });
-      var heads = ["h.cat", "h.brand", "h.style", "h.lot"];
+      var heads = ["h.cat", "h.brand", "h.style", "h.cond", "h.lot"];
       document.querySelectorAll("main .sec h2").forEach(function (h, i) {
         if (heads[i]) h.textContent = t(heads[i]);
       });
@@ -439,6 +456,12 @@
       if (q) q.placeholder = t("inv.ph");
       var update = document.querySelector("#filters button[type=submit]");
       if (update) update.textContent = t("inv.update");
+      var filterOpen = document.getElementById("filter-open");
+      if (filterOpen) filterOpen.textContent = t("inv.filters");
+      var filterTitle = document.getElementById("filter-title");
+      if (filterTitle) filterTitle.textContent = t("inv.filters");
+      var filterClose = document.getElementById("filter-close");
+      if (filterClose) filterClose.textContent = t("close");
       translateOptions();
     }
     if (!page) {
@@ -679,7 +702,7 @@
         { label: sample.brand, href: BASE + "/brands/" + sample.brandSlug },
         { label: sample.model }
       ]) +
-      '<p class="eyebrow">' + sample.brand + " · " + t("opt." + sample.category) + "</p><h1>" + sample.model + "</h1>" +
+      '<p class="eyebrow">' + sample.brand + " · " + t("opt." + sample.category) + "</p><h1>" + keepModel(sample.model) + "</h1>" +
       '<div class="specs"><div><b>' + units.length + "</b><span>" + t("inThisSample") + "</span></div><div><b>" + t("opt." + sample.style) + "</b><span>" + t("styleWord") + "</span></div><div><b>" + low + "</b><span>" + t("lowest") + "</span></div></div>" +
       '<a class="btn rd" href="#stock">' + t("seeStock") + '</a> <button class="btn gl" type="button" data-open="approve">' + t("approve") + "</button>" +
       "</div></section>" +
@@ -727,7 +750,7 @@
     ]) +
       '<div class="gallery"><div class="heroimg"><img src="' + img(u.img) + '" alt="' + u.year + " " + u.brand + " " + u.model + '"></div></div>' +
       '<p class="eyebrow">' + t("opt." + u.condition) + " · " + t("opt." + u.category) + "</p>" +
-      "<h1>" + u.year + " " + u.brand + " " + u.model + "</h1>" +
+      "<h1>" + u.year + " " + u.brand + " " + keepModel(u.model) + "</h1>" +
       '<p class="price-lg">' + money(u.price) + "</p>" +
       '<div class="facts">' +
       "<div><span>" + t("year") + "</span>" + u.year + "</div>" +
