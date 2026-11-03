@@ -408,6 +408,46 @@ h3 {
 .break { padding: 28px 0 0; }
 .break h2 { margin-bottom: 0; max-width: 14em; }
 .belief .quiet { display: inline-block; margin-top: 18px; }
+.compare {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+.compare-card {
+  margin: 0;
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+}
+.compare-k {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.compare-card p:last-child {
+  margin: 0;
+  color: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.compare-agent {
+  background:
+    linear-gradient(#10182c, #10182c) padding-box,
+    var(--accent) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 18px 50px rgba(59, 125, 255, 0.12);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .compare-agent .compare-k {
+    background: var(--accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
 .doubt, .truth-k {
   margin: 0 0 8px;
   font-size: 12px;
@@ -861,6 +901,7 @@ h3 {
   .chapter.flip .frame { order: -1; }
   .demo-row { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
   .demo-row.flip { grid-template-columns: auto minmax(0, 1fr); }
+  .compare { grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
   .frame.demo-phone { width: min(300px, 32vw); max-width: none; }
   .modes { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
   .bento { grid-template-columns: 1.15fr 0.85fr; }
