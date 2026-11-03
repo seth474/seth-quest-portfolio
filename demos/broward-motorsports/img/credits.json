@@ -101,49 +101,54 @@
     "lic": "Public domain (Armed Forces of the Philippines Public Affairs)"
   },
   "brand-kawasaki": {
-    "title": "File:Kawasaki Ninja ZX-6R ZX636G.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_ZX-6R_ZX636G.jpg",
-    "lic": "CC0"
+    "title": "Ninja ZX-10R studio product image",
+    "url": "https://www.kawasaki.com/en-us/motorcycle/ninja/supersport/ninja-zx-10r",
+    "lic": "Kawasaki product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-yamaha": {
-    "title": "File:Yamaha MT-09 SP 2025.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_MT-09_SP_2025.jpg",
-    "lic": "CC0"
+    "title": "2026 YZF-R9 track press photo",
+    "url": "https://yamahamotorsports.com/models/26-yzf-r9",
+    "lic": "Yamaha Motorsports product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-polaris": {
-    "title": "File:7324Polaris RZR XP Turbo ProStar Engines DOHC 07.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:7324Polaris_RZR_XP_Turbo_ProStar_Engines_DOHC_07.jpg",
-    "lic": "CC0"
+    "title": "2027 RZR Pro R Boost studio render",
+    "url": "https://www.polaris-orv.media/product/2027-rzr-pro-r-boost/",
+    "lic": "Polaris press studio render. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-canam": {
-    "title": "File:Can am maverick x3 xrs turbo rr.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Can_am_maverick_x3_xrs_turbo_rr.jpg",
-    "lic": "CC BY-SA 4.0"
+    "title": "2027 Maverick R X rc studio render",
+    "url": "https://can-am.brp.com/off-road/us/en/models/side-by-side-vehicles/maverick-r.html",
+    "lic": "Can-Am / BRP product photograph. Not a Creative Commons license. Hosted for this concept demo."
+  },
+  "brand-cfmoto": {
+    "title": "2027 ZFORCE Z10 studio render",
+    "url": "https://www.cfmoto.com/global/",
+    "lic": "CFMOTO product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-harley": {
-    "title": "File:Harley-Davidson FLST Heritage Softail 1987.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Harley-Davidson_FLST_Heritage_Softail_1987.jpg",
-    "lic": "CC BY-SA 3.0"
+    "title": "2026 Street Glide studio product image",
+    "url": "https://www.harley-davidson.com/us/en/motorcycles/street-glide.html",
+    "lic": "Harley-Davidson product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-slingshot": {
-    "title": "File:Polaris Slingshot SL Saint Johnsbury VT July 2020 front.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Polaris_Slingshot_SL_Saint_Johnsbury_VT_July_2020_front.jpg",
-    "lic": "CC BY-SA 4.0"
+    "title": "2026 Slingshot S catalog photograph",
+    "url": "https://slingshot.polaris.com/en-us/slingshot-s/",
+    "lic": "Slingshot / Polaris 2026 catalog photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-seadoo": {
-    "title": "File:Man riding Seadoo, Erieau, Ontario, 2025-07-06.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Man_riding_Seadoo,_Erieau,_Ontario,_2025-07-06.jpg",
-    "lic": "CC BY-SA 4.0"
+    "title": "2027 RXP-X studio product image",
+    "url": "https://sea-doo.brp.com/us/en/models/personal-watercrafts/performance/rxp-x.html",
+    "lic": "Sea-Doo / BRP product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-indian": {
-    "title": "File:Indian Chief Vintage 111 ci 2014.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Indian_Chief_Vintage_111_ci_2014.jpg",
-    "lic": "CC0"
+    "title": "2026 Challenger Dark Horse lifestyle photograph",
+    "url": "https://www.indianmotorcycle.media/product/2026-indian-challenger-dark-horse/",
+    "lic": "Indian Motorcycle press photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "brand-italica": {
-    "title": "File:Golf-cart fairway.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Golf-cart_fairway.jpg",
-    "lic": "CC0"
+    "title": "Italica Diablo 50 studio product image",
+    "url": "https://www.italicamotors.com/shop",
+    "lic": "Italica Motors product photograph. Not a Creative Commons license. Hosted for this concept demo."
   },
   "unit-outlander-2": {
     "title": "File:2021 Can-Am Outlander 570.jpg",
