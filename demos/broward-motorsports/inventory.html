@@ -14,8 +14,17 @@
 <main class="w page">
   <h1>Inventory</h1>
   <form id="filters">
-    <div class="filters">
+    <div class="inv-top">
       <label>Search <input id="q" name="q" placeholder="Name, brand, stock"></label>
+      <button class="btn gl filter-open" type="button" id="filter-open" aria-expanded="false" aria-controls="filter-rest">Filters</button>
+    </div>
+    <button class="filter-backdrop" type="button" id="filter-backdrop" aria-label="Close"></button>
+    <div class="filter-rest" id="filter-rest">
+      <div class="filter-sheet-bar">
+        <strong id="filter-title">Filters</strong>
+        <button class="btn gl" type="button" id="filter-close">Close</button>
+      </div>
+    <div class="filters">
       <label>Condition
         <select id="condition" name="condition">
           <option value="">Any</option>
@@ -76,6 +85,7 @@
         </select>
       </label>
       <button class="btn rd" type="submit">Update</button>
+    </div>
     </div>
   </form>
   <p class="count" id="count"></p>

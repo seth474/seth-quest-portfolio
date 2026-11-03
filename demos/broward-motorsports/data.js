@@ -83,10 +83,10 @@ window.BROWARD = {
         alt: "A green side-by-side driving across the sand at dusk"
       },
       chip: { moto: "Motorcycles", sxs: "Side-by-Sides", atv: "ATVs", pwc: "PWC", boat: "Boats", golf: "Golf Carts" },
-      h: { cat: "Shop by category", brand: "Shop by brand", style: "Shop by style", lot: "On the lot now" },
-      seeSample: "See this sample",
+      h: { cat: "Shop by category", brand: "Shop by brand", style: "Shop by style", cond: "New and pre-owned", lot: "On the lot now" },
+      seeSample: "See the lot",
       lot: { fresh: "386 on the lot", used: "37 on the lot" },
-      inSample: "in this sample",
+      inSample: "in stock",
       box: {
         approveH: "Get pre-approved",
         approveP: "Tell us who you are. This concept keeps the note on the page.",
@@ -94,7 +94,7 @@ window.BROWARD = {
         tradeP: "Year, make, and model are enough for a first look.",
         visitH: "Visit the store",
         visitP: "4101 Davie Road Ext., Hollywood, FL 33024. Mon–Sat 9–7.",
-        visitCta: "Browse the sample lot"
+        visitCta: "Browse the lot"
       },
       inv: {
         h: "Inventory",
@@ -111,9 +111,10 @@ window.BROWARD = {
         max: "Max price",
         sort: "Sort",
         update: "Update",
+        filters: "Filters",
         one: "unit",
         many: "units",
-        empty: "Nothing in this sample matches."
+        empty: "Nothing matches."
       },
       opt: {
         Any: "Any",
@@ -146,10 +147,10 @@ window.BROWARD = {
       inStock: "in stock",
       inStockH: "In stock",
       openSearch: "Open in search",
-      missingBrand: "That brand is not in this sample.",
-      missingModel: "That model is not in this sample.",
-      missingUnit: "That unit is not in this sample.",
-      inThisSample: "In this sample",
+      missingBrand: "That brand is not in stock.",
+      missingModel: "That model is not in stock.",
+      missingUnit: "That unit is not in stock.",
+      inThisSample: "In stock",
       styleWord: "Style",
       lowest: "Lowest price here",
       seeStock: "See what is in stock",
@@ -206,10 +207,10 @@ window.BROWARD = {
         alt: "Un side-by-side verde cruzando la arena al atardecer"
       },
       chip: { moto: "Motos", sxs: "Side-by-Sides", atv: "ATV", pwc: "PWC", boat: "Botes", golf: "Carritos de golf" },
-      h: { cat: "Compra por categoría", brand: "Compra por marca", style: "Compra por estilo", lot: "En el lote ahora" },
-      seeSample: "Ver esta muestra",
+      h: { cat: "Compra por categoría", brand: "Compra por marca", style: "Compra por estilo", cond: "Nuevos y usados", lot: "En el lote ahora" },
+      seeSample: "Ver el lote",
       lot: { fresh: "386 en el lote", used: "37 en el lote" },
-      inSample: "en esta muestra",
+      inSample: "en inventario",
       box: {
         approveH: "Pide preaprobación",
         approveP: "Cuéntanos quién eres. Este concepto deja la nota en la página.",
@@ -217,7 +218,7 @@ window.BROWARD = {
         tradeP: "Con el año, la marca y el modelo basta para un primer vistazo.",
         visitH: "Visita la tienda",
         visitP: "4101 Davie Road Ext., Hollywood, FL 33024. Lun–Sáb 9–7.",
-        visitCta: "Ver el lote de muestra"
+        visitCta: "Ver el lote"
       },
       inv: {
         h: "Inventario",
@@ -234,9 +235,10 @@ window.BROWARD = {
         max: "Precio máx.",
         sort: "Ordenar",
         update: "Actualizar",
+        filters: "Filtros",
         one: "unidad",
         many: "unidades",
-        empty: "Nada en esta muestra coincide."
+        empty: "Nada coincide."
       },
       opt: {
         Any: "Cualquiera",
@@ -269,10 +271,10 @@ window.BROWARD = {
       inStock: "en inventario",
       inStockH: "En inventario",
       openSearch: "Abrir en la búsqueda",
-      missingBrand: "Esa marca no está en esta muestra.",
-      missingModel: "Ese modelo no está en esta muestra.",
-      missingUnit: "Esa unidad no está en esta muestra.",
-      inThisSample: "En esta muestra",
+      missingBrand: "Esa marca no está en inventario.",
+      missingModel: "Ese modelo no está en inventario.",
+      missingUnit: "Esa unidad no está en inventario.",
+      inThisSample: "En inventario",
       styleWord: "Estilo",
       lowest: "Precio más bajo aquí",
       seeStock: "Ver lo que hay en inventario",
