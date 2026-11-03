@@ -79,11 +79,10 @@
     "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Brute_Force_750.jpg",
     "lic": "CC BY-SA 4.0"
   },
-  "hero-sunset": {
-    "title": "Desert sunset",
-    "url": "https://www.pexels.com/video/desert-sunset-18985340/",
-    "author": "Aamir Somewhere",
-    "lic": "Pexels License (free to use)"
+  "hero-dusk": {
+    "title": "Footage from Broward Motorsports' own YouTube video",
+    "url": "https://www.youtube.com/watch?v=H0Kjo76xuqE",
+    "lic": "Footage from Broward Motorsports' own YouTube video"
   },
   "start": {
     "title": "A person starting a motorcycle",
