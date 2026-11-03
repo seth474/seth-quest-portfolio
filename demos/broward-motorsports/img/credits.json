@@ -79,10 +79,17 @@
     "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Brute_Force_750.jpg",
     "lic": "CC BY-SA 4.0"
   },
-  "hero-mud": {
-    "title": "2nd Recon gets muddy with the Razor",
-    "url": "https://commons.wikimedia.org/wiki/File:2nd_Recon_gets_muddy_with_the_Razor_150901-M-ML847-118.jpg",
-    "lic": "Public domain (U.S. Marine Corps photo by Sgt. Laura Gauna)"
+  "hero-night": {
+    "title": "People riding a quad bike during nighttime",
+    "url": "https://www.pexels.com/video/people-riding-a-quad-bike-during-nighttime-5976697/",
+    "author": "Tima Miroshnichenko",
+    "lic": "Pexels License (free to use)"
+  },
+  "start": {
+    "title": "A person starting a motorcycle",
+    "url": "https://www.pexels.com/video/a-person-starting-a-motorcycle-4922589/",
+    "author": "Pavel Danilyuk",
+    "lic": "Pexels License (free to use). The download has no audio track, so Hear it start plays muted."
   },
   "maverick": {
     "title": "File:Can-Am Maverick Front.JPG",

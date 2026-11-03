@@ -290,6 +290,7 @@
       return;
     }
     var units = UNITS.filter(function (u) { return u.modelSlug === key; });
+    var hear = sample.category === "Motorcycle";
     document.title = sample.model + " · Broward Motorsports";
     root.innerHTML =
       '<section class="model-hero"><img src="' + img(sample.img) + '" alt="">' +
@@ -302,8 +303,9 @@
       '<a class="btn rd" href="#stock">See what is in stock</a> <button class="btn gl" type="button" data-open="approve">Get pre-approved</button>' +
       "</div></section>" +
       '<main class="w page"><div class="sh"><h2>Hear it start</h2><span>Filmed on our lot</span></div>' +
-      '<div class="sound"><img src="' + img(sample.img) + '" alt=""><video data-sound poster="' + img(sample.img) + '" muted loop playsinline></video>' +
-      '<span class="playtag" data-sound-label>Playing muted</span><button class="sbtn" type="button" data-sound-btn>Tap for sound</button>' +
+      '<div class="sound">' + (hear
+        ? '<video data-sound src="' + BASE + '/img/start.mp4" poster="' + BASE + '/img/start.jpg" muted autoplay loop playsinline></video><span class="playtag">Startup</span>'
+        : '<img src="' + img(sample.img) + '" alt=""><video data-sound poster="' + img(sample.img) + '" muted loop playsinline></video><span class="playtag" data-sound-label>Playing muted</span><button class="sbtn" type="button" data-sound-btn>Tap for sound</button>') +
       '<div class="cap"><b>Walk-up, start, rev</b><span>Walk-up, start, rev. Filmed on our lot.</span></div></div>' +
       '<div class="sh" id="stock"><h2>In stock at Broward</h2><span>Price shown is the price</span></div><div class="grid">' +
       units.map(card).join("") + "</div>" +
@@ -313,11 +315,15 @@
     var video = document.querySelector("[data-sound]");
     var btn = document.querySelector("[data-sound-btn]");
     var label = document.querySelector("[data-sound-label]");
-    btn.addEventListener("click", function () {
+    if (video && video.getAttribute("src")) {
+      var play = video.play();
+      if (play && play.catch) play.catch(function () {});
+    }
+    if (btn && video) btn.addEventListener("click", function () {
       video.muted = !video.muted;
       if (!video.muted) {
-        var play = video.play();
-        if (play && play.catch) play.catch(function () {});
+        var again = video.play();
+        if (again && again.catch) again.catch(function () {});
       }
       label.textContent = video.muted ? "Playing muted" : "Sound on";
       btn.textContent = video.muted ? "Tap for sound" : "Tap to mute";
