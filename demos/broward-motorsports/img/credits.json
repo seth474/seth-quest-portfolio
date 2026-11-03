@@ -35,8 +35,8 @@
     "lic": "CC BY-SA 4.0"
   },
   "outlander": {
-    "title": "File:Dutch marine ATV Can-Am Outlander 6×6 Joint Mountain Training 2023 in Norway.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Dutch_marine_ATV_Can-Am_Outlander_6%C3%976_Joint_Mountain_Training_2023_in_Norway.jpg",
+    "title": "File:Can-Am Outlander Max XT-P 1000 T - Mondial de l'Automobile de Paris 2018 - 002.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Can-Am_Outlander_Max_XT-P_1000_T_-_Mondial_de_l%27Automobile_de_Paris_2018_-_002.jpg",
     "lic": "CC BY-SA 4.0"
   },
   "seadoo": {
@@ -239,6 +239,31 @@
     "title": "File:Jetboot Jetski DM 2007 Krautsand 2.jpg",
     "url": "https://commons.wikimedia.org/wiki/File:Jetboot_Jetski_DM_2007_Krautsand_2.jpg",
     "lic": "CC BY-SA 3.0"
+  },
+  "style-cruiser": {
+    "title": "File:Harley Davidson FAT BOY 114.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Harley_Davidson_FAT_BOY_114.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "style-sport": {
+    "title": "File:Kawasaki Ninja 400.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_400.jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "style-dirt": {
+    "title": "File:Yamaha YZ 450 F - EICMA 2024.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_YZ_450_F_-_EICMA_2024.jpg",
+    "lic": "CC BY 4.0"
+  },
+  "style-utility": {
+    "title": "File:Polaris Ranger XP, Agritechnica 2023, Hanover (P1160306-RR).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_Ranger_XP,_Agritechnica_2023,_Hanover_(P1160306-RR).jpg",
+    "lic": "CC BY-SA 4.0"
+  },
+  "style-sxs": {
+    "title": "File:Polaris RZR Pro R.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_RZR_Pro_R.jpg",
+    "lic": "CC BY-SA 4.0"
   },
   "cat-sxs": {
     "title": "File:2021 Can-Am Commander XT 1000R.jpg",

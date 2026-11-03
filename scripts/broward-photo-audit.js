@@ -35,6 +35,12 @@ units.forEach(function (unit) {
   addUse(unit.img, 'listing ' + unit.stock + ' ' + unit.year + ' ' + unit.brand + ' ' + unit.model);
 });
 
+const listingNames = new Set(units.map(function (unit) { return unit.img; }));
+const dataText = fs.readFileSync(path.join(root, 'data.js'), 'utf8');
+(dataText.match(/[\w.-]+\.(?:jpg|jpeg|png|webp)/gi) || []).forEach(function (file) {
+  if (!listingNames.has(file)) addUse(file, 'data.js');
+});
+
 function walk(dir) {
   fs.readdirSync(dir).forEach(function (name) {
     const full = path.join(dir, name);
