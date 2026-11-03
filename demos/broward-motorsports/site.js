@@ -358,17 +358,15 @@
       "</div>";
   }
   function header() {
-    var unit = currentUnit();
     return '<header class="top"><div class="w hd">' +
       '<a class="logo" href="' + BASE + '/">BROWARD <b>MOTORSPORTS</b></a>' +
       '<button class="menu" type="button" aria-expanded="false" aria-label="' + t("menu") + '">' + t("menu") + "</button>" +
       '<nav class="nav">' + navLinks() + '</nav><div class="sp"></div>' +
-      '<div class="hd-tools">' + langToggle() + contactLinks(unit, "icon") +
+      '<div class="hd-tools">' + langToggle() +
       '<button class="btn wh approve" type="button" data-open="approve">' + t("approve") + "</button>" +
       "</div></div></header>" +
       '<div class="drawer w" id="drawer">' + navLinks() +
-      '<button class="btn wh" type="button" data-open="approve">' + t("approve") + "</button>" +
-      '<div class="drawer-contacts">' + contactLinks(unit, "labeled") + "</div></div>";
+      '<button class="btn wh" type="button" data-open="approve">' + t("approve") + "</button></div>";
   }
   function footer() {
     return '<footer class="foot"><div class="w">' +
@@ -490,6 +488,14 @@
     location.href = inv(next);
   }
 
+  function syncHeader() {
+    var bar = document.querySelector("header.top");
+    if (!bar) return;
+    var page = document.body.getAttribute("data-page");
+    var overHero = document.body.classList.contains("home") || page === "brand" || page === "model";
+    bar.classList.toggle("is-solid", !overHero || window.scrollY > 12);
+  }
+
   function bindOnce() {
     if (bound) return;
     bound = true;
@@ -507,6 +513,7 @@
       var modalEl = document.getElementById("modal");
       if (modalEl) modalEl.hidden = true;
     });
+    window.addEventListener("scroll", syncHeader, { passive: true });
     var search = document.getElementById("hero-search");
     if (search) search.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -914,6 +921,7 @@
     if (page === "unit") unitPage();
     applyStatic();
     bindOnce();
+    syncHeader();
   }
 
   render();
