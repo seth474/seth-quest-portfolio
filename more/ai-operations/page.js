@@ -1,6 +1,7 @@
 /* MORE. sales-page template
    Change the offer by editing index.html.
-   BOOKING_URL     — Zoom or calendar link. "" keeps #book.
+   BOOKING_URL     — kept for older links. The booking buttons open the modal.
+   CALENDLY_URL    — inline calendar. "" shows a thanks line instead of the embed.
    SIGNUP_URL      — endpoint for the weekly-video form. "" keeps the placeholder.
    BUY_COURSE_URL  — checkout link for the $480 course. "" keeps #course.
    VSL_EMBED    — "" keeps the hero <video> already in the page.
@@ -8,6 +9,7 @@
                   Autoplay stays off. Watch buttons play the hero with sound. */
 
 const BOOKING_URL = '';
+const CALENDLY_URL = 'https://calendly.com/seth-sethquest/30min';
 const SIGNUP_URL = '';
 const BUY_COURSE_URL = '';
 const VSL_EMBED = '';
@@ -45,15 +47,159 @@ stayAtTop();
 window.addEventListener('pageshow', stayAtTop);
 window.addEventListener('load', stayAtTop);
 
+function openBooking() {
+  var modal = document.getElementById('book-modal');
+  if (!modal || !modal.hidden) return;
+  var sheet = modal.querySelector('.book-sheet');
+  var step1 = modal.querySelector('[data-book-step="1"]');
+  var step2 = modal.querySelector('[data-book-step="2"]');
+  var error = modal.querySelector('[data-book-error]');
+  var thanks = modal.querySelector('[data-book-thanks]');
+  var slot = modal.querySelector('[data-calendly]');
+  var locked = window.scrollY || window.pageYOffset || 0;
+
+  function focusable() {
+    var nodes = sheet.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    return Array.prototype.filter.call(nodes, function (el) {
+      return !el.disabled && !el.hidden && el.offsetParent !== null;
+    });
+  }
+  function onKey(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    var items = focusable();
+    if (!items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+  function close() {
+    modal.hidden = true;
+    document.removeEventListener('keydown', onKey);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.documentElement.classList.remove('book-lock');
+    var root = document.documentElement;
+    var prior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, locked);
+    root.style.scrollBehavior = prior;
+    step1.hidden = false;
+    step2.hidden = true;
+    if (error) error.hidden = true;
+    if (thanks) thanks.hidden = true;
+    if (slot) {
+      slot.hidden = true;
+      slot.innerHTML = '';
+    }
+    if (step1.reset) step1.reset();
+  }
+  function showThanks() {
+    step1.hidden = true;
+    step2.hidden = false;
+    if (slot) slot.hidden = true;
+    if (thanks) thanks.hidden = false;
+    var closer = modal.querySelector('.book-x');
+    if (closer) closer.focus();
+  }
+  function mountCalendly(name, email) {
+    step1.hidden = true;
+    step2.hidden = false;
+    if (thanks) thanks.hidden = true;
+    if (slot) slot.hidden = false;
+    function start() {
+      if (!window.Calendly || !slot) {
+        showThanks();
+        return;
+      }
+      slot.innerHTML = '';
+      window.Calendly.initInlineWidget({
+        url: CALENDLY_URL,
+        parentElement: slot,
+        prefill: { name: name, email: email }
+      });
+      var closer = modal.querySelector('.book-x');
+      if (closer) closer.focus();
+    }
+    if (window.Calendly) {
+      start();
+      return;
+    }
+    var script = document.querySelector('script[data-calendly]');
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.setAttribute('data-calendly', '');
+      script.onerror = showThanks;
+      document.head.appendChild(script);
+    }
+    script.addEventListener('load', start, { once: true });
+  }
+  var closers = modal.querySelectorAll('[data-book-close]');
+  for (var c = 0; c < closers.length; c++) {
+    closers[c].onclick = close;
+  }
+  step1.onsubmit = function (event) {
+    event.preventDefault();
+    var nameInput = step1.querySelector('[name="name"]');
+    var emailInput = step1.querySelector('[name="email"]');
+    var name = nameInput ? nameInput.value.replace(/^\s+|\s+$/g, '') : '';
+    var email = emailInput ? emailInput.value.replace(/^\s+|\s+$/g, '') : '';
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk) {
+      if (error) error.hidden = false;
+      if (!name && nameInput) nameInput.focus();
+      else if (emailInput) emailInput.focus();
+      return;
+    }
+    if (error) error.hidden = true;
+    if (SIGNUP_URL) {
+      var payload = new FormData();
+      payload.append('name', name);
+      payload.append('email', email);
+      payload.append('source', 'booking');
+      fetch(SIGNUP_URL, { method: 'POST', body: payload }).catch(function () {});
+    }
+    if (!CALENDLY_URL) showThanks();
+    else mountCalendly(name, email);
+  };
+
+  document.body.style.top = '-' + locked + 'px';
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
+  document.documentElement.classList.add('book-lock');
+  modal.hidden = false;
+  document.addEventListener('keydown', onKey);
+  var nameField = step1.querySelector('[name="name"]');
+  if (nameField) nameField.focus();
+}
+
 (function () {
   var links = document.querySelectorAll('[data-booking]');
   for (var i = 0; i < links.length; i++) {
-    if (!BOOKING_URL) continue;
-    links[i].href = BOOKING_URL;
-    if (/^https?:/i.test(BOOKING_URL)) {
-      links[i].target = '_blank';
-      links[i].rel = 'noopener noreferrer';
+    if (BOOKING_URL) {
+      links[i].href = BOOKING_URL;
+      if (/^https?:/i.test(BOOKING_URL)) {
+        links[i].target = '_blank';
+        links[i].rel = 'noopener noreferrer';
+      }
     }
+    links[i].addEventListener('click', function (event) {
+      event.preventDefault();
+      openBooking();
+    });
   }
 
   var buy = document.querySelector('[data-buy]');
