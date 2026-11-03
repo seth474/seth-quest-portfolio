@@ -3,9 +3,9 @@
    BOOKING_URL     — Zoom or calendar link. "" keeps #book.
    SIGNUP_URL      — endpoint for the weekly-video form. "" keeps the placeholder.
    BUY_COURSE_URL  — checkout link for the $480 course. "" keeps #course.
-   VSL_EMBED    — "" keeps the poster. Set a video file (.mp4, .webm, .ogg)
-                  or an embed URL (YouTube, Vimeo, Loom, or an iframe src).
-                  Autoplay is forced off. File videos load VSL_CAPTIONS. */
+   VSL_EMBED    — "" keeps the hero <video> already in the page.
+                  A file or embed URL here replaces that player.
+                  Autoplay stays off. Watch buttons play the hero with sound. */
 
 const BOOKING_URL = '';
 const SIGNUP_URL = '';
@@ -65,7 +65,7 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
   var slot = document.getElementById('vsl');
   var poster = slot && slot.querySelector('.poster');
   var src = resolveEmbed(VSL_EMBED);
-  if (slot && poster && src) mountVideo(slot, poster, src);
+  if (slot && poster && src && !slot.querySelector('video')) mountVideo(slot, poster, src);
 
   var watches = document.querySelectorAll('[data-watch]');
   for (var w = 0; w < watches.length; w++) {
@@ -74,8 +74,12 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
       var video = film && film.querySelector('video');
       if (!film || !video) return;
       event.preventDefault();
-      film.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      video.play();
+      var reduce = document.documentElement.classList.contains('reduce');
+      film.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      video.muted = false;
+      video.volume = 1;
+      var started = video.play();
+      if (started && typeof started.catch === 'function') started.catch(function () {});
     });
   }
 

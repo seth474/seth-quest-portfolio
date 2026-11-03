@@ -117,12 +117,19 @@ describe('ai operations page', () => {
     assert.doesNotMatch(html, /autoplay/i);
     assert.match(js, /kind = 'captions'/);
     assert.match(js, /captions\.vtt/);
+    assert.match(js, /video\.muted = false/);
     assert.equal(fs.existsSync(path.join(root, 'more/ai-operations/captions.vtt')), true);
+    assert.equal(fs.existsSync(path.join(root, 'more/ai-operations/ai-ops-vsl.mp4')), true);
+    assert.equal(fs.existsSync(path.join(root, 'more/ai-operations/ai-ops-vsl-poster.jpg')), true);
     assert.equal((html.match(/class="frame( |")/g) || []).length, 6);
-    assert.equal((html.match(/frame-meta">Video placeholder/g) || []).length, 6);
+    assert.equal((html.match(/frame-meta">Video placeholder/g) || []).length, 5);
     assert.match(html, /id="vsl"/);
-    assert.match(html, /class="poster"/);
-    assert.match(html, /class="hero"[\s\S]*id="vsl"/);
+    assert.match(html, /class="hero"[\s\S]*id="vsl"[\s\S]*<video/);
+    assert.match(html, /poster="\/more\/ai-operations\/ai-ops-vsl-poster\.jpg"/);
+    assert.match(html, /src="\/more\/ai-operations\/ai-ops-vsl\.mp4"/);
+    assert.match(html, /playsinline/);
+    assert.match(html, /preload="metadata"/);
+    assert.match(html, /\scontrols[\s>]/);
   });
 
   test('pain videos are separate scenes, not one stacked menu', () => {
