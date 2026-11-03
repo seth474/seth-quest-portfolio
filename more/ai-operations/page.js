@@ -83,8 +83,77 @@ const VSL_CAPTIONS = '/more/ai-operations/captions.vtt';
     });
   }
 
+  var heroVideo = document.querySelector('#vsl video');
+  if (heroVideo) trackHeroVideo(heroVideo);
+
   revealOnScroll();
 })();
+
+function trackHeroVideo(video) {
+  var bar = document.querySelector('[data-vsl-progress]');
+  var fill = bar && bar.firstElementChild;
+  var book = document.querySelector('[data-vsl-book]');
+  if (!bar || !fill) return;
+  var reduce = document.documentElement.classList.contains('reduce');
+  var frame = 0;
+  var running = false;
+
+  function ratio() {
+    var dur = video.duration;
+    if (!dur || !isFinite(dur)) return 0;
+    return Math.min(1, Math.max(0, video.currentTime / dur));
+  }
+  function paint() {
+    fill.style.transform = 'scaleX(' + ratio().toFixed(4) + ')';
+  }
+  function loop() {
+    paint();
+    if (!running) return;
+    frame = requestAnimationFrame(loop);
+  }
+  function startLoop() {
+    if (reduce) {
+      paint();
+      return;
+    }
+    if (running) return;
+    running = true;
+    loop();
+  }
+  function stopLoop() {
+    running = false;
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    paint();
+  }
+
+  video.addEventListener('timeupdate', paint);
+  video.addEventListener('play', function () {
+    bar.hidden = false;
+    bar.classList.add('is-on');
+    bar.classList.remove('is-done');
+    startLoop();
+  });
+  video.addEventListener('pause', stopLoop);
+  video.addEventListener('seeked', paint);
+  video.addEventListener('ended', function () {
+    stopLoop();
+    fill.style.transform = 'scaleX(1)';
+    bar.classList.remove('is-on');
+    bar.classList.add('is-done');
+    if (!book) return;
+    book.hidden = false;
+    if (reduce) {
+      book.classList.add('is-in');
+      return;
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        book.classList.add('is-in');
+      });
+    });
+  });
+}
 
 function revealOnScroll() {
   var nodes = document.querySelectorAll('[data-reveal]');
