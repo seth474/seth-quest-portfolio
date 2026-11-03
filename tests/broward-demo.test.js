@@ -12,7 +12,17 @@ const vercel = fs.readFileSync(path.join(__dirname, '..', 'vercel.json'), 'utf8'
 test('broward demo is a noindex concept with the approved headline', () => {
   assert.match(html, /noindex/);
   assert.match(html.replace(/<[^>]+>/g, " "), /ATVs, motorcycles and\s+side-by-sides\s+in Hollywood, FL\./);
-  assert.match(html, /hero-night\.mp4/);
+  assert.match(html, /hero-sunset\.mp4/);
+  assert.match(html, /hero-sunset-720\.mp4/);
+  assert.match(html, /muted autoplay loop playsinline/);
+  assert.equal(html.includes('hero-night'), false);
+  assert.equal(fs.existsSync(path.join(root, 'img/hero-night.mp4')), false);
+  assert.equal(fs.existsSync(path.join(root, 'img/hero-sunset.mp4')), true);
+  const credits = fs.readFileSync(path.join(root, 'img/credits.json'), 'utf8');
+  assert.match(credits, /Aamir Somewhere/);
+  assert.match(credits, /desert-sunset-18985340/);
+  assert.equal(credits.includes('hero-night'), false);
+  assert.equal(credits.includes('Tima Miroshnichenko'), false);
   assert.match(html, /class="keep"/);
   assert.match(html, /386 new and 37 pre-owned on the lot\./);
   assert.equal(html.includes('Ride after dark'), false);
