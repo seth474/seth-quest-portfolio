@@ -3,8 +3,8 @@
   var bound = false;
   var DEALER = window.BROWARD.dealer;
   var COPY = window.BROWARD.copy;
-  var SALES = DEALER.phone;
   var LANG_KEY = DEALER.langKey;
+  var LOC_KEY = DEALER.locationKey || "broward-location";
 
   function lang() {
     try {
@@ -75,8 +75,21 @@
     if (document.body.getAttribute("data-page") !== "unit") return null;
     return findUnit(routeKey("inventory", "id")) || null;
   }
+  function place() {
+    var list = window.BROWARD.locations || [];
+    var id = "";
+    try { id = localStorage.getItem(LOC_KEY) || ""; } catch (e) {}
+    var found = list.filter(function (loc) { return loc.id === id; })[0];
+    return found || list[0] || { id: "hollywood", name: DEALER.city, address: DEALER.address, city: DEALER.city, phone: DEALER.phone, hours: { en: "", es: "" } };
+  }
+  function phoneDigits() { return place().phone || DEALER.phone; }
   function salesPretty() {
-    return "(" + SALES.slice(0, 3) + ") " + SALES.slice(3, 6) + "-" + SALES.slice(6);
+    var digits = phoneDigits();
+    return "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6);
+  }
+  function hoursNow() {
+    var hours = place().hours || {};
+    return hours[lang()] || hours.en || "";
   }
   function contactMessage(unit) {
     if (unit) {
@@ -94,8 +107,8 @@
   }
   function contactLinks(unit, kind) {
     var msg = encodeURIComponent(contactMessage(unit));
-    var wa = "https://wa.me/1" + SALES + "?text=" + msg;
-    var sms = "sms:+1" + SALES + "?&body=" + msg;
+    var wa = "https://wa.me/1" + phoneDigits() + "?text=" + msg;
+    var sms = "sms:+1" + phoneDigits() + "?&body=" + msg;
     var cls = kind === "icon" ? "contact icon" : "contact labeled";
     return '<a class="' + cls + ' wa" href="' + wa + '" target="_blank" rel="noopener noreferrer" title="' + t("wa") + '">' + waSvg() + "<span>" + t("wa") + "</span></a>" +
       '<a class="' + cls + ' sms" href="' + sms + '" title="' + t("sms") + '">' + chatSvg() + "<span>" + t("sms") + "</span></a>";
@@ -115,22 +128,30 @@
       '<button type="button" data-lang="es" aria-pressed="' + (es ? "true" : "false") + '">ES</button>' +
       "</div>";
   }
+  function locSelect() {
+    var current = place().id;
+    var opts = (window.BROWARD.locations || []).map(function (loc) {
+      return '<option value="' + loc.id + '"' + (loc.id === current ? " selected" : "") + ">" + loc.name + "</option>";
+    }).join("");
+    return '<label class="loc"><span>' + t("shoppingAt") + '</span><select data-loc aria-label="' + t("shoppingAt") + '">' + opts + "</select></label>";
+  }
   function header() {
     return '<header class="top"><div class="w hd">' +
       '<a class="logo" href="' + BASE + '/"><span>' + DEALER.logo[0] + "</span><b>" + DEALER.logo[1] + "</b></a>" +
       '<button class="menu" type="button" aria-expanded="false" aria-label="' + t("menu") + '">' + t("menu") + "</button>" +
       '<nav class="nav">' + navLinks() + '</nav><div class="sp"></div>' +
-      '<div class="hd-tools">' + langToggle() +
+      '<div class="hd-tools">' + locSelect() + langToggle() +
       '<button class="btn wh approve" type="button" data-open="approve">' + t("approve") + "</button>" +
       "</div></div></header>" +
       '<div class="drawer w" id="drawer">' +
+      '<div class="drawer-loc">' + locSelect() + "</div>" +
       '<div class="drawer-tools">' + langToggle() +
       '<button class="btn wh" type="button" data-open="approve">' + t("approve") + "</button></div>" +
       navLinks() + "</div>";
   }
   function footer() {
     return '<footer class="foot"><div class="w">' +
-      DEALER.name + " · " + DEALER.address + " · " + salesPretty() + " · " + t("footer.hours") +
+      DEALER.name + " · " + place().address + " · " + salesPretty() + " · " + hoursNow() +
       '<p class="concept">' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a> · <a href=\"" + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
       "</div></footer>";
   }
@@ -262,6 +283,13 @@
     if (bound) return;
     bound = true;
     document.body.addEventListener("click", onClick);
+    document.body.addEventListener("change", function (event) {
+      var sel = event.target.closest && event.target.closest("[data-loc]");
+      if (!sel) return;
+      if (sel.value === place().id) return;
+      try { localStorage.setItem(LOC_KEY, sel.value); } catch (e) {}
+      render();
+    });
     document.body.addEventListener("submit", function (event) {
       if (event.target && event.target.id === "lead") {
         event.preventDefault();
@@ -367,14 +395,8 @@
   function applyStatic() {
     var page = document.body.getAttribute("data-page");
     if (page === "home") {
-      var eyebrow = document.querySelector(".hero .eyebrow");
-      if (eyebrow) eyebrow.textContent = t("hero.eyebrow");
-      var lead = document.querySelector(".hero h1 .lead");
-      if (lead) lead.innerHTML = t("hero.lead");
-      var line = document.querySelector(".hero h1 .line");
-      if (line) line.textContent = t("hero.line");
-      var sub = document.querySelector(".hero .sub");
-      if (sub) sub.textContent = t("hero.sub");
+      var statement = document.querySelector(".hero h1");
+      if (statement) statement.textContent = t("hero.statement");
       var input = document.querySelector("#hero-search input");
       if (input) {
         input.placeholder = t("hero.ph");
@@ -398,28 +420,22 @@
       var sources = video ? video.querySelectorAll("source") : [];
       if (sources[0]) useSrc(sources[0], media.heroVideoMobile);
       if (sources[1]) useSrc(sources[1], media.heroVideo);
-      useSrc(document.querySelector(".wide.new img"), media.tileNew);
-      useSrc(document.querySelector(".wide.used img"), media.tileUsed);
+      useSrc(document.querySelector(".shop-tile.new img"), media.tileNew);
+      useSrc(document.querySelector(".shop-tile.used img"), media.tileUsed);
       var chipKeys = ["chip.moto", "chip.sxs", "chip.atv", "chip.pwc", "chip.golf"];
       document.querySelectorAll(".chips .chip").forEach(function (chip, i) {
         if (chipKeys[i]) chip.textContent = t(chipKeys[i]);
       });
-      var heads = ["h.cat", "h.brand", "h.style", "h.cond", "h.lot"];
+      var heads = ["h.cat", "h.brand", "h.style", "h.lot"];
       document.querySelectorAll("main .sec h2").forEach(function (h, i) {
         if (heads[i]) h.textContent = t(heads[i]);
       });
       var more = document.querySelector("main .sec .sh a");
       if (more) more.textContent = t("seeSample");
-      var fresh = document.querySelector(".wide.new");
-      if (fresh) {
-        fresh.querySelector("b").textContent = t("opt.New");
-        fresh.querySelector("small").textContent = t("lot.fresh");
-      }
-      var used = document.querySelector(".wide.used");
-      if (used) {
-        used.querySelector("b").textContent = t("opt.Pre-owned");
-        used.querySelector("small").textContent = t("lot.used");
-      }
+      var shopNew = document.querySelector(".shop-tile.new span");
+      var shopUsed = document.querySelector(".shop-tile.used span");
+      if (shopNew) shopNew.textContent = t("shopNew");
+      if (shopUsed) shopUsed.textContent = t("shopUsed");
       var boxes = document.querySelectorAll("#visit .box");
       if (boxes.length === 3) {
         boxes[0].querySelector("h3").textContent = t("box.approveH");
@@ -429,7 +445,7 @@
         boxes[1].querySelector("p").textContent = t("box.tradeP");
         boxes[1].querySelector("button").textContent = t("start");
         boxes[2].querySelector("h3").textContent = t("box.visitH");
-        boxes[2].querySelector("p").textContent = t("box.visitP");
+        boxes[2].querySelector("p").textContent = place().address + ". " + hoursNow();
         boxes[2].querySelector("a").textContent = t("box.visitCta");
       }
     }
@@ -593,8 +609,8 @@
     });
     var order = window.BROWARD.brands.map(function (b) { return b.slug; });
     document.getElementById("brands").innerHTML = order.filter(function (s) { return brands[s]; }).map(function (s) {
-      var thumb = BRAND_IMG[s] ? '<img class="thumb" src="' + img(BRAND_IMG[s]) + '" alt="">' : "";
-      return '<a class="brand" href="' + BASE + "/brands/" + s + '"><span class="brand-copy"><b>' + brands[s].name + "</b><small>" + brands[s].n + " " + t("inSample") + "</small></span>" + thumb + "</a>";
+      var thumb = BRAND_IMG[s] ? '<img src="' + img(BRAND_IMG[s]) + '" alt="">' : "";
+      return '<a class="brand" href="' + BASE + "/brands/" + s + '"><span>' + brands[s].name + "</span>" + thumb + "</a>";
     }).join("");
 
     var styles = window.BROWARD.styles.filter(function (s) { return countOf("style", s.id) > 0; });
@@ -673,7 +689,7 @@
     root.innerHTML =
       '<section class="brand-hero"><img src="' + img(sample.img) + '" alt="">' +
       '<div class="w"><div class="crumbs-wrap">' + crumbs([{ label: sample.brand }]) + "</div>" +
-      '<p class="eyebrow">' + sample.brand + "</p><h1>" + sample.brand + " " + t("inHollywood") + "</h1>" +
+      '<p class="eyebrow">' + sample.brand + "</p><h1>" + sample.brand + " " + t("inCity").replace("{city}", place().name) + "</h1>" +
       "<p>" + units.length + " " + t("inSample") + ". " + t("brandPick") + "</p></div></section>" +
       '<main class="w page"><div class="sh"><h2>' + t("models") + "</h2></div><div class=\"cats\">" +
       models.map(function (u) {
@@ -759,7 +775,7 @@
       "<div><span>" + t("styleWord") + "</span>" + t("opt." + u.style) + "</div>" +
       "<div><span>" + t("stock") + "</span>" + u.stock + "</div>" +
       vin +
-      "<div><span>" + t("location") + "</span>" + DEALER.city + "</div></div>" +
+      "<div><span>" + t("location") + "</span>" + place().city + "</div></div>" +
       '<div class="actions">' + contactLinks(u, "labeled") +
       '<button class="btn gl" type="button" data-open="approve">' + t("approve") + "</button>" +
       '<button class="btn gl" type="button" data-open="trade">' + t("trade") + "</button></div></main>";

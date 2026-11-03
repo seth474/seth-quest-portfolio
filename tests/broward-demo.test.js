@@ -11,7 +11,7 @@ const vercel = fs.readFileSync(path.join(__dirname, '..', 'vercel.json'), 'utf8'
 
 test('broward demo is a noindex concept with the approved headline', () => {
   assert.match(html, /noindex/);
-  assert.match(html.replace(/<[^>]+>/g, " "), /ATVs, motorcycles and\s+side-by-sides\s+in Hollywood, FL\./);
+  assert.match(html, /The largest selection of motorcycles and ATVs in Florida\./);
   assert.match(html, /hero-dusk\.mp4/);
   assert.match(html, /hero-dusk-720\.mp4/);
   assert.match(html, /muted autoplay loop playsinline/);
@@ -25,8 +25,7 @@ test('broward demo is a noindex concept with the approved headline', () => {
   assert.equal(credits.includes('hero-sunset'), false);
   assert.equal(credits.includes('Tima Miroshnichenko'), false);
   assert.equal(credits.includes('Aamir Somewhere'), false);
-  assert.match(html, /class="keep"/);
-  assert.match(html, /386 new and 37 pre-owned on the lot\./);
+  assert.equal(html.includes('386 new and 37 pre-owned on the lot.'), false);
   assert.equal(html.includes('Ride after dark'), false);
   assert.equal(data.includes('CFMoto'), false);
   assert.match(js, /model-wrap/);
