@@ -29,7 +29,6 @@
       <a class="chip" href="/demos/broward-motorsports/inventory?category=Side-by-Side">Side-by-Sides</a>
       <a class="chip" href="/demos/broward-motorsports/inventory?category=ATV">ATVs</a>
       <a class="chip" href="/demos/broward-motorsports/inventory?category=PWC">PWC</a>
-      <a class="chip" href="/demos/broward-motorsports/inventory?category=Boat">Boats</a>
       <a class="chip" href="/demos/broward-motorsports/inventory?category=Golf+Cart">Golf Carts</a>
     </div>
   </div>
@@ -37,20 +36,26 @@
 <main>
   <section class="w sec">
     <div class="sh"><h2>Shop by category</h2></div>
-    <div class="cats" id="cats"></div>
+    <div class="cat-slider">
+      <button class="cat-arrow prev" type="button" id="cat-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="cats cat-row" id="cats"></div>
+      <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
   </section>
   <section class="w sec">
     <div class="sh"><h2>Shop by brand</h2></div>
     <div class="brands" id="brands"></div>
+    <div class="more-wrap"><button class="btn gl" type="button" id="brands-more" data-fold hidden>Show more</button></div>
   </section>
   <section class="w sec">
     <div class="sh"><h2>Shop by style</h2></div>
     <div class="styles" id="styles"></div>
+    <div class="more-wrap"><button class="btn gl" type="button" id="styles-more" data-fold hidden>Show more</button></div>
   </section>
   <section class="w sec">
     <div class="pair">
-      <a class="wide new" href="/demos/broward-motorsports/inventory?condition=New"><div><b>New</b><small>386 on the lot</small></div></a>
-      <a class="wide used" href="/demos/broward-motorsports/inventory?condition=Pre-owned"><div><b>Pre-owned</b><small>37 on the lot</small></div></a>
+      <a class="wide new" href="/demos/broward-motorsports/inventory?condition=New"><img src="/demos/broward-motorsports/img/slingshot.jpg" alt=""><div><b>New</b><small>386 on the lot</small></div></a>
+      <a class="wide used" href="/demos/broward-motorsports/inventory?condition=Pre-owned"><img src="/demos/broward-motorsports/img/indian.jpg" alt=""><div><b>Pre-owned</b><small>37 on the lot</small></div></a>
     </div>
   </section>
   <section class="w sec">

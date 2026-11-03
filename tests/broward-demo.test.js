@@ -25,3 +25,18 @@ test('broward demo is a noindex concept with the approved headline', () => {
   assert.equal(data.includes('strikethrough'), false);
   assert.match(js, /sethquest\.com/);
 });
+
+test('broward demo uses direct WhatsApp and text links plus an EN/ES toggle', () => {
+  assert.match(js, /https:\/\/wa\.me\/1/);
+  assert.match(js, /9544369905/);
+  assert.match(js, /sms:\+1/);
+  assert.match(js, /\?&body=/);
+  assert.match(js, /Hi, I'm interested in the /);
+  assert.match(js, /Hi, I have a question about a vehicle/);
+  assert.match(js, /Hola, me interesa el /);
+  assert.match(js, /broward-lang/);
+  assert.match(js, /data-lang="es"/);
+  assert.equal(js.includes('data-open="text"'), false);
+  assert.equal(/elfsight|getbutton|whatsapp\.com\/widget/i.test(js), false);
+  assert.match(html, /<div class="hero-media">/);
+});

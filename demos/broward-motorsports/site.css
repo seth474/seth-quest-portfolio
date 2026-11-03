@@ -295,3 +295,183 @@ body.sub .top { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10
   .tile { aspect-ratio: 4/5; }
   .pr { font-size: 16px; }
 }
+
+.hd-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.lang {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  overflow: hidden;
+  flex: none;
+}
+.lang button {
+  appearance: none;
+  background: transparent;
+  color: #eee;
+  border: 0;
+  min-width: 34px;
+  min-height: 32px;
+  padding: 0 8px;
+  font: 700 12px/1 Inter, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: #fff; color: #111; }
+.contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px 0 12px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  flex: none;
+}
+.contact svg { width: 18px; height: 18px; display: block; flex: none; }
+.contact.wa { background: #25D366; color: #fff; }
+.contact.sms { background: var(--red); color: #fff; }
+.contact.icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.3);
+}
+.contact.icon span,
+.reach .contact span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.contact:focus-visible,
+.lang button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.reach {
+  position: fixed;
+  z-index: 30;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reach .contact {
+  width: 56px;
+  height: 56px;
+  min-height: 56px;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(0,0,0,.45);
+}
+.reach .contact svg { width: 30px; height: 30px; }
+.drawer .btn { margin: 8px 0; }
+.drawer-contacts { display: flex; gap: 8px; padding: 4px 0 8px; }
+.drawer-contacts .contact { flex: 1; }
+.foot { padding-bottom: 96px; }
+@media (max-width: 900px) {
+  .hd .approve { display: none; }
+}
+@media (max-width: 700px) {
+  body.home .hin { padding-bottom: 132px; }
+}
+@media (max-width: 420px) {
+  .top .w.hd { width: calc(100% - 16px); }
+  .logo { font-size: 10px; letter-spacing: 0; }
+  .hd { gap: 6px; }
+  .hd-tools { gap: 6px; }
+  .lang button { min-width: 28px; min-height: 28px; padding: 0 5px; }
+  .hd .contact.icon { width: 32px; height: 32px; min-height: 32px; }
+  .menu { width: 32px; height: 32px; }
+}
+.menu { overflow: hidden; font-size: 0; }
+.menu::before {
+  content: "";
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 -5px 0 #fff, 0 5px 0 #fff;
+}
+#cats.cat-row {
+  display: flex;
+  grid-template-columns: none;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+#cats.cat-row::-webkit-scrollbar { display: none; height: 0; }
+#cats.cat-row .tile {
+  flex: 0 0 calc((100% - 28px) / 3);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+.cat-slider { position: relative; }
+.cat-arrow {
+  display: none;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(8,8,8,.82);
+  color: #fff;
+  cursor: pointer;
+}
+.cat-arrow svg { width: 22px; height: 22px; display: block; }
+.cat-arrow.prev { left: 12px; }
+.cat-arrow.next { right: 12px; }
+.cat-arrow:disabled { opacity: .35; cursor: default; }
+.cat-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (min-width: 901px) {
+  .cat-arrow { display: grid; }
+}
+@media (max-width: 900px) {
+  #cats.cat-row .tile { flex-basis: 74%; }
+}
+a.brand {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 104px;
+}
+.brand-copy { display: flex; flex-direction: column; min-width: 0; }
+.brand .thumb {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex: none;
+  background: #111;
+}
+.more-wrap { display: flex; justify-content: center; margin-top: 16px; }
+.wide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.9);
+}
+.wide::after {
+  background: linear-gradient(180deg, rgba(0,0,0,.12) 20%, rgba(0,0,0,.78));
+}
