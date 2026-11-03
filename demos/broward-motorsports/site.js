@@ -1,255 +1,10 @@
 (function () {
   var BASE = "/demos/broward-motorsports";
-  var SALES = "9544369905";
-  var LANG_KEY = "broward-lang";
   var bound = false;
-
-  var COPY = {
-    en: {
-      menu: "Menu",
-      lang: "Language",
-      wa: "WhatsApp",
-      sms: "Text",
-      approve: "Get pre-approved",
-      trade: "Value your trade",
-      start: "Start",
-      search: "Search",
-      showMore: "Show more",
-      prev: "Previous",
-      next: "Next",
-      close: "Close",
-      note: "Send a note",
-      nav: { moto: "Motorcycles", off: "Off-Road", water: "Water", used: "Pre-owned", fin: "Financing", service: "Service" },
-      msg: { generic: "Hi, I have a question about a vehicle" },
-      footer: { hours: "Mon–Sat 9–7", concept: "Concept redesign by", credits: "Image credits" },
-      form: {
-        name: "Name",
-        contact: "Phone or email",
-        note: "Note",
-        send: "Send",
-        thanks: "Thanks. This stayed on the page. A person at the desk would take it from here."
-      },
-      hero: {
-        eyebrow: "Hollywood, Florida · 4101 Davie Road Ext.",
-        lead: 'ATVs, motorcycles and <span class="keep">side-by-sides</span>',
-        line: "in Hollywood, FL.",
-        sub: "386 new and 37 pre-owned on the lot.",
-        ph: "Search Ninja, RZR, Outlander, golf carts…",
-        aria: "Search the lot"
-      },
-      chip: { moto: "Motorcycles", sxs: "Side-by-Sides", atv: "ATVs", pwc: "PWC", boat: "Boats", golf: "Golf Carts" },
-      h: { cat: "Shop by category", brand: "Shop by brand", style: "Shop by style", lot: "On the lot now" },
-      seeSample: "See this sample",
-      lot: { fresh: "386 on the lot", used: "37 on the lot" },
-      inSample: "in this sample",
-      box: {
-        approveH: "Get pre-approved",
-        approveP: "Tell us who you are. This concept keeps the note on the page.",
-        tradeH: "Value your trade",
-        tradeP: "Year, make, and model are enough for a first look.",
-        visitH: "Visit the store",
-        visitP: "4101 Davie Road Ext., Hollywood, FL 33024. Mon–Sat 9–7.",
-        visitCta: "Browse the sample lot"
-      },
-      inv: {
-        h: "Inventory",
-        title: "Inventory",
-        search: "Search",
-        ph: "Name, brand, stock",
-        condition: "Condition",
-        category: "Category",
-        brand: "Brand",
-        style: "Style",
-        model: "Model",
-        anyModel: "Any model",
-        min: "Min price",
-        max: "Max price",
-        sort: "Sort",
-        update: "Update",
-        one: "unit",
-        many: "units",
-        empty: "Nothing in this sample matches."
-      },
-      opt: {
-        Any: "Any",
-        New: "New",
-        "Pre-owned": "Pre-owned",
-        ATV: "ATV",
-        Motorcycle: "Motorcycle",
-        "Side-by-Side": "Side-by-Side",
-        "Golf Cart": "Golf Cart",
-        PWC: "PWC",
-        Boat: "Boat",
-        "Off-road": "Off-road",
-        Water: "Water",
-        Cruiser: "Cruiser",
-        Sport: "Sport",
-        Adventure: "Adventure",
-        Dirt: "Dirt",
-        Utility: "Utility",
-        "Sport side-by-side": "Sport side-by-side",
-        Featured: "Featured",
-        "Price, low to high": "Price, low to high",
-        "Price, high to low": "Price, high to low",
-        "Newest year": "Newest year"
-      },
-      viewModel: "View the {model} model",
-      crumbs: "Breadcrumb",
-      inHollywood: "in Hollywood",
-      brandPick: "Pick a model, or scroll to every unit.",
-      models: "Models",
-      inStock: "in stock",
-      inStockH: "In stock",
-      openSearch: "Open in search",
-      missingBrand: "That brand is not in this sample.",
-      missingModel: "That model is not in this sample.",
-      missingUnit: "That unit is not in this sample.",
-      inThisSample: "In this sample",
-      styleWord: "Style",
-      lowest: "Lowest price here",
-      seeStock: "See what is in stock",
-      hear: "Hear it start",
-      filmed: "Filmed on our lot",
-      startup: "Startup",
-      muted: "Playing muted",
-      soundOn: "Sound on",
-      tapSound: "Tap for sound",
-      tapMute: "Tap to mute",
-      walk: "Walk-up, start, rev",
-      walkCap: "Walk-up, start, rev. Filmed on our lot.",
-      stockAt: "In stock at Broward",
-      priceIs: "Price shown is the price",
-      year: "Year",
-      brand: "Brand",
-      model: "Model",
-      stock: "Stock",
-      location: "Location",
-      creditsH: "Image credits",
-      creditsBack: "Back to the concept"
-    },
-    es: {
-      menu: "Menú",
-      lang: "Idioma",
-      wa: "WhatsApp",
-      sms: "Texto",
-      approve: "Pide preaprobación",
-      trade: "Cotiza tu intercambio",
-      start: "Empezar",
-      search: "Buscar",
-      showMore: "Ver más",
-      prev: "Anterior",
-      next: "Siguiente",
-      close: "Cerrar",
-      note: "Enviar una nota",
-      nav: { moto: "Motos", off: "Todoterreno", water: "Agua", used: "Usados", fin: "Financiamiento", service: "Servicio" },
-      msg: { generic: "Hola, tengo una pregunta sobre un vehículo" },
-      footer: { hours: "Lun–Sáb 9–7", concept: "Rediseño conceptual de", credits: "Créditos de imágenes" },
-      form: {
-        name: "Nombre",
-        contact: "Teléfono o correo",
-        note: "Nota",
-        send: "Enviar",
-        thanks: "Gracias. Esto se quedó en la página. Alguien en el mostrador lo toma desde aquí."
-      },
-      hero: {
-        eyebrow: "Hollywood, Florida · 4101 Davie Road Ext.",
-        lead: 'ATV, motos y <span class="keep">side-by-sides</span>',
-        line: "en Hollywood, FL.",
-        sub: "386 nuevos y 37 usados en el lote.",
-        ph: "Busca Ninja, RZR, Outlander, carritos de golf…",
-        aria: "Buscar en el lote"
-      },
-      chip: { moto: "Motos", sxs: "Side-by-Sides", atv: "ATV", pwc: "PWC", boat: "Botes", golf: "Carritos de golf" },
-      h: { cat: "Compra por categoría", brand: "Compra por marca", style: "Compra por estilo", lot: "En el lote ahora" },
-      seeSample: "Ver esta muestra",
-      lot: { fresh: "386 en el lote", used: "37 en el lote" },
-      inSample: "en esta muestra",
-      box: {
-        approveH: "Pide preaprobación",
-        approveP: "Cuéntanos quién eres. Este concepto deja la nota en la página.",
-        tradeH: "Cotiza tu intercambio",
-        tradeP: "Con el año, la marca y el modelo basta para un primer vistazo.",
-        visitH: "Visita la tienda",
-        visitP: "4101 Davie Road Ext., Hollywood, FL 33024. Lun–Sáb 9–7.",
-        visitCta: "Ver el lote de muestra"
-      },
-      inv: {
-        h: "Inventario",
-        title: "Inventario",
-        search: "Buscar",
-        ph: "Nombre, marca, stock",
-        condition: "Condición",
-        category: "Categoría",
-        brand: "Marca",
-        style: "Estilo",
-        model: "Modelo",
-        anyModel: "Cualquier modelo",
-        min: "Precio mín.",
-        max: "Precio máx.",
-        sort: "Ordenar",
-        update: "Actualizar",
-        one: "unidad",
-        many: "unidades",
-        empty: "Nada en esta muestra coincide."
-      },
-      opt: {
-        Any: "Cualquiera",
-        New: "Nuevo",
-        "Pre-owned": "Usado",
-        ATV: "ATV",
-        Motorcycle: "Moto",
-        "Side-by-Side": "Side-by-Side",
-        "Golf Cart": "Carrito de golf",
-        PWC: "PWC",
-        Boat: "Bote",
-        "Off-road": "Todoterreno",
-        Water: "Agua",
-        Cruiser: "Cruiser",
-        Sport: "Deportiva",
-        Adventure: "Aventura",
-        Dirt: "Cross",
-        Utility: "Utilitario",
-        "Sport side-by-side": "Side-by-side deportivo",
-        Featured: "Destacados",
-        "Price, low to high": "Precio: menor a mayor",
-        "Price, high to low": "Precio: mayor a menor",
-        "Newest year": "Año más reciente"
-      },
-      viewModel: "Ver el modelo {model}",
-      crumbs: "Ruta",
-      inHollywood: "en Hollywood",
-      brandPick: "Elige un modelo o baja hasta cada unidad.",
-      models: "Modelos",
-      inStock: "en inventario",
-      inStockH: "En inventario",
-      openSearch: "Abrir en la búsqueda",
-      missingBrand: "Esa marca no está en esta muestra.",
-      missingModel: "Ese modelo no está en esta muestra.",
-      missingUnit: "Esa unidad no está en esta muestra.",
-      inThisSample: "En esta muestra",
-      styleWord: "Estilo",
-      lowest: "Precio más bajo aquí",
-      seeStock: "Ver lo que hay en inventario",
-      hear: "Escúchalo arrancar",
-      filmed: "Grabado en nuestro lote",
-      startup: "Arranque",
-      muted: "Sin sonido",
-      soundOn: "Con sonido",
-      tapSound: "Toca para el sonido",
-      tapMute: "Toca para silenciar",
-      walk: "Te acercas, arranca, acelera",
-      walkCap: "Te acercas, arranca y acelera. Grabado en nuestro lote.",
-      stockAt: "En inventario en Broward",
-      priceIs: "El precio que ves es el precio",
-      year: "Año",
-      brand: "Marca",
-      model: "Modelo",
-      stock: "Stock",
-      location: "Ubicación",
-      creditsH: "Créditos de imágenes",
-      creditsBack: "Volver al concepto"
-    }
-  };
+  var DEALER = window.BROWARD.dealer;
+  var COPY = window.BROWARD.copy;
+  var SALES = DEALER.phone;
+  var LANG_KEY = DEALER.langKey;
 
   function lang() {
     try {
@@ -329,7 +84,7 @@
     return t("msg.generic");
   }
   function waSvg() {
-    return '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="24" fill="#25D366"/><g transform="translate(6.042 6.37) scale(0.205)"><path fill="#fff" d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z"/><path fill="#25D366" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"/></g></svg>';
+    return '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="24" fill="currentColor"/><g transform="translate(6.042 6.37) scale(0.205)"><path fill="#fff" d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z"/><path fill="currentColor" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647"/></g></svg>';
   }
   function chatSvg() {
     return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2z"/></svg>';
@@ -359,7 +114,7 @@
   }
   function header() {
     return '<header class="top"><div class="w hd">' +
-      '<a class="logo" href="' + BASE + '/">BROWARD <b>MOTORSPORTS</b></a>' +
+      '<a class="logo" href="' + BASE + '/">' + DEALER.logo[0] + " <b>" + DEALER.logo[1] + "</b></a>" +
       '<button class="menu" type="button" aria-expanded="false" aria-label="' + t("menu") + '">' + t("menu") + "</button>" +
       '<nav class="nav">' + navLinks() + '</nav><div class="sp"></div>' +
       '<div class="hd-tools">' + langToggle() +
@@ -372,8 +127,8 @@
   }
   function footer() {
     return '<footer class="foot"><div class="w">' +
-      "Broward Motorsports · 4101 Davie Road Ext., Hollywood, FL 33024 · " + salesPretty() + " · " + t("footer.hours") +
-      '<p class="concept">' + t("footer.concept") + ' <a href="https://sethquest.com">Seth Quest</a> · <a href="' + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
+      DEALER.name + " · " + DEALER.address + " · " + salesPretty() + " · " + t("footer.hours") +
+      '<p class="concept">' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a> · <a href=\"" + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
       "</div></footer>";
   }
   function reach() {
@@ -466,6 +221,7 @@
       if (!drawer) return;
       var open = drawer.classList.toggle("open");
       menu.setAttribute("aria-expanded", open ? "true" : "false");
+      syncReach();
       return;
     }
     var opener = event.target.closest("[data-open]");
@@ -515,7 +271,33 @@
       var modalEl = document.getElementById("modal");
       if (modalEl) modalEl.hidden = true;
     });
-    window.addEventListener("scroll", syncHeader, { passive: true });
+    window.addEventListener("scroll", function () { syncHeader(); syncReach(); }, { passive: true });
+    window.addEventListener("resize", function () {
+      layoutFolds();
+      syncSlider();
+      syncStyleSlider();
+      syncReach();
+    });
+    var styleRow = document.getElementById("styles");
+    var stylePrev = document.getElementById("style-prev");
+    var styleNext = document.getElementById("style-next");
+    if (stylePrev && styleNext && styleRow) {
+      stylePrev.addEventListener("click", function () { styleStep(-1); });
+      styleNext.addEventListener("click", function () { styleStep(1); });
+      styleRow.addEventListener("scroll", syncStyleSlider, { passive: true });
+      var drag = null;
+      styleRow.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "touch") return;
+        drag = { x: event.clientX, left: styleRow.scrollLeft, id: event.pointerId };
+        styleRow.setPointerCapture(event.pointerId);
+      });
+      styleRow.addEventListener("pointermove", function (event) {
+        if (!drag || drag.id !== event.pointerId) return;
+        styleRow.scrollLeft = drag.left - (event.clientX - drag.x);
+      });
+      styleRow.addEventListener("pointerup", function () { drag = null; });
+      styleRow.addEventListener("pointercancel", function () { drag = null; });
+    }
     var search = document.getElementById("hero-search");
     if (search) search.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -528,7 +310,6 @@
       prev.addEventListener("click", function () { sliderStep(-1); });
       next.addEventListener("click", function () { sliderStep(1); });
       row.addEventListener("scroll", syncSlider);
-      window.addEventListener("resize", function () { layoutFolds(); syncSlider(); });
     }
     var filters = document.getElementById("filters");
     if (filters) {
@@ -584,6 +365,24 @@
       }
       var searchBtn = document.querySelector("#hero-search button");
       if (searchBtn) searchBtn.textContent = t("search");
+      var media = window.BROWARD.media || {};
+      function useSrc(el, file) {
+        if (!el || !file) return;
+        var url = img(file);
+        if (el.getAttribute("src") !== url) el.setAttribute("src", url);
+      }
+      var poster = document.querySelector(".hero-media img");
+      if (poster && media.heroPoster) {
+        useSrc(poster, media.heroPoster);
+        poster.alt = t("hero.alt");
+      }
+      var video = document.querySelector(".hero-media video");
+      if (video && media.heroPoster) video.setAttribute("poster", img(media.heroPoster));
+      var sources = video ? video.querySelectorAll("source") : [];
+      if (sources[0]) useSrc(sources[0], media.heroVideoMobile);
+      if (sources[1]) useSrc(sources[1], media.heroVideo);
+      useSrc(document.querySelector(".wide.new img"), media.tileNew);
+      useSrc(document.querySelector(".wide.used img"), media.tileUsed);
       var chipKeys = ["chip.moto", "chip.sxs", "chip.atv", "chip.pwc", "chip.golf"];
       document.querySelectorAll(".chips .chip").forEach(function (chip, i) {
         if (chipKeys[i]) chip.textContent = t(chipKeys[i]);
@@ -618,7 +417,7 @@
       }
     }
     if (page === "inventory") {
-      document.title = t("inv.title") + " · Broward Motorsports";
+      document.title = t("inv.title") + " · " + DEALER.name;
       var h1 = document.querySelector("main.page > h1");
       if (h1) h1.textContent = t("inv.h");
       var fields = {
@@ -650,18 +449,9 @@
     }
   }
 
-  var BRAND_IMG = {
-    kawasaki: "brand-kawasaki.jpg",
-    yamaha: "brand-yamaha.jpg",
-    polaris: "brand-polaris.jpg",
-    "can-am": "brand-canam.jpg",
-    "harley-davidson": "brand-harley.jpg",
-    slingshot: "brand-slingshot.jpg",
-    "sea-doo": "brand-seadoo.jpg",
-    indian: "brand-indian.jpg",
-    italica: "brand-italica.jpg"
-  };
-  var LOT_PICK = ["bat001407", "but002678", "but001453", "bms2411", "uma017348", "bms-rzr", "bms-mt1", "bms-wr1"];
+  var BRAND_IMG = {};
+  window.BROWARD.brands.forEach(function (b) { BRAND_IMG[b.slug] = b.img; });
+  var LOT_PICK = window.BROWARD.featured;
 
   function countOf(key, value) {
     return UNITS.filter(function (u) { return u[key] === value; }).length;
@@ -684,7 +474,7 @@
     return parts.length || 1;
   }
   function layoutFolds() {
-    [["brands", "brands-more"], ["styles", "styles-more"]].forEach(function (pair) {
+    [["brands", "brands-more"]].forEach(function (pair) {
       var container = document.getElementById(pair[0]);
       var btn = document.getElementById(pair[1]);
       if (!container || !btn) return;
@@ -714,21 +504,63 @@
     var row = document.getElementById("cats");
     if (!row) return;
     var card = row.querySelector(".tile");
-    var width = card ? card.getBoundingClientRect().width + 14 : Math.round(row.clientWidth * 0.8);
-    row.scrollBy({ left: dir * width, behavior: "smooth" });
+    var width = card ? card.getBoundingClientRect().width + 16 : Math.round(row.clientWidth * 0.8);
+    row.scrollBy({ left: dir * width, behavior: motion() });
+  }
+  function motion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  }
+  function syncStyleSlider() {
+    var row = document.getElementById("styles");
+    var prev = document.getElementById("style-prev");
+    var next = document.getElementById("style-next");
+    if (!row || !prev || !next) return;
+    var max = row.scrollWidth - row.clientWidth;
+    prev.disabled = row.scrollLeft <= 2;
+    next.disabled = max <= 2 || row.scrollLeft >= max - 2;
+    prev.setAttribute("aria-label", t("prev"));
+    next.setAttribute("aria-label", t("next"));
+  }
+  function styleStep(dir) {
+    var row = document.getElementById("styles");
+    if (!row) return;
+    var card = row.querySelector(".style-card");
+    var width = card ? card.getBoundingClientRect().width + 16 : Math.round(row.clientWidth * 0.8);
+    row.scrollBy({ left: dir * width, behavior: motion() });
+  }
+  function pageSections() {
+    var list = [];
+    document.querySelectorAll("section.hero, section.brand-hero, section.model-hero, main > section, #main > section").forEach(function (node) {
+      if (list.indexOf(node) === -1) list.push(node);
+    });
+    return list;
+  }
+  function syncReach() {
+    var reach = document.querySelector(".reach");
+    if (!reach) return;
+    var gate = pageSections()[2];
+    var drawer = document.getElementById("drawer");
+    var menuOpen = drawer && drawer.classList.contains("open");
+    var show = gate
+      ? gate.getBoundingClientRect().top < window.innerHeight - 12
+      : window.scrollY > window.innerHeight * 0.55;
+    if (menuOpen) show = false;
+    reach.classList.toggle("is-in", show);
+    reach.setAttribute("aria-hidden", show ? "false" : "true");
+  }
+  function applyTheme() {
+    var colors = DEALER.colors || {};
+    var root = document.documentElement;
+    Object.keys(colors).forEach(function (key) {
+      root.style.setProperty("--" + key, colors[key]);
+    });
   }
 
   function home() {
-    var cats = [
-      ["ATV", "chip.atv", "cat-atv.jpg"],
-      ["Motorcycle", "chip.moto", "cat-moto.jpg"],
-      ["Side-by-Side", "chip.sxs", "cat-sxs.jpg"],
-      ["Golf Cart", "chip.golf", "cat-golf.jpg"],
-      ["PWC", "chip.pwc", "cat-pwc.jpg"]
-    ].filter(function (c) { return countOf("category", c[0]) > 0; });
+    var cats = window.BROWARD.categories.filter(function (c) { return countOf("category", c.id) > 0; });
     document.getElementById("cats").innerHTML = cats.map(function (c) {
-      var n = countOf("category", c[0]);
-      return '<a class="tile" href="' + inv({ category: c[0] }) + '"><img src="' + img(c[2]) + '" alt=""><div><b>' + t(c[1]) + "</b><small>" + n + " " + t("inSample") + "</small></div></a>";
+      var n = countOf("category", c.id);
+      return '<a class="tile" href="' + inv({ category: c.id }) + '"><img src="' + img(c.img) + '" alt=""><div><b>' + t(c.label) + "</b><small>" + n + " " + t("inSample") + "</small></div></a>";
     }).join("");
 
     var brands = {};
@@ -736,19 +568,18 @@
       brands[u.brandSlug] = brands[u.brandSlug] || { name: u.brand, n: 0 };
       brands[u.brandSlug].n += 1;
     });
-    var order = ["kawasaki", "yamaha", "polaris", "can-am", "harley-davidson", "slingshot", "sea-doo", "indian", "italica"];
+    var order = window.BROWARD.brands.map(function (b) { return b.slug; });
     document.getElementById("brands").innerHTML = order.filter(function (s) { return brands[s]; }).map(function (s) {
       var thumb = BRAND_IMG[s] ? '<img class="thumb" src="' + img(BRAND_IMG[s]) + '" alt="">' : "";
       return '<a class="brand" href="' + BASE + "/brands/" + s + '"><span class="brand-copy"><b>' + brands[s].name + "</b><small>" + brands[s].n + " " + t("inSample") + "</small></span>" + thumb + "</a>";
     }).join("");
 
-    var styles = ["Cruiser", "Sport", "Adventure", "Dirt", "Utility", "Sport side-by-side"].filter(function (s) {
-      return countOf("style", s) > 0;
-    });
+    var styles = window.BROWARD.styles.filter(function (s) { return countOf("style", s.id) > 0; });
     document.getElementById("styles").innerHTML = styles.map(function (s) {
-      var n = countOf("style", s);
-      return '<a class="style" href="' + inv({ style: s }) + '"><b>' + t("opt." + s) + "</b><small>" + n + " " + t("inSample") + "</small></a>";
+      var label = lang() === "es" ? s.es : s.en;
+      return '<a class="style-card" href="' + inv({ style: s.id }) + '"><img src="' + img(s.img) + '" alt=""><span>' + label + "</span></a>";
     }).join("");
+    syncStyleSlider();
 
     document.getElementById("lot").innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
     layoutFolds();
@@ -815,7 +646,7 @@
     }
     var models = modelsOf(key);
     var units = byBrand(key);
-    document.title = sample.brand + " · Broward Motorsports";
+    document.title = sample.brand + " · " + DEALER.name;
     root.innerHTML =
       '<section class="brand-hero"><img src="' + img(sample.img) + '" alt="">' +
       '<div class="w"><div class="crumbs-wrap">' + crumbs([{ label: sample.brand }]) + "</div>" +
@@ -841,7 +672,7 @@
     var units = UNITS.filter(function (u) { return u.modelSlug === key; });
     var hear = sample.category === "Motorcycle";
     var low = money(Math.min.apply(null, units.map(function (u) { return u.price; })));
-    document.title = sample.model + " · Broward Motorsports";
+    document.title = sample.model + " · " + DEALER.name;
     root.innerHTML =
       '<section class="model-hero"><img src="' + img(sample.img) + '" alt="">' +
       '<div class="w">' + crumbs([
@@ -854,7 +685,7 @@
       "</div></section>" +
       '<main class="w page"><div class="sh"><h2>' + t("hear") + "</h2><span>" + t("filmed") + "</span></div>" +
       '<div class="sound">' + (hear
-        ? '<video data-sound src="' + BASE + '/img/start.mp4" poster="' + BASE + '/img/start.jpg" muted autoplay loop playsinline></video><span class="playtag">' + t("startup") + "</span>"
+        ? '<video data-sound src="' + img(window.BROWARD.media.startup) + '" poster="' + img(window.BROWARD.media.startupPoster) + '" muted autoplay loop playsinline></video><span class="playtag">' + t("startup") + "</span>"
         : '<img src="' + img(sample.img) + '" alt=""><video data-sound poster="' + img(sample.img) + '" muted loop playsinline></video><span class="playtag" data-sound-label>' + t("muted") + '</span><button class="sbtn" type="button" data-sound-btn>' + t("tapSound") + "</button>") +
       '<div class="cap"><b>' + t("walk") + "</b><span>" + t("walkCap") + "</span></div></div>" +
       '<div class="sh" id="stock"><h2>' + t("stockAt") + "</h2><span>" + t("priceIs") + "</span></div><div class=\"grid\">" +
@@ -887,7 +718,7 @@
       root.innerHTML = '<p class="w">' + t("missingUnit") + "</p>";
       return;
     }
-    document.title = u.year + " " + u.brand + " " + u.model + " · Broward Motorsports";
+    document.title = u.year + " " + u.brand + " " + u.model + " · " + DEALER.name;
     var vin = u.vin ? "<div><span>VIN</span>" + u.vin + "</div>" : "";
     root.innerHTML = '<main class="w page">' + crumbs([
       { label: u.brand, href: BASE + "/brands/" + u.brandSlug },
@@ -905,7 +736,7 @@
       "<div><span>" + t("styleWord") + "</span>" + t("opt." + u.style) + "</div>" +
       "<div><span>" + t("stock") + "</span>" + u.stock + "</div>" +
       vin +
-      "<div><span>" + t("location") + "</span>Hollywood, FL</div></div>" +
+      "<div><span>" + t("location") + "</span>" + DEALER.city + "</div></div>" +
       '<div class="actions">' + contactLinks(u, "labeled") +
       '<button class="btn gl" type="button" data-open="approve">' + t("approve") + "</button>" +
       '<button class="btn gl" type="button" data-open="trade">' + t("trade") + "</button></div></main>";
@@ -923,7 +754,10 @@
     if (page === "unit") unitPage();
     applyStatic();
     bindOnce();
+    applyTheme();
     syncHeader();
+    syncReach();
+    syncStyleSlider();
   }
 
   render();

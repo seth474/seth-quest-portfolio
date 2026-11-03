@@ -24,7 +24,7 @@
     <h1><span class="lead">ATVs, motorcycles and <span class="keep">side-by-sides</span></span> <span class="line">in Hollywood, FL.</span></h1>
     <p class="sub">386 new and 37 pre-owned on the lot.</p>
     <form class="search" id="hero-search" action="/demos/broward-motorsports/inventory">
-      <input name="q" placeholder="Search Ninja, RZR, Outlander, golf carts…" aria-label="Search the lot">
+      <input name="q" placeholder="Ninja, RZR, Outlander…" aria-label="Search the lot">
       <button class="btn rd" type="submit">Search</button>
     </form>
     <div class="chips">
@@ -37,7 +37,7 @@
   </div>
 </section>
 <main>
-  <section class="w sec">
+  <section class="w sec" id="sec-cat">
     <div class="sh"><h2>Shop by category</h2></div>
     <div class="cat-slider">
       <button class="cat-arrow prev" type="button" id="cat-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -45,23 +45,26 @@
       <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
-  <section class="w sec">
+  <section class="w sec" id="sec-brand">
     <div class="sh"><h2>Shop by brand</h2></div>
     <div class="brands" id="brands"></div>
     <div class="more-wrap"><button class="btn gl" type="button" id="brands-more" data-fold hidden>Show more</button></div>
   </section>
-  <section class="w sec">
+  <section class="w sec" id="sec-style">
     <div class="sh"><h2>Shop by style</h2></div>
-    <div class="styles" id="styles"></div>
-    <div class="more-wrap"><button class="btn gl" type="button" id="styles-more" data-fold hidden>Show more</button></div>
+    <div class="style-slider">
+      <button class="cat-arrow prev" type="button" id="style-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="style-row" id="styles"></div>
+      <button class="cat-arrow next" type="button" id="style-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
   </section>
-  <section class="w sec">
+  <section class="w sec" id="sec-pair">
     <div class="pair">
       <a class="wide new" href="/demos/broward-motorsports/inventory?condition=New"><img src="/demos/broward-motorsports/img/tile-new.jpg" alt=""><div><b>New</b><small>386 on the lot</small></div></a>
       <a class="wide used" href="/demos/broward-motorsports/inventory?condition=Pre-owned"><img src="/demos/broward-motorsports/img/tile-used.jpg" alt=""><div><b>Pre-owned</b><small>37 on the lot</small></div></a>
     </div>
   </section>
-  <section class="w sec">
+  <section class="w sec" id="sec-lot">
     <div class="sh"><h2>On the lot now</h2><a href="/demos/broward-motorsports/inventory">See this sample</a></div>
     <div class="grid" id="lot"></div>
   </section>
