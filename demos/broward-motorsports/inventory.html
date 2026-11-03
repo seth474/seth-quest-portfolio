@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inventory · Broward Motorsports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demos/broward-motorsports/site.css">
+</head>
+<body class="sub" data-page="inventory">
+<div id="top"></div>
+<main class="w page">
+  <h1>Inventory</h1>
+  <form id="filters">
+    <div class="filters">
+      <label>Search <input id="q" name="q" placeholder="Name, brand, stock"></label>
+      <label>Condition
+        <select id="condition" name="condition">
+          <option value="">Any</option>
+          <option>New</option>
+          <option>Pre-owned</option>
+        </select>
+      </label>
+      <label>Category
+        <select id="category" name="category">
+          <option value="">Any</option>
+          <option>ATV</option>
+          <option>Motorcycle</option>
+          <option>Side-by-Side</option>
+          <option>Golf Cart</option>
+          <option>PWC</option>
+          <option>Boat</option>
+          <option>Off-road</option>
+          <option>Water</option>
+        </select>
+      </label>
+      <label>Brand
+        <select id="brand" name="brand">
+          <option value="">Any</option>
+          <option value="can-am">Can-Am</option>
+          <option value="harley-davidson">Harley-Davidson</option>
+          <option value="indian">Indian</option>
+          <option value="italica">Italica</option>
+          <option value="kawasaki">Kawasaki</option>
+          <option value="polaris">Polaris</option>
+          <option value="sea-doo">Sea-Doo</option>
+          <option value="slingshot">Slingshot</option>
+          <option value="yamaha">Yamaha</option>
+        </select>
+      </label>
+      <label>Style
+        <select id="style" name="style">
+          <option value="">Any</option>
+          <option>Cruiser</option>
+          <option>Sport</option>
+          <option>Adventure</option>
+          <option>Dirt</option>
+          <option>Utility</option>
+          <option>Sport side-by-side</option>
+        </select>
+      </label>
+    </div>
+    <div class="price-row">
+      <label id="model-wrap" class="hidden">Model
+        <select id="model" name="model"></select>
+      </label>
+      <label>Min price <input id="min" name="min" inputmode="numeric"></label>
+      <label>Max price <input id="max" name="max" inputmode="numeric"></label>
+      <label>Sort
+        <select id="sort" name="sort">
+          <option value="">Featured</option>
+          <option value="price-asc">Price, low to high</option>
+          <option value="price-desc">Price, high to low</option>
+          <option value="year">Newest year</option>
+        </select>
+      </label>
+      <button class="btn rd" type="submit">Update</button>
+    </div>
+  </form>
+  <p class="count" id="count"></p>
+  <div class="grid" id="results"></div>
+</main>
+<div id="bottom"></div>
+<script src="/demos/broward-motorsports/data.js"></script>
+<script src="/demos/broward-motorsports/site.js"></script>
+</body>
+</html>
