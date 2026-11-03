@@ -119,7 +119,7 @@
       '<a href="' + inv({ category: "Water" }) + '">' + t("nav.water") + "</a>" +
       '<a href="' + inv({ condition: "Pre-owned" }) + '">' + t("nav.used") + "</a>" +
       '<a href="#" data-open="approve">' + t("nav.fin") + "</a>" +
-      '<a href="' + BASE + '/#visit">' + t("nav.service") + "</a>";
+      '<a href="' + BASE + '/#sec-locations">' + t("nav.service") + "</a>";
   }
   function langToggle() {
     var es = lang() === "es";
@@ -150,9 +150,9 @@
       navLinks() + "</div>";
   }
   function footer() {
-    return '<footer class="foot"><div class="w">' +
-      DEALER.name + " · " + place().address + " · " + salesPretty() + " · " + hoursNow() +
-      '<p class="concept">' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a> · <a href=\"" + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
+    return '<footer class="foot"><div class="w foot-lines">' +
+      '<p>' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + '</a> · <a class="credits-link" href="' + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
+      "<p>" + place().address + "</p>" +
       "</div></footer>";
   }
   function reach() {
@@ -249,6 +249,22 @@
       syncReach();
       return;
     }
+    var pin = event.target.closest("[data-pin]");
+    if (pin) {
+      event.preventDefault();
+      var id = pin.getAttribute("data-pin");
+      if (id && id !== place().id) {
+        try { localStorage.setItem(LOC_KEY, id); } catch (e) {}
+        render();
+      }
+      return;
+    }
+    var dot = event.target.closest("[data-special]");
+    if (dot) {
+      var track = document.getElementById("specials-track");
+      if (track) track.scrollTo({ left: Number(dot.getAttribute("data-special")) * track.clientWidth, behavior: motion() });
+      return;
+    }
     var opener = event.target.closest("[data-open]");
     if (opener) {
       event.preventDefault();
@@ -308,6 +324,7 @@
       layoutFolds();
       syncSlider();
       syncStyleSlider();
+      syncLotSlider();
       syncReach();
     });
     var styleRow = document.getElementById("styles");
@@ -329,6 +346,14 @@
       });
       styleRow.addEventListener("pointerup", function () { drag = null; });
       styleRow.addEventListener("pointercancel", function () { drag = null; });
+    }
+    var lotPrev = document.getElementById("lot-prev");
+    var lotNext = document.getElementById("lot-next");
+    var lotRow = document.getElementById("lot");
+    if (lotPrev && lotNext && lotRow) {
+      lotPrev.addEventListener("click", function () { lotStep(-1); });
+      lotNext.addEventListener("click", function () { lotStep(1); });
+      lotRow.addEventListener("scroll", syncLotSlider, { passive: true });
     }
     var search = document.getElementById("hero-search");
     if (search) search.addEventListener("submit", function (event) {
@@ -426,28 +451,47 @@
       document.querySelectorAll(".chips .chip").forEach(function (chip, i) {
         if (chipKeys[i]) chip.textContent = t(chipKeys[i]);
       });
-      var heads = ["h.cat", "h.brand", "h.style", "h.lot"];
-      document.querySelectorAll("main .sec h2").forEach(function (h, i) {
-        if (heads[i]) h.textContent = t(heads[i]);
+      var headIds = {
+        "sec-cat": "h.cat",
+        "sec-brand": "h.brand",
+        "sec-style": "h.style",
+        "sec-lot": "h.lot",
+        "sec-specials": "h.specials",
+        "sec-approve": "h.approve",
+        "sec-trade": "h.trade",
+        "sec-locations": "h.visit"
+      };
+      Object.keys(headIds).forEach(function (id) {
+        var h = document.querySelector("#" + id + " h2");
+        if (h) h.textContent = t(headIds[id]);
       });
-      var more = document.querySelector("main .sec .sh a");
+      var more = document.getElementById("lot-all");
       if (more) more.textContent = t("seeSample");
       var shopNew = document.querySelector(".shop-tile.new span");
       var shopUsed = document.querySelector(".shop-tile.used span");
       if (shopNew) shopNew.textContent = t("shopNew");
       if (shopUsed) shopUsed.textContent = t("shopUsed");
-      var boxes = document.querySelectorAll("#visit .box");
-      if (boxes.length === 3) {
-        boxes[0].querySelector("h3").textContent = t("box.approveH");
-        boxes[0].querySelector("p").textContent = t("box.approveP");
-        boxes[0].querySelector("button").textContent = t("start");
-        boxes[1].querySelector("h3").textContent = t("box.tradeH");
-        boxes[1].querySelector("p").textContent = t("box.tradeP");
-        boxes[1].querySelector("button").textContent = t("start");
-        boxes[2].querySelector("h3").textContent = t("box.visitH");
-        boxes[2].querySelector("p").textContent = place().address + ". " + hoursNow();
-        boxes[2].querySelector("a").textContent = t("box.visitCta");
+      var approveList = document.getElementById("approve-points");
+      var approvePoints = t("approvePoints");
+      if (approveList && approvePoints && approvePoints.join) {
+        approveList.innerHTML = approvePoints.map(function (line) { return "<li>" + line + "</li>"; }).join("");
       }
+      var tradeList = document.getElementById("trade-points");
+      var tradePoints = t("tradePoints");
+      if (tradeList && tradePoints && tradePoints.join) {
+        var sides = ["left", "right", "left", "right"];
+        tradeList.innerHTML = tradePoints.map(function (line, i) {
+          return '<li data-side="' + sides[i] + '">' + line + "</li>";
+        }).join("");
+      }
+      var approveBtn = document.querySelector("#sec-approve button");
+      if (approveBtn) approveBtn.textContent = t("h.approve");
+      var tradeBtn = document.querySelector("#sec-trade button");
+      if (tradeBtn) tradeBtn.textContent = t("h.trade");
+      var rider = document.getElementById("approve-photo");
+      if (rider && window.BROWARD.media.approve) rider.src = img(window.BROWARD.media.approve);
+      var tradePhoto = document.getElementById("trade-photo");
+      if (tradePhoto && window.BROWARD.media.trade) tradePhoto.src = img(window.BROWARD.media.trade);
     }
     if (page === "inventory") {
       document.title = t("inv.title") + " · " + DEALER.name;
@@ -613,9 +657,85 @@
     }).join("");
     syncStyleSlider();
 
-    document.getElementById("lot").innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
+    var lot = document.getElementById("lot");
+    if (lot) lot.innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
+    paintSpecials();
+    paintLocations();
     layoutFolds();
     syncSlider();
+    syncLotSlider();
+    startSpecials();
+  }
+
+  function syncLotSlider() {
+    var row = document.getElementById("lot");
+    var prev = document.getElementById("lot-prev");
+    var next = document.getElementById("lot-next");
+    if (!row || !prev || !next) return;
+    var max = row.scrollWidth - row.clientWidth;
+    prev.disabled = row.scrollLeft <= 2;
+    next.disabled = max <= 2 || row.scrollLeft >= max - 2;
+    prev.setAttribute("aria-label", t("prev"));
+    next.setAttribute("aria-label", t("next"));
+  }
+  function lotStep(dir) {
+    var row = document.getElementById("lot");
+    if (!row) return;
+    var cardEl = row.querySelector(".card");
+    var width = cardEl ? cardEl.getBoundingClientRect().width + 14 : Math.round(row.clientWidth * 0.8);
+    row.scrollBy({ left: dir * width, behavior: motion() });
+  }
+  function paintSpecials() {
+    var track = document.getElementById("specials-track");
+    var dots = document.getElementById("specials-dots");
+    if (!track || !dots) return;
+    var items = window.BROWARD.specials || [];
+    track.innerHTML = items.map(function (s) {
+      return '<a href="' + inv({ brand: s.brand }) + '"><img src="' + img(s.img) + '" alt="' + s.alt + '"></a>';
+    }).join("");
+    dots.innerHTML = items.map(function (_, i) {
+      return '<button type="button" data-special="' + i + '" aria-label="' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : "") + "></button>";
+    }).join("");
+  }
+  var specialsTimer = 0;
+  function startSpecials() {
+    var track = document.getElementById("specials-track");
+    if (!track || specialsTimer) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    track.addEventListener("scroll", function () {
+      var w = track.clientWidth || 1;
+      var i = Math.round(track.scrollLeft / w);
+      document.querySelectorAll("#specials-dots button").forEach(function (btn, idx) {
+        if (idx === i) btn.setAttribute("aria-current", "true");
+        else btn.removeAttribute("aria-current");
+      });
+    }, { passive: true });
+    specialsTimer = window.setInterval(function () {
+      var n = track.children.length;
+      var w = track.clientWidth;
+      if (!n || !w) return;
+      var i = Math.round(track.scrollLeft / w);
+      track.scrollTo({ left: ((i + 1) % n) * w, behavior: "smooth" });
+    }, 4200);
+  }
+  function paintLocations() {
+    var chips = document.getElementById("loc-chips");
+    var map = document.getElementById("loc-map");
+    var detail = document.getElementById("loc-detail");
+    if (!chips || !map || !detail) return;
+    var current = place();
+    var locs = window.BROWARD.locations || [];
+    chips.innerHTML = locs.map(function (loc) {
+      return '<button type="button" data-pin="' + loc.id + '" aria-pressed="' + (loc.id === current.id ? "true" : "false") + '">' + loc.name + "</button>";
+    }).join("");
+    var land = '<svg viewBox="0 0 200 240" aria-hidden="true"><path fill="#1a2330" stroke="#314050" stroke-width="1.4" d="M6 52 L74 40 L88 58 L72 74 L98 90 L112 108 L130 124 L150 156 L154 184 L136 210 L112 226 L94 210 L84 182 L70 156 L54 128 L40 100 L26 76 L10 62 Z"/></svg>';
+    map.innerHTML = land + locs.map(function (loc) {
+      var p = loc.pin || { x: 50, y: 50 };
+      var on = loc.id === current.id ? "true" : "false";
+      return '<button class="pin" type="button" data-pin="' + loc.id + '" aria-pressed="' + on + '" aria-label="' + loc.name + '" style="left:' + p.x + "%;top:" + p.y + '%"></button>';
+    }).join("");
+    var href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(current.address);
+    detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn gl" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
   }
 
   function inventory() {
