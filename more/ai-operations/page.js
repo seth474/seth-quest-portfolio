@@ -9,7 +9,7 @@
                   Autoplay stays off. Watch buttons play the hero with sound. */
 
 const BOOKING_URL = '';
-const CALENDLY_URL = '';
+const CALENDLY_URL = 'https://calendly.com/seth-sethquest/30min';
 const SIGNUP_URL = '';
 const BUY_COURSE_URL = '';
 const VSL_EMBED = '';
@@ -53,7 +53,6 @@ function openBooking() {
   var sheet = modal.querySelector('.book-sheet');
   var step1 = modal.querySelector('[data-book-step="1"]');
   var step2 = modal.querySelector('[data-book-step="2"]');
-  var title = document.getElementById('book-modal-title');
   var error = modal.querySelector('[data-book-error]');
   var thanks = modal.querySelector('[data-book-thanks]');
   var slot = modal.querySelector('[data-calendly]');
@@ -111,7 +110,8 @@ function openBooking() {
     step2.hidden = false;
     if (slot) slot.hidden = true;
     if (thanks) thanks.hidden = false;
-    if (title) title.focus();
+    var closer = modal.querySelector('.book-x');
+    if (closer) closer.focus();
   }
   function mountCalendly(name, email) {
     step1.hidden = true;
@@ -129,7 +129,8 @@ function openBooking() {
         parentElement: slot,
         prefill: { name: name, email: email }
       });
-      if (title) title.focus();
+      var closer = modal.querySelector('.book-x');
+      if (closer) closer.focus();
     }
     if (window.Calendly) {
       start();
