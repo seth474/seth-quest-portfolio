@@ -355,6 +355,15 @@
       lotNext.addEventListener("click", function () { lotStep(1); });
       lotRow.addEventListener("scroll", syncLotSlider, { passive: true });
     }
+    var tradeForm = document.getElementById("trade-form");
+    if (tradeForm) tradeForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      tradeForm.hidden = true;
+      var lead = document.getElementById("trade-lead");
+      if (lead) lead.hidden = true;
+      var thanks = document.getElementById("trade-thanks");
+      if (thanks) thanks.hidden = false;
+    });
     var search = document.getElementById("hero-search");
     if (search) search.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -476,22 +485,25 @@
       if (approveList && approvePoints && approvePoints.join) {
         approveList.innerHTML = approvePoints.map(function (line) { return "<li>" + line + "</li>"; }).join("");
       }
-      var tradeList = document.getElementById("trade-points");
-      var tradePoints = t("tradePoints");
-      if (tradeList && tradePoints && tradePoints.join) {
-        var sides = ["left", "right", "left", "right"];
-        tradeList.innerHTML = tradePoints.map(function (line, i) {
-          return '<li data-side="' + sides[i] + '">' + line + "</li>";
-        }).join("");
-      }
       var approveBtn = document.querySelector("#sec-approve button");
       if (approveBtn) approveBtn.textContent = t("h.approve");
-      var tradeBtn = document.querySelector("#sec-trade button");
-      if (tradeBtn) tradeBtn.textContent = t("h.trade");
       var rider = document.getElementById("approve-photo");
-      if (rider && window.BROWARD.media.approve) rider.src = img(window.BROWARD.media.approve);
-      var tradePhoto = document.getElementById("trade-photo");
-      if (tradePhoto && window.BROWARD.media.trade) tradePhoto.src = img(window.BROWARD.media.trade);
+      if (rider && window.BROWARD.media.approve) {
+        rider.src = img(window.BROWARD.media.approve);
+        rider.alt = t("approveAlt");
+      }
+      var tradeLead = document.getElementById("trade-lead");
+      if (tradeLead) tradeLead.textContent = t("tradeLead");
+      [["trade-name", "tradeName"], ["trade-contact", "tradeContact"], ["trade-make", "tradeMake"], ["trade-year", "tradeYear"], ["trade-vin", "tradeVin"]].forEach(function (pair) {
+        var label = document.getElementById(pair[0]);
+        if (!label) return;
+        var text = label.childNodes[0];
+        if (text) text.textContent = t(pair[1]) + " ";
+      });
+      var tradeSubmit = document.getElementById("trade-submit");
+      if (tradeSubmit) tradeSubmit.textContent = t("tradeSubmit");
+      var tradeThanks = document.getElementById("trade-thanks");
+      if (tradeThanks) tradeThanks.textContent = t("tradeThanks");
     }
     if (page === "inventory") {
       document.title = t("inv.title") + " · " + DEALER.name;
@@ -728,12 +740,8 @@
     chips.innerHTML = locs.map(function (loc) {
       return '<button type="button" data-pin="' + loc.id + '" aria-pressed="' + (loc.id === current.id ? "true" : "false") + '">' + loc.name + "</button>";
     }).join("");
-    var land = '<svg viewBox="0 0 200 240" aria-hidden="true"><path fill="#1a2330" stroke="#314050" stroke-width="1.4" d="M6 52 L74 40 L88 58 L72 74 L98 90 L112 108 L130 124 L150 156 L154 184 L136 210 L112 226 L94 210 L84 182 L70 156 L54 128 L40 100 L26 76 L10 62 Z"/></svg>';
-    map.innerHTML = land + locs.map(function (loc) {
-      var p = loc.pin || { x: 50, y: 50 };
-      var on = loc.id === current.id ? "true" : "false";
-      return '<button class="pin" type="button" data-pin="' + loc.id + '" aria-pressed="' + on + '" aria-label="' + loc.name + '" style="left:' + p.x + "%;top:" + p.y + '%"></button>';
-    }).join("");
+    var mapSrc = "https://maps.google.com/maps?q=" + encodeURIComponent(current.address) + "&z=14&hl=" + (lang() === "es" ? "es" : "en") + "&output=embed";
+    map.innerHTML = '<iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe>';
     var href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(current.address);
     detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn gl" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
   }
