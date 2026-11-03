@@ -325,6 +325,7 @@
       syncSlider();
       syncStyleSlider();
       syncLotSlider();
+      sizeLocationMap();
       syncReach();
     });
     var styleRow = document.getElementById("styles");
@@ -730,6 +731,20 @@
       track.scrollTo({ left: ((i + 1) % n) * w, behavior: "smooth" });
     }, 4200);
   }
+  function sizeLocationMap() {
+    var map = document.getElementById("loc-map");
+    var frame = map && map.querySelector("iframe");
+    var wrap = map && map.querySelector(".loc-frame");
+    if (!map || !frame) return;
+    var w = map.clientWidth;
+    var h = map.clientHeight;
+    if (wrap) {
+      wrap.style.width = w + "px";
+      wrap.style.height = h + "px";
+    }
+    frame.style.width = w + "px";
+    frame.style.height = h + "px";
+  }
   function paintLocations() {
     var chips = document.getElementById("loc-chips");
     var map = document.getElementById("loc-map");
@@ -741,7 +756,10 @@
       return '<button type="button" data-pin="' + loc.id + '" aria-pressed="' + (loc.id === current.id ? "true" : "false") + '">' + loc.name + "</button>";
     }).join("");
     var mapSrc = "https://maps.google.com/maps?q=" + encodeURIComponent(current.address) + "&z=14&hl=" + (lang() === "es" ? "es" : "en") + "&output=embed";
-    map.innerHTML = '<iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    map.innerHTML = '<div class="loc-frame"><iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe></div>';
+    sizeLocationMap();
+    var frame = map.querySelector("iframe");
+    if (frame) frame.addEventListener("load", sizeLocationMap);
     var href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(current.address);
     detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn gl" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
   }
