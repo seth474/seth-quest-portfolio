@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-/* Fail when two Broward units share a photo, or a listing photo is reused
-   outside that unit. A unit card and its own detail hero may share one file. */
+/* Fail when any Broward image is reused.
+   A unit card and that unit's detail hero may share one file.
+   Tiles, category cards, brand thumbnails, the hero poster, and
+   model-page art must be different files from each other and from listings. */
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
@@ -21,35 +23,18 @@ function hashFile(file) {
 }
 
 const failures = [];
-const byHash = new Map();
-const byName = new Map();
-const lines = [];
+const uses = new Map();
+
+function addUse(file, where) {
+  if (!uses.has(file)) uses.set(file, []);
+  const list = uses.get(file);
+  if (list.indexOf(where) === -1) list.push(where);
+}
 
 units.forEach(function (unit) {
-  const info = hashFile(unit.img);
-  if (!info) {
-    failures.push(unit.id + ' is missing ' + unit.img);
-    return;
-  }
-  if (info.bad) {
-    failures.push(unit.id + ' file is not an image: ' + unit.img);
-    return;
-  }
-  if (byName.has(unit.img)) {
-    failures.push(unit.id + ' and ' + byName.get(unit.img) + ' both use ' + unit.img);
-  } else {
-    byName.set(unit.img, unit.id);
-  }
-  if (byHash.has(info.hash)) {
-    const other = byHash.get(info.hash);
-    failures.push(unit.id + ' (' + unit.img + ') is the same photo as ' + other.id + ' (' + other.file + ')');
-  } else {
-    byHash.set(info.hash, { id: unit.id, file: unit.img });
-  }
-  lines.push(unit.stock + '\t' + unit.condition + '\t' + unit.year + ' ' + unit.brand + ' ' + unit.model + '\t' + unit.img + '\t' + info.hash.slice(0, 12));
+  addUse(unit.img, 'listing ' + unit.stock + ' ' + unit.year + ' ' + unit.brand + ' ' + unit.model);
 });
 
-const sources = [];
 function walk(dir) {
   fs.readdirSync(dir).forEach(function (name) {
     const full = path.join(dir, name);
@@ -58,39 +43,51 @@ function walk(dir) {
       walk(full);
       return;
     }
-    if (/\.(html|js|css)$/.test(name) && name !== 'data.js') sources.push(full);
+    if (!/\.(html|js|css)$/.test(name) || name === 'data.js') return;
+    const text = fs.readFileSync(full, 'utf8');
+    const found = text.match(/[\w.-]+\.(?:jpg|jpeg|png|webp)/gi) || [];
+    found.forEach(function (file) { addUse(file, path.relative(root, full)); });
   });
 }
 walk(root);
-const outside = sources.map(function (file) { return fs.readFileSync(file, 'utf8'); }).join('\n');
-const mentioned = new Set(outside.match(/[\w.-]+\.(?:jpg|jpeg|png|webp)/gi) || []);
 
-mentioned.forEach(function (file) {
+const lines = [];
+const byHash = new Map();
+const listingFiles = new Set(units.map(function (unit) { return unit.img; }));
+
+Array.from(uses.keys()).sort().forEach(function (file) {
   const info = hashFile(file);
-  if (!info || info.bad) return;
-  const owner = byHash.get(info.hash);
-  if (owner) {
-    failures.push(file + ' reuses the listing photo for ' + owner.id + ' (' + owner.file + ')');
+  const where = uses.get(file).join(', ');
+  if (!info) {
+    failures.push(file + ' is missing (' + where + ')');
+    return;
   }
-});
-
-const decorative = new Map();
-mentioned.forEach(function (file) {
-  const info = hashFile(file);
-  if (!info || info.bad || byName.has(file)) return;
-  if (decorative.has(info.hash)) {
-    failures.push(file + ' is the same photo as ' + decorative.get(info.hash));
+  if (info.bad) {
+    failures.push(file + ' is not an image (' + where + ')');
+    return;
+  }
+  const kind = listingFiles.has(file) ? 'listing' : 'site';
+  if (byHash.has(info.hash)) {
+    failures.push(file + ' is the same photo as ' + byHash.get(info.hash));
   } else {
-    decorative.set(info.hash, file);
+    byHash.set(info.hash, file);
   }
+  if (kind === 'listing') {
+    const outside = uses.get(file).filter(function (place) { return place.indexOf('listing ') !== 0; });
+    if (outside.length) {
+      failures.push(file + ' is a listing photo and is also used in ' + outside.join(', '));
+    }
+  }
+  lines.push(kind + '\t' + file + '\t' + info.hash.slice(0, 12) + '\t' + where);
 });
 
+const listingCount = units.length;
 console.log('Broward photo audit');
-console.log('units ' + units.length + ', unique files ' + byName.size + ', unique hashes ' + byHash.size);
-lines.sort().forEach(function (line) { console.log(line); });
+console.log('images ' + uses.size + ', unique files ' + uses.size + ', unique hashes ' + byHash.size + ', listings ' + listingCount);
+lines.forEach(function (line) { console.log(line); });
 if (failures.length) {
   console.error('\nFAIL');
   failures.forEach(function (item) { console.error('- ' + item); });
   process.exit(1);
 }
-console.log('\nOK: every unit has its own photo, and listing photos are not reused elsewhere.');
+console.log('\nOK: every unit has its own photo, and no image is reused anywhere else on the site.');
