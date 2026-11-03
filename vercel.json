@@ -74,6 +74,18 @@
       ]
     },
     {
+      "source": "/demos/broward-motorsports",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/demos/broward-motorsports/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
       "source": "/api/credit-climb",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
@@ -100,6 +112,9 @@
     { "source": "/plumbing-workshop/registered", "destination": "/trade-workshop/registered" },
     { "source": "/less-admin", "destination": "/more/ai-operations" },
     { "source": "/less-admin/", "destination": "/more/ai-operations" },
+    { "source": "/demos/broward-motorsports/brands/:brand", "destination": "/demos/broward-motorsports/brand" },
+    { "source": "/demos/broward-motorsports/models/:slug", "destination": "/demos/broward-motorsports/model" },
+    { "source": "/demos/broward-motorsports/inventory/:id", "destination": "/demos/broward-motorsports/unit" },
     { "source": "/credit-climb", "destination": "/api/credit-climb" },
     { "source": "/credit-climb/", "destination": "/api/credit-climb" },
     { "source": "/credit-climb.txt", "destination": "/api/credit-climb?file=index.txt" },

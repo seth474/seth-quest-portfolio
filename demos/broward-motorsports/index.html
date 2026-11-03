@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Broward Motorsports · Hollywood, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demos/broward-motorsports/site.css">
+</head>
+<body class="home" data-page="home">
+<div id="top"></div>
+<section class="hero">
+  <div class="hero-media">
+    <img src="/demos/broward-motorsports/img/hero-mud.jpg" alt="A Polaris side-by-side driving through mud">
+    <video poster="/demos/broward-motorsports/img/hero-mud.jpg" muted loop playsinline autoplay></video>
+  </div>
+  <div class="w hin">
+    <p class="eyebrow">Hollywood, Florida · 4101 Davie Road Ext.</p>
+    <h1>ATVs, motorcycles and side-by-sides in Hollywood, FL.</h1>
+    <p class="sub">386 new and 37 pre-owned on the lot.</p>
+    <form class="search" id="hero-search" action="/demos/broward-motorsports/inventory">
+      <input name="q" placeholder="Search Ninja, RZR, Outlander, golf carts…" aria-label="Search the lot">
+      <button class="btn rd" type="submit">Search</button>
+    </form>
+    <div class="chips">
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=Motorcycle">Motorcycles</a>
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=Side-by-Side">Side-by-Sides</a>
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=ATV">ATVs</a>
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=PWC">PWC</a>
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=Boat">Boats</a>
+      <a class="chip" href="/demos/broward-motorsports/inventory?category=Golf+Cart">Golf Carts</a>
+    </div>
+  </div>
+</section>
+<main>
+  <section class="w sec">
+    <div class="sh"><h2>Shop by category</h2></div>
+    <div class="cats" id="cats"></div>
+  </section>
+  <section class="w sec">
+    <div class="sh"><h2>Shop by brand</h2></div>
+    <div class="brands" id="brands"></div>
+  </section>
+  <section class="w sec">
+    <div class="sh"><h2>Shop by style</h2></div>
+    <div class="styles" id="styles"></div>
+  </section>
+  <section class="w sec">
+    <div class="pair">
+      <a class="wide new" href="/demos/broward-motorsports/inventory?condition=New"><div><b>New</b><small>386 on the lot</small></div></a>
+      <a class="wide used" href="/demos/broward-motorsports/inventory?condition=Pre-owned"><div><b>Pre-owned</b><small>37 on the lot</small></div></a>
+    </div>
+  </section>
+  <section class="w sec">
+    <div class="sh"><h2>On the lot now</h2><a href="/demos/broward-motorsports/inventory">See this sample</a></div>
+    <div class="grid" id="lot"></div>
+  </section>
+  <section class="w boxes" id="visit">
+    <article class="box">
+      <h3>Get pre-approved</h3>
+      <p>Tell us who you are. This concept keeps the note on the page.</p>
+      <button class="btn rd" type="button" data-open="approve">Start</button>
+    </article>
+    <article class="box">
+      <h3>Value your trade</h3>
+      <p>Year, make, and model are enough for a first look.</p>
+      <button class="btn gl" type="button" data-open="trade">Start</button>
+    </article>
+    <article class="box">
+      <h3>Visit the store</h3>
+      <p>4101 Davie Road Ext., Hollywood, FL 33024. Mon–Sat 9–7.</p>
+      <a class="btn gl" href="/demos/broward-motorsports/inventory">Browse the sample lot</a>
+    </article>
+  </section>
+</main>
+<div id="bottom"></div>
+<script src="/demos/broward-motorsports/data.js"></script>
+<script src="/demos/broward-motorsports/site.js"></script>
+</body>
+</html>
