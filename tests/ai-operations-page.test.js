@@ -138,6 +138,11 @@ describe('ai operations page', () => {
     assert.match(html, /data-vsl-book[\s\S]*Book a free 15-minute Zoom/);
     assert.match(js, /timeupdate/);
     assert.match(js, /requestAnimationFrame/);
+    assert.match(js, /webkitEnterFullscreen/);
+    assert.match(js, /requestFullscreen/);
+    assert.match(js, /webkitExitFullscreen/);
+    assert.match(js, /exitFullscreen/);
+    assert.match(js, /\(pointer:\s*coarse\)\s*and\s*\(max-width:\s*768px\)/);
     assert.match(css, /\.vsl-progress > span[\s\S]*var\(--accent\)/);
   });
 
