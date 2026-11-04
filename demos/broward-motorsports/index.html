@@ -99,14 +99,15 @@
         <label id="trade-contact">Phone or email <input name="contact" required autocomplete="tel"></label>
         <label id="trade-make">Make/Model <input name="make" required></label>
         <label id="trade-year">Year <input name="year" required inputmode="numeric" maxlength="4"></label>
-        <label class="wide" id="trade-vin">VIN <input name="vin" required autocomplete="off"></label>
-        <div class="wide"><button class="btn rd" type="submit" id="trade-submit">Submit</button></div>
+        <label class="trade-span" id="trade-vin">VIN <input name="vin" required autocomplete="off"></label>
+        <div class="trade-actions"><button class="btn rd" type="submit" id="trade-submit">Submit</button></div>
       </form>
       <p class="trade-thanks" id="trade-thanks" hidden>Thanks! A sales representative will get back to you the same business day.</p>
     </div>
   </section>
   <section class="w sec" id="sec-locations">
     <div class="sh"><h2>Visit our locations</h2></div>
+    <div class="loc-drop" id="loc-drop"></div>
     <div class="loc-chips" id="loc-chips"></div>
     <div class="loc-layout">
       <div class="loc-map" id="loc-map"></div>
