@@ -625,11 +625,7 @@ body.sub:not([data-page="brand"]):not([data-page="model"]) { padding-top: 64px; 
   body.home .hero .search input,
   body.home .hero .search .btn { min-height: 44px; }
   .menu { width: 44px; height: 44px; }
-  .style-row, #cats.cat-row {
-    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
-    mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
-  }
-  .sec { padding: 40px 0 0; }
+  .sec { padding: 40px 0 28px; }
   .boxes { margin-top: 40px; }
   .page h1 { font-size: 26px; line-height: 1.2; }
   .model-hero h1, .brand-hero h1 { font-size: 28px; line-height: 1.15; }
@@ -759,11 +755,11 @@ a.brand img {
   border-radius: 8px;
   background: #111;
 }
-.brands { grid-template-columns: repeat(4, 1fr); gap: 22px 14px; }
-.pair { grid-template-columns: 1fr 1fr; gap: 14px; }
-.shop-tile { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.shop-tile span { font-size: 16px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; }
-.shop-tile img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; border-radius: 8px; background: #111; }
+.brands { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pair { grid-template-columns: 1fr; gap: 10px; }
+.shop-tile { position: relative; display: block; min-height: 220px; height: 300px; overflow: hidden; }
+.shop-tile span { position: absolute; z-index: 1; left: 22px; right: 16px; bottom: 16px; font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
+.shop-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0; aspect-ratio: auto; background: #111; }
 .loc { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #ddd; white-space: nowrap; flex: none; }
 .loc select {
   appearance: none;
@@ -787,10 +783,12 @@ a.brand img {
   main > .sec,
   main > .boxes { margin-top: 24px; padding-top: 20px; }
   .boxes { margin-top: 24px; }
-  .brands { grid-template-columns: 1fr 1fr; gap: 16px 10px; }
-  .pair { grid-template-columns: 1fr 1fr; }
-  .shop-tile img { aspect-ratio: 1; }
-  a.brand span, .shop-tile span { font-size: 15px; }
+  .brands { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pair { grid-template-columns: 1fr; }
+  .shop-tile { height: 176px; min-height: 176px; }
+  .shop-tile img { aspect-ratio: auto; }
+  a.brand span { font-size: 15px; }
+  .shop-tile span { font-size: 30px; }
   .feature { grid-template-columns: 1fr; }
   .trade-board { grid-template-columns: 1fr; }
   .loc-layout { grid-template-columns: 1fr; }

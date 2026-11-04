@@ -121,11 +121,11 @@
     "note": "Can-Am Outlander Max XT-P 1000R, IDET/PYROS/ISET 2019, Brno"
   },
   "brand-seadoo": {
-    "title": "File:Interboot 2023, Friedrichshafen (P1120390).jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Interboot_2023,_Friedrichshafen_(P1120390).jpg",
-    "author": "Matti Blume",
+    "title": "File:Lava Red Sea-Doo 300 RXT-X.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Lava_Red_Sea-Doo_300_RXT-X.jpg",
+    "author": "Ehzeta",
     "lic": "CC BY-SA 4.0",
-    "note": "Quad with a two-storey PWC trailer at Interboot 2023 in Friedrichshafen"
+    "note": "Sea-Doo 300 RXT-X on the water, used on the Sea-Doo brand tile."
   },
   "rebel": {
     "title": "File:2020 Honda Rebel 500.jpg",
@@ -235,6 +235,25 @@
     "title": "Pete's Cycle intro",
     "url": "/demos/petes-cycle/img/intro-logo.mp4",
     "lic": "Concept intro approved by Seth. Plays once on load and loops, muted, behind the hero.",
-    "note": "Checkered flags resolve toward the Pete's mark. The live site logo fades over the final frames."
+    "note": "Straight-line approach (about 2.05\u20133.55s) plays at 2x. Flag sequence stays at normal speed."
+  },
+  "brand-polaris": {
+    "title": "File:2023 Polaris RZR Pro R.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2023_Polaris_RZR_Pro_R.jpg",
+    "lic": "CC BY-SA 4.0",
+    "note": "Brand tile photo."
+  },
+  "brand-triumph": {
+    "title": "File:Triumph Street Triple 675 front left threequarter.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Triumph_Street_Triple_675_front_left_threequarter.jpg",
+    "lic": "CC BY 2.0",
+    "note": "Brand tile photo."
+  },
+  "brand-kayo": {
+    "title": "File:Kayo Alkaid EC3 2026.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kayo_Alkaid_EC3_2026.jpg",
+    "author": "Cimapowert1991",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kayo Alkaid EC3 dirt bike, used on the Kayo brand tile."
   }
 }

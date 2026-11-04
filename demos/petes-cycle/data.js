@@ -42,15 +42,15 @@ window.BROWARD = {
     { id: "PWC", label: "chip.pwc", img: "cat-pwc.jpg" }
   ],
   marks: [
-    { name: "Honda", href: "/demos/petes-cycle/brands/honda" },
-    { name: "Yamaha", href: "/demos/petes-cycle/brands/yamaha" },
-    { name: "Kawasaki", href: "/demos/petes-cycle/brands/kawasaki" },
-    { name: "Suzuki", href: "/demos/petes-cycle/brands/suzuki" },
-    { name: "Can-Am", href: "/demos/petes-cycle/brands/can-am" },
-    { name: "Sea-Doo", href: "/demos/petes-cycle/brands/sea-doo" },
-    { name: "Polaris", href: "/demos/petes-cycle/inventory?q=Polaris" },
-    { name: "Triumph", href: "/demos/petes-cycle/inventory?q=Triumph" },
-    { name: "Kayo", href: "/demos/petes-cycle/inventory?q=Kayo" }
+    { name: "Honda", href: "/demos/petes-cycle/brands/honda", img: "brand-honda.jpg" },
+    { name: "Yamaha", href: "/demos/petes-cycle/brands/yamaha", img: "brand-yamaha.jpg", pos: "center 16%" },
+    { name: "Kawasaki", href: "/demos/petes-cycle/brands/kawasaki", img: "brand-kawasaki.jpg" },
+    { name: "Suzuki", href: "/demos/petes-cycle/brands/suzuki", img: "brand-suzuki.jpg" },
+    { name: "Can-Am", href: "/demos/petes-cycle/brands/can-am", img: "brand-canam.jpg" },
+    { name: "Sea-Doo", href: "/demos/petes-cycle/brands/sea-doo", img: "brand-seadoo.jpg" },
+    { name: "Polaris", href: "/demos/petes-cycle/inventory?q=Polaris", img: "brand-polaris.jpg" },
+    { name: "Triumph", href: "/demos/petes-cycle/inventory?q=Triumph", img: "brand-triumph.jpg" },
+    { name: "Kayo", href: "/demos/petes-cycle/inventory?q=Kayo", img: "brand-kayo.jpg" }
   ],
   brands: [
     { slug: "honda", name: "Honda", img: "brand-honda.jpg" },
@@ -110,7 +110,7 @@ window.BROWARD = {
         alt: "A sportbike leaned over on a racetrack"
       },
       chip: { moto: "Motorcycles", sxs: "Side-by-Sides", atv: "ATVs", pwc: "PWC", boat: "Boats", golf: "Golf Carts" },
-      h: { cat: "The floor", brand: "The lines", style: "How you ride", cond: "New and pre-owned", lot: "On the floor", specials: "Listed on their site", approve: "Call about financing", trade: "Ready to trade in?", visit: "Two stores" },
+      h: { cat: "The floor", brand: "Shop by brand", style: "How you ride", cond: "New and pre-owned", lot: "On the floor", specials: "Listed on their site", approve: "Call about financing", trade: "Ready to trade in?", visit: "Two stores" },
       seeSample: "See all inventory",
       approvePoints: ["Family-owned and operated since 1938.", "Honda, Yamaha, Kawasaki, Suzuki, Sea-Doo, and Can-Am, plus Polaris, Triumph, and Kayo.", "The call uses the store you picked."],
       approveAlt: "A black Kawasaki Ninja 650 parked outdoors",
@@ -251,7 +251,7 @@ window.BROWARD = {
         alt: "Un piloto inclinando una moto en una curva de asfalto"
       },
       chip: { moto: "Motos", sxs: "Side-by-Sides", atv: "ATV", pwc: "PWC", boat: "Botes", golf: "Carritos de golf" },
-      h: { cat: "El piso", brand: "Las líneas", style: "Cómo ruedas", cond: "Nuevos y usados", lot: "En el piso", specials: "Publicado en su sitio", approve: "Llama por financiamiento", trade: "¿Listo para entregar tu moto?", visit: "Dos tiendas" },
+      h: { cat: "El piso", brand: "Compra por marca", style: "Cómo ruedas", cond: "Nuevos y usados", lot: "En el piso", specials: "Publicado en su sitio", approve: "Llama por financiamiento", trade: "¿Listo para entregar tu moto?", visit: "Dos tiendas" },
       seeSample: "Ver todo el inventario",
       approvePoints: ["Familiar y operado por la familia desde 1938.", "Honda, Yamaha, Kawasaki, Suzuki, Sea-Doo y Can-Am, además de Polaris, Triumph y Kayo.", "La llamada usa la tienda que elegiste."],
       approveAlt: "Una Kawasaki Ninja 650 negra estacionada al aire libre",
