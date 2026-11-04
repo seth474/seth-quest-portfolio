@@ -1,0 +1,240 @@
+{
+  "hero": {
+    "title": "Frame from the approved Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Still from the intro Seth approved for this concept. Poster and fallback while the same clip loops in the hero.",
+    "note": "Sportbike leaned on a racetrack, about 1.5s into intro-logo.mp4. Replaces the Pikes Peak hill-climb photo."
+  },
+  "cat-moto": {
+    "title": "Frame from the approved Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Still from the intro Seth approved for this concept.",
+    "note": "Sportbike from behind on the straight, about 2.8s into intro-logo.mp4."
+  },
+  "cat-atv": {
+    "title": "File:2021 Can-Am Outlander 570.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2021_Can-Am_Outlander_570.jpg",
+    "lic": "CC BY-SA 4.0",
+    "note": "Can-Am Outlander 570"
+  },
+  "cat-sxs": {
+    "title": "File:Polaris RZR ATV.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_RZR_ATV.JPG",
+    "lic": "CC BY-SA 4.0",
+    "note": "A Polaris RZR All Terrain Vehicle (ATV). Photo taken during the 20th Balloon Fiesta at Clark Air Fie Cropped to the RZR."
+  },
+  "cat-pwc": {
+    "title": "File:Personal Watercraft (8981324439).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Personal_Watercraft_(8981324439).jpg",
+    "lic": "CC BY-SA 2.0",
+    "note": "A rider on a personal watercraft, Lake Mead. Category tile."
+  },
+  "style-cruiser": {
+    "title": "File:Kawasaki Vulcan parked at Hogs for Hospice, Leamington, Ontario, 2025-08-02.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Vulcan_parked_at_Hogs_for_Hospice,_Leamington,_Ontario,_2025-08-02.jpg",
+    "author": "Chris Woodrich",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kawasaki Vulcan parked at Hogs for Hospice, Leamington, Ontario, 2025-08-02"
+  },
+  "style-sport": {
+    "title": "File:Suzuki Hayabusa 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Suzuki_Hayabusa_2025.jpg",
+    "author": "AVMOTO",
+    "lic": "CC BY-SA 4.0",
+    "note": "Suzuki Hayabusa"
+  },
+  "style-dirt": {
+    "title": "File:Yamaha YZ450F.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_YZ450F.jpg",
+    "author": "TTTNIS",
+    "lic": "Public domain",
+    "note": "2012 Yamaha YZ450F"
+  },
+  "style-utility": {
+    "title": "File:Polaris Ranger XP 1000 black.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_Ranger_XP_1000_black.jpg",
+    "author": "SolanaBogon",
+    "lic": "CC BY 4.0",
+    "note": "Front view of a black 6-seat 4-door Polaris Ranger XP 1000"
+  },
+  "style-sxs": {
+    "title": "File:Polaris RZR XP 900.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_RZR_XP_900.jpg",
+    "author": "Tsward318",
+    "lic": "CC BY-SA 4.0",
+    "note": "Polaris RZR XP 900 modified with aftermarket accessories"
+  },
+  "tile-new": {
+    "title": "File:Kawasaki Ninja 400 June 2022.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_400_June_2022.jpg",
+    "author": "Kidfly182",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kawasaki Ninja 400"
+  },
+  "tile-used": {
+    "title": "File:Triumph Bonneville T100 in Munich.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Triumph_Bonneville_T100_in_Munich.jpg",
+    "author": "AuHaidhausen",
+    "lic": "CC BY 4.0",
+    "note": "Triumph Bonneville T100"
+  },
+  "approve": {
+    "title": "File:Kawasaki Ninja 650 2017.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_650_2017.jpg",
+    "author": "Sebastian6186",
+    "lic": "CC BY-SA 3.0",
+    "note": "Kawasaki Ninja 650 2017 in Metallic Spark Black"
+  },
+  "brand-honda": {
+    "title": "File:Honda Rebel 500 (2BL-PC60) front.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Honda_Rebel_500_(2BL-PC60)_front.jpg",
+    "author": "Tokumeigakarinoaoshima",
+    "lic": "CC BY-SA 4.0",
+    "note": "2BL-PC60\u578b\u30db\u30f3\u30c0\u30fb\u30ec\u30d6\u30eb500\u3092\u30d5\u30ed\u30f3\u30c8\u304b\u3089\u64ae\u5f71\u3002"
+  },
+  "brand-yamaha": {
+    "title": "File:Yamaha MT-07 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_MT-07_2025.jpg",
+    "author": "AVMOTO",
+    "lic": "CC BY-SA 4.0",
+    "note": "MT-07 at EICMA 2024"
+  },
+  "brand-kawasaki": {
+    "title": "File:Kawasaki Z900, green.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Z900,_green.jpg",
+    "author": "Cjp24",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kawasaki Z 900 dot\u00e9e d'un pot d'\u00e9chappement Akrapovi\u010d."
+  },
+  "brand-suzuki": {
+    "title": "File:Suzuki V-Strom 650 XT MY2018.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Suzuki_V-Strom_650_XT_MY2018.jpg",
+    "author": "Anubis85 KH",
+    "lic": "CC BY-SA 4.0",
+    "note": "Suzuki V-Strom 650 XT Model year 2018"
+  },
+  "brand-canam": {
+    "title": "File:Can-Am Outlander Max XT-P 1000R (1).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Can-Am_Outlander_Max_XT-P_1000R_(1).jpg",
+    "author": "Reise Reise",
+    "lic": "CC BY-SA 4.0",
+    "note": "Can-Am Outlander Max XT-P 1000R, IDET/PYROS/ISET 2019, Brno"
+  },
+  "brand-seadoo": {
+    "title": "File:Interboot 2023, Friedrichshafen (P1120390).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Interboot_2023,_Friedrichshafen_(P1120390).jpg",
+    "author": "Matti Blume",
+    "lic": "CC BY-SA 4.0",
+    "note": "Quad with a two-storey PWC trailer at Interboot 2023 in Friedrichshafen"
+  },
+  "rebel": {
+    "title": "File:2020 Honda Rebel 500.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2020_Honda_Rebel_500.jpg",
+    "author": "Chanokchon",
+    "lic": "CC BY-SA 4.0",
+    "note": "2020 Honda Rebel 500 in Honda BigWing Khon Kaen, Khon Kaen, Thailand."
+  },
+  "yz": {
+    "title": "File:Yamaha YZ 450 F - EICMA 2024.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Yamaha_YZ_450_F_-_EICMA_2024.jpg",
+    "author": "Saggittarius A",
+    "lic": "CC BY 4.0",
+    "note": "Yamaha YZ 450 F all'EICMA 2024."
+  },
+  "mt07": {
+    "title": "File:2021 Black Yamaha MT-07.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2021_Black_Yamaha_MT-07.jpg",
+    "author": "PackMecEng",
+    "lic": "CC BY-SA 4.0",
+    "note": "2021 Yamaha MT-07 in black"
+  },
+  "klr": {
+    "title": "File:2009 black Kawasaki KLR 650.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2009_black_Kawasaki_KLR_650.jpg",
+    "author": "Carsamar",
+    "lic": "CC BY-SA 4.0",
+    "note": "2009 Kawasaki KLR 650 motorcycle"
+  },
+  "ninja": {
+    "title": "File:Kawasaki Ninja 650 2020.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_650_2020.jpg",
+    "author": "A7N8X",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kawasaki Ninja 650"
+  },
+  "z900": {
+    "title": "File:Kawasaki Z900 RS 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Z900_RS_2025.jpg",
+    "author": "AVMOTO",
+    "lic": "CC BY-SA 4.0",
+    "note": "Kawasaki Z900 RS 2025"
+  },
+  "gsx": {
+    "title": "File:Suzuki GSX-8S, Auto 2024, Zurich (PANA0820).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Suzuki_GSX-8S,_Auto_2024,_Zurich_(PANA0820).jpg",
+    "author": "Matti Blume",
+    "lic": "CC BY-SA 4.0",
+    "note": "Suzuki GSX-8S at Auto Z\u00fcrich 2024"
+  },
+  "brute": {
+    "title": "File:Kawasaki Brute Force 750 JMS 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Brute_Force_750_JMS_2025.jpg",
+    "author": "TTTNIS",
+    "lic": "CC0",
+    "note": "Kawasaki Brute Force 750"
+  },
+  "defender": {
+    "title": "File:Rideau Canal - BRP Can-Am Defender vehicle 1972.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Rideau_Canal_-_BRP_Can-Am_Defender_vehicle_1972.jpg",
+    "author": "Ahunt",
+    "lic": "CC0",
+    "note": "A BRP Can-Am Defender vehicle operated in support of the skateway. The Rideau Canal skateway is operated by the National Capital Commission in Ottawa, Ontario, Canada each winter."
+  },
+  "x3": {
+    "title": "File:Can-Am Maverick X3 Turbo Talos T2S.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Can-Am_Maverick_X3_Turbo_Talos_T2S.jpg",
+    "author": "Calreyn88",
+    "lic": "CC BY-SA 4.0",
+    "note": "Can-Am Maverick"
+  },
+  "spark": {
+    "title": "File:Sea-Doo Spark.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Sea-Doo_Spark.jpg",
+    "author": "Cjp24",
+    "lic": "CC BY-SA 4.0",
+    "note": "Sea-Doo Spark (dot\u00e9 d'un moteur Rotax) sur remorque CBS ; au lac des Settons, Ni\u00e8vre, France."
+  },
+  "special-honda": {
+    "title": "File:Honda CMX500 Rebel parked at Hogs for Hospice, Leamington, Ontario, 2025-08-02.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Honda_CMX500_Rebel_parked_at_Hogs_for_Hospice,_Leamington,_Ontario,_2025-08-02.jpg",
+    "author": "Chris Woodrich",
+    "lic": "CC BY-SA 4.0",
+    "note": "Honda CMX500 Rebel parked at Hogs for Hospice, Leamington, Ontario, 2025-08-02"
+  },
+  "special-canam": {
+    "title": "File:2024 Can-Am Ryker.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2024_Can-Am_Ryker.jpg",
+    "author": "Calreyn88",
+    "lic": "CC BY-SA 4.0",
+    "note": "Can-Am Ryker"
+  },
+  "special-yamaha": {
+    "title": "File:YAMAHA Wave Runner Yamaha Communication Plaza.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:YAMAHA_Wave_Runner_Yamaha_Communication_Plaza.jpg",
+    "author": "PekePON",
+    "lic": "CC BY-SA 3.0",
+    "note": "\u30e4\u30de\u30cf\u30fb\u30de\u30ea\u30f3\u30b8\u30a7\u30c3\u30c8\uff08\u6c34\u4e0a\u30d0\u30a4\u30af\uff09MJ-VX110SP\uff082005\u5e74\uff1f\uff09 \u30e4\u30de\u30cf\u30b3\u30df\u30e5\u30cb\u30b1\u30fc\u30b7\u30e7\u30f3\u30d7\u30e9\u30b6\u306b\u3066\u64ae\u5f71"
+  },
+  "logo": {
+    "title": "Pete's Cycle Co. logo",
+    "url": "https://www.petescycle.com/",
+    "lic": "Pete's Cycle's own logo, saved from the live site (published-assets.ari-build.com, site 18363).",
+    "note": "Used as the header and footer mark. Not a redraw."
+  },
+  "intro-logo": {
+    "title": "Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Concept intro approved by Seth. Plays once on load and loops, muted, behind the hero.",
+    "note": "Checkered flags resolve toward the Pete's mark. The live site logo fades over the final frames."
+  }
+}

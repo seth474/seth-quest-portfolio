@@ -87,6 +87,18 @@
       ]
     },
     {
+      "source": "/demos/petes-cycle",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/demos/petes-cycle/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
       "source": "/api/credit-climb",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
@@ -116,6 +128,9 @@
     { "source": "/demos/broward-motorsports/brands/:brand", "destination": "/demos/broward-motorsports/brand" },
     { "source": "/demos/broward-motorsports/models/:slug", "destination": "/demos/broward-motorsports/model" },
     { "source": "/demos/broward-motorsports/inventory/:id", "destination": "/demos/broward-motorsports/unit" },
+    { "source": "/demos/petes-cycle/brands/:brand", "destination": "/demos/petes-cycle/brand" },
+    { "source": "/demos/petes-cycle/models/:slug", "destination": "/demos/petes-cycle/model" },
+    { "source": "/demos/petes-cycle/inventory/:id", "destination": "/demos/petes-cycle/unit" },
     { "source": "/credit-climb", "destination": "/api/credit-climb" },
     { "source": "/credit-climb/", "destination": "/api/credit-climb" },
     { "source": "/credit-climb.txt", "destination": "/api/credit-climb?file=index.txt" },

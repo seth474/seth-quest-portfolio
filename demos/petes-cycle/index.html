@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pete's Cycle · Baltimore and Severna Park</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/demos/petes-cycle/site.css">
+<link rel="stylesheet" href="/demos/petes-cycle/light.css">
+<script>
+(function () {
+  var q = new URLSearchParams(location.search).get("intro");
+  var seen = false;
+  try { seen = sessionStorage.getItem("petes-intro") === "1"; } catch (e) {}
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (q !== "mid" && q !== "logo" && (q === "skip" || seen || reduce)) {
+    document.documentElement.classList.add("intro-skip");
+  }
+})();
+</script>
+</head>
+<body class="home" data-page="home">
+<div class="intro" id="intro">
+  <video id="intro-video" src="/demos/petes-cycle/img/intro-logo.mp4" muted autoplay playsinline webkit-playsinline preload="auto" disableRemotePlayback></video>
+  <img class="intro-logo" src="/demos/petes-cycle/img/logo.png" alt="">
+  <button type="button" class="intro-skip" id="intro-skip">Skip</button>
+</div>
+<div id="top"></div>
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <img src="/demos/petes-cycle/img/hero.jpg" alt="A sportbike leaned over on a racetrack">
+    <video id="hero-video" src="/demos/petes-cycle/img/intro-logo.mp4" poster="/demos/petes-cycle/img/hero.jpg" muted autoplay loop playsinline webkit-playsinline disableRemotePlayback></video>
+  </div>
+  <div class="w hin">
+    <p class="eyebrow" id="hero-eyebrow">Baltimore · Family owned</p>
+    <h1>Since 1938.</h1>
+    <p class="lede" id="hero-lede">Two stores. Belair Road and Severna Park. Honda for six decades, Yamaha for five.</p>
+    <div class="hero-cta">
+      <a class="btn rd" id="hero-new" href="/demos/petes-cycle/inventory?condition=New">Shop new</a>
+      <a class="btn gl" id="hero-used" href="/demos/petes-cycle/inventory?condition=Pre-owned">Shop pre-owned</a>
+    </div>
+  </div>
+</section>
+<main>
+  <section class="heritage" id="sec-heritage">
+    <div class="checker" aria-hidden="true"></div>
+    <div class="w heritage-in">
+      <p class="eyebrow">Pete's Cycle Co.</p>
+      <h2>Family-owned in Baltimore.</h2>
+      <p>Still family-owned, since 1938, with a second store in Severna Park. Honda for six decades. Yamaha for five. The floor also carries Kawasaki, Suzuki, Sea-Doo, Can-Am, Polaris, Triumph, and Kayo.</p>
+    </div>
+  </section>
+  <section class="w sec" id="sec-cat">
+    <div class="sh"><h2>Shop by category</h2></div>
+    <div class="cat-slider">
+      <button class="cat-arrow prev" type="button" id="cat-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="cats cat-row" id="cats"></div>
+      <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </section>
+  <section class="band" id="sec-brand">
+    <div class="w">
+      <div class="sh"><h2>The lines</h2></div>
+      <div class="brands" id="brands"></div>
+    </div>
+  </section>
+  <section class="w sec" id="sec-style">
+    <div class="sh"><h2>Shop by style</h2></div>
+    <div class="style-slider">
+      <button class="cat-arrow prev" type="button" id="style-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="style-row" id="styles"></div>
+      <button class="cat-arrow next" type="button" id="style-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </section>
+  <section class="w sec" id="sec-pair">
+    <div class="pair">
+      <a class="shop-tile new" href="/demos/petes-cycle/inventory?condition=New"><span>Shop new</span><img src="/demos/petes-cycle/img/tile-new.jpg" alt=""></a>
+      <a class="shop-tile used" href="/demos/petes-cycle/inventory?condition=Pre-owned"><span>Shop pre-owned</span><img src="/demos/petes-cycle/img/tile-used.jpg" alt=""></a>
+    </div>
+  </section>
+  <section class="w sec" id="sec-lot">
+    <div class="sh"><h2>On the lot now</h2><a id="lot-all" href="/demos/petes-cycle/inventory">See all inventory</a></div>
+    <div class="style-slider lot-slider">
+      <button class="cat-arrow prev" type="button" id="lot-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="lot-row" id="lot"></div>
+      <button class="cat-arrow next" type="button" id="lot-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </section>
+  <section class="w sec" id="sec-specials">
+    <div class="sh"><h2>Listed on their site</h2></div>
+    <div class="specials" id="specials">
+      <div class="specials-track" id="specials-track"></div>
+      <div class="specials-dots" id="specials-dots"></div>
+    </div>
+  </section>
+  <section class="w sec" id="sec-approve">
+    <div class="feature">
+      <img id="approve-photo" src="/demos/petes-cycle/img/approve.jpg" alt="A black Kawasaki Ninja 650 parked outdoors">
+      <div class="feature-copy">
+        <h2>Call about financing</h2>
+        <ul id="approve-points">
+          <li>Family-owned and operated since 1938.</li>
+          <li>Honda, Yamaha, Kawasaki, Suzuki, Sea-Doo, and Can-Am, plus Polaris, Triumph, and Kayo.</li>
+          <li>The call uses the store you picked.</li>
+        </ul>
+        <a class="btn rd" id="approve-call" href="tel:+14106638556">Call about financing</a>
+      </div>
+    </div>
+  </section>
+  <section class="w sec" id="sec-trade">
+    <div class="trade-form">
+      <h2>Ready to trade in?</h2>
+      <p class="trade-lead" id="trade-lead">Leave the machine's details here. This concept keeps the note on the page.</p>
+      <form class="form" id="trade-form">
+        <label id="trade-name">Name <input name="name" required autocomplete="name"></label>
+        <label id="trade-contact">Phone or email <input name="contact" required autocomplete="tel"></label>
+        <label id="trade-make">Make/Model <input name="make" required></label>
+        <label id="trade-year">Year <input name="year" required inputmode="numeric" maxlength="4"></label>
+        <label class="trade-span" id="trade-vin">VIN <input name="vin" required autocomplete="off"></label>
+        <div class="trade-actions"><button class="btn rd" type="submit" id="trade-submit">Submit</button></div>
+      </form>
+      <p class="trade-thanks" id="trade-thanks" hidden>Thanks. This stayed on the page. Someone at the store would take it from here.</p>
+    </div>
+  </section>
+  <section class="w sec" id="sec-locations">
+    <div class="sh"><h2>Visit our locations</h2></div>
+    <div class="loc-drop" id="loc-drop"></div>
+    <div class="loc-chips" id="loc-chips"></div>
+    <div class="loc-layout">
+      <div class="loc-map" id="loc-map"></div>
+      <div class="loc-detail" id="loc-detail"></div>
+    </div>
+  </section>
+</main>
+<div id="bottom"></div>
+<script src="/demos/petes-cycle/data.js"></script>
+<script src="/demos/petes-cycle/site.js"></script>
+</body>
+</html>
