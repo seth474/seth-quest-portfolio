@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title": "File:Motorcycle in the Autumn Leaves (11009699874).jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Motorcycle_in_the_Autumn_Leaves_(11009699874).jpg",
-    "author": "Yoshikazu TAKADA from Tokyo, Japan",
-    "lic": "CC BY 2.0",
-    "note": "at Umegasaki Valley, Otaki-cho, Ichihara-shi, Chiba"
+    "title": "File:Motorcycle Lean PPIHC.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Motorcycle_Lean_PPIHC.jpg",
+    "author": "Commons contributor, Pikes Peak International Hill Climb 2007",
+    "lic": "CC BY-SA 3.0",
+    "note": "A rider leaning a motorcycle through a paved turn. Hero poster. Not a Pete's Cycle showroom photo."
   },
   "cat-moto": {
     "title": "File:Triumph Street Triple 675 front left threequarter.jpg",
@@ -229,5 +229,11 @@
     "author": "PekePON",
     "lic": "CC BY-SA 3.0",
     "note": "\u30e4\u30de\u30cf\u30fb\u30de\u30ea\u30f3\u30b8\u30a7\u30c3\u30c8\uff08\u6c34\u4e0a\u30d0\u30a4\u30af\uff09MJ-VX110SP\uff082005\u5e74\uff1f\uff09 \u30e4\u30de\u30cf\u30b3\u30df\u30e5\u30cb\u30b1\u30fc\u30b7\u30e7\u30f3\u30d7\u30e9\u30b6\u306b\u3066\u64ae\u5f71"
+  },
+  "logo": {
+    "title": "Pete's Cycle Co. logo",
+    "url": "https://www.petescycle.com/",
+    "lic": "Pete's Cycle's own logo, saved from the live site (published-assets.ari-build.com, site 18363).",
+    "note": "Used as the header and footer mark. Not a redraw."
   }
 }

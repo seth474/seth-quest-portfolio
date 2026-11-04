@@ -1,10 +1,14 @@
 /* Light theme. Black for type and 1px section breaks. Red only on actions. */
-:root { --bg: #fff; --card: #fff; --line: #e6e6e6; --mut: #5c5c5c; --red: #d0121a; }
-body { background: #fff; color: #161616; }
+:root { --bg: #fff; --card: #fff; --line: #e6e6e6; --mut: #5c5c5c; --red: #dc2111; }
+body { background: #f6f4f1; color: #141414; }
+h1, h2, .brand-logo, .tile b, .shop-tile span, .hero .lede {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
 a { color: inherit; }
 .logo, .logo b, .nav, .nav a, .menu, .loc, .hd-tools { color: #111; }
 .nav a:hover { color: #111; }
 .menu { color: #111; border-color: #111; }
+.menu::before { background: #111; box-shadow: 0 -5px 0 #111, 0 5px 0 #111; }
 body.home .top,
 body.sub .top,
 body.sub .top.is-solid {
@@ -17,20 +21,22 @@ body.sub .top.is-solid {
 }
 .lang button { color: #111; background: #fff; border: 1px solid #111; }
 .lang button[aria-pressed="true"] { background: #111; color: #fff; }
+.logo img { height: 52px; width: auto; display: block; }
+.foot-logo { height: 42px; width: auto; margin: 0 0 12px; }
 body.home .hero {
-  min-height: 0;
+  position: relative;
+  min-height: calc(100svh - 76px);
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  background: #fff;
-  color: #111;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
 }
 body.home .hero-media {
-  position: relative;
-  inset: auto;
-  height: min(58vh, 560px);
-  min-height: 240px;
+  position: absolute;
+  inset: 0;
+  height: auto;
+  min-height: 0;
 }
 body.home .hero-media img,
 body.home .hero-media video {
@@ -39,35 +45,100 @@ body.home .hero-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 72%;
-  filter: none;
+  object-position: 32% 60%;
+  filter: saturate(1.05) contrast(1.05);
 }
-body.home .hero::after { display: none; }
-body.home .hin { padding: 28px 0 8px; color: #111; }
-body.home .hero h1 { color: #111; max-width: 16em; font-size: clamp(34px, 4.6vw, 60px); }
+body.home .hero-media video:not([src]) { display: none; }
+body.home .hero::after {
+  display: block;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,.08) 38%, rgba(0,0,0,.82) 100%);
+}
+body.home .hin { position: relative; z-index: 2; padding: 0 0 48px; color: #fff; }
+body.home .hero .eyebrow { color: #fff; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
+body.home .hero h1 {
+  color: #fff;
+  max-width: 8em;
+  margin: 6px 0 8px;
+  font-size: clamp(76px, 11vw, 148px);
+  line-height: 0.84;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+body.home .hero .lede { max-width: 28em; margin: 0 0 22px; font-size: 20px; line-height: 1.35; color: #f3f3f3; font-weight: 600; letter-spacing: 0.01em; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero .btn { min-height: 52px; padding: 0 22px; font-family: "Barlow Condensed", sans-serif; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
+.hero .btn.gl { background: transparent; color: #fff; border: 1px solid #fff; }
+.hero .btn.gl:hover { background: #fff; color: #111; }
+.intro { position: fixed; inset: 0; z-index: 80; background: #0b0b0b; display: grid; place-items: center; }
+.intro[hidden] { display: none !important; }
+.intro video { width: min(880px, 88vw); height: auto; }
+.intro.is-done { opacity: 0; transition: opacity .6s ease; }
+body.intro-on { overflow: hidden; }
+.checker { height: 14px; background: repeating-conic-gradient(#111 0% 25%, #f6f4f1 0% 50%); background-size: 14px 14px; }
+.heritage { background: #111; color: #fff; }
+.heritage-in { padding: 42px 0 48px; max-width: 760px; }
+.heritage .eyebrow, .heritage h2, .heritage p { color: #fff; }
+.heritage h2 { font-size: clamp(42px, 6vw, 72px); line-height: 0.9; text-transform: uppercase; margin: 0 0 14px; }
+.heritage p { font-size: 18px; line-height: 1.45; max-width: 40em; color: #e7e7e7; }
+.band { background: #111; color: #fff; padding: 36px 0 42px; }
+.band h2 { color: #fff; text-transform: uppercase; }
+.brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+  background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 800;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.brand-logo:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
 .sec, main > .sec, main > .boxes { border-top: 1px solid #111; margin-top: 28px; padding-top: 22px; }
 .sh a, .tile b, .tile small, .card .nm, .card .pr, .card .model-link { color: #111; }
 .tile {
-  aspect-ratio: auto;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
+  aspect-ratio: 4/5;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: #111;
   border: 0;
-  border-radius: 0;
-  overflow: visible;
+  border-radius: 2px;
 }
-.tile img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; filter: none; border-radius: 8px; }
-.tile::after, .wide::after { display: none; }
-.tile div, .wide div { position: static; left: auto; right: auto; bottom: auto; padding: 10px 0 0; color: #111; }
-.tile small { color: #444; }
+.tile img { width: 100%; height: 100%; object-fit: cover; filter: none; border-radius: 0; transition: transform .55s ease; }
+.tile:hover img { transform: scale(1.08); }
+.tile::after {
+  display: block;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.02) 58%);
+}
+.tile div { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; padding: 0; color: #fff; }
+.tile b { color: #fff; font-size: 30px; text-transform: uppercase; letter-spacing: -0.03em; }
+.tile small { color: rgba(255,255,255,.8); }
 a.brand { border: 0; background: transparent; color: #111; padding: 0; }
 a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; filter: none; }
 .style-card { color: #111; }
 .style-card span { color: #111; }
-.shop-tile span { color: #111; }
-.shop-tile img { filter: none; border-radius: 8px; }
-.ph { background: #f3f3f3; }
-.ph img { filter: none; }
+.sh h2, .feature-copy h2, .trade-form h2 { text-transform: uppercase; letter-spacing: -0.03em; }
+.shop-tile { position: relative; display: block; min-height: 340px; overflow: hidden; color: #fff; }
+.shop-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: none; border-radius: 0; aspect-ratio: auto; transition: transform .6s ease; }
+.shop-tile:hover img, .style-card:hover img, .card:hover .ph img { transform: scale(1.06); }
+.shop-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72), transparent 62%); }
+.shop-tile span { position: absolute; z-index: 1; left: 18px; bottom: 16px; color: #fff; font-size: 52px; text-transform: uppercase; letter-spacing: -0.03em; }
+.ph { background: #111; overflow: hidden; }
+.ph img { filter: none; transition: transform .5s ease; }
+.style-card img { transition: transform .5s ease; }
 .tag { background: #111; color: #fff; }
 .meta { color: #555; }
 .search {
@@ -116,9 +187,19 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
 #hero, .sec, footer { scroll-margin-top: 84px; }
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr 1fr; gap: 16px 10px; }
-  body.home .hero-media { height: 42vh; min-height: 220px; }
-  body.home .hin { padding: 18px 0 4px; }
-  body.home .hero h1 { font-size: 32px; }
+  .nav, .sp, .hd-tools .loc { display: none; }
+  .logo { order: 1; }
+  .hd-tools { display: flex; order: 2; margin-left: auto; }
+  .hd .approve { display: inline-flex; }
+  .menu { order: 3; margin-left: 8px; }
+  .logo img { height: 40px; }
+  body.home .hero { min-height: calc(100svh - 64px); }
+  body.home .hero-media { position: absolute; height: auto; }
+  body.home .hin { padding: 0 0 28px; }
+  body.home .hero h1 { font-size: 84px; color: #fff; }
+  body.home .hero .lede { font-size: 16px; }
+  .brands { grid-template-columns: 1fr 1fr; }
+  .heritage h2 { font-size: 46px; }
   #sec-trade { padding-top: 16px; }
   .trade-form h2 { font-size: 32px; margin-bottom: 6px; }
   .trade-lead { margin: 0 0 10px; font-size: 16px; }

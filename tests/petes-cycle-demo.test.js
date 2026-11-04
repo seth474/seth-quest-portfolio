@@ -13,7 +13,10 @@ const audit = fs.readFileSync(path.join(root, 'AUDIT.md'), 'utf8');
 test('petes cycle concept is noindex, light, and uses real stores', () => {
   assert.match(html, /noindex/);
   assert.match(html, /light\.css/);
-  assert.match(html, /Family-owned powersports in Baltimore since 1938\./);
+  assert.match(html, /Since 1938\./);
+  assert.match(html, /intro-logo\.mp4/);
+  assert.match(js, /logo\.png/);
+  assert.equal(js.includes('data-lang="en"'), false);
   assert.match(data, /7511 Belair Rd, Baltimore, MD 21236/);
   assert.match(data, /800 Ritchie Hwy, Severna Park, MD 21146/);
   assert.match(data, /4106638556/);

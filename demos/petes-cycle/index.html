@@ -6,31 +6,42 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Pete's Cycle · Baltimore and Severna Park</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/demos/petes-cycle/site.css">
 <link rel="stylesheet" href="/demos/petes-cycle/light.css">
 </head>
 <body class="home" data-page="home">
+<!-- Intro slot: drop a muted mp4 at img/intro-logo.mp4 (checkered flags forming the logo).
+     It plays once, then this overlay leaves. With no file, the page shows immediately. -->
+<div class="intro" id="intro" hidden>
+  <video id="intro-video" muted playsinline preload="auto"></video>
+</div>
 <div id="top"></div>
 <section class="hero" id="hero">
   <div class="hero-media">
-    <img src="/demos/petes-cycle/img/hero.jpg" alt="A motorcycle parked on a road covered in autumn leaves">
+    <img src="/demos/petes-cycle/img/hero.jpg" alt="A rider leaning a motorcycle through a paved turn at speed">
+    <!-- Hero video slot: drop a muted mp4 at img/hero.mp4. The poster stays until it plays. -->
+    <video id="hero-video" poster="/demos/petes-cycle/img/hero.jpg" muted autoplay loop playsinline></video>
   </div>
   <div class="w hin">
-    <h1>Family-owned powersports in Baltimore since 1938.</h1>
-    <form class="search" id="hero-search" action="/demos/petes-cycle/inventory">
-      <input name="q" placeholder="Rebel, Ninja, Defender…" aria-label="Search the sample inventory">
-      <button class="btn rd" type="submit">Search</button>
-    </form>
-    <div class="chips">
-      <a class="chip" href="/demos/petes-cycle/inventory?category=Motorcycle">Motorcycles</a>
-      <a class="chip" href="/demos/petes-cycle/inventory?category=Side-by-Side">Side-by-Sides</a>
-      <a class="chip" href="/demos/petes-cycle/inventory?category=ATV">ATVs</a>
-      <a class="chip" href="/demos/petes-cycle/inventory?category=PWC">PWC</a>
+    <p class="eyebrow" id="hero-eyebrow">Baltimore · Family owned</p>
+    <h1>Since 1938.</h1>
+    <p class="lede" id="hero-lede">Two stores. Belair Road and Severna Park. Honda for six decades, Yamaha for five.</p>
+    <div class="hero-cta">
+      <a class="btn rd" id="hero-new" href="/demos/petes-cycle/inventory?condition=New">Shop new</a>
+      <a class="btn gl" id="hero-used" href="/demos/petes-cycle/inventory?condition=Pre-owned">Shop pre-owned</a>
     </div>
   </div>
 </section>
 <main>
+  <section class="heritage" id="sec-heritage">
+    <div class="checker" aria-hidden="true"></div>
+    <div class="w heritage-in">
+      <p class="eyebrow">Pete's Cycle Co.</p>
+      <h2>A family desk on Belair Road.</h2>
+      <p>Still family-owned, since 1938, with a second store in Severna Park. Honda for six decades. Yamaha for five. The floor also carries Kawasaki, Suzuki, Sea-Doo, Can-Am, Polaris, Triumph, and Kayo.</p>
+    </div>
+  </section>
   <section class="w sec" id="sec-cat">
     <div class="sh"><h2>Shop by category</h2></div>
     <div class="cat-slider">
@@ -39,9 +50,11 @@
       <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
-  <section class="w sec" id="sec-brand">
-    <div class="sh"><h2>Shop by brand</h2></div>
-    <div class="brands" id="brands"></div>
+  <section class="band" id="sec-brand">
+    <div class="w">
+      <div class="sh"><h2>The lines</h2></div>
+      <div class="brands" id="brands"></div>
+    </div>
   </section>
   <section class="w sec" id="sec-style">
     <div class="sh"><h2>Shop by style</h2></div>

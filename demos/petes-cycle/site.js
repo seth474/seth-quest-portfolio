@@ -122,13 +122,6 @@
       '<a href="tel:+1' + phoneDigits() + '">' + t("nav.fin") + "</a>" +
       '<a href="' + BASE + '/#sec-locations">' + t("nav.service") + "</a>";
   }
-  function langToggle() {
-    var es = lang() === "es";
-    return '<div class="lang" role="group" aria-label="' + t("lang") + '">' +
-      '<button type="button" data-lang="en" aria-pressed="' + (es ? "false" : "true") + '">EN</button>' +
-      '<button type="button" data-lang="es" aria-pressed="' + (es ? "true" : "false") + '">ES</button>' +
-      "</div>";
-  }
   function locSelect() {
     var current = place().id;
     var opts = (window.BROWARD.locations || []).map(function (loc) {
@@ -138,20 +131,21 @@
   }
   function header() {
     return '<header class="top"><div class="w hd">' +
-      '<a class="logo" href="' + BASE + '/"><span>' + DEALER.logo[0] + "</span><b>" + DEALER.logo[1] + "</b></a>" +
+      '<a class="logo" href="' + BASE + '/"><img src="' + img("logo.png") + '" alt="Pete\'s Cycle Co."></a>' +
       '<button class="menu" type="button" aria-expanded="false" aria-label="' + t("menu") + '">' + t("menu") + "</button>" +
       '<nav class="nav">' + navLinks() + '</nav><div class="sp"></div>' +
-      '<div class="hd-tools">' + locSelect() + langToggle() +
+      '<div class="hd-tools">' + locSelect() +
       '<a class="btn rd approve" href="tel:+1' + phoneDigits() + '">' + t("approve") + "</a>" +
       "</div></div></header>" +
       '<div class="drawer w" id="drawer">' +
       '<div class="drawer-loc">' + locSelect() + "</div>" +
-      '<div class="drawer-tools">' + langToggle() +
+      '<div class="drawer-tools">' +
       '<a class="btn rd" href="tel:+1' + phoneDigits() + '">' + t("approve") + "</a></div>" +
       navLinks() + "</div>";
   }
   function footer() {
     return '<footer class="foot"><div class="w foot-lines">' +
+      '<img class="foot-logo" src="' + img("logo.png") + '" alt="">' +
       "<p>" + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a></p>" +
       "</div></footer>";
   }
@@ -445,6 +439,14 @@
     if (page === "home") {
       var statement = document.querySelector(".hero h1");
       if (statement) statement.textContent = t("hero.statement");
+      var eye = document.getElementById("hero-eyebrow");
+      if (eye) eye.textContent = t("hero.eyebrow");
+      var lede = document.getElementById("hero-lede");
+      if (lede) lede.textContent = t("hero.lede");
+      var heroNew = document.getElementById("hero-new");
+      var heroUsed = document.getElementById("hero-used");
+      if (heroNew) heroNew.textContent = t("shopNew");
+      if (heroUsed) heroUsed.textContent = t("shopUsed");
       var input = document.querySelector("#hero-search input");
       if (input) {
         input.placeholder = t("hero.ph");
@@ -686,8 +688,11 @@
       return '<a class="tile" href="' + inv({ category: c.id }) + '"><img src="' + img(c.img) + '" alt=""><div><b>' + t(c.label) + "</b><small>" + n + " " + t("inSample") + "</small></div></a>";
     }).join("");
 
-    document.getElementById("brands").innerHTML = window.BROWARD.brands.map(function (b) {
-      return '<a class="brand" href="' + BASE + "/brands/" + b.slug + '"><span>' + b.name + '</span><img src="' + img(b.img) + '" alt=""></a>';
+    var marks = window.BROWARD.marks || window.BROWARD.brands.map(function (b) {
+      return { name: b.name, href: BASE + "/brands/" + b.slug };
+    });
+    document.getElementById("brands").innerHTML = marks.map(function (b) {
+      return '<a class="brand-logo" href="' + b.href + '"><span>' + b.name + "</span></a>";
     }).join("");
 
     var styles = window.BROWARD.styles.filter(function (s) { return countOf("style", s.id) > 0; });
@@ -968,6 +973,43 @@
       '<button class="btn gl" type="button" data-open="trade">' + t("trade") + "</button></div></main>";
   }
 
+  function probe(url, done) {
+    fetch(url, { method: "HEAD" }).then(function (res) {
+      done(!!res.ok);
+    }).catch(function () { done(false); });
+  }
+  function mountVideos() {
+    if (document.body.getAttribute("data-page") !== "home") return;
+    var hero = document.getElementById("hero-video");
+    if (hero && !hero.getAttribute("src")) {
+      probe(BASE + "/img/hero.mp4", function (ok) {
+        if (!ok) return;
+        hero.src = BASE + "/img/hero.mp4";
+        var play = hero.play();
+        if (play && play.catch) play.catch(function () {});
+      });
+    }
+    var intro = document.getElementById("intro");
+    var video = document.getElementById("intro-video");
+    if (!intro || !video || video.getAttribute("src")) return;
+    probe(BASE + "/img/intro-logo.mp4", function (ok) {
+      if (!ok) { if (intro.parentNode) intro.remove(); return; }
+      intro.hidden = false;
+      document.body.classList.add("intro-on");
+      video.src = BASE + "/img/intro-logo.mp4";
+      function finish() {
+        if (!intro || intro.classList.contains("is-done")) return;
+        intro.classList.add("is-done");
+        document.body.classList.remove("intro-on");
+        setTimeout(function () { if (intro.parentNode) intro.remove(); }, 650);
+      }
+      var play = video.play();
+      if (play && play.catch) play.catch(function () { finish(); });
+      video.addEventListener("ended", finish);
+      video.addEventListener("error", finish);
+    });
+  }
+
   function render() {
     document.documentElement.lang = lang() === "es" ? "es" : "en";
     document.getElementById("top").innerHTML = header();
@@ -984,6 +1026,7 @@
     syncHeader();
     syncReach();
     syncStyleSlider();
+    mountVideos();
     var shot = new URLSearchParams(location.search).get("shot");
     if (shot) {
       var target = shot === "footer" ? document.querySelector("footer") : document.getElementById(shot);
