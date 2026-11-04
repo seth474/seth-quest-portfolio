@@ -9,19 +9,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/demos/petes-cycle/site.css">
 <link rel="stylesheet" href="/demos/petes-cycle/light.css">
+<script>
+(function () {
+  var q = new URLSearchParams(location.search).get("intro");
+  var seen = false;
+  try { seen = sessionStorage.getItem("petes-intro") === "1"; } catch (e) {}
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (q !== "mid" && q !== "logo" && (q === "skip" || seen || reduce)) {
+    document.documentElement.classList.add("intro-skip");
+  }
+})();
+</script>
 </head>
 <body class="home" data-page="home">
-<!-- Intro slot: drop a muted mp4 at img/intro-logo.mp4 (checkered flags forming the logo).
-     It plays once, then this overlay leaves. With no file, the page shows immediately. -->
-<div class="intro" id="intro" hidden>
-  <video id="intro-video" muted playsinline preload="auto"></video>
+<div class="intro" id="intro">
+  <video id="intro-video" src="/demos/petes-cycle/img/intro-logo.mp4" muted autoplay playsinline webkit-playsinline preload="auto" disableRemotePlayback></video>
+  <img class="intro-logo" src="/demos/petes-cycle/img/logo.png" alt="">
+  <button type="button" class="intro-skip" id="intro-skip">Skip</button>
 </div>
 <div id="top"></div>
 <section class="hero" id="hero">
   <div class="hero-media">
-    <img src="/demos/petes-cycle/img/hero.jpg" alt="A rider leaning a motorcycle through a paved turn at speed">
-    <!-- Hero video slot: drop a muted mp4 at img/hero.mp4. The poster stays until it plays. -->
-    <video id="hero-video" poster="/demos/petes-cycle/img/hero.jpg" muted autoplay loop playsinline></video>
+    <img src="/demos/petes-cycle/img/hero.jpg" alt="A sportbike leaned over on a racetrack">
+    <video id="hero-video" src="/demos/petes-cycle/img/intro-logo.mp4" poster="/demos/petes-cycle/img/hero.jpg" muted autoplay loop playsinline webkit-playsinline disableRemotePlayback></video>
   </div>
   <div class="w hin">
     <p class="eyebrow" id="hero-eyebrow">Baltimore · Family owned</p>
@@ -38,7 +48,7 @@
     <div class="checker" aria-hidden="true"></div>
     <div class="w heritage-in">
       <p class="eyebrow">Pete's Cycle Co.</p>
-      <h2>A family desk on Belair Road.</h2>
+      <h2>Family-owned in Baltimore.</h2>
       <p>Still family-owned, since 1938, with a second store in Severna Park. Honda for six decades. Yamaha for five. The floor also carries Kawasaki, Suzuki, Sea-Doo, Can-Am, Polaris, Triumph, and Kayo.</p>
     </div>
   </section>

@@ -1,38 +1,33 @@
 {
   "hero": {
-    "title": "File:Motorcycle Lean PPIHC.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Motorcycle_Lean_PPIHC.jpg",
-    "author": "Commons contributor, Pikes Peak International Hill Climb 2007",
-    "lic": "CC BY-SA 3.0",
-    "note": "A rider leaning a motorcycle through a paved turn. Hero poster. Not a Pete's Cycle showroom photo."
+    "title": "Frame from the approved Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Still from the intro Seth approved for this concept. Poster and fallback while the same clip loops in the hero.",
+    "note": "Sportbike leaned on a racetrack, about 1.5s into intro-logo.mp4. Replaces the Pikes Peak hill-climb photo."
   },
   "cat-moto": {
-    "title": "File:Triumph Street Triple 675 front left threequarter.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Triumph_Street_Triple_675_front_left_threequarter.jpg",
-    "author": "lmnop88a",
-    "lic": "CC BY 2.0",
-    "note": "You want some?"
+    "title": "Frame from the approved Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Still from the intro Seth approved for this concept.",
+    "note": "Sportbike from behind on the straight, about 2.8s into intro-logo.mp4."
   },
   "cat-atv": {
-    "title": "File:ATV on a muddy trail (5494218531).jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:ATV_on_a_muddy_trail_(5494218531).jpg",
-    "author": "U.S. Fish and Wildlife Service Southeast Region",
-    "lic": "Public domain",
-    "note": "White River National Wildlife Refuge. www.fws.gov/whiteriver/ Photographer: Garry Tucker, USFWS."
+    "title": "File:2021 Can-Am Outlander 570.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:2021_Can-Am_Outlander_570.jpg",
+    "lic": "CC BY-SA 4.0",
+    "note": "Can-Am Outlander 570"
   },
   "cat-sxs": {
-    "title": "File:Can-am Maverick X (54719524316).jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Can-am_Maverick_X_(54719524316).jpg",
-    "author": "RL GNZLZ from Chile",
+    "title": "File:Polaris RZR ATV.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Polaris_RZR_ATV.JPG",
     "lic": "CC BY-SA 4.0",
-    "note": "Can-am Maverick X"
+    "note": "A Polaris RZR All Terrain Vehicle (ATV). Photo taken during the 20th Balloon Fiesta at Clark Air Fie Cropped to the RZR."
   },
   "cat-pwc": {
     "title": "File:Personal Watercraft (8981324439).jpg",
     "url": "https://commons.wikimedia.org/wiki/File:Personal_Watercraft_(8981324439).jpg",
-    "author": "Lake Mead NRA Public Affairs",
     "lic": "CC BY-SA 2.0",
-    "note": "Personal watercraft are often seen at Lake Mead National Recreation Area (NPS Photo by Christie Vanover)"
+    "note": "A rider on a personal watercraft, Lake Mead. Category tile."
   },
   "style-cruiser": {
     "title": "File:Kawasaki Vulcan parked at Hogs for Hospice, Leamington, Ontario, 2025-08-02.jpg",
@@ -235,5 +230,11 @@
     "url": "https://www.petescycle.com/",
     "lic": "Pete's Cycle's own logo, saved from the live site (published-assets.ari-build.com, site 18363).",
     "note": "Used as the header and footer mark. Not a redraw."
+  },
+  "intro-logo": {
+    "title": "Pete's Cycle intro",
+    "url": "/demos/petes-cycle/img/intro-logo.mp4",
+    "lic": "Concept intro approved by Seth. Plays once on load and loops, muted, behind the hero.",
+    "note": "Checkered flags resolve toward the Pete's mark. The live site logo fades over the final frames."
   }
 }

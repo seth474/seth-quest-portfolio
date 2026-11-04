@@ -119,7 +119,6 @@
       '<a href="' + inv({ category: "Off-road" }) + '">' + t("nav.off") + "</a>" +
       '<a href="' + inv({ category: "Water" }) + '">' + t("nav.water") + "</a>" +
       '<a href="' + inv({ condition: "Pre-owned" }) + '">' + t("nav.used") + "</a>" +
-      '<a href="tel:+1' + phoneDigits() + '">' + t("nav.fin") + "</a>" +
       '<a href="' + BASE + '/#sec-locations">' + t("nav.service") + "</a>";
   }
   function locSelect() {
@@ -799,7 +798,7 @@
         }).join("") + "</div>";
     }
     var mapSrc = "https://maps.google.com/maps?q=" + encodeURIComponent(current.address) + "&z=14&hl=" + (lang() === "es" ? "es" : "en") + "&output=embed";
-    map.innerHTML = '<div class="loc-frame"><iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe></div>';
+    map.innerHTML = '<div class="loc-frame"><iframe title="' + current.name + '" src="' + mapSrc + '" loading="lazy" tabindex="-1" referrerpolicy="no-referrer-when-downgrade"></iframe></div>';
     sizeLocationMap();
     var frame = map.querySelector("iframe");
     if (frame) frame.addEventListener("load", sizeLocationMap);
@@ -973,41 +972,83 @@
       '<button class="btn gl" type="button" data-open="trade">' + t("trade") + "</button></div></main>";
   }
 
-  function probe(url, done) {
-    fetch(url, { method: "HEAD" }).then(function (res) {
-      done(!!res.ok);
-    }).catch(function () { done(false); });
+  var INTRO_KEY = "petes-intro";
+  function introSeen() {
+    try { return sessionStorage.getItem(INTRO_KEY) === "1"; } catch (e) { return false; }
+  }
+  function markIntro() {
+    try { sessionStorage.setItem(INTRO_KEY, "1"); } catch (e) {}
+  }
+  function reducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+  function primeVideo(video) {
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
   }
   function mountVideos() {
     if (document.body.getAttribute("data-page") !== "home") return;
+    if (mountVideos.done) return;
+    mountVideos.done = true;
     var hero = document.getElementById("hero-video");
-    if (hero && !hero.getAttribute("src")) {
-      probe(BASE + "/img/hero.mp4", function (ok) {
-        if (!ok) return;
-        hero.src = BASE + "/img/hero.mp4";
-        var play = hero.play();
-        if (play && play.catch) play.catch(function () {});
-      });
+    primeVideo(hero);
+    if (hero) {
+      if (reducedMotion()) {
+        hero.removeAttribute("autoplay");
+        hero.pause();
+      } else {
+        var heroPlay = hero.play();
+        if (heroPlay && heroPlay.catch) heroPlay.catch(function () {});
+      }
     }
     var intro = document.getElementById("intro");
     var video = document.getElementById("intro-video");
-    if (!intro || !video || video.getAttribute("src")) return;
-    probe(BASE + "/img/intro-logo.mp4", function (ok) {
-      if (!ok) { if (intro.parentNode) intro.remove(); return; }
-      intro.hidden = false;
-      document.body.classList.add("intro-on");
-      video.src = BASE + "/img/intro-logo.mp4";
-      function finish() {
-        if (!intro || intro.classList.contains("is-done")) return;
-        intro.classList.add("is-done");
-        document.body.classList.remove("intro-on");
-        setTimeout(function () { if (intro.parentNode) intro.remove(); }, 650);
+    if (!intro || !video) return;
+    var mode = new URLSearchParams(location.search).get("intro");
+    if (mode !== "mid" && mode !== "logo" && (mode === "skip" || introSeen() || reducedMotion())) {
+      if (mode === "skip" || reducedMotion()) markIntro();
+      intro.remove();
+      return;
+    }
+    document.body.classList.add("intro-on");
+    primeVideo(video);
+    var skipBtn = document.getElementById("intro-skip");
+    function reveal() {
+      if (!intro || intro.classList.contains("is-done")) return;
+      markIntro();
+      intro.classList.add("is-done");
+      document.body.classList.remove("intro-on");
+      setTimeout(function () { if (intro.parentNode) intro.remove(); }, 700);
+    }
+    function showMark() { intro.classList.add("is-mark"); }
+    if (skipBtn) skipBtn.addEventListener("click", reveal);
+    function seekPause(at, withMark) {
+      function go() {
+        video.addEventListener("seeked", function () {
+          video.pause();
+          if (withMark) showMark();
+        }, { once: true });
+        try { video.currentTime = at; } catch (e) {}
       }
-      var play = video.play();
-      if (play && play.catch) play.catch(function () { finish(); });
-      video.addEventListener("ended", finish);
-      video.addEventListener("error", finish);
+      if (video.readyState >= 1) go();
+      else video.addEventListener("loadedmetadata", go, { once: true });
+    }
+    if (mode === "mid") { seekPause(2.2, false); return; }
+    if (mode === "logo") { seekPause(7.15, true); return; }
+    video.addEventListener("timeupdate", function () {
+      if (video.currentTime >= 6.55) showMark();
     });
+    video.addEventListener("ended", function () {
+      showMark();
+      setTimeout(reveal, 650);
+    });
+    var play = video.play();
+    if (play && play.catch) play.catch(function () { reveal(); });
   }
 
   function render() {
