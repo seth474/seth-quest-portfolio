@@ -2,7 +2,9 @@
 
 Live site: [petescycle.com](https://www.petescycle.com/). Reviewed 4 Nov 2026 for a Loom walkthrough. Viewports in the brief: 1440 desktop and 390×844 mobile.
 
-What this pass could check directly: the public pages (home, about, hours, both location pages, Yamaha and Sea-Doo inventory, Kawasaki and motorcycle-specials listings) and a public technology fingerprint of the domain ([clientsbee.com/website/petescycle.com](https://clientsbee.com/website/petescycle.com/)). Headless Chrome was stopped by a Cloudflare challenge, so this pass did not click the live Kenect widget, did not record a Lighthouse score, and did not save annotated screenshots of the production site. Issues Seth already saw on a phone are included below and marked as his observed behavior. The redesign treats them as in-scope defects.
+Checked two ways on 4 Nov 2026. First, the public pages (home, about, hours, both location pages, and inventory listings) plus a technology fingerprint of the domain. Second, a browser pass at about 1440px wide and at 390×844. That second pass used Chrome’s device toolbar, so it does not hide a real phone’s browser chrome the way Safari does when you scroll. Lighthouse still has no score. Cloudflare interrupted one automated load; the interactive pass got through.
+
+Where Seth’s notes and that browser pass disagree, the correction is written in the issue. Do not say on the Loom that the text box was cut off or that the desktop header does not stick. The pass did not show either of those.
 
 ## Keep
 
@@ -16,85 +18,79 @@ What this pass could check directly: the public pages (home, about, hours, both 
 
 The site is an **ARI** dealer site (ARI Network Services), not Dealer Spike. Published assets load from `published-assets.ari-build.com` for site id `18363`. The front end fingerprint also lists Bootstrap, jQuery, OWL Carousel, and Slick.
 
-**AudioEye is an overlay add-on, not the site builder.** The same fingerprint lists AudioEye. Seth saw the overlay and a “personalize your experience” control that drops the page to black and white.
+**The “Text us” widget is Kenect.** The browser pass opened it. The steps are: pick a store (Baltimore or Severna Park), pick a department (Sales, Service, or Parts), then one “First and Last name” field, Mobile Number, Message, and Send. The panel says they will respond with a text. It is not an `sms:` link. In the 390×844 emulator the panel was fully on screen.
 
-**The “Text us” widget is Kenect.** The fingerprint lists Kenect. Kenect’s own widget opens from a “Text Us” button, can require a location (`EVENT_LOCATION_SELECTED`), then collects a contact name and phone before the message. That matches the flow Seth hit: pick a store, then first name, last name, mobile, and message. It is not an `sms:` link. The fingerprint also lists WhatsApp Business Chat and EngageToSell, so the page is carrying more than one chat layer.
+**“TRADE or SELL” is J.D. Power**, not the page builder. The red tab opens “Receive an Estimated Trade-In Value INSTANTLY!” Step 1 of 5 asks for year, make, model, miles, and VIN. The footer says “POWERED BY J.D. POWER.”
+
+**AudioEye is an overlay add-on, not the site builder.** A blue person icon sits at the bottom left and opens a personalization toolbar with contrast controls, including a black-and-white mode.
 
 ## Issues, highest severity first
 
-### 1. Critical — Mobile “Text us” bar and chat panel miss the visible bottom
+### 1. High — “Text us” is a Kenect form, not a text
 
-**What’s wrong.** Seth: the sticky bottom bar and “Text us!” bubble do not sit on the visual bottom once the mobile browser toolbar hides on scroll, and the message box is cut off. Kenect (and any `position: fixed; bottom: 0` widget) is pinned to the layout viewport. When Safari or Chrome collapses its toolbar, that viewport and the visible screen disagree, so the bubble floats in the wrong place or slides under the chrome.
+**What’s wrong.** The bubble is Kenect. Tapping it asks for a store, then a department (Sales, Service, or Parts), then one “First and Last name” field, a mobile number, and a message. The send stays inside Kenect. The shopper never lands in Messages. In the 390×844 device toolbar the panel was fully visible, and the bubble stayed at the bottom of that emulator while scrolling. Seth’s note that a real phone cuts the box off when the browser toolbar hides was not reproduced here. Device mode does not collapse a phone’s toolbar, so that part is still unchecked on a physical iPhone.
 
-**Why it hurts.** On a phone, texting is the lead path. A control the thumb cannot reach, or a form cut in half, drops the conversation before a salesperson ever sees it.
+**Why it hurts.** Three steps and a form sit in front of a conversation the person already meant to start. The store number they will reach is not on the button.
 
-**Redesign.** No Kenect, no chat panel, no bottom bar. Call is `tel:` and text is `sms:` on the store that is selected. The two buttons are fixed, start only at section 3 so they do not cover the hero, and are repositioned from `visualViewport` plus `env(safe-area-inset-bottom)` so they follow the visible bottom when the toolbar hides.
+**Redesign.** One native `sms:+1…?&body=` link for the selected store. The body can name a unit. No name form and no Kenect script. The call and text buttons use `visualViewport` and the safe area so a real toolbar hide does not leave them stranded, which is the case this pass could not film.
 
-### 2. Critical — “Text us” is a form, not a text
+### 2. High — Call is a tel link, and it is only Baltimore’s number
 
-**What’s wrong.** Seth: the widget forces a location, then first name, last name, mobile, and a message. Kenect is built to capture a lead into its inbox. The shopper never lands in their own Messages app.
+**What’s wrong.** “Call Us: (410) 663-8556” is a `tel:` link. On this Linux desktop, tapping the phone icon raised an “Open xdg-open?” dialog, which is the computer asking which app should take the link. It is not a fake popup with no number behind it. The number itself never changes. Severna Park’s line, (410) 647-5880, is on the location card and in the Kenect location list, and it is not what the header dials.
 
-**Why it hurts.** Every extra field is a place to quit. A person who is ready to text the store is asked to retype the same details Kenect will send anyway. It also hides which human, and which store number, will answer.
+**Why it hurts.** A Severna Park customer who taps Call gets Baltimore.
 
-**Redesign.** One native `sms:+1…?&body=` link for the selected store. The body can name a unit when they are on a unit page. No name form and no vendor script.
+**Redesign.** Header, financing, and the floating button are `tel:` links. Baltimore is the default. Choosing Severna Park switches the number to (410) 647-5880.
 
-### 3. Critical — Call does not dial, and both stores share the Baltimore number
+### 3. High — AudioEye sits on top of the store
 
-**What’s wrong.** Seth: Call pops up a 410 number instead of starting a call. The number on every page checked, including the Severna Park location page, is the header “Call Us: (410) 663-8556”. Severna Park’s own line, printed in the address block, is (410) 647-5880.
-
-**Why it hurts.** A popup is an extra step, and on a phone it often fails to hand off to the dialer. A Severna Park customer who taps Call reaches Baltimore, or thinks the Severna Park desk has no direct line.
-
-**Redesign.** The header, the financing link, the financing section, and the floating button are `tel:` links. Baltimore is the default. Choosing Severna Park switches the number to (410) 647-5880.
-
-### 4. High — AudioEye and “personalize” sit on top of the store
-
-**What’s wrong.** AudioEye’s overlay is a third-party widget. Seth: “personalize your experience” turns the whole site black and white. It is not part of ARI’s page structure, and it does not fix the underlying markup.
+**What’s wrong.** A blue AudioEye icon is fixed at the bottom left. It opens a personalization toolbar with contrast controls, including a black-and-white mode. It is not part of ARI’s page structure.
 
 **Why it hurts.** The control covers inventory and the phone number. A grayscale toggle reads as a gimmick, not as access. Shoppers who need real structure (labels, focus, contrast) still get a carousel site with a sticker on it.
 
 **Redesign.** No AudioEye, no personalize button, no other overlay. Text is black on white, buttons are ordinary links, and the map is the only grayscale surface.
 
-### 5. High — Inventory is a carousel of sparse, inconsistent cards
+### 4. High — Inventory is hard to scan, and the phone layout is one card wide
 
-**What’s wrong.** Seth: inventory carousels show one unit at a time, with large empty white cards and photos that do not match in crop or background. The public inventory pages agree with the “hard to scan” half of that. Each Yamaha or Sea-Doo unit is a long block: base price, discount, freight, prep, documentation fee, then the advertised price. The same model is repeated over and over (several TT-R230s, several Kodiaks, several Spark and Fish Pro lines). Status labels mix “In Stock / New”, “In Stock / 1 Miles”, and “In Stock / 15 Hours”. Some rows are “Call for Price” with no number. OWL Carousel and Slick are both on the stack, which is what produces the one-card homepage carousels.
+**What’s wrong.** On a desktop homepage the specials rows show about four cards at a time (Motorcycle, ATV, Side By Side, Pre-Owned), and the photos in that pass looked consistent. The one-up layout is the phone inventory search: one card per row, with empty space to the right. A “Ninja” search returned 33 results. One card was a 2027 Ninja ZX-6R at $13,968, stock 059988, black, listed at Baltimore, status “1 Miles.” New inventory was paging “1–30 of 811.” Listing pages still stack base price, discount, freight, prep, and a doc fee before the advertised price, and some units say “Call for Price.” A homepage banner reads “ONE PRICE TRANSPARENT PRICING - JUST ADD YOUR STATE REGISTRATION AND TAXES!” while the cards underneath still itemize fees.
 
-**Why it hurts.** A buyer comparing two Ninjas has to drag one card at a time, or scroll through a fee essay, and the photos do not look like one catalog. Empty cards make the lot feel thin even when the store is full.
+**Why it hurts.** On a phone the lot is a long scroll of mostly empty cards. The “one price” line and the fee stack describe two different offers.
 
 **Redesign.** Inventory is a grid (two columns on a phone, four on a desktop). One price per card, the figure published on petescycle.com, with the condition on the photo. Sample units are a handful of real listings, not a fake full lot. Fees are not restated as a second price.
 
-### 6. High — Hours and locations make the wrong store easy to pick
+### 5. High — Hours and locations make the wrong store easy to pick
 
-**What’s wrong.** The hours page itself is a clear table, and that part should stay. Around it, the global header phone is Baltimore even on the Severna Park page. Monday is a workday in Baltimore and a closed day in Severna Park. Service stops at 4 on Saturday while sales and parts stay until 5. The about page also says the store serves “the Bel Air community” and “our neighbors in Bel Air,” while the two open stores are Baltimore and Severna Park.
+**What’s wrong.** The hours page itself is a clear table, and that part should stay. Around it, the global header phone is Baltimore even on the Severna Park page. Monday is a workday in Baltimore and a closed day in Severna Park. Service stops at 4 on Saturday while sales and parts stay until 5. The about page also says the store serves “the Bel Air community.” The Services menu has a link titled “Motorcycle Dealer Near Bel Air, MD” and another for Towson. Those are landing pages. They are not a third showroom. The location buttons on the page are only Baltimore and Severna Park.
 
-**Why it hurts.** A Monday trip to Severna Park is a wasted drive. A Saturday 4:30 service drop-off meets a closed door. Bel Air reads like a third store that is not on the location list.
+**Why it hurts.** A Monday trip to Severna Park is a wasted drive. A Saturday 4:30 service drop-off meets a closed door. “Near Bel Air” in the menu reads like another store until the shopper opens it.
 
 **Redesign.** A location switcher shows both names. On a phone the closed control shows only the store name, and it opens on Baltimore. The panel prints that store’s address, sales hours, and the earlier Saturday service close. The map and the Google Maps button follow the same choice. Bel Air is not listed as a store.
 
-### 7. High — Nothing in the header stays put
+### 6. Medium — The phone header does not stick
 
-**What’s wrong.** Seth: there is no sticky header. Once the shopper scrolls into a carousel, the logo, the phone, and the section links leave the screen. The only persistent chrome is the Kenect bar, which has the viewport bug in issue 1.
+**What’s wrong.** On the desktop pass the header does stick: logo, “Call Us: (410) 663-8556”, and the Baltimore and Severna Park buttons stay put. On the 390×844 pass the header scrolls away. What stays is a bottom strip of brand logos plus the Kenect bubble. There is no sticky header on the phone.
 
-**Why it hurts.** Finding “call” means scrolling back to the top, or hunting a bubble that is not on the visual bottom.
+**Why it hurts.** Mid-inventory, the menu and the phone icon are back at the top of a long page.
 
-**Redesign.** A white header sticks to the top on every page: logo, section links, store switcher, and a red Call link. It is a thin bar, not a black slab.
+**Redesign.** A white header sticks on every page, including the phone: logo, store switcher, and a red Call link. It is a thin bar, not a black slab.
 
-### 8. Medium — Two navigations for the same brands
+### 7. Medium — Two navigations for the same brands
 
-**What’s wrong.** Seth: arrow buttons in the top nav step through brands left and right, and a “Shop by Brand” block repeats those brands. OWL Carousel is loaded, which fits an arrowed brand strip.
+**What’s wrong.** Both exist, and both were clicked. A top strip with arrows steps through brand logos. Farther down, “Browse by Brand” does it again. Logos seen across the two strips include Polaris, Slingshot, Sea-Doo, Can-Am, Suzuki, Honda, Kawasaki, Yamaha, Triumph, and STACYC. The same logo was not frozen twice in one frame. The duplication is two arrowed brand pickers on one page.
 
-**Why it hurts.** The second control does not add a brand. It spends the top of the page on a widget the next section already covers, and the arrows are easy to mistake for “next page.”
+**Why it hurts.** The second strip does not add a line the first strip skipped. It spends the fold on a control the shopper already passed.
 
 **Redesign.** One brand section. Names sit on the photos and go to that brand’s sample inventory. There is no second brand carousel in the header.
 
-### 9. Medium — The visual system looks older than the inventory
+### 8. Medium — The visual system looks older than the inventory
 
-**What’s wrong.** Seth: black frames around white cards, red used as a general theme, and a vertical “TRADE or SELL” tab on the side. The tab’s vendor was not identified in this pass (it is a common bolted-on trade widget, separate from the page).
+**What’s wrong.** Inventory cards are white with a black frame. That part is real. Red is on the main buttons, the SALE marks, the MAP & HOURS buttons, and the vertical TRADE or SELL tab. The tab is J.D. Power’s instant-value form (year, make, model, miles, VIN), fixed to the left edge. On the phone it can sit on top of a photo. The product photos themselves looked consistent in this pass. Calling the red “too much” is a design judgment. The fact for the Loom is that red is the color of almost every control, not only the one next action.
 
-**Why it hurts.** Frames and a side tab compete with the motorcycles. Red stops meaning “do this.” The trade tab follows the scroll and covers photos.
+**Why it hurts.** The trade tab follows the scroll and covers the edge of the page. A shopper cannot tell a sale button from a map button from a trade pitch when they are all the same red.
 
-**Redesign.** White page. Black is for type and for a 1px break between sections. Red is only the action: search, call, submit, and Google Maps. Trade-in is a section in the page, not a tab. The note stays in the browser. It does not promise a same-day number.
+**Redesign.** White page. Black is for type and for a 1px break between sections. Red is only the action: search, call, submit, and Google Maps. Trade-in is a section in the page, not a J.D. Power tab. The note stays in the browser. It does not promise an instant value.
 
-### 10. Medium — Third-party weight, and no measured Lighthouse score
+### 9. Medium — Third-party weight, and no measured Lighthouse score
 
 **What’s wrong.** The technology fingerprint lists on the order of 100 services. Treat that count as noisy, but the named set that matches the page is already heavy: Google Tag Manager, Google Analytics, Google Ads, Facebook Pixel, Hotjar, Microsoft Clarity, Tealium, Kenect, AudioEye, OWL Carousel, Slick, plus the chat widgets above. Lighthouse could not be run from this environment because Cloudflare challenged headless Chrome. A score is not invented here.
 
@@ -102,7 +98,7 @@ The site is an **ARI** dealer site (ARI Network Services), not Dealer Spike. Pub
 
 **Redesign.** Static files. No tag manager, no replay, no overlay. Images are local.
 
-### 11. Medium — Search and listing copy bury the bike
+### 10. Medium — Search and listing copy bury the bike
 
 **What’s wrong.** Inventory search results lead with fee math. Two public prices often exist for one model name (the motorcycle specials list showed a Ninja 500 at $4,999 and another at $4,699, and a GSX-8S at $9,249 and $7,399) without a one-line reason on the card. Homepage grouping also placed 2026 Kawasaki Z125 PRO and Z900RS Cafe under a “Pre-Owned Equipment” heading in the text extract. That may be a CMS grouping bug. It should be checked on the live homepage before anyone repeats it in an ad.
 
@@ -110,7 +106,7 @@ The site is an **ARI** dealer site (ARI Network Services), not Dealer Spike. Pub
 
 **Redesign.** Cards show one condition and one published figure. The sample does not mark a bike pre-owned unless the source page did (the 2023 MT-07 at $7,198 is the one treated as pre-owned).
 
-### 12. Low — Superlatives do the selling the inventory should do
+### 11. Low — Superlatives do the selling the inventory should do
 
 **What’s wrong.** The about page says “Maryland’s largest volume dealer” and “Baltimore’s number one and oldest dealer.” “Since 1938” and “family-owned” are checkable. “Largest” and “number one” are not, on the page, tied to a source.
 
@@ -124,7 +120,7 @@ Page titles that came back with the text are specific (“Powersports Vehicles F
 
 ## Broken links and images
 
-No full crawl. Nothing in the fetched location, hours, or about copy 404’d. Photo consistency is the visual defect in issue 5, not a confirmed set of 404 image URLs.
+No full crawl. The links that were opened (specials, new inventory, a Ninja search, Services, OEM Parts, About, Home, and the trade tab) loaded. No missing image turned up in that set. The phone inventory gap in issue 4 is empty card space, not a broken image.
 
 ## How the concept maps
 
