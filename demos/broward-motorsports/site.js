@@ -80,7 +80,8 @@
     var id = "";
     try { id = localStorage.getItem(LOC_KEY) || ""; } catch (e) {}
     var found = list.filter(function (loc) { return loc.id === id; })[0];
-    return found || list[0] || { id: "hollywood", name: DEALER.city, address: DEALER.address, city: DEALER.city, phone: DEALER.phone, hours: { en: "", es: "" } };
+    var fallback = list.filter(function (loc) { return loc.id === "fort-lauderdale"; })[0] || list[0];
+    return found || fallback || { id: "fort-lauderdale", name: "Fort Lauderdale", address: DEALER.address, city: "Fort Lauderdale, FL", phone: DEALER.phone, hours: { en: "", es: "" } };
   }
   function phoneDigits() { return place().phone || DEALER.phone; }
   function salesPretty() {
@@ -765,7 +766,7 @@
     }).join("");
     var drop = document.getElementById("loc-drop");
     if (drop) {
-      var label = t("locPick") + ": " + current.name + " (" + locs.length + " " + t("locStores") + ")";
+      var label = current.name;
       drop.innerHTML = '<button type="button" class="loc-drop-btn" data-loc-toggle aria-expanded="false" aria-controls="loc-drop-list">' +
         "<span>" + label + "</span>" +
         '<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.2 6 6.2 11 1.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
