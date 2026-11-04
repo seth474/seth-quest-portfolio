@@ -37,6 +37,16 @@
     return String(s == null ? "" : s).replace(/-/g, "\u2011");
   }
   function money(n) { return "$" + Number(n).toLocaleString("en-US"); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function milesLabel(u) {
+    if (!u.miles) return "";
+    return Number(u.miles).toLocaleString("en-US") + " " + t("miles");
+  }
+  function cityLabel(u) {
+    return String(u.store || "").replace(/, MD$/, "");
+  }
   function img(file) { return BASE + "/img/" + file; }
   function inv(params) {
     var q = new URLSearchParams();
@@ -166,11 +176,16 @@
   }
 
   function card(u) {
+    var extraBits = [];
+    if (milesLabel(u)) extraBits.push(milesLabel(u));
+    if (cityLabel(u)) extraBits.push(cityLabel(u));
+    var extra = extraBits.length ? '<div class="meta">' + extraBits.join(" · ") + "</div>" : "";
     return '<article class="card"><a href="' + BASE + "/inventory/" + u.id + '">' +
       '<div class="ph"><img src="' + img(u.img) + '" alt=""><span class="tag">' + t("opt." + u.condition) + "</span></div>" +
       '<div class="pr">' + money(u.price) + "</div>" +
       '<div class="nm">' + u.year + " " + u.brand + " " + keepModel(u.model) + "</div>" +
-      '<div class="meta">' + t("opt." + u.category) + " · " + t("opt." + u.style) + "</div></a>" +
+      '<div class="meta">' + t("opt." + u.category) + " · " + t("opt." + u.style) + "</div>" +
+      extra + "</a>" +
       '<a class="model-link" href="' + BASE + "/models/" + u.modelSlug + '">' + t("viewModel").replace("{model}", keepModel(u.model)) + "</a></article>";
   }
 
@@ -952,6 +967,8 @@
     }
     document.title = u.year + " " + u.brand + " " + u.model + " · " + DEALER.name;
     var vin = u.vin ? "<div><span>VIN</span>" + u.vin + "</div>" : "";
+    var miles = u.miles ? "<div><span>" + t("milesWord") + "</span>" + Number(u.miles).toLocaleString("en-US") + "</div>" : "";
+    var blurb = u.blurb ? '<p class="unit-copy">' + esc(u.blurb) + "</p>" : "";
     root.innerHTML = '<main class="w page">' + crumbs([
       { label: u.brand, href: BASE + "/brands/" + u.brandSlug },
       { label: u.model, href: BASE + "/models/" + u.modelSlug },
@@ -961,12 +978,14 @@
       '<p class="eyebrow">' + t("opt." + u.condition) + " · " + t("opt." + u.category) + "</p>" +
       "<h1>" + u.year + " " + u.brand + " " + keepModel(u.model) + "</h1>" +
       '<p class="price-lg">' + money(u.price) + "</p>" +
+      blurb +
       '<div class="facts">' +
       "<div><span>" + t("year") + "</span>" + u.year + "</div>" +
       "<div><span>" + t("brand") + "</span>" + u.brand + "</div>" +
       "<div><span>" + t("model") + "</span>" + u.model + "</div>" +
       "<div><span>" + t("styleWord") + "</span>" + t("opt." + u.style) + "</div>" +
       (u.stock ? "<div><span>" + t("stock") + "</span>" + u.stock + "</div>" : "") +
+      miles +
       vin +
       "<div><span>" + t("location") + "</span>" + (u.store || place().city) + "</div></div>" +
       '<div class="actions">' + contactLinks(u, "labeled") +

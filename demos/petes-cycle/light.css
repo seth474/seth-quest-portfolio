@@ -208,6 +208,7 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
 .foot-lines a { color: #111; }
 .brand-hero, .model-hero { background: #f4f4f4; color: #111; }
 .brand-hero h1, .model-hero h1, .eyebrow, .page h1, .price-lg { color: #111; }
+.unit-copy { max-width: 42em; margin: 10px 0 18px; font-size: 17px; line-height: 1.45; color: #222; }
 .crumbs, .crumbs a, .crumbs .here { color: #444; }
 .specials-dots button { background: #ccc; }
 .specials-dots button[aria-current="true"] { background: #111; }
