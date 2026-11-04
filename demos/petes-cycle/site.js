@@ -972,13 +972,6 @@
       '<button class="btn gl" type="button" data-open="trade">' + t("trade") + "</button></div></main>";
   }
 
-  var INTRO_KEY = "petes-intro";
-  function introSeen() {
-    try { return sessionStorage.getItem(INTRO_KEY) === "1"; } catch (e) { return false; }
-  }
-  function markIntro() {
-    try { sessionStorage.setItem(INTRO_KEY, "1"); } catch (e) {}
-  }
   function reducedMotion() {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
@@ -997,58 +990,14 @@
     mountVideos.done = true;
     var hero = document.getElementById("hero-video");
     primeVideo(hero);
-    if (hero) {
-      if (reducedMotion()) {
-        hero.removeAttribute("autoplay");
-        hero.pause();
-      } else {
-        var heroPlay = hero.play();
-        if (heroPlay && heroPlay.catch) heroPlay.catch(function () {});
-      }
-    }
-    var intro = document.getElementById("intro");
-    var video = document.getElementById("intro-video");
-    if (!intro || !video) return;
-    var mode = new URLSearchParams(location.search).get("intro");
-    if (mode !== "mid" && mode !== "logo" && (mode === "skip" || introSeen() || reducedMotion())) {
-      if (mode === "skip" || reducedMotion()) markIntro();
-      intro.remove();
+    if (!hero) return;
+    if (reducedMotion()) {
+      hero.removeAttribute("autoplay");
+      hero.pause();
       return;
     }
-    document.body.classList.add("intro-on");
-    primeVideo(video);
-    var skipBtn = document.getElementById("intro-skip");
-    function reveal() {
-      if (!intro || intro.classList.contains("is-done")) return;
-      markIntro();
-      intro.classList.add("is-done");
-      document.body.classList.remove("intro-on");
-      setTimeout(function () { if (intro.parentNode) intro.remove(); }, 700);
-    }
-    function showMark() { intro.classList.add("is-mark"); }
-    if (skipBtn) skipBtn.addEventListener("click", reveal);
-    function seekPause(at, withMark) {
-      function go() {
-        video.addEventListener("seeked", function () {
-          video.pause();
-          if (withMark) showMark();
-        }, { once: true });
-        try { video.currentTime = at; } catch (e) {}
-      }
-      if (video.readyState >= 1) go();
-      else video.addEventListener("loadedmetadata", go, { once: true });
-    }
-    if (mode === "mid") { seekPause(2.2, false); return; }
-    if (mode === "logo") { seekPause(7.15, true); return; }
-    video.addEventListener("timeupdate", function () {
-      if (video.currentTime >= 6.55) showMark();
-    });
-    video.addEventListener("ended", function () {
-      showMark();
-      setTimeout(reveal, 650);
-    });
-    var play = video.play();
-    if (play && play.catch) play.catch(function () { reveal(); });
+    var heroPlay = hero.play();
+    if (heroPlay && heroPlay.catch) heroPlay.catch(function () {});
   }
 
   function render() {
