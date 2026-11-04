@@ -151,8 +151,7 @@
   }
   function footer() {
     return '<footer class="foot"><div class="w foot-lines">' +
-      '<p>' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + '</a> · <a class="credits-link" href="' + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
-      "<p>" + place().address + "</p>" +
+      "<p>" + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a></p>" +
       "</div></footer>";
   }
   function reach() {
@@ -247,6 +246,15 @@
       var open = drawer.classList.toggle("open");
       menu.setAttribute("aria-expanded", open ? "true" : "false");
       syncReach();
+      return;
+    }
+    var locToggle = event.target.closest("[data-loc-toggle]");
+    if (locToggle) {
+      event.preventDefault();
+      var list = document.getElementById("loc-drop-list");
+      var open = list && list.hidden;
+      if (list) list.hidden = !open;
+      locToggle.setAttribute("aria-expanded", open ? "true" : "false");
       return;
     }
     var pin = event.target.closest("[data-pin]");
@@ -755,13 +763,24 @@
     chips.innerHTML = locs.map(function (loc) {
       return '<button type="button" data-pin="' + loc.id + '" aria-pressed="' + (loc.id === current.id ? "true" : "false") + '">' + loc.name + "</button>";
     }).join("");
+    var drop = document.getElementById("loc-drop");
+    if (drop) {
+      var label = t("locPick") + ": " + current.name + " (" + locs.length + " " + t("locStores") + ")";
+      drop.innerHTML = '<button type="button" class="loc-drop-btn" data-loc-toggle aria-expanded="false" aria-controls="loc-drop-list">' +
+        "<span>" + label + "</span>" +
+        '<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.2 6 6.2 11 1.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+        '<div class="loc-drop-list" id="loc-drop-list" hidden>' +
+        locs.map(function (loc) {
+          return '<button type="button" data-pin="' + loc.id + '"' + (loc.id === current.id ? ' aria-current="true"' : "") + ">" + loc.name + "</button>";
+        }).join("") + "</div>";
+    }
     var mapSrc = "https://maps.google.com/maps?q=" + encodeURIComponent(current.address) + "&z=14&hl=" + (lang() === "es" ? "es" : "en") + "&output=embed";
     map.innerHTML = '<div class="loc-frame"><iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe></div>';
     sizeLocationMap();
     var frame = map.querySelector("iframe");
     if (frame) frame.addEventListener("load", sizeLocationMap);
     var href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(current.address);
-    detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn gl" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
+    detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn rd" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
   }
 
   function inventory() {

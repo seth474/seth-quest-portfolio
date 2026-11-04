@@ -96,6 +96,8 @@ window.BROWARD = {
         thanks: "Thanks. This stayed on the page. A person at the desk would take it from here."
       },
       shoppingAt: "Shopping at",
+      locPick: "Location",
+      locStores: "stores",
       shopNew: "Shop new",
       shopUsed: "Shop pre-owned",
       inCity: "in {city}",
@@ -232,6 +234,8 @@ window.BROWARD = {
         thanks: "Gracias. Esto se quedó en la página. Alguien en el mostrador lo toma desde aquí."
       },
       shoppingAt: "Comprando en",
+      locPick: "Tienda",
+      locStores: "tiendas",
       shopNew: "Ver nuevos",
       shopUsed: "Ver usados",
       inCity: "en {city}",
