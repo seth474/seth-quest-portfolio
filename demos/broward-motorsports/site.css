@@ -906,9 +906,32 @@ a.brand img {
 .trade-form { max-width: 760px; }
 .trade-form h2 { font-size: clamp(36px, 4.6vw, 58px); line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 12px; }
 .trade-lead { margin: 0 0 22px; max-width: 42em; font-size: 18px; line-height: 1.4; color: #ddd; }
-.trade-form .form { grid-template-columns: 1fr 1fr; align-items: start; }
+.trade-form .form { grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+.trade-form label,
+.trade-form .trade-actions,
+.trade-form .trade-span {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  position: static;
+  overflow: visible;
+  box-shadow: none;
+}
+.trade-form label::before,
+.trade-form label::after,
+.trade-form .trade-actions::before,
+.trade-form .trade-actions::after { content: none; }
+.trade-form .trade-span,
+.trade-form .trade-actions { grid-column: 1 / -1; }
 .trade-form input { height: 48px; max-height: 48px; background: #1a1a1a; border-color: #4a4a4a; }
-.trade-form .wide { grid-column: 1 / -1; }
 .trade-thanks { margin: 8px 0 0; font-size: 22px; font-weight: 700; line-height: 1.35; max-width: 22em; }
 .loc-map {
   position: relative;
@@ -961,5 +984,5 @@ a.brand img {
   .feature-copy h2 { font-size: 34px; }
   .loc-layout { grid-template-columns: 1fr; }
   .loc-map, .loc-frame, .loc-map iframe { height: 320px; min-height: 320px; }
-  .trade-form .form { grid-template-columns: 1fr; }
+  .trade-form .form { grid-template-columns: 1fr; gap: 14px; }
 }
