@@ -996,6 +996,7 @@ a.brand img {
   text-align: left;
   cursor: pointer;
 }
+.loc-drop-btn span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .loc-drop-btn svg { width: 12px; height: 8px; flex: none; }
 .loc-drop-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
 .loc-drop-list {
