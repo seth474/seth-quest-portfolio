@@ -62,25 +62,56 @@
     </div>
   </section>
   <section class="w sec" id="sec-lot">
-    <div class="sh"><h2>On the lot now</h2><a href="/demos/broward-motorsports/inventory">See the lot</a></div>
-    <div class="grid" id="lot"></div>
+    <div class="sh"><h2>On the lot now</h2><a id="lot-all" href="/demos/broward-motorsports/inventory">See all inventory</a></div>
+    <div class="style-slider lot-slider">
+      <button class="cat-arrow prev" type="button" id="lot-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="lot-row" id="lot"></div>
+      <button class="cat-arrow next" type="button" id="lot-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
   </section>
-  <section class="w boxes" id="visit">
-    <article class="box">
-      <h3>Get pre-approved</h3>
-      <p>Tell us who you are. This concept keeps the note on the page.</p>
-      <button class="btn rd" type="button" data-open="approve">Start</button>
-    </article>
-    <article class="box">
-      <h3>Value your trade</h3>
-      <p>Year, make, and model are enough for a first look.</p>
-      <button class="btn gl" type="button" data-open="trade">Start</button>
-    </article>
-    <article class="box">
-      <h3>Visit the store</h3>
-      <p>4101 Davie Road Ext., Hollywood, FL 33024. Mon–Sat 9–7.</p>
-      <a class="btn gl" href="/demos/broward-motorsports/inventory">Browse the lot</a>
-    </article>
+  <section class="w sec" id="sec-specials">
+    <div class="sh"><h2>This month's specials</h2></div>
+    <div class="specials" id="specials">
+      <div class="specials-track" id="specials-track"></div>
+      <div class="specials-dots" id="specials-dots"></div>
+    </div>
+  </section>
+  <section class="w sec" id="sec-approve">
+    <div class="feature">
+      <img id="approve-photo" src="/demos/broward-motorsports/img/approve-rider.jpg" alt="A rider leaning a modern sportbike through a curving mountain road">
+      <div class="feature-copy">
+        <h2>Get pre-approved</h2>
+        <ul id="approve-points">
+          <li>A real answer before you ride over.</li>
+          <li>Same-day look at new and pre-owned.</li>
+          <li>The note stays on this page.</li>
+        </ul>
+        <button class="btn rd" type="button" data-open="approve">Get pre-approved</button>
+      </div>
+    </div>
+  </section>
+  <section class="w sec" id="sec-trade">
+    <div class="trade-form">
+      <h2>Ready to trade in?</h2>
+      <p class="trade-lead" id="trade-lead">Enter your info and we'll get back to you the same business day with an estimate.</p>
+      <form class="form" id="trade-form">
+        <label id="trade-name">Name <input name="name" required autocomplete="name"></label>
+        <label id="trade-contact">Phone or email <input name="contact" required autocomplete="tel"></label>
+        <label id="trade-make">Make/Model <input name="make" required></label>
+        <label id="trade-year">Year <input name="year" required inputmode="numeric" maxlength="4"></label>
+        <label class="wide" id="trade-vin">VIN <input name="vin" required autocomplete="off"></label>
+        <div class="wide"><button class="btn rd" type="submit" id="trade-submit">Submit</button></div>
+      </form>
+      <p class="trade-thanks" id="trade-thanks" hidden>Thanks! A sales representative will get back to you the same business day.</p>
+    </div>
+  </section>
+  <section class="w sec" id="sec-locations">
+    <div class="sh"><h2>Visit our locations</h2></div>
+    <div class="loc-chips" id="loc-chips"></div>
+    <div class="loc-layout">
+      <div class="loc-map" id="loc-map"></div>
+      <div class="loc-detail" id="loc-detail"></div>
+    </div>
   </section>
 </main>
 <div id="bottom"></div>

@@ -16,14 +16,14 @@ window.BROWARD = {
   /* Powersports stores listed on browardmotorsports.com. Hours match the
      Hollywood and Fort Lauderdale sales desks (Mon–Sat 9–7). */
   locations: [
-    { id: "hollywood", name: "Hollywood", address: "4101 Davie Road Ext., Hollywood, FL 33024", city: "Hollywood, FL", phone: "9544369905", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "fort-lauderdale", name: "Fort Lauderdale", address: "2100 W Sunrise Blvd, Ste 161, Fort Lauderdale, FL 33311", city: "Fort Lauderdale, FL", phone: "9544670990", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "miami", name: "Miami", address: "6400 W 20th Ave, Hialeah, FL 33016", city: "Hialeah, FL", phone: "3055571311", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "palm-beach", name: "West Palm Beach", address: "2300 Okeechobee Blvd, West Palm Beach, FL 33409", city: "West Palm Beach, FL", phone: "5612969696", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "jupiter", name: "Jupiter", address: "152 Bridge Road, Tequesta, FL 33469", city: "Tequesta, FL", phone: "5617489424", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "treasure-coast", name: "Treasure Coast", address: "8401 SE Federal Hwy, Hobe Sound, FL 33455", city: "Hobe Sound, FL", phone: "7722525000", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "port-richey", name: "Port Richey", address: "9825 US Highway 19, Port Richey, FL 34668", city: "Port Richey, FL", phone: "7278426624", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } },
-    { id: "west-orlando", name: "West Orlando", address: "16333 W Colonial Dr, Oakland, FL 34787", city: "Oakland, FL", phone: "4078776051", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" } }
+    { id: "hollywood", name: "Hollywood", address: "4101 Davie Road Ext., Hollywood, FL 33024", city: "Hollywood, FL", phone: "9544369905", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 81, y: 76 } },
+    { id: "fort-lauderdale", name: "Fort Lauderdale", address: "2100 W Sunrise Blvd, Ste 161, Fort Lauderdale, FL 33311", city: "Fort Lauderdale, FL", phone: "9544670990", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 84, y: 68 } },
+    { id: "miami", name: "Miami", address: "6400 W 20th Ave, Hialeah, FL 33016", city: "Hialeah, FL", phone: "3055571311", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 74, y: 84 } },
+    { id: "palm-beach", name: "West Palm Beach", address: "2300 Okeechobee Blvd, West Palm Beach, FL 33409", city: "West Palm Beach, FL", phone: "5612969696", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 80, y: 58 } },
+    { id: "jupiter", name: "Jupiter", address: "152 Bridge Road, Tequesta, FL 33469", city: "Tequesta, FL", phone: "5617489424", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 82, y: 50 } },
+    { id: "treasure-coast", name: "Treasure Coast", address: "8401 SE Federal Hwy, Hobe Sound, FL 33455", city: "Hobe Sound, FL", phone: "7722525000", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 79, y: 42 } },
+    { id: "port-richey", name: "Port Richey", address: "9825 US Highway 19, Port Richey, FL 34668", city: "Port Richey, FL", phone: "7278426624", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 22, y: 24 } },
+    { id: "west-orlando", name: "West Orlando", address: "16333 W Colonial Dr, Oakland, FL 34787", city: "Oakland, FL", phone: "4078776051", hours: { en: "Mon–Sat 9–7", es: "Lun–Sáb 9–7" }, pin: { x: 46, y: 30 } }
   ],
   media: {
     heroPoster: "hero-dusk.jpg",
@@ -32,8 +32,16 @@ window.BROWARD = {
     tileNew: "tile-new.jpg",
     tileUsed: "tile-used.jpg",
     startup: "start.mp4",
-    startupPoster: "start.jpg"
+    startupPoster: "start.jpg",
+    approve: "approve-rider.jpg"
   },
+  /* Dealer web-op banners from browardmotorsportshollywood.com/fckimages/Web Op/. */
+  specials: [
+    { img: "special-kawasaki.jpg", brand: "kawasaki", alt: "Kawasaki Ridge: save up to $3,500 and 2.95% financing" },
+    { img: "special-slingshot.jpg", brand: "slingshot", alt: "Slingshot holiday offers through November 30, 2026" },
+    { img: "special-polaris.jpg", brand: "polaris", alt: "Polaris promotional offer" },
+    { img: "special-cfmoto.jpg", brand: "cfmoto", alt: "CFMOTO promotional offer" }
+  ],
   categories: [
     { id: "ATV", label: "chip.atv", img: "cat-atv.jpg" },
     { id: "Motorcycle", label: "chip.moto", img: "cat-moto.jpg" },
@@ -98,8 +106,19 @@ window.BROWARD = {
         alt: "A green side-by-side driving across the sand at dusk"
       },
       chip: { moto: "Motorcycles", sxs: "Side-by-Sides", atv: "ATVs", pwc: "PWC", boat: "Boats", golf: "Golf Carts" },
-      h: { cat: "Shop by category", brand: "Shop by brand", style: "Shop by style", cond: "New and pre-owned", lot: "On the lot now" },
-      seeSample: "See the lot",
+      h: { cat: "Shop by category", brand: "Shop by brand", style: "Shop by style", cond: "New and pre-owned", lot: "On the lot now", specials: "This month's specials", approve: "Get pre-approved", trade: "Ready to trade in?", visit: "Visit our locations" },
+      seeSample: "See all inventory",
+      approvePoints: ["A real answer before you ride over.", "Same-day look at new and pre-owned.", "The note stays on this page."],
+      approveAlt: "A rider leaning a modern sportbike through a curving mountain road",
+      tradeLead: "Enter your info and we'll get back to you the same business day with an estimate.",
+      tradeName: "Name",
+      tradeContact: "Phone or email",
+      tradeMake: "Make/Model",
+      tradeYear: "Year",
+      tradeVin: "VIN",
+      tradeSubmit: "Submit",
+      tradeThanks: "Thanks! A sales representative will get back to you the same business day.",
+      maps: "Google Maps",
       lot: { fresh: "386 on the lot", used: "37 on the lot" },
       inSample: "in stock",
       box: {
@@ -223,8 +242,19 @@ window.BROWARD = {
         alt: "Un side-by-side verde cruzando la arena al atardecer"
       },
       chip: { moto: "Motos", sxs: "Side-by-Sides", atv: "ATV", pwc: "PWC", boat: "Botes", golf: "Carritos de golf" },
-      h: { cat: "Compra por categoría", brand: "Compra por marca", style: "Compra por estilo", cond: "Nuevos y usados", lot: "En el lote ahora" },
-      seeSample: "Ver el lote",
+      h: { cat: "Compra por categoría", brand: "Compra por marca", style: "Compra por estilo", cond: "Nuevos y usados", lot: "En el lote ahora", specials: "Ofertas del mes", approve: "Pide preaprobación", trade: "¿Listo para entregar tu moto?", visit: "Visita nuestras tiendas" },
+      seeSample: "Ver todo el inventario",
+      approvePoints: ["Una respuesta real antes de venir.", "Revisión el mismo día, nuevo o usado.", "La nota se queda en esta página."],
+      approveAlt: "Un piloto inclinando una moto moderna en una carretera de curvas",
+      tradeLead: "Escribe tus datos y te respondemos el mismo día hábil con un estimado.",
+      tradeName: "Nombre",
+      tradeContact: "Teléfono o correo",
+      tradeMake: "Marca y modelo",
+      tradeYear: "Año",
+      tradeVin: "VIN",
+      tradeSubmit: "Enviar",
+      tradeThanks: "¡Gracias! Un asesor te contactará el mismo día hábil.",
+      maps: "Google Maps",
       lot: { fresh: "386 en el lote", used: "37 en el lote" },
       inSample: "en inventario",
       box: {

@@ -119,7 +119,7 @@
       '<a href="' + inv({ category: "Water" }) + '">' + t("nav.water") + "</a>" +
       '<a href="' + inv({ condition: "Pre-owned" }) + '">' + t("nav.used") + "</a>" +
       '<a href="#" data-open="approve">' + t("nav.fin") + "</a>" +
-      '<a href="' + BASE + '/#visit">' + t("nav.service") + "</a>";
+      '<a href="' + BASE + '/#sec-locations">' + t("nav.service") + "</a>";
   }
   function langToggle() {
     var es = lang() === "es";
@@ -150,9 +150,9 @@
       navLinks() + "</div>";
   }
   function footer() {
-    return '<footer class="foot"><div class="w">' +
-      DEALER.name + " · " + place().address + " · " + salesPretty() + " · " + hoursNow() +
-      '<p class="concept">' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + "</a> · <a href=\"" + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
+    return '<footer class="foot"><div class="w foot-lines">' +
+      '<p>' + t("footer.concept") + ' <a href="' + DEALER.creditUrl + '">' + DEALER.creditName + '</a> · <a class="credits-link" href="' + BASE + '/credits.html">' + t("footer.credits") + "</a></p>" +
+      "<p>" + place().address + "</p>" +
       "</div></footer>";
   }
   function reach() {
@@ -249,6 +249,22 @@
       syncReach();
       return;
     }
+    var pin = event.target.closest("[data-pin]");
+    if (pin) {
+      event.preventDefault();
+      var id = pin.getAttribute("data-pin");
+      if (id && id !== place().id) {
+        try { localStorage.setItem(LOC_KEY, id); } catch (e) {}
+        render();
+      }
+      return;
+    }
+    var dot = event.target.closest("[data-special]");
+    if (dot) {
+      var track = document.getElementById("specials-track");
+      if (track) track.scrollTo({ left: Number(dot.getAttribute("data-special")) * track.clientWidth, behavior: motion() });
+      return;
+    }
     var opener = event.target.closest("[data-open]");
     if (opener) {
       event.preventDefault();
@@ -308,6 +324,8 @@
       layoutFolds();
       syncSlider();
       syncStyleSlider();
+      syncLotSlider();
+      sizeLocationMap();
       syncReach();
     });
     var styleRow = document.getElementById("styles");
@@ -330,6 +348,23 @@
       styleRow.addEventListener("pointerup", function () { drag = null; });
       styleRow.addEventListener("pointercancel", function () { drag = null; });
     }
+    var lotPrev = document.getElementById("lot-prev");
+    var lotNext = document.getElementById("lot-next");
+    var lotRow = document.getElementById("lot");
+    if (lotPrev && lotNext && lotRow) {
+      lotPrev.addEventListener("click", function () { lotStep(-1); });
+      lotNext.addEventListener("click", function () { lotStep(1); });
+      lotRow.addEventListener("scroll", syncLotSlider, { passive: true });
+    }
+    var tradeForm = document.getElementById("trade-form");
+    if (tradeForm) tradeForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      tradeForm.hidden = true;
+      var lead = document.getElementById("trade-lead");
+      if (lead) lead.hidden = true;
+      var thanks = document.getElementById("trade-thanks");
+      if (thanks) thanks.hidden = false;
+    });
     var search = document.getElementById("hero-search");
     if (search) search.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -426,28 +461,50 @@
       document.querySelectorAll(".chips .chip").forEach(function (chip, i) {
         if (chipKeys[i]) chip.textContent = t(chipKeys[i]);
       });
-      var heads = ["h.cat", "h.brand", "h.style", "h.lot"];
-      document.querySelectorAll("main .sec h2").forEach(function (h, i) {
-        if (heads[i]) h.textContent = t(heads[i]);
+      var headIds = {
+        "sec-cat": "h.cat",
+        "sec-brand": "h.brand",
+        "sec-style": "h.style",
+        "sec-lot": "h.lot",
+        "sec-specials": "h.specials",
+        "sec-approve": "h.approve",
+        "sec-trade": "h.trade",
+        "sec-locations": "h.visit"
+      };
+      Object.keys(headIds).forEach(function (id) {
+        var h = document.querySelector("#" + id + " h2");
+        if (h) h.textContent = t(headIds[id]);
       });
-      var more = document.querySelector("main .sec .sh a");
+      var more = document.getElementById("lot-all");
       if (more) more.textContent = t("seeSample");
       var shopNew = document.querySelector(".shop-tile.new span");
       var shopUsed = document.querySelector(".shop-tile.used span");
       if (shopNew) shopNew.textContent = t("shopNew");
       if (shopUsed) shopUsed.textContent = t("shopUsed");
-      var boxes = document.querySelectorAll("#visit .box");
-      if (boxes.length === 3) {
-        boxes[0].querySelector("h3").textContent = t("box.approveH");
-        boxes[0].querySelector("p").textContent = t("box.approveP");
-        boxes[0].querySelector("button").textContent = t("start");
-        boxes[1].querySelector("h3").textContent = t("box.tradeH");
-        boxes[1].querySelector("p").textContent = t("box.tradeP");
-        boxes[1].querySelector("button").textContent = t("start");
-        boxes[2].querySelector("h3").textContent = t("box.visitH");
-        boxes[2].querySelector("p").textContent = place().address + ". " + hoursNow();
-        boxes[2].querySelector("a").textContent = t("box.visitCta");
+      var approveList = document.getElementById("approve-points");
+      var approvePoints = t("approvePoints");
+      if (approveList && approvePoints && approvePoints.join) {
+        approveList.innerHTML = approvePoints.map(function (line) { return "<li>" + line + "</li>"; }).join("");
       }
+      var approveBtn = document.querySelector("#sec-approve button");
+      if (approveBtn) approveBtn.textContent = t("h.approve");
+      var rider = document.getElementById("approve-photo");
+      if (rider && window.BROWARD.media.approve) {
+        rider.src = img(window.BROWARD.media.approve);
+        rider.alt = t("approveAlt");
+      }
+      var tradeLead = document.getElementById("trade-lead");
+      if (tradeLead) tradeLead.textContent = t("tradeLead");
+      [["trade-name", "tradeName"], ["trade-contact", "tradeContact"], ["trade-make", "tradeMake"], ["trade-year", "tradeYear"], ["trade-vin", "tradeVin"]].forEach(function (pair) {
+        var label = document.getElementById(pair[0]);
+        if (!label) return;
+        var text = label.childNodes[0];
+        if (text) text.textContent = t(pair[1]) + " ";
+      });
+      var tradeSubmit = document.getElementById("trade-submit");
+      if (tradeSubmit) tradeSubmit.textContent = t("tradeSubmit");
+      var tradeThanks = document.getElementById("trade-thanks");
+      if (tradeThanks) tradeThanks.textContent = t("tradeThanks");
     }
     if (page === "inventory") {
       document.title = t("inv.title") + " · " + DEALER.name;
@@ -613,9 +670,98 @@
     }).join("");
     syncStyleSlider();
 
-    document.getElementById("lot").innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
+    var lot = document.getElementById("lot");
+    if (lot) lot.innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
+    paintSpecials();
+    paintLocations();
     layoutFolds();
     syncSlider();
+    syncLotSlider();
+    startSpecials();
+  }
+
+  function syncLotSlider() {
+    var row = document.getElementById("lot");
+    var prev = document.getElementById("lot-prev");
+    var next = document.getElementById("lot-next");
+    if (!row || !prev || !next) return;
+    var max = row.scrollWidth - row.clientWidth;
+    prev.disabled = row.scrollLeft <= 2;
+    next.disabled = max <= 2 || row.scrollLeft >= max - 2;
+    prev.setAttribute("aria-label", t("prev"));
+    next.setAttribute("aria-label", t("next"));
+  }
+  function lotStep(dir) {
+    var row = document.getElementById("lot");
+    if (!row) return;
+    var cardEl = row.querySelector(".card");
+    var width = cardEl ? cardEl.getBoundingClientRect().width + 14 : Math.round(row.clientWidth * 0.8);
+    row.scrollBy({ left: dir * width, behavior: motion() });
+  }
+  function paintSpecials() {
+    var track = document.getElementById("specials-track");
+    var dots = document.getElementById("specials-dots");
+    if (!track || !dots) return;
+    var items = window.BROWARD.specials || [];
+    track.innerHTML = items.map(function (s) {
+      return '<a href="' + inv({ brand: s.brand }) + '"><img src="' + img(s.img) + '" alt="' + s.alt + '"></a>';
+    }).join("");
+    dots.innerHTML = items.map(function (_, i) {
+      return '<button type="button" data-special="' + i + '" aria-label="' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : "") + "></button>";
+    }).join("");
+  }
+  var specialsTimer = 0;
+  function startSpecials() {
+    var track = document.getElementById("specials-track");
+    if (!track || specialsTimer) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    track.addEventListener("scroll", function () {
+      var w = track.clientWidth || 1;
+      var i = Math.round(track.scrollLeft / w);
+      document.querySelectorAll("#specials-dots button").forEach(function (btn, idx) {
+        if (idx === i) btn.setAttribute("aria-current", "true");
+        else btn.removeAttribute("aria-current");
+      });
+    }, { passive: true });
+    specialsTimer = window.setInterval(function () {
+      var n = track.children.length;
+      var w = track.clientWidth;
+      if (!n || !w) return;
+      var i = Math.round(track.scrollLeft / w);
+      track.scrollTo({ left: ((i + 1) % n) * w, behavior: "smooth" });
+    }, 4200);
+  }
+  function sizeLocationMap() {
+    var map = document.getElementById("loc-map");
+    var frame = map && map.querySelector("iframe");
+    var wrap = map && map.querySelector(".loc-frame");
+    if (!map || !frame) return;
+    var w = map.clientWidth;
+    var h = map.clientHeight;
+    if (wrap) {
+      wrap.style.width = w + "px";
+      wrap.style.height = h + "px";
+    }
+    frame.style.width = w + "px";
+    frame.style.height = h + "px";
+  }
+  function paintLocations() {
+    var chips = document.getElementById("loc-chips");
+    var map = document.getElementById("loc-map");
+    var detail = document.getElementById("loc-detail");
+    if (!chips || !map || !detail) return;
+    var current = place();
+    var locs = window.BROWARD.locations || [];
+    chips.innerHTML = locs.map(function (loc) {
+      return '<button type="button" data-pin="' + loc.id + '" aria-pressed="' + (loc.id === current.id ? "true" : "false") + '">' + loc.name + "</button>";
+    }).join("");
+    var mapSrc = "https://maps.google.com/maps?q=" + encodeURIComponent(current.address) + "&z=14&hl=" + (lang() === "es" ? "es" : "en") + "&output=embed";
+    map.innerHTML = '<div class="loc-frame"><iframe title="' + current.name + '" src="' + mapSrc + '" referrerpolicy="no-referrer-when-downgrade"></iframe></div>';
+    sizeLocationMap();
+    var frame = map.querySelector("iframe");
+    if (frame) frame.addEventListener("load", sizeLocationMap);
+    var href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(current.address);
+    detail.innerHTML = "<h3>" + current.name + "</h3><p>" + current.address + "</p><p>" + hoursNow() + '</p><p><a class="btn gl" target="_blank" rel="noopener noreferrer" href="' + href + '">' + t("maps") + "</a></p>";
   }
 
   function inventory() {
