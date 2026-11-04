@@ -125,5 +125,6 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
   .trade-form .form { gap: 8px; }
   .trade-form label { gap: 4px; }
   .trade-form .trade-actions { padding-right: 72px; }
+  .loc-drop { margin-right: 68px; }
   .foot { padding: 20px 72px 20px 0; }
 }
