@@ -82,26 +82,56 @@ body.home .hero .lede { max-width: 28em; margin: 0 0 22px; font-size: 20px; line
 .heritage .eyebrow, .heritage h2, .heritage p { color: #fff; }
 .heritage h2 { font-size: clamp(42px, 6vw, 72px); line-height: 0.9; text-transform: uppercase; margin: 0 0 14px; }
 .heritage p { font-size: 18px; line-height: 1.45; max-width: 40em; color: #e7e7e7; }
-.band { background: #111; color: #fff; padding: 36px 0 42px; }
+.band { background: #111; color: #fff; padding: 40px 0 48px; }
 .band h2 { color: #fff; text-transform: uppercase; }
-.brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.brand-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 84px;
-  padding: 8px 10px;
-  border: 1px solid rgba(255,255,255,.28);
+.brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.brand-tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1a1a1a;
   color: #fff;
-  background: transparent;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: clamp(22px, 2vw, 30px);
-  font-weight: 800;
-  transition: background .2s ease, transform .2s ease, border-color .2s ease;
 }
-.brand-logo:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
-.sec, main > .sec, main > .boxes { border-top: 1px solid #111; margin-top: 28px; padding-top: 22px; }
+.brand-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  aspect-ratio: auto;
+  filter: none;
+  transition: transform .5s ease;
+}
+.brand-tile:hover img { transform: scale(1.06); }
+.brand-tile::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  background: linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,0));
+  pointer-events: none;
+}
+.brand-tile span {
+  position: absolute;
+  z-index: 1;
+  left: 12px;
+  right: 10px;
+  bottom: 12px;
+  color: #fff;
+  font-size: clamp(22px, 2vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.sec, main > .sec, main > .boxes { border-top: 1px solid #111; margin-top: 28px; padding: 28px 0 32px; }
+#sec-cat { padding-bottom: 56px; }
+#sec-style { margin-top: 0; border-top: 0; }
 .sh a, .tile b, .tile small, .card .nm, .card .pr, .card .model-link { color: #111; }
 .tile {
   aspect-ratio: 4/5;
@@ -129,11 +159,15 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
 .style-card { color: #111; }
 .style-card span { color: #111; }
 .sh h2, .feature-copy h2, .trade-form h2 { text-transform: uppercase; letter-spacing: -0.03em; }
-.shop-tile { position: relative; display: block; min-height: 340px; overflow: hidden; color: #fff; }
-.shop-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: none; border-radius: 0; aspect-ratio: auto; transition: transform .6s ease; }
+.pair { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.shop-tile { position: relative; display: block; min-height: 220px; height: 300px; overflow: hidden; color: #fff; background: #111; }
+.shop-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 36%; filter: none; border-radius: 0; aspect-ratio: auto; transition: transform .6s ease; }
+.shop-tile.new img { object-position: center 22%; }
+.shop-tile.used img { object-position: center 40%; }
 .shop-tile:hover img, .style-card:hover img, .card:hover .ph img { transform: scale(1.06); }
-.shop-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72), transparent 62%); }
-.shop-tile span { position: absolute; z-index: 1; left: 18px; bottom: 16px; color: #fff; font-size: 52px; text-transform: uppercase; letter-spacing: -0.03em; }
+.shop-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.08) 58%); }
+.shop-tile span { position: absolute; z-index: 1; left: 22px; right: 18px; bottom: 20px; color: #fff; font-size: 36px; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1; }
+.shop-tile span::after { content: " \2192"; }
 .ph { background: #111; overflow: hidden; }
 .ph img { filter: none; transition: transform .5s ease; }
 .style-card img { transition: transform .5s ease; }
@@ -230,7 +264,13 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
   }
   body.home .hero h1 { font-size: 72px; color: #fff; }
   body.home .hero .lede { font-size: 16px; }
-  .brands { grid-template-columns: 1fr 1fr; }
+  .brands { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .brand-tile span { font-size: 22px; bottom: 10px; }
+  #sec-pair.w { width: 100%; }
+  .pair { gap: 8px; }
+  .shop-tile { height: 176px; min-height: 176px; }
+  .shop-tile span { font-size: 30px; left: 16px; bottom: 16px; }
+  #sec-cat { padding-bottom: 48px; }
   .heritage h2 { font-size: 46px; }
   #sec-trade { padding-top: 16px; }
   .trade-form h2 { font-size: 32px; margin-bottom: 6px; }

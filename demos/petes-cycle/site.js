@@ -691,7 +691,9 @@
       return { name: b.name, href: BASE + "/brands/" + b.slug };
     });
     document.getElementById("brands").innerHTML = marks.map(function (b) {
-      return '<a class="brand-logo" href="' + b.href + '"><span>' + b.name + "</span></a>";
+      var pos = b.pos ? ' style="object-position:' + b.pos + '"' : "";
+      var photo = b.img ? '<img src="' + img(b.img) + '"' + pos + ' alt="">' : "";
+      return '<a class="brand-tile" href="' + b.href + '">' + photo + "<span>" + b.name + "</span></a>";
     }).join("");
 
     var styles = window.BROWARD.styles.filter(function (s) { return countOf("style", s.id) > 0; });
