@@ -1,8 +1,8 @@
 /* Sample lot for the concept, not a live feed.
-   Prices are figures published on petescycle.com on 4 Nov 2026.
-   Advertised prices already include the freight, prep, and doc fees shown on that listing.
-   Specials-page and homepage figures are the single number that page printed.
-   Stock numbers are included only when the listing printed one. */
+   A handful of new-unit prices match figures Pete's Cycle published on
+   petescycle.com on 4 Nov 2026. Every other price is a plausible MSRP-style
+   sample figure. Pre-owned mileage and asking prices are sample values.
+   Stock numbers are included only when an earlier listing printed one. */
 window.BROWARD = {
   dealer: {
     name: "Pete's Cycle",
@@ -67,8 +67,8 @@ window.BROWARD = {
     { id: "Utility", img: "style-utility.jpg", en: "Utility", es: "Utilitario" },
     { id: "Sport side-by-side", img: "style-sxs.jpg", en: "Side-by-side", es: "Side-by-side" }
   ],
-  lot: { fresh: 10, preowned: 1 },
-  featured: ["pc-rebel", "pc-yz", "pc-ninja", "pc-mt07", "pc-def", "pc-x3", "pc-spark", "pc-brute"],
+  lot: { fresh: 18, preowned: 7 },
+  featured: ["pc-rebel", "pc-r7", "pc-africa", "pc-t120", "pc-mt07", "pc-x3", "pc-vx", "pc-foreman"],
   copy: {
     en: {
       menu: "Menu",
@@ -169,6 +169,7 @@ window.BROWARD = {
         Cruiser: "Cruiser",
         Sport: "Sport",
         Adventure: "Adventure",
+        Standard: "Standard",
         Dirt: "Dirt",
         Utility: "Utility",
         "Sport side-by-side": "Sport side-by-side",
@@ -207,6 +208,8 @@ window.BROWARD = {
       brand: "Brand",
       model: "Model",
       stock: "Stock",
+      miles: "mi",
+      milesWord: "Miles",
       location: "Listed at",
       creditsH: "Image credits",
       creditsBack: "Back to the concept"
@@ -310,6 +313,7 @@ window.BROWARD = {
         Cruiser: "Cruiser",
         Sport: "Deportiva",
         Adventure: "Aventura",
+        Standard: "Estándar",
         Dirt: "Cross",
         Utility: "Utilitario",
         "Sport side-by-side": "Side-by-side deportivo",
@@ -348,22 +352,38 @@ window.BROWARD = {
       brand: "Marca",
       model: "Modelo",
       stock: "Stock",
+      miles: "mi",
+      milesWord: "Millas",
       location: "Listado en",
       creditsH: "Créditos de imágenes",
       creditsBack: "Volver al concepto"
     }
   },
   units: [
-    { id: "pc-rebel", year: 2026, brand: "Honda", model: "Rebel 500 ABS SE", price: 5999, condition: "New", category: "Motorcycle", style: "Cruiser", img: "rebel.jpg", stock: "" },
-    { id: "pc-yz", year: 2027, brand: "Yamaha", model: "YZ450F", price: 11608, condition: "New", category: "Motorcycle", style: "Dirt", img: "yz.jpg", stock: "001373", store: "Baltimore, MD" },
-    { id: "pc-mt07", year: 2023, brand: "Yamaha", model: "MT-07", price: 7198, condition: "Pre-owned", category: "Motorcycle", style: "Sport", img: "mt07.jpg", stock: "" },
-    { id: "pc-klr", year: 2025, brand: "Kawasaki", model: "KLR 650 S", price: 4999, condition: "New", category: "Motorcycle", style: "Dirt", img: "klr.jpg", stock: "A37384", store: "Baltimore, MD" },
-    { id: "pc-ninja", year: 2026, brand: "Kawasaki", model: "Ninja 650 ABS", price: 6499, condition: "New", category: "Motorcycle", style: "Sport", img: "ninja.jpg", stock: "" },
-    { id: "pc-z900", year: 2026, brand: "Kawasaki", model: "Z900RS Cafe ABS", price: 12646, condition: "New", category: "Motorcycle", style: "Sport", img: "z900.jpg", stock: "" },
-    { id: "pc-gsx", year: 2026, brand: "Suzuki", model: "GSX-8S", price: 9249, condition: "New", category: "Motorcycle", style: "Sport", img: "gsx.jpg", stock: "" },
-    { id: "pc-brute", year: 2026, brand: "Kawasaki", model: "Brute Force 750", price: 7799, condition: "New", category: "ATV", style: "Utility", img: "brute.jpg", stock: "" },
-    { id: "pc-def", year: 2026, brand: "Can-Am", model: "Defender XT HD9", price: 16398, condition: "New", category: "Side-by-Side", style: "Utility", img: "defender.jpg", stock: "" },
-    { id: "pc-x3", year: 2026, brand: "Can-Am", model: "Maverick X3 RS Turbo RR", price: 25598, condition: "New", category: "Side-by-Side", style: "Sport side-by-side", img: "x3.jpg", stock: "" },
-    { id: "pc-spark", year: 2026, brand: "Sea-Doo", model: "Spark Trixx", price: 10397, condition: "New", category: "PWC", style: "Sport", img: "spark.jpg", stock: "" }
+    { id: "pc-rebel", year: 2026, brand: "Honda", model: "Rebel 500 ABS SE", price: 5999, condition: "New", category: "Motorcycle", style: "Cruiser", img: "rebel.jpg", stock: "", store: "Baltimore, MD", blurb: "A light 471cc cruiser with ABS and the SE trim. Low seat, upright bars, and enough power for the beltway or a weekend loop." },
+    { id: "pc-yz", year: 2027, brand: "Yamaha", model: "YZ450F", price: 11608, condition: "New", category: "Motorcycle", style: "Dirt", img: "yz.jpg", stock: "001373", store: "Baltimore, MD", blurb: "Yamaha's current motocross bike, with a 450cc single and a chassis aimed at the track. This sample follows the way Pete's lists a new dirt bike." },
+    { id: "pc-mt07", year: 2023, brand: "Yamaha", model: "MT-07", price: 7198, condition: "Pre-owned", category: "Motorcycle", style: "Standard", img: "mt07.jpg", stock: "", store: "Baltimore, MD", miles: 4280, blurb: "A used naked twin with a short wheelbase and a flat torque curve. The mileage is a sample figure for this concept, not a live odometer reading." },
+    { id: "pc-klr", year: 2025, brand: "Kawasaki", model: "KLR 650 S", price: 4999, condition: "New", category: "Motorcycle", style: "Adventure", img: "klr.jpg", stock: "A37384", store: "Baltimore, MD", blurb: "Kawasaki's lighter adventure bike, with a tall seat, a windscreen, and rails ready for soft luggage." },
+    { id: "pc-ninja", year: 2026, brand: "Kawasaki", model: "Ninja 650 ABS", price: 6499, condition: "New", category: "Motorcycle", style: "Sport", img: "ninja.jpg", stock: "", store: "Baltimore, MD", blurb: "A middleweight sport bike with a parallel twin and a more upright position than a full supersport." },
+    { id: "pc-z900", year: 2026, brand: "Kawasaki", model: "Z900RS Cafe ABS", price: 12646, condition: "New", category: "Motorcycle", style: "Standard", img: "z900.jpg", stock: "", store: "Severna Park, MD", blurb: "A retro standard with a small cafe fairing, lower bars, and the Z900RS inline four." },
+    { id: "pc-gsx", year: 2026, brand: "Suzuki", model: "GSX-8S", price: 9249, condition: "New", category: "Motorcycle", style: "Standard", img: "gsx.jpg", stock: "", store: "Severna Park, MD", blurb: "Suzuki's naked parallel twin, with a short tail and upright bars. Built as a standard for the commute and a back road." },
+    { id: "pc-cb500f", year: 2026, brand: "Honda", model: "CB500F ABS", price: 7149, condition: "New", category: "Motorcycle", style: "Standard", img: "unit-cb500f.jpg", stock: "", store: "Baltimore, MD", blurb: "Honda's naked 500, with a parallel twin and ABS. A standard seat height that works for a new rider and a daily commute." },
+    { id: "pc-africa", year: 2026, brand: "Honda", model: "Africa Twin", price: 15499, condition: "New", category: "Motorcycle", style: "Adventure", img: "unit-africa.jpg", stock: "", store: "Severna Park, MD", blurb: "A big dual-sport with a 1,084cc twin, long-travel suspension, and a tall windscreen for pavement and gravel." },
+    { id: "pc-r7", year: 2025, brand: "Yamaha", model: "YZF-R7", price: 9299, condition: "New", category: "Motorcycle", style: "Sport", img: "unit-r7.jpg", stock: "", store: "Baltimore, MD", blurb: "Yamaha's middleweight supersport, with the CP2 twin in a full fairing and a committed riding position." },
+    { id: "pc-tracer", year: 2026, brand: "Yamaha", model: "Tracer 9 GT", price: 15799, condition: "New", category: "Motorcycle", style: "Adventure", img: "unit-tracer.jpg", stock: "", store: "Severna Park, MD", blurb: "A sport-touring triple. The GT adds hard bags and a taller screen for highway miles between the two stores." },
+    { id: "pc-zx6r", year: 2026, brand: "Kawasaki", model: "Ninja ZX-6R", price: 11399, condition: "New", category: "Motorcycle", style: "Sport", img: "unit-zx6r.jpg", stock: "", store: "Baltimore, MD", blurb: "Kawasaki's 636 supersport, with a sharp fairing and a chassis people take to a track day." },
+    { id: "pc-vstrom", year: 2026, brand: "Suzuki", model: "V-Strom 800DE", price: 11899, condition: "New", category: "Motorcycle", style: "Adventure", img: "unit-vstrom.jpg", stock: "", store: "Severna Park, MD", blurb: "Suzuki's midsize adventure bike, with a 21-inch front wheel and a cockpit you can stand on." },
+    { id: "pc-t120", year: 2026, brand: "Triumph", model: "Bonneville T120", price: 13495, condition: "New", category: "Motorcycle", style: "Cruiser", img: "unit-t120.jpg", stock: "", store: "Severna Park, MD", blurb: "Triumph's classic 1,200cc twin, with wire wheels, a bench seat, and a relaxed cruiser stance." },
+    { id: "pc-cb500x", year: 2021, brand: "Honda", model: "CB500X", price: 5495, condition: "Pre-owned", category: "Motorcycle", style: "Adventure", img: "unit-cb500x.jpg", stock: "", store: "Severna Park, MD", miles: 8640, blurb: "A used adventure 500 with a small fairing and a taller stance than the CB500F. Mileage here is a sample number." },
+    { id: "pc-vulcan", year: 2019, brand: "Kawasaki", model: "Vulcan S", price: 4795, condition: "Pre-owned", category: "Motorcycle", style: "Cruiser", img: "unit-vulcan.jpg", stock: "", store: "Baltimore, MD", miles: 12410, blurb: "A used 650cc cruiser with an adjustable seat and forward controls. Light enough that a shorter rider can flat-foot it." },
+    { id: "pc-drz", year: 2022, brand: "Suzuki", model: "DR-Z400S", price: 6250, condition: "Pre-owned", category: "Motorcycle", style: "Dirt", img: "unit-drz.jpg", stock: "", store: "Severna Park, MD", miles: 3150, blurb: "A used dual-sport single that is still a common woods and trail bike. The miles on the card are a sample figure." },
+    { id: "pc-triple", year: 2022, brand: "Triumph", model: "Street Triple RS", price: 9495, condition: "Pre-owned", category: "Motorcycle", style: "Sport", img: "unit-triple.jpg", stock: "", store: "Baltimore, MD", miles: 7420, blurb: "A used 765 triple in RS trim, with a sharp naked stance. Ask the store to walk the bike before a test ride." },
+    { id: "pc-vstar", year: 2016, brand: "Yamaha", model: "V Star 250", price: 2895, condition: "Pre-owned", category: "Motorcycle", style: "Cruiser", img: "unit-vstar.jpg", stock: "", store: "Severna Park, MD", miles: 6720, blurb: "A used 250cc cruiser, light and low, the kind of bike people keep for short trips around town." },
+    { id: "pc-brute", year: 2026, brand: "Kawasaki", model: "Brute Force 750", price: 7799, condition: "New", category: "ATV", style: "Utility", img: "brute.jpg", stock: "", store: "Baltimore, MD", blurb: "A 750cc utility ATV with selectable four-wheel drive and a rack front and rear." },
+    { id: "pc-foreman", year: 2021, brand: "Honda", model: "Foreman 4x4", price: 6450, condition: "Pre-owned", category: "ATV", style: "Utility", img: "unit-foreman.jpg", stock: "", store: "Baltimore, MD", miles: 1840, blurb: "A used midsize utility ATV with four-wheel drive and racks for work. The miles are a sample figure, not a live hour meter." },
+    { id: "pc-def", year: 2026, brand: "Can-Am", model: "Defender XT HD9", price: 16398, condition: "New", category: "Side-by-Side", style: "Utility", img: "defender.jpg", stock: "", store: "Severna Park, MD", blurb: "Can-Am's work side-by-side, with a dump bed, full doors, and room for a job site or a farm lane." },
+    { id: "pc-x3", year: 2026, brand: "Can-Am", model: "Maverick X3 RS Turbo RR", price: 25598, condition: "New", category: "Side-by-Side", style: "Sport side-by-side", img: "x3.jpg", stock: "", store: "Severna Park, MD", blurb: "A turbo sport side-by-side built for desert pace, with long-travel suspension and a closed cockpit." },
+    { id: "pc-spark", year: 2026, brand: "Sea-Doo", model: "Spark Trixx", price: 10397, condition: "New", category: "PWC", style: "Sport", img: "spark.jpg", stock: "", store: "Baltimore, MD", blurb: "Sea-Doo's light Spark in the Trixx trim, meant for play on the bay more than a long cruise." },
+    { id: "pc-vx", year: 2026, brand: "Yamaha", model: "WaveRunner VX Cruiser", price: 13999, condition: "New", category: "PWC", style: "Sport", img: "unit-vx.jpg", stock: "", store: "Severna Park, MD", blurb: "A Yamaha WaveRunner VX for the bay, with a stable hull and room for a passenger." }
   ]
 };

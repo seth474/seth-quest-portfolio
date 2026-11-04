@@ -36,6 +36,33 @@ test('petes cycle concept is noindex, light, and uses real stores', () => {
   assert.match(js, /visualViewport/);
 });
 
+test('petes cycle sample lot is about 25 mixed listings', () => {
+  const vm = require('node:vm');
+  const context = { window: {} };
+  vm.runInNewContext(data, context);
+  const units = context.window.BROWARD.units;
+  const count = (key, value) => units.filter((u) => u[key] === value).length;
+  assert.equal(units.length, 25);
+  assert.equal(count('condition', 'New'), 18);
+  assert.equal(count('condition', 'Pre-owned'), 7);
+  assert.ok(count('category', 'Motorcycle') >= 15);
+  assert.ok(count('category', 'ATV') >= 1);
+  assert.ok(count('category', 'Side-by-Side') >= 1);
+  assert.ok(count('category', 'PWC') >= 1);
+  assert.ok(count('store', 'Baltimore, MD') >= 8);
+  assert.ok(count('store', 'Severna Park, MD') >= 8);
+  units.forEach((unit) => {
+    assert.ok(unit.blurb && unit.blurb.length > 40, unit.id + ' needs a description');
+    assert.equal(unit.img.endsWith('.jpg'), true);
+  });
+  const used = units.filter((u) => u.condition === 'Pre-owned');
+  used.forEach((unit) => assert.ok(unit.miles > 0, unit.id + ' needs mileage'));
+  assert.match(data, /not a live feed/);
+  const inventory = fs.readFileSync(path.join(root, 'inventory.html'), 'utf8');
+  assert.match(inventory, /value="triumph"/);
+  assert.match(inventory, />Standard</);
+});
+
 test('petes cycle photos are unique files', () => {
   const { execFileSync } = require('node:child_process');
   const out = execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts/petes-photo-audit.js')], { encoding: 'utf8' });
