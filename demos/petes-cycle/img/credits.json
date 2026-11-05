@@ -1,9 +1,9 @@
 {
   "hero": {
-    "title": "Frame from the approved Pete's Cycle intro",
-    "url": "/demos/petes-cycle/img/intro-logo.mp4",
-    "lic": "Still from the intro Seth approved for this concept. Poster and fallback while the same clip loops in the hero.",
-    "note": "Sportbike leaned on a racetrack, about 1.5s into intro-logo.mp4. Replaces the Pikes Peak hill-climb photo."
+    "title": "First frame of the Pete's hero montage",
+    "url": "/demos/petes-cycle/img/hero-1080.mp4",
+    "lic": "Real-footage montage supplied for this concept. Poster and fallback while hero-1080.mp4 loops, muted, behind the hero.",
+    "note": "1920x1080 still of a rider on a racetrack. Replaces the AI intro still."
   },
   "cat-moto": {
     "title": "2026 CRF1100L Africa Twin Adventure Sports ES Dual Clutch Transmission",
@@ -232,11 +232,11 @@
     "lic": "Pete's Cycle's own logo, saved from the live site (published-assets.ari-build.com, site 18363).",
     "note": "Used as the header and footer mark. Not a redraw."
   },
-  "intro-logo": {
-    "title": "Pete's Cycle intro",
-    "url": "/demos/petes-cycle/img/intro-logo.mp4",
-    "lic": "Concept intro approved by Seth. Plays once on load and loops, muted, behind the hero.",
-    "note": "Straight-line approach (about 2.05\u20133.55s) plays at 2x. Flag sequence stays at normal speed."
+  "hero-1080": {
+    "title": "Pete's Cycle hero montage",
+    "url": "/demos/petes-cycle/img/hero-1080.mp4",
+    "lic": "Real-footage montage supplied for this concept. Loops muted in the hero, with no controls.",
+    "note": "1920x1080, about 22 seconds. Desktop and mobile use this file. A 720 file was supplied but the page does not serve a separate mobile video."
   },
   "brand-polaris": {
     "title": "File:2023 Polaris RZR Pro R.jpg",
