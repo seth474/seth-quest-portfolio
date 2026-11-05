@@ -14,7 +14,12 @@ test('petes cycle concept is noindex, light, and uses real stores', () => {
   assert.match(html, /noindex/);
   assert.match(html, /light\.css/);
   assert.match(html, /Since 1938\./);
-  assert.match(html, /intro-logo\.mp4/);
+  assert.match(html, /hero-1080\.mp4/);
+  assert.match(html, /muted/);
+  assert.match(html, /autoplay/);
+  assert.match(html, /loop/);
+  assert.match(html, /playsinline/);
+  assert.equal(html.includes('controls'), false);
   assert.equal(html.includes('intro-skip'), false);
   assert.equal(js.includes('petes-intro'), false);
   assert.equal(js.includes('sessionStorage'), false);

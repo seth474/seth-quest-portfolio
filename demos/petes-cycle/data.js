@@ -107,7 +107,7 @@ window.BROWARD = {
         lede: "Two stores. Belair Road and Severna Park. Honda for six decades, Yamaha for five.",
         ph: "Rebel, Ninja, Defender…",
         aria: "Search the sample inventory",
-        alt: "A sportbike leaned over on a racetrack"
+        alt: "A rider on a racetrack"
       },
       chip: { moto: "Motorcycles", sxs: "Side-by-Sides", atv: "ATVs", pwc: "PWC", boat: "Boats", golf: "Golf Carts" },
       h: { cat: "The floor", brand: "Shop by brand", style: "How you ride", cond: "New and pre-owned", lot: "On the floor", specials: "Listed on their site", approve: "Call about financing", trade: "Ready to trade in?", visit: "Two stores" },
