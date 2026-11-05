@@ -6,10 +6,11 @@
     "note": "1920x1080 still of a rider on a racetrack. Replaces the AI intro still."
   },
   "cat-moto": {
-    "title": "Frame kept for the motorcycle category card",
-    "url": "/demos/petes-cycle/img/cat-moto.jpg",
-    "lic": "Still previously pulled from the retired intro clip. The hero no longer plays that clip.",
-    "note": "Category card only. The hero now loops hero-1080.mp4."
+    "title": "2026 CRF1100L Africa Twin Adventure Sports ES Dual Clutch Transmission",
+    "url": "https://global.honda/jp/news/2026/2260123-crf1100l/image_download.html",
+    "author": "Honda Motor Co., Ltd.",
+    "lic": "Official Honda Global News Room press image, published 23 Jan 2026.",
+    "note": "Press file 2260123-crf1100l_001H.jpg, the three-quarter studio shot of the 2026 Africa Twin Adventure Sports ES DCT in Matte Iridium Gray Metallic. The printed caption bar was cropped off. Replaces the AI still on The Floor motorcycle card. Card size and object-fit crop are unchanged."
   },
   "cat-atv": {
     "title": "File:2021 Can-Am Outlander 570.jpg",
