@@ -36,20 +36,23 @@
       <p>Still family-owned, since 1938, with a second store in Severna Park. Honda for six decades. Yamaha for five. The floor also carries Kawasaki, Suzuki, Sea-Doo, Can-Am, Polaris, Triumph, and Kayo.</p>
     </div>
   </section>
-  <section class="w sec" id="sec-cat">
-    <div class="sh"><h2>Shop by category</h2></div>
-    <div class="cat-slider">
-      <button class="cat-arrow prev" type="button" id="cat-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="cats cat-row" id="cats"></div>
-      <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="checker" aria-hidden="true"></div>
+  <section class="w sec" id="sec-lot">
+    <div class="sh"><h2>On the floor</h2><a id="lot-all" href="/demos/petes-cycle/inventory">See all inventory</a></div>
+    <div class="style-slider lot-slider">
+      <button class="cat-arrow prev" type="button" id="lot-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="lot-row" id="lot"></div>
+      <button class="cat-arrow next" type="button" id="lot-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
-  <section class="band" id="sec-brand">
-    <div class="w">
-      <div class="sh"><h2>Shop by brand</h2></div>
-      <div class="brands" id="brands"></div>
+  <div class="checker" aria-hidden="true"></div>
+  <section class="w sec" id="sec-pair">
+    <div class="pair">
+      <a class="shop-tile new" href="/demos/petes-cycle/inventory?condition=New"><img src="/demos/petes-cycle/img/tile-new.jpg" alt="Pete's Cycle Baltimore showroom, motorcycles lined up on the floor"><span class="btn rd">Shop new</span></a>
+      <a class="shop-tile used" href="/demos/petes-cycle/inventory?condition=Pre-owned"><img src="/demos/petes-cycle/img/tile-used.jpg" alt="A motorcycle parked on the Pete's Cycle lot, with more units behind it"><span class="btn dk">Shop pre-owned</span></a>
     </div>
   </section>
+  <div class="checker" aria-hidden="true"></div>
   <section class="w sec" id="sec-style">
     <div class="sh"><h2>Shop by style</h2></div>
     <div class="style-slider">
@@ -58,27 +61,20 @@
       <button class="cat-arrow next" type="button" id="style-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
-  <section class="w sec" id="sec-pair">
-    <div class="pair">
-      <a class="shop-tile new" href="/demos/petes-cycle/inventory?condition=New"><span>Shop new</span><img src="/demos/petes-cycle/img/tile-new.jpg" alt=""></a>
-      <a class="shop-tile used" href="/demos/petes-cycle/inventory?condition=Pre-owned"><span>Shop pre-owned</span><img src="/demos/petes-cycle/img/tile-used.jpg" alt=""></a>
+  <div class="checker" aria-hidden="true"></div>
+  <section class="w sec" id="sec-brand">
+    <div class="sh"><h2>Shop by brand</h2></div>
+    <div class="brands" id="brands"></div>
+  </section>
+  <section class="w sec" id="sec-cat">
+    <div class="sh"><h2>Shop by category</h2></div>
+    <div class="cat-slider">
+      <button class="cat-arrow prev" type="button" id="cat-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="cats cat-row" id="cats"></div>
+      <button class="cat-arrow next" type="button" id="cat-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
-  <section class="w sec" id="sec-lot">
-    <div class="sh"><h2>On the lot now</h2><a id="lot-all" href="/demos/petes-cycle/inventory">See all inventory</a></div>
-    <div class="style-slider lot-slider">
-      <button class="cat-arrow prev" type="button" id="lot-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="lot-row" id="lot"></div>
-      <button class="cat-arrow next" type="button" id="lot-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 16.5 12l-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
-  </section>
-  <section class="w sec" id="sec-specials">
-    <div class="sh"><h2>Listed on their site</h2></div>
-    <div class="specials" id="specials">
-      <div class="specials-track" id="specials-track"></div>
-      <div class="specials-dots" id="specials-dots"></div>
-    </div>
-  </section>
+  <div class="checker" aria-hidden="true"></div>
   <section class="w sec" id="sec-approve">
     <div class="feature">
       <img id="approve-photo" src="/demos/petes-cycle/img/approve.jpg" alt="A black Kawasaki Ninja 650 parked outdoors">
@@ -93,6 +89,7 @@
       </div>
     </div>
   </section>
+  <div class="checker" aria-hidden="true"></div>
   <section class="w sec" id="sec-trade">
     <div class="trade-form">
       <h2>Ready to trade in?</h2>
@@ -108,6 +105,7 @@
       <p class="trade-thanks" id="trade-thanks" hidden>Thanks. This stayed on the page. Someone at the store would take it from here.</p>
     </div>
   </section>
+  <div class="checker" aria-hidden="true"></div>
   <section class="w sec" id="sec-locations">
     <div class="sh"><h2>Visit our locations</h2></div>
     <div class="loc-drop" id="loc-drop"></div>
