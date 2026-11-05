@@ -25,7 +25,11 @@ body.sub .top.is-solid {
 .foot-logo { height: 42px; width: auto; margin: 0 0 12px; }
 body.home .hero {
   position: relative;
-  min-height: calc(100svh - 76px);
+  /* Lean frame is 1920x1080. The gravel, blue curb, and white line occupy the top ~250px.
+     A 2.5:1 window with object-position bottom drops about 310px of that source, so the
+     visible top is gray asphalt and the helmet stays in frame. */
+  height: min(calc(100vw / 2.5), calc(100svh - 130px));
+  min-height: 0;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -38,6 +42,7 @@ body.home .hero-media {
   height: auto;
   min-height: 0;
   background: #000;
+  overflow: hidden;
 }
 body.home .hero-media img,
 body.home .hero-media video {
@@ -45,8 +50,8 @@ body.home .hero-media video {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: center bottom;
   filter: none;
 }
 body.home .hero-media video:not([src]) { display: none; }
@@ -59,7 +64,7 @@ body.home .hero::after {
   background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 42%, #000 100%);
   pointer-events: none;
 }
-body.home .hin { position: relative; z-index: 2; padding: 0 0 40px; color: #fff; }
+body.home .hin { position: relative; z-index: 2; padding: 0 0 28px; color: #fff; }
 body.home .hero .eyebrow { color: #fff; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
 body.home .hero h1 {
   color: #fff;
@@ -129,9 +134,10 @@ body.home .hero .lede { max-width: 28em; margin: 0 0 22px; font-size: 20px; line
   text-transform: uppercase;
   line-height: 1;
 }
-.sec, main > .sec, main > .boxes { border-top: 1px solid #111; margin-top: 28px; padding: 28px 0 32px; }
-#sec-cat { padding-bottom: 56px; }
+.sec, main > .sec, main > .boxes { border-top: 0; margin-top: 0; padding: 28px 0 36px; }
+#sec-cat { padding-bottom: 36px; }
 #sec-style { margin-top: 0; border-top: 0; }
+main > .checker { margin: 0; }
 .sh a, .tile b, .tile small, .card .nm, .card .pr, .card .model-link { color: #111; }
 .tile {
   aspect-ratio: 4/5;
@@ -227,6 +233,8 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
   .menu { order: 3; margin-left: 8px; }
   .logo img { height: 40px; }
   body.home .hero {
+    height: auto;
+    max-height: none;
     min-height: 0;
     display: block;
     background: #000;
@@ -235,12 +243,13 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
     position: relative;
     inset: auto;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2.5 / 1;
     height: auto;
   }
   body.home .hero-media img,
   body.home .hero-media video {
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center bottom;
     width: 100%;
     height: 100%;
   }
@@ -267,10 +276,8 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
   body.home .hero .lede { font-size: 16px; }
   .brands { grid-template-columns: 1fr 1fr; gap: 8px; }
   .brand-tile span { font-size: 22px; bottom: 10px; }
-  #sec-pair.w { width: 100%; }
-  .pair { gap: 8px; }
-  .shop-tile { height: 176px; min-height: 176px; }
-  .shop-tile span { font-size: 30px; left: 16px; bottom: 16px; }
+  .pair { gap: 16px; }
+  body.home .hero h1 { font-size: 64px; }
   #sec-cat { padding-bottom: 48px; }
   .heritage h2 { font-size: 46px; }
   #sec-trade { padding-top: 16px; }
@@ -281,4 +288,152 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
   .trade-form .trade-actions { padding-right: 72px; }
   .loc-drop { margin-right: 68px; }
   .foot { padding: 20px 72px 20px 0; }
+}
+
+/* Marketplace floor: square shop tiles, title+price cards, checkered breaks. */
+.btn.dk { background: #111; color: #fff; border: 0; }
+.btn.dk:hover { background: #2a2a2a; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.shop-tile {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+  color: #111;
+}
+.shop-tile::after { content: none; display: none; }
+.shop-tile img {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 46%;
+  border-radius: 12px;
+  background: #111;
+  filter: none;
+}
+.shop-tile.new img { object-position: center 58%; }
+.shop-tile.used img { object-position: center 62%; }
+.shop-tile span,
+.shop-tile span.btn {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  color: #fff;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.shop-tile span::after { content: none; }
+.floor-card {
+  display: flex;
+  flex-direction: column;
+  color: #111;
+  min-width: 0;
+}
+.floor-card .ph { aspect-ratio: 1 / 1; border-radius: 12px; }
+.floor-card .ph img { width: 100%; height: 100%; object-fit: cover; filter: none; }
+.floor-card .nm {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.floor-card .pr {
+  margin-top: 4px;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.lot-row .floor-card { flex: 0 0 86%; }
+#sec-lot .sh { position: relative; z-index: 4; align-items: center; }
+#lot-all {
+  position: relative;
+  z-index: 5;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+#sec-lot .lot-slider { z-index: 1; }
+body.home .brands {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+body.home .brands::-webkit-scrollbar { display: none; }
+body.home .brand-tile {
+  flex: 0 0 168px;
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-snap-align: start;
+  background: transparent;
+  color: #111;
+}
+body.home .brand-tile img {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 10px;
+}
+body.home .brand-tile::after { display: none; }
+body.home .brand-tile span {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  color: #111;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  line-height: 1.25;
+}
+body.home #cats.cat-row .tile { aspect-ratio: 16 / 10; flex-basis: calc((100% - 48px) / 4); }
+body.home #sec-cat { padding-top: 8px; }
+@media (min-width: 901px) {
+  .lot-row .floor-card { flex-basis: calc((100% - 28px) / 3); }
+}
+@media (max-width: 900px) {
+  .pair { grid-template-columns: 1fr; gap: 22px; }
+  .shop-tile { height: auto; min-height: 0; }
+  .shop-tile img { aspect-ratio: 1 / 1; }
+  .shop-tile span, .shop-tile span.btn { font-size: 22px; position: static; }
+  .lot-row .floor-card { flex-basis: 88%; }
+  body.home #cats.cat-row .tile { flex-basis: 78%; aspect-ratio: 16 / 10; }
+  body.home .brand-tile { flex-basis: 46%; }
+  body.home .brands { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+  #sec-lot .sh { align-items: flex-start; }
 }

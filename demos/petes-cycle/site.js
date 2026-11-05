@@ -175,6 +175,14 @@
       "</div></div>";
   }
 
+  function floorCard(u) {
+    var title = u.year + " " + u.brand + " " + keepModel(u.model);
+    return '<a class="floor-card" href="' + BASE + "/inventory/" + u.id + '">' +
+      '<div class="ph"><img src="' + img(u.img) + '" alt="' + esc(title) + '"><span class="tag">' + t("opt." + u.condition) + "</span></div>" +
+      '<div class="nm">' + title + "</div>" +
+      '<div class="pr">' + money(u.price) + "</div></a>";
+  }
+
   function card(u) {
     var extraBits = [];
     if (milesLabel(u)) extraBits.push(milesLabel(u));
@@ -377,6 +385,16 @@
       lotNext.addEventListener("click", function () { lotStep(1); });
       lotRow.addEventListener("scroll", syncLotSlider, { passive: true });
     }
+    var lotAll = document.getElementById("lot-all");
+    if (lotAll) {
+      lotAll.addEventListener("click", function (event) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        var href = lotAll.getAttribute("href") || inv();
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.assign(href);
+      }, true);
+    }
     var tradeForm = document.getElementById("trade-form");
     if (tradeForm) tradeForm.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -495,7 +513,6 @@
         "sec-brand": "h.brand",
         "sec-style": "h.style",
         "sec-lot": "h.lot",
-        "sec-specials": "h.specials",
         "sec-approve": "h.approve",
         "sec-trade": "h.trade",
         "sec-locations": "h.visit"
@@ -505,7 +522,10 @@
         if (h) h.textContent = t(headIds[id]);
       });
       var more = document.getElementById("lot-all");
-      if (more) more.textContent = t("seeSample");
+      if (more) {
+        more.textContent = t("seeSample");
+        more.setAttribute("href", inv());
+      }
       var shopNew = document.querySelector(".shop-tile.new span");
       var shopUsed = document.querySelector(".shop-tile.used span");
       if (shopNew) shopNew.textContent = t("shopNew");
@@ -719,8 +739,7 @@
     syncStyleSlider();
 
     var lot = document.getElementById("lot");
-    if (lot) lot.innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(card).join("");
-    paintSpecials();
+    if (lot) lot.innerHTML = LOT_PICK.map(findUnit).filter(Boolean).map(floorCard).join("");
     paintLocations();
     layoutFolds();
     syncSlider();

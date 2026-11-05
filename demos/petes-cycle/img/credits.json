@@ -1,9 +1,9 @@
 {
   "hero": {
-    "title": "First frame of the Pete's hero montage",
+    "title": "Opening lean from the Pete's hero montage",
     "url": "/demos/petes-cycle/img/hero-1080.mp4",
     "lic": "Real-footage montage supplied for this concept. Poster and fallback while hero-1080.mp4 loops, muted, behind the hero.",
-    "note": "1920x1080 still of a rider on a racetrack. Replaces the AI intro still."
+    "note": "1920x1080 still of the red CBR lean in hero-1080.mp4. The hero is a 2.5:1 window with object-fit: cover and object-position: center bottom, which drops the top of the frame (gravel, blue curb, and white line) so only asphalt shows above the bike."
   },
   "cat-moto": {
     "title": "2026 CRF1100L Africa Twin Adventure Sports ES Dual Clutch Transmission",
@@ -66,18 +66,18 @@
     "note": "Polaris RZR XP 900 modified with aftermarket accessories"
   },
   "tile-new": {
-    "title": "File:Kawasaki Ninja 400 June 2022.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Kawasaki_Ninja_400_June_2022.jpg",
-    "author": "Kidfly182",
-    "lic": "CC BY-SA 4.0",
-    "note": "Kawasaki Ninja 400"
+    "title": "Pete's Cycle Baltimore showroom, Triumph row",
+    "url": "https://www.google.com/maps/search/?api=1&query=Pete%27s+Cycle+7511+Belair+Rd+Baltimore",
+    "author": "Pete's Cycle Co.",
+    "lic": "Public Google Maps business photo of Pete's Cycle, 7511 Belair Rd, Baltimore, MD. Used as the Shop new tile.",
+    "note": "Showroom floor with a row of Triumph motorcycles. Saved from the public Google Maps photos for the Baltimore store. petescycle.com itself was Cloudflare-blocked."
   },
   "tile-used": {
-    "title": "File:Triumph Bonneville T100 in Munich.jpg",
-    "url": "https://commons.wikimedia.org/wiki/File:Triumph_Bonneville_T100_in_Munich.jpg",
-    "author": "AuHaidhausen",
-    "lic": "CC BY 4.0",
-    "note": "Triumph Bonneville T100"
+    "title": "Pete's Cycle lot, touring bike and utility units",
+    "url": "https://www.google.com/maps/search/?api=1&query=Pete%27s+Cycle+7511+Belair+Rd+Baltimore",
+    "author": "Pete's Cycle Co.",
+    "lic": "Public Google Maps business photo of the Pete's Cycle lot. Used as the Shop pre-owned tile.",
+    "note": "A touring motorcycle parked on the asphalt lot, with side-by-sides and trucks behind it. Saved from the public Google Maps photos. Reads as units on the lot rather than a showroom."
   },
   "approve": {
     "title": "File:Kawasaki Ninja 650 2017.jpg",
