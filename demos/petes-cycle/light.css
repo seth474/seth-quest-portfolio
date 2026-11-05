@@ -25,8 +25,10 @@ body.sub .top.is-solid {
 .foot-logo { height: 42px; width: auto; margin: 0 0 12px; }
 body.home .hero {
   position: relative;
-  /* Wide cinematic frame: ~220px of the 1080 source (gravel, blue curb, white line) sits above the fold of the asphalt and is cropped. */
-  height: min(calc(100vw / 2.23), calc(100svh - 120px));
+  /* Lean frame is 1920x1080. The gravel, blue curb, and white line occupy the top ~250px.
+     A 2.5:1 window with object-position bottom drops about 310px of that source, so the
+     visible top is gray asphalt and the helmet stays in frame. */
+  height: min(calc(100vw / 2.5), calc(100svh - 130px));
   min-height: 0;
   display: flex;
   align-items: flex-end;
@@ -241,7 +243,7 @@ a.brand img, .style-card img { width: 100%; aspect-ratio: 1; object-fit: cover; 
     position: relative;
     inset: auto;
     width: 100%;
-    aspect-ratio: 2.23 / 1;
+    aspect-ratio: 2.5 / 1;
     height: auto;
   }
   body.home .hero-media img,
