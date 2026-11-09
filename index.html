@@ -1196,7 +1196,7 @@
             </a>
             <div class="asset asset-phone"><a class="phone-link" href="/demos/petes-cycle/">
               <div class="phone-frame"><div class="phone-screen">
-              <video class="phone-video" src="/demos/petes-cycle/img/hero-1080.mp4" poster="/demos/petes-cycle/img/hero.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Pete's Cycle Co. homepage hero" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <video class="phone-video" src="/demos/petes-cycle/img/hero-1080.mp4" poster="/portfolio/img/petes-cycle-phone-poster.jpg" data-start="3.3" autoplay muted loop playsinline preload="auto" aria-label="Pete's Cycle Co. homepage hero" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
               <span class="asset-label">[ Pete's Cycle hero ]</span>
             </div></div>
             </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
@@ -1580,10 +1580,37 @@
   var nav=document.querySelector('nav.top');
   var items=[].slice.call(box.querySelectorAll('.pr-item'));
   var modules=[].slice.call(document.querySelectorAll('.modules article.module'));
+  modules.forEach(function(m){
+    var pv=m.querySelector('video[data-start]');
+    if(!pv) return;
+    var start=parseFloat(pv.getAttribute('data-start'))||0;
+    var cued=false;
+    try{ pv.autoplay = false; pv.pause(); }catch(_){}
+    function cue(){
+      if(cued) return;
+      try{
+        var end = pv.seekable.length ? pv.seekable.end(0) : 0;
+        if(end < start){
+          if(!pv.__reloaded && pv.readyState >= 1){ pv.__reloaded = true; pv.preload = 'auto'; pv.load(); }
+          return;
+        }
+        pv.currentTime = start;
+        cued = true;
+        var p = pv.play(); if(p && p.catch) p.catch(function(){});
+      }catch(_){}
+    }
+    pv.addEventListener('loadedmetadata', cue);
+    pv.addEventListener('loadeddata', cue);
+    pv.addEventListener('progress', cue);
+    pv.addEventListener('canplay', cue);
+    pv.addEventListener('timeupdate', function(){
+      if(cued && pv.currentTime < 0.25){ try{ pv.currentTime = start; }catch(_){} }
+    });
+  });
   function setActive(i){ items.forEach(function(b,n){ b.classList.toggle('active', n===i); }); }
   window.__projSetActive=setActive;
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0){ setActive(i); if(!window.__reelTouring){ var pv=e.target.querySelector('.phone-video'); if(pv){ try{ pv.currentTime=0; pv.play().catch(function(){}); }catch(_){} } } } } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0){ setActive(i); if(!window.__reelTouring){ var pv=e.target.querySelector('.phone-video'); if(pv){ try{ var start=parseFloat(pv.getAttribute('data-start'))||0; if(!start || (pv.seekable.length && pv.seekable.end(0) >= start)) pv.currentTime = start; pv.play().catch(function(){}); }catch(_){} } } } } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
     modules.forEach(function(m){ io.observe(m); });
   }
   items.forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-i'); var m=modules[i]; if(!m) return;
