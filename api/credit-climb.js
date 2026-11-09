@@ -69,13 +69,14 @@ function lockPage(denied) {
     'body{margin:0;min-height:100vh;display:grid;place-items:center;background:#070708;color:#f4f2ec;font:500 15px/1.4 Inter,system-ui,sans-serif}\n' +
     'form{width:min(100% - 32px,380px);background:#101114;border:1px solid #1c1d21;border-radius:20px;padding:28px}\n' +
     'p{margin:0}h1{font-size:28px;margin:8px 0 18px}\n' +
+    'p em{font-style:italic;font-weight:400;font-size:13px;color:#9aa1aa;margin-left:6px}\n' +
     'label{display:block;font-size:13px;color:#9aa1aa;margin-bottom:8px}\n' +
     'input{width:100%;background:#070708;color:#f4f2ec;border:1px solid #2a2d33;border-radius:12px;padding:12px 14px;font:inherit}\n' +
     'button{margin-top:16px;width:100%;background:#f4f2ec;color:#111;border:0;border-radius:12px;padding:12px;font:600 15px inherit;cursor:pointer}\n' +
     '.err{color:#ffb4ab;margin-top:12px}\n' +
     '</style></head><body>\n' +
     '<form method="get" action="/credit-climb">\n' +
-    '<p>Credit Climb</p><h1>Private</h1>\n' +
+    '<p>Credit Climb <em>Coming soon</em></p><h1>Private</h1>\n' +
     '<label for="pass">Passphrase</label>\n' +
     '<input id="pass" name="k" type="password" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required>\n' +
     err +

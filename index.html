@@ -118,6 +118,7 @@
   .ai-extra{display:flex; flex-direction:column; margin-top:8px}
   .ai-extra a{display:block; padding:16px 0; border-top:1px solid var(--line)}
   .ai-extra strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em}
+  .ai-extra .soon{font-family:'Inter Tight',sans-serif; font-style:italic; font-weight:400; font-size:15px; letter-spacing:0; color:var(--bone-dim); margin-left:8px; white-space:nowrap}
   .ai-extra span{display:block; margin-top:4px; color:var(--bone-dim)}
   @media (min-width:760px){
     .built-grid{grid-template-columns:1fr 1fr; gap:18px}
@@ -1798,7 +1799,8 @@
   extra.innerHTML = SITE_WORK.ai.filter(function(item){
     return item.title === "BS Score" || item.title === "Credit Climb";
   }).map(function(item){
-    return '<a href="'+item.href+'"><strong>'+item.title+'</strong><span>'+item.line+'</span></a>';
+    var soon = (item.title === "BS Score" || item.title === "Credit Climb") ? ' <em class="soon">Coming soon</em>' : '';
+    return '<a href="'+item.href+'"><strong>'+item.title+'</strong>'+soon+'<span>'+item.line+'</span></a>';
   }).join("");
   var btn = document.querySelector(".menu-btn");
   var menu = document.getElementById("site-menu");

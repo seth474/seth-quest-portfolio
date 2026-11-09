@@ -96,6 +96,16 @@
     font-size:clamp(46px, 8vw, 92px);line-height:0.92;letter-spacing:-0.035em;
     margin:0;max-width:12ch;
   }
+  .project-title{
+    font-family:"Space Grotesk",sans-serif;font-weight:500;
+    font-size:clamp(22px, 3vw, 28px);letter-spacing:-0.03em;
+    margin:0 0 14px;
+  }
+  .project-title .soon{
+    font-family:"Inter Tight",sans-serif;font-style:italic;font-weight:400;
+    font-size:0.62em;letter-spacing:0;color:var(--bone-dim);margin-left:8px;
+    white-space:nowrap;
+  }
   h1 em{font-style:normal;color:var(--amber);}
   .lede{max-width:46ch;font-size:clamp(18px, 2vw, 22px);line-height:1.45;color:var(--bone-dim);margin:28px 0 0;}
   .lede strong{color:var(--bone);font-weight:500;}
@@ -232,6 +242,7 @@
 <main>
   <header class="hero wrap">
     <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Free Chrome extension</p>
+    <p class="project-title">BS Score <em class="soon">Coming soon</em></p>
     <h1>See the <em>BS</em> before you watch it.</h1>
     <p class="lede">BS Score reads the YouTube video you already have open and grades clickbait, hidden funnels, and thin substance. The score, the red flags, and a way to skip ahead sit in a side panel.</p>
     <div class="actions">
