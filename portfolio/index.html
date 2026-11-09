@@ -116,6 +116,7 @@
 
   #ai, #recent, #built{scroll-margin-top:72px}
   .about{padding:28px 0 8px}
+  #ai-list .soon{font-family:"Inter Tight",sans-serif; font-style:italic; font-weight:400; font-size:14px; color:var(--bone-dim); margin-left:8px; white-space:nowrap}
   .about p{margin:0 0 14px; color:var(--bone-dim); font-size:16.5px; max-width:68ch}
   .about p strong{color:var(--bone); font-weight:600}
 
@@ -398,7 +399,8 @@ SITE_WORK.categories.forEach(function(c){ catName[c.id] = c.label; });
     }).join("") + '<span class="count" id="count"></span>';
   const list = document.getElementById("ai-list");
   list.innerHTML = SITE_WORK.ai.map(function(item){
-    return '<a href="'+item.href+'" style="display:block;padding:14px 0;border-top:1px solid rgba(26,24,20,0.1)"><strong style="font-family:\'Space Grotesk\',sans-serif;font-weight:500;font-size:22px">'+item.title+'</strong><span style="display:block;color:rgba(26,24,20,0.62);margin-top:4px">'+item.line+'</span></a>';
+    var soon = (item.title === "BS Score" || item.title === "Credit Climb") ? ' <em class="soon">Coming soon</em>' : '';
+    return '<a href="'+item.href+'" style="display:block;padding:14px 0;border-top:1px solid rgba(26,24,20,0.1)"><strong style="font-family:\'Space Grotesk\',sans-serif;font-weight:500;font-size:22px">'+item.title+'</strong>'+soon+'<span style="display:block;color:rgba(26,24,20,0.62);margin-top:4px">'+item.line+'</span></a>';
   }).join("");
 })();
 
