@@ -211,6 +211,7 @@ window.SITE_WORK = {
       line: "A redesign concept for the family-owned Baltimore motorcycle dealership, with stores on Belair Road and in Severna Park. The demo opens on a full-frame video hero, then inventory and brand browsing, and a phone layout with a call button in the header.",
       href: "/demos/petes-cycle/",
       images: [
+        ["/portfolio/img/petes-cycle-hero.webp", "Pete's Cycle Co. redesign concept, desktop homepage hero", 1600, 2000],
         ["/portfolio/img/petes-cycle.webp", "Before and after of the Pete's Cycle Co. website redesign concept, desktop above and mobile below", 1600, 1712]
       ]
     },
@@ -221,6 +222,7 @@ window.SITE_WORK = {
       line: "A redesign concept for the Hollywood, Florida powersports dealership. The demo opens on a full-frame video hero with a search field and category chips, then the inventory, and a phone layout that keeps search in the hero.",
       href: "/demos/broward-motorsports/",
       images: [
+        ["/portfolio/img/broward-motorsports-hero.webp", "Broward Motorsports redesign concept, desktop homepage hero", 1600, 2000],
         ["/portfolio/img/broward-motorsports.webp", "Before and after of the Broward Motorsports website redesign concept, desktop above and mobile below", 1600, 1716]
       ]
     }

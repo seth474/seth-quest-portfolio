@@ -106,6 +106,7 @@
   .built-card{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,0.35)}
   .built-card{min-width:0}
   .built-frame{position:relative; display:grid; place-items:center; aspect-ratio:4/3; background:#e6e0d2; overflow:hidden}
+  .built-frame.portrait{aspect-ratio:4/5}
   .built-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#e6e0d2}
   .built-frame img.soft{position:relative; inset:auto; width:auto; height:auto; max-width:100%; max-height:100%}
   .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
@@ -1691,7 +1692,8 @@
     var full = img[0];
     var card = p.soft ? full : full.replace(/\.webp$/, "-800.webp");
     var cls = p.soft ? ' class="soft"' : "";
-    var frame = '<span class="built-frame"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+esc(img[1])+'" loading="lazy"></span>';
+    var frameClass = (img[2] * 5 === img[3] * 4) ? " portrait" : "";
+    var frame = '<span class="built-frame'+frameClass+'"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+esc(img[1])+'" loading="lazy"></span>';
     var meta = '<span class="built-meta"><span>'+esc(cats[p.category] || "")+'</span><b>'+esc(p.title)+'</b>'+(p.href ? '<span class="built-line">'+esc(p.line)+'</span>' : '')+'</span>';
     if (p.href) {
       return '<article class="built-card"><a class="built-main" href="/portfolio#'+p.id+'">'+frame+meta+'</a><a class="built-demo" href="'+esc(p.href)+'">View demo</a></article>';
