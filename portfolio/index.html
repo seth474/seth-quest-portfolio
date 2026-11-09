@@ -176,6 +176,19 @@
   }
   .name{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em; line-height:1.05}
   .line{color:var(--bone-dim); font-size:15px}
+  .card-open{
+    display:flex; flex-direction:column; text-align:left; width:100%;
+    color:inherit; border-radius:inherit;
+  }
+  .card-open:focus-visible{outline:2px solid var(--amber); outline-offset:-3px}
+  .card .demo{
+    align-self:flex-start;
+    margin:0 14px 16px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--amber);
+    border-bottom:1px solid var(--amber);
+  }
   .card.reveal{opacity:0; transform:translateY(18px)}
   .card.reveal.in{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
 
@@ -245,6 +258,15 @@
     font-size:clamp(22px, 3vw, 32px); letter-spacing:-0.03em; margin:2px 0 0; line-height:1;
   }
   .viewer-bar .line{margin:4px 0 0; color:rgba(244,240,230,0.78); font-size:14px; max-width:46ch}
+  .viewer-bar a.demo{
+    pointer-events:auto;
+    display:inline-block;
+    margin-top:10px;
+    color:#e0a15a;
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    border-bottom:1px solid #e0a15a;
+  }
   .viewer-bar .cat{color:#e0a15a}
   .viewer-count{
     font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:0.08em;
@@ -290,6 +312,7 @@
       <a class="menu-sub" href="#interior">Interior Design</a>
       <a class="menu-sub" href="#product">Product Design</a>
       <a class="menu-sub" href="#architecture">Architecture</a>
+      <a class="menu-sub" href="#web">Web Design</a>
       <a class="menu-top" href="/#ai">AI</a>
       <a class="menu-top" href="/#contact">Contact</a>
     </div>
@@ -350,6 +373,7 @@
         <div class="cat" id="dlg-cat"></div>
         <h2 id="dlg-title"></h2>
         <p class="line" id="dlg-line"></p>
+        <a class="demo" id="dlg-demo" hidden>View demo</a>
       </div>
       <div class="viewer-count" id="dlg-count"></div>
     </div>
@@ -389,10 +413,14 @@ function cardHTML(p){
   const picture = p.soft
     ? `<img class="soft" src="${full}" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`
     : `<img src="${card}" srcset="${card} 800w, ${full} ${img[2]}w" sizes="(max-width:759px) 92vw, (max-width:1079px) 46vw, 30vw" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`;
-  return `<button class="card reveal${p.wide ? " wide" : ""}" type="button" data-id="${p.id}" data-filters="${p.category}">
-    <span class="frame">${picture}</span>
-    <span class="meta"><span class="cat">${label}</span><span class="name">${p.title}</span><span class="line">${p.line}</span></span>
-  </button>`;
+  const inner = `<span class="frame">${picture}</span><span class="meta"><span class="cat">${label}</span><span class="name">${p.title}</span><span class="line">${p.line}</span></span>`;
+  if (p.href) {
+    return `<article class="card reveal${p.wide ? " wide" : ""}" data-id="${p.id}" data-filters="${p.category}">
+      <button class="card-open" type="button" data-id="${p.id}">${inner}</button>
+      <a class="demo" href="${p.href}">View demo</a>
+    </article>`;
+  }
+  return `<button class="card reveal${p.wide ? " wide" : ""}" type="button" data-id="${p.id}" data-filters="${p.category}">${inner}</button>`;
 }
 grid.innerHTML = PROJECTS.map(cardHTML).join("");
 
@@ -470,6 +498,9 @@ function openProject(id){
   document.getElementById("dlg-cat").textContent = catName[p.category] || "";
   document.getElementById("dlg-title").textContent = p.title;
   document.getElementById("dlg-line").textContent = p.line;
+  const demo = document.getElementById("dlg-demo");
+  if (p.href) { demo.hidden = false; demo.href = p.href; }
+  else { demo.hidden = true; demo.removeAttribute("href"); }
   renderImage();
   lastFocus = document.activeElement;
   if (!dlg.open) dlg.showModal();
@@ -481,8 +512,9 @@ function step(d){
   renderImage();
 }
 grid.addEventListener("click", (e)=>{
+  if (e.target.closest("a")) return;
   const card = e.target.closest(".card");
-  if (card) openProject(card.dataset.id);
+  if (card && card.dataset.id) openProject(card.dataset.id);
 });
 dlg.querySelector("[data-close]").addEventListener("click", ()=> dlg.close());
 dlg.querySelector("[data-prev]").addEventListener("click", ()=> step(-1));

@@ -9,7 +9,8 @@ window.SITE_WORK = {
     { id: "office", label: "Office Design" },
     { id: "interior", label: "Interior Design" },
     { id: "product", label: "Product Design" },
-    { id: "architecture", label: "Architecture" }
+    { id: "architecture", label: "Architecture" },
+    { id: "web", label: "Web Design" }
   ],
   built: [
     {
@@ -201,6 +202,26 @@ window.SITE_WORK = {
       images: [
         ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
         ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
+      ]
+    },
+    {
+      id: "petes-cycle",
+      title: "Pete's Cycle Co.",
+      category: "web",
+      line: "A redesign concept for the family-owned Baltimore motorcycle dealership, with stores on Belair Road and in Severna Park. The demo opens on a full-frame video hero, then inventory and brand browsing, and a phone layout with a call button in the header.",
+      href: "/demos/petes-cycle/",
+      images: [
+        ["/portfolio/img/petes-cycle.webp", "Before and after of the Pete's Cycle Co. website redesign concept, desktop above and mobile below", 1600, 1712]
+      ]
+    },
+    {
+      id: "broward-motorsports",
+      title: "Broward Motorsports",
+      category: "web",
+      line: "A redesign concept for the Hollywood, Florida powersports dealership. The demo opens on a full-frame video hero with a search field and category chips, then the inventory, and a phone layout that keeps search in the hero.",
+      href: "/demos/broward-motorsports/",
+      images: [
+        ["/portfolio/img/broward-motorsports.webp", "Before and after of the Broward Motorsports website redesign concept, desktop above and mobile below", 1600, 1716]
       ]
     }
   ],

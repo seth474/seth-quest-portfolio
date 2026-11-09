@@ -111,6 +111,9 @@
   .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
   .built-meta b{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; letter-spacing:-0.03em}
   .built-meta span{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber)}
+  .built-main{display:flex; flex-direction:column; min-width:0; color:inherit}
+  .built-meta .built-line{font-family:'Inter Tight',sans-serif; font-size:14px; letter-spacing:0; text-transform:none; color:var(--bone-dim); line-height:1.45}
+  .built-demo{align-self:flex-start; margin:0 14px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); border-bottom:1px solid var(--amber)}
   .ai-extra{display:flex; flex-direction:column; margin-top:8px}
   .ai-extra a{display:block; padding:16px 0; border-top:1px solid var(--line)}
   .ai-extra strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em}
@@ -811,6 +814,7 @@
     <a class="menu-sub" href="/portfolio#interior">Interior Design</a>
     <a class="menu-sub" href="/portfolio#product">Product Design</a>
     <a class="menu-sub" href="/portfolio#architecture">Architecture</a>
+    <a class="menu-sub" href="/portfolio#web">Web Design</a>
     <a class="menu-top" href="/#ai">AI</a>
     <a class="menu-top" href="/#contact">Contact</a>
   </div>
@@ -1681,12 +1685,18 @@
   var cats = {};
   SITE_WORK.categories.forEach(function(c){ cats[c.id] = c.label; });
   var grid = document.getElementById("builtGrid");
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); }
   grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length; }).map(function(p){
     var img = p.images[0];
     var full = img[0];
     var card = p.soft ? full : full.replace(/\.webp$/, "-800.webp");
     var cls = p.soft ? ' class="soft"' : "";
-    return '<a class="built-card" href="/portfolio#'+p.id+'"><span class="built-frame"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+img[1]+'" loading="lazy"></span><span class="built-meta"><span>'+cats[p.category]+'</span><b>'+p.title+'</b></span></a>';
+    var frame = '<span class="built-frame"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+esc(img[1])+'" loading="lazy"></span>';
+    var meta = '<span class="built-meta"><span>'+esc(cats[p.category] || "")+'</span><b>'+esc(p.title)+'</b>'+(p.href ? '<span class="built-line">'+esc(p.line)+'</span>' : '')+'</span>';
+    if (p.href) {
+      return '<article class="built-card"><a class="built-main" href="/portfolio#'+p.id+'">'+frame+meta+'</a><a class="built-demo" href="'+esc(p.href)+'">View demo</a></article>';
+    }
+    return '<a class="built-card" href="/portfolio#'+p.id+'">'+frame+meta+'</a>';
   }).join("");
   var extra = document.getElementById("aiExtra");
   extra.innerHTML = SITE_WORK.ai.filter(function(item){
