@@ -5,12 +5,12 @@
 // low-resolution still at its natural size on the card.
 window.SITE_WORK = {
   categories: [
+    { id: "web", label: "Web Design" },
     { id: "furniture", label: "Furniture Design" },
     { id: "office", label: "Office Design" },
     { id: "interior", label: "Interior Design" },
     { id: "product", label: "Product Design" },
-    { id: "architecture", label: "Architecture" },
-    { id: "web", label: "Web Design" }
+    { id: "architecture", label: "Architecture" }
   ],
   built: [
     {
