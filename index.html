@@ -106,11 +106,15 @@
   .built-card{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:rgba(255,255,255,0.35)}
   .built-card{min-width:0}
   .built-frame{position:relative; display:grid; place-items:center; aspect-ratio:4/3; background:#e6e0d2; overflow:hidden}
+  .built-frame.portrait{aspect-ratio:4/5}
   .built-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#e6e0d2}
   .built-frame img.soft{position:relative; inset:auto; width:auto; height:auto; max-width:100%; max-height:100%}
   .built-meta{display:flex; flex-direction:column; gap:4px; padding:12px 14px 14px}
   .built-meta b{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; letter-spacing:-0.03em}
   .built-meta span{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber)}
+  .built-main{display:flex; flex-direction:column; min-width:0; color:inherit}
+  .built-meta .built-line{font-family:'Inter Tight',sans-serif; font-size:14px; letter-spacing:0; text-transform:none; color:var(--bone-dim); line-height:1.45}
+  .built-demo{align-self:flex-start; margin:0 14px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); border-bottom:1px solid var(--amber)}
   .ai-extra{display:flex; flex-direction:column; margin-top:8px}
   .ai-extra a{display:block; padding:16px 0; border-top:1px solid var(--line)}
   .ai-extra strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:26px; letter-spacing:-0.03em}
@@ -540,6 +544,8 @@
      and the original projects keep the same side they had before. */
   .modules article.module:nth-of-type(odd) .module-devices{flex-direction:row-reverse;}
   .modules article.module.module--more .module-devices{flex-direction:row;}
+  .modules article.module.module--dealer .module-devices{flex-direction:row;}
+  .module--dealer .phone-screen video{object-fit:cover; object-position:center;}
   .module--more .imac-screen{background:#f4f1ea;}
   .module--more .imac-screen img{object-fit:contain; object-position:center;}
   .module--more .entry-video{object-fit:contain;}
@@ -802,6 +808,8 @@
     <button class="pr-item" data-i="5" type="button">Puma Mala</button>
     <button class="pr-item" data-i="6" type="button">LizzieTours</button>
     <button class="pr-item" data-i="7" type="button">Oceanis</button>
+    <button class="pr-item" data-i="8" type="button">Pete's Cycle</button>
+    <button class="pr-item" data-i="9" type="button">Broward</button>
   </div>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="site-menu" id="site-menu" hidden>
@@ -811,6 +819,7 @@
     <a class="menu-sub" href="/portfolio#interior">Interior Design</a>
     <a class="menu-sub" href="/portfolio#product">Product Design</a>
     <a class="menu-sub" href="/portfolio#architecture">Architecture</a>
+    <a class="menu-sub" href="/portfolio#web">Web Design</a>
     <a class="menu-top" href="/#ai">AI</a>
     <a class="menu-top" href="/#contact">Contact</a>
   </div>
@@ -1165,6 +1174,68 @@
         <a class="module-cta" href="/oceanis-project">View project</a>
       </article>
 
+      <article class="module module--dealer reveal" id="petes-cycle">
+        <div class="module-grid">
+          <div class="module-head">
+            <h3>Pete's Cycle Co.</h3>
+            <div class="head-rule"></div>
+            <span class="m-cat"><span>Website</span><span>Concept</span></span>
+            <div class="head-rule"></div>
+            <p class="m-desc">A redesign concept for the family-owned Baltimore motorcycle dealership, with stores on Belair Road and in Severna Park. The demo opens on a full-frame video hero, then inventory and a phone layout with a call button in the header.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/demos/petes-cycle/">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
+                  <img src="/portfolio/img/petes-cycle-desktop.jpg" alt="Pete's Cycle Co. redesign concept, desktop homepage" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ Pete's Cycle Co. ]</span>
+                </div><div class="imac-chin"></div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
+              </div>
+            </a>
+            <div class="asset asset-phone"><a class="phone-link" href="/demos/petes-cycle/">
+              <div class="phone-frame"><div class="phone-screen">
+              <video class="phone-video" src="/demos/petes-cycle/img/hero-1080.mp4" poster="/portfolio/img/petes-cycle-phone-poster.jpg" data-start="3.3" autoplay muted loop playsinline preload="auto" aria-label="Pete's Cycle Co. homepage hero" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <span class="asset-label">[ Pete's Cycle hero ]</span>
+            </div></div>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
+          </div>
+        </div>
+        <a class="module-cta" href="/demos/petes-cycle/">View project</a>
+      </article>
+
+      <article class="module module--dealer reveal" id="broward-motorsports">
+        <div class="module-grid">
+          <div class="module-head">
+            <h3>Broward Motorsports</h3>
+            <div class="head-rule"></div>
+            <span class="m-cat"><span>Website</span><span>Concept</span></span>
+            <div class="head-rule"></div>
+            <p class="m-desc">A redesign concept for the Hollywood, Florida powersports dealership. The demo opens on a full-frame video hero with search, category chips, and the inventory.</p>
+          </div>
+          <div class="module-devices">
+            <a class="asset asset-wide" href="/demos/broward-motorsports/">
+              <div class="imac-frame">
+                <div class="imac-monitor"><div class="imac-screen">
+                  <img src="/portfolio/img/broward-motorsports-desktop.jpg" alt="Broward Motorsports redesign concept, desktop homepage" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+                  <span class="asset-label">[ Broward Motorsports ]</span>
+                </div><div class="imac-chin"></div></div>
+                <div class="imac-neck"></div>
+                <div class="imac-foot"></div>
+              </div>
+            </a>
+            <div class="asset asset-phone"><a class="phone-link" href="/demos/broward-motorsports/">
+              <div class="phone-frame"><div class="phone-screen">
+              <video class="phone-video" src="/demos/broward-motorsports/img/hero-dusk-720.mp4" poster="/demos/broward-motorsports/img/hero-dusk.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Broward Motorsports homepage hero" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"></video>
+              <span class="asset-label">[ Broward Motorsports hero ]</span>
+            </div></div>
+            </a><button class="sound-btn" aria-label="Play with sound" data-on="false" type="button"><svg class="ic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="ic-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button></div>
+          </div>
+        </div>
+        <a class="module-cta" href="/demos/broward-motorsports/">View project</a>
+      </article>
+
 
     </div>
     <div class="ai-extra" id="aiExtra"></div>
@@ -1509,10 +1580,37 @@
   var nav=document.querySelector('nav.top');
   var items=[].slice.call(box.querySelectorAll('.pr-item'));
   var modules=[].slice.call(document.querySelectorAll('.modules article.module'));
+  modules.forEach(function(m){
+    var pv=m.querySelector('video[data-start]');
+    if(!pv) return;
+    var start=parseFloat(pv.getAttribute('data-start'))||0;
+    var cued=false;
+    try{ pv.autoplay = false; pv.pause(); }catch(_){}
+    function cue(){
+      if(cued) return;
+      try{
+        var end = pv.seekable.length ? pv.seekable.end(0) : 0;
+        if(end < start){
+          if(!pv.__reloaded && pv.readyState >= 1){ pv.__reloaded = true; pv.preload = 'auto'; pv.load(); }
+          return;
+        }
+        pv.currentTime = start;
+        cued = true;
+        var p = pv.play(); if(p && p.catch) p.catch(function(){});
+      }catch(_){}
+    }
+    pv.addEventListener('loadedmetadata', cue);
+    pv.addEventListener('loadeddata', cue);
+    pv.addEventListener('progress', cue);
+    pv.addEventListener('canplay', cue);
+    pv.addEventListener('timeupdate', function(){
+      if(cued && pv.currentTime < 0.25){ try{ pv.currentTime = start; }catch(_){} }
+    });
+  });
   function setActive(i){ items.forEach(function(b,n){ b.classList.toggle('active', n===i); }); }
   window.__projSetActive=setActive;
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0){ setActive(i); if(!window.__reelTouring){ var pv=e.target.querySelector('.phone-video'); if(pv){ try{ pv.currentTime=0; pv.play().catch(function(){}); }catch(_){} } } } } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var i=modules.indexOf(e.target); if(i>=0){ setActive(i); if(!window.__reelTouring){ var pv=e.target.querySelector('.phone-video'); if(pv){ try{ var start=parseFloat(pv.getAttribute('data-start'))||0; if(!start || (pv.seekable.length && pv.seekable.end(0) >= start)) pv.currentTime = start; pv.play().catch(function(){}); }catch(_){} } } } } }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
     modules.forEach(function(m){ io.observe(m); });
   }
   items.forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-i'); var m=modules[i]; if(!m) return;
@@ -1681,12 +1779,19 @@
   var cats = {};
   SITE_WORK.categories.forEach(function(c){ cats[c.id] = c.label; });
   var grid = document.getElementById("builtGrid");
-  grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length; }).map(function(p){
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); }
+  grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length && p.category !== "web"; }).map(function(p){
     var img = p.images[0];
     var full = img[0];
     var card = p.soft ? full : full.replace(/\.webp$/, "-800.webp");
     var cls = p.soft ? ' class="soft"' : "";
-    return '<a class="built-card" href="/portfolio#'+p.id+'"><span class="built-frame"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+img[1]+'" loading="lazy"></span><span class="built-meta"><span>'+cats[p.category]+'</span><b>'+p.title+'</b></span></a>';
+    var frameClass = (img[2] * 5 === img[3] * 4) ? " portrait" : "";
+    var frame = '<span class="built-frame'+frameClass+'"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+esc(img[1])+'" loading="lazy"></span>';
+    var meta = '<span class="built-meta"><span>'+esc(cats[p.category] || "")+'</span><b>'+esc(p.title)+'</b>'+(p.href ? '<span class="built-line">'+esc(p.line)+'</span>' : '')+'</span>';
+    if (p.href) {
+      return '<article class="built-card"><a class="built-main" href="/portfolio#'+p.id+'">'+frame+meta+'</a><a class="built-demo" href="'+esc(p.href)+'">View demo</a></article>';
+    }
+    return '<a class="built-card" href="/portfolio#'+p.id+'">'+frame+meta+'</a>';
   }).join("");
   var extra = document.getElementById("aiExtra");
   extra.innerHTML = SITE_WORK.ai.filter(function(item){
