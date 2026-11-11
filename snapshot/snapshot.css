@@ -34,6 +34,15 @@ h1{font-size:clamp(32px,6vw,46px);line-height:1.12}
 .span2{grid-column:1 / -1}
 .field{display:flex;flex-direction:column;gap:6px;font-weight:600}
 .field span{font-weight:700;font-size:14px}
+.duration-row{display:grid;grid-template-columns:1.2fr .8fr;gap:8px}
+.time-wrap{margin-top:18px}
+.time-wrap h3{font-size:22px;margin:0 0 4px}
+.time-row{padding:12px 0;border-top:1px solid var(--line)}
+.time-row b{display:block;margin-bottom:8px;color:var(--ink)}
+.time-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.time-stats span{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.time-stats strong{font-weight:700;color:var(--ink)}
+.time-note{font-size:14px;margin:8px 0 0}
 input[type="number"],select{width:100%;min-height:48px;border:1.5px solid var(--slate);border-radius:12px;background:#fff;padding:0 12px}
 input[type="range"]{width:100%;accent-color:var(--blue)}
 .range-row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}

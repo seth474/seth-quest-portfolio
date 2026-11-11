@@ -12,6 +12,14 @@
       var parsed = JSON.parse(raw);
       parsed.values = parsed.values || {};
       parsed.touched = parsed.touched || {};
+      cfg.sections.forEach(function (section) {
+        section.fields.forEach(function (field) {
+          if (field.type !== 'duration' || !field.legacyUnit) return;
+          if (parsed.values[field.id] != null && parsed.values[field.id] !== '' && !parsed.values[field.id + 'Unit']) {
+            parsed.values[field.id + 'Unit'] = field.legacyUnit;
+          }
+        });
+      });
       return parsed;
     } catch (e) {
       return blank;
@@ -32,6 +40,9 @@
             list.push('spend_' + ch.id);
             list.push('new_' + ch.id);
           });
+        } else if (field.type === 'duration') {
+          list.push(field.id);
+          list.push(field.id + 'Unit');
         } else list.push(field.id);
       });
     });
@@ -81,6 +92,9 @@
       }
       state.values[el.dataset.question] = el.value;
     });
+    document.querySelectorAll('[data-unit]').forEach(function (el) {
+      state.values[el.dataset.unit + 'Unit'] = el.value;
+    });
   }
   function paint() {
     readInputs();
@@ -116,6 +130,16 @@
         autoLabel.textContent = (Number.isFinite(n) ? n : 0) + '% automatic \u00b7 ' + (100 - (Number.isFinite(n) ? n : 0)) + '% will-call.';
       }
     }
+    var board = document.getElementById('timeBoard');
+    if (board) {
+      var time = out.time;
+      if (!time || !time.rows || !time.rows.length) board.innerHTML = '';
+      else {
+        board.innerHTML = time.rows.map(function (row) {
+          return '<div class="time-row"><b>' + row.label + '</b><div class="time-stats"><div><span>Now</span><strong>' + row.now + '</strong></div><div><span>Goal</span><strong>' + row.goal + '</strong></div><div><span>Saved a week</span><strong>' + row.saved + '</strong></div></div></div>';
+        }).join('') + '<p class="time-note">' + time.note + '</p><div class="out"><b>Hours saved per week</b><p>' + time.total + '</p></div>';
+      }
+    }
     gauge();
   }
   function numberField(field) {
@@ -142,7 +166,15 @@
     }).join('');
     return '<div class="channels span2">' + rows + '</div>';
   }
+  function durationField(field) {
+    var unit = field.unit || 'minutes';
+    var opts = [['minutes', 'Minutes'], ['hours', 'Hours'], ['days', 'Days']].map(function (pair) {
+      return '<option value="' + pair[0] + '"' + (pair[0] === unit ? ' selected' : '') + '>' + pair[1] + '</option>';
+    }).join('');
+    return '<label class="field span2"><span>' + field.label + '</span><span class="duration-row"><input data-question="' + field.id + '" id="q-' + field.id + '" type="number" inputmode="decimal" min="0" step="any" autocomplete="off"><select data-unit="' + field.id + '" id="q-' + field.id + 'Unit" data-default="' + unit + '" aria-label="Unit for ' + field.label + '">' + opts + '</select></span></label>';
+  }
   function fieldHtml(field) {
+    if (field.type === 'duration') return durationField(field);
     if (field.type === 'select') return selectField(field);
     if (field.type === 'range') return rangeField(field);
     if (field.type === 'mix') return mixField(field);
@@ -217,6 +249,7 @@
     metric('mRevenue', 'Annual revenue estimate', 'Active customers \u00d7 deliveries \u00d7 gallons \u00d7 price'),
     metric('mAnnualProfit', 'Annual profit estimate', 'Active customers \u00d7 deliveries \u00d7 true profit'),
     '</div>',
+    '<div class="time-wrap"><h3>Where the hours go</h3><div id="timeBoard"></div></div>',
     '<div class="out" style="margin-top:12px"><b>Profit after a year of the current ad spend</b><p data-out="mAfterAds">\u2014</p></div>',
     '<div class="out"><b>Growth trend</b><p data-out="mGrowth">\u2014</p><div class="bars" id="trendBars">',
     '<div class="bar" data-bar="0"><i></i><em>\u2014</em><span>3 years ago</span></div>',
@@ -267,9 +300,16 @@
     scenarioToggle.textContent = 'Hide the ad scenario';
   }
 
-  document.getElementById('app').addEventListener('input', function (e) {
+  function onEdit(e) {
     var el = e.target;
-    if (!el.dataset || !el.dataset.question) return;
+    if (!el.dataset) return;
+    if (el.dataset.unit) {
+      state.values[el.dataset.unit + 'Unit'] = el.value;
+      save();
+      paint();
+      return;
+    }
+    if (!el.dataset.question) return;
     state.values[el.dataset.question] = el.value;
     if (el.type === 'range') state.touched[el.dataset.question] = true;
     if (el.dataset.question === 'orderMix' && el.value !== 'custom' && el.value !== '') {
@@ -285,7 +325,9 @@
     }
     save();
     paint();
-  });
+  }
+  document.getElementById('app').addEventListener('input', onEdit);
+  document.getElementById('app').addEventListener('change', onEdit);
   scenarioToggle.addEventListener('click', function () {
     state.scenarioOn = !state.scenarioOn;
     scenarioBody.hidden = !state.scenarioOn;
@@ -303,6 +345,9 @@
       if (el.type === 'range') el.value = '50';
       else if (el.tagName === 'SELECT') el.selectedIndex = 0;
       else el.value = '';
+    });
+    document.querySelectorAll('[data-unit]').forEach(function (el) {
+      el.value = el.dataset.default || 'minutes';
     });
     scenarioBody.hidden = true;
     scenarioToggle.setAttribute('aria-pressed', 'false');
