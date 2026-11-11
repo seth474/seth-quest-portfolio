@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Same-day pool quote — MORE</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Demo: snap the pool, pick the issues, and review a same-day quote before anyone sends it.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/pool-quote/page.css">
+</head>
+<body>
+<header class="top">
+  <div class="mark">MORE<i>.</i></div>
+  <p class="tag">More leads. More sales. More money.</p>
+</header>
+<main class="app">
+  <p class="steps" id="steps" aria-label="Steps">Photo · Issues · Note · Quote · Review</p>
+  <p class="demo">Demo only. Nothing on this page is sent.</p>
+
+  <section id="stepPhoto">
+    <h1>Same-day pool quote.</h1>
+    <p class="lead">Snap the pool. Pick what’s wrong. A draft price comes back for a person to approve.</p>
+    <label class="photo" for="photo">
+      <input id="photo" type="file" accept="image/*">
+      <span class="photo-btn">Take or upload a photo</span>
+    </label>
+    <img id="preview" alt="The pool photo you added" hidden>
+    <p class="err" id="photoErr" role="alert"></p>
+    <button class="go" id="toIssues" type="button">Next: the issues</button>
+  </section>
+
+  <section id="stepIssues" hidden>
+    <h1>What’s going on?</h1>
+    <p class="lead">Pick every issue that fits. You can choose more than one.</p>
+    <div class="chips" id="chips"></div>
+    <p class="err" id="issueErr" role="alert"></p>
+    <div class="row">
+      <button class="back" id="backPhoto" type="button">Back</button>
+      <button class="go" id="toNote" type="button">Next: a note</button>
+    </div>
+  </section>
+
+  <section id="stepNote" hidden>
+    <h1>Add a note.</h1>
+    <p class="lead">Type it, or record a voice note. Both stay on this phone.</p>
+    <label class="lbl" for="note">Written note</label>
+    <textarea id="note" rows="4" placeholder="Gate code, dog in the yard, how green it looks…"></textarea>
+    <button class="rec" id="recBtn" type="button" aria-pressed="false">Record a voice note</button>
+    <p class="hint" id="recHint">Tap to record. Tap again to stop.</p>
+    <audio id="player" controls hidden></audio>
+    <p class="err" id="recErr" role="alert"></p>
+    <div class="row">
+      <button class="back" id="backIssues" type="button">Back</button>
+      <button class="go" id="toQuote" type="button">Draft the quote</button>
+    </div>
+  </section>
+
+  <section id="stepDraft" hidden>
+    <h1 id="draftTitle">Drafting the quote.</h1>
+    <p class="lead" id="draftLead">Reading the photo and the issues you picked.</p>
+    <div class="pulse" id="pulse" aria-hidden="true"></div>
+  </section>
+
+  <section id="stepQuote" hidden>
+    <p class="kicker">Draft quote</p>
+    <h1>Same-day visit.</h1>
+    <p class="lead" id="quoteLead"></p>
+    <ul class="lines" id="lines"></ul>
+    <div class="range" id="range"></div>
+    <p class="fine">A person reviews this before a customer sees it.</p>
+    <div class="row">
+      <button class="back" id="backNote" type="button">Back</button>
+      <button class="go" id="toReview" type="button">Review before sending</button>
+    </div>
+  </section>
+
+  <section id="stepReview" hidden>
+    <p class="kicker">Human review</p>
+    <h1>Approve &amp; send.</h1>
+    <p class="lead">Check the photo, the issues, and the price. This demo does not text, email, or invoice anyone.</p>
+    <img id="reviewPhoto" alt="Pool photo on the quote" hidden>
+    <p class="picked" id="reviewIssues"></p>
+    <p class="picked" id="reviewNote"></p>
+    <ul class="lines" id="reviewLines"></ul>
+    <div class="range" id="reviewRange"></div>
+    <div id="approveBox">
+      <button class="go" id="approve" type="button">Approve &amp; send</button>
+    </div>
+    <div class="done" id="done" hidden>
+      <h2>Approved for this demo.</h2>
+      <p>Nothing was sent. No text, no email, no invoice.</p>
+    </div>
+    <button class="back" id="backQuote" type="button">Back to the quote</button>
+  </section>
+</main>
+<footer class="foot">MORE · More leads. More sales. More money.<br>Seth Quest</footer>
+<script src="/pool-quote/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+:root{
+  --bg:#fff;
+  --ink:#0a0a0a;
+  --gray:#6b6b6b;
+  --line:#e4e4e4;
+  --wash:#f3f3f3;
+  --green:#2be36b;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:500}
+.top{padding:22px 20px 0}
+.mark{font-family:"Bebas Neue",Impact,sans-serif;font-size:42px;letter-spacing:.04em;line-height:.9}
+.mark i{font-style:normal;color:var(--green)}
+.tag{margin:4px 0 0;color:var(--gray);font-size:13px;font-weight:700}
+.app{padding:18px 20px 28px;max-width:520px}
+.steps{margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.demo{margin:8px 0 18px;font-size:13px;font-weight:700;color:var(--ink)}
+h1{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:clamp(34px,9vw,44px);line-height:1.02;letter-spacing:-.03em;margin:0}
+h2{font-size:28px;line-height:1.1;margin:0 0 8px;font-weight:800;letter-spacing:-.03em}
+.lead{margin:10px 0 18px;color:var(--gray);font-size:16px;line-height:1.45;font-weight:600}
+.kicker{margin:0 0 6px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.photo{display:block}
+.photo input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.photo-btn,.go,.back,.rec{
+  display:flex;align-items:center;justify-content:center;
+  min-height:52px;width:100%;border-radius:14px;font:800 16px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;
+  cursor:pointer;
+}
+.photo-btn{border:2px dashed var(--ink);background:var(--wash);color:var(--ink)}
+.photo input:focus-visible + .photo-btn,.go:focus-visible,.back:focus-visible,.rec:focus-visible,.chip:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+#preview,#reviewPhoto{display:block;width:100%;margin-top:14px;border-radius:16px;background:var(--wash);max-height:280px;object-fit:cover}
+.go{margin-top:16px;border:0;background:var(--green);color:var(--ink)}
+.back{margin-top:10px;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+.row{display:grid;gap:0}
+.err{min-height:1.2em;margin:10px 0 0;color:#b00020;font-weight:700;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  min-height:48px;padding:10px 14px;border-radius:999px;border:2px solid var(--ink);
+  background:#fff;color:var(--ink);font:700 15px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer;
+}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.lbl{display:block;font-weight:800;font-size:14px;margin-bottom:8px}
+textarea{
+  width:100%;border:2px solid var(--ink);border-radius:14px;padding:14px;font:600 16px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;
+  resize:vertical;background:#fff;color:var(--ink);
+}
+.rec{margin-top:12px;border:2px solid var(--ink);background:#fff}
+.rec[aria-pressed="true"]{background:var(--green);border-color:var(--green)}
+.hint{margin:8px 0 0;color:var(--gray);font-size:13px;font-weight:600}
+audio{display:block;width:100%;margin-top:12px}
+.pulse{width:56px;height:56px;border-radius:50%;background:var(--green);animation:beat 1s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(.72);opacity:.7}}
+.lines{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.lines li{background:var(--wash);border-radius:14px;padding:14px}
+.lines b{display:block;font-size:16px}
+.lines span{display:block;margin-top:4px;color:var(--gray);font-size:14px;font-weight:600}
+.lines em{display:block;margin-top:8px;font-style:normal;font-weight:800}
+.range{margin-top:14px;background:var(--ink);color:#fff;border-radius:16px;padding:16px}
+.range b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#cfcfcf}
+.range strong{display:block;margin-top:4px;font-size:clamp(28px,8vw,36px);letter-spacing:-.03em;line-height:1.1}
+.fine{margin:12px 0 0;color:var(--gray);font-size:14px;font-weight:600}
+.picked{margin:0 0 10px;font-weight:700}
+.done{background:var(--wash);border-radius:16px;padding:16px;margin-top:12px}
+.done p{margin:0;color:var(--gray);font-weight:600}
+.foot{padding:8px 20px 32px;color:var(--gray);font-size:13px;font-weight:700;max-width:520px}
+@media(min-width:720px){
+  .app,.foot,.top{margin-left:auto;margin-right:auto}
+  .top{max-width:520px}
+}
