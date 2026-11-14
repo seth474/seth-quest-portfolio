@@ -62,6 +62,36 @@
   .strip{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; margin-top:22px; padding-bottom:10px}
   .strip figure,.strip .reel{flex:none; scroll-snap-align:start; height:min(72vh, 760px); margin:0}
   .strip img,.strip video{height:100%; width:auto; max-width:none; background:#111}
+  .clip-carousel{position:relative; margin-top:22px}
+  .clip-track{
+    display:flex; overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory; scroll-behavior:smooth;
+    touch-action:pan-x pan-y; overscroll-behavior-x:contain;
+    scrollbar-width:none;
+  }
+  .clip-track::-webkit-scrollbar{display:none}
+  .clip-slide{
+    flex:0 0 100%; scroll-snap-align:start; scroll-snap-stop:always;
+    display:grid; place-items:center; min-width:0;
+  }
+  .clip-slide video{
+    width:auto; height:min(68vh, 720px); max-width:100%;
+    background:#111; touch-action:pan-x pan-y;
+  }
+  .clip-arrow{
+    position:absolute; top:calc(min(68vh, 720px) / 2); transform:translateY(-50%); z-index:2;
+    width:44px; height:44px; border-radius:50%; border:1px solid var(--line-strong);
+    background:rgba(244,240,230,0.94); color:var(--bone); cursor:pointer;
+    font-family:"Space Grotesk",sans-serif; font-size:28px; line-height:1;
+  }
+  .clip-prev{left:0}
+  .clip-next{right:0}
+  .clip-dots{display:flex; justify-content:center; gap:10px; margin-top:14px}
+  .clip-dot{
+    width:10px; height:10px; border-radius:50%; padding:0; border:0; cursor:pointer;
+    background:rgba(26,24,20,0.28);
+  }
+  .clip-dot[aria-current="true"]{background:var(--amber)}
   .layout-full-bleed,.layout-full-bleed-uncropped{width:100%; max-width:none; padding-left:0; padding-right:0}
   .layout-full-bleed img{width:100%; height:auto; max-height:none; object-fit:contain; background:#111}
   .layout-full-bleed-uncropped img{width:100%; height:auto; object-fit:contain; background:#e6e0d2}
@@ -83,6 +113,8 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     video{display:none}
+    .clip-slide video{display:block}
+    .clip-track{scroll-behavior:auto}
   }
 </style>
 </head>
@@ -100,7 +132,28 @@
 <section class="sheet layout-grid-5-feature" style="--cols:1fr 1fr 0.75fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · ArtisTree</p><h2>From laser model to full-scale rib</h2><p class="body">Foreman on Spyglass, ArtisTree’s most iconic treehouse. Every treehouse before it had been handmade. I brought in CNC: structural rib parts were prototyped on a laser cutter, then built full scale from CNC-cut components.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-02-laser-rib-model.webp" width="2400" height="1800" alt="Laser-cut rib model, showing nesting" loading="lazy" decoding="async"><figcaption>Laser-cut rib model, showing nesting</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-03-rib-pattern-drawing.webp" width="1424" height="1520" alt="Rib pattern drawing" loading="lazy" decoding="async"><figcaption>Rib pattern drawing</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-04-cnc-parts-pickup.webp" width="1800" height="2400" alt="CNC-cut parts picked up for assembly" loading="lazy" decoding="async"><figcaption>CNC-cut parts picked up for assembly</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-05-full-scale-rib.webp" width="2400" height="1800" alt="Full-scale rib in the shop" loading="lazy" decoding="async"><figcaption>Full-scale rib in the shop</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-06-rib-layout-floor.webp" width="2400" height="1800" alt="Rib layout on the shop floor" loading="lazy" decoding="async"><figcaption>Rib layout on the shop floor</figcaption></figure></div></section>
 <section class="sheet layout-portrait-text-left"><div class="copy"><p class="kicker">01 · Spyglass</p><h2>Inside the rib frame</h2><p class="body">Up on the staging, framing the ribs in the shop.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-07-inside-rib-frame.webp" width="750" height="925" alt="Inside the rib frame" loading="lazy" decoding="async"></figure></div></section>
 <section class="sheet layout-grid-4" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · Workshop</p><h2>The workshop I built</h2><p class="body">Set up for the Spyglass build: workbenches, a tool wall, and racks for tools and materials.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-08-workshop-1.webp" width="2400" height="1800" alt="Tool wall and benches" loading="lazy" decoding="async"><figcaption>Tool wall and benches</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-09-workshop-2.webp" width="2400" height="1800" alt="Shop floor, looking through" loading="lazy" decoding="async"><figcaption>Shop floor, looking through</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-10-workshop-3.webp" width="2400" height="1800" alt="Storage racks" loading="lazy" decoding="async"><figcaption>Storage racks</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-11-workshop-4.webp" width="2400" height="1800" alt="Workbenches" loading="lazy" decoding="async"><figcaption>Workbenches</figcaption></figure></div></section>
-<section class="sheet layout-strip"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · From the build clips</p><h2>Framing the ribs</h2><p class="body">Full-scale ribs going up on the trailer frame in the shop.</p><p class="pagecap">Frame sequence from a build clip, in order</p></div><div class="strip"><div class="reel"><video src="/portfolio/img/architecture-build/ab-rib-framing-loop-720x1280.mp4" width="720" height="1280" muted autoplay loop playsinline preload="metadata" poster="/portfolio/img/architecture-build/ab-12-rib-1.webp" aria-label="Framing the ribs"></video></div><figure><img src="/portfolio/img/architecture-build/ab-12-rib-1.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-13-rib-2.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-14-rib-3.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-15-rib-4.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-16-rib-5.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-17-rib-6.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure></div></section>
+<section class="sheet layout-strip" id="build-clips"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · From the build clips</p><h2>Framing the ribs</h2><p class="body">Full-scale ribs going up on the trailer frame in the shop.</p></div>
+<div class="clip-carousel" data-carousel>
+  <button class="clip-arrow clip-prev" type="button" aria-label="Previous clip">‹</button>
+  <div class="clip-track">
+    <div class="clip-slide">
+      <video src="/portfolio/img/architecture-build/ab-clip-hoodie.mp4" width="720" height="1280" poster="/portfolio/img/architecture-build/ab-clip-hoodie-poster.webp" muted autoplay loop playsinline preload="metadata" aria-label="Blue hoodie clips: welding, layout, and grinding the base plates."></video>
+    </div>
+    <div class="clip-slide">
+      <video src="/portfolio/img/architecture-build/ab-clip-nailgun.mp4" width="720" height="1280" poster="/portfolio/img/architecture-build/ab-clip-nailgun-poster.webp" muted loop playsinline preload="metadata" aria-label="Time-lapse of Seth using the nail gun."></video>
+    </div>
+    <div class="clip-slide">
+      <video src="/portfolio/img/architecture-build/ab-clip-build.mp4" width="720" height="1280" poster="/portfolio/img/architecture-build/ab-clip-build-poster.webp" muted loop playsinline preload="none" aria-label="Fast time-lapse of the Spyglass build."></video>
+    </div>
+  </div>
+  <button class="clip-arrow clip-next" type="button" aria-label="Next clip">›</button>
+  <div class="clip-dots" role="tablist" aria-label="Build clips">
+    <button class="clip-dot" type="button" role="tab" aria-label="Blue hoodie clips" aria-current="true"></button>
+    <button class="clip-dot" type="button" role="tab" aria-label="Nail gun"></button>
+    <button class="clip-dot" type="button" role="tab" aria-label="Build time-lapse"></button>
+  </div>
+</div>
+</section>
 <section class="sheet layout-strip"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · From the build clips</p><h2>Steel base plates</h2><p class="body">Marking, welding and drill work on steel base plates.</p><p class="pagecap">Stills from build clips</p></div><div class="strip"><figure><img src="/portfolio/img/architecture-build/ab-18-bp-1.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-19-bp-2.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-20-bp-3.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-21-bp-4.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-22-bp-5.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure></div></section>
 <section class="sheet layout-grid-4-feature" id="mep" style="--cols:1fr 1fr 1.05fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>MEP</h2><p class="body">Mechanical, electrical, plumbing</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-23-rinnai-water-heater.webp" width="2400" height="1800" alt="Rinnai tankless water heater, the exterior mechanical system." loading="lazy" decoding="async"><figcaption>Rinnai tankless water heater, the exterior mechanical system.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-24-breaker-panel.webp" width="1811" height="2400" alt="Breaker panel by the team's master electrician; I assisted." loading="lazy" decoding="async"><figcaption>Breaker panel by the team's master electrician; I assisted.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-25-pex-lines.webp" width="2400" height="1800" alt="PEX hot and cold lines laid out." loading="lazy" decoding="async"><figcaption>PEX hot and cold lines laid out.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-26-zip-panel.webp" width="2400" height="1800" alt="Same lines closed in behind ZIP panel." loading="lazy" decoding="async"><figcaption>Same lines closed in behind ZIP panel.</figcaption></figure></div></section>
 <section class="sheet layout-grid-4" style="--cols:0.8fr 0.8fr 1.3fr 0.8fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Cladding and details</h2><p class="body">Thermory cladding going on in the shop, over a black weather barrier.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-27-thermory-install.webp" width="1800" height="2400" alt="Thermory cladding install" loading="lazy" decoding="async"><figcaption>Thermory cladding install</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-28-cladding-nearly-complete.webp" width="1800" height="2400" alt="Cladding nearly complete" loading="lazy" decoding="async"><figcaption>Cladding nearly complete</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-29-assembly-detail.webp" width="2400" height="1800" alt="Assembly detail: galvanized steel, HDPE, Thermory cladding, and self-tapping metal finish screws." loading="lazy" decoding="async"><figcaption>Assembly detail: galvanized steel, HDPE, Thermory cladding, and self-tapping metal finish screws.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-30-custom-ladder.webp" width="1800" height="2400" alt="Custom ladder we built to wrap the side of Spyglass." loading="lazy" decoding="async"><figcaption>Custom ladder we built to wrap the side of Spyglass.</figcaption></figure></div></section>
@@ -124,6 +177,7 @@
 (function(){
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll("video").forEach(function(v){
+    if (v.closest("[data-carousel]")) return;
     if (reduce) { v.pause(); return; }
     v.muted = true;
     var play = function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); };
@@ -133,6 +187,51 @@
       }, {threshold: 0.25});
       io.observe(v);
     } else play();
+  });
+  document.querySelectorAll("[data-carousel]").forEach(function(root){
+    var track = root.querySelector(".clip-track");
+    var slides = Array.prototype.slice.call(track.querySelectorAll(".clip-slide"));
+    var videos = slides.map(function(s){ return s.querySelector("video"); });
+    var dots = Array.prototype.slice.call(root.querySelectorAll(".clip-dot"));
+    function nearest(){
+      var left = track.scrollLeft;
+      var best = 0;
+      var dist = Infinity;
+      slides.forEach(function(s, i){
+        var d = Math.abs(s.offsetLeft - left);
+        if (d < dist) { dist = d; best = i; }
+      });
+      return best;
+    }
+    function playOnly(i){
+      videos.forEach(function(v, n){
+        if (n === i && !reduce) {
+          v.muted = true;
+          var p = v.play();
+          if (p && p.catch) p.catch(function(){});
+        } else v.pause();
+      });
+      dots.forEach(function(d, n){ d.setAttribute("aria-current", n === i ? "true" : "false"); });
+    }
+    function go(i){
+      var n = (i + slides.length) % slides.length;
+      track.scrollTo({left: slides[n].offsetLeft, behavior: reduce ? "auto" : "smooth"});
+    }
+    var ticking = false;
+    track.addEventListener("scroll", function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ ticking = false; playOnly(nearest()); });
+    }, {passive: true});
+    root.querySelector(".clip-prev").addEventListener("click", function(){ go(nearest() - 1); });
+    root.querySelector(".clip-next").addEventListener("click", function(){ go(nearest() + 1); });
+    dots.forEach(function(d, i){ d.addEventListener("click", function(){ go(i); }); });
+    if ("IntersectionObserver" in window) {
+      var page = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) playOnly(nearest()); else videos.forEach(function(v){ v.pause(); }); });
+      }, {threshold: 0.35});
+      page.observe(root);
+    } else playOnly(0);
   });
 })();
 </script>
