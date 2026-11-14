@@ -262,10 +262,10 @@ window.SITE_INDEX = {
       label: "Concept",
       line: "Seth's latest, for the overlanding market. It travels with any mid-size SUV.",
       href: "/carbon-bath",
-      image: "/portfolio/img/carbon-bath/cb-01-hero-sunset.webp",
+      image: "/portfolio/img/carbon-bath/cb-00-hero-woman-looking-back.webp",
       width: 2400,
       height: 1350,
-      alt: "The Carbon Bath, deployed at sunset, with the sliding door open."
+      alt: "The Carbon Bath, with a woman looking back."
     },
     { id: "fusb" },
     { id: "mola" },

@@ -10,17 +10,15 @@
   "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f.",
   "assets": [
     {
-      "file": "cb-01-hero-sunset.webp",
+      "file": "cb-00-hero-woman-looking-back.webp",
       "type": "hero",
       "section": "hero",
       "width": 2400,
       "height": 1350,
-      "source_px": "2560x1440",
-      "bytes": 306474,
-      "caption": "The Carbon Bath, deployed at sunset, with the sliding door open.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/00_Hero_01_v47f_blond_stepping.png",
-      "notes": "Official v47f hero. Person is composited."
+      "source_px": "2400x1350",
+      "bytes": 291998,
+      "caption": "The Carbon Bath, with a woman looking back.",
+      "design_version": "v47f"
     },
     {
       "file": "cb-02-hero-blue-hour.webp",
