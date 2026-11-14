@@ -122,8 +122,33 @@
   @media (min-width:760px){
     .built-grid{grid-template-columns:1fr 1fr; gap:18px}
   }
+  .work-h{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:clamp(32px, 4.5vw, 56px); letter-spacing:-0.04em; line-height:0.95; margin:36px 0 14px}
+  .ab-hero{display:grid; grid-template-columns:1.05fr 0.95fr; min-height:460px; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#e6e0d2; color:inherit; margin:8px 0 8px}
+  .ab-hero-copy{display:flex; flex-direction:column; justify-content:flex-end; gap:8px; padding:28px 28px 32px; background:var(--ink)}
+  .ab-hero-copy span{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber)}
+  .ab-hero-copy strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:clamp(40px, 5vw, 68px); letter-spacing:-0.045em; line-height:0.92}
+  .ab-hero-copy em{font-style:normal; font-size:clamp(18px, 2vw, 24px); color:var(--bone-dim)}
+  .ab-hero-visual{display:grid; place-items:center; background:#e6e0d2; min-height:320px}
+  .ab-hero-visual img{width:auto; max-width:100%; max-height:78vh; height:auto}
+  .built-card.placeholder{cursor:default}
+  .placeholder-frame{background:linear-gradient(180deg, rgba(176,108,40,0.14), rgba(230,224,210,0.2) 42%), #e6e0d2}
+  .built-grid.quiet{align-items:start}
+  .built-card.small .built-meta b{font-size:18px}
+  .built-card.least{max-width:240px}
+  .built-card.least .built-frame{aspect-ratio:1}
+  .built-card.least .built-meta b{font-size:16px}
+  @media (min-width:760px){
+    .built-grid.quiet{grid-template-columns:1fr 1fr 1fr 1fr}
+    .built-card.mid{grid-column:span 2}
+  }
+  @media (max-width:759px){
+    .ab-hero{grid-template-columns:1fr}
+    .ab-hero-visual{order:-1}
+    .built-card.least{max-width:none}
+  }
   @media (min-width:1080px){
     .built-grid{grid-template-columns:1fr 1fr 1fr}
+    .built-grid.quiet{grid-template-columns:1fr 1fr 1fr 1fr}
   }
   @media (max-width:720px){
     nav.top{padding:11px 22px;}
@@ -813,14 +838,12 @@
   </div>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="site-menu" id="site-menu" hidden>
-    <a class="menu-top" href="/#ai">AI</a>
+    <a class="menu-top" href="/#built">Architecture &amp; Build</a>
+    <a class="menu-sub" href="/architecture-build">Design. Prototype. Build.</a>
+    <a class="menu-top" href="/#industrial">Industrial Design</a>
+    <a class="menu-top" href="/#rooms">Furniture, Lighting &amp; Interiors</a>
+    <a class="menu-top" href="/#ai">AI &amp; Web</a>
     <a class="menu-sub" href="/portfolio#web">Web Design</a>
-    <a class="menu-top" href="/#built">Built</a>
-    <a class="menu-sub" href="/portfolio#furniture">Furniture Design</a>
-    <a class="menu-sub" href="/portfolio#office">Office Design</a>
-    <a class="menu-sub" href="/portfolio#interior">Interior Design</a>
-    <a class="menu-sub" href="/portfolio#product">Product Design</a>
-    <a class="menu-sub" href="/portfolio#architecture">Architecture</a>
     <a class="menu-top" href="/#contact">Contact</a>
   </div>
 </nav>
@@ -835,7 +858,7 @@
         <span class="choice-label">Built with AI</span>
       </a>
       <a class="choice-card" href="#built">
-        <img src="/portfolio/img/fusb-a.webp" alt="" />
+        <img src="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" alt="" />
         <span class="choice-label">Built in the real world</span>
       </a>
     </div>
@@ -873,9 +896,25 @@
 
   <!-- WORK -->
   <div id="work">
+  <section id="built" class="section wrap">
+    <a class="ab-hero" id="architecture" href="/architecture-build">
+      <span class="ab-hero-copy">
+        <span>Architecture &amp; Build</span>
+        <strong>Architecture &amp; Build</strong>
+        <em>Design. Prototype. Build.</em>
+      </span>
+      <span class="ab-hero-visual">
+        <img src="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" width="1119" height="1600" alt="Inside the Spyglass rib frame, in the shop" />
+      </span>
+    </a>
+    <h2 class="work-h" id="industrial">Industrial Design</h2>
+    <div class="built-grid" id="industrialGrid"></div>
+    <h2 class="work-h" id="rooms">Furniture, Lighting &amp; Interiors</h2>
+    <div class="built-grid quiet" id="roomsGrid"></div>
+  </section>
   <section id="ai" class="section wrap">
     <div class="section-title reveal">
-      <h2>AI</h2>
+      <h2>AI &amp; Web</h2>
       <p class="work-intro">Every project here was taken from concept to launch: design, rapid prototyping, iteration, and continuous shipping and testing.</p>
     </div>
 
@@ -1235,12 +1274,6 @@
     <div class="ai-extra" id="aiExtra"></div>
   </section>
 
-  <section id="built" class="section wrap">
-    <div class="section-title reveal">
-      <h2>Built</h2>
-    </div>
-    <div class="built-grid" id="builtGrid"></div>
-  </section>
   </div>
 
   <!-- CONTACT -->
@@ -1779,21 +1812,30 @@
 (function(){
   var cats = {};
   SITE_WORK.categories.forEach(function(c){ cats[c.id] = c.label; });
-  var grid = document.getElementById("builtGrid");
+  var byId = {};
+  SITE_WORK.built.forEach(function(p){ byId[p.id] = p; });
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); }
-  grid.innerHTML = SITE_WORK.built.filter(function(p){ return p.images && p.images.length && p.category !== "web"; }).map(function(p){
+  function homeCard(entry){
+    if (entry.placeholder) {
+      return '<article class="built-card placeholder"><span class="built-frame placeholder-frame"></span><span class="built-meta"><span>'+esc(entry.label)+'</span><b>'+esc(entry.title)+'</b><span class="built-line">'+esc(entry.line)+'</span></span></article>';
+    }
+    var p = byId[entry.id];
     var img = p.images[0];
     var full = img[0];
     var card = p.soft ? full : full.replace(/\.webp$/, "-800.webp");
     var cls = p.soft ? ' class="soft"' : "";
     var frameClass = (img[2] * 5 === img[3] * 4) ? " portrait" : "";
     var frame = '<span class="built-frame'+frameClass+'"><img'+cls+' src="'+card+'" width="'+img[2]+'" height="'+img[3]+'" alt="'+esc(img[1])+'" loading="lazy"></span>';
-    var meta = '<span class="built-meta"><span>'+esc(cats[p.category] || "")+'</span><b>'+esc(p.title)+'</b>'+(p.href ? '<span class="built-line">'+esc(p.line)+'</span>' : '')+'</span>';
+    var label = entry.label || cats[p.category] || "";
+    var meta = '<span class="built-meta"><span>'+esc(label)+'</span><b>'+esc(p.title)+'</b><span class="built-line">'+esc(p.line)+'</span></span>';
+    var size = entry.size ? " "+entry.size : "";
     if (p.href) {
-      return '<article class="built-card"><a class="built-main" href="/portfolio#'+p.id+'">'+frame+meta+'</a><a class="built-demo" href="'+esc(p.href)+'">View demo</a></article>';
+      return '<article class="built-card'+size+'"><a class="built-main" href="/portfolio#'+p.id+'">'+frame+meta+'</a><a class="built-demo" href="'+esc(p.href)+'">View demo</a></article>';
     }
-    return '<a class="built-card" href="/portfolio#'+p.id+'">'+frame+meta+'</a>';
-  }).join("");
+    return '<a class="built-card'+size+'" href="/portfolio#'+p.id+'">'+frame+meta+'</a>';
+  }
+  document.getElementById("industrialGrid").innerHTML = SITE_INDEX.industrial.map(homeCard).join("");
+  document.getElementById("roomsGrid").innerHTML = SITE_INDEX.rooms.map(homeCard).join("");
   var extra = document.getElementById("aiExtra");
   extra.innerHTML = SITE_WORK.ai.filter(function(item){
     return item.title === "BS Score" || item.title === "Credit Climb";

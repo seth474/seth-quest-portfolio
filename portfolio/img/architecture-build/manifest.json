@@ -1,0 +1,623 @@
+{
+  "title": "Architecture & Build",
+  "subtitle": "Design. Prototype. Build.",
+  "source": "Seth Quest - Build Portfolio (v3-HQ), same order and text",
+  "video_loop": {
+    "src": "/portfolio/img/architecture-build/ab-rib-framing-loop-720x1280.mp4",
+    "note": "Muted vertical loop of the build reel (real build footage only)"
+  },
+  "pages": [
+    {
+      "kicker": "Portfolio",
+      "layout": "cover",
+      "title": "Seth Quest / Build Portfolio",
+      "subtitle": "Design. Prototype. Build.",
+      "meta": "Spyglass · Onera · Monarch Treehouse / ArtisTree · near Austin, Texas · 2021–2022",
+      "contact": "seth@sethquest.com · sethquest.com",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp",
+          "width": 1119,
+          "height": 1600,
+          "source_px": "1119x1600",
+          "caption": "Inside the Spyglass rib frame, in the shop"
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass · ArtisTree",
+      "layout": "grid-5-feature",
+      "grid_columns": "1fr 1fr 0.75fr",
+      "title": "From laser model to full-scale rib",
+      "body": "Foreman on Spyglass, ArtisTree’s most iconic treehouse. Every treehouse before it had been handmade. I brought in CNC: structural rib parts were prototyped on a laser cutter, then built full scale from CNC-cut components.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-02-laser-rib-model.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Laser-cut rib model, showing nesting"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-03-rib-pattern-drawing.webp",
+          "width": 1424,
+          "height": 1520,
+          "source_px": "1424x1520",
+          "caption": "Rib pattern drawing"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-04-cnc-parts-pickup.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "CNC-cut parts picked up for assembly"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-05-full-scale-rib.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Full-scale rib in the shop"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-06-rib-layout-floor.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Rib layout on the shop floor"
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "portrait-text-left",
+      "title": "Inside the rib frame",
+      "body": "Up on the staging, framing the ribs in the shop.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-07-inside-rib-frame.webp",
+          "width": 750,
+          "height": 925,
+          "source_px": "750x925",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass · Workshop",
+      "layout": "grid-4",
+      "grid_columns": "1fr 1fr",
+      "title": "The workshop I built",
+      "body": "Set up for the Spyglass build: workbenches, a tool wall, and racks for tools and materials.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-08-workshop-1.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "3865x2899",
+          "caption": "Tool wall and benches"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-09-workshop-2.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Shop floor, looking through"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-10-workshop-3.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Storage racks"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-11-workshop-4.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Workbenches"
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass · From the build clips",
+      "layout": "strip",
+      "title": "Framing the ribs",
+      "body": "Full-scale ribs going up on the trailer frame in the shop.",
+      "caption": "Frame sequence from a build clip, in order",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-12-rib-1.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-13-rib-2.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-14-rib-3.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-15-rib-4.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-16-rib-5.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-17-rib-6.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass · From the build clips",
+      "layout": "strip",
+      "title": "Steel base plates",
+      "body": "Marking, welding and drill work on steel base plates.",
+      "caption": "Stills from build clips",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-18-bp-1.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-19-bp-2.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-20-bp-3.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-21-bp-4.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-22-bp-5.webp",
+          "width": 1080,
+          "height": 1920,
+          "source_px": "1080x1920",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "grid-4-feature",
+      "grid_columns": "1fr 1fr 1.05fr",
+      "title": "MEP",
+      "body": "Mechanical, electrical, plumbing",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-23-rinnai-water-heater.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Rinnai tankless water heater, the exterior mechanical system."
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-24-breaker-panel.webp",
+          "width": 1811,
+          "height": 2400,
+          "source_px": "2858x3788",
+          "caption": "Breaker panel by the team's master electrician; I assisted."
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-25-pex-lines.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "PEX hot and cold lines laid out."
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-26-zip-panel.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Same lines closed in behind ZIP panel."
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "grid-4",
+      "grid_columns": "0.8fr 0.8fr 1.3fr 0.8fr",
+      "title": "Cladding and details",
+      "body": "Thermory cladding going on in the shop, over a black weather barrier.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-27-thermory-install.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Thermory cladding install"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-28-cladding-nearly-complete.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Cladding nearly complete"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-29-assembly-detail.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Assembly detail: galvanized steel, HDPE, Thermory cladding, and self-tapping metal finish screws."
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-30-custom-ladder.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Custom ladder we built to wrap the side of Spyglass."
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "two-up",
+      "grid_columns": "1.45fr 0.8fr",
+      "title": "Custom bent steel porch beams",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-31-bent-steel-porch-beams.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Custom-bent steel structural beams for the exterior porch."
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-32-beams-pickup.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Picking up the beams from the metal bending shop."
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "two-up",
+      "grid_columns": "1fr 1fr",
+      "title": "Moving and setting on site",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-33-spyglass-on-trailer.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Spyglass on its trailer at Onera"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-34-setting-on-steel-base.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Setting Spyglass onto its steel base"
+        }
+      ]
+    },
+    {
+      "layout": "full-bleed",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-35-shop-ribs-sheathed.webp",
+          "width": 2400,
+          "height": 1489,
+          "source_px": "4032x2502",
+          "caption": "Spyglass in the shop, ribs sheathed"
+        }
+      ]
+    },
+    {
+      "layout": "full-bleed",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-36-finished-same-end.webp",
+          "width": 2048,
+          "height": 1536,
+          "source_px": "2048x1536",
+          "caption": "Finished, seen from the same end"
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "two-up",
+      "grid_columns": "1fr 1fr",
+      "title": "Installed",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-37-installed-among-trees.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Spyglass, installed among the trees"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-38-steel-legs.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Spyglass, on its steel legs"
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass",
+      "layout": "full-bleed-uncropped",
+      "title": "Spyglass, finished",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-39-finished-hero.webp",
+          "width": 1600,
+          "height": 1066,
+          "source_px": "1600x1066",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "kicker": "01 · Spyglass · Finished",
+      "layout": "grid-3-feature",
+      "grid_columns": "1.45fr 1fr",
+      "title": "Inside and out",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-40-finished-interior.webp",
+          "width": 1080,
+          "height": 836,
+          "source_px": "1080x836",
+          "caption": "Interior"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-41-finished-front.webp",
+          "width": 1200,
+          "height": 800,
+          "source_px": "1200x800",
+          "caption": "Front, on steel legs"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-42-finished-deck-hot-tub.webp",
+          "width": 1200,
+          "height": 800,
+          "source_px": "1200x800",
+          "caption": "Deck with cedar hot tub"
+        }
+      ]
+    },
+    {
+      "kicker": "02 · Onera · ArtisTree · 2021–2022",
+      "layout": "grid-4",
+      "grid_columns": "1fr 1fr",
+      "title": "Seven homes in ten months",
+      "body": "Glamping development near Austin, Texas. Co-foreman on two shipping container homes, the Monarch and Spyglass treehouses, a geodesic dome, a cocoon and a safari tent, all with plumbing and AC. Hands-on framing, plumbing, electrical, waterproofing and installation.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-43-onera-container-home.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Shipping container home"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-44-onera-geodesic-dome.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Geodesic dome"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-45-onera-safari-tent.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Safari tent"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-46-onera-cocoon-glass-front.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Cocoon, glass front"
+        }
+      ]
+    },
+    {
+      "kicker": "02 · Onera",
+      "layout": "grid-3",
+      "grid_columns": "1.35fr 0.75fr 1.35fr",
+      "title": "Foundations and framing",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-47-onera-container-concrete-pour.webp",
+          "width": 1600,
+          "height": 1200,
+          "source_px": "1600x1200",
+          "caption": "Container home, concrete pour"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-48-onera-cocoon-piers.webp",
+          "width": 1800,
+          "height": 2400,
+          "source_px": "3024x4032",
+          "caption": "Cocoon, concrete piers"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-49-onera-container-framing.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Container home, interior wall framing"
+        }
+      ]
+    },
+    {
+      "kicker": "02 · Onera",
+      "layout": "grid-3",
+      "grid_columns": "1.35fr 0.75fr 1.05fr",
+      "title": "Structure and assembly",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-50-onera-dome-telehandler.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Geodesic dome, telehandler on site"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-51-onera-dome-oculus.webp",
+          "width": 1200,
+          "height": 1600,
+          "source_px": "1200x1600",
+          "caption": "Dome interior, at the oculus"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-52-onera-container-metal-fab.webp",
+          "width": 2400,
+          "height": 2369,
+          "source_px": "3064x3024",
+          "caption": "Container home, metal fabrication"
+        }
+      ]
+    },
+    {
+      "kicker": "02 · Onera · Container homes",
+      "layout": "two-up",
+      "grid_columns": "1fr 1fr",
+      "title": "Catching a problem early",
+      "body": "The containers arrived with fiberglass insulation, a condensation and mold risk in Texas with AC running. It came out within the hour, and the team switched to closed-cell spray foam.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-53-onera-container-respirator.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Inside a container, respirator on"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-54-onera-container-buildout.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "Container home, interior during build-out"
+        }
+      ]
+    },
+    {
+      "kicker": "02 · Onera",
+      "layout": "single",
+      "grid_columns": "1fr",
+      "title": "The crew",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-55-onera-crew.webp",
+          "width": 2400,
+          "height": 1800,
+          "source_px": "4032x3024",
+          "caption": "The Onera crew"
+        }
+      ]
+    },
+    {
+      "kicker": "03 · Project",
+      "layout": "portrait-text-left",
+      "title": "Monarch Treehouse",
+      "body": "The Monarch Treehouse, inspired by the monarch butterfly, has millions of views on social media.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-56-monarch-seth.webp",
+          "width": 416,
+          "height": 480,
+          "source_px": "416x480"
+        }
+      ],
+      "note": "ArtisTree · Onera, near Austin, Texas"
+    },
+    {
+      "kicker": "03 · Monarch Treehouse",
+      "layout": "portrait-text-left",
+      "title": "Frame up in days, not months",
+      "body": "I helped build it and identified Vulkstrut, a prefab system of CNC-made light-gauge steel, so the frame went up in days, not months. That mattered on a treehouse, where everything takes substantially longer above the ground.",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-57-monarch-siding.webp",
+          "width": 1200,
+          "height": 1600,
+          "source_px": "1200x1600",
+          "caption": "Monarch, siding"
+        }
+      ]
+    },
+    {
+      "kicker": "03 · Monarch Treehouse",
+      "layout": "grid-3-feature",
+      "grid_columns": "1.55fr 1fr",
+      "title": "Monarch, finished",
+      "images": [
+        {
+          "src": "/portfolio/img/architecture-build/ab-58-monarch-finished-exterior.webp",
+          "width": 1200,
+          "height": 800,
+          "source_px": "1200x800",
+          "caption": "Exterior"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-59-monarch-finished-stairs-deck.webp",
+          "width": 1200,
+          "height": 800,
+          "source_px": "1200x800",
+          "caption": "Exterior, stairs and deck"
+        },
+        {
+          "src": "/portfolio/img/architecture-build/ab-60-monarch-finished-bedroom.webp",
+          "width": 1200,
+          "height": 900,
+          "source_px": "1200x900",
+          "caption": "Bedroom"
+        }
+      ]
+    },
+    {
+      "layout": "closing",
+      "title": "Seth Quest / Design. Prototype. Build.",
+      "contact": "seth@sethquest.com · sethquest.com"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Architecture &amp; Build · Seth Quest</title>
+<meta name="description" content="Architecture &amp; Build. Design. Prototype. Build. Spyglass, the workshop, MEP, Onera, and the Monarch Treehouse." />
+<link rel="canonical" href="https://sethquest.com/architecture-build" />
+<meta property="og:title" content="Architecture &amp; Build · Seth Quest" />
+<meta property="og:description" content="Design. Prototype. Build." />
+<meta property="og:image" content="https://sethquest.com/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter+Tight:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" />
+<style>
+  :root{
+    --ink:#F4F0E6; --bone:#1A1814; --bone-dim:rgba(26,24,20,0.62);
+    --line:rgba(26,24,20,0.10); --line-strong:rgba(26,24,20,0.22); --amber:#B06C28;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--ink); color:var(--bone); font-family:"Inter Tight",-apple-system,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased}
+  img,video{max-width:100%; display:block}
+  a{color:inherit; text-decoration:none}
+  nav.top{
+    position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    padding:14px 22px; background:rgba(244,240,230,0.9); backdrop-filter:blur(14px); border-bottom:1px solid var(--line);
+  }
+  nav.top .mark{font-weight:600; letter-spacing:-0.03em}
+  nav.top .mark em{font-style:normal; color:var(--amber)}
+  nav.top .links{display:flex; gap:18px; font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase}
+  nav.top .links a:hover{color:var(--amber)}
+  .sheet{width:min(1180px, calc(100% - 40px)); margin:0 auto; padding:42px 0 18px}
+  .kicker{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber); margin:0 0 10px}
+  h1,h2{font-family:"Space Grotesk",sans-serif; font-weight:500; letter-spacing:-0.04em; line-height:0.96; margin:0}
+  h1{font-size:clamp(46px, 7vw, 84px)}
+  h2{font-size:clamp(32px, 4.4vw, 52px); max-width:18ch}
+  .sub{font-size:clamp(20px, 2.4vw, 28px); margin:14px 0 0; max-width:28ch}
+  .body{font-size:17.5px; color:var(--bone-dim); max-width:46ch; margin:14px 0 0}
+  .pagecap,.note,.meta,.contact{margin:12px 0 0; color:var(--bone-dim)}
+  .meta,.contact,.pagecap{font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:0.04em}
+  figure{margin:0}
+  figcaption{font-family:"JetBrains Mono",monospace; font-size:12px; line-height:1.45; color:var(--bone-dim); margin-top:8px; max-width:62ch}
+  .figs{display:grid; gap:16px 14px; align-items:start; margin-top:22px}
+  .figs img{width:100%; height:auto; background:#e6e0d2}
+  .layout-cover{
+    width:min(1280px, calc(100% - 32px));
+    min-height:calc(100svh - 64px);
+    display:grid; grid-template-columns:minmax(280px, 0.9fr) minmax(280px, 1fr);
+    gap:36px; align-items:end; padding-top:28px; padding-bottom:28px;
+  }
+  .layout-cover figure{margin:0}
+  .layout-cover img{width:auto; max-width:100%; max-height:calc(100svh - 110px); height:auto; margin-left:auto; background:#e6e0d2}
+  .layout-portrait-text-left{display:grid; grid-template-columns:minmax(240px, 0.85fr) minmax(240px, 1fr); gap:32px; align-items:center}
+  .layout-portrait-text-left img{width:auto; max-width:100%; height:auto; margin-left:auto; background:#e6e0d2}
+  .layout-grid-5-feature .figs,.layout-grid-4-feature .figs,.layout-grid-3-feature .figs,.layout-grid-4 .figs,.layout-grid-3 .figs,.layout-two-up .figs{grid-template-columns:var(--cols)}
+  .layout-grid-5-feature .figs figure:first-child,.layout-grid-4-feature .figs figure:first-child{grid-column:span 2}
+  .layout-grid-3-feature .figs figure:first-child{grid-row:span 2}
+  .layout-grid-3-feature .figs figure:first-child img{width:100%; height:100%; object-fit:contain; background:#e6e0d2}
+  .layout-strip{width:min(1280px, calc(100% - 32px))}
+  .strip{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; margin-top:22px; padding-bottom:10px}
+  .strip figure,.strip .reel{flex:none; scroll-snap-align:start; height:min(72vh, 760px); margin:0}
+  .strip img,.strip video{height:100%; width:auto; max-width:none; background:#111}
+  .layout-full-bleed,.layout-full-bleed-uncropped{width:100%; max-width:none; padding-left:0; padding-right:0}
+  .layout-full-bleed img{width:100%; height:auto; max-height:none; object-fit:contain; background:#111}
+  .layout-full-bleed-uncropped img{width:100%; height:auto; object-fit:contain; background:#e6e0d2}
+  .layout-full-bleed figcaption,.layout-full-bleed-uncropped figcaption{width:min(1180px, calc(100% - 40px)); margin:10px auto 0}
+  .layout-single .figs{margin-top:22px}
+  .layout-closing{min-height:70vh; display:grid; align-items:center; text-align:left}
+  .layout-closing h2{font-size:clamp(40px, 6vw, 76px); max-width:14ch}
+  .sheet + .sheet{border-top:1px solid var(--line)}
+  .layout-full-bleed + .sheet,.sheet + .layout-full-bleed,.layout-full-bleed-uncropped + .sheet,.sheet + .layout-full-bleed-uncropped{border-top:0}
+  @media (max-width: 800px){
+    nav.top .links a.quiet{display:none}
+    .layout-cover,.layout-portrait-text-left{grid-template-columns:1fr; min-height:0; align-items:start}
+    .layout-cover img,.layout-portrait-text-left img{margin-left:0; max-height:none}
+    .layout-grid-5-feature .figs,.layout-grid-4-feature .figs,.layout-grid-3-feature .figs,.layout-grid-4 .figs,.layout-grid-3 .figs,.layout-two-up .figs{grid-template-columns:1fr}
+    .layout-grid-5-feature .figs figure:first-child,.layout-grid-4-feature .figs figure:first-child,.layout-grid-3-feature .figs figure:first-child{grid-column:auto; grid-row:auto}
+    .strip figure,.strip .reel{height:min(68vh, 560px)}
+    .layout-full-bleed img{height:auto; max-height:none; object-fit:contain}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    video{display:none}
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="mark" href="/">Seth <em>Quest</em></a>
+  <div class="links">
+    <a href="/portfolio">Work</a>
+    <a href="#mep">MEP</a>
+    <a href="#monarch-finished">Monarch</a>
+    <a class="quiet" href="/#ai">AI &amp; Web</a>
+  </div>
+</nav>
+<header class="sheet layout-cover"><div class="copy"><p class="kicker">Portfolio</p><h1>Seth Quest / Build Portfolio</h1><p class="sub">Design. Prototype. Build.</p><p class="meta">Spyglass · Onera · Monarch Treehouse / ArtisTree · near Austin, Texas · 2021–2022</p><p class="contact">seth@sethquest.com · sethquest.com</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" width="1119" height="1600" alt="Inside the Spyglass rib frame, in the shop" loading="eager" fetchpriority="high" decoding="async"><figcaption>Inside the Spyglass rib frame, in the shop</figcaption></figure></div></header>
+<section class="sheet layout-grid-5-feature" style="--cols:1fr 1fr 0.75fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · ArtisTree</p><h2>From laser model to full-scale rib</h2><p class="body">Foreman on Spyglass, ArtisTree’s most iconic treehouse. Every treehouse before it had been handmade. I brought in CNC: structural rib parts were prototyped on a laser cutter, then built full scale from CNC-cut components.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-02-laser-rib-model.webp" width="2400" height="1800" alt="Laser-cut rib model, showing nesting" loading="lazy" decoding="async"><figcaption>Laser-cut rib model, showing nesting</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-03-rib-pattern-drawing.webp" width="1424" height="1520" alt="Rib pattern drawing" loading="lazy" decoding="async"><figcaption>Rib pattern drawing</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-04-cnc-parts-pickup.webp" width="1800" height="2400" alt="CNC-cut parts picked up for assembly" loading="lazy" decoding="async"><figcaption>CNC-cut parts picked up for assembly</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-05-full-scale-rib.webp" width="2400" height="1800" alt="Full-scale rib in the shop" loading="lazy" decoding="async"><figcaption>Full-scale rib in the shop</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-06-rib-layout-floor.webp" width="2400" height="1800" alt="Rib layout on the shop floor" loading="lazy" decoding="async"><figcaption>Rib layout on the shop floor</figcaption></figure></div></section>
+<section class="sheet layout-portrait-text-left"><div class="copy"><p class="kicker">01 · Spyglass</p><h2>Inside the rib frame</h2><p class="body">Up on the staging, framing the ribs in the shop.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-07-inside-rib-frame.webp" width="750" height="925" alt="Inside the rib frame" loading="lazy" decoding="async"></figure></div></section>
+<section class="sheet layout-grid-4" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · Workshop</p><h2>The workshop I built</h2><p class="body">Set up for the Spyglass build: workbenches, a tool wall, and racks for tools and materials.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-08-workshop-1.webp" width="2400" height="1800" alt="Tool wall and benches" loading="lazy" decoding="async"><figcaption>Tool wall and benches</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-09-workshop-2.webp" width="2400" height="1800" alt="Shop floor, looking through" loading="lazy" decoding="async"><figcaption>Shop floor, looking through</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-10-workshop-3.webp" width="2400" height="1800" alt="Storage racks" loading="lazy" decoding="async"><figcaption>Storage racks</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-11-workshop-4.webp" width="2400" height="1800" alt="Workbenches" loading="lazy" decoding="async"><figcaption>Workbenches</figcaption></figure></div></section>
+<section class="sheet layout-strip"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · From the build clips</p><h2>Framing the ribs</h2><p class="body">Full-scale ribs going up on the trailer frame in the shop.</p><p class="pagecap">Frame sequence from a build clip, in order</p></div><div class="strip"><div class="reel"><video src="/portfolio/img/architecture-build/ab-rib-framing-loop-720x1280.mp4" width="720" height="1280" muted autoplay loop playsinline preload="metadata" poster="/portfolio/img/architecture-build/ab-12-rib-1.webp" aria-label="Framing the ribs"></video></div><figure><img src="/portfolio/img/architecture-build/ab-12-rib-1.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-13-rib-2.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-14-rib-3.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-15-rib-4.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-16-rib-5.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-17-rib-6.webp" width="1080" height="1920" alt="Framing the ribs" loading="lazy" decoding="async"></figure></div></section>
+<section class="sheet layout-strip"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · From the build clips</p><h2>Steel base plates</h2><p class="body">Marking, welding and drill work on steel base plates.</p><p class="pagecap">Stills from build clips</p></div><div class="strip"><figure><img src="/portfolio/img/architecture-build/ab-18-bp-1.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-19-bp-2.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-20-bp-3.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-21-bp-4.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure><figure><img src="/portfolio/img/architecture-build/ab-22-bp-5.webp" width="1080" height="1920" alt="Steel base plates" loading="lazy" decoding="async"></figure></div></section>
+<section class="sheet layout-grid-4-feature" id="mep" style="--cols:1fr 1fr 1.05fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>MEP</h2><p class="body">Mechanical, electrical, plumbing</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-23-rinnai-water-heater.webp" width="2400" height="1800" alt="Rinnai tankless water heater, the exterior mechanical system." loading="lazy" decoding="async"><figcaption>Rinnai tankless water heater, the exterior mechanical system.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-24-breaker-panel.webp" width="1811" height="2400" alt="Breaker panel by the team's master electrician; I assisted." loading="lazy" decoding="async"><figcaption>Breaker panel by the team's master electrician; I assisted.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-25-pex-lines.webp" width="2400" height="1800" alt="PEX hot and cold lines laid out." loading="lazy" decoding="async"><figcaption>PEX hot and cold lines laid out.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-26-zip-panel.webp" width="2400" height="1800" alt="Same lines closed in behind ZIP panel." loading="lazy" decoding="async"><figcaption>Same lines closed in behind ZIP panel.</figcaption></figure></div></section>
+<section class="sheet layout-grid-4" style="--cols:0.8fr 0.8fr 1.3fr 0.8fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Cladding and details</h2><p class="body">Thermory cladding going on in the shop, over a black weather barrier.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-27-thermory-install.webp" width="1800" height="2400" alt="Thermory cladding install" loading="lazy" decoding="async"><figcaption>Thermory cladding install</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-28-cladding-nearly-complete.webp" width="1800" height="2400" alt="Cladding nearly complete" loading="lazy" decoding="async"><figcaption>Cladding nearly complete</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-29-assembly-detail.webp" width="2400" height="1800" alt="Assembly detail: galvanized steel, HDPE, Thermory cladding, and self-tapping metal finish screws." loading="lazy" decoding="async"><figcaption>Assembly detail: galvanized steel, HDPE, Thermory cladding, and self-tapping metal finish screws.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-30-custom-ladder.webp" width="1800" height="2400" alt="Custom ladder we built to wrap the side of Spyglass." loading="lazy" decoding="async"><figcaption>Custom ladder we built to wrap the side of Spyglass.</figcaption></figure></div></section>
+<section class="sheet layout-two-up" style="--cols:1.45fr 0.8fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Custom bent steel porch beams</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-31-bent-steel-porch-beams.webp" width="2400" height="1800" alt="Custom-bent steel structural beams for the exterior porch." loading="lazy" decoding="async"><figcaption>Custom-bent steel structural beams for the exterior porch.</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-32-beams-pickup.webp" width="1800" height="2400" alt="Picking up the beams from the metal bending shop." loading="lazy" decoding="async"><figcaption>Picking up the beams from the metal bending shop.</figcaption></figure></div></section>
+<section class="sheet layout-two-up" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Moving and setting on site</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-33-spyglass-on-trailer.webp" width="2400" height="1800" alt="Spyglass on its trailer at Onera" loading="lazy" decoding="async"><figcaption>Spyglass on its trailer at Onera</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-34-setting-on-steel-base.webp" width="2400" height="1800" alt="Setting Spyglass onto its steel base" loading="lazy" decoding="async"><figcaption>Setting Spyglass onto its steel base</figcaption></figure></div></section>
+<section class="sheet layout-full-bleed"><div class="copy wrap-in"></div><figure><img src="/portfolio/img/architecture-build/ab-35-shop-ribs-sheathed.webp" width="2400" height="1489" alt="Spyglass in the shop, ribs sheathed" loading="lazy" decoding="async"><figcaption>Spyglass in the shop, ribs sheathed</figcaption></figure></section>
+<section class="sheet layout-full-bleed"><div class="copy wrap-in"></div><figure><img src="/portfolio/img/architecture-build/ab-36-finished-same-end.webp" width="2048" height="1536" alt="Finished, seen from the same end" loading="lazy" decoding="async"><figcaption>Finished, seen from the same end</figcaption></figure></section>
+<section class="sheet layout-two-up" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Installed</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-37-installed-among-trees.webp" width="2400" height="1800" alt="Spyglass, installed among the trees" loading="lazy" decoding="async"><figcaption>Spyglass, installed among the trees</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-38-steel-legs.webp" width="1800" height="2400" alt="Spyglass, on its steel legs" loading="lazy" decoding="async"><figcaption>Spyglass, on its steel legs</figcaption></figure></div></section>
+<section class="sheet layout-full-bleed-uncropped"><div class="copy wrap-in"><p class="kicker">01 · Spyglass</p><h2>Spyglass, finished</h2></div><figure><img src="/portfolio/img/architecture-build/ab-39-finished-hero.webp" width="1600" height="1066" alt="Spyglass, finished" loading="lazy" decoding="async"></figure></section>
+<section class="sheet layout-grid-3-feature" style="--cols:1.45fr 1fr"><div class="copy wrap-in"><p class="kicker">01 · Spyglass · Finished</p><h2>Inside and out</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-40-finished-interior.webp" width="1080" height="836" alt="Interior" loading="lazy" decoding="async"><figcaption>Interior</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-41-finished-front.webp" width="1200" height="800" alt="Front, on steel legs" loading="lazy" decoding="async"><figcaption>Front, on steel legs</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-42-finished-deck-hot-tub.webp" width="1200" height="800" alt="Deck with cedar hot tub" loading="lazy" decoding="async"><figcaption>Deck with cedar hot tub</figcaption></figure></div></section>
+<section class="sheet layout-grid-4" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">02 · Onera · ArtisTree · 2021–2022</p><h2>Seven homes in ten months</h2><p class="body">Glamping development near Austin, Texas. Co-foreman on two shipping container homes, the Monarch and Spyglass treehouses, a geodesic dome, a cocoon and a safari tent, all with plumbing and AC. Hands-on framing, plumbing, electrical, waterproofing and installation.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-43-onera-container-home.webp" width="2400" height="1800" alt="Shipping container home" loading="lazy" decoding="async"><figcaption>Shipping container home</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-44-onera-geodesic-dome.webp" width="2400" height="1800" alt="Geodesic dome" loading="lazy" decoding="async"><figcaption>Geodesic dome</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-45-onera-safari-tent.webp" width="2400" height="1800" alt="Safari tent" loading="lazy" decoding="async"><figcaption>Safari tent</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-46-onera-cocoon-glass-front.webp" width="2400" height="1800" alt="Cocoon, glass front" loading="lazy" decoding="async"><figcaption>Cocoon, glass front</figcaption></figure></div></section>
+<section class="sheet layout-grid-3" style="--cols:1.35fr 0.75fr 1.35fr"><div class="copy wrap-in"><p class="kicker">02 · Onera</p><h2>Foundations and framing</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-47-onera-container-concrete-pour.webp" width="1600" height="1200" alt="Container home, concrete pour" loading="lazy" decoding="async"><figcaption>Container home, concrete pour</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-48-onera-cocoon-piers.webp" width="1800" height="2400" alt="Cocoon, concrete piers" loading="lazy" decoding="async"><figcaption>Cocoon, concrete piers</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-49-onera-container-framing.webp" width="2400" height="1800" alt="Container home, interior wall framing" loading="lazy" decoding="async"><figcaption>Container home, interior wall framing</figcaption></figure></div></section>
+<section class="sheet layout-grid-3" style="--cols:1.35fr 0.75fr 1.05fr"><div class="copy wrap-in"><p class="kicker">02 · Onera</p><h2>Structure and assembly</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-50-onera-dome-telehandler.webp" width="2400" height="1800" alt="Geodesic dome, telehandler on site" loading="lazy" decoding="async"><figcaption>Geodesic dome, telehandler on site</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-51-onera-dome-oculus.webp" width="1200" height="1600" alt="Dome interior, at the oculus" loading="lazy" decoding="async"><figcaption>Dome interior, at the oculus</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-52-onera-container-metal-fab.webp" width="2400" height="2369" alt="Container home, metal fabrication" loading="lazy" decoding="async"><figcaption>Container home, metal fabrication</figcaption></figure></div></section>
+<section class="sheet layout-two-up" style="--cols:1fr 1fr"><div class="copy wrap-in"><p class="kicker">02 · Onera · Container homes</p><h2>Catching a problem early</h2><p class="body">The containers arrived with fiberglass insulation, a condensation and mold risk in Texas with AC running. It came out within the hour, and the team switched to closed-cell spray foam.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-53-onera-container-respirator.webp" width="2400" height="1800" alt="Inside a container, respirator on" loading="lazy" decoding="async"><figcaption>Inside a container, respirator on</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-54-onera-container-buildout.webp" width="2400" height="1800" alt="Container home, interior during build-out" loading="lazy" decoding="async"><figcaption>Container home, interior during build-out</figcaption></figure></div></section>
+<section class="sheet layout-single"><div class="copy wrap-in"><p class="kicker">02 · Onera</p><h2>The crew</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-55-onera-crew.webp" width="2400" height="1800" alt="The Onera crew" loading="lazy" decoding="async"><figcaption>The Onera crew</figcaption></figure></div></section>
+<section class="sheet layout-portrait-text-left" id="monarch"><div class="copy"><p class="kicker">03 · Project</p><h2>Monarch Treehouse</h2><p class="body">The Monarch Treehouse, inspired by the monarch butterfly, has millions of views on social media.</p><p class="note">ArtisTree · Onera, near Austin, Texas</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-56-monarch-seth.webp" width="416" height="480" alt="Monarch Treehouse" loading="lazy" decoding="async"></figure></div></section>
+<section class="sheet layout-portrait-text-left"><div class="copy"><p class="kicker">03 · Monarch Treehouse</p><h2>Frame up in days, not months</h2><p class="body">I helped build it and identified Vulkstrut, a prefab system of CNC-made light-gauge steel, so the frame went up in days, not months. That mattered on a treehouse, where everything takes substantially longer above the ground.</p></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-57-monarch-siding.webp" width="1200" height="1600" alt="Monarch, siding" loading="lazy" decoding="async"><figcaption>Monarch, siding</figcaption></figure></div></section>
+<section class="sheet layout-grid-3-feature" id="monarch-finished" style="--cols:1.55fr 1fr"><div class="copy wrap-in"><p class="kicker">03 · Monarch Treehouse</p><h2>Monarch, finished</h2></div><div class="figs"><figure><img src="/portfolio/img/architecture-build/ab-58-monarch-finished-exterior.webp" width="1200" height="800" alt="Exterior" loading="lazy" decoding="async"><figcaption>Exterior</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-59-monarch-finished-stairs-deck.webp" width="1200" height="800" alt="Exterior, stairs and deck" loading="lazy" decoding="async"><figcaption>Exterior, stairs and deck</figcaption></figure><figure><img src="/portfolio/img/architecture-build/ab-60-monarch-finished-bedroom.webp" width="1200" height="900" alt="Bedroom" loading="lazy" decoding="async"><figcaption>Bedroom</figcaption></figure></div></section>
+<section class="sheet layout-closing"><div class="copy"><h2>Seth Quest / Design. Prototype. Build.</h2><p class="contact">seth@sethquest.com · sethquest.com</p></div></section>
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("video").forEach(function(v){
+    if (reduce) { v.pause(); return; }
+    v.muted = true;
+    var play = function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) play(); else v.pause(); });
+      }, {threshold: 0.25});
+      io.observe(v);
+    } else play();
+  });
+})();
+</script>
+</body>
+</html>

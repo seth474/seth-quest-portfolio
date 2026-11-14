@@ -4,16 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Built · Seth Quest</title>
-<meta name="description" content="Built work by Seth Quest: furniture, office, interiors, products, and architecture." />
+<meta name="description" content="Architecture and build, industrial design, furniture, lighting, interiors, and AI and web work by Seth Quest." />
 <link rel="canonical" href="https://sethquest.com/portfolio" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sethquest.com/portfolio" />
 <meta property="og:title" content="Built · Seth Quest" />
-<meta property="og:description" content="Furniture, office, interiors, products, and architecture." />
+<meta property="og:description" content="Design. Prototype. Build." />
 <meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Built · Seth Quest" />
-<meta name="twitter:description" content="Furniture, office, interiors, products, and architecture." />
+<meta name="twitter:description" content="Design. Prototype. Build." />
 <meta name="twitter:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -107,6 +107,29 @@
   }
   h1 em{font-style:normal; color:var(--amber)}
   .lede{margin:16px 0 0; font-size:clamp(18px, 2.4vw, 22px); color:var(--bone-dim); max-width:38ch}
+  .work-h{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:clamp(32px, 4.5vw, 56px); letter-spacing:-0.04em; line-height:0.95; margin:28px 0 14px}
+  .ab-hero{display:grid; grid-template-columns:1.05fr 0.95fr; min-height:440px; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#e6e0d2; color:inherit; margin:8px 0 10px}
+  .ab-hero-copy{display:flex; flex-direction:column; justify-content:flex-end; gap:8px; padding:28px; background:var(--ink)}
+  .ab-hero-copy .eyebrow{margin:0}
+  .ab-hero-copy strong{font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:clamp(40px, 5vw, 68px); letter-spacing:-0.045em; line-height:0.92}
+  .ab-hero-copy em{font-style:normal; font-size:clamp(18px, 2vw, 24px); color:var(--bone-dim)}
+  .ab-hero-visual{display:grid; place-items:center; background:#e6e0d2}
+  .ab-hero-visual img{width:auto; max-width:100%; max-height:78vh; height:auto}
+  .card.placeholder{cursor:default}
+  .placeholder-frame{background:linear-gradient(180deg, rgba(176,108,40,0.14), rgba(230,224,210,0.2) 42%), #e6e0d2}
+  #rooms .card.small .name,#industrial .card.small .name{font-size:22px}
+  #rooms .card.least{max-width:240px}
+  #rooms .card.least .frame{aspect-ratio:1}
+  #rooms .card.least .name{font-size:18px}
+  @media (min-width:760px){
+    #rooms{grid-template-columns:1fr 1fr 1fr 1fr}
+    #rooms .card.mid{grid-column:span 2}
+  }
+  @media (max-width:759px){
+    .ab-hero{grid-template-columns:1fr}
+    .ab-hero-visual{order:-1}
+    #rooms .card.least{max-width:none}
+  }
   .hero-photo{
     margin:0; border-radius:18px; overflow:hidden;
     aspect-ratio:4/5; background:var(--ink-2);
@@ -114,7 +137,21 @@
   }
   .hero-photo img{width:100%; height:100%; object-fit:contain; object-position:center; background:#e6e0d2}
 
-  #ai, #recent, #built{scroll-margin-top:72px}
+  #ai, #recent, #built, #architecture, #industrial-heading, #rooms-heading, #mep, #monarch-finished{scroll-margin-top:72px}
+  .ai-web{
+    border-top:1px solid var(--line);
+    margin-top:36px;
+    padding:56px 0 10px;
+  }
+  .ai-web h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:500;
+    font-size:clamp(48px, 8vw, 96px);
+    letter-spacing:-0.04em;
+    line-height:0.9;
+    margin:0 0 18px;
+  }
+  .ai-web #recent{margin-top:36px}
   .about{padding:28px 0 8px}
   .about p{margin:0 0 14px; color:var(--bone-dim); font-size:16.5px; max-width:68ch}
   .about p strong{color:var(--bone); font-weight:600}
@@ -307,14 +344,12 @@
     <a class="mark" href="/">Seth <em>Quest</em></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="site-menu" id="site-menu" hidden>
-      <a class="menu-top" href="#ai">AI</a>
+      <a class="menu-top" href="#architecture">Architecture &amp; Build</a>
+      <a class="menu-sub" href="/architecture-build">Design. Prototype. Build.</a>
+      <a class="menu-top" href="#industrial-heading">Industrial Design</a>
+      <a class="menu-top" href="#rooms-heading">Furniture, Lighting &amp; Interiors</a>
+      <a class="menu-top" href="#ai">AI &amp; Web</a>
       <a class="menu-sub" href="#web">Web Design</a>
-      <a class="menu-top" href="#built">Built</a>
-      <a class="menu-sub" href="#furniture">Furniture Design</a>
-      <a class="menu-sub" href="#office">Office Design</a>
-      <a class="menu-sub" href="#interior">Interior Design</a>
-      <a class="menu-sub" href="#product">Product Design</a>
-      <a class="menu-sub" href="#architecture">Architecture</a>
       <a class="menu-top" href="/#contact">Contact</a>
     </div>
   </nav>
@@ -324,7 +359,7 @@
       <div>
         <p class="eyebrow"><i></i> Built</p>
         <h1>Built</h1>
-        <p class="lede">Furniture, office, interiors, products, and architecture.</p>
+        <p class="lede">Design. Prototype. Build.</p>
       </div>
       <figure class="hero-photo">
         <img src="/portfolio/img/hero-seth-800.webp" srcset="/portfolio/img/hero-seth-800.webp 800w, /portfolio/img/hero-seth.webp 1119w" sizes="(max-width: 759px) 92vw, 40vw" width="1119" height="1600" alt="Seth Quest standing inside a timber-arched structure" />
@@ -332,13 +367,21 @@
     </div>
   </header>
 
-  <section id="ai" class="wrap" style="padding:48px 0 10px">
-    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(48px,8vw,96px);letter-spacing:-0.04em;line-height:0.9;margin:0 0 18px">AI</h2>
-    <div id="ai-list"></div>
-  </section>
-
-  <div class="wrap" id="recent">
-    <div class="grid" id="web-grid"></div>
+  <div class="wrap" id="built">
+    <a class="ab-hero" id="architecture" href="/architecture-build">
+      <span class="ab-hero-copy">
+        <p class="eyebrow"><i></i> Architecture &amp; Build</p>
+        <strong>Architecture &amp; Build</strong>
+        <em>Design. Prototype. Build.</em>
+      </span>
+      <span class="ab-hero-visual">
+        <img src="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" width="1119" height="1600" alt="Inside the Spyglass rib frame, in the shop" />
+      </span>
+    </a>
+    <h2 class="work-h" id="industrial-heading">Industrial Design</h2>
+    <div class="grid" id="industrial"></div>
+    <h2 class="work-h" id="rooms-heading">Furniture, Lighting &amp; Interiors</h2>
+    <div class="grid" id="rooms"></div>
   </div>
 
   <section class="about wrap">
@@ -347,11 +390,13 @@
     <p>My degree is in product design, so I’ve included some of the notable products I’ve developed over the years. In this chapter of my life I’ve focused my attention on architecture. I’m currently utilizing all of my skills as an industrial designer to bring beautiful, carbon neutral homes to the marketplace. My mission is to create affordable contemporary homes for the millennial generation.</p>
   </section>
 
-  <div class="wrap" id="built">
-    <div class="tools" id="filters" role="toolbar" aria-label="Filter Built work"></div>
-    <div class="grid" id="grid"></div>
-    <p class="empty" id="empty">Nothing in this filter.</p>
-  </div>
+  <section id="ai" class="wrap ai-web">
+    <h2>AI &amp; Web</h2>
+    <div id="ai-list"></div>
+    <div id="recent">
+      <div class="grid" id="web-grid"></div>
+    </div>
+  </section>
 
   <footer class="foot">
     <div class="wrap">
@@ -391,74 +436,55 @@ const PROJECTS = SITE_WORK.built.filter(function(p){ return p.images && p.images
 const catName = {};
 SITE_WORK.categories.forEach(function(c){ catName[c.id] = c.label; });
 (function(){
-  const bar = document.getElementById("filters");
-  bar.innerHTML = '<button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>' +
-    SITE_WORK.categories.map(function(c){
-      return '<button class="chip" type="button" data-filter="'+c.id+'" aria-pressed="false">'+c.label+'</button>';
-    }).join("") + '<span class="count" id="count"></span>';
   const list = document.getElementById("ai-list");
   list.innerHTML = SITE_WORK.ai.map(function(item){
     return '<a href="'+item.href+'" style="display:block;padding:14px 0;border-top:1px solid rgba(26,24,20,0.1)"><strong style="font-family:\'Space Grotesk\',sans-serif;font-weight:500;font-size:22px">'+item.title+'</strong><span style="display:block;color:rgba(26,24,20,0.62);margin-top:4px">'+item.line+'</span></a>';
   }).join("");
 })();
 
-const grid = document.getElementById("grid");
-const countEl = document.getElementById("count");
-const emptyEl = document.getElementById("empty");
 const dlg = document.getElementById("project");
 let current = null;
 let imgIndex = 0;
 let lastFocus = null;
 
-function cardHTML(p){
+function cardHTML(p, entry){
   const img = p.images[0];
   const full = img[0];
   const card = full.replace(/\.webp$/, "-800.webp");
-  const label = catName[p.category] || "";
+  const label = (entry && entry.label) || catName[p.category] || "";
+  const size = entry && entry.size ? " " + entry.size : "";
   const picture = p.soft
     ? `<img class="soft" src="${full}" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`
     : `<img src="${card}" srcset="${card} 800w, ${full} ${img[2]}w" sizes="(max-width:759px) 92vw, (max-width:1079px) 46vw, 30vw" width="${img[2]}" height="${img[3]}" alt="${img[1]}" loading="lazy" decoding="async">`;
   const inner = `<span class="frame">${picture}</span><span class="meta"><span class="cat">${label}</span><span class="name">${p.title}</span><span class="line">${p.line}</span></span>`;
   if (p.href) {
-    return `<article class="card reveal${p.wide ? " wide" : ""}" data-id="${p.id}" data-filters="${p.category}">
+    return `<article class="card reveal${size}" data-id="${p.id}" data-filters="${p.category}">
       <button class="card-open" type="button" data-id="${p.id}">${inner}</button>
       <a class="demo" href="${p.href}">View demo</a>
     </article>`;
   }
-  return `<button class="card reveal${p.wide ? " wide" : ""}" type="button" data-id="${p.id}" data-filters="${p.category}">${inner}</button>`;
+  return `<button class="card reveal${size}" type="button" data-id="${p.id}" data-filters="${p.category}">${inner}</button>`;
+}
+function indexCard(entry){
+  if (entry.placeholder) {
+    return `<article class="card placeholder reveal in"><span class="frame placeholder-frame"></span><span class="meta"><span class="cat">${entry.label}</span><span class="name">${entry.title}</span><span class="line">${entry.line}</span></span></article>`;
+  }
+  return cardHTML(PROJECTS.find(function(p){ return p.id === entry.id; }), entry);
 }
 const webGrid = document.getElementById("web-grid");
 const recent = document.getElementById("recent");
-webGrid.innerHTML = PROJECTS.filter(function(p){ return p.category === "web"; }).map(cardHTML).join("");
-grid.innerHTML = PROJECTS.filter(function(p){ return p.category !== "web"; }).map(cardHTML).join("");
+const industrial = document.getElementById("industrial");
+const rooms = document.getElementById("rooms");
+webGrid.innerHTML = PROJECTS.filter(function(p){ return p.category === "web"; }).map(function(p){ return cardHTML(p); }).join("");
+industrial.innerHTML = SITE_INDEX.industrial.map(indexCard).join("");
+rooms.innerHTML = SITE_INDEX.rooms.map(indexCard).join("");
 
-const cards = [...webGrid.querySelectorAll(".card"), ...grid.querySelectorAll(".card")];
+const cards = [...webGrid.querySelectorAll(".card"), ...industrial.querySelectorAll(".card"), ...rooms.querySelectorAll(".card")];
 const io = new IntersectionObserver((entries)=>{
   entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
 }, {threshold: 0.12});
 cards.forEach((c)=> io.observe(c));
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) cards.forEach((c)=> c.classList.add("in"));
-
-function applyFilter(key){
-  let n = 0;
-  cards.forEach((c)=>{
-    const ok = key === "all" || c.dataset.filters.split(" ").includes(key);
-    c.hidden = !ok;
-    if (ok) n++;
-  });
-  if (recent) recent.hidden = ![...webGrid.children].some((c)=> !c.hidden);
-  countEl.textContent = n + (n === 1 ? " project" : " projects");
-  emptyEl.classList.toggle("show", n === 0);
-  document.querySelectorAll(".chip").forEach((b)=> b.setAttribute("aria-pressed", b.dataset.filter === key ? "true" : "false"));
-}
-document.querySelectorAll(".chip").forEach((b)=>{
-  b.addEventListener("click", ()=>{
-    applyFilter(b.dataset.filter);
-    const url = b.dataset.filter === "all" ? location.pathname : "#" + b.dataset.filter;
-    history.replaceState(null, "", url);
-  });
-});
-applyFilter("all");
 
 function projectById(id){ return PROJECTS.find((p)=> p.id === id); }
 
@@ -520,7 +546,7 @@ function step(d){
   imgIndex = (imgIndex + d + current.images.length) % current.images.length;
   renderImage();
 }
-grid.addEventListener("click", (e)=>{
+document.getElementById("built").addEventListener("click", (e)=>{
   if (e.target.closest("a")) return;
   const card = e.target.closest(".card");
   if (card && card.dataset.id) openProject(card.dataset.id);
@@ -564,10 +590,9 @@ document.addEventListener("keydown", (e)=>{
 function fromHash(){
   const id = decodeURIComponent(location.hash.replace("#",""));
   if (!id) return;
-  if (SITE_WORK.categories.some(function(c){ return c.id === id; })) {
-    applyFilter(id);
-    const bar = document.getElementById("filters");
-    const target = id === "web" && recent ? recent : bar;
+  const jumps = { web: "web", architecture: "architecture", product: "industrial-heading", furniture: "rooms-heading", office: "rooms-heading", interior: "rooms-heading", concepts: "rooms-heading" };
+  if (jumps[id]) {
+    const target = id === "web" && recent ? recent : document.getElementById(jumps[id]);
     if (target) target.scrollIntoView({block:"start"});
     return;
   }
