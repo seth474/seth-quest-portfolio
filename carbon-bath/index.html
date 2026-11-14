@@ -81,40 +81,102 @@
   .story-lead img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center}
   .eng{
     width:100%;
-    background:#F3F1EC;
+    background:#F7F5F1;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
-    padding:48px 0 56px;
+    padding:72px 0 96px;
+    overflow-x:clip;
   }
-  .eng-inner{width:min(1480px, calc(100% - 40px)); margin:0 auto}
-  .eng-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:36px 28px;
-    margin-top:28px;
-    align-items:start;
+  .eng-inner{width:min(1360px, calc(100% - 64px)); margin:0 auto}
+  .eng-credit{
+    font-family:"Space Grotesk",sans-serif; font-weight:500;
+    font-size:clamp(28px, 3.2vw, 42px); letter-spacing:-0.035em; line-height:1.12;
+    max-width:18em; margin:0;
   }
-  .eng-grid figure{background:#fff; border:1px solid rgba(26,24,20,0.08); padding:14px 14px 16px}
+  .eng-intro{max-width:58ch; margin-top:18px}
+  .eng-hero{margin:40px 0 0}
+  .eng-hero-frame{
+    height:min(78vh, 900px); aspect-ratio:3 / 4; width:auto; max-width:100%;
+    margin:0 auto; overflow:hidden; background:#e7e5e2;
+  }
+  .eng-hero-frame video{width:100%; height:100%; object-fit:cover; object-position:center center; background:#e7e5e2}
+  .spread{
+    display:grid; grid-template-columns:repeat(12, minmax(0, 1fr));
+    column-gap:28px; row-gap:48px; margin-top:88px;
+  }
+  .spread > .kicker{grid-column:1 / -1; margin:0 0 -8px; font-weight:500}
+  .tile{min-width:0; margin:0}
+  .span-12{grid-column:1 / -1}
+  .span-8{grid-column:span 8}
+  .span-7{grid-column:span 7}
+  .span-6{grid-column:span 6}
+  .span-5{grid-column:span 5}
+  .offset-7{grid-column:3 / span 7}
+  .offset-5{grid-column:8 / span 5}
+  .cap-aside{
+    grid-column:1 / -1; display:grid;
+    grid-template-columns:minmax(0, 7fr) minmax(0, 5fr);
+    gap:24px 40px; align-items:end;
+  }
+  .cap-aside.aside-8{grid-template-columns:minmax(0, 8fr) minmax(0, 4fr)}
+  .mech{
+    grid-column:1 / -1; display:grid;
+    grid-template-columns:minmax(0, 6fr) minmax(0, 6fr);
+    gap:40px 36px; align-items:start;
+  }
+  .mech .f09{grid-column:1; grid-row:1 / span 2}
+  .mech .f10,.mech .f11{grid-column:2; justify-self:end; width:84%}
+  .mech .f10{grid-row:1}
+  .mech .f11{grid-row:2}
+  .tri{
+    grid-column:1 / -1; display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:40px 24px; align-items:start;
+  }
   .eng-open{
     display:block; width:100%; margin:0; padding:0; border:0; background:transparent;
-    cursor:zoom-in; text-align:center;
+    cursor:zoom-in; text-align:left;
+  }
+  .eng-open.eng-text{
+    width:auto; margin-top:10px; cursor:pointer;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--bone-dim);
   }
   .eng-open:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
-  .eng-grid img{width:auto; max-width:100%; height:auto; margin:0 auto; background:#fff}
-  .eng figcaption{font-size:13px; line-height:1.45; letter-spacing:0; margin-top:12px}
+  .eng-open img{width:auto; max-width:100%; height:auto}
+  .tile video{width:100%; max-width:1280px; height:auto; background:#111}
+  .eng figcaption{
+    font-family:"Inter Tight",sans-serif; font-size:15px; line-height:1.45;
+    letter-spacing:0; color:var(--bone-dim); margin-top:24px; max-width:46ch;
+  }
+  .fig-no{
+    display:block; font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--amber); margin-bottom:6px;
+  }
   .eng-view{
-    width:fit-content; max-width:calc(100vw - 24px); max-height:calc(100vh - 24px);
-    border:0; padding:46px 16px 14px; background:#F3F1EC; color:var(--bone);
+    width:min(1100px, calc(100vw - 24px)); max-height:calc(100vh - 24px);
+    border:0; padding:52px 56px 20px; background:#F7F5F1; color:var(--bone);
+    overflow-x:clip; overflow-y:auto;
   }
   .eng-view::backdrop{background:rgba(20,18,14,0.72)}
   .eng-view figure{margin:0}
-  .eng-view img{display:block; width:auto; height:auto; max-width:92vw; max-height:78vh; background:#fff}
-  .eng-view figcaption{max-width:72ch; margin-top:10px}
-  .eng-close{
-    position:absolute; top:10px; right:10px;
-    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-    background:#fff; color:var(--bone); border:1px solid rgba(26,24,20,0.16); padding:6px 10px; cursor:pointer;
+  .eng-view img,.eng-view video{
+    display:block; width:auto; height:auto; max-width:100%; margin:0 auto; background:#fff;
   }
+  .eng-view [hidden]{display:none !important}
+  .eng-view figcaption{max-width:68ch; margin-top:16px}
+  .eng-close,.eng-nav{
+    position:absolute; z-index:2;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    background:#fff; color:var(--bone); border:1px solid rgba(26,24,20,0.16); cursor:pointer;
+  }
+  .eng-close{top:12px; right:12px; padding:6px 10px}
+  .eng-nav{
+    top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%;
+    font-size:22px; letter-spacing:0; text-transform:none; line-height:1;
+  }
+  .eng-prev{left:10px}
+  .eng-next{right:10px}
   .sheet + .sheet{border-top:1px solid var(--line)}
   @media (max-width: 800px){
     nav.top{padding:12px 14px}
@@ -123,9 +185,15 @@
     .sheet{width:min(1180px, calc(100% - 28px))}
     .seq{gap:4px}
     .seq figcaption{font-size:9px; line-height:1.3}
-    .deploy,.eng-grid{grid-template-columns:1fr}
+    .deploy{grid-template-columns:1fr}
     .deploy figure{max-width:240px}
-    .eng-inner{width:min(1480px, calc(100% - 28px))}
+    .eng{padding:40px 0 56px}
+    .eng-inner{width:min(1360px, calc(100% - 32px))}
+    .eng-hero-frame{width:100%; height:auto; aspect-ratio:16 / 9}
+    .spread{display:flex; flex-direction:column; gap:32px; margin-top:56px}
+    .cap-aside,.cap-aside.aside-8,.mech,.tri{display:flex; flex-direction:column; gap:32px}
+    .mech .f10,.mech .f11{width:100%}
+    .tile{width:100%}
     .story{
       grid-template-columns:1fr 1fr;
       grid-template-areas:
@@ -214,88 +282,157 @@
 
 <section class="eng" id="engineering">
   <div class="eng-inner">
-  <p class="kicker">Engineering detail</p>
-  <h2>Engineering detail</h2>
-  <div class="eng-grid">
-    <figure>
+  <p class="kicker">Engineering</p>
+  <h2 class="eng-credit">Designed and engineered by Seth Quest: every model, drawing, mechanism and manufacturing detail.</h2>
+  <p class="body eng-intro">The Carbon Bath is a concept. The drawings, sections and mechanism studies below are Seth’s own design and engineering process, from the current v47f model and the v44–v47 studies that carried into it.</p>
+  <figure class="eng-hero" id="eng-hero">
+    <div class="eng-hero-frame">
+      <video src="/portfolio/img/carbon-bath/engineering/cb-e-explode.mp4" width="1600" height="900" poster="/portfolio/img/carbon-bath/engineering/cb-e-explode-poster.webp" muted autoplay loop playsinline preload="metadata" aria-label="Exploded view rendered from the v47f CAD model: nested wall rings, telescoping posts, sliding wall, floor and pan, stair box and landing legs."></video>
+    </div>
+    <figcaption>Exploded view rendered from the v47f CAD model: nested wall rings, telescoping posts, sliding wall, floor and pan, stair box and landing legs.</figcaption>
+  </figure>
+
+  <div class="spread" id="eng-plans">
+    <h3 class="kicker">Architecture and plans</h3>
+    <figure class="tile span-12">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e01-floor-plan.webp" width="960" height="650" alt="Top-down floor plan: teak deck, sink, toilet cabinet, sliding door wall and four landing legs." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e13-sliding-wall-plan-open.webp" width="5100" height="3300" alt="Sliding-wall plan, open position. A concept sheet from 30 September 2026: nested wall rings, a sliding wall, and fixture layout. Later work revised the overall plan and the wall stroke; this is not the current v47f drawing set." loading="lazy" decoding="async">
       </button>
-      <figcaption>Top-down floor plan: teak deck, sink, toilet cabinet, sliding door wall and four landing legs.</figcaption>
+      <figcaption><span class="fig-no">Fig. 01</span>Sliding-wall plan, open position. A concept sheet from 30 September 2026: nested wall rings, a sliding wall, and fixture layout. Later work revised the overall plan and the wall stroke; this is not the current v47f drawing set.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile cap-aside">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e02-pan-section.webp" width="1470" height="682" alt="Shower-pan section: continuous FRP pan falling to one drain, with molded ribs under the teak." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e14-sliding-wall-plan-closed.webp" width="5100" height="3300" alt="Sliding-wall plan, closed position. Same R03 concept sheet as Fig. 01, showing the wall nested for travel." loading="lazy" decoding="async">
       </button>
-      <figcaption>Shower-pan section: continuous FRP pan falling to one drain, with molded ribs under the teak.</figcaption>
+      <figcaption><span class="fig-no">Fig. 02</span>Sliding-wall plan, closed position. Same R03 concept sheet as Fig. 01, showing the wall nested for travel.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile offset-5">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e03-stair-box-layout.webp" width="1600" height="1166" alt="Stowed stair-box layout, plan and side: treads, rails and slides nested in the box." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e01-floor-plan.webp" width="960" height="650" alt="Top-down floor plan: teak deck, sink, toilet cabinet, sliding-door wall and four landing legs." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stowed stair-box layout, plan and side: treads, rails and slides nested in the box.</figcaption>
+      <figcaption><span class="fig-no">Fig. 03</span>Top-down floor plan: teak deck, sink, toilet cabinet, sliding-door wall and four landing legs.</figcaption>
     </figure>
-    <figure>
+  </div>
+
+  <div class="spread" id="eng-sections">
+    <h3 class="kicker">Section cuts</h3>
+    <figure class="tile cap-aside aside-8">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e04-stair-engineering-study.webp" width="1188" height="1600" alt="Stair engineering study: deploy sequence, side elevation and packing check against the hitch." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e07-stair-box-side-cutaway.webp" width="2248" height="1285" alt="Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stair engineering study: deploy sequence, side elevation and packing check against the hitch.</figcaption>
+      <figcaption><span class="fig-no">Fig. 04</span>Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile offset-7">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e05-stair-telescope-study.webp" width="1600" height="640" alt="Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e15-cross-section-stowed.webp" width="2100" height="1290" alt="Cutaway of the stowed stair box, looking down into the cavity: both landing-leg tubes and both teak treads nested in the box." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked.</figcaption>
+      <figcaption><span class="fig-no">Fig. 05</span>Cutaway of the stowed stair box, looking down into the cavity: both landing-leg tubes and both teak treads nested in the box.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile span-6">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e06-slot-lock-schematic.webp" width="1600" height="1185" alt="Tread slot-pivot lock schematic, plus the telescope side push-button." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e16-end-section-midlength.webp" width="2034" height="1368" alt="End section through the stowed stair box at mid-length: the box hung below the floor plate, nested treads, and the landing-leg tubes beside them." loading="lazy" decoding="async">
       </button>
-      <figcaption>Tread slot-pivot lock schematic, plus the telescope side push-button.</figcaption>
+      <figcaption><span class="fig-no">Fig. 06</span>End section through the stowed stair box at mid-length: the box hung below the floor plate, nested treads, and the landing-leg tubes beside them.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile span-6">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e07-stair-box-side-cutaway.webp" width="1600" height="915" alt="Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e02-pan-section.webp" width="1470" height="682" alt="Shower-pan section: a continuous pan falling to one drain, with molded ribs under the teak." loading="lazy" decoding="async">
       </button>
-      <figcaption>Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box.</figcaption>
+      <figcaption><span class="fig-no">Fig. 07</span>Shower-pan section: a continuous pan falling to one drain, with molded ribs under the teak.</figcaption>
     </figure>
-    <figure>
+  </div>
+
+  <div class="spread" id="eng-mechanisms">
+    <h3 class="kicker">Mechanisms</h3>
+    <figure class="tile span-12">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e08-stair-box-brackets.webp" width="1000" height="716" alt="Stair box hung from the floor plate on four welded L-brackets." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e03-stair-box-layout.webp" width="2560" height="1866" alt="Stowed stair-box layout, plan and side: treads, rails and slides nested in the box, dimensioned in inches." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stair box hung from the floor plate on four welded L-brackets.</figcaption>
+      <figcaption><span class="fig-no">Fig. 08</span>Stowed stair-box layout, plan and side: treads, rails and slides nested in the box, dimensioned in inches.</figcaption>
     </figure>
-    <figure>
+    <div class="mech">
+      <figure class="tile f09">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e04-stair-engineering-study.webp" width="2582" height="3476" alt="Stair engineering study: deploy sequence, side elevation and packing check against the hitch." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 09</span>Stair engineering study: deploy sequence, side elevation and packing check against the hitch.</figcaption>
+      </figure>
+      <figure class="tile f10">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e05-stair-telescope-study.webp" width="2100" height="840" alt="Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 10</span>Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked.</figcaption>
+      </figure>
+      <figure class="tile f11">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e06-slot-lock-schematic.webp" width="2096" height="1552" alt="Tread slot-pivot lock schematic, plus the telescope side push-button." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 11</span>Tread slot-pivot lock schematic, plus the telescope side push-button.</figcaption>
+      </figure>
+    </div>
+    <figure class="tile span-8">
       <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e09-bracket-weld-bolts.webp" width="1000" height="716" alt="Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall." loading="lazy" decoding="async">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e17-tread-pivot-telescope-joint.webp" width="2000" height="900" alt="Tread pivot and spring-detent lock (left) and the stair-leg telescope joint (right)." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall.</figcaption>
+      <figcaption><span class="fig-no">Fig. 12</span>Tread pivot and spring-detent lock (left) and the stair-leg telescope joint (right).</figcaption>
     </figure>
-    <figure>
-      <button type="button" class="eng-open">
-        <img src="/portfolio/img/carbon-bath/engineering/cb-e10-bracket-bolt-section.webp" width="1000" height="836" alt="Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path." loading="lazy" decoding="async">
-      </button>
-      <figcaption>Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path.</figcaption>
+    <figure class="tile span-8">
+      <video src="/portfolio/img/carbon-bath/engineering/cb-e19-stair-mechanism.mp4" width="1280" height="720" poster="/portfolio/img/carbon-bath/engineering/cb-e19-stair-mechanism-poster.webp" muted autoplay loop playsinline preload="none" aria-label="Stair mechanism: the assembly slides out of the box, tilts, and the legs telescope until both teak treads sit level."></video>
+      <button type="button" class="eng-open eng-text">View larger</button>
+      <figcaption><span class="fig-no">Fig. 13</span>Stair mechanism: the assembly slides out of the box, tilts, and the legs telescope until both teak treads sit level.</figcaption>
     </figure>
-    <figure>
+  </div>
+
+  <div class="spread" id="eng-manufacturing">
+    <h3 class="kicker">Manufacturing details</h3>
+    <div class="tri">
+      <figure class="tile">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e08-stair-box-brackets.webp" width="1000" height="716" alt="Stair box hung from the floor plate on four welded L-brackets." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 14</span>Stair box hung from the floor plate on four welded L-brackets.</figcaption>
+      </figure>
+      <figure class="tile">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e09-bracket-weld-bolts.webp" width="1000" height="716" alt="Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 15</span>Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall.</figcaption>
+      </figure>
+      <figure class="tile">
+        <button type="button" class="eng-open">
+          <img src="/portfolio/img/carbon-bath/engineering/cb-e10-bracket-bolt-section.webp" width="1000" height="836" alt="Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path." loading="lazy" decoding="async">
+        </button>
+        <figcaption><span class="fig-no">Fig. 16</span>Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path.</figcaption>
+      </figure>
+    </div>
+    <figure class="tile span-5">
       <button type="button" class="eng-open">
         <img src="/portfolio/img/carbon-bath/engineering/cb-e11-tread-nose-section.webp" width="1200" height="1400" alt="Stair-tread nose: underside chamfer with an LED slot, and a section through the nose." loading="lazy" decoding="async">
       </button>
-      <figcaption>Stair-tread nose: underside chamfer with an LED slot, and a section through the nose.</figcaption>
+      <figcaption><span class="fig-no">Fig. 17</span>Stair-tread nose: underside chamfer with an LED slot, and a section through the nose.</figcaption>
     </figure>
-    <figure>
+    <figure class="tile span-7">
       <button type="button" class="eng-open">
         <img src="/portfolio/img/carbon-bath/engineering/cb-e12-legs-stair-box-packed.webp" width="1200" height="800" alt="Packed underside, current model: landing-leg posts and the stair box under the floor plate." loading="lazy" decoding="async">
       </button>
-      <figcaption>Packed underside, current model: landing-leg posts and the stair box under the floor plate.</figcaption>
+      <figcaption><span class="fig-no">Fig. 18</span>Packed underside, current model: landing-leg posts and the stair box under the floor plate.</figcaption>
+    </figure>
+    <figure class="tile offset-5">
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e18-roof-pole-tab.webp" width="1200" height="800" alt="Roof-plate tab wrapping a telescoping post." loading="lazy" decoding="async">
+      </button>
+      <figcaption><span class="fig-no">Fig. 19</span>Roof-plate tab wrapping a telescoping post.</figcaption>
     </figure>
   </div>
   </div>
 </section>
 <dialog class="eng-view" id="eng-view" aria-label="Engineering drawing">
   <button type="button" class="eng-close">Close</button>
+  <button type="button" class="eng-nav eng-prev" aria-label="Previous figure">‹</button>
+  <button type="button" class="eng-nav eng-next" aria-label="Next figure">›</button>
   <figure>
     <img alt="">
+    <video muted playsinline loop controls hidden></video>
     <figcaption></figcaption>
   </figure>
 </dialog>
@@ -303,6 +440,7 @@
 (function(){
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll("video").forEach(function(v){
+    if (v.closest(".eng-view")) return;
     v.muted = true;
     v.playsInline = true;
     if (reduce) { v.removeAttribute("autoplay"); v.pause(); return; }
@@ -318,27 +456,77 @@
 (function(){
   var view = document.getElementById("eng-view");
   var viewImg = view.querySelector("img");
+  var viewVid = view.querySelector("video");
   var viewCap = view.querySelector("figcaption");
   var closeBtn = view.querySelector(".eng-close");
-  document.querySelectorAll(".eng-open").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      var img = btn.querySelector("img");
+  var items = Array.prototype.slice.call(document.querySelectorAll(".eng .eng-open"));
+  var index = 0;
+  function show(i){
+    index = (i + items.length) % items.length;
+    var btn = items[index];
+    var fig = btn.closest("figure");
+    var img = fig.querySelector("img");
+    var vid = fig.querySelector("video");
+    var capEl = fig.querySelector("figcaption");
+    var no = capEl.querySelector(".fig-no");
+    viewCap.textContent = no ? (no.textContent + " — " + capEl.innerText.replace(no.innerText, "").trim()) : capEl.innerText;
+    if (vid) {
+      viewImg.hidden = true;
+      viewImg.removeAttribute("src");
+      viewVid.hidden = false;
+      viewVid.poster = vid.getAttribute("poster") || "";
+      viewVid.src = vid.currentSrc || vid.getAttribute("src");
+      viewVid.width = vid.getAttribute("width");
+      viewVid.height = vid.getAttribute("height");
+      var vw = vid.getAttribute("width");
+      var vh = vid.getAttribute("height");
+      viewVid.style.maxWidth = "min(100%, " + vw + "px)";
+      viewVid.style.maxHeight = "min(72vh, " + vh + "px)";
+      viewVid.muted = true;
+      var p = viewVid.play();
+      if (p && p.catch) p.catch(function(){});
+    } else {
+      viewVid.pause();
+      viewVid.removeAttribute("src");
+      viewVid.hidden = true;
+      viewImg.hidden = false;
       var w = img.getAttribute("width");
       var h = img.getAttribute("height");
       viewImg.src = img.currentSrc || img.getAttribute("src");
       viewImg.width = w;
       viewImg.height = h;
       viewImg.alt = img.alt;
-      viewImg.style.maxWidth = "min(92vw, " + w + "px)";
-      viewImg.style.maxHeight = "min(78vh, " + h + "px)";
-      viewCap.textContent = btn.parentElement.querySelector("figcaption").textContent;
-      view.showModal();
-      closeBtn.focus();
-    });
+      viewImg.style.width = "auto";
+      viewImg.style.height = "auto";
+      viewImg.style.maxWidth = "min(100%, " + w + "px)";
+      viewImg.style.maxHeight = "min(72vh, " + h + "px)";
+    }
+    if (!view.open) view.showModal();
+  }
+  items.forEach(function(btn, i){
+    btn.addEventListener("click", function(){ show(i); closeBtn.focus(); });
   });
+  view.querySelector(".eng-prev").addEventListener("click", function(){ show(index - 1); });
+  view.querySelector(".eng-next").addEventListener("click", function(){ show(index + 1); });
   closeBtn.addEventListener("click", function(){ view.close(); });
   view.addEventListener("click", function(e){ if (e.target === view) view.close(); });
-  view.addEventListener("close", function(){ viewImg.removeAttribute("src"); });
+  view.addEventListener("close", function(){
+    viewImg.removeAttribute("src");
+    viewVid.pause();
+    viewVid.removeAttribute("src");
+  });
+  view.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight") { e.preventDefault(); show(index + 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); show(index - 1); }
+  });
+  var x0 = null;
+  view.addEventListener("touchstart", function(e){ x0 = e.changedTouches[0].clientX; }, {passive: true});
+  view.addEventListener("touchend", function(e){
+    if (x0 == null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 48) show(index + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive: true});
 })();
 </script>
 </body>
