@@ -1,5 +1,5 @@
 {
-  "ignoreCommand": "case \"$VERCEL_GIT_COMMIT_REF\" in main|cursor/home-interior-hero-b2e1) exit 1;; *) exit 0;; esac",
+  "ignoreCommand": "case \"$VERCEL_GIT_COMMIT_REF\" in main|cursor/chooser-fusb-tile-b2e1) exit 1;; *) exit 0;; esac",
   "cleanUrls": true,
   "redirects": [
     { "source": "/lizzietours-index", "destination": "/real-estate-ai-tours/", "permanent": true },
