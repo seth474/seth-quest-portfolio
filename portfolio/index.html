@@ -4,16 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Built · Seth Quest</title>
-<meta name="description" content="Built work by Seth Quest: furniture, office, interiors, products, and architecture." />
+<meta name="description" content="Built work by Seth Quest: architecture, products, furniture, offices, and interiors." />
 <link rel="canonical" href="https://sethquest.com/portfolio" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sethquest.com/portfolio" />
 <meta property="og:title" content="Built · Seth Quest" />
-<meta property="og:description" content="Furniture, office, interiors, products, and architecture." />
+<meta property="og:description" content="Architecture, products, furniture, offices, and interiors." />
 <meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Built · Seth Quest" />
-<meta name="twitter:description" content="Furniture, office, interiors, products, and architecture." />
+<meta name="twitter:description" content="Architecture, products, furniture, offices, and interiors." />
 <meta name="twitter:image" content="https://sethquest.com/portfolio/img/carbon-cabins.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -115,6 +115,20 @@
   .hero-photo img{width:100%; height:100%; object-fit:contain; object-position:center; background:#e6e0d2}
 
   #ai, #recent, #built{scroll-margin-top:72px}
+  .ai-web{
+    border-top:1px solid var(--line);
+    margin-top:36px;
+    padding:56px 0 10px;
+  }
+  .ai-web h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:500;
+    font-size:clamp(48px, 8vw, 96px);
+    letter-spacing:-0.04em;
+    line-height:0.9;
+    margin:0 0 18px;
+  }
+  .ai-web #recent{margin-top:36px}
   .about{padding:28px 0 8px}
   .about p{margin:0 0 14px; color:var(--bone-dim); font-size:16.5px; max-width:68ch}
   .about p strong{color:var(--bone); font-weight:600}
@@ -307,14 +321,15 @@
     <a class="mark" href="/">Seth <em>Quest</em></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="site-menu" id="site-menu" hidden>
-      <a class="menu-top" href="#ai">AI</a>
-      <a class="menu-sub" href="#web">Web Design</a>
       <a class="menu-top" href="#built">Built</a>
+      <a class="menu-sub" href="#architecture">Architecture</a>
+      <a class="menu-sub" href="#product">Product Design</a>
       <a class="menu-sub" href="#furniture">Furniture Design</a>
       <a class="menu-sub" href="#office">Office Design</a>
       <a class="menu-sub" href="#interior">Interior Design</a>
-      <a class="menu-sub" href="#product">Product Design</a>
-      <a class="menu-sub" href="#architecture">Architecture</a>
+      <a class="menu-sub" href="#concepts">Concepts</a>
+      <a class="menu-top" href="#ai">AI &amp; Web</a>
+      <a class="menu-sub" href="#web">Web Design</a>
       <a class="menu-top" href="/#contact">Contact</a>
     </div>
   </nav>
@@ -324,7 +339,7 @@
       <div>
         <p class="eyebrow"><i></i> Built</p>
         <h1>Built</h1>
-        <p class="lede">Furniture, office, interiors, products, and architecture.</p>
+        <p class="lede">Architecture, products, furniture, offices, and interiors.</p>
       </div>
       <figure class="hero-photo">
         <img src="/portfolio/img/hero-seth-800.webp" srcset="/portfolio/img/hero-seth-800.webp 800w, /portfolio/img/hero-seth.webp 1119w" sizes="(max-width: 759px) 92vw, 40vw" width="1119" height="1600" alt="Seth Quest standing inside a timber-arched structure" />
@@ -332,13 +347,10 @@
     </div>
   </header>
 
-  <section id="ai" class="wrap" style="padding:48px 0 10px">
-    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(48px,8vw,96px);letter-spacing:-0.04em;line-height:0.9;margin:0 0 18px">AI</h2>
-    <div id="ai-list"></div>
-  </section>
-
-  <div class="wrap" id="recent">
-    <div class="grid" id="web-grid"></div>
+  <div class="wrap" id="built">
+    <div class="tools" id="filters" role="toolbar" aria-label="Filter Built work"></div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty">Nothing in this filter.</p>
   </div>
 
   <section class="about wrap">
@@ -347,11 +359,13 @@
     <p>My degree is in product design, so I’ve included some of the notable products I’ve developed over the years. In this chapter of my life I’ve focused my attention on architecture. I’m currently utilizing all of my skills as an industrial designer to bring beautiful, carbon neutral homes to the marketplace. My mission is to create affordable contemporary homes for the millennial generation.</p>
   </section>
 
-  <div class="wrap" id="built">
-    <div class="tools" id="filters" role="toolbar" aria-label="Filter Built work"></div>
-    <div class="grid" id="grid"></div>
-    <p class="empty" id="empty">Nothing in this filter.</p>
-  </div>
+  <section id="ai" class="wrap ai-web">
+    <h2>AI &amp; Web</h2>
+    <div id="ai-list"></div>
+    <div id="recent">
+      <div class="grid" id="web-grid"></div>
+    </div>
+  </section>
 
   <footer class="foot">
     <div class="wrap">

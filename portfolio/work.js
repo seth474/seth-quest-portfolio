@@ -1,18 +1,76 @@
 // Built and AI work shown on the site.
-// To add a Built project, append an object to `built` with a `category` id
+// `built` is shown in array order: Architecture, Product, Furniture,
+// Office, Interior, then Concepts. Web stays in its own group.
+// To add a Built project, place an object in `built` with a `category` id
 // from `categories` and a non-empty `images` array. A `video` path opens
 // that file in the viewer instead of paging the stills. `soft` keeps a
 // low-resolution still at its natural size on the card.
 window.SITE_WORK = {
   categories: [
-    { id: "web", label: "Web Design" },
+    { id: "architecture", label: "Architecture" },
+    { id: "product", label: "Product Design" },
     { id: "furniture", label: "Furniture Design" },
     { id: "office", label: "Office Design" },
     { id: "interior", label: "Interior Design" },
-    { id: "product", label: "Product Design" },
-    { id: "architecture", label: "Architecture" }
+    { id: "concepts", label: "Concepts" },
+    { id: "web", label: "Web Design" }
   ],
   built: [
+    {
+      id: "spyglass",
+      title: "Spyglass",
+      category: "architecture",
+      line: "Treehouse for a Texas development.",
+      images: [
+        ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
+        ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
+        ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
+      ]
+    },
+    {
+      id: "monarch-treehouse",
+      title: "Monarch Treehouse",
+      category: "architecture",
+      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
+      images: [
+        ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
+        ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
+      ]
+    },
+    {
+      id: "fusb",
+      title: "FUSB",
+      category: "product",
+      line: "Front USB for iMac. Accessory sold to Blue Lounge.",
+      images: [
+        ["/portfolio/img/fusb-a.webp", "FUSB, a front USB accessory being plugged in at the stand of an iMac", 1600, 1463],
+        ["/portfolio/img/fusb-b.webp", "FUSB attached behind an iMac, with a cable running to a tablet", 986, 1463]
+      ]
+    },
+    {
+      id: "panda-overland",
+      title: "Panda Overland Systems",
+      category: "product",
+      line: "Prototype of an interior kit for Alu-Cab.",
+      images: [
+        ["/portfolio/img/panda-a.webp", "Panda Overland Systems set up at night under an awning", 1600, 1200],
+        ["/portfolio/img/panda-b.webp", "Panda Overland interior kit, drawers and a slat wall", 1600, 1200],
+        ["/portfolio/img/panda-c.webp", "Panda Overland interior kit, lit slat wall", 1600, 1200],
+        ["/portfolio/img/panda-d.webp", "Panda Overland interior kit with the tailgate open", 1600, 1200]
+      ]
+    },
+    {
+      id: "mola",
+      title: "Mola",
+      category: "product",
+      line: "Sustainable toothbrush with replaceable bristles.",
+      wide: true,
+      images: [
+        ["/portfolio/img/mola.webp", "Mola toothbrushes with replaceable heads", 1600, 668],
+        ["/portfolio/img/mola-b.webp", "Mola toothbrush sleeves", 1600, 1200],
+        ["/portfolio/img/mola-c.webp", "Mola sleeve pattern, detail", 1600, 1200]
+      ]
+    },
     {
       id: "knot-light",
       title: "Knot Light",
@@ -92,18 +150,6 @@ window.SITE_WORK = {
       ]
     },
     {
-      id: "waterhouse-villa",
-      title: "Waterhouse Villa",
-      category: "interior",
-      line: "Design for a retreat center.",
-      images: [
-        ["/portfolio/img/villa-a.webp", "Waterhouse Villa living room render", 1600, 900],
-        ["/portfolio/img/villa-b.webp", "Waterhouse Villa shower", 1600, 900],
-        ["/portfolio/img/villa-c.webp", "Waterhouse Villa kitchen", 1600, 900],
-        ["/portfolio/img/villa-d.webp", "Waterhouse Villa bathroom", 1600, 900]
-      ]
-    },
-    {
       id: "juniper",
       title: "Juniper",
       category: "interior",
@@ -137,54 +183,9 @@ window.SITE_WORK = {
       ]
     },
     {
-      id: "mola",
-      title: "Mola",
-      category: "product",
-      line: "Sustainable toothbrush with replaceable bristles.",
-      wide: true,
-      images: [
-        ["/portfolio/img/mola.webp", "Mola toothbrushes with replaceable heads", 1600, 668],
-        ["/portfolio/img/mola-b.webp", "Mola toothbrush sleeves", 1600, 1200],
-        ["/portfolio/img/mola-c.webp", "Mola sleeve pattern, detail", 1600, 1200]
-      ]
-    },
-    {
-      id: "fusb",
-      title: "FUSB",
-      category: "product",
-      line: "Front USB for iMac. Accessory sold to Blue Lounge.",
-      images: [
-        ["/portfolio/img/fusb-a.webp", "FUSB, a front USB accessory being plugged in at the stand of an iMac", 1600, 1463],
-        ["/portfolio/img/fusb-b.webp", "FUSB attached behind an iMac, with a cable running to a tablet", 986, 1463]
-      ]
-    },
-    {
-      id: "panda-overland",
-      title: "Panda Overland Systems",
-      category: "product",
-      line: "Prototype of an interior kit for Alu-Cab.",
-      images: [
-        ["/portfolio/img/panda-a.webp", "Panda Overland Systems set up at night under an awning", 1600, 1200],
-        ["/portfolio/img/panda-b.webp", "Panda Overland interior kit, drawers and a slat wall", 1600, 1200],
-        ["/portfolio/img/panda-c.webp", "Panda Overland interior kit, lit slat wall", 1600, 1200],
-        ["/portfolio/img/panda-d.webp", "Panda Overland interior kit with the tailgate open", 1600, 1200]
-      ]
-    },
-    {
-      id: "spyglass",
-      title: "Spyglass",
-      category: "architecture",
-      line: "Treehouse for a Texas development.",
-      images: [
-        ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
-        ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
-        ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
-      ]
-    },
-    {
       id: "carbon-cabins",
       title: "Carbon Cabins",
-      category: "architecture",
+      category: "concepts",
       line: "Design for a Tennessee development.",
       wide: true,
       images: [
@@ -195,13 +196,15 @@ window.SITE_WORK = {
       ]
     },
     {
-      id: "monarch-treehouse",
-      title: "Monarch Treehouse",
-      category: "architecture",
-      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
+      id: "waterhouse-villa",
+      title: "Waterhouse Villa",
+      category: "concepts",
+      line: "Design for a retreat center.",
       images: [
-        ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
-        ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
+        ["/portfolio/img/villa-a.webp", "Waterhouse Villa living room render", 1600, 900],
+        ["/portfolio/img/villa-b.webp", "Waterhouse Villa shower", 1600, 900],
+        ["/portfolio/img/villa-c.webp", "Waterhouse Villa kitchen", 1600, 900],
+        ["/portfolio/img/villa-d.webp", "Waterhouse Villa bathroom", 1600, 900]
       ]
     },
     {
