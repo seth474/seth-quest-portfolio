@@ -466,6 +466,9 @@ function cardHTML(p, entry){
   return `<button class="card reveal${size}" type="button" data-id="${p.id}" data-filters="${p.category}">${inner}</button>`;
 }
 function indexCard(entry){
+  if (entry.image) {
+    return `<a class="card reveal in" href="${entry.href}"><span class="frame"><img src="${entry.image}" width="${entry.width}" height="${entry.height}" alt="${entry.alt}" loading="lazy" decoding="async"></span><span class="meta"><span class="cat">${entry.label}</span><span class="name">${entry.title}</span><span class="line">${entry.line}</span></span></a>`;
+  }
   if (entry.placeholder) {
     return `<article class="card placeholder reveal in"><span class="frame placeholder-frame"></span><span class="meta"><span class="cat">${entry.label}</span><span class="name">${entry.title}</span><span class="line">${entry.line}</span></span></article>`;
   }
