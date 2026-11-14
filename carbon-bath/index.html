@@ -67,27 +67,48 @@
   .inside{display:grid; gap:16px; margin-top:18px}
   .inside img{width:100%; height:auto; background:#e6e0d2}
   .eng{
-    background:var(--studio);
+    width:100%;
+    background:#F3F1EC;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
+    padding:48px 0 56px;
   }
+  .eng-inner{width:min(1480px, calc(100% - 40px)); margin:0 auto}
   .eng-grid{
     display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:18px 14px;
-    margin-top:18px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:36px 28px;
+    margin-top:28px;
     align-items:start;
   }
-  .eng-grid img{width:100%; height:auto; background:#fff}
-  .eng-grid .native-1200 img{width:auto; max-width:min(100%, 1200px); height:auto}
-  .eng-grid .native-800 img{width:auto; max-width:min(100%, 800px); height:auto}
-  .eng figcaption{font-size:11px; letter-spacing:0.01em}
+  .eng-grid figure{background:#fff; border:1px solid rgba(26,24,20,0.08); padding:14px 14px 16px}
+  .eng-open{
+    display:block; width:100%; margin:0; padding:0; border:0; background:transparent;
+    cursor:zoom-in; text-align:center;
+  }
+  .eng-open:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+  .eng-grid img{width:auto; max-width:100%; height:auto; margin:0 auto; background:#fff}
+  .eng figcaption{font-size:13px; line-height:1.45; letter-spacing:0; margin-top:12px}
+  .eng-view{
+    width:fit-content; max-width:calc(100vw - 24px); max-height:calc(100vh - 24px);
+    border:0; padding:46px 16px 14px; background:#F3F1EC; color:var(--bone);
+  }
+  .eng-view::backdrop{background:rgba(20,18,14,0.72)}
+  .eng-view figure{margin:0}
+  .eng-view img{display:block; width:auto; height:auto; max-width:92vw; max-height:78vh; background:#fff}
+  .eng-view figcaption{max-width:72ch; margin-top:10px}
+  .eng-close{
+    position:absolute; top:10px; right:10px;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    background:#fff; color:var(--bone); border:1px solid rgba(26,24,20,0.16); padding:6px 10px; cursor:pointer;
+  }
   .sheet + .sheet{border-top:1px solid var(--line)}
   @media (max-width: 800px){
     nav.top .links a.quiet{display:none}
     .hero-bleed img{height:auto; object-position:center bottom}
     .strip figure{height:min(58vh, 520px)}
     .motion,.trio,.eng-grid{grid-template-columns:1fr}
+    .eng-inner{width:min(1480px, calc(100% - 28px))}
     .trio img{height:220px}
   }
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
@@ -191,36 +212,93 @@
   </div>
 </section>
 
-<section class="sheet eng" id="engineering">
+<section class="eng" id="engineering">
+  <div class="eng-inner">
   <p class="kicker">Engineering detail</p>
   <h2>Engineering detail</h2>
   <div class="eng-grid">
     <figure>
-      <img src="/portfolio/img/carbon-bath/cb-17-detail-stairs.webp" width="1600" height="900" alt="Teak stair treads folded out from the stair box under the floor." loading="lazy" decoding="async">
-      <figcaption>Teak stair treads folded out from the stair box under the floor.</figcaption>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e01-floor-plan.webp" width="960" height="650" alt="Top-down floor plan: teak deck, sink, toilet cabinet, sliding door wall and four landing legs." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Top-down floor plan: teak deck, sink, toilet cabinet, sliding door wall and four landing legs.</figcaption>
     </figure>
     <figure>
-      <img src="/portfolio/img/carbon-bath/cb-18-detail-lightbar.webp" width="1600" height="900" alt="Light bar set into the trim ring under the teak floor." loading="lazy" decoding="async">
-      <figcaption>Light bar set into the trim ring under the teak floor.</figcaption>
-    </figure>
-    <figure class="native-1200">
-      <img src="/portfolio/img/carbon-bath/cb-19-detail-legs-packed.webp" width="1200" height="800" alt="Packed underside: landing-leg posts and the stair box under the floor plate." loading="lazy" decoding="async">
-      <figcaption>Packed underside: landing-leg posts and the stair box under the floor plate.</figcaption>
-    </figure>
-    <figure class="native-800">
-      <img src="/portfolio/img/carbon-bath/cb-20-packed-rear.webp" width="800" height="528" alt="Packed rear elevation, light bars in the trim ring." loading="lazy" decoding="async">
-      <figcaption>Packed rear elevation, light bars in the trim ring.</figcaption>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e02-pan-section.webp" width="1470" height="682" alt="Shower-pan section: continuous FRP pan falling to one drain, with molded ribs under the teak." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Shower-pan section: continuous FRP pan falling to one drain, with molded ribs under the teak.</figcaption>
     </figure>
     <figure>
-      <img src="/portfolio/img/carbon-bath/cb-04-packed-studio.webp" width="2400" height="1350" alt="Packed on its four landing legs, rings nested, stair box under the floor." loading="lazy" decoding="async">
-      <figcaption>Packed on its four landing legs, rings nested, stair box under the floor.</figcaption>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e03-stair-box-layout.webp" width="1600" height="1166" alt="Stowed stair-box layout, plan and side: treads, rails and slides nested in the box." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stowed stair-box layout, plan and side: treads, rails and slides nested in the box.</figcaption>
     </figure>
     <figure>
-      <img src="/portfolio/img/carbon-bath/cb-10-deployed-studio.webp" width="2400" height="1350" alt="Deployed in the studio: legs down, rings risen, stairs and door open." loading="lazy" decoding="async">
-      <figcaption>Deployed in the studio: legs down, rings risen, stairs and door open.</figcaption>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e04-stair-engineering-study.webp" width="1188" height="1600" alt="Stair engineering study: deploy sequence, side elevation and packing check against the hitch." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stair engineering study: deploy sequence, side elevation and packing check against the hitch.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e05-stair-telescope-study.webp" width="1600" height="640" alt="Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e06-slot-lock-schematic.webp" width="1600" height="1185" alt="Tread slot-pivot lock schematic, plus the telescope side push-button." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Tread slot-pivot lock schematic, plus the telescope side push-button.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e07-stair-box-side-cutaway.webp" width="1600" height="915" alt="Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e08-stair-box-brackets.webp" width="1000" height="716" alt="Stair box hung from the floor plate on four welded L-brackets." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stair box hung from the floor plate on four welded L-brackets.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e09-bracket-weld-bolts.webp" width="1000" height="716" alt="Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e10-bracket-bolt-section.webp" width="1000" height="836" alt="Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e11-tread-nose-section.webp" width="1200" height="1400" alt="Stair-tread nose: underside chamfer with an LED slot, and a section through the nose." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Stair-tread nose: underside chamfer with an LED slot, and a section through the nose.</figcaption>
+    </figure>
+    <figure>
+      <button type="button" class="eng-open">
+        <img src="/portfolio/img/carbon-bath/engineering/cb-e12-legs-stair-box-packed.webp" width="1200" height="800" alt="Packed underside, current model: landing-leg posts and the stair box under the floor plate." loading="lazy" decoding="async">
+      </button>
+      <figcaption>Packed underside, current model: landing-leg posts and the stair box under the floor plate.</figcaption>
     </figure>
   </div>
+  </div>
 </section>
+<dialog class="eng-view" id="eng-view" aria-label="Engineering drawing">
+  <button type="button" class="eng-close">Close</button>
+  <figure>
+    <img alt="">
+    <figcaption></figcaption>
+  </figure>
+</dialog>
 <script>
 (function(){
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -236,6 +314,31 @@
       io.observe(v);
     } else play();
   });
+})();
+(function(){
+  var view = document.getElementById("eng-view");
+  var viewImg = view.querySelector("img");
+  var viewCap = view.querySelector("figcaption");
+  var closeBtn = view.querySelector(".eng-close");
+  document.querySelectorAll(".eng-open").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var img = btn.querySelector("img");
+      var w = img.getAttribute("width");
+      var h = img.getAttribute("height");
+      viewImg.src = img.currentSrc || img.getAttribute("src");
+      viewImg.width = w;
+      viewImg.height = h;
+      viewImg.alt = img.alt;
+      viewImg.style.maxWidth = "min(92vw, " + w + "px)";
+      viewImg.style.maxHeight = "min(78vh, " + h + "px)";
+      viewCap.textContent = btn.parentElement.querySelector("figcaption").textContent;
+      view.showModal();
+      closeBtn.focus();
+    });
+  });
+  closeBtn.addEventListener("click", function(){ view.close(); });
+  view.addEventListener("click", function(e){ if (e.target === view) view.close(); });
+  view.addEventListener("close", function(){ viewImg.removeAttribute("src"); });
 })();
 </script>
 </body>
