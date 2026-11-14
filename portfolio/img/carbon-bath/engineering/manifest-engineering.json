@@ -1,0 +1,186 @@
+{
+  "title": "The Carbon Bath \u2014 engineering and process views",
+  "status": "Concept",
+  "design_version": "v47f",
+  "selection_rule": "Prefer v47f technical views. v44/v46/v47d studies included only when the mechanism carried into v47f (stair box, slot lock, teak treads, L-brackets, shower pan, leg posts).",
+  "image_settings": "webp quality 90, method 6; max 1600px long edge; never upscaled; backgrounds left as in the source.",
+  "path": "/cursor/stores/store-03975f50-6c1b-432e-99cf-1f00780d0fec/shared/carbon-bath/engineering",
+  "total_bytes": 715428,
+  "assets": [
+    {
+      "file": "cb-e01-floor-plan.webp",
+      "type": "plan",
+      "width": 960,
+      "height": 650,
+      "source_px": "960x650",
+      "bytes": 19326,
+      "caption": "Top-down floor plan: teak deck, sink, toilet cabinet, sliding door wall and four landing legs.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/01_floor_plan_black_under_teak.png",
+      "notes": "v44 review 01_floor_plan_black_under_teak.png. Layout carried into v47f. Not upscaled (source 960\u00d7650)."
+    },
+    {
+      "file": "cb-e02-pan-section.webp",
+      "type": "section",
+      "width": 1470,
+      "height": 682,
+      "source_px": "1470x682",
+      "bytes": 70166,
+      "caption": "Shower-pan section: continuous FRP pan falling to one drain, with molded ribs under the teak.",
+      "design_version": "v47d",
+      "source": "/workspace/carbonbath/src/01 3D Models/v47 review/pan_section_v47d.png",
+      "notes": "v47 review pan_section_v47d.png. The continuous all-sides drain pan carried into v47f. Source 1470\u00d7682, not upscaled."
+    },
+    {
+      "file": "cb-e03-stair-box-layout.webp",
+      "type": "plan",
+      "width": 1600,
+      "height": 1166,
+      "source_px": "2560x1866",
+      "bytes": 148094,
+      "caption": "Stowed stair-box layout, plan and side: treads, rails and slides nested in the box.",
+      "design_version": "v46c",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/46a_stowed_layout.png",
+      "notes": "v44 review 46a_stowed_layout.png, labeled v46c. Box 25.30 \u00d7 20.78 \u00d7 1.75 in matches Parts List v47f, so this layout carried through."
+    },
+    {
+      "file": "cb-e04-stair-engineering-study.webp",
+      "type": "schematic",
+      "width": 1188,
+      "height": 1600,
+      "source_px": "2582x3476",
+      "bytes": 78620,
+      "caption": "Stair engineering study: deploy sequence, side elevation and packing check against the hitch.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/22_stair_engineering_study.png",
+      "notes": "v44 review 22_stair_engineering_study.png (v44 fix15). Mechanism (box stow, slide, tilt, tread lock) carried into v47f. Some dimension callouts on the sheet are from v44 and are not restated as current specs."
+    },
+    {
+      "file": "cb-e05-stair-telescope-study.webp",
+      "type": "mechanism",
+      "width": 1600,
+      "height": 640,
+      "source_px": "2100x840",
+      "bytes": 65822,
+      "caption": "Stair mechanism study: stowed in the box, telescoped to the rim, then tilted and locked.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/20_stair_telescope_study.png",
+      "notes": "v44 review 20_stair_telescope_study.png. Teak treads, stair box and telescope-then-tilt sequence carried into v47f."
+    },
+    {
+      "file": "cb-e06-slot-lock-schematic.webp",
+      "type": "schematic",
+      "width": 1600,
+      "height": 1185,
+      "source_px": "2096x1552",
+      "bytes": 76458,
+      "caption": "Tread slot-pivot lock schematic, plus the telescope side push-button.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/23_stair_slot_lock_schematic.png",
+      "notes": "v44 review 23_stair_slot_lock_schematic.png. Study of the stair lock. Source 2096\u00d71552."
+    },
+    {
+      "file": "cb-e07-stair-box-side-cutaway.webp",
+      "type": "section",
+      "width": 1600,
+      "height": 915,
+      "source_px": "2248x1285",
+      "bytes": 23974,
+      "caption": "Side cutaway of the stowed stair box: nested teak treads and rails in the 1.75 in box.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/41b_side_section_centerline.png",
+      "notes": "v44 review 41b_side_section_centerline.png. Labeled box L 25.30 in and H 1.75 in, which match Parts List v47f."
+    },
+    {
+      "file": "cb-e08-stair-box-brackets.webp",
+      "type": "assembly",
+      "width": 1000,
+      "height": 716,
+      "source_px": "1000x716",
+      "bytes": 44436,
+      "caption": "Stair box hung from the floor plate on four welded L-brackets.",
+      "design_version": "v44b",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/34a_box_hung_welded_L_underside34.png",
+      "notes": "v44 review 34a_box_hung_welded_L_underside34.png (labeled v44b). Bracket hang method carried into v47f (Parts List: Stair Box Bracket \u00d74). Source 1000\u00d7716, not upscaled."
+    },
+    {
+      "file": "cb-e09-bracket-weld-bolts.webp",
+      "type": "detail",
+      "width": 1000,
+      "height": 716,
+      "source_px": "1000x716",
+      "bytes": 47330,
+      "caption": "Stair-box L-bracket close-up: fillet weld to the plate and side-accessible bolts into the box wall.",
+      "design_version": "v44b",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/34b_bracket_closeup_weld_bolts.png",
+      "notes": "v44 review 34b_bracket_closeup_weld_bolts.png. Source 1000\u00d7716, not upscaled."
+    },
+    {
+      "file": "cb-e10-bracket-bolt-section.webp",
+      "type": "section",
+      "width": 1000,
+      "height": 836,
+      "source_px": "1000x836",
+      "bytes": 49708,
+      "caption": "Section through the bracket bolt line: weld to the plate, rivnut in the box wall, bolt clear of the stair slide path.",
+      "design_version": "v44b",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/34c_section_through_bracket_bolt.png",
+      "notes": "v44 review 34c_section_through_bracket_bolt.png. Source 1000\u00d7836, not upscaled."
+    },
+    {
+      "file": "cb-e11-tread-nose-section.webp",
+      "type": "detail",
+      "width": 1200,
+      "height": 1400,
+      "source_px": "1200x1400",
+      "bytes": 73364,
+      "caption": "Stair-tread nose: underside chamfer with an LED slot, and a section through the nose.",
+      "design_version": "v44",
+      "source": "/workspace/carbonbath/src/01 3D Models/v44 review/48b_tread_nose_chamfer_led_underside.png",
+      "notes": "v44 review 48b_tread_nose_chamfer_led_underside.png. Chamfered, lit tread nose carried into v47f. Source 1200\u00d71400, not upscaled."
+    },
+    {
+      "file": "cb-e12-legs-stair-box-packed.webp",
+      "type": "detail",
+      "width": 1200,
+      "height": 800,
+      "source_px": "1200x800",
+      "bytes": 18130,
+      "caption": "Packed underside, current model: landing-leg posts and the stair box under the floor plate.",
+      "design_version": "v47f",
+      "source": "/workspace/carbonbath/src/01 3D Models/v47 review/v47f_foot_post_closeup.png",
+      "notes": "v47 review v47f_foot_post_closeup.png. Current v47f. Source 1200\u00d7800, not upscaled."
+    }
+  ],
+  "excluded": [
+    {
+      "what": "v28 / v28.5 exploded views and floor-stack sections",
+      "where": "On the box: /workspace/deliverables/floor_study/renders/exploded_v1/, master_v28*, section_simplified/, Base complete - exploded, Solid plate - exploded, blockout exploded plates. On Seth's Mac (not copied here): ~/Desktop/SETH QUEST/CARBON OVERLANDER/02 Hero Renders/v28.5\u2026",
+      "why": "Older design: hanging ladder, plant loop, flat floor pan, different landing gear and sink. Does not match v47f."
+    },
+    {
+      "what": "v44 options A/B, box-vs-ring compares, v46/v47 before-after compares, contact sheets",
+      "why": "Abandoned options or comparison sheets, not clean standalone technical views."
+    },
+    {
+      "what": "v44 ladder studies (08\u201312, 10b, 10c, 11, 11b, 12)",
+      "why": "The current design uses teak stairs in a stair box, not the earlier separate ladder."
+    },
+    {
+      "what": "v47c pan feasibility plots (pan_v47c_plan, pan_vs_tunnels) and legs_under_plate_study",
+      "why": "Option/feasibility studies, including a marked-not-feasible pan and an unresolved '1.23 short' clearance callout; not the resolved design."
+    },
+    {
+      "what": "v47f_footprint_plan",
+      "why": "Comparison chart of v47f vs v47e vs v47b pad positions, not a clean footprint drawing."
+    },
+    {
+      "what": "v47 packed/expanded beauty stills, v47b lightbar end closeup, early v47 stair closeups, 08a/08b scenic details",
+      "why": "Polished product renders, or earlier stair geometry, not process/technical drawings. Seth asked for engineering drawings rather than those renders in this section."
+    },
+    {
+      "what": "v26/v25/v22 plans, door-option nested plans, interior_cutaway from CARBON OVERLANDER Extras, veo deploy frames",
+      "why": "Older models, or beauty frames, not the current v47f engineering."
+    }
+  ]
+}

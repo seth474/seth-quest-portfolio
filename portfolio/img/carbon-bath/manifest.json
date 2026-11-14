@@ -6,8 +6,8 @@
   "convention": "Matches portfolio/img/architecture-build/: kebab-case names, webp stills, mp4 loops, posters, manifest.json with width/height/source_px/caption.",
   "image_settings": "webp quality 88, method 6; heroes max 2400px long edge; details max 1600px; never upscaled.",
   "video_settings": "H.264 High, yuv420p, CRF 23, preset slow, muted, +faststart, max 1920 wide (sources are 1080x1920).",
-  "total_bytes": 4009090,
-  "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f.",
+  "total_bytes": 4418422,
+  "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f. Engineering drawings are in engineering/ and listed in engineering/manifest-engineering.json. The earlier render detail shots (cb-04, cb-10, cb-17 through cb-20) were removed from this page.",
   "assets": [
     {
       "file": "cb-00b-hero-woman-scale.webp",
@@ -45,19 +45,6 @@
       "design_version": "v47f",
       "source": "deliverables/v47/heroes/final/06_On_GX550_front34_packed.png",
       "notes": "Official v47f travel render. Lexus GX 550 for scale only; not affiliated with Lexus or Toyota."
-    },
-    {
-      "file": "cb-04-packed-studio.webp",
-      "type": "packed",
-      "section": "expands",
-      "width": 2400,
-      "height": 1350,
-      "source_px": "2560x1440",
-      "bytes": 38578,
-      "caption": "Packed on its four landing legs, rings nested, stair box under the floor.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/05_Studio_packed_front34.png",
-      "notes": "Official v47f studio packed view."
     },
     {
       "file": "cb-05-seq-00-packed.webp",
@@ -123,19 +110,6 @@
       "design_version": "v47f",
       "source": "v47f_deploy_vertical.mp4 @ 15.2s",
       "notes": "Frame from the v47f vertical deploy."
-    },
-    {
-      "file": "cb-10-deployed-studio.webp",
-      "type": "deployed",
-      "section": "expands",
-      "width": 2400,
-      "height": 1350,
-      "source_px": "2560x1440",
-      "bytes": 43702,
-      "caption": "Deployed in the studio: legs down, rings risen, stairs and door open.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/04_Studio_deployed_front34.png",
-      "notes": "Official v47f studio deployed view."
     },
     {
       "file": "cb-11-deployed-front34-sunset.webp",
@@ -278,58 +252,6 @@
       "design_version": "v47f",
       "source": "deliverables/v47/heroes/final/07_Interior_first_person.png",
       "notes": "Official v47f interior, looking up."
-    },
-    {
-      "file": "cb-17-detail-stairs.webp",
-      "type": "detail",
-      "section": "details",
-      "width": 1600,
-      "height": 900,
-      "source_px": "2560x1440",
-      "bytes": 61728,
-      "caption": "Teak stair treads folded out from the stair box under the floor.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/08a_Detail_stair_treads.png",
-      "notes": "Official v47f detail. Parts List v47f: stair box 20.78 \u00d7 25.30 \u00d7 1.75 in."
-    },
-    {
-      "file": "cb-18-detail-lightbar.webp",
-      "type": "detail",
-      "section": "details",
-      "width": 1600,
-      "height": 900,
-      "source_px": "2560x1440",
-      "bytes": 33314,
-      "caption": "Light bar set into the trim ring under the teak floor.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/08b_Detail_light_bar_trim.png",
-      "notes": "Official v47f detail."
-    },
-    {
-      "file": "cb-19-detail-legs-packed.webp",
-      "type": "detail",
-      "section": "details",
-      "width": 1200,
-      "height": 800,
-      "source_px": "1200x800",
-      "bytes": 16506,
-      "caption": "Packed underside: landing-leg posts and the stair box under the floor plate.",
-      "design_version": "v47f",
-      "source": "01 3D Models/v47 review/v47f_foot_post_closeup.png",
-      "notes": "v47f review still, not upscaled."
-    },
-    {
-      "file": "cb-20-packed-rear.webp",
-      "type": "detail",
-      "section": "details",
-      "width": 800,
-      "height": 528,
-      "source_px": "800x528",
-      "bytes": 4546,
-      "caption": "Packed rear elevation, light bars in the trim ring.",
-      "design_version": "v47f",
-      "source": "01 3D Models/v47 review/v47f_back.png",
-      "notes": "v47f review still, not upscaled."
     }
   ]
 }
