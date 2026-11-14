@@ -243,3 +243,42 @@ window.SITE_WORK = {
     { title: "Credit Climb", href: "/credit-climb", line: "Self-serve credit report reader and action plan." }
   ]
 };
+
+// Home and /portfolio index. Spyglass, the workshop, MEP, Onera, and Monarch
+// stay together on /architecture-build. They are not separate index cards.
+window.SITE_INDEX = {
+  featured: {
+    href: "/architecture-build",
+    title: "Architecture & Build",
+    subtitle: "Design. Prototype. Build.",
+    image: "/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp",
+    width: 1119,
+    height: 1600,
+    alt: "Inside the Spyglass rib frame, in the shop"
+  },
+  industrial: [
+    {
+      placeholder: true,
+      title: "Carbon Bath",
+      label: "Concept",
+      line: "Seth's latest, for the overlanding market. It travels with any mid-size SUV."
+    },
+    { id: "fusb" },
+    { id: "mola" },
+    { id: "panda-overland", size: "small" }
+  ],
+  rooms: [
+    { id: "knot-light", size: "mid" },
+    { id: "supermodel", size: "mid" },
+    { id: "google", size: "small" },
+    { id: "riot-games", size: "small" },
+    { id: "factory", size: "small" },
+    { id: "waterhouse", size: "small" },
+    { id: "juniper", size: "small" },
+    { id: "kit-tea", size: "small" },
+    { id: "dom-vetro", size: "small" },
+    { id: "waterhouse-villa", size: "small" },
+    { id: "carbon-cabins", size: "small" },
+    { id: "mu", size: "least" }
+  ]
+};
