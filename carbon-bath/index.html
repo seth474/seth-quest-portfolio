@@ -8,11 +8,11 @@
 <link rel="canonical" href="https://sethquest.com/carbon-bath" />
 <meta property="og:title" content="The Carbon Bath · Seth Quest" />
 <meta property="og:description" content="Concept. In development. The Carbon Bath travels with any mid-size SUV." />
-<meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-bath/cb-00-hero-woman-looking-back.webp" />
+<meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter+Tight:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="/portfolio/img/carbon-bath/cb-00-hero-woman-looking-back.webp" />
+<link rel="preload" as="image" href="/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" />
 <style>
   :root{
     --ink:#F4F0E6; --bone:#1A1814; --bone-dim:rgba(26,24,20,0.62);
@@ -40,7 +40,13 @@
   figure{margin:0}
   figcaption{font-family:"JetBrains Mono",monospace; font-size:12px; line-height:1.45; color:var(--bone-dim); margin-top:8px}
   .hero-bleed{position:relative; width:100%; margin:0; background:#111}
-  .hero-bleed img{width:100%; height:min(92svh, 920px); object-fit:cover; object-position:center 58%}
+  .hero-bleed img{width:100%; height:auto; object-fit:contain; object-position:center bottom}
+  .hero-note{
+    position:absolute; left:22px; bottom:16px; margin:0; max-width:36ch;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:0.04em; color:rgba(244,240,230,0.86);
+    text-shadow:0 1px 8px rgba(0,0,0,0.55);
+  }
   .hero-copy{
     position:absolute; left:0; right:0; bottom:0; z-index:1;
     padding:28px 22px 26px;
@@ -79,7 +85,7 @@
   .sheet + .sheet{border-top:1px solid var(--line)}
   @media (max-width: 800px){
     nav.top .links a.quiet{display:none}
-    .hero-bleed img{height:72svh; object-position:center 62%}
+    .hero-bleed img{height:auto; object-position:center bottom}
     .strip figure{height:min(58vh, 520px)}
     .motion,.trio,.eng-grid{grid-template-columns:1fr}
     .trio img{height:220px}
@@ -99,12 +105,13 @@
   </div>
 </nav>
 
-<figure class="hero-bleed" id="top">
-  <img src="/portfolio/img/carbon-bath/cb-00-hero-woman-looking-back.webp" width="2400" height="1350" alt="The Carbon Bath, with a woman looking back." fetchpriority="high" decoding="async">
-  <div class="hero-copy">
-    <p class="kicker">Concept · In development</p>
-    <h1>The Carbon Bath</h1>
-  </div>
+<header class="sheet hero-intro" id="top">
+  <p class="kicker">Concept · In development</p>
+  <h1>The Carbon Bath</h1>
+</header>
+<figure class="hero-bleed">
+  <img src="/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" width="2400" height="1340" alt="Woman standing in front of the open Carbon Bath at sunset, shown for scale." fetchpriority="high" decoding="async">
+  <figcaption class="hero-note">Earlier iteration, shown for scale.</figcaption>
 </figure>
 
 <section class="sheet montage-head" id="montage">
