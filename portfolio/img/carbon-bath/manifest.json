@@ -10,14 +10,14 @@
   "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f.",
   "assets": [
     {
-      "file": "cb-00-hero-woman-looking-back.webp",
+      "file": "cb-00b-hero-woman-scale.webp",
       "type": "hero",
       "section": "hero",
       "width": 2400,
-      "height": 1350,
-      "source_px": "2400x1350",
-      "bytes": 291998,
-      "caption": "The Carbon Bath, with a woman looking back.",
+      "height": 1340,
+      "source_px": "2400x1340",
+      "bytes": 914180,
+      "caption": "Earlier iteration, shown for scale.",
       "design_version": "v47f"
     },
     {
