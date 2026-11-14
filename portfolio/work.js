@@ -5,14 +5,82 @@
 // low-resolution still at its natural size on the card.
 window.SITE_WORK = {
   categories: [
-    { id: "web", label: "Web Design" },
+    { id: "architecture", label: "Architecture" },
+    { id: "product", label: "Product Design" },
     { id: "furniture", label: "Furniture Design" },
     { id: "office", label: "Office Design" },
     { id: "interior", label: "Interior Design" },
-    { id: "product", label: "Product Design" },
-    { id: "architecture", label: "Architecture" }
+    { id: "web", label: "Web Design" }
   ],
   built: [
+    {
+      id: "spyglass",
+      title: "Spyglass",
+      category: "architecture",
+      line: "Treehouse for a Texas development.",
+      images: [
+        ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
+        ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
+        ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
+      ]
+    },
+    {
+      id: "monarch-treehouse",
+      title: "Monarch Treehouse",
+      category: "architecture",
+      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
+      images: [
+        ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
+        ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
+      ]
+    },
+    {
+      id: "carbon-cabins",
+      title: "Carbon Cabins",
+      category: "architecture",
+      line: "Design for a Tennessee development.",
+      wide: true,
+      images: [
+        ["/portfolio/img/carbon-cabins.webp", "Carbon Cabins, a raised glass-and-timber cabin", 1600, 893],
+        ["/portfolio/img/carbon-b.webp", "Carbon Cabins, wood-clad cabin with a deck", 1600, 900],
+        ["/portfolio/img/carbon-c.webp", "Carbon Cabins module with a dark roof", 1281, 1600],
+        ["/portfolio/img/carbon-d.webp", "Carbon Cabin 240, front view", 1600, 795]
+      ]
+    },
+    {
+      id: "fusb",
+      title: "FUSB",
+      category: "product",
+      line: "Front USB for iMac. Accessory sold to Blue Lounge.",
+      images: [
+        ["/portfolio/img/fusb-a.webp", "FUSB, a front USB accessory being plugged in at the stand of an iMac", 1600, 1463],
+        ["/portfolio/img/fusb-b.webp", "FUSB attached behind an iMac, with a cable running to a tablet", 986, 1463]
+      ]
+    },
+    {
+      id: "panda-overland",
+      title: "Panda Overland Systems",
+      category: "product",
+      line: "Prototype of an interior kit for Alu-Cab.",
+      images: [
+        ["/portfolio/img/panda-a.webp", "Panda Overland Systems set up at night under an awning", 1600, 1200],
+        ["/portfolio/img/panda-b.webp", "Panda Overland interior kit, drawers and a slat wall", 1600, 1200],
+        ["/portfolio/img/panda-c.webp", "Panda Overland interior kit, lit slat wall", 1600, 1200],
+        ["/portfolio/img/panda-d.webp", "Panda Overland interior kit with the tailgate open", 1600, 1200]
+      ]
+    },
+    {
+      id: "mola",
+      title: "Mola",
+      category: "product",
+      line: "Sustainable toothbrush with replaceable bristles.",
+      wide: true,
+      images: [
+        ["/portfolio/img/mola.webp", "Mola toothbrushes with replaceable heads", 1600, 668],
+        ["/portfolio/img/mola-b.webp", "Mola toothbrush sleeves", 1600, 1200],
+        ["/portfolio/img/mola-c.webp", "Mola sleeve pattern, detail", 1600, 1200]
+      ]
+    },
     {
       id: "knot-light",
       title: "Knot Light",
@@ -134,74 +202,6 @@ window.SITE_WORK = {
       video: "/portfolio/media/dom-vetro-walkthrough.mp4",
       images: [
         ["/portfolio/img/dom-vetro-poster.webp", "Dom Vetro eyewear booth concept", 1600, 900]
-      ]
-    },
-    {
-      id: "mola",
-      title: "Mola",
-      category: "product",
-      line: "Sustainable toothbrush with replaceable bristles.",
-      wide: true,
-      images: [
-        ["/portfolio/img/mola.webp", "Mola toothbrushes with replaceable heads", 1600, 668],
-        ["/portfolio/img/mola-b.webp", "Mola toothbrush sleeves", 1600, 1200],
-        ["/portfolio/img/mola-c.webp", "Mola sleeve pattern, detail", 1600, 1200]
-      ]
-    },
-    {
-      id: "fusb",
-      title: "FUSB",
-      category: "product",
-      line: "Front USB for iMac. Accessory sold to Blue Lounge.",
-      images: [
-        ["/portfolio/img/fusb-a.webp", "FUSB, a front USB accessory being plugged in at the stand of an iMac", 1600, 1463],
-        ["/portfolio/img/fusb-b.webp", "FUSB attached behind an iMac, with a cable running to a tablet", 986, 1463]
-      ]
-    },
-    {
-      id: "panda-overland",
-      title: "Panda Overland Systems",
-      category: "product",
-      line: "Prototype of an interior kit for Alu-Cab.",
-      images: [
-        ["/portfolio/img/panda-a.webp", "Panda Overland Systems set up at night under an awning", 1600, 1200],
-        ["/portfolio/img/panda-b.webp", "Panda Overland interior kit, drawers and a slat wall", 1600, 1200],
-        ["/portfolio/img/panda-c.webp", "Panda Overland interior kit, lit slat wall", 1600, 1200],
-        ["/portfolio/img/panda-d.webp", "Panda Overland interior kit with the tailgate open", 1600, 1200]
-      ]
-    },
-    {
-      id: "spyglass",
-      title: "Spyglass",
-      category: "architecture",
-      line: "Treehouse for a Texas development.",
-      images: [
-        ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
-        ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
-        ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
-      ]
-    },
-    {
-      id: "carbon-cabins",
-      title: "Carbon Cabins",
-      category: "architecture",
-      line: "Design for a Tennessee development.",
-      wide: true,
-      images: [
-        ["/portfolio/img/carbon-cabins.webp", "Carbon Cabins, a raised glass-and-timber cabin", 1600, 893],
-        ["/portfolio/img/carbon-b.webp", "Carbon Cabins, wood-clad cabin with a deck", 1600, 900],
-        ["/portfolio/img/carbon-c.webp", "Carbon Cabins module with a dark roof", 1281, 1600],
-        ["/portfolio/img/carbon-d.webp", "Carbon Cabin 240, front view", 1600, 795]
-      ]
-    },
-    {
-      id: "monarch-treehouse",
-      title: "Monarch Treehouse",
-      category: "architecture",
-      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
-      images: [
-        ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
-        ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
       ]
     },
     {
