@@ -8,11 +8,11 @@
 <link rel="canonical" href="https://sethquest.com/carbon-bath" />
 <meta property="og:title" content="The Carbon Bath · Seth Quest" />
 <meta property="og:description" content="Concept. In development. The Carbon Bath travels with any mid-size SUV." />
-<meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" />
+<meta property="og:image" content="https://sethquest.com/portfolio/img/carbon-bath/cb-14-door-open-sunset.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter+Tight:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" />
+<link rel="preload" as="image" href="/portfolio/img/carbon-bath/cb-14-door-open-sunset.webp" />
 <style>
   :root{
     --ink:#F4F0E6; --bone:#1A1814; --bone-dim:rgba(26,24,20,0.62);
@@ -40,32 +40,28 @@
   figure{margin:0}
   figcaption{font-family:"JetBrains Mono",monospace; font-size:12px; line-height:1.45; color:var(--bone-dim); margin-top:8px}
   .hero-bleed{position:relative; width:100%; margin:0; background:#111}
-  .hero-bleed img{width:100%; height:auto; object-fit:contain; object-position:center bottom}
-  .hero-note{
-    position:absolute; left:22px; bottom:16px; margin:0; max-width:36ch;
-    font-family:"JetBrains Mono",monospace;
-    font-size:11px; letter-spacing:0.04em; color:rgba(244,240,230,0.86);
-    text-shadow:0 1px 8px rgba(0,0,0,0.55);
+  .hero-bleed img{width:100%; height:auto; object-fit:contain; object-position:center}
+  .montage-head{padding-bottom:8px}
+  .seq{
+    display:grid; grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:8px; margin-top:18px;
   }
-  .hero-copy{
-    position:absolute; left:0; right:0; bottom:0; z-index:1;
-    padding:28px 22px 26px;
-    background:linear-gradient(to top, rgba(8,7,6,0.72), rgba(8,7,6,0));
-    color:#F4F0E6;
+  .seq figure,.story figure,.still{min-width:0}
+  .seq img{width:100%; height:auto; background:#111}
+  .seq figcaption{font-size:11px; margin-top:6px}
+  .deploy{
+    display:grid; grid-template-columns:minmax(0, 280px) minmax(0, 1fr);
+    gap:16px 22px; align-items:start; margin-top:22px;
   }
-  .hero-copy .kicker{color:#E0A15A}
-  .hero-copy h1{max-width:12ch}
-  .montage-head{padding-bottom:0}
-  .strip{display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; margin-top:18px; padding-bottom:8px}
-  .strip figure{flex:none; scroll-snap-align:start; height:min(62vh, 640px); margin:0}
-  .strip img{height:100%; width:auto; max-width:none; background:#111}
-  .strip figcaption{max-width:26ch}
-  .motion{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; margin-top:18px}
-  .motion video{width:100%; height:auto; background:#111}
-  .trio{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:18px}
-  .trio img{width:100%; height:280px; object-fit:cover; object-position:center; background:#e6e0d2}
-  .inside{display:grid; gap:16px; margin-top:18px}
-  .inside img{width:100%; height:auto; background:#e6e0d2}
+  .deploy video{width:100%; height:auto; background:#111}
+  .still{margin-top:22px}
+  .still img{width:100%; height:auto; background:#e6e0d2}
+  .story{
+    display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 2fr);
+    gap:12px; margin-top:26px; align-items:start;
+  }
+  .story-side{display:grid; gap:12px; min-width:0}
+  .story img{width:100%; height:auto; background:#e6e0d2}
   .eng{
     width:100%;
     background:#F3F1EC;
@@ -104,12 +100,18 @@
   }
   .sheet + .sheet{border-top:1px solid var(--line)}
   @media (max-width: 800px){
+    nav.top{padding:12px 14px}
+    nav.top .links{gap:10px; letter-spacing:0.06em; font-size:10px; flex-wrap:wrap; justify-content:flex-end}
     nav.top .links a.quiet{display:none}
-    .hero-bleed img{height:auto; object-position:center bottom}
-    .strip figure{height:min(58vh, 520px)}
-    .motion,.trio,.eng-grid{grid-template-columns:1fr}
+    .sheet{width:min(1180px, calc(100% - 28px))}
+    .seq{gap:4px}
+    .seq figcaption{font-size:9px; line-height:1.3}
+    .deploy,.eng-grid{grid-template-columns:1fr}
+    .deploy figure{max-width:240px}
     .eng-inner{width:min(1480px, calc(100% - 28px))}
-    .trio img{height:220px}
+    .story{grid-template-columns:1fr}
+    .story-lead{order:-1}
+    .story-side{grid-template-columns:1fr 1fr}
   }
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
 </style>
@@ -120,7 +122,7 @@
   <div class="links">
     <a href="/portfolio">Work</a>
     <a href="#montage">Montage</a>
-    <a href="#trio">Views</a>
+    <a href="#story">Story</a>
     <a href="#engineering">Engineering</a>
     <a class="quiet" href="/#industrial">Industrial Design</a>
   </div>
@@ -131,14 +133,13 @@
   <h1>The Carbon Bath</h1>
 </header>
 <figure class="hero-bleed">
-  <img src="/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" width="2400" height="1340" alt="Woman standing in front of the open Carbon Bath at sunset, shown for scale." fetchpriority="high" decoding="async">
-  <figcaption class="hero-note">Earlier iteration, shown for scale.</figcaption>
+  <img src="/portfolio/img/carbon-bath/cb-14-door-open-sunset.webp" width="2400" height="1350" alt="Straight-on at sunset: teak stairs, open door wall, sink and pill mirror." fetchpriority="high" decoding="async">
 </figure>
 
 <section class="sheet montage-head" id="montage">
   <p class="kicker">It expands</p>
   <h2>It expands</h2>
-  <div class="strip" aria-label="Deploy sequence">
+  <div class="seq" aria-label="Deploy sequence">
     <figure>
       <img src="/portfolio/img/carbon-bath/cb-05-seq-00-packed.webp" width="1080" height="1920" alt="Packed: rings nested, legs stowed." loading="lazy" decoding="async">
       <figcaption>Packed: rings nested, legs stowed.</figcaption>
@@ -160,54 +161,36 @@
       <figcaption>Stairs out and the sliding door wall open.</figcaption>
     </figure>
   </div>
-  <div class="motion" id="videos">
+  <div class="deploy" id="videos">
     <figure>
       <video src="/portfolio/img/carbon-bath/cb-12-deploy-vertical.mp4" width="1080" height="1920" poster="/portfolio/img/carbon-bath/cb-12-deploy-vertical-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Deploy animation, straight on: legs, rise, stairs, then the door wall slides open."></video>
-      <figcaption>Deploy animation, straight on: legs, rise, stairs, then the door wall slides open.</figcaption>
     </figure>
-    <figure>
-      <video src="/portfolio/img/carbon-bath/cb-13-deploy-orbit.mp4" width="1080" height="1920" poster="/portfolio/img/carbon-bath/cb-13-deploy-orbit-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Deploy animation with a slow orbit, then a step inside to the sink and pill mirror."></video>
-      <figcaption>Deploy animation with a slow orbit, then a step inside to the sink and pill mirror.</figcaption>
-    </figure>
+    <p class="body">Deploy animation, straight on: legs, rise, stairs, then the door wall slides open.</p>
   </div>
+  <figure class="still">
+    <img src="/portfolio/img/carbon-bath/cb-11-deployed-front34-sunset.webp" width="2400" height="1350" alt="Deployed on a mountaintop at sunset, three-quarter view." loading="lazy" decoding="async">
+    <figcaption>Deployed on a mountaintop at sunset, three-quarter view.</figcaption>
+  </figure>
 </section>
 
-<section class="sheet" id="trio">
-  <p class="kicker">Travel</p>
-  <h2>Travel</h2>
+<section class="sheet" id="story">
+  <h2>Finally, she'll come camping.</h2>
+  <p class="body">The one reason your partner skips the trip is the bathroom. The Carbon Bath gives her a real one: shower, sink and toilet, set up in minutes at camp.</p>
   <p class="body">The Carbon Bath travels with any mid-size SUV. Far easier than pulling a trailer.</p>
-  <div class="trio">
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-03-travel-gx550-packed.webp" width="2400" height="1350" alt="Packed on a Lexus GX 550, shown for scale." loading="lazy" decoding="async">
-      <figcaption>Packed on a Lexus GX 550, shown for scale.</figcaption>
-    </figure>
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-02-hero-blue-hour.webp" width="2400" height="1350" alt="The Carbon Bath at blue hour, door open and the interior lit." loading="lazy" decoding="async">
-      <figcaption>The Carbon Bath at blue hour, door open and the interior lit.</figcaption>
-    </figure>
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-11-deployed-front34-sunset.webp" width="2400" height="1350" alt="Deployed on a mountaintop at sunset, three-quarter view." loading="lazy" decoding="async">
-      <figcaption>Deployed on a mountaintop at sunset, three-quarter view.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="sheet" id="inside">
-  <p class="kicker">Inside</p>
-  <h2>Inside</h2>
-  <p class="body">A teak-floored room with a rain shower, a sink and a pill mirror, and a toilet cabinet. Walk in through the sliding door wall.</p>
-  <div class="inside">
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-14-door-open-sunset.webp" width="2400" height="1350" alt="Straight-on at sunset: teak stairs, open door wall, sink and pill mirror." loading="lazy" decoding="async">
-      <figcaption>Straight-on at sunset: teak stairs, open door wall, sink and pill mirror.</figcaption>
-    </figure>
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-15-interior-sink.webp" width="2400" height="1350" alt="Inside, looking toward the sink, teak floor and the open doorway." loading="lazy" decoding="async">
-      <figcaption>Inside, looking toward the sink, teak floor and the open doorway.</figcaption>
-    </figure>
-    <figure>
-      <img src="/portfolio/img/carbon-bath/cb-16-interior-windows.webp" width="2400" height="1350" alt="Looking up inside: window band, ceiling and the pill mirror over the sink." loading="lazy" decoding="async">
-      <figcaption>Looking up inside: window band, ceiling and the pill mirror over the sink.</figcaption>
+  <div class="story">
+    <div class="story-side">
+      <figure>
+        <img src="/portfolio/img/carbon-bath/cb-03-travel-gx550-packed.webp" width="2400" height="1350" alt="Packed on a Lexus GX 550, shown for scale." loading="lazy" decoding="async">
+        <figcaption>Packed on a Lexus GX 550, shown for scale.</figcaption>
+      </figure>
+      <figure>
+        <img src="/portfolio/img/carbon-bath/cb-02-hero-blue-hour.webp" width="2400" height="1350" alt="The Carbon Bath at blue hour, door open and the interior lit." loading="lazy" decoding="async">
+        <figcaption>The Carbon Bath at blue hour, door open and the interior lit.</figcaption>
+      </figure>
+    </div>
+    <figure class="story-lead">
+      <img src="/portfolio/img/carbon-bath/cb-00b-hero-woman-scale.webp" width="2400" height="1340" alt="Earlier iteration, shown for scale." loading="lazy" decoding="async">
+      <figcaption>Earlier iteration, shown for scale.</figcaption>
     </figure>
   </div>
 </section>

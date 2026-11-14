@@ -6,13 +6,13 @@
   "convention": "Matches portfolio/img/architecture-build/: kebab-case names, webp stills, mp4 loops, posters, manifest.json with width/height/source_px/caption.",
   "image_settings": "webp quality 88, method 6; heroes max 2400px long edge; details max 1600px; never upscaled.",
   "video_settings": "H.264 High, yuv420p, CRF 23, preset slow, muted, +faststart, max 1920 wide (sources are 1080x1920).",
-  "total_bytes": 4418422,
-  "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f. Engineering drawings are in engineering/ and listed in engineering/manifest-engineering.json. The earlier render detail shots (cb-04, cb-10, cb-17 through cb-20) were removed from this page.",
+  "total_bytes": 2530789,
+  "notes": "Every asset on this page is the current v47f design. Older deck5 sunset sequence, Bath 01 deck renders (labeled MODEL V37 / floor plan v36), veo lifestyle clips, v44 review stills and animations, and v41 packed-on-GX stills were reviewed and dropped because the pod shape, stairs, legs, belly/trim or sink visibly differ from v47f. Engineering drawings are in engineering/ and listed in engineering/manifest-engineering.json. The earlier render detail shots (cb-04, cb-10, cb-17 through cb-20) were removed from this page. cb-13 and its posters, plus cb-15 and cb-16, were removed. cb-14 is the page hero and the home card. cb-00b is the large image in the story row.",
   "assets": [
     {
       "file": "cb-00b-hero-woman-scale.webp",
       "type": "hero",
-      "section": "hero",
+      "section": "story",
       "width": 2400,
       "height": 1340,
       "source_px": "2400x1340",
@@ -23,7 +23,7 @@
     {
       "file": "cb-02-hero-blue-hour.webp",
       "type": "hero",
-      "section": "concept",
+      "section": "story",
       "width": 2400,
       "height": 1350,
       "source_px": "2560x1440",
@@ -36,7 +36,7 @@
     {
       "file": "cb-03-travel-gx550-packed.webp",
       "type": "travel",
-      "section": "travel",
+      "section": "story",
       "width": 2400,
       "height": 1350,
       "source_px": "2560x1440",
@@ -170,54 +170,9 @@
       "notes": "Same frame as the webp poster."
     },
     {
-      "file": "cb-13-deploy-orbit.mp4",
-      "type": "video",
-      "section": "expands",
-      "width": 1080,
-      "height": 1920,
-      "source_px": "1080x1920",
-      "bytes": 1543775,
-      "duration_s": 19.88,
-      "codec": "h264",
-      "audio": false,
-      "faststart": true,
-      "crf": 23,
-      "poster": "cb-13-deploy-orbit-poster.webp",
-      "caption": "Deploy animation with a slow orbit, then a step inside to the sink and pill mirror.",
-      "design_version": "v47f",
-      "source": "/workspace/carbonbath/src/01 3D Models/v47 review/v47f_deploy_vertical_orbit.mp4",
-      "notes": "Muted H.264 High, CRF 23, faststart. 19.9s, 1080x1920. Same source as Website v3 carbon-bath-deploy.mp4."
-    },
-    {
-      "file": "cb-13-deploy-orbit-poster.webp",
-      "type": "poster",
-      "section": "expands",
-      "width": 1080,
-      "height": 1920,
-      "source_px": "1080x1920",
-      "bytes": 30588,
-      "caption": "Poster for the vertical orbit deploy animation.",
-      "design_version": "v47f",
-      "source": "v47f_deploy_vertical_orbit.mp4 @ 10.0s",
-      "notes": "Matches cb-13-deploy-orbit.mp4."
-    },
-    {
-      "file": "cb-13-deploy-orbit-poster.jpg",
-      "type": "poster-jpg",
-      "section": "expands",
-      "width": 1080,
-      "height": 1920,
-      "source_px": "1080x1920",
-      "bytes": 103150,
-      "caption": "JPEG poster for the vertical orbit deploy animation.",
-      "design_version": "v47f",
-      "source": "v47f_deploy_vertical_orbit.mp4 @ 10.0s",
-      "notes": "Same frame as the webp poster."
-    },
-    {
       "file": "cb-14-door-open-sunset.webp",
-      "type": "lifestyle",
-      "section": "inside",
+      "type": "hero",
+      "section": "hero",
       "width": 2400,
       "height": 1350,
       "source_px": "2560x1440",
@@ -226,32 +181,6 @@
       "design_version": "v47f",
       "source": "deliverables/v47/heroes/final/02_Deployed_straight_on_sunset.png",
       "notes": "Official v47f straight-on open view."
-    },
-    {
-      "file": "cb-15-interior-sink.webp",
-      "type": "interior",
-      "section": "inside",
-      "width": 2400,
-      "height": 1350,
-      "source_px": "2560x1440",
-      "bytes": 122836,
-      "caption": "Inside, looking toward the sink, teak floor and the open doorway.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/07_Interior_first_person_v1.png",
-      "notes": "Official v47f delivered interior."
-    },
-    {
-      "file": "cb-16-interior-windows.webp",
-      "type": "interior",
-      "section": "inside",
-      "width": 2400,
-      "height": 1350,
-      "source_px": "2560x1440",
-      "bytes": 87284,
-      "caption": "Looking up inside: window band, ceiling and the pill mirror over the sink.",
-      "design_version": "v47f",
-      "source": "deliverables/v47/heroes/final/07_Interior_first_person.png",
-      "notes": "Official v47f interior, looking up."
     }
   ]
 }
