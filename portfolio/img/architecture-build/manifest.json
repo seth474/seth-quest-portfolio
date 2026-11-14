@@ -4,7 +4,7 @@
   "source": "Seth Quest - Build Portfolio (v3-HQ), same order and text",
   "video_loop": {
     "src": "/portfolio/img/architecture-build/ab-rib-framing-loop-720x1280.mp4",
-    "note": "Muted vertical loop of the build reel (real build footage only)"
+    "note": "Source reel. The page carousel is cut from it: ab-clip-hoodie.mp4 (0–10.93s), ab-clip-nailgun.mp4 (10.93–14.23s), ab-clip-build.mp4 (14.23–19.23s)."
   },
   "pages": [
     {
@@ -122,10 +122,10 @@
     },
     {
       "kicker": "01 · Spyglass · From the build clips",
-      "layout": "strip",
+      "layout": "carousel",
       "title": "Framing the ribs",
       "body": "Full-scale ribs going up on the trailer frame in the shop.",
-      "caption": "Frame sequence from a build clip, in order",
+      "caption": "Three clips: blue hoodie, nail gun, build time-lapse",
       "images": [
         {
           "src": "/portfolio/img/architecture-build/ab-12-rib-1.webp",
