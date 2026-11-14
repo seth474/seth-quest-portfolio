@@ -1816,6 +1816,11 @@
   SITE_WORK.built.forEach(function(p){ byId[p.id] = p; });
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); }
   function homeCard(entry){
+    if (entry.image) {
+      var frame = '<span class="built-frame"><img src="'+esc(entry.image)+'" width="'+entry.width+'" height="'+entry.height+'" alt="'+esc(entry.alt)+'" loading="lazy"></span>';
+      var meta = '<span class="built-meta"><span>'+esc(entry.label)+'</span><b>'+esc(entry.title)+'</b><span class="built-line">'+esc(entry.line)+'</span></span>';
+      return '<a class="built-card" href="'+esc(entry.href)+'">'+frame+meta+'</a>';
+    }
     if (entry.placeholder) {
       return '<article class="built-card placeholder"><span class="built-frame placeholder-frame"></span><span class="built-meta"><span>'+esc(entry.label)+'</span><b>'+esc(entry.title)+'</b><span class="built-line">'+esc(entry.line)+'</span></span></article>';
     }
