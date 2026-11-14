@@ -1,5 +1,5 @@
 {
-  "ignoreCommand": "if [ \"$VERCEL_GIT_COMMIT_REF\" = \"main\" ] || [ \"$VERCEL_GIT_COMMIT_REF\" = \"cursor/resume-ai-first-8377\" ] || [ \"$VERCEL_GIT_COMMIT_REF\" = \"cursor/built-architecture-first-b2e1\" ]; then exit 1; else exit 0; fi",
+  "ignoreCommand": "case \"$VERCEL_GIT_COMMIT_REF\" in main|cursor/home-interior-hero-b2e1) exit 1;; *) exit 0;; esac",
   "cleanUrls": true,
   "redirects": [
     { "source": "/lizzietours-index", "destination": "/real-estate-ai-tours/", "permanent": true },

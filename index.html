@@ -128,8 +128,8 @@
   .ab-hero-copy span{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber)}
   .ab-hero-copy strong{font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:clamp(40px, 5vw, 68px); letter-spacing:-0.045em; line-height:0.92}
   .ab-hero-copy em{font-style:normal; font-size:clamp(18px, 2vw, 24px); color:var(--bone-dim)}
-  .ab-hero-visual{display:grid; place-items:center; background:#e6e0d2; min-height:320px}
-  .ab-hero-visual img{width:auto; max-width:100%; max-height:78vh; height:auto}
+  .ab-hero-visual{position:relative; overflow:hidden; background:#e6e0d2; min-height:420px}
+  .ab-hero-visual img{position:absolute; inset:0; width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center 58%}
   .built-card.placeholder{cursor:default}
   .placeholder-frame{background:linear-gradient(180deg, rgba(176,108,40,0.14), rgba(230,224,210,0.2) 42%), #e6e0d2}
   .built-grid.quiet{align-items:start}
@@ -904,7 +904,7 @@
         <em>Design. Prototype. Build.</em>
       </span>
       <span class="ab-hero-visual">
-        <img src="/portfolio/img/architecture-build/ab-01-cover-ribs-portrait.webp" width="1119" height="1600" alt="Inside the Spyglass rib frame, in the shop" />
+        <img src="/portfolio/img/architecture-build/ab-40-finished-interior.webp" width="1080" height="836" alt="Finished Spyglass interior, curved wood ceiling, round glass end, and bed" />
       </span>
     </a>
     <h2 class="work-h" id="industrial">Industrial Design</h2>
