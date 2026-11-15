@@ -3,7 +3,6 @@
   var board, openLead, sheet, body, title, returnFocus, timer;
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
-  function cash(n) { return n == null ? 'Unconfirmed' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n); }
   function note(text, cls) { body.appendChild(el('p', cls || 'detail-note', text)); }
   function heading(text) { body.appendChild(el('h3', 'detail-heading', text)); }
   function button(text, callback, cls) { var b = el('button', cls || 'browse-row', text); b.type = 'button'; b.addEventListener('click', callback); return b; }
@@ -33,9 +32,9 @@
   function show(name) { ensureSheet(); if (sheet.hidden) returnFocus = document.activeElement; title.textContent = name; clear(body); sheet.hidden = false; body.scrollTop = 0; sheet.querySelector('button').focus(); }
   function close() { if (!sheet) return; sheet.hidden = true; if (returnFocus && returnFocus.isConnected) returnFocus.focus(); }
   function visits() {
-    show('Door knocks & conversations');
-    heading(board.counts.face + ' reported door knocks');
-    note('Attempts and repeat visits are different from unique, substantive in-person conversations. Card drops, closed doors and sightings do not count toward the 100-conversation goal.');
+    show('In person');
+    heading('In person ' + board.counts.face + '/' + board.counts.faceTarget);
+    note('Attempts and repeat visits are different from unique, substantive in-person conversations. Card drops, closed doors and sightings do not count toward the 100 in-person goal.');
     if (!board.visits.length) {
       note('The existing total has no linked visit-by-visit history in this snapshot. The business identities, dates and outcomes still need reconciliation with the private CRM. Pipeline entries are not proof of visits.', 'empty-state');
       body.appendChild(button('Browse available companies', function () { directory(); }));
@@ -56,13 +55,8 @@
     board.preparations.forEach(function (p) { record(p, 'Prepared'); body.appendChild(button('Open ' + p.name, function () { openLead(p.id); })); });
   }
   function revenue() {
-    show('Revenue toward $10,000');
-    note('Agreed work, proposed work and payments received are separate. Proposed amounts never increase collected revenue.');
-    [['Collected',board.revenue.collected],['Agreed',board.revenue.agreed],['Proposed',board.revenue.proposed]].forEach(function (x) { heading(x[0] + ': ' + cash(x[1])); });
-    if (board.revenue.collected == null) note('No verified payment total is available. This is unknown, not a confirmed $0.');
-    heading('A possible route to the goal');
-    note('4 × $2,400 + $750 = $10,350. This is a planning example, not four closed clients.');
-    board.revenue.deals.forEach(function (d) { record({ name: d.name || d.companyId, status: d.status + ' · ' + cash(d.amount), notes: d.note || '', date: d.date, source: d.source }, 'Deal'); });
+    show('Revenue target $10K');
+    note('The target is $10,000. Collected payments, agreed work and proposals are not added together on this board.');
   }
   function directory(category, temperature, missingOnly) {
     show(category || (missingOnly ? 'Missing map coordinates' : temperature ? temperature + ' prospects' : 'Companies'));
@@ -103,19 +97,14 @@
   }
   function countdown() {
     var node=document.getElementById('departure-days'); if(!node) return;
-    var days=DailyModel.daysUntil(Date.now(),'2026-11-30');
+    var days=DailyModel.daysUntil(Date.now(),'2026-12-01');
     node.textContent=days>0 ? days+' days to departure goal' : days===0 ? 'Departure goal is today' : 'Departure goal was '+Math.abs(days)+' days ago';
   }
   function renderGoal() {
     var root=document.getElementById('daily-goal'); clear(root);
-    var top=el('div','goal-top'); top.appendChild(el('span','goal-label','$10,000 revenue goal'));
+    var top=el('div','goal-top'); top.appendChild(el('span','goal-label','Revenue target $10K'));
     var days=el('span','departure');days.id='departure-days';top.appendChild(days);root.appendChild(top);
-    var b=button('',revenue,'revenue-open');
-    b.appendChild(el('strong','',board.revenue.collected==null ? 'Payment total unconfirmed' : cash(board.revenue.collected)+' collected'));
-    b.appendChild(el('span','',cash(board.revenue.agreed)+' agreed · '+cash(board.revenue.proposed)+' proposed'));
-    root.appendChild(b);
-    if(board.revenue.collected!=null){var progress=el('progress');progress.max=10000;progress.value=board.revenue.collected;progress.setAttribute('aria-label','Collected revenue toward ten thousand dollars');root.appendChild(progress);}
-    root.appendChild(el('p','goal-foot','Nov 30, 2026 · New York time · desired departure, not booked'));
+    root.appendChild(el('p','goal-foot','Dec 1, 2026 · New York time · desired departure, not booked'));
     countdown();if(timer)clearInterval(timer);timer=setInterval(countdown,60000);
   }
   function init(data,callback) {

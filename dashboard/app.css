@@ -102,12 +102,13 @@ input:focus { outline: none; border-color: var(--amber); }
 .face-cap {
   margin: 1px 0 0;
   text-align: center;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--muted);
   line-height: 1.2;
+  white-space: nowrap;
 }
 .side {
   width: 72px;
@@ -118,11 +119,12 @@ input:focus { outline: none; border-color: var(--amber); }
 }
 .side p {
   margin: 0;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
+  white-space: nowrap;
 }
 .side-dial { width: 68px; }
 
@@ -441,9 +443,9 @@ input:focus { outline: none; border-color: var(--amber); }
 #app { overflow-y: auto; overscroll-behavior-y: contain; }
 #app > section, #app > p { flex-shrink: 0; }
 #daily-goal { border: 1px solid #28282b; border-radius: 16px; padding: 12px; background: #101114; }
-.goal-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
-.goal-label { color: var(--amber); font-size: 12px; font-weight: 700; }
-.departure { color: var(--cyan); font-size: 11px; text-align: right; }
+.goal-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: nowrap; }
+.goal-label { color: var(--amber); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.departure { color: var(--cyan); font-size: 11px; text-align: right; white-space: nowrap; }
 .revenue-open { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; padding: 10px 0; min-height: 60px; }
 .revenue-open strong { font-size: 18px; letter-spacing: -0.03em; }
 .revenue-open span, .goal-foot { font-size: 11px; color: var(--muted); line-height: 1.4; }

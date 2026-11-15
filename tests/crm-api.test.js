@@ -214,6 +214,13 @@ describe('crm api', { concurrency: false }, () => {
     assert.equal(result.body.places.length, 14);
     assert.equal(result.body.revenue.collected, null);
     assert.equal(result.body.revenue.target, 10000);
+    assert.equal(result.body.counts.meetings, 5);
+    assert.equal(result.body.counts.closes, 0);
+    assert.equal(result.body.counts.label, 'In person 13/100');
+    assert.equal(result.body.meetings.length, 5);
+    assert.equal(result.body.leads.find(function (lead) { return /fuel/i.test(lead.name); }).nextStep, 'Follow up Tue Nov 17');
+    assert.equal(result.body.leads.find(function (lead) { return /fence/i.test(lead.name); }).nextStep, 'Follow up Tue Nov 17');
+    assert.equal(result.body.leads.find(function (lead) { return /sparkling/i.test(lead.name); }).nextStep, 'Visit Joe Wed Nov 18');
     assert.equal(result.headers['Cache-Control'], 'private, no-store');
     const sum = result.body.categories.reduce(function (total, category) { return total + category.available; }, 0);
     assert.equal(sum, result.body.companies.length);

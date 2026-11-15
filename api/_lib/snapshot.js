@@ -5,10 +5,17 @@
  */
 module.exports = {
   "asOf": "2026-10-28",
-  "centerLabel": "Cold door knocks",
+  "centerLabel": "In person",
   "faceConversations": 13,
   "faceTarget": 100,
-  "meetings": 2,
+  "meetings": 5,
+  "meetingHistory": [
+    { "companyId": "east-end-fuel", "name": "East End Fuel", "contact": "Kailey", "status": "completed", "source": "Board update Nov 15 2026" },
+    { "companyId": "eh-fence", "name": "East Hampton Fence & Gate", "contact": "Kelly", "status": "completed", "source": "Board update Nov 15 2026" },
+    { "companyId": "eh-kitchen", "name": "East Hampton Kitchen", "contact": "Annie", "status": "completed", "source": "Board update Nov 15 2026" },
+    { "companyId": "sparkling-pools", "name": "Sparkling Pools", "contact": "Joe", "status": "completed", "source": "Board update Nov 15 2026" },
+    { "companyId": "hvac-four", "name": "HVAC Four Service", "status": "completed", "source": "Board update Nov 15 2026" }
+  ],
   "closes": 0,
   "leads": [
     {
@@ -17,8 +24,8 @@ module.exports = {
       "contact": "Kelly",
       "priority": "High",
       "stage": "Active conversation",
-      "next": "In-person close $2,400 — do not email deck ahead",
-      "nextStep": "In-person close $2,400 — do not email deck ahead",
+      "next": "Follow up Tue Nov 17",
+      "nextStep": "Follow up Tue Nov 17",
       "phone": "631-324-5941",
       "email": "ehfence@gmail.com",
       "address": "8 Hardscrabble Court, East Hampton, NY 11937",
@@ -32,8 +39,8 @@ module.exports = {
       "contact": "Kailey / Steve",
       "priority": "High",
       "stage": "Active conversation",
-      "next": "Nudge reply on $2,400 Three-Week",
-      "nextStep": "Nudge reply on $2,400 Three-Week",
+      "next": "Follow up Tue Nov 17",
+      "nextStep": "Follow up Tue Nov 17",
       "phone": "631-329-9344",
       "email": "eastendfuel@gmail.com",
       "address": "165 Springs Fireplace Road, East Hampton, NY 11937",
@@ -47,8 +54,8 @@ module.exports = {
       "contact": "Joe",
       "priority": "High",
       "stage": "Active conversation",
-      "next": "Midweek close visit — phone AI $2,400 remote",
-      "nextStep": "Midweek close visit — phone AI $2,400 remote",
+      "next": "Visit Joe Wed Nov 18",
+      "nextStep": "Visit Joe Wed Nov 18",
       "phone": "631-725-3983",
       "email": "info@sparklingpools.com",
       "address": "5 Toilsome Lane, East Hampton, NY 11937",
