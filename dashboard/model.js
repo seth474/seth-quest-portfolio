@@ -233,13 +233,13 @@ function clusterPlaces(places, withinKm) {
     var board = {
       asOf: data.asOf || '',
       asOfLabel: formatAsOf(data.asOf),
-      centerLabel: text(data.centerLabel) || 'Cold door knocks',
+      centerLabel: text(data.centerLabel) || 'In person',
       priorityRules: data.priorityRules || 'Low, Medium, and High only.',
       counts: {
         face: face,
         faceTarget: faceTarget,
         facePct: faceTarget ? Math.round((face / faceTarget) * 100) : 0,
-        label: text(data.centerLabel) || 'Cold door knocks',
+        label: 'In person ' + face + '/' + faceTarget,
         meetings: num(data.meetings),
         closes: num(data.closes),
         high: count('High'),

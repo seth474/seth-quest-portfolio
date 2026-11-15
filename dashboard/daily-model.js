@@ -8,7 +8,7 @@
   function daysUntil(now, target) {
     var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(now));
     var d = {}; parts.forEach(function (p) { d[p.type] = p.value; });
-    var end = String(target || '2026-11-30').split('-').map(Number);
+    var end = String(target || '2026-12-01').split('-').map(Number);
     return Math.ceil((Date.UTC(end[0], end[1] - 1, end[2]) - Date.UTC(+d.year, +d.month - 1, +d.day)) / 86400000);
   }
   function temperature(p) { return ({ High: 'Hot', Medium: 'Warm', Low: 'Cold', Visit: 'To visit' })[p] || p || 'Cold'; }
@@ -17,12 +17,20 @@
     return item.visitEligible !== false && !/do not contact|do not door|not interested|wrong ICP|not walk.in|residential|mailing box|P\.?O\.?\s*Box/i.test([item.restriction, item.stage, item.addressType, item.address].join(' '));
   }
   function uniq(items) { var seen = {}; return items.filter(function (v) { var key = v && (v.companyId || v.id); if (!key || seen[key]) return false; seen[key] = 1; return true; }); }
+  function scheduledStep(name) {
+    var key = String(name || '').toLowerCase();
+    if (/east end fuel/.test(key) || (/fence/.test(key) && /east hampton/.test(key))) return 'Follow up Tue Nov 17';
+    if (/sparkling/.test(key)) return 'Visit Joe Wed Nov 18';
+    return '';
+  }
   function enhance(board, raw) {
     var sourceLeads = raw.leads || [];
     board.leads.forEach(function (lead) {
       var original = sourceLeads[lead.order] || {};
       ['companyId', 'notes', 'source', 'lastContact', 'nextDate', 'restriction', 'website'].forEach(function (key) { lead[key] = original[key] || ''; });
-      if (lead.priority === 'High') lead.nextStep = 'Set next meeting with ' + (lead.contact || 'the decision-maker') + ' — goal: close. ' + lead.nextStep;
+      var scheduled = scheduledStep(lead.name);
+      if (scheduled) lead.nextStep = scheduled;
+      else if (lead.priority === 'High') lead.nextStep = 'Set next meeting with ' + (lead.contact || 'the decision-maker') + ' — goal: close. ' + lead.nextStep;
       else if (/finish site|collect \$/i.test(lead.nextStep)) lead.nextStep = 'Call ' + (lead.contact || 'the client') + ' to set a completion meeting and finish the work. If no answer, text to arrange it. Payment due on completion.';
       else if (/owner meeting/i.test(lead.nextStep)) lead.nextStep = 'Call ' + (lead.contact || 'your contact') + ' to arrange the owner meeting.';
       lead.action = lead.nextStep;

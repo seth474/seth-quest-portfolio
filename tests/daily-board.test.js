@@ -3,12 +3,12 @@ const assert = require('node:assert/strict');
 const model = require('../dashboard/model.js');
 const daily = require('../dashboard/daily-model.js');
 test('countdown uses New York calendar dates through DST and clamps no dates', () => {
-  assert.equal(daily.daysUntil('2026-10-29T02:00:00Z'), 33);
-  assert.equal(daily.daysUntil('2026-10-29T04:00:00Z'), 32);
-  assert.equal(daily.daysUntil('2026-11-01T05:59:00Z'), 29);
-  assert.equal(daily.daysUntil('2026-11-01T06:01:00Z'), 29);
-  assert.equal(daily.daysUntil('2026-11-30T05:00:00Z'), 0);
-  assert.equal(daily.daysUntil('2026-12-01T05:00:00Z'), -1);
+  assert.equal(daily.daysUntil('2026-10-29T02:00:00Z'), 34);
+  assert.equal(daily.daysUntil('2026-10-29T04:00:00Z'), 33);
+  assert.equal(daily.daysUntil('2026-11-01T05:59:00Z'), 30);
+  assert.equal(daily.daysUntil('2026-11-01T06:01:00Z'), 30);
+  assert.equal(daily.daysUntil('2026-11-30T05:00:00Z'), 1);
+  assert.equal(daily.daysUntil('2026-12-01T05:00:00Z'), 0);
 });
 test('unknown payments stay unknown; proposals do not become collected money', () => {
   const board = model.present({leads:[{name:'Alpha',priority:'High',nextStep:'Close $2,400'},{name:'Beta',priority:'Medium',nextStep:'Finish site; collect $750'}]});

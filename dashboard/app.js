@@ -236,7 +236,7 @@
     var start = 232;
     var sweep = 300;
     var pct = counts.faceTarget ? Math.max(0, Math.min(1, counts.face / counts.faceTarget)) : 0;
-    var label = counts.label || 'Cold door knocks';
+    var label = 'In person ' + counts.face + '/' + counts.faceTarget;
     var svg = svgEl('svg', { viewBox: '0 0 200 200', role: 'img' });
     svg.setAttribute('aria-label', counts.face + ' of ' + counts.faceTarget + ' ' + label);
     var defs = svgEl('defs', {});
@@ -363,7 +363,8 @@
     node.appendChild(top);
     var next = el('div', 'card-next');
     next.appendChild(el('i', 'dot'));
-    next.appendChild(el('span', '', verb(lead.nextStep || lead.action)));
+    var step = lead.nextStep || lead.action || '';
+    next.appendChild(el('span', '', step.length && step.length <= 42 ? step : verb(step)));
     node.appendChild(next);
     return node;
   }
@@ -390,7 +391,7 @@
     var root = document.getElementById('dials');
     clear(root);
     [[sideDial(counts.meetings, 'Meetings'), 'Meetings: ' + counts.meetings + ' reported. Open history', DailyBoard.meetings],
-      [faceDial(counts), 'Door knocks: ' + counts.face + ' reported. Open visit history', DailyBoard.visits],
+      [faceDial(counts), 'In person ' + counts.face + '/' + counts.faceTarget + '. Open visit history', DailyBoard.visits],
       [sideDial(counts.closes, 'Closes'), 'Closes: ' + counts.closes + ' reported. Open revenue details', DailyBoard.revenue]].forEach(function (item) {
         var button = el('button', 'dial-button'); button.type = 'button'; button.setAttribute('aria-label', item[1]);
         button.appendChild(item[0]); button.addEventListener('click', item[2]); root.appendChild(button);
