@@ -259,8 +259,8 @@ window.SITE_INDEX = {
   industrial: [
     {
       title: "Carbon Bath",
-      label: "Concept",
-      line: "Seth's latest, for the overlanding market. It travels with any mid-size SUV.",
+      label: "Product Design",
+      line: "A full bathroom designed for overlanding with a Lexus GX550 or Rivian SUV.",
       href: "/carbon-bath",
       image: "/portfolio/img/carbon-bath/cb-14-door-open-sunset.webp",
       width: 2400,
