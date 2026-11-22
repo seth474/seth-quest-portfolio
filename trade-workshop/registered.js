@@ -21,7 +21,7 @@
     a.rel = 'noopener';
     z.appendChild(a);
   }
-  var desc = W.DETAILS + '\n\nJoin: ' + (W.ZOOM || 'Zoom link coming by email.') + '\n\nQuestions? Text Seth: 934-899-0796';
+  var desc = W.DETAILS + '\n\nJoin: ' + (W.ZOOM || 'Zoom link coming by email.') + '\n\nQuestions? Text me: 934-899-0796';
   function esc(s) { return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); }
   var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Seth Quest//Workshop//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
     'UID:workshop-' + W.trade.id + '-' + W.zStart + '@sethquest.com', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''),

@@ -22,7 +22,7 @@ window.SITE_WORK = {
       category: "architecture",
       line: "Treehouse for a Texas development.",
       images: [
-        ["/portfolio/img/spyglass-a.webp", "Spyglass build, Seth Quest inside the timber arch", 1119, 1600],
+        ["/portfolio/img/spyglass-a.webp", "Spyglass build, me inside the timber arch", 1119, 1600],
         ["/portfolio/img/spyglass-b.webp", "Spyglass build, timber ribs of the arched structure", 1297, 1600],
         ["/portfolio/img/spyglass-c.webp", "Spyglass build, the long interior", 1600, 1200]
       ]
@@ -31,7 +31,7 @@ window.SITE_WORK = {
       id: "monarch-treehouse",
       title: "Monarch Treehouse",
       category: "architecture",
-      line: "Seth helped build it and suggested Volkstrut for CNC manufacture.",
+      line: "I helped build it and suggested Vulkstrut for CNC manufacture.",
       images: [
         ["/portfolio/img/monarch-siding.webp", "Monarch Treehouse during siding, with scaffolding and Zip System sheathing", 1500, 2000],
         ["/portfolio/img/monarch-zip.webp", "Monarch Treehouse Zip System wall with two people on the scaffolding", 1500, 2000]
@@ -87,7 +87,7 @@ window.SITE_WORK = {
       id: "supermodel",
       title: "Supermodel",
       category: "furniture",
-      line: "Table Seth designed.",
+      line: "A table I designed.",
       soft: true,
       images: [
         ["/portfolio/img/supermodel-a.webp", "Supermodel table, a folded sheet with a charcoal side and a pale green side", 2000, 1246],

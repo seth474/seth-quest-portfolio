@@ -553,7 +553,7 @@ function mountVideo(slot, poster, src) {
     video.preload = 'metadata';
     video.playsInline = true;
     video.setAttribute('playsinline', '');
-    video.setAttribute('aria-label', 'Seth on camera');
+    video.setAttribute('aria-label', 'Me on camera');
     var source = document.createElement('source');
     source.src = src;
     source.type = /\.webm(\?|#|$)/i.test(src) ? 'video/webm' : /\.ogg(\?|#|$)/i.test(src) ? 'video/ogg' : 'video/mp4';
@@ -569,7 +569,7 @@ function mountVideo(slot, poster, src) {
   }
   var frame = document.createElement('iframe');
   frame.src = src;
-  frame.title = 'Seth on camera';
+  frame.title = 'Me on camera';
   frame.allowFullscreen = true;
   frame.setAttribute('allow', 'fullscreen; picture-in-picture');
   frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
