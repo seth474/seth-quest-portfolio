@@ -99,7 +99,7 @@ describe('ai operations page', () => {
     assert.match(js, /assets\.calendly\.com\/assets\/external\/widget\.js/);
     assert.equal(html.includes('This button stays on this section until a Zoom or calendar link is added.'), false);
     assert.match(html, /Pick a time/);
-    assert.match(html, /Thanks, Seth will email you to set a time\./);
+    assert.match(html, /Thanks, I'll email you to set a time\./);
     assert.match(js, /const SIGNUP_URL = ''/);
     assert.match(js, /const BUY_COURSE_URL = ''/);
     assert.equal((js.match(/const VSL_EMBED\s*=/g) || []).length, 1);

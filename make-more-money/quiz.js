@@ -106,7 +106,7 @@
     }
   }
   function renderGate() {
-    body.innerHTML = '<h2 class="qz-q" id="qzT">See your results.</h2><p class="qz-h">Your numbers show up right after this. Seth gets a copy too, so you can go through it on a call.</p>' +
+    body.innerHTML = '<h2 class="qz-q" id="qzT">See your results.</h2><p class="qz-h">Your numbers show up right after this. I get a copy too, so we can go through it on a call.</p>' +
       '<form class="qz-gate" id="qzGate" novalidate>' +
       '<input class="fld" id="gN" autocomplete="given-name" placeholder="First name" aria-label="First name" value="' + esc(lead && lead.name || '') + '">' +
       '<input class="fld" id="gB" autocomplete="organization" placeholder="Business name" aria-label="Business name" value="' + esc(lead && lead.business || '') + '">' +
@@ -129,7 +129,7 @@
     a.click();
     a.remove();
     var n = document.getElementById('qrNote');
-    if (n) n.textContent = 'Report downloaded. Seth has your answers too.';
+    if (n) n.textContent = 'Report downloaded. I have your answers too.';
   }
   function printReport() {
     var w = window.open('', 'moreprint');
@@ -229,7 +229,7 @@
     };
     var el = function () { return document.getElementById('qrSent'); };
     fetch(FORM, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      .then(function (x) { if (!x.ok) throw 0; if (el()) el().textContent = 'Seth got a copy of your results.'; })
-      .catch(function () { if (el()) el().textContent = 'Could not send your copy to Seth. Text or call 934-899-0796 and he will go through it with you.'; });
+      .then(function (x) { if (!x.ok) throw 0; if (el()) el().textContent = 'I got a copy of your results.'; })
+      .catch(function () { if (el()) el().textContent = 'Could not send me a copy. Text or call 934-899-0796 and I\'ll go through it with you.'; });
   }
 })();

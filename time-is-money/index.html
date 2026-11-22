@@ -558,7 +558,7 @@ function doReport(e, theme){
     if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
     if(link){link.disabled=false;link.textContent='Printer-friendly version'}
     const note=$('#tqNote');
-    if(note)note.textContent=print?'Printer-friendly report downloaded.':'Report downloaded. Seth has your answers too.';
+    if(note)note.textContent=print?'Printer-friendly report downloaded.':'Report downloaded. I have your answers too.';
   }).catch(()=>{
     if(btn){btn.disabled=false;btn.textContent='Email me my full report'}
     if(link){link.disabled=false;link.textContent='Printer-friendly version'}
@@ -577,8 +577,8 @@ function sendLead(){
     paperwork:answerLabel('admin'),files:answerLabel('files'),biggest_sink:answerLabel('sink'),source:'sethquest.com/time-is-money quiz'};
   const el=()=>$('#tqSent');
   fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
-    .then(x=>{if(!x.ok)throw 0;if(el())el().textContent='Seth got a copy of your answers.'})
-    .catch(()=>{if(el())el().textContent='Could not send your copy to Seth. Text or call 934-899-0796.'});
+    .then(x=>{if(!x.ok)throw 0;if(el())el().textContent='I got a copy of your answers.'})
+    .catch(()=>{if(el())el().textContent='Could not send me a copy. Text or call 934-899-0796.'});
 }
 function loadReport(){
   if(window.MORETime)return Promise.resolve(window.MORETime);

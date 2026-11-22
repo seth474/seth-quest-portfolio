@@ -48,7 +48,7 @@
       }).catch(function () {
         b.disabled = false;
         b.textContent = 'Book my install';
-        er.textContent = 'That didn\u2019t go through. Call or text 934-899-0796 and Seth will book it.';
+        er.textContent = 'That didn\u2019t go through. Call or text 934-899-0796 and I\u2019ll book it.';
       });
     });
   }

@@ -143,7 +143,7 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible,summary:focus-visible{out
     <div class="wrap">
       <p class="eyebrow">See if it fits</p>
       <h2 class="d">Five questions<span class="g">.</span></h2>
-      <p class="prose" style="margin-bottom:16px">Seth reads this before a call. It takes about a minute.</p>
+      <p class="prose" style="margin-bottom:16px">I'll read this before a call. It takes about a minute.</p>
       <form id="fitForm">
         <label>Name<input id="fName" name="name" autocomplete="name" required></label>
         <label>Company<input id="fCo" name="company" autocomplete="organization" required></label>
@@ -160,12 +160,12 @@ a:focus-visible,.btn:focus-visible,.hcta:focus-visible,summary:focus-visible{out
         <label>Biggest time drain<textarea id="fDrain" name="time_drain" required placeholder="Quotes, email, scheduling, files"></textarea></label>
         <p class="err" id="fErr" role="alert"></p>
         <div class="row">
-          <button class="btn p" type="submit" id="fSend">Send this to Seth</button>
+          <button class="btn p" type="submit" id="fSend">Send this to me</button>
           <a class="btn o" href="tel:+19348990796">Book a free 15-min call</a>
         </div>
       </form>
       <div class="ok" id="fOk" hidden>
-        <h3 class="d">Seth has this<span class="g">.</span></h3>
+        <h3 class="d">I've got this<span class="g">.</span></h3>
         <p class="prose">If it fits, the next step is a 15-minute call.</p>
         <div class="row" style="margin-top:16px"><a class="btn p" href="tel:+19348990796">Book a free 15-min call</a></div>
       </div>
@@ -291,7 +291,7 @@ form.addEventListener('submit',function(e){
   const payload={_subject:'Team workshop: '+company+' ('+name+')',name:name,company:company,email:email,team_size:team,time_drain:drain,source:'sethquest.com/team-workshop'};
   fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
     .then(function(r){if(!r.ok)throw 0;form.hidden=true;document.getElementById('fOk').hidden=false})
-    .catch(function(){btn.disabled=false;btn.textContent='Send this to Seth';err.textContent='Could not send this. Call or text 934-899-0796.'});
+    .catch(function(){btn.disabled=false;btn.textContent='Send this to me';err.textContent='Could not send this. Call or text 934-899-0796.'});
 });
 </script>
 </body>

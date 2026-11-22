@@ -262,7 +262,7 @@
       '<p class="fine">' + fine(r) + '</p>' +
       '<p class="together">Let\u2019s pick what to work on together.</p>' +
       offersHTML() +
-      '<div class="qr-ctas"><button class="btn o" type="button" id="qrEmail">Download my report</button><button class="qr-print" type="button" id="qrPrint">Printer-friendly version</button><p class="qr-note" id="qrNote">Seth gets a copy too. The file downloads to this device.</p></div>' +
+      '<div class="qr-ctas"><button class="btn o" type="button" id="qrEmail">Download my report</button><button class="qr-print" type="button" id="qrPrint">Printer-friendly version</button><p class="qr-note" id="qrNote">I get a copy too. The file downloads to this device.</p></div>' +
       '<p class="qr-sent" id="qrSent"></p><div class="qz-err" id="qrErr"></div></div>';
   }
   function reportText(lead, A) {
